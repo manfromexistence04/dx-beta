@@ -6,7 +6,6 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "yarn@4.1.1",
   "keywords": [
     "answer",
     "answers",
@@ -62,7 +61,6 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-unicorn": "^52.0.0",
     "globby": "^14.0.1",
-    "husky": "^9.0.11",
     "lerna": "^8.1.2",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
@@ -79,7 +77,7 @@
     "integration/*"
   ],
   "scripts": {
-    "prepare": "husky && turbo tsc attw",
+    "prepare": "turbo tsc attw",
     "setup": "node ./tools/setup-packages.mjs",
     "pretest": "eslint . && turbo tsc",
     "test": "vitest --run packages && node --test integration/**/*.test.*"
