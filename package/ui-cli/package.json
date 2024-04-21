@@ -77,6 +77,7 @@
     "pageres": "^8.0.0",
     "prompts": "2.4.2",
     "react": "^18.2.0",
+    "sparkly": "^6.0.0",
     "tar": "6.2.1",
     "yargs": "^17.7.2",
     "zx": "^8.0.2"
@@ -84,6 +85,10 @@
   "devDependencies": {
     "@commitlint/cli": "17.7.1",
     "@commitlint/config-conventional": "17.7.0",
+    "@types/bun": "latest",
+    "@types/chalk-animation": "^1.6.3",
+    "@types/figlet": "^1.5.8",
+    "@types/gradient-string": "^1.1.6",
     "@types/node": "20.11.30",
     "@types/prompts": "2.4.9",
     "@typescript-eslint/eslint-plugin": "6.7.2",
@@ -104,11 +109,7 @@
     "lint-staged": "14.0.1",
     "tsup": "7.2.0",
     "tsx": "4.7.1",
-    "typescript": "5.4.4",
-    "@types/bun": "latest",
-    "@types/chalk-animation": "^1.6.3",
-    "@types/figlet": "^1.5.8",
-    "@types/gradient-string": "^1.1.6"
+    "typescript": "5.4.4"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
