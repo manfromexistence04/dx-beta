@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // #!/usr/bin/env node
 // import type {CommandName} from '@helpers/type';
 
@@ -369,74 +371,183 @@
 
 // */                          
  
-var blessed = require('blessed');
+// var blessed = require('blessed');
 
-// Create a screen object.
-var screen = blessed.screen({
-  smartCSR: true
-});
+// // Create a screen object.
+// var screen = blessed.screen({
+//   smartCSR: true
+// });
 
-screen.title = 'my window title';
+// screen.title = 'my window title';
 
-// Create a box perfectly centered horizontally and vertically.
-var box = blessed.box({
-  top: 'center',
-  left: 'center',
-  width: '50%',
-  height: '50%',
-  content: 'Hello {bold}world{/bold}!',
-  tags: true,
-  border: {
-    type: 'line'
-  },
-  style: {
-    fg: 'white',
-    bg: 'magenta',
-    border: {
-      fg: '#f0f0f0'
-    },
-    hover: {
-      bg: 'green'
-    }
-  }
-});
+// // Create a box perfectly centered horizontally and vertically.
+// var box = blessed.box({
+//   top: 'center',
+//   left: 'center',
+//   width: '50%',
+//   height: '50%',
+//   content: 'Hello {bold}world{/bold}!',
+//   tags: true,
+//   border: {
+//     type: 'line'
+//   },
+//   style: {
+//     fg: 'white',
+//     bg: 'magenta',
+//     border: {
+//       fg: '#f0f0f0'
+//     },
+//     hover: {
+//       bg: 'green'
+//     }
+//   }
+// });
 
-// Append our box to the screen.
-screen.append(box);
+// // Append our box to the screen.
+// screen.append(box);
 
-// Add a png icon to the box
-var icon = blessed.image({
-  parent: box,
-  top: 0,
-  left: 0,
-  type: 'overlay',
-  width: 'shrink',
-  height: 'shrink',
-  file: __dirname + '/my-program-icon.png',
-  search: false
-});
+// // Add a png icon to the box
+// var icon = blessed.image({
+//   parent: box,
+//   top: 0,
+//   left: 0,
+//   type: 'overlay',
+//   width: 'shrink',
+//   height: 'shrink',
+//   file: __dirname + '/my-program-icon.png',
+//   search: false
+// });
 
-// If our box is clicked, change the content.
-box.on('click', function(data) {
-  box.setContent('{center}Some different {red-fg}content{/red-fg}.{/center}');
-  screen.render();
-});
+// // If our box is clicked, change the content.
+// box.on('click', function(data) {
+//   box.setContent('{center}Some different {red-fg}content{/red-fg}.{/center}');
+//   screen.render();
+// });
 
-// If box is focused, handle `enter`/`return` and give us some more content.
-box.key('enter', function(ch, key) {
-  box.setContent('{right}Even different {black-fg}content{/black-fg}.{/right}\n');
-  box.setLine(1, 'bar');
-  box.insertLine(1, 'foo');
-  screen.render();
-});
+// // If box is focused, handle `enter`/`return` and give us some more content.
+// box.key('enter', function(ch, key) {
+//   box.setContent('{right}Even different {black-fg}content{/black-fg}.{/right}\n');
+//   box.setLine(1, 'bar');
+//   box.insertLine(1, 'foo');
+//   screen.render();
+// });
 
-// Quit on Escape, q, or Control-C.
-screen.key(['escape', 'q', 'C-c'], function(ch, key) {
-  return process.exit(0);
-});
+// // Quit on Escape, q, or Control-C.
+// screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+//   return process.exit(0);
+// });
 
-// Focus our element.
-box.focus();
+// // Focus our element.
+// box.focus();
 
-// Render the screen.
-screen.render();
+// // Render the screen.
+// screen.render();
+
+// const vorpal = require('vorpal')();
+
+// vorpal
+//   .command('foo', 'Outputs "bar".')
+//   .action(function(args, callback) {
+//     // @ts-ignore
+//     this.log('bar');
+//     callback();
+//   });
+
+//   vorpal.ui.delimiter('NaN: ');
+//   setInterval(function() {
+//     vorpal.ui.delimiter(vorpal.ui.delimiter() + 'NaN: ');
+//   }, 1000);
+// import figures, {mainSymbols, fallbackSymbols, replaceSymbols} from 'figures';
+
+// console.log(figures.tick);
+// // On terminals with Unicode symbols:  ✔
+// // On other terminals:                 √
+
+// console.log(mainSymbols.tick);
+// // On all terminals:  ✔
+
+// console.log(fallbackSymbols.tick);
+// // On all terminals:  √
+
+// console.log(replaceSymbols('✔ check'));
+// // On terminals with Unicode symbols:  ✔ check
+// // On other terminals:                 √ check
+// import logSymbols from 'log-symbols';
+
+// console.log(logSymbols.warning, 'Finished successfully!');
+// // Terminals with Unicode support:     ✔ Finished successfully!
+// // Terminals without Unicode support:  √ Finished successfully!
+// import updateNotifier from 'update-notifier';
+// import packageJson from '../package.json' assert {type: 'json'};
+
+// updateNotifier({pkg: packageJson}).notify();
+// import meow from 'meow';
+// // import foo from './lib/index.js';
+
+// const cli = meow(`
+// 	Usage
+// 	  $ foo <input>
+
+// 	Options
+// 	  --rainbow, -r  Include a rainbow
+
+// 	Examples
+// 	  $ foo unicorns --rainbow
+// 	  🌈 unicorns 🌈
+// `, {
+// 	importMeta: import.meta, // This is required
+// 	flags: {
+// 		rainbow: {
+// 			type: 'boolean',
+// 			shortFlag: 'r'
+// 		}
+// 	}
+// });
+// /*
+
+// foo(cli.input.at(0), cli.flags);
+// import meow from 'meow';
+
+// const cli = meow(`
+// 	Usage
+// 	  $ foo
+
+// 	Options
+// 	  --rainbow, -r  Include a rainbow
+// 	  --unicorn, -u  Include a unicorn
+// 	  --no-sparkles  Exclude sparkles
+
+// 	Examples
+// 	  $ foo
+// 	  🌈 unicorns✨🌈
+// `, {
+// 	importMeta: import.meta,
+// 	booleanDefault: undefined,
+// 	flags: {
+// 		rainbow: {
+// 			type: 'boolean',
+// 			default: true,
+// 			shortFlag: 'r'
+// 		},
+// 		unicorn: {
+// 			type: 'boolean',
+// 			default: false,
+// 			shortFlag: 'u'
+// 		},
+// 		cake: {
+// 			type: 'boolean',
+// 			shortFlag: 'c'
+// 		},
+// 		sparkles: {
+// 			type: 'boolean',
+// 			default: true
+// 		}
+// 	}
+// });
+
+// const wifiPassword = require('wifi-password');
+
+// wifiPassword().then(password => {
+// 	console.log(password);
+// 	//=> 'johndoesecretpassword'
+// });
