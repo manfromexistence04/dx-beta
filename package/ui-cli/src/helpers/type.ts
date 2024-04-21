@@ -17,15 +17,22 @@ export type AppendKeyValue<T extends SAFE_ANY, K extends keyof any, V extends SA
 };
 
 export type CommandName =
-  | 'init'
-  | 'list'
-  | 'env'
-  | 'upgrade'
-  | 'remove'
-  | 'add'
-  | 'doctor'
-  | 'remove';
+  | 'suggest'
+  | 'explain'
 
+  | 'create'
+  | 'init'
+
+  | 'add'
+  | 'remove'
+
+  | 'upgrade'
+
+  | 'list'
+
+  | 'env'
+  
+  | 'doctor'
 /**
  * @example RequiredKey<{a?: 1, b?: 2}, a> => {a: 1, b?: 2}
  */
