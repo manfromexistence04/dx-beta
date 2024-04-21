@@ -21,7 +21,7 @@
   "scripts": {
     "build": "astro-scripts build \"src/index.ts\" --bundle && tsc",
     "build:ci": "astro-scripts build \"src/index.ts\" --bundle",
-    "dev": "astro-scripts dev \"src/**/*.ts\"",
+    "dev": "bun run --hot src/index.ts",
     "test": "astro-scripts test \"test/**/*.test.js\""
   },
   "files": [
