@@ -1,222 +1,331 @@
-// #!/usr/bin/env node
-// import type {CommandName} from '@helpers/type';
+#!/usr/bin/env node
+import type { CommandName } from '@helpers/type';
+import chalk from 'chalk';
+import { Command } from 'commander';
+import { exec } from '@helpers/exec';
+import { Logger, gradientString } from '@helpers/logger';
+import { findMostMatchText } from '@helpers/math-diff';
+import { outputBox } from '@helpers/output-info';
+import { getCommandDescAndLog } from '@helpers/utils';
+import chalkAnimation from 'chalk-animation';
+import pkg from '../package.json';
+import { addAction } from './actions/add-action';
+import { doctorAction } from './actions/doctor-action';
+import { envAction } from './actions/env-action';
+import { initAction } from './actions/init-action';
+import { listAction } from './actions/list-action';
+import { removeAction } from './actions/remove-action';
+import { upgradeAction } from './actions/upgrade-action';
+import { initStoreComponentsData } from './constants/component';
+import { getStore, store } from './constants/store';
+import { compareVersions, getComponents } from './scripts/helpers';
+import inquirer from 'inquirer';
+import gradient from 'gradient-string';
+import figlet from 'figlet';
+import { createSpinner } from 'nanospinner';
+import prompt from "prompts";
 
-// import chalk from 'chalk';
-// import {Command} from 'commander';
+let interval;
+let COPYRIGHT_INFO: string = "So, except the base components this cli uses other UI frameworks which respectly belongs to them. By using this cli we do not any miss downloads or bad stuffs that challanges any thread to the respective owners. Thanks"
 
-// import {exec} from '@helpers/exec';
-// import {Logger, gradientString} from '@helpers/logger';
-// import {findMostMatchText} from '@helpers/math-diff';
-// import {outputBox} from '@helpers/output-info';
-// import {getCommandDescAndLog} from '@helpers/utils';
-// import chalkAnimation from 'chalk-animation';
+/*
+$$\   $$\                       $$\               $$\ 
+$$$\  $$ |                      $$ |              \__|
+$$$$\ $$ | $$$$$$\  $$\   $$\ $$$$$$\   $$\   $$\ $$\ 
+$$ $$\$$ |$$  __$$\ \$$\ $$  |\_$$  _|  $$ |  $$ |$$ |
+$$ \$$$$ |$$$$$$$$ | \$$$$  /   $$ |    $$ |  $$ |$$ |
+$$ |\$$$ |$$   ____| $$  $$<    $$ |$$\ $$ |  $$ |$$ |
+$$ | \$$ |\$$$$$$$\ $$  /\$$\   \$$$$  |\$$$$$$  |$$ |
+\__|  \__| \_______|\__/  \__|   \____/  \______/ \__|
+*/
 
-// import pkg from '../package.json';
+const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
 
-// import {addAction} from './actions/add-action';
-// import {doctorAction} from './actions/doctor-action';
-// import {envAction} from './actions/env-action';
-// import {initAction} from './actions/init-action';
-// import {listAction} from './actions/list-action';
-// import {removeAction} from './actions/remove-action';
-// import {upgradeAction} from './actions/upgrade-action';
-// import {initStoreComponentsData} from './constants/component';
-// import {getStore, store} from './constants/store';
-// import {compareVersions, getComponents} from './scripts/helpers';
+const nextui = new Command();
 
-// import inquirer from 'inquirer';
-// import gradient from 'gradient-string';
-// import figlet from 'figlet';
-// import { createSpinner } from 'nanospinner';
+nextui
+    .name('nextui')
+    .usage('[command]')
+    .description(`${chalkAnimation.rainbow(
+        'Streamline UI Development with a CLI Tool for Efficient Component Integration'
+    )}`)
+    .version(pkg.version, '-v, --version', 'Output the current version')
+    .helpOption('-h, --help', 'Display help for command')
+    .allowUnknownOption()
+    .action(async (_, command) => {
 
-// /*
-// $$\   $$\                       $$\               $$\ 
-// $$$\  $$ |                      $$ |              \__|
-// $$$$\ $$ | $$$$$$\  $$\   $$\ $$$$$$\   $$\   $$\ $$\ 
-// $$ $$\$$ |$$  __$$\ \$$\ $$  |\_$$  _|  $$ |  $$ |$$ |
-// $$ \$$$$ |$$$$$$$$ | \$$$$  /   $$ |    $$ |  $$ |$$ |
-// $$ |\$$$ |$$   ____| $$  $$<    $$ |$$\ $$ |  $$ |$$ |
-// $$ | \$$ |\$$$$$$$\ $$  /\$$\   \$$$$  |\$$$$$$  |$$ |
-// \__|  \__| \_______|\__/  \__|   \____/  \______/ \__|
-// */
+        let isArgs = false;
 
-// const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
+        if (command) {
+            const args = command.args?.[0];
 
-// const nextui = new Command();
+            if (args && !commandList.includes(args as CommandName)) {
+                isArgs = true;
 
-// nextui
-//   .name('nextui')
-//   .usage('[command]')
-//   .description(`${chalkAnimation.rainbow(
-//         'Streamline UI Development with a CLI Tool for Efficient Component Integration'
-//      )}`)
-//   .version(pkg.version, '-v, --version', 'Output the current version')
-//   .helpOption('-h, --help', 'Display help for command')
-//   .allowUnknownOption()
-//   .action(async (_, command) => {
-//     console.log("Hello");
-    
-//     // let isArgs = false;
-//     // console.log(command)
+                const matchCommand = findMostMatchText(commandList, args);
 
-//     // if (command) {
-//     //   const args = command.args?.[0];
+                if (matchCommand) {
+                    Logger.error(
+                        `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
+                    );
+                } else {
+                    Logger.error(`Unknown command '${args}'`);
+                }
+            }
+        }
 
-//     //   if (args && !commandList.includes(args as CommandName)) {
-//     //     isArgs = true;
+        if (!isArgs) {
+            const helpInfo = (await exec('nextui --help', { logCmd: false, stdio: 'pipe' })) as string;
 
-//     //     const matchCommand = findMostMatchText(commandList, args);
+            let helpInfoArr = helpInfo.split('\n');
 
-//     //     if (matchCommand) {
-//     //       Logger.error(
-//     //         `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
-//     //       );
-//     //     } else {
-//     //       Logger.error(`Unknown command '${args}'`);
-//     //     }
-//     //   }
-//     // }
+            helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
+            // Add command name color
+            helpInfoArr = helpInfoArr.map((info) => {
+                const command = info.match(/(\w+)\s\[/)?.[1];
 
-//     // if (!isArgs) {
-//     //   const helpInfo = (await exec('nextui --help', {logCmd: false, stdio: 'pipe'})) as string;
+                if (command) {
+                    return info.replace(command, chalk.cyan(command));
+                }
 
-//     //   let helpInfoArr = helpInfo.split('\n');
+                return info;
+            });
 
-//     //   helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
-//     //   // Add command name color
-//     //   helpInfoArr = helpInfoArr.map((info) => {
-//     //     const command = info.match(/(\w+)\s\[/)?.[1];
+            Logger.log(helpInfoArr.join('\n'));
+        }
+        // process.exit(0);
 
-//     //     if (command) {
-//     //       return info.replace(command, chalk.cyan(command));
-//     //     }
 
-//     //     return info;
-//     //   });
+        (async function () {
+            const questions: any[] = [
+                {
+                    type: 'text',
+                    name: 'twitter',
+                    message: `What's your twitter handle?`,
+                    initial: `terkelg`,
+                    format: (v: string) => `@${v}`
+                },
+                {
+                    type: 'number',
+                    name: 'age',
+                    message: 'How old are you?',
+                    validate: (value: number) => value < 18 ? `Sorry, you have to be 18` : true
+                },
+                {
+                    type: 'password',
+                    name: 'secret',
+                    message: 'Tell me a secret'
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmed',
+                    message: 'Can you confirm?'
+                },
+                {
+                    type: (prev: boolean) => prev && 'toggle',
+                    name: 'confirmtoggle',
+                    message: 'Can you confirm again?',
+                    active: 'yes',
+                    inactive: 'no'
+                },
+                {
+                    type: 'list',
+                    name: 'keywords',
+                    message: 'Enter keywords'
+                },
+                {
+                    type: 'select',
+                    name: 'color',
+                    message: 'Pick a color',
+                    choices: [
+                        { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+                        { title: 'Green', value: '#00ff00' },
+                        { title: 'Yellow', value: '#ffff00', disabled: true },
+                        { title: 'Blue', value: '#0000ff' }
+                    ]
+                },
+                {
+                    type: 'multiselect',
+                    name: 'multicolor',
+                    message: 'Pick colors',
+                    hint: false,
+                    choices: [
+                        { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+                        { title: 'Green', value: '#00ff00' },
+                        { title: 'Yellow', value: '#ffff00', disabled: true },
+                        { title: 'Blue', value: '#0000ff' }
+                    ]
+                },
+                {
+                    type: 'autocomplete',
+                    name: 'actor',
+                    message: 'Pick your favorite actor',
+                    initial: 1,
+                    limit: 3,
+                    suggest: (input: string, choices: any[]) => choices.filter(i => i.title.toLowerCase().includes(input.toLowerCase())),
+                    choices: [
+                        { title: 'Cage' },
+                        { title: 'Clooney', value: 'silver-fox' },
+                        { title: 'Gyllenhaal' },
+                        { title: 'Gibson' },
+                        { title: 'Grant', description: 'This option has a description.' },
+                        { title: 'Hanks' },
+                        { title: 'Downey Jr.' }
+                    ],
+                    fallback: {
+                        title: `This is the fallback. Its value is 'fallback'`,
+                        value: 'fallback'
+                    }
+                },
+                {
+                    type: 'date',
+                    name: 'birthday',
+                    message: `What's your birthday?`,
+                    validate: (date: any) => date > Date.now() ? `Your birth day can't be in the future` : true
+                },
+                {
+                    type: 'number',
+                    name: 'prompt',
+                    message: 'This will be overridden',
+                    onRender(color: any) {
+                        this.no = (this.no || 1);
+                        this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
+                        if (!interval) interval = setInterval(() => {
+                            this.no += 1;
+                            this.render();
+                        }, 1000);
+                    }
+                }
+            ];
 
-//     //   Logger.log(helpInfoArr.join('\n'));
-//     // }
-//     // process.exit(0);
-//   });
+            const answers = await prompt(questions, { onCancel: cleanup, onSubmit: cleanup });
+            console.log(answers);
+        })();
 
-// nextui
-//   .command('init')
-//   .description('Initializes a new project')
-//   .argument('[projectName]', 'Name of the project to initialize')
-//   .option('-t --template [string]', 'Specify a template for the new project, e.g., app, pages')
-//   /** ======================== TODO:(winches)Temporary use npm with default value ======================== */
-//   // .option('-p --package [string]', 'The package manager to use for the new project')
-//   .action(initAction);
+        function cleanup() {
+            clearInterval(interval);
+        }
 
-// nextui
-//   .command('add')
-//   .description('Adds components to your project')
-//   .argument('[components...]', 'Names of components to add')
-//   .option('-a --all [boolean]', 'Add all components', false)
-//   .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-//   .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
-//   .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
-//   .option('--prettier [boolean]', 'Apply Prettier formatting to the added content', false)
-//   .option('--addApp [boolean]', 'Include App.tsx file content that requires a provider', false)
-//   .action(addAction);
+    });
 
-// nextui
-//   .command('upgrade')
-//   .description('Upgrades project components to the latest versions')
-//   .argument('[components...]', 'Names of components to upgrade')
-//   .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-//   .option('-a --all [boolean]', 'Upgrade all components', false)
-//   .action(upgradeAction);
+nextui
+    .command('init')
+    .description('Initializes a new project')
+    .argument('[projectName]', 'Name of the project to initialize')
+    .option('-t --template [string]', 'Specify a template for the new project, e.g., app, pages')
+    /** ======================== TODO:(winches)Temporary use npm with default value ======================== */
+    // .option('-p --package [string]', 'The package manager to use for the new project')
+    .action(initAction);
 
-// nextui
-//   .command('remove')
-//   .description('Removes components from the project')
-//   .argument('[components...]', 'Names of components to remove')
-//   .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-//   .option('-a --all [boolean]', 'Remove all components', false)
-//   .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
-//   .action(removeAction);
+nextui
+    .command('add')
+    .description('Adds components to your project')
+    .argument('[components...]', 'Names of components to add')
+    .option('-a --all [boolean]', 'Add all components', false)
+    .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+    .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
+    .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
+    .option('--prettier [boolean]', 'Apply Prettier formatting to the added content', false)
+    .option('--addApp [boolean]', 'Include App.tsx file content that requires a provider', false)
+    .action(addAction);
 
-// nextui
-//   .command('list')
-//   .description('Lists all components, showing status, descriptions, and versions')
-//   .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-//   .option('-r --remote', 'List all components available remotely')
-//   .action(listAction);
-// nextui
-//   .command('env')
-//   .description('Displays debugging information for the local environment')
-//   .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-//   .action(envAction);
+nextui
+    .command('upgrade')
+    .description('Upgrades project components to the latest versions')
+    .argument('[components...]', 'Names of components to upgrade')
+    .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+    .option('-a --all [boolean]', 'Upgrade all components', false)
+    .action(upgradeAction);
 
-// nextui
-//   .command('doctor')
-//   .description('Checks for issues in the project')
-//   .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-//   .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
-//   .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
-//   .option('-ca --checkApp [boolean]', 'Check the App.tsx file', false)
-//   .option('-ct --checkTailwind [boolean]', 'Check the tailwind.config.js file', true)
-//   .option('-cp --checkPnpm [boolean]', 'Check for Pnpm', true)
-//   .action(doctorAction);
+nextui
+    .command('remove')
+    .description('Removes components from the project')
+    .argument('[components...]', 'Names of components to remove')
+    .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+    .option('-a --all [boolean]', 'Remove all components', false)
+    .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
+    .action(removeAction);
 
-// nextui.hook('preAction', async (command) => {
-//   const args = command.args?.[0];
+nextui
+    .command('list')
+    .description('Lists all components, showing status, descriptions, and versions')
+    .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+    .option('-r --remote', 'List all components available remotely')
+    .action(listAction);
+nextui
+    .command('env')
+    .description('Displays debugging information for the local environment')
+    .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+    .action(envAction);
 
-//   if (args && commandList.includes(args as CommandName)) {
-//     // Before run the command init the components.json
-//     const nextUIComponents = (await getComponents()).components;
+nextui
+    .command('doctor')
+    .description('Checks for issues in the project')
+    .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+    .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
+    .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
+    .option('-ca --checkApp [boolean]', 'Check the App.tsx file', false)
+    .option('-ct --checkTailwind [boolean]', 'Check the tailwind.config.js file', true)
+    .option('-cp --checkPnpm [boolean]', 'Check for Pnpm', true)
+    .action(doctorAction);
 
-//     initStoreComponentsData(nextUIComponents);
-//   }
+nextui.hook('preAction', async (command) => {
+    const args = command.args?.[0];
 
-//   const cliLatestVersion = await getStore('cliLatestVersion');
-//   const latestVersion = await getStore('latestVersion');
+    if (args && commandList.includes(args as CommandName)) {
+        // Before run the command init the components.json
+        const nextUIComponents = (await getComponents()).components;
 
-//   // Init latest version
-//   store.latestVersion = latestVersion;
-//   store.cliLatestVersion = cliLatestVersion;
+        initStoreComponentsData(nextUIComponents);
+    }
 
-//   // Add NextUI CLI version check preAction
-//   const currentVersion = pkg.version;
+    const cliLatestVersion = await getStore('cliLatestVersion');
+    const latestVersion = await getStore('latestVersion');
 
-//   if (compareVersions(currentVersion, cliLatestVersion) === -1) {
-//     outputBox({
-//       color: 'yellow',
-//       padding: 1,
-//       text: `${chalk.gray(
-//         `Available upgrade: v${currentVersion} -> ${chalk.greenBright(
-//           `v${cliLatestVersion}`
-//         )}\nRun \`${chalk.cyan(
-//           'npm install nextui-cli@latest'
-//         )}\` to upgrade\nChangelog: ${chalk.underline(
-//           'https://github.com/nextui-org/nextui-cli/releases'
-//         )}`
-//       )}`,
-//       title: gradientString('NextUI CLI')
-//     });
-//     Logger.newLine();
-//   }
-// });
+    // Init latest version
+    store.latestVersion = latestVersion;
+    store.cliLatestVersion = cliLatestVersion;
 
-// nextui.parseAsync(process.argv).catch(async (reason) => {
-//   Logger.newLine();
-//   Logger.error('Unexpected error. Please report it as a bug:');
-//   Logger.log(reason);
-//   Logger.newLine();
-//   process.exit(1);
-// });
+    // Add NextUI CLI version check preAction
+    const currentVersion = pkg.version;
 
-// /*
-// /$$$$$$$$ /$$$$$$ / $$$$$$$ / $$$$$$$$ / $$$$$$ / $$ / $$ / $$$$$$ / $$$$$$$ / $$
-// | $$_____/|_  $$_/| $$__  $$| $$_____/ /$$__  $$| $$  | $$|_  $$_/| $$__  $$|__/
-// | $$        | $$  | $$  \ $$| $$      | $$  \__/| $$  | $$  | $$  | $$  \ $$ /$$  /$$$$$$
-// | $$$$$     | $$  | $$$$$$$/| $$$$$   |  $$$$$$ | $$$$$$$$  | $$  | $$$$$$$/| $$ /$$__  $$
-// | $$__/     | $$  | $$__  $$| $$__/    \____  $$| $$__  $$  | $$  | $$____/ | $$| $$  \ $$
-// | $$        | $$  | $$  \ $$| $$       /$$  \ $$| $$  | $$  | $$  | $$      | $$| $$  | $$
-// | $$       /$$$$$$| $$  | $$| $$$$$$$$|  $$$$$$/| $$  | $$ /$$$$$$| $$ /$$  | $$|  $$$$$$/
-// |__/      |______/|__/  |__/|________/ \______/ |__/  |__/|______/|__/|__/  |__/ \______/
-// */
+    if (compareVersions(currentVersion, cliLatestVersion) === -1) {
+        outputBox({
+            color: 'yellow',
+            padding: 1,
+            text: `${chalk.gray(
+                `Available upgrade: v${currentVersion} -> ${chalk.greenBright(
+                    `v${cliLatestVersion}`
+                )}\nRun \`${chalk.cyan(
+                    'npm install nextui-cli@latest'
+                )}\` to upgrade\nChangelog: ${chalk.underline(
+                    'https://github.com/nextui-org/nextui-cli/releases'
+                )}`
+            )}`,
+            title: gradientString('NextUI CLI')
+        });
+        Logger.newLine();
+    }
+});
+
+nextui.parseAsync(process.argv).catch(async (reason) => {
+    Logger.newLine();
+    Logger.error('Unexpected error. Please report it as a bug:');
+    Logger.log(reason);
+    Logger.newLine();
+    process.exit(1);
+});
+
+/*
+/$$$$$$$$ /$$$$$$ / $$$$$$$ / $$$$$$$$ / $$$$$$ / $$ / $$ / $$$$$$ / $$$$$$$ / $$
+| $$_____/|_  $$_/| $$__  $$| $$_____/ /$$__  $$| $$  | $$|_  $$_/| $$__  $$|__/
+| $$        | $$  | $$  \ $$| $$      | $$  \__/| $$  | $$  | $$  | $$  \ $$ /$$  /$$$$$$
+| $$$$$     | $$  | $$$$$$$/| $$$$$   |  $$$$$$ | $$$$$$$$  | $$  | $$$$$$$/| $$ /$$__  $$
+| $$__/     | $$  | $$__  $$| $$__/    \____  $$| $$__  $$  | $$  | $$____/ | $$| $$  \ $$
+| $$        | $$  | $$  \ $$| $$       /$$  \ $$| $$  | $$  | $$  | $$      | $$| $$  | $$
+| $$       /$$$$$$| $$  | $$| $$$$$$$$|  $$$$$$/| $$  | $$ /$$$$$$| $$ /$$  | $$|  $$$$$$/
+|__/      |______/|__/  |__/|________/ \______/ |__/  |__/|______/|__/|__/  |__/ \______/
+*/
 
 
 
@@ -358,131 +467,15 @@
 // await question5();
 // winner();
 
-// /*
-// ________                  __ 
-// /        |                /  |
-// $$$$$$$$/  _______    ____$$ |
-// $$ |__    /       \  /    $$ |
-// $$    |   $$$$$$$  |/$$$$$$$ |
-// $$$$$/    $$ |  $$ |$$ |  $$ |
-// $$ |_____ $$ |  $$ |$$ \__$$ |
-// $$       |$$ |  $$ |$$    $$ |
-// $$$$$$$$/ $$/   $$/  $$$$$$$/ 
+/*
+________                  __ 
+/        |                /  |
+$$$$$$$$/  _______    ____$$ |
+$$ |__    /       \  /    $$ |
+$$    |   $$$$$$$  |/$$$$$$$ |
+$$$$$/    $$ |  $$ |$$ |  $$ |
+$$ |_____ $$ |  $$ |$$ \__$$ |
+$$       |$$ |  $$ |$$    $$ |
+$$$$$$$$/ $$/   $$/  $$$$$$$/ 
 
-// // */
-
-'use strict';
-
-import prompt from "prompts";
-
-let interval;
-
-(async function(){
-    const questions = [
-        {
-            type: 'text',
-            name: 'twitter',
-            message: `What's your twitter handle?`,
-            initial: `terkelg`,
-            format: v => `@${v}`
-        },
-        {
-            type: 'number',
-            name: 'age',
-            message: 'How old are you?',
-            validate: value => value < 18 ? `Sorry, you have to be 18` : true
-        },
-        {
-            type: 'password',
-            name: 'secret',
-            message: 'Tell me a secret'
-        },
-        {
-            type: 'confirm',
-            name: 'confirmed',
-            message: 'Can you confirm?'
-        },
-        {
-            type: prev => prev && 'toggle',
-            name: 'confirmtoggle',
-            message: 'Can you confirm again?',
-            active: 'yes',
-            inactive: 'no'
-        },
-        {
-            type: 'list',
-            name: 'keywords',
-            message: 'Enter keywords'
-        },
-        {
-            type: 'select',
-            name: 'color',
-            message: 'Pick a color',
-            choices: [
-                { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
-                { title: 'Green', value: '#00ff00' },
-                { title: 'Yellow', value: '#ffff00', disabled: true },
-                { title: 'Blue', value: '#0000ff' }
-            ]
-        },
-        {
-            type: 'multiselect',
-            name: 'multicolor',
-            message: 'Pick colors',
-            hint: false,
-            choices: [
-                { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
-                { title: 'Green', value: '#00ff00' },
-                { title: 'Yellow', value: '#ffff00', disabled: true },
-                { title: 'Blue', value: '#0000ff' }
-            ]
-        },
-        {
-            type: 'autocomplete',
-            name: 'actor',
-            message: 'Pick your favorite actor',
-            initial: 1,
-            limit: 3,
-            suggest: (input, choices) => choices.filter(i => i.title.toLowerCase().includes(input.toLowerCase())),
-            choices: [
-                { title: 'Cage' },
-                { title: 'Clooney', value: 'silver-fox' },
-                { title: 'Gyllenhaal' },
-                { title: 'Gibson' },
-                { title: 'Grant', description: 'This option has a description.' },
-                { title: 'Hanks' },
-                { title: 'Downey Jr.' }
-            ],
-            fallback: {
-                title: `This is the fallback. Its value is 'fallback'`,
-                value: 'fallback'
-            }
-        },
-        {
-            type: 'date',
-            name: 'birthday',
-            message: `What's your birthday?`,
-            validate: date => date > Date.now() ? `Your birth day can't be in the future` : true
-        },
-        {
-            type: 'number',
-            name: 'prompt',
-            message: 'This will be overridden',
-            onRender(color) {
-                this.no = (this.no || 1);
-                this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
-                if (!interval) interval = setInterval(() => {
-                    this.no += 1;
-                    this.render();
-                }, 1000);
-            }
-        }
-    ];
-
-    const answers = await prompt(questions, {onCancel:cleanup, onSubmit:cleanup});
-    console.log(answers);
-})();
-
-function cleanup() {
-    clearInterval(interval);
-}
+// */
