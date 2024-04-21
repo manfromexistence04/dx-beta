@@ -1,31 +1,31 @@
 {
-  "name": "nextui-cli",
+  "name": "dx-ui-cli",
   "private": false,
   "type": "module",
   "license": "MIT",
   "version": "0.1.5",
-  "homepage": "https://github.com/nextui-org/nextui-cli#readme",
-  "description": "A CLI tool that unlocks seamless NextUI integration",
+  "homepage": "https://github.com/dx-ui-org/dx-ui-cli#readme",
+  "description": "A CLI tool that unlocks seamless ui frameworks integration",
   "keywords": [
     "UI",
     "CLI",
     "Tool",
-    "NextUI",
+    "dx-ui",
     "Template",
     "Integration",
     "Add Component"
   ],
   "author": {
-    "name": "NextUI",
-    "email": "support@nextui.org",
-    "url": "https://github.com/nextui-org"
+    "name": "dx-ui",
+    "email": "support@dx-ui.org",
+    "url": "https://github.com/dx-ui-org"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nextui-org/nextui-cli.git"
+    "url": "https://github.com/dx-ui-org/dx-ui-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/nextui-org/nextui-cli/issues"
+    "url": "https://github.com/dx-ui-org/dx-ui-cli/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "dist"
   ],
   "bin": {
-    "nextui": "./dist/index.js"
+    "dx-ui": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -42,7 +42,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "link:cli": "pnpm link --global",
-    "link:remove": "pnpm uninstall --global nextui-cli",
+    "link:remove": "pnpm uninstall --global dx-ui-cli",
     "build": "tsup",
     "update:components": "tsx src/scripts/update/update-components.ts",
     "lint": "eslint . --max-warnings=0",
@@ -90,10 +90,5 @@
     "tsup": "7.2.0",
     "tsx": "4.7.1",
     "typescript": "5.4.4"
-  },
-  "engines": {
-    "pnpm": ">=8.x",
-    "node": ">=18.17.x"
-  },
-  "packageManager": "pnpm@8.7.6"
+  }
 }
