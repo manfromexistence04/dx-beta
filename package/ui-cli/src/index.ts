@@ -93,7 +93,7 @@ nextui
 
       Logger.log(helpInfoArr.join('\n'));
     }
-    process.exit(0);
+    // process.exit(0);
   });
 
 nextui
@@ -223,12 +223,12 @@ let playerName:any;
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 async function welcome() {
-  const rainbowTitle = chalkAnimation.rainbow(
-    'Dx Ui - Is a cli app to quickly add your favorite components from your favorite ui frameworks.\n'
-  );
+  // const rainbowTitle = chalkAnimation.rainbow(
+  //   'Dx Ui - Is a cli app to quickly add your favorite components from your favorite ui frameworks.\n'
+  // );
 
   await sleep();
-  rainbowTitle.stop();
+  // rainbowTitle.stop();
 
   console.log(`
     ${chalk.bgBlue('HOW TO PLAY')} 
