@@ -28,6 +28,9 @@ import Table from "../te/src/main";
 import terminalLink from 'terminal-link';
 import * as readline from 'readline';
 import cliCursor from 'cli-cursor';
+// import Table from 'ink-table'
+import React, { useState, useEffect } from 'react';
+import { render, Text } from 'ink';
 
 // cliCursor.hide();
 
@@ -179,38 +182,98 @@ nextui
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
 
-        var ProgressBar = require('progress');
-        var https = require('https');
-
-        var req = https.request({
-            host: 'download.github.com',
-            port: 443,
-            path: '/visionmedia-node-jscoverage-0d4608a.zip'
-        });
-
-        req.on('response', function (res) {
-            var len = parseInt(res.headers['content-length'], 10);
-
-            console.log();
-            var bar = new ProgressBar('  downloading [:bar] :rate/bps :percent :etas', {
-                complete: '=',
-                incomplete: ' ',
-                width: 20,
-                total: len
-            });
-
-            res.on('data', function (chunk) {
-                bar.tick(chunk.length);
-            });
-
-            res.on('end', function () {
-                console.log('\n');
-            });
-        });
-
-        req.end();
 
 
+        // const Counter = () => {
+        //     const [counter, setCounter] = useState(0);
+
+        //     useEffect(() => {
+        //         const timer = setInterval(() => {
+        //             setCounter(previousCounter => previousCounter + 1);
+        //         }, 100);
+
+        //         return () => {
+        //             clearInterval(timer);
+        //         };
+        //     }, []);
+
+        //     return <Text color="green" > { counter } tests passed </Text>;
+        // };
+
+        // render(<Counter />);
+        // var ProgressBar = require('progress');
+        // var https = require('https');
+
+        // var req = https.request({
+        //     host: 'download.github.com',
+        //     port: 443,
+        //     path: '/visionmedia-node-jscoverage-0d4608a.zip'
+        // });
+
+        // req.on('response', function (res) {
+        //     var len = parseInt(res.headers['content-length'], 10);
+
+        //     console.log();
+        //     var bar = new ProgressBar('  downloading [:bar] :rate/bps :percent :etas', {
+        //         complete: '=',
+        //         incomplete: ' ',
+        //         width: 20,
+        //         total: len
+        //     });
+
+        //     res.on('data', function (chunk) {
+        //         bar.tick(chunk.length);
+        //     });
+
+        //     res.on('end', function () {
+        //         console.log('\n');
+        //     });
+        // });
+
+        // req.end();
+
+
+        // const data:any[] = [
+        //     {
+        //       name: 'Sosa Saunders',
+        //       gender: 'male',
+        //       age: 17,
+        //       email: 'sosa.saunders@mail.com',
+        //       phone: '+1 (809) 435-2786',
+        //     },
+        //     {
+        //       name: 'Angelina Kirk',
+        //       gender: 'female',
+        //       age: 3,
+        //       email: 'angelina@kirk.io',
+        //       phone: '+1 (870) 567-3516',
+        //     },
+        //     {
+        //       name: 'Bradford Rosales',
+        //       gender: 'male',
+        //       age: 20,
+        //       email: 'bradfordrosales@fast.com',
+        //       phone: '+1 (918) 573-3240',
+        //     },
+        //     {
+        //       name: 'Gwen Schroeder',
+        //       gender: 'female',
+        //       age: 17,
+        //       email: 'gwen@corp.xyz',
+        //       phone: '+1 (987) 417-2062',
+        //     },
+        //     {
+        //       name: 'Ellison Mann',
+        //       gender: 'male',
+        //       age: 5,
+        //       email: 'ellisonmann@katakana.com',
+        //       phone: '+1 (889) 411-2186',
+        //     },
+        //   ]
+
+        //   const Basic:any = () => <Table data={data} />
+
+        //   render(<Basic />)
         // cliCursor.hide();
 
         // const unicornsAreAwesome = true;

@@ -74,6 +74,7 @@
     "fx": "^34.0.0",
     "gradient-string": "2.0.2",
     "ink": "^4.4.1",
+    "ink-table": "^3.1.0",
     "inquirer": "^9.2.19",
     "log-symbols": "^6.0.0",
     "meow": "^13.2.0",
