@@ -39,7 +39,7 @@ const defaults = {
   headerAlign: "center",
   headerColor: "yellow",
   isNull: false, // undocumented cell setting
-  marginLeft: 2,
+  marginLeft: 0,
   marginTop: 1,
   paddingBottom: 0,
   paddingLeft: 1,

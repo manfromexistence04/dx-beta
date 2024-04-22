@@ -281,7 +281,7 @@ nextui
                 headerColor: "cyan",
                 color: "white",
                 align: "left",
-                width: "10%"
+                width: "7.75%"
             },
             {
                 value: "Description",
@@ -366,7 +366,7 @@ nextui
             headerColor: "green",
             align: "left",
             color: "white",
-            width: '51%'
+            width: '80%'
         }
 
         const t1 = Table(header, rows, options).render()

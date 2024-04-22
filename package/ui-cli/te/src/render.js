@@ -13,7 +13,7 @@ module.exports.stringifyData = (config, inputData) => {
     body: [],
     footer: []
   }
-  const marginLeft = Array(config.marginLeft + 1).join(" ")
+  const marginLeft = Array(config.marginLeft).join(" ")
   const borderStyle = config.borderCharacters[config.borderStyle]
   const borders = []
 
