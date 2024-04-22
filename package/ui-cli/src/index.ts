@@ -56,47 +56,6 @@ nextui
     .allowUnknownOption()
     .action(async (_, command) => {
 
-        // let isArgs = false;
-
-        // if (command) {
-        //     const args = command.args?.[0];
-
-        //     if (args && !commandList.includes(args as CommandName)) {
-        //         isArgs = true;
-
-        //         const matchCommand = findMostMatchText(commandList, args);
-
-        //         if (matchCommand) {
-        //             Logger.error(
-        //                 `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
-        //             );
-        //         } else {
-        //             Logger.error(`Unknown command '${args}'`);
-        //         }
-        //     }
-        // }
-
-        // if (!isArgs) {
-        //     const helpInfo = (await exec('nextui --help', { logCmd: false, stdio: 'pipe' })) as string;
-
-        //     let helpInfoArr = helpInfo.split('\n');
-
-        //     helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
-        //     // Add command name color
-        //     helpInfoArr = helpInfoArr.map((info) => {
-        //         const command = info.match(/(\w+)\s\[/)?.[1];
-
-        //         if (command) {
-        //             return info.replace(command, chalk.cyan(command));
-        //         }
-
-        //         return info;
-        //     });
-
-        //     Logger.log(helpInfoArr.join('\n'));
-
-        //     console.log("\n");
-
         //     (async function () {
         //         const questions: any[] = [
         //             {
@@ -361,12 +320,6 @@ nextui
                 Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
-            // {
-            //   Command: "delete",
-            //   Description: "Explains you what course of actions you should take to solve your ui problems...",
-            //   Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
-
-            // },
             {
                 Command: "add",
                 Description: "Adds components to your project",
@@ -391,12 +344,6 @@ nextui
                 Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
-            // {
-            //     Command: "env",
-            //     Description: "Displays debugging information for the local environment",
-            //     Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
-
-            // },
             {
                 Command: "doctor",
                 Description: "Checks for issues in the project",
@@ -425,8 +372,8 @@ nextui
 
         const t1 = Table(header, rows, options).render()
         console.log(t1)
-        const link = terminalLink('My Website', 'https://sindresorhus.com');
-        console.log(link);
+        // const link = terminalLink('My Website', 'https://sindresorhus.com');
+        // console.log(link);
     });
 
 nextui
@@ -575,157 +522,6 @@ nextui.parseAsync(process.argv).catch(async (reason) => {
 });
 
 /*
-/$$$$$$$$ /$$$$$$ / $$$$$$$ / $$$$$$$$ / $$$$$$ / $$ / $$ / $$$$$$ / $$$$$$$ / $$
-| $$_____/|_  $$_/| $$__  $$| $$_____/ /$$__  $$| $$  | $$|_  $$_/| $$__  $$|__/
-| $$        | $$  | $$  \ $$| $$      | $$  \__/| $$  | $$  | $$  | $$  \ $$ /$$  /$$$$$$
-| $$$$$     | $$  | $$$$$$$/| $$$$$   |  $$$$$$ | $$$$$$$$  | $$  | $$$$$$$/| $$ /$$__  $$
-| $$__/     | $$  | $$__  $$| $$__/    \____  $$| $$__  $$  | $$  | $$____/ | $$| $$  \ $$
-| $$        | $$  | $$  \ $$| $$       /$$  \ $$| $$  | $$  | $$  | $$      | $$| $$  | $$
-| $$       /$$$$$$| $$  | $$| $$$$$$$$|  $$$$$$/| $$  | $$ /$$$$$$| $$ /$$  | $$|  $$$$$$/
-|__/      |______/|__/  |__/|________/ \______/ |__/  |__/|______/|__/|__/  |__/ \______/
-*/
-
-
-
-
-// let playerName:any;
-
-// const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
-
-// async function welcome() {
-//   // const rainbowTitle = chalkAnimation.rainbow(
-//   //   'Dx Ui - Is a cli app to quickly add your favorite components from your favorite ui frameworks.\n'
-//   // );
-
-//   await sleep();
-//   // rainbowTitle.stop();
-
-//   console.log(`
-//     ${chalk.bgBlue('HOW TO PLAY')} 
-//     I am a process on your computer.
-//     If you get any question wrong I will be ${chalk.bgRed('killed')}
-//     So get all the questions right...
-
-//   `);
-// }
-
-// async function handleAnswer(isCorrect: boolean) {
-//   const spinner = createSpinner('Checking answer...').start();
-//   await sleep();
-
-//   if (isCorrect) {
-//     spinner.success({ text: `Nice work ${playerName}. That's a legit answer` });
-//   } else {
-//     spinner.error({ text: `💀💀💀 Game over, you lose ${playerName}!` });
-//     process.exit(1);
-//   }
-// }
-
-// async function askName() {
-//   const answers = await inquirer.prompt({
-//     name: 'player_name',
-//     type: 'input',
-//     message: 'What is your name?',
-//     default() {
-//       return 'Player';
-//     },
-//   });
-
-//   playerName = answers.player_name;
-// }
-
-// function winner() {
-//   console.clear();
-//   figlet(`Congrats , ${playerName} !\n $ 1 , 0 0 0 , 0 0 0`, (err, data) => {
-//     console.log(gradient.pastel.multiline(data) + '\n');
-
-//     console.log(
-//       chalk.green(
-//         `Programming isn't about what you know; it's about making the command line look cool`
-//       )
-//     );
-//     process.exit(0);
-//   });
-// }
-
-// async function question1() {
-//   const answers = await inquirer.prompt({
-//     name: 'question_1',
-//     type: 'list',
-//     message: 'JavaScript was created in 10 days then released on\n',
-//     choices: [
-//       'May 23rd, 1995',
-//       'Nov 24th, 1995',
-//       'Dec 4th, 1995',
-//       'Dec 17, 1996',
-//     ],
-//   });
-
-//   return handleAnswer(answers.question_1 === 'Dec 4th, 1995');
-// }
-
-// async function question2() {
-//   const answers = await inquirer.prompt({
-//     name: 'question_2',
-//     type: 'list',
-//     message: 'What is x? var x = 1_1 + "1" + Number(1)\n',
-//     choices: ['4', '"4"', '"1111"', '69420'],
-//   });
-//   return handleAnswer(answers.question_2 === '"1111"');
-// }
-
-// async function question3() {
-//   const answers = await inquirer.prompt({
-//     name: 'question_3',
-//     type: 'list',
-//     message: `What is the first element in the array? ['🐏', '🦙', '🐍'].length = 0\n`,
-//     choices: ['0', '🐏', '🐍', 'undefined'],
-//   });
-
-//   return handleAnswer(answers.question_3 === 'undefined');
-// }
-
-// async function question4() {
-//   const answers = await inquirer.prompt({
-//     name: 'question_4',
-//     type: 'list',
-//     message: 'Which of the following is NOT a primitive type?\n',
-//     choices: [
-//       'boolean',
-//       'number',
-//       'null',
-//       'object', // Correct
-//     ],
-//   });
-//   return handleAnswer(answers.question_4 === 'object');
-// }
-
-// async function question5() {
-//   const answers = await inquirer.prompt({
-//     name: 'question_5',
-//     type: 'list',
-//     message:
-//       'JS is a high-level single-threaded, garbage-collected,\n' +
-//       'interpreted(or just-in-time compiled), prototype-based,\n' +
-//       'multi-paradigm, dynamic language with a ____ event loop\n',
-//     choices: ['multi-threaded', 'non-blocking', 'synchronous', 'promise-based'],
-//   });
-
-//   return handleAnswer(answers.question_5 === 'non-blocking');
-// }
-
-// // Run it with top-level await
-// console.clear();
-// await welcome();
-// await askName();
-// await question1();
-// await question2();
-// await question3();
-// await question4();
-// await question5();
-// winner();
-
-/*
 ________                  __ 
 /        |                /  |
 $$$$$$$$/  _______    ____$$ |
@@ -736,5 +532,4 @@ $$ |_____ $$ |  $$ |$$ \__$$ |
 $$       |$$ |  $$ |$$    $$ |
 $$$$$$$$/ $$/   $$/  $$$$$$$/ 
 
-// */
-
+*/
