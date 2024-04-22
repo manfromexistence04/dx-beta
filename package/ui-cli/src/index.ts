@@ -318,90 +318,89 @@ nextui
         // }
         const header = [
             {
-                value: "command",
+                value: "Command",
                 headerColor: "cyan",
                 color: "white",
                 align: "left",
                 width: "10%"
             },
             {
-                value: "description",
+                value: "Description",
                 width: "25%",
                 headerColor: "magenta",
                 color: "gray"
             },
             {
-                value: "arguments",
+                value: "Arguments",
                 color: "white",
-                width: "7.5%"
+                width: "10%",
             }
         ]
 
-        // Example with objects as rows
         const rows: any[] = [
             {
-                command: "suggest",
-                description: "Suggests you about what ui component is best for your job and ai chat...",
-                arguments: `${chalk.bgYellowBright("[query]")} ${chalk.bgMagentaBright("[flag]")}`,
+                Command: "suggest",
+                Description: "Suggests you about what ui component is best for your job and ai chat...",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
             },
             {
-                command: "explain",
-                description: "Explains you what course of actions you should take to solve your ui problems...",
-                arguments: "[query] [flag]",
+                Command: "explain",
+                Description: "Explains you what course of actions you should take to solve your ui problems...",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
             {
-                command: "create",
-                description: "Creates A new project using any frontend frameworks",
-                arguments: "[query] [flag]",
+                Command: "create",
+                Description: "Creates A new project using any frontend frameworks",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
             {
-                command: "init",
-                description: "Initializes a new project",
-                arguments: "[query] [flag]",
+                Command: "init",
+                Description: "Initializes a new project",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
             // {
-            //   command: "delete",
-            //   description: "Explains you what course of actions you should take to solve your ui problems...",
-            //   arguments: "[query] [flag]",
+            //   Command: "delete",
+            //   Description: "Explains you what course of actions you should take to solve your ui problems...",
+            //   Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             // },
             {
-                command: "add",
-                description: "Adds components to your project",
-                arguments: "[query] [flag]",
+                Command: "add",
+                Description: "Adds components to your project",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
             {
-                command: "remove",
-                description: "Removes components from the project",
-                arguments: "[query] [flag]",
+                Command: "remove",
+                Description: "Removes components from the project",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
             {
-                command: "update",
-                description: "Upgrades project components to the latest versions",
-                arguments: "[query] [flag]",
+                Command: "update",
+                Description: "Upgrades project components to the latest versions",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
             {
-                command: "list",
-                description: "Lists all components, showing status, descriptions, and versions",
-                arguments: "[query] [flag]",
+                Command: "list",
+                Description: "Lists all components, showing status, descriptions, and versions",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             },
-            {
-                command: "env",
-                description: "Displays debugging information for the local environment",
-                arguments: "[query] [flag]",
+            // {
+            //     Command: "env",
+            //     Description: "Displays debugging information for the local environment",
+            //     Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
-            },
+            // },
             {
-                command: "doctor",
-                description: "Checks for issues in the project",
-                arguments: "[query] [flag]",
+                Command: "doctor",
+                Description: "Checks for issues in the project",
+                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
 
             }
         ]
@@ -416,10 +415,9 @@ nextui
 
         const options = {
             borderStyle: "solid",
-            // borderColor: "green",
             paddingBottom: 0,
             headerAlign: "center",
-            // headerColor: "green",
+            headerColor: "green",
             align: "left",
             color: "white",
             width: "80%"
@@ -554,7 +552,7 @@ nextui.hook('preAction', async (command) => {
             color: 'yellow',
             padding: 1,
             text: `${chalk.gray(
-                `Available upgrade: v${currentVersion} -> ${chalk.greenBright(
+                `Available upgrade: v${currentVersion} -> ${chalk.green(
                     `v${cliLatestVersion}`
                 )}\nRun \`${chalk.cyan(
                     'npm install nextui-cli@latest'
