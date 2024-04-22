@@ -24,7 +24,7 @@ import gradient from 'gradient-string';
 import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 import prompt from "prompts";
-import Table from "tty-table";
+import Table from "../te/src/main";
 import terminalLink from 'terminal-link';
 
 let interval;
@@ -362,12 +362,11 @@ nextui
 
         const options = {
             borderStyle: "solid",
-            paddingBottom: 0,
             headerAlign: "center",
             headerColor: "green",
             align: "left",
             color: "white",
-            width: "80%"
+            width: '51%'
         }
 
         const t1 = Table(header, rows, options).render()
