@@ -49,7 +49,7 @@ nextui
     .name('nextui')
     .usage('[command]')
     .description(`${chalkAnimation.rainbow(
-        'Streamline UI Development with a CLI Tool for Efficient Component Integration'
+        `DxUi-Cli(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
     )}`)
     .version(pkg.version, '-v, --version', 'Output the current version')
     .helpOption('-h, --help', 'Display help for command')
@@ -281,7 +281,7 @@ nextui
                 headerColor: "cyan",
                 color: "white",
                 align: "left",
-                width: "7.75%"
+                width: "8%"
             },
             {
                 value: "Description",
@@ -352,7 +352,6 @@ nextui
             }
         ]
 
-        // Example with arrays as rows
         const rows2 = [
             ["tallarin verde", 2.50, 15.50, "no"],
             ["aji de gallina", 1.80, 14.50, "no"]
@@ -369,8 +368,8 @@ nextui
             width: '80%'
         }
 
-        const t1 = Table(header, rows, options).render()
-        console.log(t1)
+        const COMMAND_DETAILS = Table(header, rows, options).render();
+        console.log(COMMAND_DETAILS)
         // const link = terminalLink('My Website', 'https://sindresorhus.com');
         // console.log(link);
     });
@@ -491,25 +490,25 @@ nextui.hook('preAction', async (command) => {
     store.cliLatestVersion = cliLatestVersion;
 
     // Add NextUI CLI version check preAction
-    const currentVersion = pkg.version;
+    // const currentVersion = pkg.version;
 
-    if (compareVersions(currentVersion, cliLatestVersion) === -1) {
-        outputBox({
-            color: 'yellow',
-            padding: 1,
-            text: `${chalk.gray(
-                `Available upgrade: v${currentVersion} -> ${chalk.green(
-                    `v${cliLatestVersion}`
-                )}\nRun \`${chalk.cyan(
-                    'npm install nextui-cli@latest'
-                )}\` to upgrade\nChangelog: ${chalk.underline(
-                    'https://github.com/nextui-org/nextui-cli/releases'
-                )}`
-            )}`,
-            title: gradientString('NextUI CLI')
-        });
-        Logger.newLine();
-    }
+    // if (compareVersions(currentVersion, cliLatestVersion) === -1) {
+    //     outputBox({
+    //         color: 'yellow',
+    //         padding: 1,
+    //         text: `${chalk.gray(
+    //             `Available upgrade: v${currentVersion} -> ${chalk.green(
+    //                 `v${cliLatestVersion}`
+    //             )}\nRun \`${chalk.cyan(
+    //                 'npm install nextui-cli@latest'
+    //             )}\` to upgrade\nChangelog: ${chalk.underline(
+    //                 'https://github.com/nextui-org/nextui-cli/releases'
+    //             )}`
+    //         )}`,
+    //         title: gradientString('NextUI CLI')
+    //     });
+    //     Logger.newLine();
+    // }
 });
 
 nextui.parseAsync(process.argv).catch(async (reason) => {
