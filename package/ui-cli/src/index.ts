@@ -378,6 +378,7 @@ nextui
 
 
         // Countdown
+
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -390,7 +391,6 @@ nextui
                     clearInterval(intervalId);
                     process.stdout.write('\nSession expired!');
                     rl.close();
-                    process.exit(0);
                 } else {
                     // Move cursor to the bottom left corner before writing
                     process.stdout.write('\x1b[?25l'); // Hide cursor
@@ -407,10 +407,49 @@ nextui
         rl.on('line', (input: string) => {
             // Reset timer on any user input
             clearInterval(countdown(10)); // Restart countdown with 10 seconds
+            if (input.toLowerCase() === 'q') {
+                process.stdout.write('\nExiting...\n');
+                rl.close();
+                process.exit(0); // Exit with code 0 (successful termination)
+            }
         });
 
         // Start the countdown
         countdown(10);
+
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // function countdown(seconds: number): any {
+        //     const intervalId = setInterval(() => {
+        //         seconds--;
+        //         if (seconds === 0) {
+        //             clearInterval(intervalId);
+        //             process.stdout.write('\nSession expired!');
+        //             rl.close();
+        //             process.exit(0);
+        //         } else {
+        //             // Move cursor to the bottom left corner before writing
+        //             process.stdout.write('\x1b[?25l'); // Hide cursor
+        //             process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor to bottom left
+        //             // Overwrite existing countdown with spaces
+        //             process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+        //             process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor back to bottom left
+        //             process.stdout.write(`${seconds} seconds`);
+        //             process.stdout.write('\x1b[?25h'); // Show cursor again
+        //         }
+        //     }, 1000); // Update every second
+        // }
+
+        // rl.on('line', (input: string) => {
+        //     // Reset timer on any user input
+        //     clearInterval(countdown(10)); // Restart countdown with 10 seconds
+        // });
+
+        // // Start the countdown
+        // countdown(10);
 
 
         // const link = terminalLink('My Website', 'https://sindresorhus.com');
