@@ -24,6 +24,8 @@ import gradient from 'gradient-string';
 import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 import prompt from "prompts";
+import Table from "tty-table";
+import terminalLink from 'terminal-link';
 
 let interval;
 let COPYRIGHT_INFO: string = "So, except the base components this cli uses other UI frameworks which respectly belongs to them. By using this cli we do not any miss downloads or bad stuffs that challanges any thread to the respective owners. Thanks"
@@ -54,158 +56,379 @@ nextui
     .allowUnknownOption()
     .action(async (_, command) => {
 
-        let isArgs = false;
+        // let isArgs = false;
 
-        if (command) {
-            const args = command.args?.[0];
+        // if (command) {
+        //     const args = command.args?.[0];
 
-            if (args && !commandList.includes(args as CommandName)) {
-                isArgs = true;
+        //     if (args && !commandList.includes(args as CommandName)) {
+        //         isArgs = true;
 
-                const matchCommand = findMostMatchText(commandList, args);
+        //         const matchCommand = findMostMatchText(commandList, args);
 
-                if (matchCommand) {
-                    Logger.error(
-                        `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
-                    );
-                } else {
-                    Logger.error(`Unknown command '${args}'`);
-                }
+        //         if (matchCommand) {
+        //             Logger.error(
+        //                 `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
+        //             );
+        //         } else {
+        //             Logger.error(`Unknown command '${args}'`);
+        //         }
+        //     }
+        // }
+
+        // if (!isArgs) {
+        //     const helpInfo = (await exec('nextui --help', { logCmd: false, stdio: 'pipe' })) as string;
+
+        //     let helpInfoArr = helpInfo.split('\n');
+
+        //     helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
+        //     // Add command name color
+        //     helpInfoArr = helpInfoArr.map((info) => {
+        //         const command = info.match(/(\w+)\s\[/)?.[1];
+
+        //         if (command) {
+        //             return info.replace(command, chalk.cyan(command));
+        //         }
+
+        //         return info;
+        //     });
+
+        //     Logger.log(helpInfoArr.join('\n'));
+
+        //     console.log("\n");
+
+        //     (async function () {
+        //         const questions: any[] = [
+        //             {
+        //                 type: 'text',
+        //                 name: 'twitter',
+        //                 message: `What's your twitter handle?`,
+        //                 initial: `terkelg`,
+        //                 format: (v: string) => `@${v}`
+        //             },
+        //             {
+        //                 type: 'number',
+        //                 name: 'age',
+        //                 message: 'How old are you?',
+        //                 validate: (value: number) => value < 18 ? `Sorry, you have to be 18` : true
+        //             },
+        //             {
+        //                 type: 'password',
+        //                 name: 'secret',
+        //                 message: 'Tell me a secret'
+        //             },
+        //             {
+        //                 type: 'confirm',
+        //                 name: 'confirmed',
+        //                 message: 'Can you confirm?'
+        //             },
+        //             {
+        //                 type: (prev: boolean) => prev && 'toggle',
+        //                 name: 'confirmtoggle',
+        //                 message: 'Can you confirm again?',
+        //                 active: 'yes',
+        //                 inactive: 'no'
+        //             },
+        //             {
+        //                 type: 'list',
+        //                 name: 'keywords',
+        //                 message: 'Enter keywords'
+        //             },
+        //             {
+        //                 type: 'select',
+        //                 name: 'color',
+        //                 message: 'Pick a color',
+        //                 choices: [
+        //                     { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+        //                     { title: 'Green', value: '#00ff00' },
+        //                     { title: 'Yellow', value: '#ffff00', disabled: true },
+        //                     { title: 'Blue', value: '#0000ff' }
+        //                 ]
+        //             },
+        //             {
+        //                 type: 'multiselect',
+        //                 name: 'multicolor',
+        //                 message: 'Pick colors',
+        //                 hint: false,
+        //                 choices: [
+        //                     { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+        //                     { title: 'Green', value: '#00ff00' },
+        //                     { title: 'Yellow', value: '#ffff00', disabled: true },
+        //                     { title: 'Blue', value: '#0000ff' }
+        //                 ]
+        //             },
+        //             {
+        //                 type: 'autocomplete',
+        //                 name: 'actor',
+        //                 message: 'Pick your favorite actor',
+        //                 initial: 1,
+        //                 limit: 3,
+        //                 suggest: (input: string, choices: any[]) => choices.filter(i => i.title.toLowerCase().includes(input.toLowerCase())),
+        //                 choices: [
+        //                     { title: 'Cage' },
+        //                     { title: 'Clooney', value: 'silver-fox' },
+        //                     { title: 'Gyllenhaal' },
+        //                     { title: 'Gibson' },
+        //                     { title: 'Grant', description: 'This option has a description.' },
+        //                     { title: 'Hanks' },
+        //                     { title: 'Downey Jr.' }
+        //                 ],
+        //                 fallback: {
+        //                     title: `This is the fallback. Its value is 'fallback'`,
+        //                     value: 'fallback'
+        //                 }
+        //             },
+        //             {
+        //                 type: 'date',
+        //                 name: 'birthday',
+        //                 message: `What's your birthday?`,
+        //                 validate: (date: any) => date > Date.now() ? `Your birth day can't be in the future` : true
+        //             },
+        //             {
+        //                 type: 'number',
+        //                 name: 'prompt',
+        //                 message: 'This will be overridden',
+        //                 onRender(color: any) {
+        //                     this.no = (this.no || 1);
+        //                     this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
+        //                     if (!interval) interval = setInterval(() => {
+        //                         this.no += 1;
+        //                         this.render();
+        //                     }, 1000);
+        //                 }
+        //             }
+        //         ];
+
+        //         const answers = await prompt(questions, { onCancel: cleanup, onSubmit: cleanup });
+        //         console.log(answers);
+        //     })();
+
+        //     function cleanup() {
+        //         clearInterval(interval);
+        //     }
+        // }
+        // (async function () {
+        //     const questions: any[] = [
+        //         {
+        //             type: 'text',
+        //             name: 'twitter',
+        //             message: `What's your twitter handle?`,
+        //             initial: `terkelg`,
+        //             format: (v: string) => `@${v}`
+        //         },
+        //         {
+        //             type: 'number',
+        //             name: 'age',
+        //             message: 'How old are you?',
+        //             validate: (value: number) => value < 18 ? `Sorry, you have to be 18` : true
+        //         },
+        //         {
+        //             type: 'password',
+        //             name: 'secret',
+        //             message: 'Tell me a secret'
+        //         },
+        //         {
+        //             type: 'confirm',
+        //             name: 'confirmed',
+        //             message: 'Can you confirm?'
+        //         },
+        //         {
+        //             type: (prev: boolean) => prev && 'toggle',
+        //             name: 'confirmtoggle',
+        //             message: 'Can you confirm again?',
+        //             active: 'yes',
+        //             inactive: 'no'
+        //         },
+        //         {
+        //             type: 'list',
+        //             name: 'keywords',
+        //             message: 'Enter keywords'
+        //         },
+        //         {
+        //             type: 'select',
+        //             name: 'color',
+        //             message: 'Pick a color',
+        //             choices: [
+        //                 { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+        //                 { title: 'Green', value: '#00ff00' },
+        //                 { title: 'Yellow', value: '#ffff00', disabled: true },
+        //                 { title: 'Blue', value: '#0000ff' }
+        //             ]
+        //         },
+        //         {
+        //             type: 'multiselect',
+        //             name: 'multicolor',
+        //             message: 'Pick colors',
+        //             hint: false,
+        //             choices: [
+        //                 { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+        //                 { title: 'Green', value: '#00ff00' },
+        //                 { title: 'Yellow', value: '#ffff00', disabled: true },
+        //                 { title: 'Blue', value: '#0000ff' }
+        //             ]
+        //         },
+        //         {
+        //             type: 'autocomplete',
+        //             name: 'actor',
+        //             message: 'Pick your favorite actor',
+        //             initial: 1,
+        //             limit: 3,
+        //             suggest: (input: string, choices: any[]) => choices.filter(i => i.title.toLowerCase().includes(input.toLowerCase())),
+        //             choices: [
+        //                 { title: 'Cage' },
+        //                 { title: 'Clooney', value: 'silver-fox' },
+        //                 { title: 'Gyllenhaal' },
+        //                 { title: 'Gibson' },
+        //                 { title: 'Grant', description: 'This option has a description.' },
+        //                 { title: 'Hanks' },
+        //                 { title: 'Downey Jr.' }
+        //             ],
+        //             fallback: {
+        //                 title: `This is the fallback. Its value is 'fallback'`,
+        //                 value: 'fallback'
+        //             }
+        //         },
+        //         {
+        //             type: 'date',
+        //             name: 'birthday',
+        //             message: `What's your birthday?`,
+        //             validate: (date: any) => date > Date.now() ? `Your birth day can't be in the future` : true
+        //         },
+        //         {
+        //             type: 'number',
+        //             name: 'prompt',
+        //             message: 'This will be overridden',
+        //             onRender(color: any) {
+        //                 this.no = (this.no || 1);
+        //                 this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
+        //                 if (!interval) interval = setInterval(() => {
+        //                     this.no += 1;
+        //                     this.render();
+        //                 }, 1000);
+        //             }
+        //         }
+        //     ];
+
+        //     const answers = await prompt(questions, { onCancel: cleanup, onSubmit: cleanup });
+        //     console.log(answers);
+        // })();
+
+        // function cleanup() {
+        //     clearInterval(interval);
+        // }
+        const header = [
+            {
+                value: "command",
+                headerColor: "cyan",
+                color: "white",
+                align: "left",
+                width: "10%"
+            },
+            {
+                value: "description",
+                width: "25%",
+                headerColor: "magenta",
+                color: "gray"
+            },
+            {
+                value: "arguments",
+                color: "white",
+                width: "7.5%"
             }
+        ]
+
+        // Example with objects as rows
+        const rows: any[] = [
+            {
+                command: "suggest",
+                description: "Suggests you about what ui component is best for your job and ai chat...",
+                arguments: `${chalk.bgYellowBright("[query]")} ${chalk.bgMagentaBright("[flag]")}`,
+            },
+            {
+                command: "explain",
+                description: "Explains you what course of actions you should take to solve your ui problems...",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "create",
+                description: "Creates A new project using any frontend frameworks",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "init",
+                description: "Initializes a new project",
+                arguments: "[query] [flag]",
+
+            },
+            // {
+            //   command: "delete",
+            //   description: "Explains you what course of actions you should take to solve your ui problems...",
+            //   arguments: "[query] [flag]",
+
+            // },
+            {
+                command: "add",
+                description: "Adds components to your project",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "remove",
+                description: "Removes components from the project",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "update",
+                description: "Upgrades project components to the latest versions",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "list",
+                description: "Lists all components, showing status, descriptions, and versions",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "env",
+                description: "Displays debugging information for the local environment",
+                arguments: "[query] [flag]",
+
+            },
+            {
+                command: "doctor",
+                description: "Checks for issues in the project",
+                arguments: "[query] [flag]",
+
+            }
+        ]
+
+        // Example with arrays as rows
+        const rows2 = [
+            ["tallarin verde", 2.50, 15.50, "no"],
+            ["aji de gallina", 1.80, 14.50, "no"]
+        ].map((arr, index) => {
+            arr.splice(1, 0, rows[index].description); return arr
+        })
+
+        const options = {
+            borderStyle: "solid",
+            // borderColor: "green",
+            paddingBottom: 0,
+            headerAlign: "center",
+            // headerColor: "green",
+            align: "left",
+            color: "white",
+            width: "80%"
         }
 
-        if (!isArgs) {
-            const helpInfo = (await exec('nextui --help', { logCmd: false, stdio: 'pipe' })) as string;
-
-            let helpInfoArr = helpInfo.split('\n');
-
-            helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
-            // Add command name color
-            helpInfoArr = helpInfoArr.map((info) => {
-                const command = info.match(/(\w+)\s\[/)?.[1];
-
-                if (command) {
-                    return info.replace(command, chalk.cyan(command));
-                }
-
-                return info;
-            });
-
-            Logger.log(helpInfoArr.join('\n'));
-
-            console.log("\n");
-
-            (async function () {
-                const questions: any[] = [
-                    {
-                        type: 'text',
-                        name: 'twitter',
-                        message: `What's your twitter handle?`,
-                        initial: `terkelg`,
-                        format: (v: string) => `@${v}`
-                    },
-                    {
-                        type: 'number',
-                        name: 'age',
-                        message: 'How old are you?',
-                        validate: (value: number) => value < 18 ? `Sorry, you have to be 18` : true
-                    },
-                    {
-                        type: 'password',
-                        name: 'secret',
-                        message: 'Tell me a secret'
-                    },
-                    {
-                        type: 'confirm',
-                        name: 'confirmed',
-                        message: 'Can you confirm?'
-                    },
-                    {
-                        type: (prev: boolean) => prev && 'toggle',
-                        name: 'confirmtoggle',
-                        message: 'Can you confirm again?',
-                        active: 'yes',
-                        inactive: 'no'
-                    },
-                    {
-                        type: 'list',
-                        name: 'keywords',
-                        message: 'Enter keywords'
-                    },
-                    {
-                        type: 'select',
-                        name: 'color',
-                        message: 'Pick a color',
-                        choices: [
-                            { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
-                            { title: 'Green', value: '#00ff00' },
-                            { title: 'Yellow', value: '#ffff00', disabled: true },
-                            { title: 'Blue', value: '#0000ff' }
-                        ]
-                    },
-                    {
-                        type: 'multiselect',
-                        name: 'multicolor',
-                        message: 'Pick colors',
-                        hint: false,
-                        choices: [
-                            { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
-                            { title: 'Green', value: '#00ff00' },
-                            { title: 'Yellow', value: '#ffff00', disabled: true },
-                            { title: 'Blue', value: '#0000ff' }
-                        ]
-                    },
-                    {
-                        type: 'autocomplete',
-                        name: 'actor',
-                        message: 'Pick your favorite actor',
-                        initial: 1,
-                        limit: 3,
-                        suggest: (input: string, choices: any[]) => choices.filter(i => i.title.toLowerCase().includes(input.toLowerCase())),
-                        choices: [
-                            { title: 'Cage' },
-                            { title: 'Clooney', value: 'silver-fox' },
-                            { title: 'Gyllenhaal' },
-                            { title: 'Gibson' },
-                            { title: 'Grant', description: 'This option has a description.' },
-                            { title: 'Hanks' },
-                            { title: 'Downey Jr.' }
-                        ],
-                        fallback: {
-                            title: `This is the fallback. Its value is 'fallback'`,
-                            value: 'fallback'
-                        }
-                    },
-                    {
-                        type: 'date',
-                        name: 'birthday',
-                        message: `What's your birthday?`,
-                        validate: (date: any) => date > Date.now() ? `Your birth day can't be in the future` : true
-                    },
-                    {
-                        type: 'number',
-                        name: 'prompt',
-                        message: 'This will be overridden',
-                        onRender(color: any) {
-                            this.no = (this.no || 1);
-                            this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
-                            if (!interval) interval = setInterval(() => {
-                                this.no += 1;
-                                this.render();
-                            }, 1000);
-                        }
-                    }
-                ];
-
-                const answers = await prompt(questions, { onCancel: cleanup, onSubmit: cleanup });
-                console.log(answers);
-            })();
-
-            function cleanup() {
-                clearInterval(interval);
-            }
-        }
-
+        const t1 = Table(header, rows, options).render()
+        console.log(t1)
+        const link = terminalLink('My Website', 'https://sindresorhus.com');
+        console.log(link);
     });
 
 nextui
@@ -288,7 +511,7 @@ nextui
     .option('-p --packagePath [string]', 'Specify the path to the package.json file')
     .option('-r --remote', 'List all components available remotely')
     .action(listAction);
-    
+
 nextui
     .command('env')
     .description('Displays debugging information for the local environment')
@@ -516,3 +739,4 @@ $$       |$$ |  $$ |$$    $$ |
 $$$$$$$$/ $$/   $$/  $$$$$$$/ 
 
 // */
+
