@@ -26,6 +26,7 @@ import { createSpinner } from 'nanospinner';
 import prompt from "prompts";
 import Table from "../te/src/main";
 import terminalLink from 'terminal-link';
+import * as readline from 'readline';
 
 let interval;
 let COPYRIGHT_INFO: string = "So, except the base components this cli uses other UI frameworks which respectly belongs to them. By using this cli we do not any miss downloads or bad stuffs that challanges any thread to the respective owners. Thanks"
@@ -57,7 +58,8 @@ nextui
     .action(async (_, command) => {
 
         console.log("This innovative solution empowers developers by automating the often-tedious process of integrating UI components.\nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.\nTo maintain your current session and avoid interruption, please execute any command within the next 10s");
-        
+
+
         // console.log(`${chalk.gray("This innovative solution empowers developers by automating the often-tedious process of integrating UI components.\nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.\nTo maintain your current session and avoid interruption, please execute any command within the next 10s")}`)
         //     (async function () {
         //         const questions: any[] = [
@@ -372,7 +374,45 @@ nextui
         }
 
         const COMMAND_DETAILS = Table(header, rows, options).render();
-        console.log(COMMAND_DETAILS)
+        console.log(COMMAND_DETAILS);
+
+
+        // Countdown
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+        });
+
+        function countdown(seconds: number): any {
+            const intervalId = setInterval(() => {
+                seconds--;
+                if (seconds === 0) {
+                    clearInterval(intervalId);
+                    process.stdout.write('\nSession expired!');
+                    rl.close();
+                    process.exit(0);
+                } else {
+                    // Move cursor to the bottom left corner before writing
+                    process.stdout.write('\x1b[?25l'); // Hide cursor
+                    process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor to bottom left
+                    // Overwrite existing countdown with spaces
+                    process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+                    process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor back to bottom left
+                    process.stdout.write(`${seconds} seconds`);
+                    process.stdout.write('\x1b[?25h'); // Show cursor again
+                }
+            }, 1000); // Update every second
+        }
+
+        rl.on('line', (input: string) => {
+            // Reset timer on any user input
+            clearInterval(countdown(10)); // Restart countdown with 10 seconds
+        });
+
+        // Start the countdown
+        countdown(10);
+
+
         // const link = terminalLink('My Website', 'https://sindresorhus.com');
         // console.log(link);
     });
