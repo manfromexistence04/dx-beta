@@ -56,6 +56,9 @@ nextui
     .allowUnknownOption()
     .action(async (_, command) => {
 
+        console.log("This innovative solution empowers developers by automating the often-tedious process of integrating UI components.\nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.\nTo maintain your current session and avoid interruption, please execute any command within the next 10s");
+        
+        // console.log(`${chalk.gray("This innovative solution empowers developers by automating the often-tedious process of integrating UI components.\nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.\nTo maintain your current session and avoid interruption, please execute any command within the next 10s")}`)
         //     (async function () {
         //         const questions: any[] = [
         //             {
