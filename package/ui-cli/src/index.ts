@@ -16,19 +16,26 @@ import { initStoreComponentsData } from './constants/component';
 import { getStore, store } from './constants/store';
 import { getComponents } from './scripts/helpers';
 import Table from "../table/src/main";
+import terminalLink from 'terminal-link';
 
 // Copyright disclaimer for the CLI
 const COPYRIGHT_INFO: string = `
 This CLI utilizes base components and potentially leverages UI frameworks from other sources. We respect the ownership of these frameworks and aim to ensure a smooth integration experience. By using this CLI, you won't encounter missing downloads or malicious code that could compromise the security of the respective owners' work. Thank you for using our CLI!
 `;
 // Informational message displayed in the CLI
-const CLI_INFO: string = `
-This innovative solution empowers developers by automating the often-tedious process of integrating UI components.
-Eliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.
-To maintain your current session and avoid interruption, please execute any command within the next 10s.
-`;
+const CLI_INFO: string = `${chalk.gray("This innovative solution empowers developers by automating the often-tedious process of integrating UI components \nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.")}
+${chalk.hex("#cafc03")("You can type any bash command here and the command will be exucuted immedeitly, press to exit.")}`;
 
-// Options displayed in the CLI with descriptions
+const CONTRACT: string = `
+${chalk.hex("#03fce8")("Follow:")}
+• Give us a start on Github: ${terminalLink('manfromexistence/dx', 'https://github.com/manfromexistence/dx-beta')}
+• Follow us on Twitter: ${terminalLink('manfromexistence', 'https://twitter.com/manofexistence1')}
+• Join our Discord community: ${terminalLink('emon_420', 'https://discord.com/channels/1053093315442118677/1053093316138385539')}
+`;
+// • Get stickers, t-shirts, coffee mugs and more: Planet Argon Shop
+
+
+// Options displayed in the CLI with descriptions /To maintain your current session and avoid interruption, please execute any command within the next 10s.
 const CLI_OPTIONS: string = `
 ${chalk.hex("#ff00d9")("Options:")}
 -a, --all [boolean]: Add all components
@@ -37,22 +44,21 @@ ${chalk.hex("#ff00d9")("Options:")}
 `;
 
 // Flags displayed in the CLI with descriptions
-const CLI_FLAGS: string = `
-${chalk.hex("#9500ff")("Flags:")}
+const CLI_FLAGS: string = `${chalk.hex("#9500ff")("Flags:")}
 --prettier [boolean]: Apply Prettier formatting to the added content
 --addApp [boolean]: Include App.tsx file content that requires a provider
+--addHook [boolean]: Include hook.tsx file content that requires a provider
 `;
 
 // Examples displayed in the CLI
-const CLI_EXAMPLES: string = `
-${chalk.hex("#ff0080")("\nExamples:")}
+const CLI_EXAMPLES: string = `${chalk.hex("#ff0080")("\nExamples:")}
 npm ui suggest "what is the best library which simple and yet beautiful?"
 npm ui explain "how to center a div? With a very basic and beginner explaination"
-npm ui create nextjs-ui-website
-npm ui init nextjs-ui-website
-npm ui add -a
-npm ui remove accordion
-`;
+npm ui create nextjs-ui-website`;
+// npm ui init nextjs-ui-website
+// npm ui add -a
+// npm ui remove accordion
+
 const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
 const ui = new Command();
 
@@ -170,6 +176,7 @@ ui
         const COMMAND_DETAILS = Table(header, rows, options).render();
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
+        console.log(CONTRACT);
     });
 
 ui

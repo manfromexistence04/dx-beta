@@ -9,7 +9,7 @@ tasks:
 
     - name: cd package
       before: |
-          cd ../package
+          cd package && sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
       init: |
           echo bun install
       command: |
