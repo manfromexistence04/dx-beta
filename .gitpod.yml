@@ -3,6 +3,7 @@ tasks:
       init: |
           npm install -g bun
           bun run install
+          bun pm trust --all
       command: |
           bun run test
 

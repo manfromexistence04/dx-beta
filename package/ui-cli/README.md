@@ -650,4 +650,524 @@ $$$$$$$$/ $$/   $$/  $$$$$$$/
 
         // console.log(`${chalk.gray("This innovative solution empowers developers by automating the often-tedious process of integrating UI components.\nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.\nTo maintain your current session and avoid interruption, please execute any command within the next 10s")}`)
 
+
+
+import inquirer from 'inquirer';
+import gradient from 'gradient-string';
+import figlet from 'figlet';
+import { createSpinner } from 'nanospinner';
+import prompt from "prompts";
+import terminalLink from 'terminal-link';
+import * as readline from 'readline';
+import cliCursor from 'cli-cursor';
+import React, { useState, useEffect } from 'react';
+import { render, Text } from 'ink';
+import { findMostMatchText } from '@helpers/math-diff';
+import { outputBox } from '@helpers/output-info';
+import { getCommandDescAndLog } from '@helpers/utils';
+import { exec } from '@helpers/exec';
+
+
+
+// cliCursor.hide();
+
+// const unicornsAreAwesome = true;
+// cliCursor.toggle(unicornsAreAwesome);
+// var Canvas = require('drawille');
+// var line = require('bresenham');
+
+// var c = new Canvas(160, 160);
+
+// function draw() {
+//   c.clear();
+//   var t = new Date();
+//   var sin = function(i, l) {
+//     return Math.floor(Math.sin(i*2*Math.PI)*l+80);
+//   }, cos = function(i, l) {
+//     return Math.floor(Math.cos(i*2*Math.PI)*l+80);
+//   };
+//   line(80, 80, sin(t.getHours()/24, 30), 160-cos(t.getHours()/24, 30), c.set.bind(c));
+//   line(80, 80, sin(t.getMinutes()/60, 50), 160-cos(t.getMinutes()/60, 50), c.set.bind(c));
+//   line(80, 80, sin(t.getSeconds()/60+(+t%1000)/60000, 75), 160-cos(t.getSeconds()/60+(+t%1000)/60000, 75), c.set.bind(c));
+//   process.stdout.write(c.frame());
+// }
+
+// setInterval(draw, 1000/24);
+
+
+
+
+        // const Counter = () => {
+        //     const [counter, setCounter] = useState(0);
+
+        //     useEffect(() => {
+        //         const timer = setInterval(() => {
+        //             setCounter(previousCounter => previousCounter + 1);
+        //         }, 100);
+
+        //         return () => {
+        //             clearInterval(timer);
+        //         };
+        //     }, []);
+
+        //     return <Text color="green" > { counter } tests passed </Text>;
+        // };
+
+        // render(<Counter />);
+        // var ProgressBar = require('progress');
+        // var https = require('https');
+
+        // var req = https.request({
+        //     host: 'download.github.com',
+        //     port: 443,
+        //     path: '/visionmedia-node-jscoverage-0d4608a.zip'
+        // });
+
+        // req.on('response', function (res) {
+        //     var len = parseInt(res.headers['content-length'], 10);
+
+        //     console.log();
+        //     var bar = new ProgressBar('  downloading [:bar] :rate/bps :percent :etas', {
+        //         complete: '=',
+        //         incomplete: ' ',
+        //         width: 20,
+        //         total: len
+        //     });
+
+        //     res.on('data', function (chunk) {
+        //         bar.tick(chunk.length);
+        //     });
+
+        //     res.on('end', function () {
+        //         console.log('\n');
+        //     });
+        // });
+
+        // req.end();
+
+
+        // const data:any[] = [
+        //     {
+        //       name: 'Sosa Saunders',
+        //       gender: 'male',
+        //       age: 17,
+        //       email: 'sosa.saunders@mail.com',
+        //       phone: '+1 (809) 435-2786',
+        //     },
+        //     {
+        //       name: 'Angelina Kirk',
+        //       gender: 'female',
+        //       age: 3,
+        //       email: 'angelina@kirk.io',
+        //       phone: '+1 (870) 567-3516',
+        //     },
+        //     {
+        //       name: 'Bradford Rosales',
+        //       gender: 'male',
+        //       age: 20,
+        //       email: 'bradfordrosales@fast.com',
+        //       phone: '+1 (918) 573-3240',
+        //     },
+        //     {
+        //       name: 'Gwen Schroeder',
+        //       gender: 'female',
+        //       age: 17,
+        //       email: 'gwen@corp.xyz',
+        //       phone: '+1 (987) 417-2062',
+        //     },
+        //     {
+        //       name: 'Ellison Mann',
+        //       gender: 'male',
+        //       age: 5,
+        //       email: 'ellisonmann@katakana.com',
+        //       phone: '+1 (889) 411-2186',
+        //     },
+        //   ]
+
+        //   const Basic:any = () => <Table data={data} />
+
+        //   render(<Basic />)
+        // cliCursor.hide();
+
+        // const unicornsAreAwesome = true;
+        // cliCursor.toggle(unicornsAreAwesome);
+        // var chart = require('chart');
+        // var clear = require('clear');
+
+        // var data:any = [1, 2,3];
+
+        // clear();
+        // console.log(chart(data, {
+        //     width: 130,
+        //     height: 30,
+        //     pointChar: '█',
+        //     negativePointChar: '░'
+        // }));
+        // async function CLI_HOME_ACTIONS () {
+
+        //     const questions: any[] = [
+        //         {
+        //             type: 'text',
+        //             name: 'twitter',
+        //             message: `What's your twitter handle?`,
+        //             initial: `terkelg`,
+        //             format: (v: string) => `@${v}`
+        //         },
+        //         {
+        //             type: 'number',
+        //             name: 'age',
+        //             message: 'How old are you?',
+        //             validate: (value: number) => value < 18 ? `Sorry, you have to be 18` : true
+        //         },
+        //         {
+        //             type: 'password',
+        //             name: 'secret',
+        //             message: 'Tell me a secret'
+        //         },
+        //         {
+        //             type: 'confirm',
+        //             name: 'confirmed',
+        //             message: 'Can you confirm?'
+        //         },
+        //         {
+        //             type: (prev: boolean) => prev && 'toggle',
+        //             name: 'confirmtoggle',
+        //             message: 'Can you confirm again?',
+        //             active: 'yes',
+        //             inactive: 'no'
+        //         },
+        //         {
+        //             type: 'list',
+        //             name: 'keywords',
+        //             message: 'Enter keywords'
+        //         },
+        //         {
+        //             type: 'select',
+        //             name: 'color',
+        //             message: 'Pick a color',
+        //             choices: [
+        //                 { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+        //                 { title: 'Green', value: '#00ff00' },
+        //                 { title: 'Yellow', value: '#ffff00', disabled: true },
+        //                 { title: 'Blue', value: '#0000ff' }
+        //             ]
+        //         },
+        //         {
+        //             type: 'multiselect',
+        //             name: 'multicolor',
+        //             message: 'Pick colors',
+        //             hint: false,
+        //             choices: [
+        //                 { title: 'Red', description: 'This option has a description.', value: '#ff0000' },
+        //                 { title: 'Green', value: '#00ff00' },
+        //                 { title: 'Yellow', value: '#ffff00', disabled: true },
+        //                 { title: 'Blue', value: '#0000ff' }
+        //             ]
+        //         },
+        //         {
+        //             type: 'autocomplete',
+        //             name: 'actor',
+        //             message: 'Pick your favorite actor',
+        //             initial: 1,
+        //             limit: 3,
+        //             suggest: (input: string, choices: any[]) => choices.filter(i => i.title.toLowerCase().includes(input.toLowerCase())),
+        //             choices: [
+        //                 { title: 'Cage' },
+        //                 { title: 'Clooney', value: 'silver-fox' },
+        //                 { title: 'Gyllenhaal' },
+        //                 { title: 'Gibson' },
+        //                 { title: 'Grant', description: 'This option has a description.' },
+        //                 { title: 'Hanks' },
+        //                 { title: 'Downey Jr.' }
+        //             ],
+        //             fallback: {
+        //                 title: `This is the fallback. Its value is 'fallback'`,
+        //                 value: 'fallback'
+        //             }
+        //         },
+        //         {
+        //             type: 'date',
+        //             name: 'birthday',
+        //             message: `What's your birthday?`,
+        //             validate: (date: any) => date > Date.now() ? `Your birth day can't be in the future` : true
+        //         },
+        //         {
+        //             type: 'number',
+        //             name: 'prompt',
+        //             message: 'This will be overridden',
+        //             onRender(color: any) {
+        //                 this.no = (this.no || 1);
+        //                 this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
+        //                 if (!interval) interval = setInterval(() => {
+        //                     this.no += 1;
+        //                     if(this.no > 10){
+        //                         console.log("Exiting...");
+        //                         process.exit(0);
+        //                     }
+        //                     this.render();
+        //                 }, 1000);
+        //                 // if(interval>10){
+        //                 //     process.exit();
+        //                 // }
+        //             }
+        //         }
+        //     ];
+        //     const answers = await prompt(questions, { onCancel: cleanup, onSubmit: cleanup });
+        //     console.log(answers);
+
+        // }
+        // CLI_HOME_ACTIONS();
+        // function cleanup() {
+        //     clearInterval(interval);
+        // }
+        // Countdown
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // function countdown(seconds: number): any {
+        //     const intervalId = setInterval(() => {
+        //         seconds--;
+        //         if (seconds === 0) {
+        //             clearInterval(intervalId);
+        //             process.stdout.write('\nSession expired!');
+        //             rl.close();
+        //         } else {
+        //             // Move cursor to the bottom left corner before writing
+        //             process.stdout.write('\x1b[?25l'); // Hide cursor
+        //             process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor to bottom left
+        //             // Overwrite existing countdown with spaces
+        //             process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+        //             process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor back to bottom left
+        //             process.stdout.write(`${seconds} seconds`);
+        //             process.stdout.write('\x1b[?25h'); // Show cursor again
+        //         }
+        //     }, 1000); // Update every second
+        // }
+
+        // rl.on('line', (input: string) => {
+        //     // Reset timer on any user input
+        //     clearInterval(countdown(10)); // Restart countdown with 10 seconds
+        //     if (input.toLowerCase() === 'q') {
+        //         process.stdout.write('\nExiting...\n');
+        //         rl.close();
+        //         process.exit(0); // Exit with code 0 (successful termination)
+        //     }
+        // });
+
+        // // Start the countdown
+        // countdown(10);
+
+        // const link = terminalLink('My Website', 'https://sindresorhus.com');
+        // console.log(link);
+        
+    // Add NextUI CLI version check preAction
+    // const currentVersion = pkg.version;
+
+    // if (compareVersions(currentVersion, cliLatestVersion) === -1) {
+    //     outputBox({
+    //         color: 'yellow',
+    //         padding: 1,
+    //         text: `${chalk.gray(
+    //             `Available upgrade: v${currentVersion} -> ${chalk.green(
+    //                 `v${cliLatestVersion}`
+    //             )}\nRun \`${chalk.cyan(
+    //                 'npm install nextui-cli@latest'
+    //             )}\` to upgrade\nChangelog: ${chalk.underline(
+    //                 'https://github.com/nextui-org/nextui-cli/releases'
+    //             )}`
+    //         )}`,
+    //         title: gradientString('NextUI CLI')
+    //     });
+    //     Logger.newLine();
+    // }
+
+    import type {CommandName} from '@helpers/type';
+
+import chalk from 'chalk';
+import {Command} from 'commander';
+
+import {exec} from '@helpers/exec';
+import {Logger, gradientString} from '@helpers/logger';
+import {findMostMatchText} from '@helpers/math-diff';
+import {outputBox} from '@helpers/output-info';
+import {getCommandDescAndLog} from '@helpers/utils';
+
+import pkg from '../package.json';
+
+import {addAction} from './actions/add-action';
+import {doctorAction} from './actions/doctor-action';
+import {envAction} from './actions/env-action';
+import {initAction} from './actions/init-action';
+import {listAction} from './actions/list-action';
+import {removeAction} from './actions/remove-action';
+import {upgradeAction} from './actions/upgrade-action';
+import {initStoreComponentsData} from './constants/component';
+import {getStore, store} from './constants/store';
+import {compareVersions, getComponents} from './scripts/helpers';
+
+const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
+
+const ui = new Command();
+
+ui
+  .name('ui')
+  .usage('[command]')
+  .description(`${chalk.blue(getCommandDescAndLog(`\nDx/Ui CLI v${pkg.version}\n`, ''))}`)
+  .version(pkg.version, '-v, --version', 'Output the current version')
+  .helpOption('-h, --help', 'Display help for command')
+  .allowUnknownOption()
+  .action(async (_, command) => {
+    let isArgs = false;
+
+    if (command) {
+      const args = command.args?.[0];
+
+      if (args && !commandList.includes(args as CommandName)) {
+        isArgs = true;
+
+        const matchCommand = findMostMatchText(commandList, args);
+
+        if (matchCommand) {
+          Logger.error(
+            `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
+          );
+        } else {
+          Logger.error(`Unknown command '${args}'`);
+        }
+      }
+    }
+
+    if (!isArgs) {
+      const helpInfo = (await exec('ui --help', {logCmd: false, stdio: 'pipe'})) as string;
+
+      let helpInfoArr = helpInfo.split('\n');
+
+      helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
+      // Add command name color
+      helpInfoArr = helpInfoArr.map((info) => {
+        const command = info.match(/(\w+)\s\[/)?.[1];
+
+        if (command) {
+          return info.replace(command, chalk.cyan(command));
+        }
+
+        return info;
+      });
+
+      Logger.log(helpInfoArr.join('\n'));
+    }
+    process.exit(0);
+  });
+
+ui
+  .command('init')
+  .description('Initializes a new project')
+  .argument('[projectName]', 'Name of the project to initialize')
+  .option('-t --template [string]', 'Specify a template for the new project, e.g., app, pages')
+  /** ======================== TODO:(winches)Temporary use npm with default value ======================== */
+  // .option('-p --package [string]', 'The package manager to use for the new project')
+  .action(initAction);
+
+ui
+  .command('add')
+  .description('Adds components to your project')
+  .argument('[components...]', 'Names of components to add')
+  .option('-a --all [boolean]', 'Add all components', false)
+  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+  .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
+  .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
+  .option('--prettier [boolean]', 'Apply Prettier formatting to the added content', false)
+  .option('--addApp [boolean]', 'Include App.tsx file content that requires a provider', false)
+  .action(addAction);
+
+ui
+  .command('upgrade')
+  .description('Upgrades project components to the latest versions')
+  .argument('[components...]', 'Names of components to upgrade')
+  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+  .option('-a --all [boolean]', 'Upgrade all components', false)
+  .action(upgradeAction);
+
+ui
+  .command('remove')
+  .description('Removes components from the project')
+  .argument('[components...]', 'Names of components to remove')
+  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+  .option('-a --all [boolean]', 'Remove all components', false)
+  .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
+  .action(removeAction);
+
+ui
+  .command('list')
+  .description('Lists all components, showing status, descriptions, and versions')
+  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+  .option('-r --remote', 'List all components available remotely')
+  .action(listAction);
+ui
+  .command('env')
+  .description('Displays debugging information for the local environment')
+  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+  .action(envAction);
+
+ui
+  .command('doctor')
+  .description('Checks for issues in the project')
+  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
+  .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
+  .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
+  .option('-ca --checkApp [boolean]', 'Check the App.tsx file', false)
+  .option('-ct --checkTailwind [boolean]', 'Check the tailwind.config.js file', true)
+  .option('-cp --checkPnpm [boolean]', 'Check for Pnpm', true)
+  .action(doctorAction);
+
+ui.hook('preAction', async (command) => {
+  const args = command.args?.[0];
+
+  if (args && commandList.includes(args as CommandName)) {
+    // Before run the command init the components.json
+    const nextUIComponents = (await getComponents()).components;
+
+    initStoreComponentsData(nextUIComponents);
+  }
+
+  const cliLatestVersion = await getStore('cliLatestVersion');
+  const latestVersion = await getStore('latestVersion');
+
+  // Init latest version
+  store.latestVersion = latestVersion;
+  store.cliLatestVersion = cliLatestVersion;
+
+  // Add NextUI CLI version check preAction
+  const currentVersion = pkg.version;
+
+  if (compareVersions(currentVersion, cliLatestVersion) === -1) {
+    outputBox({
+      color: 'yellow',
+      padding: 1,
+      text: `${chalk.gray(
+        `Available upgrade: v${currentVersion} -> ${chalk.greenBright(
+          `v${cliLatestVersion}`
+        )}\nRun \`${chalk.cyan(
+          'npm install ui-cli@latest'
+        )}\` to upgrade\nChangelog: ${chalk.underline(
+          'https://github.com/ui-org/ui-cli/releases'
+        )}`
+      )}`,
+      title: gradientString('NextUI CLI')
+    });
+    Logger.newLine();
+  }
+});
+
+ui.parseAsync(process.argv).catch(async (reason) => {
+  Logger.newLine();
+  Logger.error('Unexpected error. Please report it as a bug:');
+  Logger.log(reason);
+  Logger.newLine();
+  process.exit(1);
+});
+
+    
 ```
