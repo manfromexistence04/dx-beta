@@ -1,0 +1,23 @@
+tasks:
+    - name: dx
+      init: |
+          npm install -g bun
+          bun run install
+      command: |
+          bun run test
+
+    - name: cd package
+      before: |
+          cd ../package
+      init: |
+          echo bun install
+      command: |
+          echo bun run dev
+
+    # - name: frontend
+    #   init: |
+    #       echo npm install
+    #       echo npm run build
+    #   command: |
+    #       echo npm run dev
+
