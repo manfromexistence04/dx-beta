@@ -24,13 +24,15 @@ This CLI utilizes base components and potentially leverages UI frameworks from o
 `;
 // Informational message displayed in the CLI
 const CLI_INFO: string = `${chalk.gray("This innovative solution empowers developers by automating the often-tedious process of integrating UI components \nEliminate the need for manual configuration and repetitive tasks, and unlock a new level of development efficiency.")}
-${chalk.hex("#cafc03")("You can type any bash command here and the command will be exucuted immedeitly, press to exit.")}`;
+${chalk.hex("#05f5ed")("You can type any bash command here and the command will be exucuted immedeitly, press to exit.")}`;
 
 const CONTRACT: string = `
-${chalk.hex("#03fce8")("Follow:")}
+${chalk.hex("#00f3f7")("Follow:")}
 • Give us a start on Github: ${terminalLink('manfromexistence/dx', 'https://github.com/manfromexistence/dx-beta')}
-• Follow us on Twitter: ${terminalLink('manfromexistence', 'https://twitter.com/manofexistence1')}
+• Subscribe us on YouTube: ${terminalLink('manfromexistence', 'https://www.youtube.com/channel/UCK0IEdLWxA2EFgucri7z4SA')}
+• Follow us on X: ${terminalLink('manfromexistence', 'https://twitter.com/manofexistence1')}
 • Join our Discord community: ${terminalLink('emon_420', 'https://discord.com/channels/1053093315442118677/1053093316138385539')}
+• Follow us on Instragam: ${terminalLink('tonymitul', 'https://www.instagram.com/tonymitul/')}
 `;
 // • Get stickers, t-shirts, coffee mugs and more: Planet Argon Shop
 
@@ -52,9 +54,9 @@ const CLI_FLAGS: string = `${chalk.hex("#9500ff")("Flags:")}
 
 // Examples displayed in the CLI
 const CLI_EXAMPLES: string = `${chalk.hex("#ff0080")("\nExamples:")}
-npm ui suggest "what is the best library which simple and yet beautiful?"
-npm ui explain "how to center a div? With a very basic and beginner explaination"
-npm ui create nextjs-ui-website`;
+$ ui suggest "what is the best library which simple and yet beautiful?"
+$ ui explain "how to center a div? With a very basic and beginner explaination"
+$ ui create nextjs-ui-website`;
 // npm ui init nextjs-ui-website
 // npm ui add -a
 // npm ui remove accordion
@@ -114,54 +116,54 @@ ui
             {
                 Command: "suggest",
                 Description: "Suggests you about what ui component is best for your job and ai chat...",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
             },
             {
                 Command: "explain",
                 Description: "Explains you what course of actions you should take to solve your ui problems...",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "create",
                 Description: "Creates A new project using any frontend frameworks",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "init",
                 Description: "Initializes a new project",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "add",
                 Description: "Adds components to your project",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "remove",
                 Description: "Removes components from the project",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "update",
                 Description: "Upgrades project components to the latest versions",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "list",
                 Description: "Lists all components, showing status, descriptions, and versions",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             },
             {
                 Command: "doctor",
                 Description: "Checks for issues in the project",
-                Arguments: `${chalk.yellow.italic("[--option]")} ${chalk.blue.italic("[--flag]")}`,
+                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
 
             }
         ]
