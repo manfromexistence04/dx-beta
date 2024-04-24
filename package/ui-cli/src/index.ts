@@ -18,6 +18,11 @@ import { getComponents } from './scripts/helpers';
 import Table from "../table/src/main";
 import terminalLink from 'terminal-link';
 import * as readline from 'readline';
+import { CohereClient } from "cohere-ai";
+
+const cohere = new CohereClient({
+  token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
+});
 
 
 // Copyright disclaimer for the CLI
