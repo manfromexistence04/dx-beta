@@ -19,10 +19,14 @@ import Table from "../table/src/main";
 import terminalLink from 'terminal-link';
 import * as readline from 'readline';
 import { CohereClient } from "cohere-ai";
+const prompts = require('prompts');
+prompts.override(require('yargs').argv);
 
 const cohere = new CohereClient({
-  token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
+    token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
 });
+
+
 
 
 // Copyright disclaimer for the CLI
@@ -214,6 +218,33 @@ ui
         const COMMAND_DETAILS = Table(header, rows, options).render();
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
+        (async () => {
+            const response = await prompts([
+                {
+                    type: 'text',
+                    name: 'command',
+                    message: `${chalk.hex("#03fcf0")("ManFromExistence")}${chalk.hex("#6203fc")("(")}${chalk.hex("#ffff00")("Freetier")}${chalk.hex("#6203fc")(")")}`
+                }
+            ]);
+
+            (async () => {
+                const stream = await cohere.chatStream({
+                    model: "command-r-plus",
+                    message: response.command,
+                    temperature: 0.3,
+                    chatHistory: [],
+                    promptTruncation: "AUTO",
+                    connectors: [{ "id": "web-search" }]
+                });
+
+                for await (const chat of stream) {
+                    if (chat.eventType === "text-generation") {
+                        process.stdout.write(chat.text);
+                    }
+                }
+            })();
+            console.log(`\n${chalk.hex("#02f78d")("Friday:")}`);
+        })();
         // console.log(CONTRACT);
 
         // Start the loop
