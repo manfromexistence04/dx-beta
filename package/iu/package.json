@@ -20,6 +20,7 @@
 	"engines": {
 		"node": ">=14.16"
 	},
+	
 	"scripts": {
 		"dev": "tsc --watch",
 		"build": "tsc",

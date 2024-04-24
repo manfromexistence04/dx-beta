@@ -27,7 +27,7 @@ const cohere = new CohereClient({
 });
 
 
-
+// (To exit, press Ctrl+C again or Ctrl+D or type .exit)
 
 // Copyright disclaimer for the CLI
 const COPYRIGHT_INFO: string = `
