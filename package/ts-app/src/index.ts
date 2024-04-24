@@ -218,7 +218,6 @@ ui
         const COMMAND_DETAILS = Table(header, rows, options).render();
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
-
         (async () => {
             const response = await prompts([
                 {
@@ -246,7 +245,6 @@ ui
             })();
             console.log(`\n${chalk.hex("#02f78d")("Friday:")}`);
         })();
-        
         // console.log(CONTRACT);
 
         // Start the loop
