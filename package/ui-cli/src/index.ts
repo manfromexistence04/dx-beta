@@ -61,6 +61,7 @@ $ ui create nextjs-ui-website`;
 // npm ui add -a
 // npm ui remove accordion
 
+
 const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
 const ui = new Command();
 
