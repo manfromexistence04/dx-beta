@@ -72,6 +72,8 @@
     "@types/bun": "latest"
   },
   "trustedDependencies": [
-    "core-js"
+    "core-js",
+    "esbuild",
+    "puppeteer"
   ]
 }
