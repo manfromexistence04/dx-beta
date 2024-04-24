@@ -17,6 +17,8 @@ import { getStore, store } from './constants/store';
 import { getComponents } from './scripts/helpers';
 import Table from "../table/src/main";
 import terminalLink from 'terminal-link';
+import * as readline from 'readline';
+
 
 // Copyright disclaimer for the CLI
 const COPYRIGHT_INFO: string = `
@@ -39,14 +41,14 @@ ${chalk.hex("#00f3f7")("Follow:")}
 
 // Options displayed in the CLI with descriptions /To maintain your current session and avoid interruption, please execute any command within the next 10s.
 const CLI_OPTIONS: string = `
-${chalk.hex("#ff00d9")("Options:")}
+${chalk.hex("#ff00d9")("\nOptions:")}
 -a, --all [boolean]: Add all components
 -p, --packagePath [string]: Specify the path to the package.json file
 -app, --appPath [string]: Specify the path to the App.tsx file
 `;
 
 // Flags displayed in the CLI with descriptions
-const CLI_FLAGS: string = `${chalk.hex("#9500ff")("Flags:")}
+const CLI_FLAGS: string = `${chalk.hex("#9500ff")("\nFlags:")}
 --prettier [boolean]: Apply Prettier formatting to the added content
 --addApp [boolean]: Include App.tsx file content that requires a provider
 --addHook [boolean]: Include hook.tsx file content that requires a provider
@@ -56,7 +58,7 @@ const CLI_FLAGS: string = `${chalk.hex("#9500ff")("Flags:")}
 const CLI_EXAMPLES: string = `${chalk.hex("#ff0080")("\nExamples:")}
 $ ui suggest "what is the best library which simple and yet beautiful?"
 $ ui explain "how to center a div? With a very basic and beginner explaination"
-$ ui create nextjs-ui-website`;
+$ ui create nextjs-ui-website\n`;
 // npm ui init nextjs-ui-website
 // npm ui add -a
 // npm ui remove accordion
@@ -64,6 +66,31 @@ $ ui create nextjs-ui-website`;
 
 const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
 const ui = new Command();
+// Toggle emon/sumon infinitely
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+// });
+
+// let message = `${chalk.red("emon")}`; // Initial message to display
+
+// function toggleMessage() {
+//     message = message === `${chalk.red("emon")}` ? `${chalk.green("sumon")}` : `${chalk.red("emon")}`;
+//     process.stdout.write('\x1b[?25l'); // Hide cursor
+//     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move to bottom left
+//     process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+//     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move back to bottom left
+//     process.stdout.write(`${message}`);
+//     process.stdout.write('\x1b[?25h'); // Show cursor again
+// }
+
+// setInterval(toggleMessage, 2000); // Toggle every 3 seconds
+
+// // Prevent program from exiting immediately (optional)
+// rl.on('SIGINT', () => {
+//     process.stdout.write('\n');
+//     rl.close();
+// });
 
 /*
       $$\                 $$\          $$\ 
@@ -87,10 +114,13 @@ ui
     .helpOption('-h, --help', 'Display help for command')
     .allowUnknownOption()
     .action(async (_, command) => {
+        // toggleMessage();
 
         console.log(CLI_INFO);
         console.log(CLI_OPTIONS);
         console.log(CLI_FLAGS);
+
+
         const header = [
             {
                 value: "Command",
@@ -179,7 +209,11 @@ ui
         const COMMAND_DETAILS = Table(header, rows, options).render();
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
-        console.log(CONTRACT);
+        // console.log(CONTRACT);
+
+        // Start the loop
+        // toggleMessage();
+
     });
 
 ui

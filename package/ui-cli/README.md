@@ -1169,5 +1169,233 @@ ui.parseAsync(process.argv).catch(async (reason) => {
   process.exit(1);
 });
 
+
+        // // Countdown
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // function countdown(seconds: number): any {
+        //     const intervalId = setInterval(() => {
+        //         seconds--;
+        //         if (seconds === 0) {
+        //             clearInterval(intervalId);
+        //             process.stdout.write('\nThis is manfromexistence, signing out...');
+        //             rl.close();
+        //         } else {
+        //             // Move cursor to the bottom left corner before writing Session expired!
+        //             process.stdout.write('\x1b[?25l'); // Hide cursor
+        //             process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor to bottom left
+        //             // Overwrite existing countdown with spaces
+        //             process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+        //             process.stdout.cursorTo(0, process.stdout.rows - 1); // Move cursor back to bottom left
+        //             process.stdout.write(`${seconds} seconds`);
+        //             process.stdout.write('\x1b[?25h'); // Show cursor again
+        //         }
+        //     }, 1000); // Update every second
+        // }
+        // countdown(10);
+        // Countdown with toggle
+        // Countdown with toggle (infinite)
     
+
+        // // Toggle emon/sumon infinitely
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // let message = "emon"; // Initial message to display
+
+        // function toggleMessage() {
+        //     message = message === "emon" ? "sumon" : "emon";
+        //     process.stdout.write('\x1b[?25l'); // Hide cursor
+        //     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move to bottom left
+        //     process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+        //     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move back to bottom left
+        //     process.stdout.write(`${message}`);
+        //     process.stdout.write('\x1b[?25h'); // Show cursor again
+        // }
+
+        // setInterval(toggleMessage, 3000); // Toggle every 3 seconds
+
+        // // Prevent program from exiting immediately (optional)
+        // rl.on('SIGINT', () => {
+        //     process.stdout.write('\n');
+        //     rl.close();
+        // });
+
+        // // Start the loop
+        // toggleMessage();
+
+        // // Toggle CLI options/flags (bottom left)
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // let message = "options"; // Initial message to display
+
+        // function toggleMessage() {
+        //     message = message === "options" ? "flags" : "options";
+
+        //     const content = message === "options" ? CLI_OPTIONS : CLI_FLAGS;
+
+        //     const terminalHeight = process.stdout.rows; // Get terminal height
+
+        //     process.stdout.write('\x1b[?25l'); // Hide cursor
+        //     process.stdout.cursorTo(0, terminalHeight - 1); // Move to bottom left
+        //     process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+        //     process.stdout.cursorTo(0, terminalHeight - 1); // Move back to bottom left
+        //     process.stdout.write(content);
+        //     process.stdout.write('\x1b[?25h'); // Show cursor again
+        // }
+
+        // setInterval(toggleMessage, 3000); // Toggle every 3 seconds
+
+        // // Prevent program from exiting immediately (optional)
+        // rl.on('SIGINT', () => {
+        //     process.stdout.write('\n');
+        //     rl.close();
+        // });
+
+        // // Start the loop
+        // toggleMessage();
+
+        // // Toggle CLI options/flags (bottom left, clean removal)
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // let message = "options"; // Initial message to display
+
+        // function toggleMessage() {
+        //     message = message === "options" ? "flags" : "options";
+
+        //     const contentLength = (message === "options" ? CLI_OPTIONS : CLI_FLAGS).length; // Get content length
+        //     const terminalHeight = process.stdout.rows; // Get terminal height
+
+        //     process.stdout.write('\x1b[?25l'); // Hide cursor
+        //     process.stdout.cursorTo(0, terminalHeight - 1); // Move to bottom left
+        //     // Overwrite previous content with spaces (adjust length if needed)
+        //     process.stdout.write(' '.repeat(contentLength));
+        //     process.stdout.cursorTo(0, terminalHeight - 1); // Move back to bottom left
+        //     process.stdout.write(message === "options" ? CLI_OPTIONS : CLI_FLAGS);
+        //     process.stdout.write('\x1b[?25h'); // Show cursor again
+        // }
+
+        // setInterval(toggleMessage, 3000); // Toggle every 3 seconds
+
+        // // Prevent program from exiting immediately (optional)
+        // rl.on('SIGINT', () => {
+        //     process.stdout.write('\n');
+        //     rl.close();
+        // });
+
+        // // Start the loop
+        // toggleMessage();
+        // const readline = require('readline').createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout
+        // });
+
+        // const messages = [
+        //     "Line 1 - This is the first line.",
+        //     "Line 2 - This is the second line.",
+        //     "Line 3 - This is the third line." // Add more lines as needed
+        // ];
+
+        // let currentLineIndex = 0; // Keeps track of the current line to toggle
+
+        // function toggleMessage() {
+        //     process.stdout.write('\x1b[?25l'); // Hide cursor
+
+        //     // Clear the current line
+        //     process.stdout.cursorTo(0, process.stdout.rows - 1);
+        //     process.stdout.write(' '.repeat(process.stdout.columns));
+
+        //     // Move back to the bottom left
+        //     process.stdout.cursorTo(0, process.stdout.rows - 1);
+
+        //     // Display the current line
+        //     process.stdout.write(`${messages[currentLineIndex]}\n`); // Add newline at the end
+
+        //     currentLineIndex = (currentLineIndex + 1) % messages.length; // Cycle through messages
+
+        //     process.stdout.write('\x1b[?25h'); // Show cursor again
+        // }
+
+        // setInterval(toggleMessage, 3000); // Toggle every 3 seconds
+
+        // // Prevent program from exiting immediately (optional)
+        // readline.on('SIGINT', () => {
+        //     process.stdout.write('\n');
+        //     readline.close();
+        // });
+
+        // // Start the display
+        // toggleMessage();
+
+
+        // // Toggle emon/sumon infinitely
+        // const rl = readline.createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // let message = "emon"; // Initial message to display
+
+        // function toggleMessage() {
+        //     message = message === "emon" ? `${chalk.red("sumon")}` : `${chalk.green("emon")}`;
+        //     process.stdout.write('\x1b[?25l'); // Hide cursor
+        //     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move to bottom left
+        //     process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+        //     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move back to bottom left
+        //     process.stdout.write(`${message}`);
+        //     process.stdout.write('\x1b[?25h'); // Show cursor again
+        // }
+
+        // setInterval(toggleMessage, 3000); // Toggle every 3 seconds
+
+        // // Prevent program from exiting immediately (optional)
+        // rl.on('SIGINT', () => {
+        //     process.stdout.write('\n');
+        //     rl.close();
+        // });
+
+        // // Start the loop
+        // toggleMessage();
+
+        // Toggle message and display it in the console
+        // Toggle message and display it in the console with clearing
+
+        // const readline = require('readline').createInterface({
+        //     input: process.stdin,
+        //     output: process.stdout,
+        // });
+
+        // let message = "emon"; // Initial message
+
+        // function toggleMessage() {
+        //     message = message === "emon" ? "sumon" : "emon";
+
+        //     // Clear the current line before logging the new message
+        //     process.stdout.write('\x1b[2K'); // Clear current line (ESC [ 2 K)
+
+        //     console.log(`${message}`); // Log the current message to the console
+        // }
+
+        // setInterval(toggleMessage, 3000); // Toggle every 3 seconds
+
+        // // Prevent program from exiting immediately (optional)
+        // readline.on('SIGINT', () => {
+        //     console.log('\n'); // Log a newline character on exit
+        //     readline.close();
+        // });
+
+        // // Start the loop
+        // toggleMessage();
+        // Toggle message and display it in the console
 ```
