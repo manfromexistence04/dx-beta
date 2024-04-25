@@ -22,7 +22,7 @@ type DefaultTheme = {
 export type Theme<Extension extends {} = {}> = Prettify<Extension & DefaultTheme>;
 
 export const defaultTheme: DefaultTheme = {
-  prefix: chalk.green('?'),
+  prefix: chalk.green('➜'),
   spinner: {
     interval: spinners.dots.interval,
     frames: spinners.dots.frames.map((frame) => chalk.yellow(frame)),

@@ -3,6 +3,8 @@
   "include": ["./src"],
   "exclude": ["**/*.test.mts"],
   "compilerOptions": {
+    "noEmit":true,
+    "allowImportingTsExtensions":true,
     "lib": ["es2023"],
     "target": "es2022",
     "module": "NodeNext",
