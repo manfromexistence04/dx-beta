@@ -20,7 +20,7 @@ class SelectPrompt extends Prompt {
   constructor(opts={}) {
     super(opts);
     this.msg = opts.message;
-    this.hint = opts.hint || '- Use arrow-keys. Return to submit.';
+    this.hint = opts.hint || '- Use arrow-keys. Return to submit. Type to filter';
     this.warn = opts.warn || '- This option is disabled';
     this.cursor = opts.initial || 0;
     this.choices = opts.choices.map((ch, idx) => {

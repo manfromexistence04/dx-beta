@@ -152,8 +152,8 @@ export default createPrompt(
         //   rl.clearLine(0);
         // }, 700);
         // rl.clearLine(0);
-        setValue(rl.line);
-        setError(undefined);
+        // setValue(rl.line);
+        // setError(undefined);
       }
     });
 
@@ -280,12 +280,12 @@ export default createPrompt(
     }
 
 
-    // return `${[prefix, message, helpTipTop].filter(Boolean).join(' ')}${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
+    return `${[prefix, message, helpTipTop].filter(Boolean).join(' ')}${ansiEscapes.cursorHide}`;
     // return `${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
     // return `${[message, defaultStr, formattedValue]
     //   .filter((v) => v !== undefined)
     //   .join(' ')}${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}${ansiEscapes.cursorHide}`;
-    return `${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
+    // return `${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
   },
 );
 
