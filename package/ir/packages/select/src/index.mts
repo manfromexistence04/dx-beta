@@ -134,7 +134,7 @@ export default createPrompt(
       } else if (isBackspaceKey(key)) {
         rl.clearLine(0);
       } else {
-        // // Default to search
+        // Default to search
         // const searchTerm = rl.line.toLowerCase();
         // const matchIndex = items.findIndex((item) => {
         //   if (Separator.isSeparator(item) || !isSelectable(item)) return false;
@@ -280,12 +280,12 @@ export default createPrompt(
     }
 
 
-    return `${[prefix, message, helpTipTop].filter(Boolean).join(' ')}${ansiEscapes.cursorHide}`;
+    // return `${[prefix, message, helpTipTop].filter(Boolean).join(' ')}${ansiEscapes.cursorHide}`;
     // return `${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
-    // return `${[message, defaultStr, formattedValue]
-    //   .filter((v) => v !== undefined)
-    //   .join(' ')}${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}${ansiEscapes.cursorHide}`;
     // return `${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
+    return `${[message, defaultStr, formattedValue]
+      .filter((v) => v !== undefined)
+      .join(' ')}${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}${ansiEscapes.cursorHide}`;
   },
 );
 

@@ -14,10 +14,15 @@ import rawlistDemo from './demos/rawlist.mjs';
 import selectDemo from './demos/select.mjs';
 import timeoutDemo from './demos/timeout.mjs';
 import chalk from "chalk";
-// import cliCursor from 'cli-cursor';
-// const prompts = require('/workspace/dx-beta/package/ir/packages/demo/ps/lib/index.js');
+
+import cliCursor from 'cli-cursor';
+const prompts = require('/workspace/dx-beta/package/ir/packages/demo/ps/lib/index.js');
+cliCursor.hide();
+
+// let commnad = await input({ message: "hello" });
 
 // (async () => {
+
 //   const response = await prompts({
 //     type: 'select',
 //     name: 'value',
@@ -31,6 +36,7 @@ import chalk from "chalk";
 //   });
 
 //   console.log(response); // => { value: 24 }
+
 // })();
 
 const demos = {
@@ -90,5 +96,3 @@ async function askNextDemo() {
   }
 })();
 
-
-// cliCursor.hide();
