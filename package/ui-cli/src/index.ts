@@ -215,7 +215,10 @@ ui
         const prompt = new AutoComplete({
             type: 'autocomplete',
             name: 'flavor',
-            message: `${chalk.hex("#03fc90")("➜ ")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence:${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")} ${chalk.hex("#f8fc03")("✼  ")}`)}`,
+            // message: `${chalkAnimation.rainbow("<..> path manfromexistence(freetier): ")}`,
+
+            message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
+            // message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalkAnimation.rainbow(`manfromexistence`)}${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#f8fc03")(": ")}`,
             suggest(typed, choices) {
                 const maches = choices.filter(choice => choice.message.includes(typed));
                 return maches.length ? maches : [fakeChoice(typed)];
