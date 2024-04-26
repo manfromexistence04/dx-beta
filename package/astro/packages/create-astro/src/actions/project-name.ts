@@ -27,7 +27,7 @@ export async function projectName(
 			name: 'name',
 			type: 'text',
 			label: title('dir'),
-			message: 'Where should we create your new project?',
+			message: 'Where should we create your new project? edited by (manfromexistence)',
 			initial: `./${generateProjectName()}`,
 			validate(value: string) {
 				if (!isEmpty(value)) {
