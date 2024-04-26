@@ -1,5 +1,6 @@
 'use strict';
 
+
 const Select = require('./select');
 
 const highlight = (input, color) => {
@@ -37,7 +38,7 @@ class AutoComplete extends Select {
 
   delete() {
     let { cursor, input } = this.state;
-    if (!input) return this.alert();
+    if (!input) return console.log(" ");
     this.input = input.slice(0, cursor - 1) + input.slice(cursor);
     this.moveCursor(-1);
     return this.complete();
