@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import prompts from 'prompts';
+import prompts from '../ps/index';
 
 import {Logger} from '@helpers/logger';
 

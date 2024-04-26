@@ -21,6 +21,8 @@ import * as readline from 'readline';
 import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
 prompts.override(require('yargs').argv);
+const { MultiSelect } = require('enquirer');
+const { AutoComplete } = require('enquirer');
 
 const cohere = new CohereClient({
     token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
@@ -28,7 +30,7 @@ const cohere = new CohereClient({
 
 
 // (To exit, press Ctrl+C again or Ctrl+D or type .exit)
-
+let interval: any;
 // Copyright disclaimer for the CLI
 const COPYRIGHT_INFO: string = `
 This CLI utilizes base components and potentially leverages UI frameworks from other sources. We respect the ownership of these frameworks and aim to ensure a smooth integration experience. By using this CLI, you won't encounter missing downloads or malicious code that could compromise the security of the respective owners' work. Thank you for using our CLI!
@@ -50,7 +52,7 @@ ${chalk.hex("#00f3f7")("Follow:")}
 
 // Options displayed in the CLI with descriptions /To maintain your current session and avoid interruption, please execute any command within the next 10s.
 const CLI_OPTIONS: string = `
-${chalk.hex("#ff00d9")("\nOptions:")}
+${chalk.hex("#ff00d9")("Options:")}
 -a, --all [boolean]: Add all components
 -p, --packagePath [string]: Specify the path to the package.json file
 -app, --appPath [string]: Specify the path to the App.tsx file
@@ -115,10 +117,11 @@ $$ |  $$ | $$  $$<   $$  /   $$ |  $$ |$$ |
 
 ui
     .name('ui')
+    .description('ui')
     .usage('[command]')
-    .description(`${chalkAnimation.rainbow(
-        `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
-    )}`)
+    // .description(`${chalkAnimation.rainbow(
+    //     `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
+    // )}`)
     .version(pkg.version, '-v, --version', 'Output the current version')
     .helpOption('-h, --help', 'Display help for command')
     .allowUnknownOption()
@@ -129,19 +132,38 @@ ui
         console.log(CLI_OPTIONS);
         console.log(CLI_FLAGS);
 
-
+        // {
+        //     value: "Command",
+        //     headerColor: "red",
+        //     color: "green",
+        //     align: "left",
+        //     width: "8%"
+        // },
+        // {
+        //     value: "Description",
+        //     width: "25%",
+        //     headerColor: "magenta",
+        //     color: "gray"
+        // },
+        // {
+        //     value: "Arguments",
+        //     color: "white",
+        //     align: "center",
+        //     width: "10%",
+        //     headerColor: "cyan",
+        // }
         const header = [
             {
                 value: "Command",
-                headerColor: "red",
-                color: "green",
+                headerColor: "white",
+                color: "white",
                 align: "left",
                 width: "8%"
             },
             {
                 value: "Description",
                 width: "25%",
-                headerColor: "magenta",
+                headerColor: "white",
                 color: "gray"
             },
             {
@@ -149,61 +171,80 @@ ui
                 color: "white",
                 align: "center",
                 width: "10%",
-                headerColor: "cyan",
+                headerColor: "white",
             }
         ]
+        // ${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}
         const rows: any[] = [
             {
                 Command: "suggest",
                 Description: "Suggests you about what ui component is best for your job and ai chat...",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
             },
             {
                 Command: "explain",
                 Description: "Explains you what course of actions you should take to solve your ui problems...",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "create",
                 Description: "Creates A new project using any frontend frameworks",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "init",
                 Description: "Initializes a new project",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "add",
                 Description: "Adds components to your project",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "remove",
                 Description: "Removes components from the project",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "update",
                 Description: "Upgrades project components to the latest versions",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "list",
                 Description: "Lists all components, showing status, descriptions, and versions",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             },
             {
                 Command: "doctor",
                 Description: "Checks for issues in the project",
-                Arguments: `${chalk.hex("#d9f505").italic("[--option]")} ${chalk.hex("#0535f5").italic("[--flag]")}`,
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
+
+            },
+            {
+                Command: "env",
+                Description: "Displays debugging information for the local environment",
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
+
+            },
+            {
+                Command: "search",
+                Description: "Searches for your desired pacages and installs it.",
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
+
+            },
+            {
+                Command: "theme",
+                Description: "Customize any complete from any ui frameworks with ease.",
+                Arguments: `${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}`,
 
             }
         ]
@@ -219,38 +260,69 @@ ui
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
 
+
         (async () => {
-            const response = await prompts([
-                {
-                    type: 'text',
-                    name: 'command',
-                    message: `${chalk.hex("#03fcf0")("ManFromExistence")}${chalk.hex("#6203fc")("(")}${chalk.hex("#ffff00")("Freetier")}${chalk.hex("#6203fc")(")")}`
-                }
-            ]);
+            const response = await prompts({
+                type: 'autocomplete',
+                name: 'value',
+                message: 'Pick your favorite actor',
+                choices: [
+                    { title: 'Cage' },
+                    { title: 'Clooney', value: 'silver-fox' },
+                    { title: 'Gyllenhaal' },
+                    { title: 'Gibson' },
+                    { title: 'Clooney', value: 'silver-fox' },
+                    { title: 'Gyllenhaal' },
+                    { title: 'Gibson' },
+                    { title: 'Clooney', value: 'silver-fox' },
+                    { title: 'Gyllenhaal' },
+                    { title: 'Gibson' },
+                    { title: 'Clooney', value: 'silver-fox' },
+                    { title: 'Gyllenhaal' },
+                    { title: 'Gibson' },
+                    { title: 'Clooney', value: 'silver-fox' },
+                    { title: 'Gyllenhaal' },
+                    { title: 'Gibson' },
+                    { title: 'Grant' }
+                ]
+            });
 
-            (async () => {
-                const stream = await cohere.chatStream({
-                    model: "command-r-plus",
-                    message: response.command,
-                    temperature: 0.3,
-                    chatHistory: [],
-                    promptTruncation: "AUTO",
-                    connectors: [{ "id": "web-search" }]
-                });
-
-                for await (const chat of stream) {
-                    if (chat.eventType === "text-generation") {
-                        process.stdout.write(chat.text);
-                    }
-                }
-            })();
-            console.log(`\n${chalk.hex("#02f78d")("Friday:")}`);
+            console.log(response); // => { value: 24 }
         })();
-        
-        // console.log(CONTRACT);
+        // const prompt = new AutoComplete({
+        //   name: 'flavor',
+        //   message: 'Pick your favorite flavor',
+        //   limit: 10,
+        //   initial: 2,
+        //   choices: [
+        //     'Almond',
+        //     'Apple',
+        //     'Banana',
+        //     'Blackberry',
+        //     'Blueberry',
+        //     'Cherry',
+        //     'Chocolate',
+        //     'Cinnamon',
+        //     'Coconut',
+        //     'Cranberry',
+        //     'Grape',
+        //     'Nougat',
+        //     'Orange',
+        //     'Pear',
+        //     'Pineapple',
+        //     'Raspberry',
+        //     'Strawberry',
+        //     'Vanilla',
+        //     'Watermelon',
+        //     'Wintergreen'
+        //   ]
+        // });
 
-        // Start the loop
-        // toggleMessage();
+        // prompt.run()
+        //   .then(answer => console.log('Answer:', answer))
+        //   .catch(console.error);
+
+
 
     });
 

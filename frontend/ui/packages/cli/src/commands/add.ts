@@ -14,7 +14,8 @@ import {
 import { transform } from "@/src/utils/transformers"
 import chalk from "chalk"
 import { Command } from "commander"
-import { execa } from "execa"
+// import { execa } from "execa"
+import execa = require("execa")
 import ora from "ora"
 import prompts from "prompts"
 import { z } from "zod"
@@ -68,7 +69,7 @@ export const add = new Command()
       const registryIndex = await getRegistryIndex()
 
       let selectedComponents = options.all
-        ? registryIndex.map((entry) => entry.name)
+        ? registryIndex.map((entry: { name: any }) => entry.name)
         : options.components
       if (!options.components?.length && !options.all) {
         const { components } = await prompts({
@@ -77,7 +78,7 @@ export const add = new Command()
           message: "Which components would you like to add?",
           hint: "Space to select. A to toggle all. Enter to submit.",
           instructions: false,
-          choices: registryIndex.map((entry) => ({
+          choices: registryIndex.map((entry: { name: any }) => ({
             title: entry.name,
             value: entry.name,
             selected: options.all
@@ -132,7 +133,7 @@ export const add = new Command()
           await fs.mkdir(targetDir, { recursive: true })
         }
 
-        const existingComponent = item.files.filter((file) =>
+        const existingComponent = item.files.filter((file: { name: string }) =>
           existsSync(path.resolve(targetDir, file.name))
         )
 
