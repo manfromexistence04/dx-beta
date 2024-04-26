@@ -36,18 +36,7 @@ class AutoComplete extends Select {
     return this.complete();
   }
 
-  triggerComplete() {
-    // Check if multiple selection is allowed (use `this.options.multiple`)
-    if (this.options.multiple) {
-      // Call existing space function (might need adjustments)
-      this.space();
-    } else {
-      // Implement your desired behavior for empty input in single select mode
-      // You might want to show suggestions or perform some other action
-    }
-  }
-  
-  async delete(ch) {
+  async delete() {
     let { cursor, input } = this.state;
     // if (input.length == 0) return await super.render();
     if (!input) return;
@@ -56,7 +45,6 @@ class AutoComplete extends Select {
     return this.complete();
   }
   
-
   deleteForward() {
     let { cursor, input } = this.state;
     if (input[cursor] === void 0) return this.alert();

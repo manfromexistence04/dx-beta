@@ -210,13 +210,11 @@ ui
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
 
-
         const fakeChoice = input => ({ value: input, message: '', name: "" });
         const prompt = new AutoComplete({
             type: 'autocomplete',
             name: 'flavor',
             // message: `${chalkAnimation.rainbow("<..> path manfromexistence(freetier): ")}`,
-
             message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
             // message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalkAnimation.rainbow(`manfromexistence`)}${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#f8fc03")(": ")}`,
             suggest(typed, choices) {
@@ -267,15 +265,8 @@ ui
                         return "text";
                     }
                 }
-                // Example usage
-                //   const text1 = "add a new item";
-                //   const text2 = "run myscript.sh";
-                //   const text3 = "This is some random text";
-                console.log(categorizeText(result)); // Output: 1
-                //   console.log(categorizeText(text2)); // Output: 2
-                //   console.log(categorizeText(text3)); // Output: 3
-
-                console.log({ result });
+                console.log(categorizeText(result));
+                // console.log({ result });
             })
             .catch(console.log);
 
