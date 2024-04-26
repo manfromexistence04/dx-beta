@@ -14,7 +14,7 @@ const highlight = (input, color) => {
 class AutoComplete extends Select {
   constructor(options) {
     super(options);
-    // this.cursorShow();
+    this.cursorShow();
   }
 
   moveCursor(n) {
@@ -47,14 +47,12 @@ class AutoComplete extends Select {
     }
   }
   
-  delete(ch) {
+  async delete(ch) {
     let { cursor, input } = this.state;
-    if (!input) return this.space(ch);
+    // if (input.length == 0) return await super.render();
+    if (!input) return;
     this.input = input.slice(0, cursor - 1) + input.slice(cursor);
     this.moveCursor(-1);
-    // if (!input) {
-    //   this.triggerComplete();
-    // }
     return this.complete();
   }
   

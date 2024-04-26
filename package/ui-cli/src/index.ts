@@ -211,7 +211,7 @@ ui
         console.log(CLI_EXAMPLES);
 
 
-        const fakeChoice = input => ({ value: input, message: '', name: input });
+        const fakeChoice = input => ({ value: input, message: '', name: "" });
         const prompt = new AutoComplete({
             type: 'autocomplete',
             name: 'flavor',
