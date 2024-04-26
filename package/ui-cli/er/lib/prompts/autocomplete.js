@@ -36,13 +36,28 @@ class AutoComplete extends Select {
     return this.complete();
   }
 
-  delete() {
+  triggerComplete() {
+    // Check if multiple selection is allowed (use `this.options.multiple`)
+    if (this.options.multiple) {
+      // Call existing space function (might need adjustments)
+      this.space();
+    } else {
+      // Implement your desired behavior for empty input in single select mode
+      // You might want to show suggestions or perform some other action
+    }
+  }
+  
+  delete(ch) {
     let { cursor, input } = this.state;
-    if (!input) return console.log(" ");
+    if (!input) return this.space(ch);
     this.input = input.slice(0, cursor - 1) + input.slice(cursor);
     this.moveCursor(-1);
+    // if (!input) {
+    //   this.triggerComplete();
+    // }
     return this.complete();
   }
+  
 
   deleteForward() {
     let { cursor, input } = this.state;
