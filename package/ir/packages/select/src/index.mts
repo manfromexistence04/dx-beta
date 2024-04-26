@@ -285,8 +285,9 @@ export default createPrompt(
     // return `${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}`;
     return `${[message, defaultStr, formattedValue]
       .filter((v) => v !== undefined)
-      .join(' ')}${choiceDescription}\n${page}${helpTipBottom}${ansiEscapes.cursorHide}${ansiEscapes.cursorHide}`;
+      .join(' ')}${page}${helpTipBottom}${ansiEscapes.cursorHide}${ansiEscapes.cursorHide}`;
   },
 );
 
 export { Separator };
+

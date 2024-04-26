@@ -130,7 +130,7 @@ describe('select', function() {
 
       return prompt.run()
         .then(async answer => {
-          let expected = cyan(prompt.symbols.pointer) + ' ' + cyan.underline('A');
+          let expected = cyan(prompt.symbols.pointer) + ' ' + cyan('A');
           assert.equal(await prompt.renderChoice(prompt.choices[0], 0), expected);
           assert.equal(await prompt.renderChoice(prompt.choices[1], 1), '  BB');
         });
@@ -152,7 +152,7 @@ describe('select', function() {
           let { symbols } = prompt;
           let pointer = cyan(symbols.pointer);
           let hint = dim('(this is a hint)');
-          let expected = `${pointer} ${cyan.underline('A')}\n  BB ${hint}\n  CCC\n  DDDD`;
+          let expected = `${pointer} ${cyan('A')}\n  BB ${hint}\n  CCC\n  DDDD`;
           let actual = await prompt.renderChoices();
           assert.equal(actual, expected);
           await prompt.submit();
@@ -179,7 +179,7 @@ describe('select', function() {
         try {
           let { symbols } = prompt;
           let pointer = cyan(symbols.pointer);
-          let expected = `${pointer} ${cyan.underline('A')}\n  BB\n  CCC\n  DDDD`;
+          let expected = `${pointer} ${cyan('A')}\n  BB\n  CCC\n  DDDD`;
           let actual = await prompt.renderChoices();
           assert.equal(actual, expected);
           await prompt.submit();
@@ -208,7 +208,7 @@ describe('select', function() {
         try {
           let { symbols } = prompt;
           let pointer = cyan(symbols.pointer);
-          let expected = `${pointer} ${cyan.underline('A')}\n  ${gray('BB')} ${dim('(disabled)')}\n  CCC\n  DDDD`;
+          let expected = `${pointer} ${cyan('A')}\n  ${gray('BB')} ${dim('(disabled)')}\n  CCC\n  DDDD`;
           let actual = await prompt.renderChoices();
           assert.equal(actual, expected);
           await prompt.submit();

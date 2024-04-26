@@ -29,7 +29,7 @@ const styles = {
    * Main color
    */
 
-  primary: colors.cyan,
+  primary: colors.green,
 
   /**
    * Main palette
@@ -42,7 +42,7 @@ const styles = {
   muted: colors.dim,
   disabled: colors.gray,
   dark: colors.dim.gray,
-  underline: colors.underline,
+  underline: colors.green,
 
   set info(custom) {
     this._info = custom;
@@ -55,14 +55,14 @@ const styles = {
     this._em = custom;
   },
   get em() {
-    return this._em || this.primary.underline;
+    return this._em || this.primary;
   },
 
   set heading(custom) {
     this._heading = custom;
   },
   get heading() {
-    return this._heading || this.muted.underline;
+    return this._heading || this.muted;
   },
 
   /**

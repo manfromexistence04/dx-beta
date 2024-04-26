@@ -113,7 +113,7 @@ class SelectPrompt extends ArrayPrompt {
     let message = await this.message();
 
     if (this.options.promptLine !== false) {
-      prompt = [prefix, message, separator, ''].join(' ');
+      prompt = [message," "];
       this.state.prompt = prompt;
     }
 

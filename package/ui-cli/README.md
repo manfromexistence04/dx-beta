@@ -1567,4 +1567,113 @@ ui.parseAsync(process.argv).catch(async (reason) => {
 
         // Answer: ['aqua', 'blue', 'fuchsia']
 
+        // (async () => {
+        //     const response = await prompts({
+        //         type: 'autocomplete',
+        //         name: 'value',
+        //         message: 'Pick your favorite actor',
+        //         choices: [
+        //             { title: 'Cage' },
+        //             { title: 'Clooney', value: 'silver-fox' },
+        //             { title: 'Gyllenhaal' },
+        //             { title: 'Gibson' },
+        //             { title: 'Clooney', value: 'silver-fox' },
+        //             { title: 'Gyllenhaal' },
+        //             { title: 'Gibson' },
+        //             { title: 'Clooney', value: 'silver-fox' },
+        //             { title: 'Gyllenhaal' },
+        //             { title: 'Gibson' },
+        //             { title: 'Clooney', value: 'silver-fox' },
+        //             { title: 'Gyllenhaal' },
+        //             { title: 'Gibson' },
+        //             { title: 'Clooney', value: 'silver-fox' },
+        //             { title: 'Gyllenhaal' },
+        //             { title: 'Gibson' },
+        //             { title: 'Grant' }
+        //         ]
+        //     });
+
+        //     console.log(response); // => { value: 24 }
+        // })();
+        // const prompt = new AutoComplete({
+        //   name: 'flavor',
+        //   message: 'Pick your favorite flavor',
+        //   limit: 10,
+        //   initial: 2,
+        //   choices: [
+        //     'Almond',
+        //     'Apple',
+        //     'Banana',
+        //     'Blackberry',
+        //     'Blueberry',
+        //     'Cherry',
+        //     'Chocolate',
+        //     'Cinnamon',
+        //     'Coconut',
+        //     'Cranberry',
+        //     'Grape',
+        //     'Nougat',
+        //     'Orange',
+        //     'Pear',
+        //     'Pineapple',
+        //     'Raspberry',
+        //     'Strawberry',
+        //     'Vanilla',
+        //     'Watermelon',
+        //     'Wintergreen'
+        //   ]
+        // });
+
+        // prompt.run()
+        //   .then(answer => console.log('Answer:', answer))
+        //   .catch(console.error);
+
+        // {
+        //     value: "Command",
+        //     headerColor: "red",
+        //     color: "green",
+        //     align: "left",
+        //     width: "8%"
+        // },
+        // {
+        //     value: "Description",
+        //     width: "25%",
+        //     headerColor: "magenta",
+        //     color: "gray"
+        // },
+        // {
+        //     value: "Arguments",
+        //     color: "white",
+        //     align: "center",
+        //     width: "10%",
+        //     headerColor: "cyan",
+        // }
+// Toggle emon/sumon infinitely
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+// });
+
+// let message = `${chalk.red("emon")}`; // Initial message to display
+
+// function toggleMessage() {
+//     message = message === `${chalk.red("emon")}` ? `${chalk.green("sumon")}` : `${chalk.red("emon")}`;
+//     process.stdout.write('\x1b[?25l'); // Hide cursor
+//     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move to bottom left
+//     process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
+//     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move back to bottom left
+//     process.stdout.write(`${message}`);
+//     process.stdout.write('\x1b[?25h'); // Show cursor again
+// }
+
+// setInterval(toggleMessage, 2000); // Toggle every 3 seconds
+
+// // Prevent program from exiting immediately (optional)
+// rl.on('SIGINT', () => {
+//     process.stdout.write('\n');
+//     rl.close();
+// });
+// npm ui init nextjs-ui-website
+// npm ui add -a
+// npm ui remove accordion
 ```

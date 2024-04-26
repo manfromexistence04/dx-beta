@@ -15,6 +15,7 @@ import selectDemo from './demos/select.mjs';
 import timeoutDemo from './demos/timeout.mjs';
 import chalk from "chalk";
 
+
 import cliCursor from 'cli-cursor';
 const prompts = require('/workspace/dx-beta/package/ir/packages/demo/ps/lib/index.js');
 cliCursor.hide();

@@ -22,8 +22,9 @@ import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
 prompts.override(require('yargs').argv);
 const { MultiSelect } = require('enquirer');
-const { AutoComplete } = require('enquirer');
-
+// const { AutoComplete } = require('enquirer');
+import AutoComplete from 'er/lib/prompts/autocomplete';
+import { choices } from 'gn/src/prompts/choices';
 const cohere = new CohereClient({
     token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
 });
@@ -70,38 +71,11 @@ const CLI_EXAMPLES: string = `${chalk.hex("#ff0080")("\nExamples:")}
 $ ui suggest "what is the best library which simple and yet beautiful?"
 $ ui explain "how to center a div? With a very basic and beginner explaination"
 $ ui create nextjs-ui-website\n`;
-// npm ui init nextjs-ui-website
-// npm ui add -a
-// npm ui remove accordion
+
 
 
 const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
 const ui = new Command();
-// Toggle emon/sumon infinitely
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout,
-// });
-
-// let message = `${chalk.red("emon")}`; // Initial message to display
-
-// function toggleMessage() {
-//     message = message === `${chalk.red("emon")}` ? `${chalk.green("sumon")}` : `${chalk.red("emon")}`;
-//     process.stdout.write('\x1b[?25l'); // Hide cursor
-//     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move to bottom left
-//     process.stdout.write(' '.repeat(process.stdout.columns)); // Clear current line
-//     process.stdout.cursorTo(0, process.stdout.rows - 1); // Move back to bottom left
-//     process.stdout.write(`${message}`);
-//     process.stdout.write('\x1b[?25h'); // Show cursor again
-// }
-
-// setInterval(toggleMessage, 2000); // Toggle every 3 seconds
-
-// // Prevent program from exiting immediately (optional)
-// rl.on('SIGINT', () => {
-//     process.stdout.write('\n');
-//     rl.close();
-// });
 
 /*
       $$\                 $$\          $$\ 
@@ -117,41 +91,17 @@ $$ |  $$ | $$  $$<   $$  /   $$ |  $$ |$$ |
 
 ui
     .name('ui')
-    .description('ui')
     .usage('[command]')
-    // .description(`${chalkAnimation.rainbow(
-    //     `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
-    // )}`)
+    .description(`${chalkAnimation.rainbow(
+        `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
+    )}`)
     .version(pkg.version, '-v, --version', 'Output the current version')
     .helpOption('-h, --help', 'Display help for command')
     .allowUnknownOption()
     .action(async (_, command) => {
-        // toggleMessage();
-
         console.log(CLI_INFO);
         console.log(CLI_OPTIONS);
         console.log(CLI_FLAGS);
-
-        // {
-        //     value: "Command",
-        //     headerColor: "red",
-        //     color: "green",
-        //     align: "left",
-        //     width: "8%"
-        // },
-        // {
-        //     value: "Description",
-        //     width: "25%",
-        //     headerColor: "magenta",
-        //     color: "gray"
-        // },
-        // {
-        //     value: "Arguments",
-        //     color: "white",
-        //     align: "center",
-        //     width: "10%",
-        //     headerColor: "cyan",
-        // }
         const header = [
             {
                 value: "Command",
@@ -261,68 +211,37 @@ ui
         console.log(CLI_EXAMPLES);
 
 
-        (async () => {
-            const response = await prompts({
-                type: 'autocomplete',
-                name: 'value',
-                message: 'Pick your favorite actor',
-                choices: [
-                    { title: 'Cage' },
-                    { title: 'Clooney', value: 'silver-fox' },
-                    { title: 'Gyllenhaal' },
-                    { title: 'Gibson' },
-                    { title: 'Clooney', value: 'silver-fox' },
-                    { title: 'Gyllenhaal' },
-                    { title: 'Gibson' },
-                    { title: 'Clooney', value: 'silver-fox' },
-                    { title: 'Gyllenhaal' },
-                    { title: 'Gibson' },
-                    { title: 'Clooney', value: 'silver-fox' },
-                    { title: 'Gyllenhaal' },
-                    { title: 'Gibson' },
-                    { title: 'Clooney', value: 'silver-fox' },
-                    { title: 'Gyllenhaal' },
-                    { title: 'Gibson' },
-                    { title: 'Grant' }
-                ]
-            });
-
-            console.log(response); // => { value: 24 }
-        })();
-        // const prompt = new AutoComplete({
-        //   name: 'flavor',
-        //   message: 'Pick your favorite flavor',
-        //   limit: 10,
-        //   initial: 2,
-        //   choices: [
-        //     'Almond',
-        //     'Apple',
-        //     'Banana',
-        //     'Blackberry',
-        //     'Blueberry',
-        //     'Cherry',
-        //     'Chocolate',
-        //     'Cinnamon',
-        //     'Coconut',
-        //     'Cranberry',
-        //     'Grape',
-        //     'Nougat',
-        //     'Orange',
-        //     'Pear',
-        //     'Pineapple',
-        //     'Raspberry',
-        //     'Strawberry',
-        //     'Vanilla',
-        //     'Watermelon',
-        //     'Wintergreen'
-        //   ]
-        // });
-
-        // prompt.run()
-        //   .then(answer => console.log('Answer:', answer))
-        //   .catch(console.error);
+        const fakeChoice = input => ({ value: input, message: '', name: input });
+        // ${chalk.gray("       - run this cli's commands directly from here.")}
+        const prompt = new AutoComplete({
+            type: 'autocomplete',
+            name: 'flavor',
+            message: `${chalk.hex("#03fc90")("➜ ")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence:${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")} ${chalk.hex("#f8fc03")("✼")}`)}`,
+            suggest(typed, choices) {
+                const maches = choices.filter(choice => choice.message.includes(typed));
+                return maches.length ? maches : [fakeChoice(typed)];
+            },
+            //   choices:[
+            //     {name:"hello",message:"ehlo"},
+            //     {name:"hello",message:"ehlo"},
+            //     {name:"hello",message:"ehlo"}
 
 
+            //   ]
+            choices: [
+                `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
+                `bash,zsh,fish commands  ${chalk.gray("➠  runing command line interpreter programs.")}`,
+                `zibrish                 ${chalk.gray("☠  seeing somes random texts that means noting.")}`,
+                `account                 ${chalk.gray("♔  exploring your account.")}`,
+                `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
+                `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
+                `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
+            ]
+        });
+
+        prompt.run()
+            .then(output => console.log({ output }))
+            .catch(console.log);
 
     });
 
