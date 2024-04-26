@@ -13,7 +13,7 @@ const highlight = (input, color) => {
 class AutoComplete extends Select {
   constructor(options) {
     super(options);
-    this.cursorShow();
+    // this.cursorShow();
   }
 
   moveCursor(n) {

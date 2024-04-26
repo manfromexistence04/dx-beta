@@ -84,7 +84,7 @@ class SelectPrompt extends ArrayPrompt {
     if (this.state.submitted) return '';
     let choices = this.visible.map(async(ch, i) => await this.renderChoice(ch, i));
     let visible = await Promise.all(choices);
-    if (!visible.length) visible.push(this.styles.danger('No matching choices'));
+    if (!visible.length) visible.push(this.styles.primary('No matching choices'));
     let result = this.margin[0] + visible.join('\n');
     let header;
 
@@ -113,7 +113,7 @@ class SelectPrompt extends ArrayPrompt {
     let message = await this.message();
 
     if (this.options.promptLine !== false) {
-      prompt = [message," "];
+      prompt = message;
       this.state.prompt = prompt;
     }
 

@@ -212,35 +212,68 @@ ui
 
 
         const fakeChoice = input => ({ value: input, message: '', name: input });
-        // ${chalk.gray("       - run this cli's commands directly from here.")}
         const prompt = new AutoComplete({
             type: 'autocomplete',
             name: 'flavor',
-            message: `${chalk.hex("#03fc90")("➜ ")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence:${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")} ${chalk.hex("#f8fc03")("✼")}`)}`,
+            message: `${chalk.hex("#03fc90")("➜ ")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence:${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")} ${chalk.hex("#f8fc03")("✼  ")}`)}`,
             suggest(typed, choices) {
                 const maches = choices.filter(choice => choice.message.includes(typed));
                 return maches.length ? maches : [fakeChoice(typed)];
             },
-            //   choices:[
-            //     {name:"hello",message:"ehlo"},
-            //     {name:"hello",message:"ehlo"},
-            //     {name:"hello",message:"ehlo"}
-
-
-            //   ]
             choices: [
                 `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
-                `bash,zsh,fish commands  ${chalk.gray("➠  runing command line interpreter programs.")}`,
-                `zibrish                 ${chalk.gray("☠  seeing somes random texts that means noting.")}`,
+                `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
+                `text                    ${chalk.gray("☠  seeing some random texts that means noting.")}`,
                 `account                 ${chalk.gray("♔  exploring your account.")}`,
                 `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
                 `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
+                `more                    ${chalk.gray("✺  more options to see.")}`,
                 `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
             ]
         });
 
         prompt.run()
-            .then(output => console.log({ output }))
+            .then(result => {
+                function categorizeText(text: string): any {
+                    const trimmedText = text.trim();
+
+                    // Regular expressions for improved pattern matching
+                    const commandRegex = /^suggest|explain|create|init|add|remove|list|update|search|theme|env|doctor/i;
+                    const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
+                    const accountRegex = /^account/i;
+                    const settingRegex = /^setting/i;
+                    const historyRegex = /^history/i;
+                    const moreRegex = /^more/i;
+                    const exitRegex = /^exit/i;
+
+                    if (commandRegex.test(trimmedText)) {
+                        return "commands";
+                    } else if (shellScriptRegex.test(trimmedText)) {
+                        return "shell";
+                    } else if (accountRegex.test(trimmedText)) {
+                        return "account";
+                    } else if (settingRegex.test(trimmedText)) {
+                        return "setting";
+                    } else if (historyRegex.test(trimmedText)) {
+                        return "history";
+                    } else if (moreRegex.test(trimmedText)) {
+                        return "more";
+                    } else if (exitRegex.test(trimmedText)) {
+                        return "exit";
+                    } else {
+                        return "text";
+                    }
+                }
+                // Example usage
+                //   const text1 = "add a new item";
+                //   const text2 = "run myscript.sh";
+                //   const text3 = "This is some random text";
+                console.log(categorizeText(result)); // Output: 1
+                //   console.log(categorizeText(text2)); // Output: 2
+                //   console.log(categorizeText(text3)); // Output: 3
+
+                console.log({ result });
+            })
             .catch(console.log);
 
     });
