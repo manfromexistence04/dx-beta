@@ -22,7 +22,7 @@ import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
 prompts.override(require('yargs').argv);
 import AutoComplete from 'er/lib/prompts/autocomplete';
-const { prompt } = require('enquirer');
+const { prompt } = require('er/index.js');
 const { spawn } = require('child_process');
 const cohere = new CohereClient({
     token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
@@ -322,13 +322,20 @@ ui
             if (commandRegex.test(trimmedText)) {
                 return "command";
             } else if (accountRegex.test(trimmedText)) {
+                console.log("\n");
+
                 return "account";
             } else if (settingRegex.test(trimmedText)) {
+                console.log("\n");
+
                 return "setting";
             } else if (historyRegex.test(trimmedText)) {
+                console.log("\n");
+
                 return "history";
             } else if (moreRegex.test(trimmedText)) {
-                return "more";
+                console.log("\n");
+                return "";
             } else if (exitRegex.test(trimmedText)) {
                 return "exit";
             } else {
