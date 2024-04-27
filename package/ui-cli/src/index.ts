@@ -25,6 +25,7 @@ const { MultiSelect } = require('enquirer');
 // const { AutoComplete } = require('enquirer');
 import AutoComplete from 'er/lib/prompts/autocomplete';
 import { choices } from 'gn/src/prompts/choices';
+const { spawn } = require('child_process');
 const cohere = new CohereClient({
     token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
 });
@@ -215,7 +216,7 @@ ui
             type: 'autocomplete',
             name: 'flavor',
             // message: `${chalkAnimation.rainbow("<..> path manfromexistence(freetier): ")}`,
-            message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
+            message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
             // message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalkAnimation.rainbow(`manfromexistence`)}${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#f8fc03")(": ")}`,
             suggest(typed, choices) {
                 const maches = choices.filter(choice => choice.message.includes(typed));
@@ -224,7 +225,6 @@ ui
             choices: [
                 `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
                 `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
-                `text                    ${chalk.gray("☠  seeing some random texts that means noting.")}`,
                 `account                 ${chalk.gray("♔  exploring your account.")}`,
                 `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
                 `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
@@ -233,42 +233,82 @@ ui
             ]
         });
 
-        prompt.run()
-            .then(result => {
-                function categorizeText(text: string): any {
-                    const trimmedText = text.trim();
+        async function main() {
+            
+            let shouldExit = false;
+            while (!shouldExit) {
+                const result = await prompt.run();
+                const category: any = categorizeText(result);
 
-                    // Regular expressions for improved pattern matching
-                    const commandRegex = /^suggest|explain|create|init|add|remove|list|update|search|theme|env|doctor/i;
-                    const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
-                    const accountRegex = /^account/i;
-                    const settingRegex = /^setting/i;
-                    const historyRegex = /^history/i;
-                    const moreRegex = /^more/i;
-                    const exitRegex = /^exit/i;
+                switch (category) {
+                    case "commands":
+                        // Handle commands here
+                        console.log("You selected commands. Implement your logic here.");
+                        break;
+                    case "account":
+                        // Handle account menu here
+                        console.log("You selected account. Implement your logic here.");
+                        break;
+                    // ... handle other categories ...
+                    case "exit":
+                        shouldExit = true;
+                        console.log("Exiting Manfromexistence. Sayonara!");
+                        break;
+                    default:
+                        // Handle shell commands
+                        const shell = spawn('bash', ['-c', result]);
 
-                    if (commandRegex.test(trimmedText)) {
-                        return "commands";
-                    } else if (shellScriptRegex.test(trimmedText)) {
-                        return "shell";
-                    } else if (accountRegex.test(trimmedText)) {
-                        return "account";
-                    } else if (settingRegex.test(trimmedText)) {
-                        return "setting";
-                    } else if (historyRegex.test(trimmedText)) {
-                        return "history";
-                    } else if (moreRegex.test(trimmedText)) {
-                        return "more";
-                    } else if (exitRegex.test(trimmedText)) {
-                        return "exit";
-                    } else {
-                        return "text";
-                    }
+                        shell.stdout.on('data', (data) => {
+                            console.log(data.toString());
+                        });
+
+                        shell.stderr.on('data', (data) => {
+                            console.error(data.toString());
+                        });
                 }
-                console.log(categorizeText(result));
-                // console.log({ result });
-            })
-            .catch(console.log);
+            }
+        }
+
+        function categorizeText(text) {
+            const trimmedText = text.trim();
+
+            // Regular expressions for improved pattern matching
+            const commandRegex = /^suggest|explain|create|init|add|remove|list|update|search|theme|env|doctor/i;
+            // const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
+            const accountRegex = /^account/i;
+            const settingRegex = /^setting/i;
+            const historyRegex = /^history/i;
+            const moreRegex = /^more/i;
+            const exitRegex = /^exit/i;
+
+            if (commandRegex.test(trimmedText)) {
+                return "ls";
+            } else if (accountRegex.test(trimmedText)) {
+                return "account";
+            } else if (settingRegex.test(trimmedText)) {
+                return "setting";
+            } else if (historyRegex.test(trimmedText)) {
+                return "history";
+            } else if (moreRegex.test(trimmedText)) {
+                return "more";
+            } else if (exitRegex.test(trimmedText)) {
+                return "exit";
+            } else {
+                // const shell = spawn('bash', ['-c', trimmedText]);
+
+                // shell.stdout.on('data', (data) => {
+                //     console.log(data.toString());
+                // });
+
+                // shell.stderr.on('data', (data) => {
+                //     console.error(data.toString());
+                // });
+
+                return "";
+            }
+        };
+        return await main();
+
 
     });
 
