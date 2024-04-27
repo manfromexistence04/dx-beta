@@ -21,16 +21,32 @@ import * as readline from 'readline';
 import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
 prompts.override(require('yargs').argv);
-const { MultiSelect } = require('enquirer');
-// const { AutoComplete } = require('enquirer');
 import AutoComplete from 'er/lib/prompts/autocomplete';
-import { choices } from 'gn/src/prompts/choices';
+const { prompt } = require('enquirer');
 const { spawn } = require('child_process');
 const cohere = new CohereClient({
     token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
 });
 
-
+const fakeChoice = input => ({ value: input, message: '', name: "" });
+let question = {
+    type: 'autocomplete',
+    name: 'home',
+    message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
+    suggest(typed, choices) {
+        const maches = choices.filter(choice => choice.message.includes(typed));
+        return maches.length ? maches : [fakeChoice(typed)];
+    },
+    choices: [
+        `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
+        `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
+        `account                 ${chalk.gray("♔  exploring your account.")}`,
+        `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
+        `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
+        `more                    ${chalk.gray("✺  more options to see.")}`,
+        `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
+    ]
+};
 // (To exit, press Ctrl+C again or Ctrl+D or type .exit)
 let interval: any;
 // Copyright disclaimer for the CLI
@@ -211,61 +227,83 @@ ui
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
 
-        const fakeChoice = input => ({ value: input, message: '', name: "" });
-        const prompt = new AutoComplete({
-            type: 'autocomplete',
-            name: 'flavor',
-            // message: `${chalkAnimation.rainbow("<..> path manfromexistence(freetier): ")}`,
-            message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
-            // message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalkAnimation.rainbow(`manfromexistence`)}${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#f8fc03")(": ")}`,
-            suggest(typed, choices) {
-                const maches = choices.filter(choice => choice.message.includes(typed));
-                return maches.length ? maches : [fakeChoice(typed)];
-            },
-            choices: [
-                `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
-                `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
-                `account                 ${chalk.gray("♔  exploring your account.")}`,
-                `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
-                `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
-                `more                    ${chalk.gray("✺  more options to see.")}`,
-                `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
-            ]
-        });
+        // const prompt = new AutoComplete({
+        //     type: 'autocomplete',
+        //     name: 'home',
+        //     // message: `${chalkAnimation.rainbow("<..> path manfromexistence(freetier): ")}`,
+        //     message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
+        //     // message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalkAnimation.rainbow(`manfromexistence`)}${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#f8fc03")(": ")}`,
+        //     suggest(typed, choices) {
+        //         const maches = choices.filter(choice => choice.message.includes(typed));
+        //         return maches.length ? maches : [fakeChoice(typed)];
+        //     },
+        //     choices: [
+        //         `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
+        //         `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
+        //         `account                 ${chalk.gray("♔  exploring your account.")}`,
+        //         `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
+        //         `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
+        //         `more                    ${chalk.gray("✺  more options to see.")}`,
+        //         `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
+        //     ]
+        // });
 
         async function main() {
-            
+
             let shouldExit = false;
             while (!shouldExit) {
-                const result = await prompt.run();
-                const category: any = categorizeText(result);
+                const response = await prompt({
+                    type: 'autocomplete',
+                    name: 'home',
+                    message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
+                    suggest(typed, choices) {
+                        const maches = choices.filter(choice => choice.message.includes(typed));
+                        return maches.length ? maches : [fakeChoice(typed)];
+                    },
+                    choices: [
+                        `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
+                        `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
+                        `account                 ${chalk.gray("♔  exploring your account.")}`,
+                        `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
+                        `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
+                        `more                    ${chalk.gray("✺  more options to see.")}`,
+                        `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
+                    ]
+                });
+                console.log(response.home);
+                // const result = await prompt.run();
+                categorizeText(response.home);
 
-                switch (category) {
-                    case "commands":
-                        // Handle commands here
-                        console.log("You selected commands. Implement your logic here.");
-                        break;
-                    case "account":
-                        // Handle account menu here
-                        console.log("You selected account. Implement your logic here.");
-                        break;
-                    // ... handle other categories ...
-                    case "exit":
-                        shouldExit = true;
-                        console.log("Exiting Manfromexistence. Sayonara!");
-                        break;
-                    default:
-                        // Handle shell commands
-                        const shell = spawn('bash', ['-c', result]);
+                // switch (category) {
+                //     case "commands":
+                //         // Handle commands here
+                //         console.log("You selected commands. Implement your logic here.");
+                //         break;
+                //     case "account":
+                //         // Handle account menu here
+                //         console.log("You selected account. Implement your logic here.");
+                //         break;
+                //     // ... handle other categories ...
+                //     case "exit":
+                //         shouldExit = true;
+                //         console.log("Exiting Manfromexistence. Sayonara!");
+                //         break;
+                //     default:
+                //         // Handle shell commands
+                //         const shell = spawn('bash', ['-c', response.home]);
 
-                        shell.stdout.on('data', (data) => {
-                            console.log(data.toString());
-                        });
+                //         shell.stdout.on('data', (data) => {
+                //             // console.log(data.toString());
+                //             console.log(`${chalk.gray("Thansk for using our cli, use it more or it will auto exit in 10s.")}`)
+                //         });
 
-                        shell.stderr.on('data', (data) => {
-                            console.error(data.toString());
-                        });
-                }
+                //         shell.stderr.on('data', (data) => {
+                //             console.error(data.toString());
+                //             console.log(`${chalk.gray("10s.")}`)
+                //         });
+
+                //         return console.log(`${chalk.yellow("Shell commands can be run here, but it is not shell through.")}`);
+                // }
             }
         }
 
@@ -282,7 +320,7 @@ ui
             const exitRegex = /^exit/i;
 
             if (commandRegex.test(trimmedText)) {
-                return "ls";
+                return "command";
             } else if (accountRegex.test(trimmedText)) {
                 return "account";
             } else if (settingRegex.test(trimmedText)) {
@@ -303,7 +341,22 @@ ui
                 // shell.stderr.on('data', (data) => {
                 //     console.error(data.toString());
                 // });
+                // Handle shell commands
+                const shell = spawn('bash', ['-c', trimmedText]);
 
+                shell.stdout.on('data', (data) => {
+                    console.log(data.toString());
+                    console.log(`${chalk.gray("Thansk for using our cli, use it more or it will auto exit in 10s.")}`)
+                    const shellAgent = prompt(question);
+                    // console.log(shellAgent);
+                });
+
+                shell.stderr.on('data', (data) => {
+                    console.error(data.toString());
+                    console.log(`${chalk.gray("10s.")}`)
+                    const shellAgent = prompt(question);
+                    // console.log(shellAgent.home);
+                });
                 return "";
             }
         };

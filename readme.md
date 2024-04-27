@@ -306,6 +306,6 @@ Keep watching cat videos + Saturo Gojo will definitely return after 236 chapter 
 1. pipdream
 2. ...
 
-## 22/04/2024(Monday)
+<!-- ## 22/04/2024(Monday)
 somethimes everything sucks. But that time never comes cause every moment is
-already good,We just need to have a vision to see through it.
+already good,We just need to have a vision to see through it. -->
