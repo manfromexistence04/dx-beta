@@ -249,13 +249,15 @@ ui
         // });
 
         async function main() {
+            const currentWorkingDir = process.cwd();
+            // console.log("Current working directory:", currentWorkingDir);
 
             let shouldExit = false;
             while (!shouldExit) {
                 const response = await prompt({
                     type: 'autocomplete',
                     name: 'home',
-                    message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
+                    message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${currentWorkingDir}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
                     suggest(typed, choices) {
                         const maches = choices.filter(choice => choice.message.includes(typed));
                         return maches.length ? maches : [fakeChoice(typed)];
