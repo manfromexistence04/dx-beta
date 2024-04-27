@@ -104,7 +104,7 @@ class AutoComplete extends Select {
 
     const color = highlight(this.input, style);
     const choices = this.choices;
-    this.choices = choices.map(ch => ({ ...ch, message: color(ch.name) }));
+    this.choices = choices.map(ch => ({ ...ch, message: color(ch.message) }));
     await super.render();
     this.choices = choices;
   }

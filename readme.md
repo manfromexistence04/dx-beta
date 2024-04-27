@@ -309,3 +309,39 @@ Keep watching cat videos + Saturo Gojo will definitely return after 236 chapter 
 <!-- ## 22/04/2024(Monday)
 somethimes everything sucks. But that time never comes cause every moment is
 already good,We just need to have a vision to see through it. -->
+            // const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
+
+
+                // switch (category) {
+                //     case "commands":
+                //         // Handle commands here
+                //         console.log("You selected commands. Implement your logic here.");
+                //         break;
+                //     case "account":
+                //         // Handle account menu here
+                //         console.log("You selected account. Implement your logic here.");
+                //         break;
+                //     // ... handle other categories ...
+                //     case "exit":
+                //         shouldExit = true;
+                //         console.log("Exiting Manfromexistence. Sayonara!");
+                //         break;
+                //     default:
+                //         // Handle shell commands
+                //         const shell = spawn('bash', ['-c', response.home]);
+
+                //         shell.stdout.on('data', (data) => {
+                //             // console.log(data.toString());
+                //             console.log(`${chalk.gray("Thansk for using our cli, use it more or it will auto exit in 10s.")}`)
+                //         });
+
+                //         shell.stderr.on('data', (data) => {
+                //             console.error(data.toString());
+                //             console.log(`${chalk.gray("10s.")}`)
+                //         });
+
+                //         return console.log(`${chalk.yellow("Shell commands can be run here, but it is not shell through.")}`);
+                // }
+        // ${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}
+// • Get stickers, t-shirts, coffee mugs and more: Planet Argon Shop
+// (To exit, press Ctrl+C again or Ctrl+D or type .exit)

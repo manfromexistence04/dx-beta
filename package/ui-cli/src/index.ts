@@ -17,11 +17,9 @@ import { getStore, store } from './constants/store';
 import { getComponents } from './scripts/helpers';
 import Table from "../table/src/main";
 import terminalLink from 'terminal-link';
-import * as readline from 'readline';
 import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
 prompts.override(require('yargs').argv);
-import AutoComplete from 'er/lib/prompts/autocomplete';
 const { prompt } = require('er/index.js');
 const { spawn } = require('child_process');
 const cohere = new CohereClient({
@@ -38,16 +36,15 @@ let question = {
         return maches.length ? maches : [fakeChoice(typed)];
     },
     choices: [
-        `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
-        `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
-        `account                 ${chalk.gray("♔  exploring your account.")}`,
-        `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
-        `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
-        `more                    ${chalk.gray("✺  more options to see.")}`,
-        `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
+        { name: "create", message: `cli commands       ${chalk.gray("✯  run cli commands straight from the cli home.")}` },
+        { name: "shell commands", message: `shell commands     ${chalk.gray("➠  runing command line interpreter programs.")}` },
+        { name: "account", message: `account            ${chalk.gray("♔  exploring your account.")}` },
+        { name: "setting", message: `setting            ${chalk.gray("🏵  adjusting you preferences.")}` },
+        { name: "history", message: `history            ${chalk.gray("⟲  seeing what you typoed last time.")}` },
+        { name: "more", message: `more               ${chalk.gray("✺  more options to see.")}` },
+        { name: "exit", message: `exit               ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}` },
     ]
 };
-// (To exit, press Ctrl+C again or Ctrl+D or type .exit)
 let interval: any;
 // Copyright disclaimer for the CLI
 const COPYRIGHT_INFO: string = `
@@ -65,7 +62,6 @@ ${chalk.hex("#00f3f7")("Follow:")}
 • Join our Discord community: ${terminalLink('emon_420', 'https://discord.com/channels/1053093315442118677/1053093316138385539')}
 • Follow us on Instragam: ${terminalLink('tonymitul', 'https://www.instagram.com/tonymitul/')}
 `;
-// • Get stickers, t-shirts, coffee mugs and more: Planet Argon Shop
 
 
 // Options displayed in the CLI with descriptions /To maintain your current session and avoid interruption, please execute any command within the next 10s.
@@ -85,13 +81,13 @@ const CLI_FLAGS: string = `${chalk.hex("#9500ff")("\nFlags:")}
 
 // Examples displayed in the CLI
 const CLI_EXAMPLES: string = `${chalk.hex("#ff0080")("\nExamples:")}
-$ ui suggest "what is the best library which simple and yet beautiful?"
-$ ui explain "how to center a div? With a very basic and beginner explaination"
-$ ui create nextjs-ui-website\n`;
+$ suggest "what is the best library which simple and yet beautiful?"
+$ explain "how to center a div? With a very basic and beginner explaination"
+$ create nextjs-ui-website\n`;
 
 
 
-const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
+const commandList: any[] = ['suggest', 'explain', 'create', 'init', 'add', 'remove', 'list', 'update', 'theme', 'doctor', 'env', 'search'];
 const ui = new Command();
 
 /*
@@ -109,9 +105,10 @@ $$ |  $$ | $$  $$<   $$  /   $$ |  $$ |$$ |
 ui
     .name('ui')
     .usage('[command]')
-    .description(`${chalkAnimation.rainbow(
-        `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
-    )}`)
+    // .description(`${chalkAnimation.rainbow(
+    //     `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
+    // )}`)
+    .description("dx-ui --> : Streamline UI Development with a CLI Tool for Efficient Component Integration")
     .version(pkg.version, '-v, --version', 'Output the current version')
     .helpOption('-h, --help', 'Display help for command')
     .allowUnknownOption()
@@ -141,7 +138,6 @@ ui
                 headerColor: "white",
             }
         ]
-        // ${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}
         const rows: any[] = [
             {
                 Command: "suggest",
@@ -227,30 +223,8 @@ ui
         console.log(COMMAND_DETAILS);
         console.log(CLI_EXAMPLES);
 
-        // const prompt = new AutoComplete({
-        //     type: 'autocomplete',
-        //     name: 'home',
-        //     // message: `${chalkAnimation.rainbow("<..> path manfromexistence(freetier): ")}`,
-        //     message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")(`${__dirname}`)} ${chalk.hex("#0320fc")(`manfromexistence${chalk.hex("#0320fc")("(")}${chalk.hex("#fc0303")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#0320fc")(": ")}`)}`,
-        //     // message: `${chalk.hex("#eff542")("<..>")} ${chalk.hex("#03fcf4")("path")} ${chalkAnimation.rainbow(`manfromexistence`)}${chalk.hex("#0320fc")("(")}${chalk.hex("#fc038c")("freetier")}${chalk.hex("#0320fc")(")")}${chalk.hex("#f8fc03")(": ")}`,
-        //     suggest(typed, choices) {
-        //         const maches = choices.filter(choice => choice.message.includes(typed));
-        //         return maches.length ? maches : [fakeChoice(typed)];
-        //     },
-        //     choices: [
-        //         `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
-        //         `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
-        //         `account                 ${chalk.gray("♔  exploring your account.")}`,
-        //         `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
-        //         `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
-        //         `more                    ${chalk.gray("✺  more options to see.")}`,
-        //         `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
-        //     ]
-        // });
-
         async function main() {
             const currentWorkingDir = process.cwd();
-            // console.log("Current working directory:", currentWorkingDir);
 
             let shouldExit = false;
             while (!shouldExit) {
@@ -263,49 +237,18 @@ ui
                         return maches.length ? maches : [fakeChoice(typed)];
                     },
                     choices: [
-                        `cli commands            ${chalk.gray("✯  run cli commands straight from the cli home.")}`,
-                        `shell commands          ${chalk.gray("➠  runing command line interpreter programs.")}`,
-                        `account                 ${chalk.gray("♔  exploring your account.")}`,
-                        `setting                 ${chalk.gray("🏵  adjusting you preferences.")}`,
-                        `history                 ${chalk.gray("⟲  seeing what you typoed last time.")}`,
-                        `more                    ${chalk.gray("✺  more options to see.")}`,
-                        `exit                    ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}`,
+                        { name: "create", message: `cli commands       ${chalk.gray("✯  run cli commands straight from the cli home.")}` },
+                        { name: "shell commands", message: `shell commands     ${chalk.gray("➠  runing command line interpreter programs.")}` },
+                        { name: "account", message: `account            ${chalk.gray("♔  exploring your account.")}` },
+                        { name: "setting", message: `setting            ${chalk.gray("🏵  adjusting you preferences.")}` },
+                        { name: "history", message: `history            ${chalk.gray("⟲  seeing what you typoed last time.")}` },
+                        { name: "more", message: `more               ${chalk.gray("✺  more options to see.")}` },
+                        { name: "exit", message: `exit               ${chalk.gray("␛  this is manfromexistence, signing out and sayonara.")}` },
                     ]
                 });
-                console.log(response.home);
-                // const result = await prompt.run();
+                // console.log(response.home);
                 categorizeText(response.home);
 
-                // switch (category) {
-                //     case "commands":
-                //         // Handle commands here
-                //         console.log("You selected commands. Implement your logic here.");
-                //         break;
-                //     case "account":
-                //         // Handle account menu here
-                //         console.log("You selected account. Implement your logic here.");
-                //         break;
-                //     // ... handle other categories ...
-                //     case "exit":
-                //         shouldExit = true;
-                //         console.log("Exiting Manfromexistence. Sayonara!");
-                //         break;
-                //     default:
-                //         // Handle shell commands
-                //         const shell = spawn('bash', ['-c', response.home]);
-
-                //         shell.stdout.on('data', (data) => {
-                //             // console.log(data.toString());
-                //             console.log(`${chalk.gray("Thansk for using our cli, use it more or it will auto exit in 10s.")}`)
-                //         });
-
-                //         shell.stderr.on('data', (data) => {
-                //             console.error(data.toString());
-                //             console.log(`${chalk.gray("10s.")}`)
-                //         });
-
-                //         return console.log(`${chalk.yellow("Shell commands can be run here, but it is not shell through.")}`);
-                // }
             }
         }
 
@@ -314,7 +257,6 @@ ui
 
             // Regular expressions for improved pattern matching
             const commandRegex = /^suggest|explain|create|init|add|remove|list|update|search|theme|env|doctor/i;
-            // const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
             const accountRegex = /^account/i;
             const settingRegex = /^setting/i;
             const historyRegex = /^history/i;
@@ -322,7 +264,18 @@ ui
             const exitRegex = /^exit/i;
 
             if (commandRegex.test(trimmedText)) {
-                return "command";
+                console.log("\n");
+                console.log("131312312313131");
+                console.log("\n");
+                // const shell = spawn('bash', ['-c', "bun run dev add"]);
+
+                // shell.stdout.on('data', (data) => {
+                //     console.log(data.toString());
+                //     // console.log(`${chalk.gray("Thansk for using our cli, use it more or it will auto exit in 10s.")}`)
+                //     // const shellAgent = prompt(question);
+                // });
+                // // ui.command('suggest')
+                return "";
             } else if (accountRegex.test(trimmedText)) {
                 console.log("\n");
 
@@ -339,32 +292,24 @@ ui
                 console.log("\n");
                 return "";
             } else if (exitRegex.test(trimmedText)) {
-                return "exit";
+                console.log("\n");
+                console.log(CONTRACT);
+                console.log("\n");
+
+                return process.exit(0);
             } else {
-                // const shell = spawn('bash', ['-c', trimmedText]);
-
-                // shell.stdout.on('data', (data) => {
-                //     console.log(data.toString());
-                // });
-
-                // shell.stderr.on('data', (data) => {
-                //     console.error(data.toString());
-                // });
-                // Handle shell commands
                 const shell = spawn('bash', ['-c', trimmedText]);
 
                 shell.stdout.on('data', (data) => {
                     console.log(data.toString());
                     console.log(`${chalk.gray("Thansk for using our cli, use it more or it will auto exit in 10s.")}`)
                     const shellAgent = prompt(question);
-                    // console.log(shellAgent);
                 });
 
                 shell.stderr.on('data', (data) => {
                     console.error(data.toString());
                     console.log(`${chalk.gray("10s.")}`)
                     const shellAgent = prompt(question);
-                    // console.log(shellAgent.home);
                 });
                 return "";
             }
