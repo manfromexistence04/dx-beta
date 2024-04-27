@@ -1,185 +1,29 @@
-import type {CommandName} from '@helpers/type';
+#!/usr/bin/env node
+import { add } from "@/src/commands/add"
+import { diff } from "@/src/commands/diff"
+import { init } from "@/src/commands/init"
+import { Command } from "commander"
 
-import chalk from 'chalk';
-import {Command} from 'commander';
+import { getPackageInfo } from "./utils/get-package-info"
 
-import {exec} from '@helpers/exec';
-import {Logger, gradientString} from '@helpers/logger';
-import {findMostMatchText} from '@helpers/math-diff';
-import {outputBox} from '@helpers/output-info';
-import {getCommandDescAndLog} from '@helpers/utils';
+process.on("SIGINT", () => process.exit(0))
+process.on("SIGTERM", () => process.exit(0))
 
-import pkg from '../package.json';
+async function main() {
+  const packageInfo = await getPackageInfo()
 
-import {addAction} from './actions/add-action';
-import {doctorAction} from './actions/doctor-action';
-import {envAction} from './actions/env-action';
-import {initAction} from './actions/init-action';
-import {listAction} from './actions/list-action';
-import {removeAction} from './actions/remove-action';
-import {upgradeAction} from './actions/upgrade-action';
-import {initStoreComponentsData} from './constants/component';
-import {getStore, store} from './constants/store';
-import {compareVersions, getComponents} from './scripts/helpers';
+  const program = new Command()
+    .name("shadcn-ui")
+    .description("add components and dependencies to your project")
+    .version(
+      packageInfo.version || "1.0.0",
+      "-v, --version",
+      "display the version number"
+    )
 
-const commandList: CommandName[] = ['add', 'env', 'init', 'list', 'upgrade', 'doctor', 'remove'];
+  program.addCommand(init).addCommand(add).addCommand(diff)
 
-const ui = new Command();
+  program.parse()
+}
 
-ui
-  .name('ui')
-  .usage('[command]')
-  .description(`${chalk.blue(getCommandDescAndLog(`\nDx/Ui CLI v${pkg.version}\n`, ''))}`)
-  .version(pkg.version, '-v, --version', 'Output the current version')
-  .helpOption('-h, --help', 'Display help for command')
-  .allowUnknownOption()
-  .action(async (_, command) => {
-    let isArgs = false;
-
-    if (command) {
-      const args = command.args?.[0];
-
-      if (args && !commandList.includes(args as CommandName)) {
-        isArgs = true;
-
-        const matchCommand = findMostMatchText(commandList, args);
-
-        if (matchCommand) {
-          Logger.error(
-            `Unknown command '${args}', Did you mean '${chalk.underline(matchCommand)}'?`
-          );
-        } else {
-          Logger.error(`Unknown command '${args}'`);
-        }
-      }
-    }
-
-    if (!isArgs) {
-      const helpInfo = (await exec('ui --help', {logCmd: false, stdio: 'pipe'})) as string;
-
-      let helpInfoArr = helpInfo.split('\n');
-
-      helpInfoArr = helpInfoArr.filter((info) => info && !info.includes('NextUI CLI v'));
-      // Add command name color
-      helpInfoArr = helpInfoArr.map((info) => {
-        const command = info.match(/(\w+)\s\[/)?.[1];
-
-        if (command) {
-          return info.replace(command, chalk.cyan(command));
-        }
-
-        return info;
-      });
-
-      Logger.log(helpInfoArr.join('\n'));
-    }
-    process.exit(0);
-  });
-
-ui
-  .command('init')
-  .description('Initializes a new project')
-  .argument('[projectName]', 'Name of the project to initialize')
-  .option('-t --template [string]', 'Specify a template for the new project, e.g., app, pages')
-  /** ======================== TODO:(winches)Temporary use npm with default value ======================== */
-  // .option('-p --package [string]', 'The package manager to use for the new project')
-  .action(initAction);
-
-ui
-  .command('add')
-  .description('Adds components to your project')
-  .argument('[components...]', 'Names of components to add')
-  .option('-a --all [boolean]', 'Add all components', false)
-  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-  .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
-  .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
-  .option('--prettier [boolean]', 'Apply Prettier formatting to the added content', false)
-  .option('--addApp [boolean]', 'Include App.tsx file content that requires a provider', false)
-  .action(addAction);
-
-ui
-  .command('upgrade')
-  .description('Upgrades project components to the latest versions')
-  .argument('[components...]', 'Names of components to upgrade')
-  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-  .option('-a --all [boolean]', 'Upgrade all components', false)
-  .action(upgradeAction);
-
-ui
-  .command('remove')
-  .description('Removes components from the project')
-  .argument('[components...]', 'Names of components to remove')
-  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-  .option('-a --all [boolean]', 'Remove all components', false)
-  .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
-  .action(removeAction);
-
-ui
-  .command('list')
-  .description('Lists all components, showing status, descriptions, and versions')
-  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-  .option('-r --remote', 'List all components available remotely')
-  .action(listAction);
-ui
-  .command('env')
-  .description('Displays debugging information for the local environment')
-  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-  .action(envAction);
-
-ui
-  .command('doctor')
-  .description('Checks for issues in the project')
-  .option('-p --packagePath [string]', 'Specify the path to the package.json file')
-  .option('-tw --tailwindPath [string]', 'Specify the path to the tailwind.config.js file')
-  .option('-app --appPath [string]', 'Specify the path to the App.tsx file')
-  .option('-ca --checkApp [boolean]', 'Check the App.tsx file', false)
-  .option('-ct --checkTailwind [boolean]', 'Check the tailwind.config.js file', true)
-  .option('-cp --checkPnpm [boolean]', 'Check for Pnpm', true)
-  .action(doctorAction);
-
-ui.hook('preAction', async (command) => {
-  const args = command.args?.[0];
-
-  if (args && commandList.includes(args as CommandName)) {
-    // Before run the command init the components.json
-    const nextUIComponents = (await getComponents()).components;
-
-    initStoreComponentsData(nextUIComponents);
-  }
-
-  const cliLatestVersion = await getStore('cliLatestVersion');
-  const latestVersion = await getStore('latestVersion');
-
-  // Init latest version
-  store.latestVersion = latestVersion;
-  store.cliLatestVersion = cliLatestVersion;
-
-  // Add NextUI CLI version check preAction
-  const currentVersion = pkg.version;
-
-  if (compareVersions(currentVersion, cliLatestVersion) === -1) {
-    outputBox({
-      color: 'yellow',
-      padding: 1,
-      text: `${chalk.gray(
-        `Available upgrade: v${currentVersion} -> ${chalk.greenBright(
-          `v${cliLatestVersion}`
-        )}\nRun \`${chalk.cyan(
-          'npm install ui-cli@latest'
-        )}\` to upgrade\nChangelog: ${chalk.underline(
-          'https://github.com/ui-org/ui-cli/releases'
-        )}`
-      )}`,
-      title: gradientString('NextUI CLI')
-    });
-    Logger.newLine();
-  }
-});
-
-ui.parseAsync(process.argv).catch(async (reason) => {
-  Logger.newLine();
-  Logger.error('Unexpected error. Please report it as a bug:');
-  Logger.log(reason);
-  Logger.newLine();
-  process.exit(1);
-});
+main()

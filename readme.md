@@ -309,4 +309,3 @@ Keep watching cat videos + Saturo Gojo will definitely return after 236 chapter 
 ## 22/04/2024(Monday)
 somethimes everything sucks. But that time never comes cause every moment is
 already good,We just need to have a vision to see through it.
-

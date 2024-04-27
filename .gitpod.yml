@@ -1,0 +1,23 @@
+tasks:
+    - name: dx
+      init: |
+          npm install -g bun
+          bun install
+          bun pm trust --all
+      command: |
+          bun run test
+
+    - name: package
+      before: |
+          cd package && sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+      init: |
+          echo bun install
+      command: |
+          echo bun run dev
+
+    # - name: frontend
+    #   init: |
+    #       echo npm install
+    #       echo npm run build
+    #   command: |
+    #       echo npm run dev

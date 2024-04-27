@@ -1,0 +1,6 @@
+/coverage
+/dist
+/node_modules
+
+garson.config.js
+babel.config.js
