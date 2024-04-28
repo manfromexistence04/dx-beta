@@ -128,9 +128,9 @@ const LandingNewDesign: NextPage = () => {
           </div>
         </div>
         <FrameComponent2 />
-        <section className="flex flex-row items-start justify-center lg:px-0 px-[10%]">
+        <section className="w-full flex flex-row items-start justify-center lg:px-0 px-[10%] pb-32">
           <div className="w-full flex flex-col items-center justify-center space-y-5">
-            <h1 className="!text-[100%] text-bold w-full text-center bg-red-400 !m-0 flex items-center justify-center">
+            <h1 className="!text-37xl text-bold w-full text-center !m-0 flex items-center justify-center">
               A new way to apply
             </h1>
             <FrameComponent1 />
