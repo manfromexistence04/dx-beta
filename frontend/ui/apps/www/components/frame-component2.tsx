@@ -5,7 +5,7 @@ import type { NextPage } from "next";
 
 const FrameComponent2: NextPage = () => {
   return (
-    <section className="w-[1395.1px] flex flex-row items-start justify-end pt-0 pb-[105.2px] pr-[7.7px] pl-2 box-border max-w-full text-left text-45xl text-gainsboro-100 font-headings-desktop-poppins-16px-regular mq450:pb-11 mq450:box-border mq1050:pb-[68px] mq1050:box-border">
+    <section className="w-[1395.1px] flex flex-row items-start justify-end pt-0 pb-[105.2px] pr-[7.7px] pl-2 box-border max-w-full text-left text-45xl text-gainsboro-100 font-headings-desktop-poppins-16px-regular mq450:pb-11 mq450:box-border mq1050:pb-[68px] mq1050:box-border !mx-auto">
       <div className="flex-1 flex flex-row items-start justify-start gap-[6.4px] max-w-full mq1225:flex-wrap">
         <div className="w-[630px] flex flex-col items-start justify-start pt-[118px] px-0 pb-0 box-border min-w-[630px] max-w-full mq750:pt-[77px] mq750:box-border mq750:min-w-full mq1225:flex-1">
           <div className="self-stretch flex flex-col items-start justify-start gap-[13px] max-w-full">

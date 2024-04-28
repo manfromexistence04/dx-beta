@@ -9,7 +9,7 @@ const Calculator: NextPage = () => {
     }, []);
 
     return (
-        <div className="self-stretch flex flex-col items-start justify-start pt-8 px-12 pb-[35px] box-border relative gap-[48px] max-w-full z-[1] text-left text-21xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:gap-[24px] mq450:pt-[21px] mq450:pb-[23px] mq450:box-border mq1050:pl-6 mq1050:pr-6 mq1050:box-border bg-[#804DFE]">
+        <div className="w-[1200px] max-w-[90%] mx-auto rounded-sm mb-64 flex flex-col items-start justify-start pt-8 px-12 pb-[35px] box-border relative gap-[48px] z-[1] text-left text-21xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:gap-[24px] mq450:pt-[21px] mq450:pb-[23px] mq450:box-border mq1050:pl-6 mq1050:pr-6 mq1050:box-border bg-[#804DFE]">
             <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px]">
                 <div className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] rounded [background:linear-gradient(-84.28deg,_)]" />
                 <img

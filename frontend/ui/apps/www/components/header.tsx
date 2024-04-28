@@ -2,6 +2,37 @@
 
 import type { NextPage } from "next";
 import { useCallback } from "react";
+import * as React from "react"
+
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/registry/default/ui/select"
+
+export function SelectDemo() {
+    return (
+        <Select>
+            <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectGroup>
+                    <SelectLabel>Fruits</SelectLabel>
+                    <SelectItem value="apple">Apple</SelectItem>
+                    <SelectItem value="banana">Banana</SelectItem>
+                    <SelectItem value="blueberry">Blueberry</SelectItem>
+                    <SelectItem value="grapes">Grapes</SelectItem>
+                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                </SelectGroup>
+            </SelectContent>
+        </Select>
+    )
+}
 
 const Header: NextPage = () => {
     const onButtonsContainerClick = useCallback(() => {
@@ -43,7 +74,23 @@ const Header: NextPage = () => {
                             </nav>
                         </nav>
                         <div className="flex flex-row items-center justify-start gap-[24px] text-center text-base text-shade-white font-dm-sans">
-                            <select className="rounded bg-[transparent] [border:none] flex flex-row items-start justify-start py-3 px-0 font-dm-sans font-bold text-base text-shade-white" />
+                            {/* <select className="rounded bg-[transparent] [border:none] flex flex-row items-start justify-start py-3 px-0 font-dm-sans font-bold text-base text-shade-white" /> */}
+                            {/* <SelectDemo /> */}
+                            <Select>
+                                <SelectTrigger className="w-[80px] !py-6">
+                                    <SelectValue placeholder="EN" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Languages</SelectLabel>
+                                        <SelectItem value="apple">Apple</SelectItem>
+                                        <SelectItem value="banana">Banana</SelectItem>
+                                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                                        <SelectItem value="grapes">Grapes</SelectItem>
+                                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                             <div
                                 className="flex flex-row items-start justify-start cursor-pointer"
                                 onClick={onButtonsContainerClick}

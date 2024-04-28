@@ -128,13 +128,11 @@ const LandingNewDesign: NextPage = () => {
         </div>
       </div>
       <FrameComponent2 />
-      <section className="self-stretch flex flex-row items-start justify-center pt-0 pb-[280.8px] pr-[22px] pl-5 box-border max-w-full text-left text-45xl font-headings-desktop-poppins-16px-regular mq750:pb-[119px] mq750:box-border mq1225:pb-[183px] mq1225:box-border">
-        <div className="w-[1072px] flex flex-col items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
-          <div className="self-stretch flex flex-row items-start justify-center py-0 px-5">
-            <h1 className="m-0 relative text-inherit leading-[100%] font-bold font-inherit text-transparent !bg-clip-text [background:linear-gradient(#fff,_#fff),_#fff] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] z-[1] mq750:text-32xl mq750:leading-[51px] mq450:text-19xl mq450:leading-[38px]">
-              A new way to apply
-            </h1>
-          </div>
+      <section className="flex flex-row items-start justify-center !min-w-full">
+        <div className="w-full flex flex-col items-start justify-start gap-[40px]">
+          <h1 className="!text-3xl mx-auto">
+            A new way to apply
+          </h1>
           <FrameComponent1 />
           <Calculator />
         </div>
