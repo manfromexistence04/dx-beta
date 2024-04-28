@@ -68,6 +68,6 @@
 // prompt();
 
 
-import { Bash } from 'node-bash';
-console.log(Bash.$`echo "hello from Bash"`);
-// Bash.$`echo "hello from Bash"`;
+import { $ } from "bun";
+
+await $`cd src && ls`;
