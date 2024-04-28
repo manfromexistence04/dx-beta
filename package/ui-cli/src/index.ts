@@ -15,7 +15,7 @@ import { upgradeAction } from './actions/upgrade-action';
 import { initStoreComponentsData } from './constants/component';
 import { getStore, store } from './constants/store';
 import { getComponents } from './scripts/helpers';
-import Table from "../table/src/main";
+import Table from "./table/src/main";
 import terminalLink from 'terminal-link';
 import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
