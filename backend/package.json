@@ -9,6 +9,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "cohere-ai": "^7.9.5"
+    "cohere-ai": "^7.9.5",
+    "pymport": "^1.5.1",
+    "python-shell": "^5.0.0"
   }
 }
