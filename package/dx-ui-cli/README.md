@@ -1677,3 +1677,29 @@ ui.parseAsync(process.argv).catch(async (reason) => {
 // npm ui add -a
 // npm ui remove accordion
 ```
+
+
+
+
+
+```
+GitHub: https://github.com/manfromexistence
+
+websites I have made before:
+1. https://manofexistence.vercel.app/
+2. https://manofexistence-professional-portfolio.vercel.app/
+3. https://manofexistence-brainwave.vercel.app/
+4. https://fiverr-rocket-krypt.vercel.app/
+5. https://aladdin.vercel.app/
+6. https://lolgamer-xstream.vercel.app/
+
+Dear Hiring Manager,
+As an experienced software engineer with a focus on blockchain technology, I am confident in my ability to contribute significantly to your project. My expertise in full-stack development, particularly with React.js and Next.js, aligns well with your requirements.
+
+I have successfully managed and executed several blockchain projects, demonstrating my understanding of the intricacies of blockchain technology, smart contracts, and decentralized applications. This experience, coupled with my proficiency in developing user-facing features and building reusable components and libraries, makes me a strong candidate for this role.
+
+I am excited about the opportunity to bring my skills and passion to your team and make a significant impact in your fast-growing company. I am fully capable and ready to take on this job. Looking forward to the possibility of working with you.
+
+Best Regards,
+manfromearth01
+```
