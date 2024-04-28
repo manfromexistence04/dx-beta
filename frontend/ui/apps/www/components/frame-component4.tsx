@@ -10,7 +10,7 @@ const FrameComponent4: NextPage = () => {
 
     return (
         <section className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-12 box-border max-w-full text-center text-29xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:pb-[31px] mq750:box-border h-auto">
-            <div className="relative flex-1 overflow-x-auto flex flex-row items-end justify-start pt-[118px] px-[186px] pb-[92px] box-border relative max-w-full mt-[-130px] pt-[248px] mb-[-103px] pb-[195px] z-[1] mq750:pt-[248px] mq750:px-[46px] mq750:pb-[195px] mq750:box-border mq450:pl-5 mq450:pr-5 mq450:box-border mq1225:pl-[93px] mq1225:pr-[93px] mq1225:box-border flex items-center justify-center min-h-[650px] overflow-hidden">
+            <div className=" lex-1 overflow-x-auto flex mq1225:flex-row flex-col items-end justify-start pt-[118px] px-[186px] pb-[92px] box-border relative max-w-full mt-[-130px] pt-[248px] mb-[-103px] pb-[195px] z-[1] mq750:pt-[248px] mq750:px-[46px] mq750:pb-[195px] mq750:box-border mq450:pl-5 mq450:pr-5 mq450:box-border mq1225:pl-[93px] mq1225:pr-[93px] mq1225:box-border min-h-[650px] overflow-hidden">
                 <div className="h-[617px] w-[1440px] relative bg-black shrink-0 hidden z-[1]" />
                 <div className="h-[849px] w-[3px] absolute !m-[0] top-[849px] left-[505px] bg-gray-200 shrink-0 [transform:_rotate(180deg)] [transform-origin:0_0] opacity-[0.5] z-[1]" />
                 <div className="h-[849px] w-[3px] absolute !m-[0] top-[849px] left-[83px] bg-gray-200 shrink-0 [transform:_rotate(180deg)] [transform-origin:0_0] opacity-[0.5] z-[1]" />

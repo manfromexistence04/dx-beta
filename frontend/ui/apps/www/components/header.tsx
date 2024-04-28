@@ -40,8 +40,8 @@ const Header: NextPage = () => {
     }, []);
 
     return (
-        <section className="self-stretch [backdrop-filter:blur(28px)] bg-gray-300 flex flex-row items-start justify-start pt-0 px-0 pb-px box-border top-[0] z-[99] sticky max-w-full">
-            <header className="h-[88px] flex-1 flex flex-col items-start justify-start py-5 px-0 box-border gap-[20px] max-w-full text-left text-8xl text-blueviolet-200 font-headings-desktop-poppins-16px-regular">
+        <section className="!sticky !top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <header className="h-[88px] flex-1 flex flex-col items-start lg:justify-start py-5 px-0 box-border gap-[20px] max-w-full text-left text-8xl text-blueviolet-200 font-headings-desktop-poppins-16px-regular">
                 <div className="w-[158px] h-12 hidden" />
                 <div className="self-stretch flex flex-row items-start justify-start py-0 px-20 box-border max-w-full mq750:pl-10 mq750:pr-10 mq750:box-border">
                     <div className="flex-1 flex flex-row items-start justify-start gap-[24px] max-w-full">
@@ -51,7 +51,7 @@ const Header: NextPage = () => {
                                 <span className="text-shade-white">STUDY</span>
                             </h2>
                         </div>
-                        <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0">
+                        <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0 mq1225:flex-1">
                             <div className="w-px h-10 relative bg-neutrals-3" />
                         </div>
                         <nav className="m-0 flex-1 flex flex-col items-start justify-start pt-[13.5px] px-0 pb-0 box-border max-w-full mq1225:hidden">
@@ -74,8 +74,6 @@ const Header: NextPage = () => {
                             </nav>
                         </nav>
                         <div className="flex flex-row items-center justify-start gap-[24px] text-center text-base text-shade-white font-dm-sans">
-                            {/* <select className="rounded bg-[transparent] [border:none] flex flex-row items-start justify-start py-3 px-0 font-dm-sans font-bold text-base text-shade-white" /> */}
-                            {/* <SelectDemo /> */}
                             <Select>
                                 <SelectTrigger className="w-[80px] !py-6">
                                     <SelectValue placeholder="EN" />
@@ -91,8 +89,15 @@ const Header: NextPage = () => {
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+
+                            <img
+                                className="h-[65px] w-[65px]"
+                                alt=""
+                                src="/burger-menu.png"
+                            />
+
                             <div
-                                className="flex flex-row items-start justify-start cursor-pointer"
+                                className="flex flex-row items-start justify-start cursor-pointer mq1225:hidden"
                                 onClick={onButtonsContainerClick}
                             >
                                 <div className="rounded bg-blueviolet-200 flex flex-row items-center justify-center py-4 px-[23px] whitespace-nowrap">
