@@ -24,7 +24,7 @@ const FrameComponent: NextPage = () => {
               </h2>
               <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-0.5 text-sm text-lightsteelblue-200 font-dm-sans">
                 <div className="flex-1 relative font-medium">
-                  Find your perfect college fit with our quiz
+                Find your perfect college fit with our quiz
                 </div>
               </div>
             </div>
@@ -71,34 +71,34 @@ const FrameComponent: NextPage = () => {
                   className="h-6 w-6 relative object-cover min-h-[24px]"
                   loading="lazy"
                   alt=""
-                  src="/social-media--instagram@2x.png"
+                  src="/instragam.png"
                 />
                 <img
                   className="h-6 w-6 relative min-h-[24px]"
                   loading="lazy"
                   alt=""
-                  src="/social-media--linkdin.svg"
+                  src="/linkdin.png"
                 />
                 <img
                   className="h-6 w-6 relative min-h-[24px]"
                   loading="lazy"
                   alt=""
-                  src="/social-media--telegram.svg"
+                  src="/facebook.png"
                 />
                 <img
                   className="h-6 w-6 relative min-h-[24px]"
                   alt=""
-                  src="/social-media--telegram-1.svg"
+                  src="/telegram.png"
                 />
                 <img
                   className="h-6 w-6 relative min-h-[24px]"
                   alt=""
-                  src="/social-media--telegram-2.svg"
+                  src="/raddit.png"
                 />
                 <img
                   className="h-6 w-6 relative min-h-[24px]"
                   alt=""
-                  src="/social-media--telegram-3.svg"
+                  src="/twitter.png"
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ const FrameComponent: NextPage = () => {
               <img
                 className="w-full h-full z-[1] object-contain absolute left-[-24px] top-[-23px] [transform:scale(2.225)]"
                 alt=""
-                src="/mask-group-4.svg"
+                src="/mask-contract.png"
               />
             </div>
           </div>

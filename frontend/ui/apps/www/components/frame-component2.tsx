@@ -17,7 +17,7 @@ const FrameComponent2: NextPage = () => {
                 Get a comprehensive evaluation of your strength as an MBA
                 candidate. By analyzing the many factors used in admissions
                 decisions across six primary areas, it conducts a detailed
-                review of a candidate’s profile and recommends opportunities to
+                review of a candidates profile and recommends opportunities to
                 strengthen his or her candidacy
               </h3>
             </div>
@@ -25,14 +25,14 @@ const FrameComponent2: NextPage = () => {
               <div className="flex flex-row items-start justify-start gap-[4px]">
                 <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0">
                   <h3 className="m-0 relative text-inherit leading-[16px] font-medium font-inherit mq450:text-lgi mq450:leading-[13px]">
-                    Learn moret
+                    Learn more
                   </h3>
                 </div>
                 <img
                   className="h-6 w-6 relative"
                   loading="lazy"
                   alt=""
-                  src="/phosphor-icons--arrowupright.svg"
+                  src="/arrowupright.png"
                 />
               </div>
               <div className="self-stretch h-0.5 relative box-border border-t-[1.5px] border-solid border-blueviolet-200" />
@@ -45,24 +45,24 @@ const FrameComponent2: NextPage = () => {
             <img
               className="absolute top-[0px] left-[0px] w-full h-full object-cover"
               alt=""
-              src="/mask-group-1@2x.png"
+              src="/mask-group.png"
             />
             <img
               className="absolute top-[301px] left-[117px] w-[343px] h-[330px] object-contain z-[3]"
               alt=""
-              src="/coin-4@2x.png"
+              src="/coin-big.png"
             />
           </div>
           <img
             className="absolute top-[166px] left-[0px] w-[198.6px] h-[215px] object-contain z-[3]"
             alt=""
-            src="/group-47331@2x.png"
+            src="/group-47331.png"
           />
           <img
             className="absolute top-[524px] left-[495px] w-[248.3px] h-[268.8px] object-contain z-[4]"
             loading="lazy"
             alt=""
-            src="/coin-left@2x.png"
+            src="/coin-left.png"
           />
         </div>
       </div>

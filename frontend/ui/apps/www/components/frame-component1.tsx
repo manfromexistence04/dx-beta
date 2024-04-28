@@ -6,7 +6,7 @@ import TarifPlan from "./tarif-plan";
 
 const FrameComponent1: NextPage = () => {
     return (
-        <div className="w-[1072px] overflow-x-auto flex flex-row items-start justify-start relative gap-[78.5px] max-w-full mb-[-3px] pb-[3px] z-[1] text-left text-13xl text-blueviolet-200 font-headings-desktop-poppins-16px-regular mq750:gap-[20px] mq1050:gap-[39px]">
+        <div className=" overflow-x-auto flex flex-row items-start justify-start relative gap-[78.5px] max-w-full mb-[-3px] pb-[3px] z-[1] text-left text-13xl text-blueviolet-200 font-headings-desktop-poppins-16px-regular mq750:gap-[20px] mq1050:gap-[39px] min-w-full">
             <div className="w-[305px] shrink-0 flex flex-col items-start justify-start gap-[16px]">
                 <div className="self-stretch flex flex-row items-start justify-center py-0 px-5">
                     <div className="flex flex-row items-start justify-start gap-[8px]">
@@ -25,7 +25,7 @@ const FrameComponent1: NextPage = () => {
                             alt=""
                             src="/rectangle-12899.svg"
                         />
-                        <div className="absolute top-[27.7px] left-[24px] bg-black w-[269px] flex flex-col items-start justify-start gap-[32px] z-[1]">
+                        <div className="absolute top-[27.7px] left-[24px] bg-black w-[269px] flex flex-col items-start justify-start gap-[32px] z-[1] border">
                             <h1 className="m-0 relative text-inherit leading-[100%] font-bold font-inherit mq750:text-7xl mq750:leading-[26px] mq450:text-lgi mq450:leading-[19px]">
                                 <p className="m-0">{`The generic `}</p>
                                 <p className="m-0">way</p>

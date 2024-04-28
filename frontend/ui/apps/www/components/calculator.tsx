@@ -9,18 +9,18 @@ const Calculator: NextPage = () => {
     }, []);
 
     return (
-        <div className="self-stretch flex flex-col items-start justify-start pt-8 px-12 pb-[35px] box-border relative gap-[48px] max-w-full z-[1] text-left text-21xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:gap-[24px] mq450:pt-[21px] mq450:pb-[23px] mq450:box-border mq1050:pl-6 mq1050:pr-6 mq1050:box-border">
+        <div className="self-stretch flex flex-col items-start justify-start pt-8 px-12 pb-[35px] box-border relative gap-[48px] max-w-full z-[1] text-left text-21xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:gap-[24px] mq450:pt-[21px] mq450:pb-[23px] mq450:box-border mq1050:pl-6 mq1050:pr-6 mq1050:box-border bg-[#804DFE]">
             <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px]">
                 <div className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] rounded [background:linear-gradient(-84.28deg,_)]" />
                 <img
                     className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[1]"
                     alt=""
-                    src="/mask-group-2.svg"
+                    src="/mask-group-2.png"
                 />
                 <img
                     className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[2]"
                     alt=""
-                    src="/mask-group-3.svg"
+                    src="/mask-group-3.png"
                 />
             </div>
             <h1 className="m-0 w-[577px] relative text-inherit leading-[32px] font-bold font-inherit inline-block max-w-full z-[3] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
@@ -41,7 +41,7 @@ const Calculator: NextPage = () => {
                                     placeholder="100"
                                     type="text"
                                 />
-                                <img className="h-6 w-6 relative" alt="" src="/coin-5.svg" />
+                                <img className="h-6 w-6 relative" alt="" src="/coin-colorfull.png" />
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ const Calculator: NextPage = () => {
                                 <img
                                     className="w-2.5 h-2.5 relative overflow-hidden shrink-0 z-[4]"
                                     alt=""
-                                    src="/srsearch.svg"
+                                    src="/search.png"
                                 />
                             </div>
                             <div className="w-[158px] relative font-medium inline-block shrink-0 z-[4]">
@@ -105,7 +105,7 @@ const Calculator: NextPage = () => {
                                             70%
                                         </div>
                                     </div>
-                                    <img className="h-5 w-5 relative" alt="" src="/coin-6.svg" />
+                                    <img className="h-5 w-5 relative" alt="" src="/coin-transparent.png" />
                                 </div>
                             </div>
                             <div className="self-stretch flex flex-row items-center justify-between gap-[20px] z-[3]">
@@ -118,7 +118,7 @@ const Calculator: NextPage = () => {
                                             65%
                                         </div>
                                     </div>
-                                    <img className="h-5 w-5 relative" alt="" src="/coin-7.svg" />
+                                    <img className="h-5 w-5 relative" alt="" src="/coin-transparent.png" />
                                 </div>
                             </div>
                             <div className="self-stretch flex flex-row items-center justify-between gap-[20px] z-[3]">
@@ -131,7 +131,7 @@ const Calculator: NextPage = () => {
                                             62%
                                         </div>
                                     </div>
-                                    <img className="h-5 w-5 relative" alt="" src="/coin-8.svg" />
+                                    <img className="h-5 w-5 relative" alt="" src="/coin-transparent.png"/>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ const Calculator: NextPage = () => {
                                         75%
                                     </div>
                                 </div>
-                                <img className="h-5 w-5 relative" alt="" src="/coin-9.svg" />
+                                <img className="h-5 w-5 relative" alt="" src="/coin-transparent.png" />
                             </div>
                         </div>
                     </div>

@@ -30,14 +30,14 @@ const FrameComponent3: NextPage = () => {
             <img
               className="h-full flex-1 overflow-hidden z-[1] object-contain absolute left-[0px] top-[83px] w-full [transform:scale(1.156)]"
               alt=""
-              src="/group-985545.svg"
+              src="/group-985545.png"
             />
           </div>
           <img
             className="h-[1000px] w-[1072.1px] absolute !m-[0] bottom-[2px] left-[170px] object-cover z-[2]"
             loading="lazy"
             alt=""
-            src="/12311-4@2x.png"
+            src="/123114.png"
           />
         </div>
       </div>

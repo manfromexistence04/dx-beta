@@ -9,7 +9,7 @@ const FrameComponent4: NextPage = () => {
     }, []);
 
     return (
-        <section className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-12 box-border max-w-full text-center text-29xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:pb-[31px] mq750:box-border">
+        <section className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-12 box-border max-w-full text-center text-29xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:pb-[31px] mq750:box-border mx-auto w-full">
             <div className="flex-1 overflow-x-auto flex flex-row items-end justify-start pt-[118px] px-[186px] pb-[92px] box-border relative max-w-full mt-[-130px] pt-[248px] mb-[-103px] pb-[195px] z-[1] mq750:pt-[248px] mq750:px-[46px] mq750:pb-[195px] mq750:box-border mq450:pl-5 mq450:pr-5 mq450:box-border mq1225:pl-[93px] mq1225:pr-[93px] mq1225:box-border">
                 <div className="h-[617px] w-[1440px] relative bg-black shrink-0 hidden z-[1]" />
                 <div className="h-[849px] w-[3px] absolute !m-[0] top-[849px] left-[505px] bg-gray-200 shrink-0 [transform:_rotate(180deg)] [transform-origin:0_0] opacity-[0.5] z-[1]" />
@@ -90,19 +90,19 @@ const FrameComponent4: NextPage = () => {
                     <img
                         className="absolute h-full top-[0px] bottom-[0px] left-[-54px] max-h-full w-[1573px] overflow-hidden z-[2]"
                         alt=""
-                        src="/export-it.svg"
+                        src="/export-it.png"
                     />
                     <img
                         className="absolute top-[42px] left-[14px] w-44 h-[172px] object-cover z-[3]"
                         loading="lazy"
                         alt=""
-                        src="/coin@2x.png"
+                        src="/coin.png"
                     />
                     <img
                         className="absolute top-[160.8px] left-[1198.8px] w-[198.5px] h-[212.6px] object-contain z-[4]"
                         loading="lazy"
                         alt=""
-                        src="/coing-right@2x.png"
+                        src="/coin-right.png"
                     />
                 </div>
             </div>
