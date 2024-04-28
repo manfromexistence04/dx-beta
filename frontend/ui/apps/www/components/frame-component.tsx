@@ -1,7 +1,6 @@
 "use client"
 
-
-import type { NextPage } from "next";
+import type { NextPage } from "next"
 
 const FrameComponent: NextPage = () => {
   return (
@@ -24,7 +23,7 @@ const FrameComponent: NextPage = () => {
               </h2>
               <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-0.5 text-sm text-lightsteelblue-200 font-dm-sans">
                 <div className="flex-1 relative font-medium">
-                Find your perfect college fit with our quiz
+                  Find your perfect college fit with our quiz
                 </div>
               </div>
             </div>
@@ -120,5 +119,7 @@ const FrameComponent: NextPage = () => {
           </div>
         </div>
       </div>
-    </footer>)};
-    export default FrameComponent;
+    </footer>
+  )
+}
+export default FrameComponent

@@ -1,7 +1,6 @@
 "use client"
 
-
-import type { NextPage } from "next";
+import type { NextPage } from "next"
 
 const FrameComponent2: NextPage = () => {
   return (
@@ -66,5 +65,7 @@ const FrameComponent2: NextPage = () => {
           />
         </div>
       </div>
-    </section>)};
-    export default FrameComponent2;
+    </section>
+  )
+}
+export default FrameComponent2

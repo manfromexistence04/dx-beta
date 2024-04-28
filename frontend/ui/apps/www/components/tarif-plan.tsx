@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
+import type { NextPage } from "next"
 
 export type TarifPlanType = {
-  prop?: string;
-  rectangle12899?: string;
-  theExpensive?: string;
-  qualityAdmissionsAdviceSh?: string;
-};
+  prop?: string
+  rectangle12899?: string
+  theExpensive?: string
+  qualityAdmissionsAdviceSh?: string
+}
 
 const TarifPlan: NextPage<TarifPlanType> = ({
   prop,
@@ -39,5 +39,7 @@ const TarifPlan: NextPage<TarifPlanType> = ({
           </div>
         </div>
       </div>
-    </div>)};
-    export default TarifPlan;
+    </div>
+  )
+}
+export default TarifPlan

@@ -1,10 +1,19 @@
+// Index.tsx
+import type { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Announcement } from "@/components/announcement"
+import Calculator from "@/components/calculator"
 import { ExamplesNav } from "@/components/examples-nav"
+import FrameComponent from "@/components/frame-component"
+import FrameComponent1 from "@/components/frame-component1"
+import FrameComponent2 from "@/components/frame-component2"
+import FrameComponent3 from "@/components/frame-component3"
+import FrameComponent4 from "@/components/frame-component4"
+import Header from "@/components/header"
 import { Icons } from "@/components/icons"
 import {
   PageActions,
@@ -15,16 +24,6 @@ import {
 import { buttonVariants } from "@/registry/new-york/ui/button"
 import MailPage from "@/app/(app)/examples/mail/page"
 
-// Index.tsx
-import type { NextPage } from "next";
-import Header from "@/components/header";
-import FrameComponent4 from "@/components/frame-component4";
-import FrameComponent3 from "@/components/frame-component3";
-import FrameComponent2 from "@/components/frame-component2";
-import FrameComponent1 from "@/components/frame-component1";
-import Calculator from "@/components/calculator";
-import FrameComponent from "@/components/frame-component";
-
 const LandingNewDesign: NextPage = () => {
   return (
     <>
@@ -33,11 +32,11 @@ const LandingNewDesign: NextPage = () => {
         <FrameComponent4 />
         <div className="w-[633px] rounded bg-blueviolet-200 hidden flex-row items-start justify-start p-4 box-border min-h-[162px] max-w-full">
           <b className="h-[100px] flex-1 relative leading-[100%] inline-block max-w-full mq450:text-base mq450:leading-[16px]">
-            The investor`s stake guarantees the Validator’s goodwill and personal
-            intent to build the new ecosystem to enforce the ecosystem
+            The investor`s stake guarantees the Validator’s goodwill and
+            personal intent to build the new ecosystem to enforce the ecosystem
             development. The Ustaking smart contract algorithm of the consensus
-            mechanism then selects block validators from all those who have staked
-            tokens as collateral.
+            mechanism then selects block validators from all those who have
+            staked tokens as collateral.
           </b>
         </div>
         <FrameComponent3 />
@@ -104,7 +103,11 @@ const LandingNewDesign: NextPage = () => {
                         50
                       </div>
                     </div>
-                    <img className="h-6 w-6 relative" alt="" src="/coin-2.svg" />
+                    <img
+                      className="h-6 w-6 relative"
+                      alt=""
+                      src="/coin-2.svg"
+                    />
                   </div>
                 </div>
                 <div className="self-stretch flex flex-row items-center justify-start gap-[10px]">
@@ -117,7 +120,11 @@ const LandingNewDesign: NextPage = () => {
                         15
                       </div>
                     </div>
-                    <img className="h-6 w-6 relative" alt="" src="/coin-3.svg" />
+                    <img
+                      className="h-6 w-6 relative"
+                      alt=""
+                      src="/coin-3.svg"
+                    />
                   </div>
                 </div>
               </div>
@@ -140,13 +147,11 @@ const LandingNewDesign: NextPage = () => {
         <FrameComponent />
       </div>
       {/* <div className="bg-red-500 h-64 w-64 rounded-md flex items-center justify-center sm:bg-yellow-500 md:bg-pink-500">Hello</div> */}
-
     </>
+  )
+}
 
-  );
-};
-
-export default LandingNewDesign;
+export default LandingNewDesign
 // export default function IndexPage() {
 //   return (
 //     // <div className="container relative">
@@ -198,4 +203,3 @@ export default LandingNewDesign;
 //     <div>Hello World!</div>
 //   )
 // }
-
