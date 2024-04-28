@@ -7,7 +7,7 @@ const FrameComponent2: NextPage = () => {
   return (
     <section className="w-[1395.1px] flex flex-row items-start justify-end pt-0 pb-[105.2px] pr-[7.7px] pl-2 box-border max-w-full text-left text-45xl text-gainsboro-100 font-headings-desktop-poppins-16px-regular mq450:pb-11 mq450:box-border mq1050:pb-[68px] mq1050:box-border !mx-auto">
       <div className="flex-1 flex flex-row items-start justify-start gap-[6.4px] max-w-full mq1225:flex-wrap">
-        <div className="w-[630px] flex flex-col items-start justify-start pt-[118px] px-0 pb-0 box-border min-w-[630px] max-w-full mq750:pt-[77px] mq750:box-border mq750:min-w-full mq1225:flex-1">
+        <div className="px-[10%] w-[630px] flex flex-col items-start justify-start pt-[118px] lg:px-0 pb-0 box-border min-w-[630px] max-w-full mq750:pt-[77px] mq750:box-border mq750:min-w-full mq1225:flex-1">
           <div className="self-stretch flex flex-col items-start justify-start gap-[13px] max-w-full">
             <div className="self-stretch flex flex-col items-start justify-start gap-[40px] max-w-full mq750:gap-[20px]">
               <h1 className="m-0 w-[529.9px] relative text-inherit leading-[100%] font-bold font-inherit inline-block max-w-full z-[1] mq750:text-32xl mq750:leading-[51px] mq450:text-19xl mq450:leading-[38px]">
@@ -39,8 +39,8 @@ const FrameComponent2: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="h-[802px] flex-1 relative overflow-x-auto min-w-[520px] max-w-full mq750:min-w-full">
-          <div className="absolute h-full top-[0px] bottom-[0px] left-[87.6px] shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset] rounded-t-281xl rounded-b-none bg-black w-[549px] z-[1]">
+        <div className="h-[802px] flex-1 relative overflow-x-auto min-w-[520px] max-w-full mq750:min-w-full !overflow-hidden">
+          <div className="absolute h-full top-[0px] bottom-[0px] left-[87.6px] shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset] rounded-t-281xl rounded-b-none bg-black w-[549px] z-[1] overflow-hidden">
             <div className="absolute top-[0px] left-[0px] shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset] rounded-t-281xl rounded-b-none bg-black w-full h-full hidden" />
             <img
               className="absolute top-[0px] left-[0px] w-full h-full object-cover"

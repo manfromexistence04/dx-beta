@@ -6,7 +6,7 @@ import TarifPlan from "./tarif-plan";
 
 const FrameComponent1: NextPage = () => {
     return (
-        <div className="w-full overflow-hidden relative flex items-center gap-[50px] justify-center mx-auto !p-0">
+        <div className="w-full overflow-hidden relative flex flex-col lg:flex-row items-center gap-[50px] justify-center mx-auto !p-0">
 
             <img
                 className="absolute my-auto left-0 w-[250px] h-[700px] object-cover z-[3]"

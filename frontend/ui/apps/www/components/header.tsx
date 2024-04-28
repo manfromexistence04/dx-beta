@@ -91,7 +91,7 @@ const Header: NextPage = () => {
                             </Select>
 
                             <img
-                                className="h-[65px] w-[65px]"
+                                className="h-[50px] w-[50px] mq1225:inline-block hidden"
                                 alt=""
                                 src="/burger-menu.png"
                             />
