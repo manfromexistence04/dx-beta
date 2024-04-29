@@ -24,208 +24,134 @@ import {
 import { buttonVariants } from "@/registry/new-york/ui/button"
 import MailPage from "@/app/(app)/examples/mail/page"
 
-// const LandingNewDesign: NextPage = () => {
-//   return (
-//     <>
-//       <div className="font-dm-sans-desktop-24px-medium text-shade-white relative flex w-full flex-col items-end justify-start overflow-hidden bg-black text-left text-xl leading-[normal] tracking-[normal]">
-//         <div className="relative hidden h-[3912px] self-stretch bg-black" />
-//         <FrameComponent4 />
-//         <div className="bg-blueviolet-200 box-border hidden min-h-[162px] w-[633px] max-w-full flex-row items-start justify-start rounded p-4">
-//           <b className="mq450:text-base mq450:leading-[16px] relative inline-block h-[100px] max-w-full flex-1 leading-[100%]">
-//             The investor`s stake guarantees the Validator’s goodwill and
-//             personal intent to build the new ecosystem to enforce the ecosystem
-//             development. The Ustaking smart contract algorithm of the consensus
-//             mechanism then selects block validators from all those who have
-//             staked tokens as collateral.
-//           </b>
-//         </div>
-//         <FrameComponent3 />
-//         <div className="font-dm-sans relative hidden h-[496.2px] w-[995.9px] max-w-full">
-//           <div className="absolute left-[0px] top-[0.2px] h-full w-full rounded [background:linear-gradient(-72.34deg,_)]" />
-//           <img
-//             className="absolute left-[0.9px] top-[0px] h-full w-full"
-//             alt=""
-//             src="/mask-group.svg"
-//           />
-//           <div className="absolute left-[296.9px] top-[32px] h-[434.2px] w-[451px] max-w-full">
-//             <div className="absolute left-[0px] top-[64.3px] flex w-full max-w-full flex-col items-start justify-start gap-[24px]">
-//               <div className="flex w-[607px] max-w-[135%] shrink-0 flex-col items-start justify-start gap-[12px]">
-//                 <div className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] self-stretch font-medium leading-[130%]">
-//                   Enter amount of token you want stake
-//                 </div>
-//                 <div className="border-shade-white bg-shade-white relative box-border flex w-[302px] flex-row items-center justify-center gap-[12px] border-[1px] border-solid px-[15px] py-3.5 text-base text-black shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
-//                   <b className="relative z-[0] inline-block h-4 flex-1 leading-[16px]">
-//                     1000
-//                   </b>
-//                   <img
-//                     className="absolute left-[267px] top-[12px] z-[1] !m-[0] h-6 w-6"
-//                     alt=""
-//                     src="/coin-1.svg"
-//                   />
-//                 </div>
-//               </div>
-//               <div className="flex max-w-full shrink-0 flex-col items-start justify-start gap-[12px] self-stretch">
-//                 <div className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] self-stretch font-medium leading-[130%]">
-//                   Choose the Tarif plan that seems to you enough
-//                 </div>
-//                 <div className="relative h-[90px] w-[417px] max-w-full text-center text-base">
-//                   <div className="absolute left-[0px] top-[0px] flex flex-row items-start justify-start gap-[12px]">
-//                     <div className="border-shade-white box-border flex w-[137px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid bg-gray-500 px-[30px] py-3.5 text-lg">
-//                       <b className="relative inline-block h-4 leading-[16px]">
-//                         6 month
-//                       </b>
-//                     </div>
-//                     <div className="border-shade-white box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid px-[31px] py-3.5">
-//                       <b className="relative inline-block h-4 leading-[16px]">
-//                         1 year
-//                       </b>
-//                     </div>
-//                     <div className="border-shade-white box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid px-[29px] py-3.5">
-//                       <b className="relative inline-block h-4 leading-[16px]">
-//                         3 years
-//                       </b>
-//                     </div>
-//                   </div>
-//                   <div className="mq450:text-base mq450:leading-[21px] absolute left-[0px] top-[64px] text-left text-xl font-medium leading-[130%]">
-//                     5% per year
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="border-silver relative box-border h-px self-stretch border-t-[1px] border-solid" />
-//               <div className="box-border flex w-[202px] shrink-0 flex-col items-start justify-start gap-[4px] py-0 pl-0 pr-5">
-//                 <div className="flex flex-row items-center justify-start gap-[12px] self-stretch">
-//                   <b className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] flex-1 leading-[130%]">
-//                     Reward:
-//                   </b>
-//                   <div className="font-headings-desktop-poppins-16px-regular box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center">
-//                     <div className="flex flex-row items-center justify-start self-stretch rounded px-0 py-3">
-//                       <div className="mq450:text-base mq450:leading-[13px] relative self-stretch font-medium leading-[16px]">
-//                         50
-//                       </div>
-//                     </div>
-//                     <img
-//                       className="relative h-6 w-6"
-//                       alt=""
-//                       src="/coin-2.svg"
-//                     />
-//                   </div>
-//                 </div>
-//                 <div className="flex flex-row items-center justify-start gap-[10px] self-stretch">
-//                   <b className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] flex-1 leading-[130%]">
-//                     Cashback:
-//                   </b>
-//                   <div className="font-headings-desktop-poppins-16px-regular box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center">
-//                     <div className="flex flex-row items-center justify-start self-stretch rounded px-0 py-3">
-//                       <div className="mq450:text-base mq450:leading-[13px] relative self-stretch font-medium leading-[16px]">
-//                         15
-//                       </div>
-//                     </div>
-//                     <img
-//                       className="relative h-6 w-6"
-//                       alt=""
-//                       src="/coin-3.svg"
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//             <div className="font-headings-desktop-poppins-16px-regular text-21xl mq750:text-13xl mq750:leading-[32px] mq450:text-5xl mq450:leading-[24px] absolute left-[0.1px] top-[0px] !bg-clip-text font-semibold leading-[100%] text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#fff,_#fff),_#fff]">
-//               Calculator
-//             </div>
-//           </div>
-//         </div>
-//         <FrameComponent2 />
-//         <section className="flex w-full flex-row items-start justify-center px-[10%] pb-32 lg:px-0">
-//           <div className="flex w-full flex-col items-center justify-center space-y-5">
-//             <h1 className="text-bold !text-37xl !m-0 flex w-full items-center justify-center text-center">
-//               A new way to apply
-//             </h1>
-//             <FrameComponent1 />
-//             <Calculator />
-//           </div>
-//         </section>
-//       </div>
-//     </>
-//   )
-// }
-// import Header from "../components/header";
-import FrameComponent from "@/components/specialty-page/frame-component";
-import Component from "@/components/specialty-page/component";
-// import Footer from "../components/footer";
-
-const SpecialtyPage: NextPage = () => {
+const LandingNewDesign: NextPage = () => {
   return (
-    <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-3.5 pt-0 leading-[normal] tracking-[normal]">
-      {/* <Header /> */}
-      <FrameComponent />
-      <section className="text-blueviolet-200 font-headings-desktop-poppins-16px-bold mq750:pb-[26px] mq750:box-border mq1050:pb-10 mq1050:box-border box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl">
-        <div className="mq750:gap-[20px] mq1050:gap-[40px] flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px]">
-          <div className="box-border flex max-w-full flex-row items-start justify-end self-stretch py-0 pl-0 pr-0.5">
-            <div className="mq750:gap-[19px] mq1050:gap-[38px] flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px]">
-              <div className="mq750:gap-[20px] flex min-w-[314px] max-w-full flex-1 flex-col items-start justify-start gap-[41px]">
-                <button className="rounded-21xl border-dimgray box-border flex w-[122px] cursor-pointer flex-row items-start justify-start gap-[9px] border-[1px] border-solid bg-black px-[18px] py-1.5">
-                  <div className="rounded-21xl border-dimgray relative box-border hidden h-[35px] w-[122px] border-[1px] border-solid bg-black" />
+    <>
+      <div className="font-dm-sans-desktop-24px-medium text-shade-white relative flex w-full flex-col items-end justify-start overflow-hidden bg-black text-left text-xl leading-[normal] tracking-[normal]">
+        <div className="relative hidden h-[3912px] self-stretch bg-black" />
+        <FrameComponent4 />
+        <div className="bg-blueviolet-200 box-border hidden min-h-[162px] w-[633px] max-w-full flex-row items-start justify-start rounded p-4">
+          <b className="mq450:text-base mq450:leading-[16px] relative inline-block h-[100px] max-w-full flex-1 leading-[100%]">
+            The investor`s stake guarantees the Validator’s goodwill and
+            personal intent to build the new ecosystem to enforce the ecosystem
+            development. The Ustaking smart contract algorithm of the consensus
+            mechanism then selects block validators from all those who have
+            staked tokens as collateral.
+          </b>
+        </div>
+        <FrameComponent3 />
+        <div className="font-dm-sans relative hidden h-[496.2px] w-[995.9px] max-w-full">
+          <div className="absolute left-[0px] top-[0.2px] h-full w-full rounded [background:linear-gradient(-72.34deg,_)]" />
+          <img
+            className="absolute left-[0.9px] top-[0px] h-full w-full"
+            alt=""
+            src="/mask-group.svg"
+          />
+          <div className="absolute left-[296.9px] top-[32px] h-[434.2px] w-[451px] max-w-full">
+            <div className="absolute left-[0px] top-[64.3px] flex w-full max-w-full flex-col items-start justify-start gap-[24px]">
+              <div className="flex w-[607px] max-w-[135%] shrink-0 flex-col items-start justify-start gap-[12px]">
+                <div className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] self-stretch font-medium leading-[130%]">
+                  Enter amount of token you want stake
+                </div>
+                <div className="border-shade-white bg-shade-white relative box-border flex w-[302px] flex-row items-center justify-center gap-[12px] border-[1px] border-solid px-[15px] py-3.5 text-base text-black shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+                  <b className="relative z-[0] inline-block h-4 flex-1 leading-[16px]">
+                    1000
+                  </b>
                   <img
-                    className="relative z-[1] h-[19px] min-h-[19px] w-[15px] shrink-0 overflow-hidden"
+                    className="absolute left-[267px] top-[12px] z-[1] !m-[0] h-6 w-6"
                     alt=""
-                    src="/srfilter.svg"
+                    src="/coin-1.svg"
                   />
-                  <div className="flex flex-col items-start justify-start px-0 pb-0 pt-px">
-                    <div className="font-headings-desktop-poppins-16px-bold text-dimgray relative z-[1] inline-block min-w-[39px] text-left text-xs font-medium">
-                      Filters
+                </div>
+              </div>
+              <div className="flex max-w-full shrink-0 flex-col items-start justify-start gap-[12px] self-stretch">
+                <div className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] self-stretch font-medium leading-[130%]">
+                  Choose the Tarif plan that seems to you enough
+                </div>
+                <div className="relative h-[90px] w-[417px] max-w-full text-center text-base">
+                  <div className="absolute left-[0px] top-[0px] flex flex-row items-start justify-start gap-[12px]">
+                    <div className="border-shade-white box-border flex w-[137px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid bg-gray-500 px-[30px] py-3.5 text-lg">
+                      <b className="relative inline-block h-4 leading-[16px]">
+                        6 month
+                      </b>
+                    </div>
+                    <div className="border-shade-white box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid px-[31px] py-3.5">
+                      <b className="relative inline-block h-4 leading-[16px]">
+                        1 year
+                      </b>
+                    </div>
+                    <div className="border-shade-white box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid px-[29px] py-3.5">
+                      <b className="relative inline-block h-4 leading-[16px]">
+                        3 years
+                      </b>
                     </div>
                   </div>
-                </button>
-                <div className="box-border flex max-w-full flex-row items-start justify-start self-stretch py-0 pl-[3px] pr-0">
-                  <Component
-                    rectangle14230="/rectangle-14230@2x.png"
-                    rectangle14231="/rectangle-14231@2x.png"
-                    srHearth="/srhearth.svg"
-                  />
+                  <div className="mq450:text-base mq450:leading-[21px] absolute left-[0px] top-[64px] text-left text-xl font-medium leading-[130%]">
+                    5% per year
+                  </div>
                 </div>
               </div>
-              <Component
-                rectangle14230="/rectangle-14230-1@2x.png"
-                rectangle14231="/rectangle-14231-1@2x.png"
-                srHearth="/srhearth-1.svg"
-                propMinWidth="312px"
-              />
-            </div>
-          </div>
-          <div className="mq750:gap-[26px] flex max-w-full flex-col items-end justify-start gap-[53px] self-stretch">
-            <div className="mq750:gap-[19px] mq1050:gap-[38px] flex max-w-full flex-row flex-wrap items-start justify-start gap-[77px] self-stretch">
-              <Component
-                rectangle14230="/rectangle-14230-2@2x.png"
-                rectangle14231="/rectangle-14231-2@2x.png"
-                srHearth="/srhearth-2.svg"
-                propMinWidth="312px"
-              />
-              <Component
-                rectangle14230="/rectangle-14230-3@2x.png"
-                rectangle14231="/rectangle-14231-3@2x.png"
-                srHearth="/srhearth-3.svg"
-                propMinWidth="312px"
-              />
-            </div>
-            <div className="flex flex-row items-start justify-center self-stretch py-0 pl-[29px] pr-5">
-              <div className="flex w-[210px] flex-row items-start justify-start gap-[15px]">
-                <div className="mq450:text-base mq450:leading-[13px] relative flex-1 font-medium leading-[16px]">
-                  See all universities
+              <div className="border-silver relative box-border h-px self-stretch border-t-[1px] border-solid" />
+              <div className="box-border flex w-[202px] shrink-0 flex-col items-start justify-start gap-[4px] py-0 pl-0 pr-5">
+                <div className="flex flex-row items-center justify-start gap-[12px] self-stretch">
+                  <b className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] flex-1 leading-[130%]">
+                    Reward:
+                  </b>
+                  <div className="font-headings-desktop-poppins-16px-regular box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center">
+                    <div className="flex flex-row items-center justify-start self-stretch rounded px-0 py-3">
+                      <div className="mq450:text-base mq450:leading-[13px] relative self-stretch font-medium leading-[16px]">
+                        50
+                      </div>
+                    </div>
+                    <img
+                      className="relative h-6 w-6"
+                      alt=""
+                      src="/coin-2.svg"
+                    />
+                  </div>
                 </div>
-                <img
-                  className="relative h-5 w-5 shrink-0 overflow-hidden"
-                  alt=""
-                  src="/sr-chevron-down.png"
-                />
+                <div className="flex flex-row items-center justify-start gap-[10px] self-stretch">
+                  <b className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] flex-1 leading-[130%]">
+                    Cashback:
+                  </b>
+                  <div className="font-headings-desktop-poppins-16px-regular box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center">
+                    <div className="flex flex-row items-center justify-start self-stretch rounded px-0 py-3">
+                      <div className="mq450:text-base mq450:leading-[13px] relative self-stretch font-medium leading-[16px]">
+                        15
+                      </div>
+                    </div>
+                    <img
+                      className="relative h-6 w-6"
+                      alt=""
+                      src="/coin-3.svg"
+                    />
+                  </div>
+                </div>
               </div>
+            </div>
+            <div className="font-headings-desktop-poppins-16px-regular text-21xl mq750:text-13xl mq750:leading-[32px] mq450:text-5xl mq450:leading-[24px] absolute left-[0.1px] top-[0px] !bg-clip-text font-semibold leading-[100%] text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#fff,_#fff),_#fff]">
+              Calculator
             </div>
           </div>
         </div>
-      </section>
-      {/* <Footer /> */}
-    </div>)};
+        <FrameComponent2 />
+        <section className="flex w-full flex-row items-start justify-center px-[10%] pb-32 lg:px-0">
+          <div className="flex w-full flex-col items-center justify-center space-y-5">
+            <h1 className="text-bold !text-37xl !m-0 flex w-full items-center justify-center text-center">
+              A new way to apply
+            </h1>
+            <FrameComponent1 />
+            <Calculator />
+          </div>
+        </section>
+      </div>
+    </>
+  )
+}
+export default LandingNewDesign
 
-export default SpecialtyPage;
+// import Header from "../components/header";
+
 // export default function IndexPage() {
 //   return (
 //     // <div className="container relative">

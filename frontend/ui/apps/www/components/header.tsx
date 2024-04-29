@@ -3,7 +3,10 @@
 import { useCallback } from "react"
 import * as React from "react"
 import type { NextPage } from "next"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
+import { cn } from "@/lib/utils"
 import {
   Select,
   SelectContent,
@@ -38,6 +41,7 @@ const Header: NextPage = () => {
   const onButtonsContainerClick = useCallback(() => {
     // Please sync "Log In - Welcome" to the project
   }, [])
+  const pathname = usePathname()
 
   return (
     <section className="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full backdrop-blur">
@@ -56,24 +60,72 @@ const Header: NextPage = () => {
             </div>
             <nav className="mq1225:hidden m-0 box-border flex max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-[13.5px]">
               <nav className="font-dm-sans text-lightsteelblue-200 m-0 flex w-[468.9px] max-w-full flex-row items-start justify-between gap-[20px] text-left text-base">
-                <div className="relative inline-block min-w-[46.9px] shrink-0">
+                <Link
+                  href="/about"
+                  className={cn(
+                    "hover:text-foreground/80 relative inline-block min-w-[46.9px] shrink-0 transition-colors",
+                    pathname === "/about"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
                   About
-                </div>
-                <div className="relative inline-block min-w-[76px] shrink-0">
+                </Link>
+                <Link
+                  href="/calculator"
+                  className={cn(
+                    "hover:text-foreground/80 relative inline-block min-w-[76px] shrink-0 transition-colors",
+                    pathname === "/calculator"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
                   Calculator
-                </div>
-                <div className="relative inline-block min-w-[63px] shrink-0">
+                </Link>
+                <Link
+                  href="/colleges"
+                  className={cn(
+                    "hover:text-foreground/80 relative inline-block min-w-[76px] shrink-0 transition-colors",
+                    pathname === "/colleges"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
                   Colleges
-                </div>
-                <div className="relative inline-block min-w-[63px] shrink-0">
+                </Link>
+                <Link
+                  href="/specialty"
+                  className={cn(
+                    "rrelative hover:text-foreground/80 inline-block min-w-[63px] shrink-0 transition-colors",
+                    pathname === "/specialty"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
                   Specialty
-                </div>
-                <div className="relative inline-block min-w-[124px] shrink-0 whitespace-nowrap">
+                </Link>
+                <Link
+                  href="/career-guidance"
+                  className={cn(
+                    "hover:text-foreground/80 relative inline-block min-w-[124px] shrink-0 whitespace-nowrap transition-colors",
+                    pathname === "/career-guidance"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
                   Career guidance
-                </div>
-                <div className="relative inline-block min-w-[31px] shrink-0">
+                </Link>
+                <Link
+                  href="/faq"
+                  className={cn(
+                    "hover:text-foreground/80 relative inline-block min-w-[31px] shrink-0 transition-colors",
+                    pathname === "/faq"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
                   FAQ
-                </div>
+                </Link>
               </nav>
             </nav>
             <div className="font-dm-sans text-shade-white flex flex-row items-center justify-start gap-[24px] text-center text-base">
@@ -104,9 +156,17 @@ const Header: NextPage = () => {
                 onClick={onButtonsContainerClick}
               >
                 <div className="bg-blueviolet-200 flex flex-row items-center justify-center whitespace-nowrap rounded px-[23px] py-4">
-                  <b className="relative inline-block min-w-[112px] leading-[16px]">
+                  <Link
+                    href="/signup"
+                    className={cn(
+                      "relative inline-block min-w-[112px] leading-[16px]",
+                    )}
+                  >
                     Sign Up/Log In
-                  </b>
+                  </Link>
+                  {/* <b className="relative inline-block min-w-[112px] leading-[16px]">
+                    Sign Up/Log In
+                  </b> */}
                 </div>
               </div>
             </div>

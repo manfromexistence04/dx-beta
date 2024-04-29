@@ -1,5 +1,5 @@
 /* eslint-disable tailwindcss/no-contradicting-classname */
-import type { NextPage } from "next";
+import type { NextPage } from "next"
 
 const FrameComponent: NextPage = () => {
   return (
@@ -48,7 +48,7 @@ const FrameComponent: NextPage = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default FrameComponent;
+export default FrameComponent
