@@ -309,7 +309,7 @@ Keep watching cat videos + Saturo Gojo will definitely return after 236 chapter 
 <!-- ## 22/04/2024(Monday)
 somethimes everything sucks. But that time never comes cause every moment is
 already good,We just need to have a vision to see through it. -->
-            // const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
+            <!-- // const shellScriptRegex = /^cd|ls|git|mv|rm|npm|node|pnpm|python|docker|bunx|bunx|npx|\.(sh|fish|zsh)$/i;
 
 
                 // switch (category) {
@@ -347,4 +347,18 @@ already good,We just need to have a vision to see through it. -->
 // (To exit, press Ctrl+C again or Ctrl+D or type .exit)
 
 
-powershell -c "irm bun.sh/install.ps1|iex"
+powershell -c "irm bun.sh/install.ps1|iex" 
+
+first make sure that bun is installed in your system.
+the unzip the source code then go the project path.
+then run
+
+bun install && bun run build
+
+this will build your website at
+
+apps/www/.next
+
+then you can deploy it to firebase.
+
+-->
