@@ -57,7 +57,7 @@ const Header: NextPage = () => {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <section className=" g-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full backdrop-blur">
+    <section className=" g-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full !border-b backdrop-blur">
       <header className="font-headings-desktop-poppins-16px-regular text-blueviolet-200 box-border flex h-[88px] max-w-full flex-1 flex-col items-start gap-[20px] px-0 py-5 text-left text-8xl lg:justify-start">
         <div className="hidden h-12 w-[158px]" />
         <div className="mq750:box-border mq750:px-10 box-border flex max-w-full flex-row items-start justify-start self-stretch px-20 py-0">
@@ -190,7 +190,7 @@ const Header: NextPage = () => {
                       <span className="text-primary text-md">About</span>
                       <span className="text-muted-foreground text-xs">Discover why we creted this platfrom.</span>
                     </div> */}
-                    <div className="flex h-full w-full items-center justify-center space-x-5 ">
+                    <div className="flex size-full items-center justify-center space-x-5 ">
                       <div className="flex flex-row items-center justify-center">
                         <img
                           className="size-[20px]"

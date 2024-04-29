@@ -236,7 +236,7 @@ const invoices = [
 export function TableDemo() {
     return (
         <Table className="">
-            <TableCaption>A list of your recent invoices.</TableCaption>
+            <TableCaption>A list of your recent calculations.</TableCaption>
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">University</TableHead>
