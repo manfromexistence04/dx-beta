@@ -2,6 +2,7 @@ import type { NextPage } from "next"
 
 import Component from "@/components/specialty-page/component"
 import FrameComponent from "@/components/specialty-page/frame-component"
+import { Filter } from "lucide-react"
 
 // import Footer from "../components/footer";
 
@@ -10,18 +11,19 @@ const SpecialtyPage: NextPage = () => {
     <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-3.5 pt-0 leading-[normal] tracking-[normal]">
       {/* <Header /> */}
       <FrameComponent />
-      <section className="font-headings-desktop-poppins-16px-bold box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px]">
-        <div className="flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px] mq1050:gap-[40px] mq750:gap-[20px]">
+      <section className="!mx-auto font-headings-desktop-poppins-16px-bold text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px] box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl">
+        <div className="mq1050:gap-[40px] mq750:gap-[20px] flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px]">
           <div className="box-border flex max-w-full flex-row items-start justify-end self-stretch py-0 pl-0 pr-0.5">
-            <div className="flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px] mq1050:gap-[38px] mq750:gap-[19px]">
-              <div className="flex min-w-[314px] max-w-full flex-1 flex-col items-start justify-start gap-[41px] mq750:gap-[20px]">
-                <button className="border-dimgray box-border flex w-[122px] cursor-pointer flex-row items-start justify-start gap-[9px] rounded-21xl border-DEFAULT border-solid bg-black px-[18px] py-1.5">
-                  <div className="border-dimgray relative box-border hidden h-[35px] w-[122px] rounded-21xl border-DEFAULT border-solid bg-black" />
-                  <img
+            <div className="mq1050:gap-[38px] mq750:gap-[19px] flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px]">
+              <div className="mq750:gap-[20px] flex min-w-[314px] max-w-full flex-1 flex-col items-start justify-start gap-[41px]">
+                <button className="border-dimgray rounded-21xl box-border flex w-[122px] cursor-pointer flex-row items-start justify-start gap-[9px] rounded-[5px] border border-DEFAULT border-solid bg-black px-[18px] py-1.5">
+                  <div className="border-dimgray rounded-21xl relative box-border hidden h-[35px] w-[122px] border-DEFAULT border-solid bg-black" />
+                  <Filter className="text-primary size-5"/>
+                  {/* <img
                     className="relative z-[1] h-[19px] min-h-[19px] w-[15px] shrink-0 overflow-hidden"
                     alt=""
                     src="/srfilter.svg"
-                  />
+                  /> */}
                   <div className="flex flex-col items-start justify-start px-0 pb-0 pt-px">
                     <div className="font-headings-desktop-poppins-16px-bold text-dimgray relative z-[1] inline-block min-w-[39px] text-left text-xs font-medium">
                       Filters
@@ -44,8 +46,8 @@ const SpecialtyPage: NextPage = () => {
               />
             </div>
           </div>
-          <div className="flex max-w-full flex-col items-end justify-start gap-[53px] self-stretch mq750:gap-[26px]">
-            <div className="flex max-w-full flex-row flex-wrap items-start justify-start gap-[77px] self-stretch mq1050:gap-[38px] mq750:gap-[19px]">
+          <div className="mq750:gap-[26px] flex max-w-full flex-col items-end justify-start gap-[53px] self-stretch">
+            <div className="mq1050:gap-[38px] mq750:gap-[19px] flex max-w-full flex-row flex-wrap items-start justify-start gap-[77px] self-stretch">
               <Component
                 rectangle14230="/rectangle-14230-2@2x.png"
                 rectangle14231="/rectangle-14231-2@2x.png"
@@ -61,7 +63,7 @@ const SpecialtyPage: NextPage = () => {
             </div>
             <div className="flex flex-row items-start justify-center self-stretch py-0 pl-[29px] pr-5">
               <div className="flex w-[210px] flex-row items-start justify-start gap-[15px]">
-                <div className="relative flex-1 font-medium leading-[16px] mq450:text-base mq450:leading-[13px]">
+                <div className="mq450:text-base mq450:leading-[13px] relative flex-1 font-medium leading-[16px]">
                   See all universities
                 </div>
                 <img

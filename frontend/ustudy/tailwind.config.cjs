@@ -84,8 +84,8 @@ module.exports = {
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
         sm: "calc(var(--radius) - 4px)",
-        "21xl": "40px",
-        "281xl": "300px",
+        // "21xl": "40px",
+        // "281xl": "300px",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
