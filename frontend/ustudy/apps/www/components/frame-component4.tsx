@@ -9,8 +9,8 @@ const FrameComponent4: NextPage = () => {
   }, [])
 
   return (
-    <section className="font-headings-desktop-poppins-16px-regular text-29xl text-shade-white mq750:box-border mq750:pb-[31px] box-border flex h-auto max-w-full flex-row items-start justify-start self-stretch px-[10%] pt-24 text-center lg:px-0">
-      <div className="items-strt relative box-border flex min-h-[650px] max-w-full flex-1 flex-col items-start justify-start space-y-10 overflow-hidden overflow-x-auto lg:flex-row">
+    <section className="font-headings-desktop-poppins-16px-regular text-29xl text-shade-white mq750:box-border mq750:pb-[31px] box-border flex h-auto max-w-full flex-row items-start justify-start self-stretch text-center ">
+      <div className="items-strt relative box-border flex min-h-[650px] max-w-full flex-1 flex-col items-start justify-start space-y-10 overflow-hidden overflow-x-auto px-[10%] pt-10 lg:flex-row lg:px-0">
         <div className="relative z-[1] hidden h-[617px] w-[1440px] shrink-0 bg-black" />
         <div className="mq1225:inline-block absolute left-[505px] top-[849px] z-[1] !m-0 hidden h-[849px] w-[3px] shrink-0 bg-gray-200 opacity-50 [transform-origin:0_0] [transform:_rotate(180deg)]" />
         <div className="mq1225:inline-block absolute left-[83px] top-[849px] z-[1] !m-0 hidden h-[849px] w-[3px] shrink-0 bg-gray-200 opacity-50 [transform-origin:0_0] [transform:_rotate(180deg)]" />

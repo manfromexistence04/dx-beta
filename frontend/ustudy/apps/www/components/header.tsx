@@ -16,6 +16,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/default/ui/select"
+import { LinkProps } from "next/link"
+import { useRouter } from "next/navigation"
+import { ViewVerticalIcon } from "@radix-ui/react-icons"
+
+import { docsConfig } from "@/config/docs"
+import { siteConfig } from "@/config/site"
+
+import { Icons } from "@/components/icons"
+import { Button } from "@/registry/new-york/ui/button"
+import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
+import { Sheet, SheetContent, SheetTrigger } from "@/registry/new-york/ui/sheet"
+
 
 export function SelectDemo() {
   return (
@@ -42,6 +54,7 @@ const Header: NextPage = () => {
     // Please sync "Log In - Welcome" to the project
   }, [])
   const pathname = usePathname()
+  const [open, setOpen] = React.useState(false)
 
   return (
     <section className=" g-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full backdrop-blur">
@@ -153,11 +166,156 @@ const Header: NextPage = () => {
                 </SelectContent>
               </Select>
 
-              <img
-                className="mq1225:inline-block hidden size-[50px]"
-                alt=""
-                src="/burger-menu.png"
-              />
+
+              <Sheet open={open} onOpenChange={setOpen}>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                  >
+                    <img
+                      className="inline-block size-[50px] lg:hidden"
+                      alt=""
+                      src="/burger-menu.png"
+                    />
+                    <span className="sr-only">Toggle Menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="top" className="flex size-full flex-col items-center justify-center">
+
+                  <Link
+                    className="mb-3 w-full rounded-md border p-3"
+                    href="/">
+                    {/* <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">About</span>
+                      <span className="text-muted-foreground text-xs">Discover why we creted this platfrom.</span>
+                    </div> */}
+                    <div className="flex h-full w-full items-center justify-center space-x-5 ">
+                      <div className="flex flex-row items-center justify-center">
+                        <img
+                          className="size-[20px]"
+                          alt="logo"
+                          src="/logo.png"
+                        />
+                        <span className="text-shade-white">STUDY</span>
+                      </div>
+                      <div className="font-medium">
+                        Find your perfect college fit with our quiz.
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    className="w-full  border-b p-5"
+                    href="/colleges">
+                    <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">About</span>
+                      <span className="text-muted-foreground text-xs">Discover why we creted this platfrom.</span>
+                    </div>
+                  </Link>
+                  <Link
+                    className="w-full  border-b p-5"
+                    href="/colleges">
+                    <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">Colleges</span>
+                      <span className="text-muted-foreground text-xs">View Colleage that fits your need.</span>
+                    </div>
+                  </Link>
+                  <Link
+                    className="w-full  border-b p-5"
+                    href="/colleges">
+                    <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">Calculator</span>
+                      <span className="text-muted-foreground text-xs">Calculate your gols.</span>
+                    </div>
+                  </Link>
+                  <Link
+                    className="w-full  border-b p-5"
+                    href="/colleges">
+                    <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">Career Guidence</span>
+                      <span className="text-muted-foreground text-xs">Seach for cereers that you love.</span>
+                    </div>
+                  </Link>
+                  <Link
+                    className="w-full  border-b p-5"
+                    href="/colleges">
+                    <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">Specialty</span>
+                      <span className="text-muted-foreground text-xs">Get advice form specialiest.</span>
+                    </div>
+                  </Link>
+                  <Link
+                    className="w-full  border-b p-5"
+                    href="/colleges">
+                    <div className="flex flex-col items-start justify-start space-y-1 ">
+                      <span className="text-primary text-md">FAQ</span>
+                      <span className="text-muted-foreground text-xs">Ask question about this platfrom.</span>
+                    </div>
+                  </Link>
+
+
+
+                  <div className="flex w-full flex-col items-center justify-center gap-[14px] py-3 text-base">
+                    <div className="flex flex-col items-start justify-start">
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="relative inline-block min-w-[118px] leading-[100%]">
+                          Contact email:
+                        </div>
+                      </div>
+                      <b className="font-dm-sans text-mediumpurple relative inline-block min-w-[117px] whitespace-nowrap">
+                        info@ustudy.io
+                      </b>
+                    </div>
+                    <div className="flex flex-col items-start justify-start gap-[4px]">
+                      <div className="relative leading-[100%]">Our Social Media:</div>
+                    </div>
+                    <div className="mx-auto flex flex-row items-start justify-start gap-[8px]">
+                      <img
+                        className="relative size-6 min-h-[24px] object-cover"
+                        loading="lazy"
+                        alt=""
+                        src="/instragam.png"
+                      />
+                      <img
+                        className="relative size-6 min-h-[24px]"
+                        loading="lazy"
+                        alt=""
+                        src="/linkdin.png"
+                      />
+                      <img
+                        className="relative size-6 min-h-[24px]"
+                        loading="lazy"
+                        alt=""
+                        src="/facebook.png"
+                      />
+                      <img
+                        className="relative size-6 min-h-[24px]"
+                        alt=""
+                        src="/telegram.png"
+                      />
+                      <img
+                        className="relative size-6 min-h-[24px]"
+                        alt=""
+                        src="/raddit.png"
+                      />
+                      <img
+                        className="relative size-6 min-h-[24px]"
+                        alt=""
+                        src="/twitter.png"
+                      />
+                    </div>
+                    <div className="absolute bottom-[-11px] right-[64px] z-[1] !m-0 flex size-10 items-center justify-center">
+                      <img
+                        className="absolute left-[-24px] top-[-23px] z-[1] size-full object-contain [transform:scale(2.225)]"
+                        alt=""
+                        src="/mask-contract.png"
+                      />
+                    </div>
+
+                  </div>
+                </SheetContent>
+              </Sheet>
 
               <div
                 className="mq1225:hidden flex cursor-pointer flex-row items-start justify-start"
