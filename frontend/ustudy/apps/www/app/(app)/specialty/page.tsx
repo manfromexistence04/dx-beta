@@ -261,7 +261,7 @@ const SpecialtyPage: NextPage = () => {
                       <img
                         className="relative size-5 shrink-0 overflow-hidden"
                         alt=""
-                        src="/arrowleft.svg"
+                        src="/arrowleft.png"
                       />
                       <div className="font-text-sm-normal relative hidden w-[58px] self-stretch text-left text-sm font-medium leading-[20px] text-gray-700">
                         Previous
@@ -278,7 +278,7 @@ const SpecialtyPage: NextPage = () => {
                       <img
                         className="relative size-5 shrink-0 overflow-hidden"
                         alt=""
-                        src="/arrowright.svg"
+                        src="/arrowright.png"
                       />
                     </div>
                   </button>
