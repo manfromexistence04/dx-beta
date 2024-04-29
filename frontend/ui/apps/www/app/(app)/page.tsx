@@ -103,11 +103,7 @@ const LandingNewDesign: NextPage = () => {
                         50
                       </div>
                     </div>
-                    <img
-                      className="relative size-6"
-                      alt=""
-                      src="/coin-2.svg"
-                    />
+                    <img className="relative size-6" alt="" src="/coin-2.svg" />
                   </div>
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[10px] self-stretch">
@@ -120,11 +116,7 @@ const LandingNewDesign: NextPage = () => {
                         15
                       </div>
                     </div>
-                    <img
-                      className="relative size-6"
-                      alt=""
-                      src="/coin-3.svg"
-                    />
+                    <img className="relative size-6" alt="" src="/coin-3.svg" />
                   </div>
                 </div>
               </div>
