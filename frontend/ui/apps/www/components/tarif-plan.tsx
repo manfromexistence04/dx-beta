@@ -14,27 +14,27 @@ const TarifPlan: NextPage<TarifPlanType> = ({
   qualityAdmissionsAdviceSh,
 }) => {
   return (
-    <div className="lg:w-[450px] w-[80%] h-[700px] shrink-0 flex flex-col items-start justify-start gap-[16px] text-left text-13xl text-blueviolet-200 font-headings-desktop-poppins-16px-regular p-3">
-      <div className="self-stretch flex flex-row items-start justify-center py-0 px-5">
+    <div className="flex h-[700px] w-[80%] shrink-0 flex-col items-start justify-start gap-[16px] p-3 text-left font-headings-desktop-poppins-16px-regular text-13xl text-blueviolet-200 lg:w-[450px]">
+      <div className="flex flex-row items-start justify-center self-stretch px-5 py-0">
         <div className="flex flex-row items-start justify-start gap-[8px]">
-          <div className="relative leading-[150%] font-semibold inline-block min-w-[40px] mq750:text-7xl mq750:leading-[38px] mq450:text-lgi mq450:leading-[29px]">
+          <div className="relative inline-block min-w-[40px] font-semibold leading-[150%] mq750:text-7xl mq750:leading-[38px] mq450:text-lgi mq450:leading-[29px]">
             {prop}
           </div>
-          <div className="flex flex-col items-start justify-start pt-[23px] px-0 pb-0">
-            <div className="w-10 h-0.5 relative bg-darkblue" />
+          <div className="flex flex-col items-start justify-start px-0 pb-0 pt-[23px]">
+            <div className="relative h-0.5 w-10 bg-darkblue" />
           </div>
         </div>
       </div>
-      <div className="self-stretch overflow-hidden flex flex-row items-end justify-start border rounded-md !lg:min-h-[450px] min-h-[600px]">
-        <div className="flex-1 rounded bg-black flex flex-col items-start justify-start pt-[27.7px] pb-[101.3px] pr-5 pl-6 gap-[32px] border-[0px] border-solid border-darkslateblue mq450:gap-[16px]">
-          <div className="flex flex-row items-start justify-start relative">
-            <h1 className="m-0 relative text-inherit leading-[100%] font-bold font-inherit z-[1] mq750:text-7xl mq750:leading-[26px] mq450:text-lgi mq450:leading-[19px]">
+      <div className="!lg:min-h-[450px] flex min-h-[600px] flex-row items-end justify-start self-stretch overflow-hidden rounded-md border">
+        <div className="flex flex-1 flex-col items-start justify-start gap-[32px] rounded border-[0px] border-solid border-darkslateblue bg-black pb-[101.3px] pl-6 pr-5 pt-[27.7px] mq450:gap-[16px]">
+          <div className="relative flex flex-row items-start justify-start">
+            <h1 className="font-inherit relative z-[1] m-0 text-inherit font-bold leading-[100%] mq750:text-7xl mq750:leading-[26px] mq450:text-lgi mq450:leading-[19px]">
               <p className="m-0">{theExpensive}</p>
               <p className="m-0">way</p>
             </h1>
-            <div className="h-[70px] w-[70px] absolute !m-[0] top-[-27.7px] left-[-11.5px] [filter:blur(140px)] rounded-[50%] z-[2]" />
+            <div className="absolute left-[-11.5px] top-[-27.7px] z-[2] !m-[0] h-[70px] w-[70px] rounded-[50%] [filter:blur(140px)]" />
           </div>
-          <div className="self-stretch relative text-xl leading-[40px] font-dm-sans text-gainsboro-200 z-[1] mq450:text-base mq450:leading-[32px]">
+          <div className="relative z-[1] self-stretch font-dm-sans text-xl leading-[40px] text-gainsboro-200 mq450:text-base mq450:leading-[32px]">
             {qualityAdmissionsAdviceSh}
           </div>
         </div>

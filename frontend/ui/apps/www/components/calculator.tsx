@@ -9,73 +9,73 @@ const Calculator: NextPage = () => {
   }, [])
 
   return (
-    <div className="w-[1200px] max-w-[90%] mx-auto rounded-sm mb-64 flex flex-col items-start justify-start pt-8 px-12 pb-[35px] box-border relative gap-[48px] z-[1] text-left text-21xl text-shade-white font-headings-desktop-poppins-16px-regular mq750:gap-[24px] mq450:pt-[21px] mq450:pb-[23px] mq450:box-border mq1050:pl-6 mq1050:pr-6 mq1050:box-border bg-[#804DFE]">
-      <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px]">
-        <div className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] rounded [background:linear-gradient(-84.28deg,_)]" />
+    <div className="relative z-[1] mx-auto mb-64 box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-sm bg-[#804DFE] px-12 pb-[35px] pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
+      <div className="absolute inset-[0px] !m-[0] h-full w-full">
+        <div className="absolute inset-[0px] h-full w-full rounded [background:linear-gradient(-84.28deg,_)]" />
         <img
-          className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[1]"
+          className="absolute inset-[0px] z-[1] h-full max-h-full w-full max-w-full overflow-hidden"
           alt=""
           src="/mask-group-2.png"
         />
         <img
-          className="absolute h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[2]"
+          className="absolute inset-[0px] z-[2] h-full max-h-full w-full max-w-full overflow-hidden"
           alt=""
           src="/mask-group-3.png"
         />
       </div>
-      <h1 className="m-0 w-[577px] relative text-inherit leading-[32px] font-bold font-inherit inline-block max-w-full z-[3] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
+      <h1 className="font-inherit relative z-[3] m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
         uSTUDY Calculator
       </h1>
-      <div className="w-8 h-12 rounded hidden z-[2]" />
-      <div className="w-[82px] h-12 rounded hidden z-[3]" />
-      <div className="w-[870px] flex flex-row items-start justify-start gap-[69px] max-w-full text-base font-dm-sans mq450:gap-[17px] mq1050:flex-wrap mq1050:gap-[34px]">
-        <div className="flex-[0.7745] flex flex-col items-start justify-start py-0 pr-[83px] pl-0 box-border gap-[18.7px] min-w-[239px] max-w-full mq450:pr-5 mq450:box-border mq1050:flex-1">
-          <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[5.3px] gap-[8px]">
-            <div className="w-[246.5px] relative leading-[21px] inline-block z-[3]">
+      <div className="z-[2] hidden h-12 w-8 rounded" />
+      <div className="z-[3] hidden h-12 w-[82px] rounded" />
+      <div className="flex w-[870px] max-w-full flex-row items-start justify-start gap-[69px] font-dm-sans text-base mq1050:flex-wrap mq1050:gap-[34px] mq450:gap-[17px]">
+        <div className="box-border flex min-w-[239px] max-w-full flex-[0.7745] flex-col items-start justify-start gap-[18.7px] py-0 pl-0 pr-[83px] mq1050:flex-1 mq450:box-border mq450:pr-5">
+          <div className="flex flex-col items-start justify-start gap-[8px] self-stretch px-0 pb-[5.3px] pt-0">
+            <div className="relative z-[3] inline-block w-[246.5px] leading-[21px]">
               Enter amount of score
             </div>
-            <div className="self-stretch shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset] bg-shade-white flex flex-row items-start justify-start pt-3 px-[13px] pb-2 z-[3] border-[1px] border-solid border-shade-white">
-              <div className="flex-1 flex flex-row items-start justify-between gap-[20px]">
+            <div className="z-[3] flex flex-row items-start justify-start self-stretch border-[1px] border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+              <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
                 <input
-                  className="w-[29px] [border:none] [outline:none] bg-[transparent] h-5 flex flex-col items-start justify-start pt-1 px-0 pb-0 box-border font-dm-sans font-bold text-base text-black"
+                  className="box-border flex h-5 w-[29px] flex-col items-start justify-start bg-[transparent] px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none]"
                   placeholder="100"
                   type="text"
                 />
                 <img
-                  className="h-6 w-6 relative"
+                  className="relative h-6 w-6"
                   alt=""
                   src="/coin-colorfull.png"
                 />
               </div>
             </div>
           </div>
-          <div className="w-[236px] flex flex-row items-start justify-start pt-0 px-0 pb-[5.6px] box-border text-xs">
-            <div className="flex-1 rounded-21xl bg-gray-400 flex flex-row items-start justify-start pt-[3px] px-[15px] pb-1 gap-[13px] z-[3] border-[1px] border-solid border-shade-white">
-              <div className="h-[26px] w-[236px] relative rounded-21xl bg-gray-400 box-border hidden border-[1px] border-solid border-shade-white" />
-              <div className="flex flex-col items-start justify-start pt-[3px] px-0 pb-0">
+          <div className="box-border flex w-[236px] flex-row items-start justify-start px-0 pb-[5.6px] pt-0 text-xs">
+            <div className="z-[3] flex flex-1 flex-row items-start justify-start gap-[13px] rounded-21xl border-[1px] border-solid border-shade-white bg-gray-400 px-[15px] pb-1 pt-[3px]">
+              <div className="relative box-border hidden h-[26px] w-[236px] rounded-21xl border-[1px] border-solid border-shade-white bg-gray-400" />
+              <div className="flex flex-col items-start justify-start px-0 pb-0 pt-[3px]">
                 <img
-                  className="w-2.5 h-2.5 relative overflow-hidden shrink-0 z-[4]"
+                  className="relative z-[4] h-2.5 w-2.5 shrink-0 overflow-hidden"
                   alt=""
                   src="/search.png"
                 />
               </div>
-              <div className="w-[158px] relative font-medium inline-block shrink-0 z-[4]">
+              <div className="relative z-[4] inline-block w-[158px] shrink-0 font-medium">
                 Choose the University
               </div>
             </div>
           </div>
-          <div className="flex flex-row items-start justify-start py-0 px-px text-center">
-            <div className="flex flex-col items-start justify-start z-[3]">
+          <div className="flex flex-row items-start justify-start px-px py-0 text-center">
+            <div className="z-[3] flex flex-col items-start justify-start">
               <div className="flex flex-row items-start justify-start gap-[12px]">
-                <button className="cursor-pointer p-3.5 bg-gray-500 rounded flex flex-row items-center justify-center border-[1px] border-solid border-shade-white">
+                <button className="flex cursor-pointer flex-row items-center justify-center rounded border-[1px] border-solid border-shade-white bg-gray-500 p-3.5">
                   <div className="flex flex-col items-center justify-center">
-                    <b className="relative text-base leading-[16px] inline-block font-dm-sans text-shade-white text-center min-w-[73px]">
+                    <b className="relative inline-block min-w-[73px] text-center font-dm-sans text-base leading-[16px] text-shade-white">
                       Astana IT
                     </b>
                   </div>
                 </button>
-                <div className="w-[46px] rounded box-border flex flex-row items-center justify-center p-3.5 border-[1px] border-solid border-shade-white">
-                  <b className="relative leading-[16px] inline-block min-w-[15px]">
+                <div className="box-border flex w-[46px] flex-row items-center justify-center rounded border-[1px] border-solid border-shade-white p-3.5">
+                  <b className="relative inline-block min-w-[15px] leading-[16px]">
                     IS
                   </b>
                 </div>
@@ -83,85 +83,85 @@ const Calculator: NextPage = () => {
             </div>
           </div>
           <button
-            className="cursor-pointer [border:none] p-0 bg-[transparent] flex flex-row items-start justify-start z-[3]"
+            className="z-[3] flex cursor-pointer flex-row items-start justify-start bg-[transparent] p-0 [border:none]"
             onClick={onParallelProcessorClick}
           >
-            <div className="rounded bg-shade-white flex flex-row items-start justify-start py-4 px-[31px] whitespace-nowrap">
-              <b className="relative text-base leading-[16px] inline-block font-dm-sans text-blueviolet-100 text-center min-w-[122px]">
+            <div className="flex flex-row items-start justify-start whitespace-nowrap rounded bg-shade-white px-[31px] py-4">
+              <b className="relative inline-block min-w-[122px] text-center font-dm-sans text-base leading-[16px] text-blueviolet-100">
                 Calculate again
               </b>
             </div>
           </button>
         </div>
-        <div className="h-[196px] flex flex-col items-start justify-start pt-3 px-0 pb-0 box-border">
-          <div className="w-0.5 flex-1 relative bg-plum z-[3]" />
+        <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
+          <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
         </div>
-        <div className="flex-1 flex flex-col items-start justify-start pt-1 px-0 pb-0 box-border min-w-[235px] max-w-full text-lg mq1050:flex-1">
-          <div className="self-stretch flex flex-col items-start justify-start gap-[68px] mq450:gap-[34px]">
-            <div className="w-[158px] flex flex-col items-start justify-start gap-[12px]">
-              <div className="self-stretch flex flex-row items-center justify-between gap-[20px] z-[4]">
-                <div className="relative leading-[130%] inline-block min-w-[48px]">
+        <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
+          <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+            <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
+              <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                <div className="relative inline-block min-w-[48px] leading-[130%]">
                   B057:
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[8px] text-center">
                   <div className="flex flex-row items-center justify-start">
-                    <div className="relative leading-[16px] inline-block min-w-[36px]">
+                    <div className="relative inline-block min-w-[36px] leading-[16px]">
                       70%
                     </div>
                   </div>
                   <img
-                    className="h-5 w-5 relative"
+                    className="relative h-5 w-5"
                     alt=""
                     src="/coin-transparent.png"
                   />
                 </div>
               </div>
-              <div className="self-stretch flex flex-row items-center justify-between gap-[20px] z-[3]">
-                <div className="relative leading-[130%] inline-block min-w-[49px]">
+              <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                <div className="relative inline-block min-w-[49px] leading-[130%]">
                   B058:
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[7px] text-center">
                   <div className="flex flex-row items-center justify-start">
-                    <div className="relative leading-[16px] inline-block min-w-[37px]">
+                    <div className="relative inline-block min-w-[37px] leading-[16px]">
                       65%
                     </div>
                   </div>
                   <img
-                    className="h-5 w-5 relative"
+                    className="relative h-5 w-5"
                     alt=""
                     src="/coin-transparent.png"
                   />
                 </div>
               </div>
-              <div className="self-stretch flex flex-row items-center justify-between gap-[20px] z-[3]">
-                <div className="relative leading-[130%] inline-block min-w-[49px]">
+              <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                <div className="relative inline-block min-w-[49px] leading-[130%]">
                   B059:
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[8px] text-center">
                   <div className="flex flex-row items-center justify-start">
-                    <div className="relative leading-[16px] inline-block min-w-[36px]">
+                    <div className="relative inline-block min-w-[36px] leading-[16px]">
                       62%
                     </div>
                   </div>
                   <img
-                    className="h-5 w-5 relative"
+                    className="relative h-5 w-5"
                     alt=""
                     src="/coin-transparent.png"
                   />
                 </div>
               </div>
             </div>
-            <div className="self-stretch flex flex-row items-center justify-between gap-[20px] z-[3] text-3xl mq450:flex-wrap">
-              <h3 className="m-0 w-[19px] relative text-inherit leading-[29px] font-medium font-inherit whitespace-pre-wrap inline-block mq450:text-lg mq450:leading-[23px]">{`IS  `}</h3>
+            <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch text-3xl mq450:flex-wrap">
+              <h3 className="font-inherit relative m-0 inline-block w-[19px] whitespace-pre-wrap text-inherit font-medium leading-[29px] mq450:text-lg mq450:leading-[23px]">{`IS  `}</h3>
               <div className="h-4 w-[39px]" />
               <div className="flex flex-row items-center justify-start gap-[8px] text-center">
                 <div className="flex flex-row items-center justify-start">
-                  <div className="relative leading-[16px] font-medium inline-block min-w-[43px] mq450:text-lg mq450:leading-[13px]">
+                  <div className="relative inline-block min-w-[43px] font-medium leading-[16px] mq450:text-lg mq450:leading-[13px]">
                     75%
                   </div>
                 </div>
                 <img
-                  className="h-5 w-5 relative"
+                  className="relative h-5 w-5"
                   alt=""
                   src="/coin-transparent.png"
                 />
@@ -170,7 +170,7 @@ const Calculator: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="w-[300px] h-[300px] absolute !m-[0] right-[-285px] bottom-[-158.8px] [filter:blur(400px)] rounded-[50%] bg-blueviolet-200 z-[5]" />
+      <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-[0] h-[300px] w-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
     </div>
   )
 }

@@ -41,21 +41,21 @@ const Header: NextPage = () => {
 
   return (
     <section className="!sticky !top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <header className="h-[88px] flex-1 flex flex-col items-start lg:justify-start py-5 px-0 box-border gap-[20px] max-w-full text-left text-8xl text-blueviolet-200 font-headings-desktop-poppins-16px-regular">
-        <div className="w-[158px] h-12 hidden" />
-        <div className="self-stretch flex flex-row items-start justify-start py-0 px-20 box-border max-w-full mq750:pl-10 mq750:pr-10 mq750:box-border">
-          <div className="flex-1 flex flex-row items-start justify-start gap-[24px] max-w-full">
-            <div className="w-[143px] flex flex-col items-start justify-start pt-[14.5px] pb-0 pr-4 pl-0 box-border">
-              <h2 className="m-0 self-stretch relative text-inherit leading-[19px] font-bold font-inherit whitespace-nowrap">
+      <header className="box-border flex h-[88px] max-w-full flex-1 flex-col items-start gap-[20px] px-0 py-5 text-left font-headings-desktop-poppins-16px-regular text-8xl text-blueviolet-200 lg:justify-start">
+        <div className="hidden h-12 w-[158px]" />
+        <div className="box-border flex max-w-full flex-row items-start justify-start self-stretch px-20 py-0 mq750:box-border mq750:px-10">
+          <div className="flex max-w-full flex-1 flex-row items-start justify-start gap-[24px]">
+            <div className="box-border flex w-[143px] flex-col items-start justify-start pb-0 pl-0 pr-4 pt-[14.5px]">
+              <h2 className="font-inherit relative m-0 self-stretch whitespace-nowrap text-inherit font-bold leading-[19px]">
                 <span>u</span>
                 <span className="text-shade-white">STUDY</span>
               </h2>
             </div>
-            <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0 mq1225:flex-1">
-              <div className="w-px h-10 relative bg-neutrals-3" />
+            <div className="flex flex-col items-start justify-start px-0 pb-0 pt-1 mq1225:flex-1">
+              <div className="relative h-10 w-px bg-neutrals-3" />
             </div>
-            <nav className="m-0 flex-1 flex flex-col items-start justify-start pt-[13.5px] px-0 pb-0 box-border max-w-full mq1225:hidden">
-              <nav className="m-0 w-[468.9px] flex flex-row items-start justify-between gap-[20px] max-w-full text-left text-base text-lightsteelblue-200 font-dm-sans">
+            <nav className="m-0 box-border flex max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-[13.5px] mq1225:hidden">
+              <nav className="m-0 flex w-[468.9px] max-w-full flex-row items-start justify-between gap-[20px] text-left font-dm-sans text-base text-lightsteelblue-200">
                 <div className="relative inline-block min-w-[46.9px] shrink-0">
                   About
                 </div>
@@ -65,7 +65,7 @@ const Header: NextPage = () => {
                 <div className="relative inline-block min-w-[63px] shrink-0">
                   Colleges
                 </div>
-                <div className="relative inline-block min-w-[124px] whitespace-nowrap shrink-0">
+                <div className="relative inline-block min-w-[124px] shrink-0 whitespace-nowrap">
                   Career guidance
                 </div>
                 <div className="relative inline-block min-w-[31px] shrink-0">
@@ -73,7 +73,7 @@ const Header: NextPage = () => {
                 </div>
               </nav>
             </nav>
-            <div className="flex flex-row items-center justify-start gap-[24px] text-center text-base text-shade-white font-dm-sans">
+            <div className="flex flex-row items-center justify-start gap-[24px] text-center font-dm-sans text-base text-shade-white">
               <Select>
                 <SelectTrigger className="w-[80px] !py-6">
                   <SelectValue placeholder="EN" />
@@ -91,17 +91,17 @@ const Header: NextPage = () => {
               </Select>
 
               <img
-                className="h-[50px] w-[50px] mq1225:inline-block hidden"
+                className="hidden h-[50px] w-[50px] mq1225:inline-block"
                 alt=""
                 src="/burger-menu.png"
               />
 
               <div
-                className="flex flex-row items-start justify-start cursor-pointer mq1225:hidden"
+                className="flex cursor-pointer flex-row items-start justify-start mq1225:hidden"
                 onClick={onButtonsContainerClick}
               >
-                <div className="rounded bg-blueviolet-200 flex flex-row items-center justify-center py-4 px-[23px] whitespace-nowrap">
-                  <b className="relative leading-[16px] inline-block min-w-[112px]">
+                <div className="flex flex-row items-center justify-center whitespace-nowrap rounded bg-blueviolet-200 px-[23px] py-4">
+                  <b className="relative inline-block min-w-[112px] leading-[16px]">
                     Sign Up/Log In
                   </b>
                 </div>
@@ -109,7 +109,7 @@ const Header: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="self-stretch h-px relative bg-neutrals-2 overflow-hidden shrink-0" />
+        <div className="relative h-px shrink-0 self-stretch overflow-hidden bg-neutrals-2" />
       </header>
     </section>
   )

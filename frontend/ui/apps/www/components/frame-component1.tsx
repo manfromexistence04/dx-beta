@@ -6,15 +6,15 @@ import TarifPlan from "./tarif-plan"
 
 const FrameComponent1: NextPage = () => {
   return (
-    <div className="w-full overflow-hidden relative flex flex-col lg:flex-row items-center space-y-3 lg:space-x-7 justify-center mx-auto !p-0 min-h-max">
+    <div className="relative mx-auto flex min-h-max w-full flex-col items-center justify-center space-y-3 overflow-hidden !p-0 lg:flex-row lg:space-x-7">
       <img
-        className="absolute my-auto left-0 w-[250px] h-[700px] object-cover z-[3]"
+        className="absolute left-0 z-[3] my-auto h-[700px] w-[250px] object-cover"
         loading="lazy"
         alt=""
         src="/ellipse-1573.png"
       />
       <img
-        className="absolute my-auto left-[90%] w-[300px] h-[700px] object-contain z-[4]"
+        className="absolute left-[90%] z-[4] my-auto h-[700px] w-[300px] object-contain"
         loading="lazy"
         alt=""
         src="/ellipse-1574.png"
