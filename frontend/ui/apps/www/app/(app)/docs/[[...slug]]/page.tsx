@@ -90,10 +90,10 @@ export default async function DocPage({ params }: DocPageProps) {
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
         <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
-          <div className="overflow-hidden text-ellipsis whitespace-nowrap">
+          <div className="truncate">
             Docs
           </div>
-          <ChevronRightIcon className="h-4 w-4" />
+          <ChevronRightIcon className="size-4" />
           <div className="font-medium text-foreground">{doc.title}</div>
         </div>
         <div className="space-y-2">
@@ -116,7 +116,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 Docs
-                <ExternalLinkIcon className="h-3 w-3" />
+                <ExternalLinkIcon className="size-3" />
               </Link>
             )}
             {doc.links?.api && (
@@ -127,7 +127,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 API Reference
-                <ExternalLinkIcon className="h-3 w-3" />
+                <ExternalLinkIcon className="size-3" />
               </Link>
             )}
           </div>

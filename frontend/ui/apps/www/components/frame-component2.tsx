@@ -6,7 +6,7 @@ const FrameComponent2: NextPage = () => {
   return (
     <section className="!mx-auto box-border flex w-[1395.1px] max-w-full flex-row items-start justify-end pb-[105.2px] pl-2 pr-[7.7px] pt-0 text-left font-headings-desktop-poppins-16px-regular text-45xl text-gainsboro-100 mq1050:box-border mq1050:pb-[68px] mq450:box-border mq450:pb-11">
       <div className="flex max-w-full flex-1 flex-row items-start justify-start gap-[6.4px] mq1225:flex-wrap">
-        <div className="box-border flex w-[630px] min-w-[630px] max-w-full flex-col items-start justify-start px-[10%] pb-0 pt-[118px] lg:px-0 mq1225:flex-1 mq750:box-border mq750:min-w-full mq750:pt-[77px]">
+        <div className="box-border flex w-[630px] min-w-[630px] max-w-full flex-col items-start justify-start px-[10%] pb-0 pt-[118px] mq1225:flex-1 mq750:box-border mq750:min-w-full mq750:pt-[77px] lg:px-0">
           <div className="flex max-w-full flex-col items-start justify-start gap-[13px] self-stretch">
             <div className="flex max-w-full flex-col items-start justify-start gap-[40px] self-stretch mq750:gap-[20px]">
               <h1 className="font-inherit relative z-[1] m-0 inline-block w-[529.9px] max-w-full text-inherit font-bold leading-[100%] mq750:text-32xl mq750:leading-[51px] mq450:text-19xl mq450:leading-[38px]">
@@ -28,7 +28,7 @@ const FrameComponent2: NextPage = () => {
                   </h3>
                 </div>
                 <img
-                  className="relative h-6 w-6"
+                  className="relative size-6"
                   loading="lazy"
                   alt=""
                   src="/arrowupright.png"
@@ -39,10 +39,10 @@ const FrameComponent2: NextPage = () => {
           </div>
         </div>
         <div className="relative h-[802px] min-w-[520px] max-w-full flex-1 !overflow-hidden overflow-x-auto mq750:min-w-full">
-          <div className="absolute inset-y-[0px] left-[87.6px] z-[1] h-full w-[549px] overflow-hidden rounded-b-none rounded-t-281xl bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]">
-            <div className="absolute left-[0px] top-[0px] hidden h-full w-full rounded-b-none rounded-t-281xl bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]" />
+          <div className="absolute inset-y-0 left-[87.6px] z-[1] h-full w-[549px] overflow-hidden rounded-b-none rounded-t-281xl bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]">
+            <div className="absolute left-0 top-0 hidden size-full rounded-b-none rounded-t-281xl bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]" />
             <img
-              className="absolute left-[0px] top-[0px] h-full w-full object-cover"
+              className="absolute left-0 top-0 size-full object-cover"
               alt=""
               src="/mask-group.png"
             />
@@ -53,7 +53,7 @@ const FrameComponent2: NextPage = () => {
             />
           </div>
           <img
-            className="absolute left-[0px] top-[166px] z-[3] h-[215px] w-[198.6px] object-contain"
+            className="absolute left-0 top-[166px] z-[3] h-[215px] w-[198.6px] object-contain"
             alt=""
             src="/group-47331.png"
           />

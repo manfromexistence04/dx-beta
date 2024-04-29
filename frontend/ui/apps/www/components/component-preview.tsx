@@ -110,7 +110,7 @@ export function ComponentPreview({
               <CopyButton
                 value={codeString}
                 variant="outline"
-                className="h-7 w-7 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:size-3.5"
+                className="size-7 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:size-3.5"
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ export function ComponentPreview({
               <React.Suspense
                 fallback={
                   <div className="flex items-center text-sm text-muted-foreground">
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                    <Icons.spinner className="mr-2 size-4 animate-spin" />
                     Loading...
                   </div>
                 }

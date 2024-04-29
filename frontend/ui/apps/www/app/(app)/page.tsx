@@ -27,11 +27,11 @@ import MailPage from "@/app/(app)/examples/mail/page"
 const LandingNewDesign: NextPage = () => {
   return (
     <>
-      <div className="font-dm-sans-desktop-24px-medium text-shade-white relative flex w-full flex-col items-end justify-start overflow-hidden bg-black text-left text-xl leading-[normal] tracking-[normal]">
+      <div className="relative flex w-full flex-col items-end justify-start overflow-hidden bg-black text-left font-dm-sans-desktop-24px-medium text-xl leading-[normal] tracking-[normal] text-shade-white">
         <div className="relative hidden h-[3912px] self-stretch bg-black" />
         <FrameComponent4 />
-        <div className="bg-blueviolet-200 box-border hidden min-h-[162px] w-[633px] max-w-full flex-row items-start justify-start rounded p-4">
-          <b className="mq450:text-base mq450:leading-[16px] relative inline-block h-[100px] max-w-full flex-1 leading-[100%]">
+        <div className="box-border hidden min-h-[162px] w-[633px] max-w-full flex-row items-start justify-start rounded bg-blueviolet-200 p-4">
+          <b className="relative inline-block h-[100px] max-w-full flex-1 leading-[100%] mq450:text-base mq450:leading-[16px]">
             The investor`s stake guarantees the Validator’s goodwill and
             personal intent to build the new ecosystem to enforce the ecosystem
             development. The Ustaking smart contract algorithm of the consensus
@@ -40,88 +40,88 @@ const LandingNewDesign: NextPage = () => {
           </b>
         </div>
         <FrameComponent3 />
-        <div className="font-dm-sans relative hidden h-[496.2px] w-[995.9px] max-w-full">
-          <div className="absolute left-[0px] top-[0.2px] h-full w-full rounded [background:linear-gradient(-72.34deg,_)]" />
+        <div className="relative hidden h-[496.2px] w-[995.9px] max-w-full font-dm-sans">
+          <div className="absolute left-0 top-[0.2px] size-full rounded [background:linear-gradient(-72.34deg,_)]" />
           <img
-            className="absolute left-[0.9px] top-[0px] h-full w-full"
+            className="absolute left-[0.9px] top-0 size-full"
             alt=""
             src="/mask-group.svg"
           />
           <div className="absolute left-[296.9px] top-[32px] h-[434.2px] w-[451px] max-w-full">
-            <div className="absolute left-[0px] top-[64.3px] flex w-full max-w-full flex-col items-start justify-start gap-[24px]">
+            <div className="absolute left-0 top-[64.3px] flex w-full max-w-full flex-col items-start justify-start gap-[24px]">
               <div className="flex w-[607px] max-w-[135%] shrink-0 flex-col items-start justify-start gap-[12px]">
-                <div className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] self-stretch font-medium leading-[130%]">
+                <div className="relative inline-block h-[26px] self-stretch font-medium leading-[130%] mq450:text-base mq450:leading-[21px]">
                   Enter amount of token you want stake
                 </div>
-                <div className="border-shade-white bg-shade-white relative box-border flex w-[302px] flex-row items-center justify-center gap-[12px] border-[1px] border-solid px-[15px] py-3.5 text-base text-black shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
-                  <b className="relative z-[0] inline-block h-4 flex-1 leading-[16px]">
+                <div className="relative box-border flex w-[302px] flex-row items-center justify-center gap-[12px] border-DEFAULT border-solid border-shade-white bg-shade-white px-[15px] py-3.5 text-base text-black shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+                  <b className="relative z-0 inline-block h-4 flex-1 leading-[16px]">
                     1000
                   </b>
                   <img
-                    className="absolute left-[267px] top-[12px] z-[1] !m-[0] h-6 w-6"
+                    className="absolute left-[267px] top-[12px] z-[1] !m-0 size-6"
                     alt=""
                     src="/coin-1.svg"
                   />
                 </div>
               </div>
               <div className="flex max-w-full shrink-0 flex-col items-start justify-start gap-[12px] self-stretch">
-                <div className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] self-stretch font-medium leading-[130%]">
+                <div className="relative inline-block h-[26px] self-stretch font-medium leading-[130%] mq450:text-base mq450:leading-[21px]">
                   Choose the Tarif plan that seems to you enough
                 </div>
                 <div className="relative h-[90px] w-[417px] max-w-full text-center text-base">
-                  <div className="absolute left-[0px] top-[0px] flex flex-row items-start justify-start gap-[12px]">
-                    <div className="border-shade-white box-border flex w-[137px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid bg-gray-500 px-[30px] py-3.5 text-lg">
+                  <div className="absolute left-0 top-0 flex flex-row items-start justify-start gap-[12px]">
+                    <div className="box-border flex w-[137px] flex-row items-center justify-center whitespace-nowrap rounded border-DEFAULT border-solid border-shade-white bg-gray-500 px-[30px] py-3.5 text-lg">
                       <b className="relative inline-block h-4 leading-[16px]">
                         6 month
                       </b>
                     </div>
-                    <div className="border-shade-white box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid px-[31px] py-3.5">
+                    <div className="box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-DEFAULT border-solid border-shade-white px-[31px] py-3.5">
                       <b className="relative inline-block h-4 leading-[16px]">
                         1 year
                       </b>
                     </div>
-                    <div className="border-shade-white box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-[1px] border-solid px-[29px] py-3.5">
+                    <div className="box-border flex w-[118px] flex-row items-center justify-center whitespace-nowrap rounded border-DEFAULT border-solid border-shade-white px-[29px] py-3.5">
                       <b className="relative inline-block h-4 leading-[16px]">
                         3 years
                       </b>
                     </div>
                   </div>
-                  <div className="mq450:text-base mq450:leading-[21px] absolute left-[0px] top-[64px] text-left text-xl font-medium leading-[130%]">
+                  <div className="absolute left-0 top-[64px] text-left text-xl font-medium leading-[130%] mq450:text-base mq450:leading-[21px]">
                     5% per year
                   </div>
                 </div>
               </div>
-              <div className="border-silver relative box-border h-px self-stretch border-t-[1px] border-solid" />
+              <div className="relative box-border h-px self-stretch border-t-DEFAULT border-solid border-silver" />
               <div className="box-border flex w-[202px] shrink-0 flex-col items-start justify-start gap-[4px] py-0 pl-0 pr-5">
                 <div className="flex flex-row items-center justify-start gap-[12px] self-stretch">
-                  <b className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] flex-1 leading-[130%]">
+                  <b className="relative inline-block h-[26px] flex-1 leading-[130%] mq450:text-base mq450:leading-[21px]">
                     Reward:
                   </b>
-                  <div className="font-headings-desktop-poppins-16px-regular box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center">
+                  <div className="box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center font-headings-desktop-poppins-16px-regular">
                     <div className="flex flex-row items-center justify-start self-stretch rounded px-0 py-3">
-                      <div className="mq450:text-base mq450:leading-[13px] relative self-stretch font-medium leading-[16px]">
+                      <div className="relative self-stretch font-medium leading-[16px] mq450:text-base mq450:leading-[13px]">
                         50
                       </div>
                     </div>
                     <img
-                      className="relative h-6 w-6"
+                      className="relative size-6"
                       alt=""
                       src="/coin-2.svg"
                     />
                   </div>
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[10px] self-stretch">
-                  <b className="mq450:text-base mq450:leading-[21px] relative inline-block h-[26px] flex-1 leading-[130%]">
+                  <b className="relative inline-block h-[26px] flex-1 leading-[130%] mq450:text-base mq450:leading-[21px]">
                     Cashback:
                   </b>
-                  <div className="font-headings-desktop-poppins-16px-regular box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center">
+                  <div className="box-border flex h-10 flex-row items-center justify-start gap-[8px] px-2 py-0 text-center font-headings-desktop-poppins-16px-regular">
                     <div className="flex flex-row items-center justify-start self-stretch rounded px-0 py-3">
-                      <div className="mq450:text-base mq450:leading-[13px] relative self-stretch font-medium leading-[16px]">
+                      <div className="relative self-stretch font-medium leading-[16px] mq450:text-base mq450:leading-[13px]">
                         15
                       </div>
                     </div>
                     <img
-                      className="relative h-6 w-6"
+                      className="relative size-6"
                       alt=""
                       src="/coin-3.svg"
                     />
@@ -129,7 +129,7 @@ const LandingNewDesign: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="font-headings-desktop-poppins-16px-regular text-21xl mq750:text-13xl mq750:leading-[32px] mq450:text-5xl mq450:leading-[24px] absolute left-[0.1px] top-[0px] !bg-clip-text font-semibold leading-[100%] text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#fff,_#fff),_#fff]">
+            <div className="absolute left-[0.1px] top-0 !bg-clip-text font-headings-desktop-poppins-16px-regular text-21xl font-semibold leading-[100%] text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#fff,_#fff),_#fff] mq750:text-13xl mq750:leading-[32px] mq450:text-5xl mq450:leading-[24px]">
               Calculator
             </div>
           </div>
@@ -137,7 +137,7 @@ const LandingNewDesign: NextPage = () => {
         <FrameComponent2 />
         <section className="flex w-full flex-row items-start justify-center px-[10%] pb-32 lg:px-0">
           <div className="flex w-full flex-col items-center justify-center space-y-5">
-            <h1 className="text-bold !text-37xl !m-0 flex w-full items-center justify-center text-center">
+            <h1 className="text-bold !m-0 flex w-full items-center justify-center text-center !text-37xl">
               A new way to apply
             </h1>
             <FrameComponent1 />

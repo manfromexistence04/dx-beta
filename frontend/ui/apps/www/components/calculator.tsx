@@ -10,15 +10,15 @@ const Calculator: NextPage = () => {
 
   return (
     <div className="relative z-[1] mx-auto mb-64 box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-sm bg-[#804DFE] px-12 pb-[35px] pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
-      <div className="absolute inset-[0px] !m-[0] h-full w-full">
-        <div className="absolute inset-[0px] h-full w-full rounded [background:linear-gradient(-84.28deg,_)]" />
+      <div className="absolute inset-0 !m-0 size-full">
+        <div className="absolute inset-0 size-full rounded [background:linear-gradient(-84.28deg,_)]" />
         <img
-          className="absolute inset-[0px] z-[1] h-full max-h-full w-full max-w-full overflow-hidden"
+          className="absolute inset-0 z-[1] size-full max-h-full max-w-full overflow-hidden"
           alt=""
           src="/mask-group-2.png"
         />
         <img
-          className="absolute inset-[0px] z-[2] h-full max-h-full w-full max-w-full overflow-hidden"
+          className="absolute inset-0 z-[2] size-full max-h-full max-w-full overflow-hidden"
           alt=""
           src="/mask-group-3.png"
         />
@@ -34,15 +34,15 @@ const Calculator: NextPage = () => {
             <div className="relative z-[3] inline-block w-[246.5px] leading-[21px]">
               Enter amount of score
             </div>
-            <div className="z-[3] flex flex-row items-start justify-start self-stretch border-[1px] border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+            <div className="z-[3] flex flex-row items-start justify-start self-stretch border-DEFAULT border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
               <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
                 <input
-                  className="box-border flex h-5 w-[29px] flex-col items-start justify-start bg-[transparent] px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none]"
+                  className="box-border flex h-5 w-[29px] flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none]"
                   placeholder="100"
                   type="text"
                 />
                 <img
-                  className="relative h-6 w-6"
+                  className="relative size-6"
                   alt=""
                   src="/coin-colorfull.png"
                 />
@@ -50,11 +50,11 @@ const Calculator: NextPage = () => {
             </div>
           </div>
           <div className="box-border flex w-[236px] flex-row items-start justify-start px-0 pb-[5.6px] pt-0 text-xs">
-            <div className="z-[3] flex flex-1 flex-row items-start justify-start gap-[13px] rounded-21xl border-[1px] border-solid border-shade-white bg-gray-400 px-[15px] pb-1 pt-[3px]">
-              <div className="relative box-border hidden h-[26px] w-[236px] rounded-21xl border-[1px] border-solid border-shade-white bg-gray-400" />
+            <div className="z-[3] flex flex-1 flex-row items-start justify-start gap-[13px] rounded-21xl border-DEFAULT border-solid border-shade-white bg-gray-400 px-[15px] pb-1 pt-[3px]">
+              <div className="relative box-border hidden h-[26px] w-[236px] rounded-21xl border-DEFAULT border-solid border-shade-white bg-gray-400" />
               <div className="flex flex-col items-start justify-start px-0 pb-0 pt-[3px]">
                 <img
-                  className="relative z-[4] h-2.5 w-2.5 shrink-0 overflow-hidden"
+                  className="relative z-[4] size-2.5 shrink-0 overflow-hidden"
                   alt=""
                   src="/search.png"
                 />
@@ -67,14 +67,14 @@ const Calculator: NextPage = () => {
           <div className="flex flex-row items-start justify-start px-px py-0 text-center">
             <div className="z-[3] flex flex-col items-start justify-start">
               <div className="flex flex-row items-start justify-start gap-[12px]">
-                <button className="flex cursor-pointer flex-row items-center justify-center rounded border-[1px] border-solid border-shade-white bg-gray-500 p-3.5">
+                <button className="flex cursor-pointer flex-row items-center justify-center rounded border-DEFAULT border-solid border-shade-white bg-gray-500 p-3.5">
                   <div className="flex flex-col items-center justify-center">
                     <b className="relative inline-block min-w-[73px] text-center font-dm-sans text-base leading-[16px] text-shade-white">
                       Astana IT
                     </b>
                   </div>
                 </button>
-                <div className="box-border flex w-[46px] flex-row items-center justify-center rounded border-[1px] border-solid border-shade-white p-3.5">
+                <div className="box-border flex w-[46px] flex-row items-center justify-center rounded border-DEFAULT border-solid border-shade-white p-3.5">
                   <b className="relative inline-block min-w-[15px] leading-[16px]">
                     IS
                   </b>
@@ -83,7 +83,7 @@ const Calculator: NextPage = () => {
             </div>
           </div>
           <button
-            className="z-[3] flex cursor-pointer flex-row items-start justify-start bg-[transparent] p-0 [border:none]"
+            className="z-[3] flex cursor-pointer flex-row items-start justify-start bg-transparent p-0 [border:none]"
             onClick={onParallelProcessorClick}
           >
             <div className="flex flex-row items-start justify-start whitespace-nowrap rounded bg-shade-white px-[31px] py-4">
@@ -110,7 +110,7 @@ const Calculator: NextPage = () => {
                     </div>
                   </div>
                   <img
-                    className="relative h-5 w-5"
+                    className="relative size-5"
                     alt=""
                     src="/coin-transparent.png"
                   />
@@ -127,7 +127,7 @@ const Calculator: NextPage = () => {
                     </div>
                   </div>
                   <img
-                    className="relative h-5 w-5"
+                    className="relative size-5"
                     alt=""
                     src="/coin-transparent.png"
                   />
@@ -144,7 +144,7 @@ const Calculator: NextPage = () => {
                     </div>
                   </div>
                   <img
-                    className="relative h-5 w-5"
+                    className="relative size-5"
                     alt=""
                     src="/coin-transparent.png"
                   />
@@ -161,7 +161,7 @@ const Calculator: NextPage = () => {
                   </div>
                 </div>
                 <img
-                  className="relative h-5 w-5"
+                  className="relative size-5"
                   alt=""
                   src="/coin-transparent.png"
                 />
@@ -170,7 +170,7 @@ const Calculator: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-[0] h-[300px] w-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
+      <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-0 size-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
     </div>
   )
 }

@@ -1,0 +1,23 @@
+{
+  "title": "Figma",
+  "description": "Every component recreated in Figma. With customizable props, typography and icons.",
+  "published": true,
+  "featured": false,
+  "component": false,
+  "toc": true,
+  "body": {
+    "raw": "\nThe Figma UI Kit is open sourced by [Pietro Schirano](https://twitter.com/skirano).\n\n<AspectRatio ratio={16 / 9} className=\"w-full mt-4\">\n  <iframe\n    src=\"https://embed.figma.com/file/1203061493325953101/hf_embed?community_viewer=true&embed_host=shadcn&hub_file_id=1203061493325953101&kind=&viewer=1\"\n    className=\"h-full w-full overflow-hidden rounded-lg border bg-muted\"\n  />\n</AspectRatio>\n\n## Grab a copy\n\nhttps://www.figma.com/community/file/1203061493325953101\n",
+    "code": "var Component=(()=>{var l=Object.create;var r=Object.defineProperty;var h=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,u=Object.prototype.hasOwnProperty;var g=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),b=(t,e)=>{for(var i in e)r(t,i,{get:e[i],enumerable:!0})},c=(t,e,i,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of p(e))!u.call(t,o)&&o!==i&&r(t,o,{get:()=>e[o],enumerable:!(a=h(e,o))||a.enumerable});return t};var w=(t,e,i)=>(i=t!=null?l(f(t)):{},c(e||!t||!t.__esModule?r(i,\"default\",{value:t,enumerable:!0}):i,t)),y=t=>c(r({},\"__esModule\",{value:!0}),t);var m=g((M,s)=>{s.exports=_jsx_runtime});var v={};b(v,{default:()=>j,frontmatter:()=>_});var n=w(m()),_={title:\"Figma\",description:\"Every component recreated in Figma. With customizable props, typography and icons.\"};function d(t){let e=Object.assign({p:\"p\",a:\"a\",h2:\"h2\",span:\"span\"},t.components),{AspectRatio:i}=e;return i||k(\"AspectRatio\",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(e.p,{children:[\"The Figma UI Kit is open sourced by \",(0,n.jsx)(e.a,{href:\"https://twitter.com/skirano\",children:\"Pietro Schirano\"}),\".\"]}),`\n`,(0,n.jsx)(i,{ratio:16/9,className:\"w-full mt-4\",children:(0,n.jsx)(\"iframe\",{src:\"https://embed.figma.com/file/1203061493325953101/hf_embed?community_viewer=true&embed_host=shadcn&hub_file_id=1203061493325953101&kind=&viewer=1\",className:\"h-full w-full overflow-hidden rounded-lg border bg-muted\"})}),`\n`,(0,n.jsxs)(e.h2,{id:\"grab-a-copy\",children:[(0,n.jsx)(e.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#grab-a-copy\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"Grab a copy\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.a,{href:\"https://www.figma.com/community/file/1203061493325953101\",children:\"https://www.figma.com/community/file/1203061493325953101\"})})]})}function x(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,Object.assign({},t,{children:(0,n.jsx)(d,t)})):d(t)}var j=x;function k(t,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return y(v);})();\n;return Component;"
+  },
+  "_id": "docs/figma.mdx",
+  "_raw": {
+    "sourceFilePath": "docs/figma.mdx",
+    "sourceFileName": "figma.mdx",
+    "sourceFileDir": "docs",
+    "contentType": "mdx",
+    "flattenedPath": "docs/figma"
+  },
+  "type": "Doc",
+  "slug": "/docs/figma",
+  "slugAsParams": "figma"
+}

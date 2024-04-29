@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "ustudy",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
@@ -12,8 +12,7 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "turbo run format:write && bun run turbo:fix && turbo run build",
-
+    "build": "turbo run format:write && turbo run lint:fix && turbo run build",
     "build:cli": "turbo --filter=shadcn-ui build",
     "build:registry": "pnpm --filter=www build:registry",
     "dev": "turbo run dev --parallel",
@@ -33,7 +32,6 @@
     "pub:release": "cd packages/cli && pnpm pub:release",
     "test": "turbo run test --force"
   },
-  "packageManager": "pnpm@8.5.1",
   "dependencies": {
     "@babel/core": "^7.22.1",
     "@changesets/changelog-github": "^0.4.8",

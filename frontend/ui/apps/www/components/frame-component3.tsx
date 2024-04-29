@@ -26,15 +26,15 @@ const FrameComponent3: NextPage = () => {
           </div>
         </div>
         <div className="relative flex h-[500px] w-full max-w-full flex-row items-start justify-start lg:h-[1061px]">
-          <div className="relative z-[1] flex h-full w-full flex-1 items-center justify-center lg:h-[1061px]">
+          <div className="relative z-[1] flex size-full flex-1 items-center justify-center lg:h-[1061px]">
             <img
-              className="transform:scale(1.156) absolute left-1/2  top-1/2 z-[1] h-[100%] w-[100%]  flex-1 -translate-x-1/2 -translate-y-1/2 overflow-hidden object-contain lg:h-full lg:w-full"
+              className="transform:scale(1.156) absolute left-1/2  top-1/2 z-[1] size-full flex-1  -translate-x-1/2 -translate-y-1/2 overflow-hidden object-contain lg:size-full"
               alt=""
               src="/group-985545.png"
             />
           </div>
           <img
-            className="max:h-[60%] max:w-[60%] absolute bottom-[2px] left-1/2 top-1/2 z-[2] !m-[0] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 object-cover lg:h-[900px] lg:w-[900px]"
+            className="max:size-3/5 absolute bottom-[2px] left-1/2 top-1/2 z-[2] !m-0 size-[300px] -translate-x-1/2 -translate-y-1/2 object-cover lg:size-[900px]"
             loading="lazy"
             alt=""
             src="/123114.png"
