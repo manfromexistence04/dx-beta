@@ -1,8 +1,8 @@
 import { cookies } from "next/headers"
 import Image from "next/image"
 
-import { Mail } from "@/app/examples/mail/components/mail"
-import { accounts, mails } from "@/app/examples/mail/data"
+import { Mail } from "@/app/(app)/examples/mail/components/mail"
+import { accounts, mails } from "@/app/(app)/examples/mail/data"
 
 export default function MailPage() {
   const layout = cookies().get("react-resizable-panels:layout")

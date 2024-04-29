@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/new-york/ui/badge"
 import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
 import { Separator } from "@/registry/new-york/ui/separator"
-import { Mail } from "@/app/examples/mail/data"
-import { useMail } from "@/app/examples/mail/use-mail"
+import { Mail } from "@/app/(app)/examples/mail/data"
+import { useMail } from "@/app/(app)/examples/mail/use-mail"
 
 interface MailListProps {
   items: Mail[]
@@ -37,7 +37,7 @@ export function MailList({ items }: MailListProps) {
                 <div className="flex items-center gap-2">
                   <div className="font-semibold">{item.name}</div>
                   {!item.read && (
-                    <span className="flex h-2 w-2 rounded-full bg-blue-600" />
+                    <span className="flex size-2 rounded-full bg-blue-600" />
                   )}
                 </div>
                 <div

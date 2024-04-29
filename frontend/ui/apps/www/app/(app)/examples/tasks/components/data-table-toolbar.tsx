@@ -5,7 +5,7 @@ import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/registry/new-york/ui/button"
 import { Input } from "@/registry/new-york/ui/input"
-import { DataTableViewOptions } from "@/app/examples/tasks/components/data-table-view-options"
+import { DataTableViewOptions } from "@/app/(app)/examples/tasks/components/data-table-view-options"
 
 import { priorities, statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
@@ -51,7 +51,7 @@ export function DataTableToolbar<TData>({
             className="h-8 px-2 lg:px-3"
           >
             Reset
-            <Cross2Icon className="ml-2 h-4 w-4" />
+            <Cross2Icon className="ml-2 size-4" />
           </Button>
         )}
       </div>

@@ -1,5 +1,5 @@
 import { Separator } from "@/registry/new-york/ui/separator"
-import { AppearanceForm } from "@/app/examples/forms/appearance/appearance-form"
+import { AppearanceForm } from "@/app/(app)/examples/forms/appearance/appearance-form"
 
 export default function SettingsAppearancePage() {
   return (

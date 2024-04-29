@@ -345,3 +345,6 @@ already good,We just need to have a vision to see through it. -->
         // ${chalk.white.italic.dim("[--option]")} ${chalk.white.italic.dim("[--flag]")}
 // • Get stickers, t-shirts, coffee mugs and more: Planet Argon Shop
 // (To exit, press Ctrl+C again or Ctrl+D or type .exit)
+
+
+powershell -c "irm bun.sh/install.ps1|iex"
