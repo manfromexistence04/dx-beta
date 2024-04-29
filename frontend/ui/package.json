@@ -12,7 +12,8 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "bun run format:write && bun run lint:fix && turbo run build",
+    "build": "turbo run format:write && bun run turbo:fix && turbo run build",
+
     "build:cli": "turbo --filter=shadcn-ui build",
     "build:registry": "pnpm --filter=www build:registry",
     "dev": "turbo run dev --parallel",

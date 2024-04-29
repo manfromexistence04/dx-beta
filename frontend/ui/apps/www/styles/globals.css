@@ -9,6 +9,7 @@
 body {
   @apply leading-[normal] m-0;
 }
+
 *,
 ::before,
 ::after {
@@ -16,7 +17,7 @@ body {
 }
 
 @layer base {
-  :root {
+  .dark {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -39,7 +40,7 @@ body {
     --radius: 0.5rem;
   }
 
-  .dark {
+  :root {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -66,9 +67,11 @@ body {
   * {
     @apply border-border;
   }
+
   html {
     @apply scroll-smooth;
   }
+
   body {
     @apply bg-background text-foreground;
     /* font-feature-settings: "rlig" 1, "calt" 1; */

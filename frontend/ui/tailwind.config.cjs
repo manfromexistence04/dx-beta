@@ -138,7 +138,7 @@ module.exports = {
       inherit: "inherit",
     },
     screens: {
-      ...defaultTheme.screens,
+
       mq1225: {
         raw: "screen and (max-width: 1225px)",
       },
@@ -148,6 +148,9 @@ module.exports = {
       mq750: {
         raw: "screen and (max-width: 750px)",
       },
+      
+      ...defaultTheme.screens,
+
       mq450: {
         raw: "screen and (max-width: 450px)",
       },
