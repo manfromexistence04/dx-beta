@@ -13,8 +13,6 @@ export default function AppLayout({ children }: AppLayoutProps) {
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
-      {/* <SiteHeader /> */}
-      {/* <SiteFooter /> */}
     </>
   )
 }

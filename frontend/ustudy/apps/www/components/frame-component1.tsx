@@ -6,7 +6,7 @@ import TarifPlan from "./tarif-plan"
 
 const FrameComponent1: NextPage = () => {
   return (
-    <div className="relative mx-auto flex min-h-max w-full flex-col items-center justify-center space-y-3 overflow-hidden !p-0 lg:flex-row lg:space-x-7">
+    <div className="static mx-auto flex min-h-max w-full flex-col items-center justify-center space-y-3 overflow-hidden !p-0 lg:relative lg:flex-row lg:space-x-7">
       <img
         className="absolute left-0 z-[3] my-auto h-[700px] w-[250px] object-cover"
         loading="lazy"
@@ -37,7 +37,6 @@ const FrameComponent1: NextPage = () => {
         theExpensive="The uStudy "
         qualityAdmissionsAdviceSh="We believe admissions advice should be personal and accessible to any applicant."
       />
-      {/* <div className="h-[286px] w-[296px] absolute !m-[0] bottom-[-2.8px] left-[-257px] [filter:blur(400px)] rounded-[50%] bg-blueviolet-200 shrink-0 z-[2]" /> */}
     </div>
   )
 }

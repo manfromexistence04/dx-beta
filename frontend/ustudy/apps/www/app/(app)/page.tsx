@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils"
 import { Announcement } from "@/components/announcement"
 import Calculator from "@/components/calculator"
 import { ExamplesNav } from "@/components/examples-nav"
-// import FrameComponent from "@/components/frame-component"
 import FrameComponent1 from "@/components/frame-component1"
 import FrameComponent2 from "@/components/frame-component2"
 import FrameComponent3 from "@/components/frame-component3"
@@ -129,7 +128,7 @@ const LandingNewDesign: NextPage = () => {
         <FrameComponent2 />
         <section className="flex w-full flex-row items-start justify-center px-[10%] pb-32 lg:px-0">
           <div className="flex w-full flex-col items-center justify-center space-y-5">
-            <h1 className="text-bold !text-37xl !m-0 flex w-full items-center justify-center text-center">
+            <h1 className="text-bold !text-37xl title !m-0 flex w-full items-center justify-center text-center">
               A new way to apply
             </h1>
             <FrameComponent1 />

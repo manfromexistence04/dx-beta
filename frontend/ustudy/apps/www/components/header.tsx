@@ -49,14 +49,17 @@ const Header: NextPage = () => {
         <div className="hidden h-12 w-[158px]" />
         <div className="mq750:box-border mq750:px-10 box-border flex max-w-full flex-row items-start justify-start self-stretch px-20 py-0">
           <div className="flex max-w-full flex-1 flex-row items-start justify-start gap-[24px]">
-            <div className="box-border flex w-[143px] flex-col items-start justify-start pb-0 pl-0 pr-4 pt-[14.5px]">
+            <div className="box-border flex w-[143px] flex-col items-start justify-start">
               <Link
                 href="/">
-                <h2 className="font-inherit relative m-0 self-stretch whitespace-nowrap font-bold leading-[19px] text-inherit">
-                  <span>u</span>
+                <h2 className="flex flex-row items-center justify-center">
+                  <img
+                    className="size-[20px]"
+                    alt="logo"
+                    src="/logo.png"
+                  />
                   <span className="text-shade-white">STUDY</span>
                 </h2>
-
               </Link>
 
             </div>
@@ -169,15 +172,11 @@ const Header: NextPage = () => {
                   >
                     Sign Up/Log In
                   </Link>
-                  {/* <b className="relative inline-block min-w-[112px] leading-[16px]">
-                    Sign Up/Log In
-                  </b> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <div className="bg-neutrals-2 relative h-px shrink-0 self-stretch overflow-hidden" /> */}
       </header>
     </section>
   )
