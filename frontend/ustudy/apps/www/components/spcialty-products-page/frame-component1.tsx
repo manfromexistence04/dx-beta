@@ -22,7 +22,7 @@ const FrameComponent1: NextPage = () => {
       <img
         className="relative hidden h-[285.4px] w-[186.8px] object-contain"
         alt=""
-        src="/frame-985604.png"
+        src="/circle.png"
       />
       <div className="mt-[-47px] box-border flex h-[399px] w-[132px] flex-col items-start justify-start gap-[99px] p-0">
         <div className="flex flex-1 flex-row items-start justify-start self-stretch py-0 pl-2.5 pr-0">

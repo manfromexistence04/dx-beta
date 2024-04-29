@@ -8,27 +8,6 @@ const FrameComponent: NextPage = () => {
         <section className="min-h-screen w-full">
             <div className="mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5 relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px]">
                 <div className="relative z-0 hidden h-[248px] w-[1440px] max-w-full [background:linear-gradient(180deg,_)]" />
-                {/* <div className="mq750:max-w-full flex w-[500px] max-w-[calc(100%_-_152px)] flex-col items-start justify-start gap-[9px]">
-          <div className="flex flex-row items-start justify-center self-stretch px-5 py-0">
-            <h1 className="title !m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
-            Frequently Asked Questions 
-            </h1>
-            <span className="text-muted">Everything you need to know about our product</span>
-          </div>
-          <div className="border-dimgray rounded-21xl z-[2] box-border flex max-w-full flex-row items-start justify-start gap-[13px] self-stretch border-DEFAULT border-solid bg-black px-[13px] pb-1.5 pt-[5px]">
-            <div className="border-dimgray rounded-21xl relative box-border hidden h-10 w-[500px] max-w-full border-DEFAULT border-solid bg-black" />
-            <img
-              className="relative z-[3] size-[25px] shrink-0 overflow-hidden"
-              alt=""
-              src="/search.png"
-            />
-            <input
-              className="font-headings-desktop-poppins-16px-bold text-dimgray box-border flex h-[21px] w-[49px] flex-col items-start justify-start bg-transparent px-0 pb-0 pt-[5px] text-xs font-medium [border:none] [outline:none]"
-              placeholder="Search"
-              type="text"
-            />
-          </div>
-        </div> */}
                 <div className="flex w-full flex-col items-center justify-center">
                     <h1 className="title !m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
                         Frequently Asked Questions

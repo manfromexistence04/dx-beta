@@ -27,7 +27,7 @@ const Component: NextPage<ComponentType> = ({
     <>
       <Link href="/colleges-products">
         <div
-          className="text-11xl relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left font-headings-desktop-poppins-16px-regular text-shade-white"
+          className="text-11xl font-headings-desktop-poppins-16px-regular text-shade-white relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left"
           style={component14Style}
         >
           <div className="absolute inset-x-0 bottom-0 !m-0 h-[364.7px] w-full rounded [background:linear-gradient(#000,_#000),_#d9d9d9]" />
@@ -45,9 +45,9 @@ const Component: NextPage<ComponentType> = ({
             />
           </div>
           <div className="box-border flex w-[461.6px] max-w-full flex-row items-start justify-start px-[29px] py-0">
-            <div className="flex max-w-full flex-1 flex-row items-end justify-between gap-[20px] mq450:flex-wrap">
+            <div className="mq450:flex-wrap flex max-w-full flex-1 flex-row items-end justify-between gap-[20px]">
               <div className="flex w-[235.4px] flex-col items-start justify-start gap-[19.5px]">
-                <h2 className="font-inherit relative z-[1] m-0 self-stretch text-inherit font-bold leading-[31px] mq750:text-5xl mq750:leading-[24px] mq450:text-lg mq450:leading-[18px]">
+                <h2 className="font-inherit mq750:text-5xl mq750:leading-[24px] mq450:text-lg mq450:leading-[18px] relative z-[1] m-0 self-stretch font-bold leading-[31px] text-inherit">
                   Astana IT
                 </h2>
                 <div className="font-nunito-sans box-border flex w-[108.6px] flex-row items-start justify-start py-0 pl-[4.6px] pr-[5px] text-xs">

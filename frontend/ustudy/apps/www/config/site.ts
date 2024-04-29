@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "shadcn/ui",
-  url: "https://ui.shadcn.com",
+  name: "ustudy",
+  url: "https://manfromexistence",
   ogImage: "https://ui.shadcn.com/og.jpg",
   description:
-    "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
+    "Online Learning Platfrom.",
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn-ui/ui",
+    twitter: "https://twitter.com/manofexistence1",
+    github: "https://github.com/manfromexistence",
   },
 }
 

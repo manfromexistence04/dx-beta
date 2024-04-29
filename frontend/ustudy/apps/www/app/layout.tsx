@@ -11,6 +11,8 @@ import { ThemeSwitcher } from "@/components/theme-switcher"
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
+import { Libre_Franklin } from 'next/font/google'
+import { Cormorant_Garamond } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: {
@@ -75,6 +77,19 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+
+const libre_franklin = Libre_Franklin({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-libre_franklin',
+})
+const cormorant_garamond = Cormorant_Garamond({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-cormorant_garamond',
+  weight: "300"
+})
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
@@ -82,7 +97,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "bg-background min-h-screen font-sans antialiased",
             fontSans.variable
           )}
         >
@@ -93,7 +108,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             disableTransitionOnChange
           >
             <div vaul-drawer-wrapper="">
-              <div className="relative flex min-h-screen flex-col bg-background">
+              <div className="bg-background relative flex min-h-screen flex-col">
                 {children}
               </div>
             </div>

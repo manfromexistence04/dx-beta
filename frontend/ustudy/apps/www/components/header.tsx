@@ -44,7 +44,7 @@ const Header: NextPage = () => {
   const pathname = usePathname()
 
   return (
-    <section className="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full backdrop-blur">
+    <section className=" g-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full backdrop-blur">
       <header className="font-headings-desktop-poppins-16px-regular text-blueviolet-200 box-border flex h-[88px] max-w-full flex-1 flex-col items-start gap-[20px] px-0 py-5 text-left text-8xl lg:justify-start">
         <div className="hidden h-12 w-[158px]" />
         <div className="mq750:box-border mq750:px-10 box-border flex max-w-full flex-row items-start justify-start self-stretch px-20 py-0">
@@ -177,7 +177,7 @@ const Header: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-neutrals-2 relative h-px shrink-0 self-stretch overflow-hidden" />
+        {/* <div className="bg-neutrals-2 relative h-px shrink-0 self-stretch overflow-hidden" /> */}
       </header>
     </section>
   )

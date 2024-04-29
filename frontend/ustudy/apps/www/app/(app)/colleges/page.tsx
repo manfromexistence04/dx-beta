@@ -11,7 +11,7 @@ const SpecialtyPage: NextPage = () => {
     <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-3.5 pt-0 leading-[normal] tracking-[normal]">
       {/* <Header /> */}
       <FrameComponent />
-      <section className="!mx-auto font-headings-desktop-poppins-16px-bold text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px] box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl">
+      <section className="font-headings-desktop-poppins-16px-bold text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px] !mx-auto box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl">
         <div className="mq1050:gap-[40px] mq750:gap-[20px] flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px]">
           <div className="box-border flex max-w-full flex-row items-start justify-end self-stretch py-0 pl-0 pr-0.5">
             <div className="mq1050:gap-[38px] mq750:gap-[19px] flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px]">
