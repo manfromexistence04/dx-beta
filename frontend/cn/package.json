@@ -15,8 +15,7 @@
         "check-lint": "eslint . --ext jsx --ext js --ext ts --ext tsx",
         "fix": "eslint --fix .",
         "check-packages": "yarn clean && yarn compile && yarn test && yarn lint",
-        "test-all": "yarn check-format && yarn check-lint && yarn check-types && yarn build",
-        "prepare": "husky install"
+        "test-all": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.0.5",
