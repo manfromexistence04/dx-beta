@@ -7,6 +7,9 @@ import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import AuthProvider from '@/components/AuthProvider'
 import Navbar from '@/components/Navbar'
+import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
+import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
+import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -28,13 +31,16 @@ export default function MainLayout({ children }) {
               <AtomicState>
                 <FetchConfig baseUrl='/api'>
                   <Navbar />
-                  <div className='max-w-screen-2xl mx-auto py-8 px-6 md:px-8'>
+                  <div className=''>
                     {children}
                   </div>
                 </FetchConfig>
               </AtomicState>
             </AuthProvider>
           </main>
+          <NewYorkToaster />
+              <DefaultToaster />
+              <NewYorkSonner />
         </ThemeProvider>
       </body>
     </html>
