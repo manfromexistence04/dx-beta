@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-
+import Image from "next/image";
 import {
   ArrowDownIcon,
   CalendarIcon,
@@ -26,19 +26,25 @@ export default function VVLogo() {
       <HoverCardTrigger asChild>
         <Link href="/">
           <Button variant="link" className="text-lg">
-            <CodeIcon className="h-6 w-6 mr-2" />
-            Variant Vault
+          <Image
+                alt="Logo"
+                className="aspect-square rounded-full object-cover"
+                height="25"
+                src="/logo.png"
+                width="25"
+              />
+            Ustudy
           </Button>
         </Link>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
           <Avatar>
-            <AvatarImage src="https://avatars.githubusercontent.com/u/66892203?v=4" />
-            <AvatarFallback>VC</AvatarFallback>
+            <AvatarImage src="/emon.jpg" />
+            <AvatarFallback>Emon</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">Built by Christopher Abdo</h4>
+            <h4 className="text-sm font-semibold">Built by Christopher MD MAHABUB HOSSAIN</h4>
             <p className="text-sm">
               Check out my other projects{" "}
               <ArrowDownIcon className="inline-block h-4 w-4" />

@@ -11,26 +11,59 @@ export default function NavLinks() {
   return (
     <div className="flex items-center space-x-6 text-md">
       <Link
-        href="/usage"
+        href="/universities"
         className={cn(
           "transition-colors hover:text-foreground/80",
-          pathname === "/usage" ? "text-foreground" : "text-foreground/60"
+          pathname === "/universities" ? "text-foreground" : "text-foreground/60"
         )}
       >
-        Usage
+        Universities
       </Link>
       <Link
-        href="/text-variants"
+        href="/specialties"
         className={cn(
           "transition-colors hover:text-foreground/80",
-          pathname === "/text-variants"
+          pathname === "/specialties"
             ? "text-foreground"
             : "text-foreground/60"
         )}
       >
-        Text Variants
+        Specialties
       </Link>
-      <h1
+      <Link
+        href="/questions"
+        className={cn(
+          "transition-colors hover:text-foreground/80",
+          pathname === "/questions"
+            ? "text-foreground"
+            : "text-foreground/60"
+        )}
+      >
+        Questions
+      </Link>
+      <Link
+        href="/whiteboard"
+        className={cn(
+          "transition-colors hover:text-foreground/80",
+          pathname === "/whiteboard"
+            ? "text-foreground"
+            : "text-foreground/60"
+        )}
+      >
+        Whiteboard
+      </Link>
+      <Link
+        href="/planner"
+        className={cn(
+          "transition-colors hover:text-foreground/80",
+          pathname === "/planner"
+            ? "text-foreground"
+            : "text-foreground/60"
+        )}
+      >
+        Planner
+      </Link>
+      {/* <h1
         className={cn(
           "cursor-not-allowed",
           pathname === "/page-variants"
@@ -38,8 +71,8 @@ export default function NavLinks() {
             : "text-foreground/60"
         )}
       >
-        Page Variants
-      </h1>
+        Questions
+      </h1> */}
     </div>
   );
 }

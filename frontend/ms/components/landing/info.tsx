@@ -12,21 +12,39 @@ import { HeartFilledIcon } from "@radix-ui/react-icons";
 
 const features = [
   {
-    name: "2M+ Weekly Framer Motion Users.",
+    name: "Effortless Data Entry",
     description:
-      "Framer Motion is one of the most popular animation library for React. Find some quick and easy to use animations for your next project.",
+      "The intuitive interface simplifies adding universities, specialties, and questions. Drag-and-drop functionality or clear wizards can further enhance ease of use.",
     icon: HeartFilledIcon,
   },
   {
-    name: "Easy Integration.",
+    name: "Quick Navigation",
     description:
-      "All the variants are super easy to integrate into your own project. Just copy and paste.",
+      "A well-organized sidebar or menu with clear labels allows Nurzhol to find the needed section instantly, minimizing clicks and maximizing productivity",
     icon: HeartFilledIcon,
   },
   {
-    name: "Beautiful Animations.",
+    name: "Real-Time Previews",
     description:
-      "Hand crafted animations that are simple, subtle, and beautiful.",
+      " Let Nurzhol see how the added information will appear on the Ustudy website, ensuring everything looks polished before publishing.",
+    icon: HeartFilledIcon,
+  },
+  {
+    name: "Clean and Uncluttered Design",
+    description:
+      "A minimalist aesthetic with ample white space keeps the interface focused and reduces cognitive load for Nurzhol",
+    icon: HeartFilledIcon,
+  },
+  {
+    name: "Visually Appealing Elements",
+    description:
+      "Consider incorporating subtle icons or color-coding to categorize different sections, making information visually distinct.",
+    icon: HeartFilledIcon,
+  },
+  {
+    name: "Responsive Design",
+    description:
+      "The admin panel adapts seamlessly across devices, allowing Nurzhol to manage Ustudy content from desktops, tablets, or even mobile phones.",
     icon: HeartFilledIcon,
   },
 ];
@@ -47,7 +65,7 @@ export default function Info() {
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
   };
   return (
-    <div className="overflow-hidden py-24 sm:py-32 mt-12">
+    <div className="overflow-hidden py-1 sm:py-32 mt-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
@@ -70,20 +88,20 @@ export default function Info() {
                   variants={FADE_UP_ANIMATION_VARIANTS}
                   className="text-base font-semibold leading-7 text-muted-foreground"
                 >
-                  Get started quickly
+                  Streamlined Efficiency for Nurzhol
                 </motion.h2>
                 <motion.p
                   variants={FADE_UP_ANIMATION_VARIANTS}
                   className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
                 >
-                  Beautiful Framer Motion Animations
+                  A User-Friendly Experience
                 </motion.p>
                 <motion.p
                   variants={FADE_UP_ANIMATION_VARIANTS}
                   className="mt-6 text-lg leading-8 "
                 >
-                  Ready to use animations for your next project. Just copy and
-                  paste.
+                  Ready to use powers for your next project. Just add,remove,update
+                  and delete data.
                 </motion.p>
 
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 lg:max-w-none">
@@ -110,9 +128,9 @@ export default function Info() {
           <Image
             src="/landing.jpeg"
             alt="Product screenshot"
-            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-            width={2432}
-            height={1442}
+            className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+            width={300}
+            height={300}
           />
         </div>
       </div>

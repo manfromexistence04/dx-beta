@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,14 @@ import VVLogo from "@/components/shared/vv-logo";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import NavSheet from "./nav-sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function MainNav() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +43,7 @@ export default function MainNav() {
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 transition-all duration-200 ${
+      className={`h-20 sticky top-0 z-50 transition-all duration-200 flex items-center justify-start lg:px-[5%] px-12 ${
         isScrolled ? "bg-background/80 backdrop-blur-2xl border-b" : ""
       }`}
       initial={{ y: -100 }}
@@ -43,7 +51,7 @@ export default function MainNav() {
       transition={{ type: "spring", bounce: 0.25 }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
+        className="flex flex-1 items-center justify-between p-2 lg:px-8"
         aria-label="Global"
       >
         <div className="flex items-center gap-x-12 z-50">
@@ -57,7 +65,7 @@ export default function MainNav() {
           <NavSheet />
         </div>
         <div className="hidden lg:flex space-x-1 z-50">
-          <Link
+          {/* <Link
             href="https://www.twitter.com/abdo_eth"
             rel="noreferrer"
             target="_blank"
@@ -74,8 +82,33 @@ export default function MainNav() {
             <Button className="flex items-center" variant="ghost" size="icon">
               <GitHubLogoIcon className="h-4 w-4" />
             </Button>
-          </Link>
+          </Link> */}
           <ModeToggle />
+          <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="secondary" size="icon" className="rounded-full">
+              <Image
+                alt="User"
+                className="aspect-square rounded-full object-cover"
+                height="28"
+                src="/Nurzhol Tabigat.jpg"
+                width="28"
+              />
+              <span className="sr-only">Toggle user menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-[250px] ">
+            <DropdownMenuLabel>Nurzhol Tabigat</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Switch Account</DropdownMenuItem>
+            <DropdownMenuItem>View Database</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>Help</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         </div>
       </nav>
     </motion.header>

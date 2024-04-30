@@ -2,6 +2,8 @@ import IntroText from "@/components/landing/intro-text";
 import Features from "@/components/landing/features";
 import Blockquote from "@/components/landing/blockquote";
 import Info from "@/components/landing/info";
+import WebsiteTab from "@/components/tab";
+
 
 export default function Home() {
   return (
@@ -38,11 +40,16 @@ export default function Home() {
           </div>
         </div>
 
+        <WebsiteTab />
+
+        {/* Info section */}
+        <Info />
+
         {/* Feature section */}
         <Features />
 
         {/* Testimonial section */}
-        <div className="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-32 max-w-7xl sm:mt-16 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden  px-6 py-20 shadow-xl sm:rounded-3xl sm:px-10 sm:py-24 md:px-12 lg:px-20">
             <div className="absolute inset-0 bg-gray-900/90 mix-blend-multiply" />
             <div
@@ -74,8 +81,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Info section */}
-        <Info />
       </main>
     </div>
   );

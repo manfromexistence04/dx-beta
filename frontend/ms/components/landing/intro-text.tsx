@@ -36,14 +36,14 @@ export default function IntroText() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="text-4xl font-bold tracking-tight sm:text-6xl"
           >
-            Beautiful Framer Motion Animations
+            Admin Panel that changes the way you use it.
           </motion.h1>
           <motion.p
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="mt-6 text-lg leading-8"
           >
-            A collection of handmade, free, and ready to use animations &
-            variants for your next project.
+            A collection of handmade, free, and ready to use operations &
+            variants operations for your next website.
           </motion.p>
 
           <motion.div
@@ -51,12 +51,12 @@ export default function IntroText() {
             className="mt-10 flex items-center justify-center gap-x-6 "
           >
             <Link href="/text-variants" className="z-50">
-              <Button>Get started</Button>
+              <Button>Admin Panel</Button>
             </Link>
 
-            <Link href="/usage" className="z-50">
-              <Button variant="outline">
-                Learn more &nbsp;<span aria-hidden="true">→</span>
+            <Link href="https://www.upwork.com/" className="z-50">
+              <Button variant={"outline"} className="p-5">
+                Pay me &nbsp;<span aria-hidden="true">→</span>
               </Button>
             </Link>
           </motion.div>
@@ -77,8 +77,8 @@ export default function IntroText() {
               transition={{ duration: 0.25 }}
             >
               <div className="-m-2 rounded-xl  p-2 ring-1 ring-inset ring-primary/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <h1 className="text-2xl font-bold tracking-tight sm:text-4xl mb-1">
-                  Variants Interactive Demo
+                <h1 className="text-xl font-bold tracking-tight sm:text-2xl mb-5">
+                  Admin Panel With High Level Customization.
                 </h1>
 
                 <VariantCarousel />
