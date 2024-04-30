@@ -39,8 +39,8 @@ export default function MainLayout({ children }) {
             </AuthProvider>
           </main>
           <NewYorkToaster />
-              <DefaultToaster />
-              <NewYorkSonner />
+          <DefaultToaster />
+          <NewYorkSonner />
         </ThemeProvider>
       </body>
     </html>

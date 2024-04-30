@@ -5,11 +5,11 @@ import { Button } from '@/components/ui/button'
 
 export default function PostsLoading() {
   return (
-    <section>
-      <div className='flex gap-1 items-center '>
+    <section className='px-24'>
+      {/* <div className='flex gap-1 items-center px-24'>
         <ArrowLeft size={18} />
         Back
-      </div>
+      </div> */}
       <header className='flex items-center justify-between my-4 md:my-8'>
         <h1 className='font-bold text-2xl'>All Posts</h1>
         <Button size='sm' variant='outline'>
