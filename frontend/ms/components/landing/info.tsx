@@ -125,13 +125,30 @@ export default function Info() {
               </motion.div>
             </div>
           </div>
-          <Image
-            src="/landing.jpeg"
-            alt="Product screenshot"
-            className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
-            width={300}
-            height={300}
-          />
+          <div className="flex flex-col items-center justify-center space-y-3">
+            <Image
+              src="/website/ustudy-index.png"
+              alt="Product screenshot"
+              className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+              width={300}
+              height={300}
+            />
+            <Image
+              src="/website/ustudy-footer-calculator.png"
+              alt="Product screenshot"
+              className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+              width={300}
+              height={300}
+            />
+            <Image
+              src="/website/ustudy-rubix-cube.png"
+              alt="Product screenshot"
+              className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+              width={300}
+              height={300}
+            />
+          </div>
+
         </div>
       </div>
     </div>
