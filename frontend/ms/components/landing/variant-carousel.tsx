@@ -221,7 +221,7 @@ export default function VariantCarousel() {
           <CardDescription>
             <span>{variants[index].name}</span>
           </CardDescription>
-          <Link
+          {/* <Link
             href={`/text-variants#${variants[index].name
               .toLowerCase()
               .replace(" ", "-")}`}
@@ -230,7 +230,7 @@ export default function VariantCarousel() {
               <CodeIcon className="w-5 h-5 mr-2" />
               View
             </Button>
-          </Link>
+          </Link> */}
         </CardFooter>
       </Card>
     </div>
