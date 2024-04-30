@@ -97,7 +97,7 @@ export function ExampleCodeLink({ pathname }: ExampleCodeLinkProps) {
       href={example?.code}
       target="_blank"
       rel="nofollow"
-      className="absolute right-0 top-0 hidden items-center rounded-[0.5rem] text-sm font-medium md:flex"
+      className="absolute right-0 top-0 hidden items-center rounded-lg text-sm font-medium md:flex"
     >
       View code
       <ArrowRightIcon className="ml-1 size-4" />

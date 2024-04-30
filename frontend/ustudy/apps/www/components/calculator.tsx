@@ -50,8 +50,8 @@ const Calculator: NextPage = () => {
             </div>
           </div>
           <div className="box-border flex w-[236px] flex-row items-start justify-start px-0 pb-[5.6px] pt-0 text-xs">
-            <div className="z-[3] flex flex-1 flex-row items-start justify-start gap-[13px] rounded-21xl border-DEFAULT border-solid border-shade-white bg-gray-400 px-[15px] pb-1 pt-[3px]">
-              <div className="relative box-border hidden h-[26px] w-[236px] rounded-21xl border-DEFAULT border-solid border-shade-white bg-gray-400" />
+            <div className="rounded-21xl z-[3] flex flex-1 flex-row items-start justify-start gap-[13px] border-DEFAULT border-solid border-shade-white bg-gray-400 px-[15px] pb-1 pt-[3px]">
+              <div className="rounded-21xl relative box-border hidden h-[26px] w-[236px] border-DEFAULT border-solid border-shade-white bg-gray-400" />
               <div className="flex flex-col items-start justify-start px-0 pb-0 pt-[3px]">
                 <img
                   className="relative z-[4] size-2.5 shrink-0 overflow-hidden"

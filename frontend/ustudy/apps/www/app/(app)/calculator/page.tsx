@@ -1,61 +1,97 @@
 import type { NextPage } from "next"
 
-import Component from "@/components/specialty-page/component"
 // import FrameComponent from "@/components/specialty-page/frame-component"
 import FrameComponent from "@/components/calculator/page"
-export function Rank() {
-  return (
-    <div className="overflow-x-auto">
-      <table className="w-full table-auto border-collapse">
-        <thead>
-          <tr className="bg-gray-100 dark:bg-gray-800">
-            <th className="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">Player Name</th>
-            <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">Score</th>
-            <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">Rank</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b border-gray-200 dark:border-gray-700">
-            <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">John Doe</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">1250</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">1</td>
-          </tr>
-          <tr className="border-b border-gray-200 dark:border-gray-700">
-            <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Jane Smith</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">1100</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">2</td>
-          </tr>
-          <tr className="border-b border-gray-200 dark:border-gray-700">
-            <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Bob Johnson</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">950</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">3</td>
-          </tr>
-          <tr className="border-b border-gray-200 dark:border-gray-700">
-            <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Alice Williams</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">850</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">4</td>
-          </tr>
-          <tr className="border-b border-gray-200 dark:border-gray-700">
-            <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">Tom Wilson</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">750</td>
-            <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">5</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  )
-}
+import Component from "@/components/specialty-page/component"
+
+// export function Rank() {
+//   return (
+//     <div className="overflow-x-auto">
+//       <table className="w-full table-auto border-collapse">
+//         <thead>
+//           <tr className="bg-gray-100 dark:bg-gray-800">
+//             <th className="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">
+//               Player Name
+//             </th>
+//             <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">
+//               Score
+//             </th>
+//             <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">
+//               Rank
+//             </th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               John Doe
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               1250
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               1
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Jane Smith
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               1100
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               2
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Bob Johnson
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               950
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               3
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Alice Williams
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               850
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               4
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Tom Wilson
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               750
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               5
+//             </td>
+//           </tr>
+//         </tbody>
+//       </table>
+//     </div>
+//   )
+// }
 
 const Calculator: NextPage = () => {
   return (
     <div className="calculator">
       <FrameComponent />
-      {/* <Rank /> */}
     </div>
   )
 }
 
-export default Calculator;
+export default Calculator
 // import Footer from "../components/footer";
 /**
  * v0 by Vercel.

@@ -121,7 +121,7 @@ export function ThemeCustomizer() {
                     </TooltipTrigger>
                     <TooltipContent
                       align="center"
-                      className="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
+                      className="rounded-lg bg-zinc-900 text-zinc-50"
                     >
                       {theme.label}
                     </TooltipContent>
@@ -148,7 +148,7 @@ export function ThemeCustomizer() {
           </PopoverTrigger>
           <PopoverContent
             align="center"
-            className="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
+            className="z-40 w-[340px] rounded-lg bg-white p-6 dark:bg-zinc-950"
           >
             <Customizer />
           </PopoverContent>
@@ -185,7 +185,7 @@ function Customizer() {
         <Button
           variant="ghost"
           size="icon"
-          className="ml-auto rounded-[0.5rem]"
+          className="ml-auto rounded-lg"
           onClick={() => {
             setConfig({
               ...config,
@@ -208,7 +208,7 @@ function Customizer() {
                 <span className="sr-only">About styles</span>
               </PopoverTrigger>
               <PopoverContent
-                className="space-y-3 rounded-[0.5rem] text-sm"
+                className="space-y-3 rounded-lg text-sm"
                 side="right"
                 align="start"
                 alignOffset={-20}

@@ -1,6 +1,7 @@
 import type { NextPage } from "next"
-import Component from "@/components/specialty-page/component"
+
 import FrameComponent from "@/components/faq/frame-component"
+import Component from "@/components/specialty-page/component"
 
 const SpecialtyPage: NextPage = () => {
   return (

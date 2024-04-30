@@ -70,7 +70,7 @@ export function BlockToolbar({
           <PopoverContent
             side="top"
             sideOffset={20}
-            className="space-y-3 rounded-[0.5rem] text-sm"
+            className="space-y-3 rounded-lg text-sm"
           >
             <p className="font-medium">
               What is the difference between the New York and Default style?

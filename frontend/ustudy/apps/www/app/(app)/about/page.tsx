@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import Link from "next/link"
+
 import { JSX, SVGProps } from "react"
+import Link from "next/link"
 
 // export default function Component() {
 //   return (
@@ -188,169 +189,182 @@ import { JSX, SVGProps } from "react"
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 export default function Component() {
-    return (
-      <>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
-              <div className="space-y-4">
-                <div className="bg-background inline-block rounded-lg border px-3 py-1 text-sm dark:bg-gray-800">About Us</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Siner Teknik: Trusted Experts in Industrial Equipment
-                </h2>
-                <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  For over 50 years, Siner Teknik has been a leading provider of industrial equipment, delivering
-                  innovative solutions and unparalleled service to our clients worldwide.
-                </p>
-                <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Our journey began in 1970 with a vision to revolutionize the industrial landscape. Since then, we have
-                  grown into a global powerhouse, leveraging cutting-edge technology and a team of dedicated experts to
-                  meet the ever-evolving needs of our clients.
-                </p>
+  return (
+    <>
+      <section className="w-full py-12 md:py-24 lg:py-32">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
+            <div className="space-y-4">
+              <div className="inline-block rounded-lg border bg-background px-3 py-1 text-sm dark:bg-gray-800">
+                About Us
               </div>
-              <img
-                alt="Image"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                height="310"
-                src="/placeholder.svg"
-                width="550"
-              />
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Siner Teknik: Trusted Experts in Industrial Equipment
+              </h2>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                For over 50 years, Siner Teknik has been a leading provider of
+                industrial equipment, delivering innovative solutions and
+                unparalleled service to our clients worldwide.
+              </p>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Our journey began in 1970 with a vision to revolutionize the
+                industrial landscape. Since then, we have grown into a global
+                powerhouse, leveraging cutting-edge technology and a team of
+                dedicated experts to meet the ever-evolving needs of our
+                clients.
+              </p>
+            </div>
+            <img
+              alt="Image"
+              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+              height="310"
+              src="/placeholder.svg"
+              width="550"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="w-full bg-background py-12 dark:bg-gray-800 md:py-24 lg:py-32">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="space-y-2">
+              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm dark:bg-gray-800">
+                Our Products
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Innovative Solutions for Every Industry
+              </h2>
+              <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                At Siner Teknik, we offer a comprehensive range of industrial
+                equipment designed to meet the highest standards of quality,
+                efficiency, and reliability.
+              </p>
             </div>
           </div>
-        </section>
-        <section className="bg-background w-full py-12 md:py-24 lg:py-32 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="bg-background inline-block rounded-lg px-3 py-1 text-sm dark:bg-gray-800">Our Products</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Innovative Solutions for Every Industry
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  At Siner Teknik, we offer a comprehensive range of industrial equipment designed to meet the highest
-                  standards of quality, efficiency, and reliability.
-                </p>
-              </div>
+          <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+            <div className="flex flex-col justify-center space-y-4">
+              <GaugeIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
+              <h3 className="text-xl font-bold">Machinery</h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Our state-of-the-art machinery is engineered to deliver
+                exceptional performance and durability, ensuring maximum
+                productivity and efficiency in your operations.
+              </p>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <GaugeIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
-                <h3 className="text-xl font-bold">Machinery</h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Our state-of-the-art machinery is engineered to deliver exceptional performance and durability, ensuring
-                  maximum productivity and efficiency in your operations.
-                </p>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <PenToolIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
-                <h3 className="text-xl font-bold">Tools</h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Our comprehensive range of tools is designed to meet the highest standards of precision and reliability,
-                  ensuring optimal results in every application.
-                </p>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
-                <WrenchIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
-                <h3 className="text-xl font-bold">Spare Parts</h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Our extensive inventory of genuine spare parts ensures that your equipment remains in top condition,
-                  minimizing downtime and maximizing productivity.
-                </p>
-              </div>
+            <div className="flex flex-col justify-center space-y-4">
+              <PenToolIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
+              <h3 className="text-xl font-bold">Tools</h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Our comprehensive range of tools is designed to meet the highest
+                standards of precision and reliability, ensuring optimal results
+                in every application.
+              </p>
+            </div>
+            <div className="flex flex-col justify-center space-y-4">
+              <WrenchIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
+              <h3 className="text-xl font-bold">Spare Parts</h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Our extensive inventory of genuine spare parts ensures that your
+                equipment remains in top condition, minimizing downtime and
+                maximizing productivity.
+              </p>
             </div>
           </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
-              <img
-                alt="Image"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                height="310"
-                src="/placeholder.svg"
-                width="550"
-              />
-              <div className="space-y-4">
-                <div className="bg-background inline-block rounded-lg px-3 py-1 text-sm dark:bg-gray-800">
-                  Customer Satisfaction
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Committed to Excellence</h2>
-                <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  At Siner Teknik, we are committed to delivering exceptional customer service and support. Our team of
-                  experts is dedicated to understanding your unique requirements and providing tailored solutions that
-                  exceed your expectations.
-                </p>
-                <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  We take pride in our ability to foster long-lasting partnerships with our clients, built on trust,
-                  transparency, and a shared commitment to excellence.
-                </p>
+        </div>
+      </section>
+      <section className="w-full py-12 md:py-24 lg:py-32">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
+            <img
+              alt="Image"
+              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+              height="310"
+              src="/placeholder.svg"
+              width="550"
+            />
+            <div className="space-y-4">
+              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm dark:bg-gray-800">
+                Customer Satisfaction
               </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Committed to Excellence
+              </h2>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                At Siner Teknik, we are committed to delivering exceptional
+                customer service and support. Our team of experts is dedicated
+                to understanding your unique requirements and providing tailored
+                solutions that exceed your expectations.
+              </p>
+              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                We take pride in our ability to foster long-lasting partnerships
+                with our clients, built on trust, transparency, and a shared
+                commitment to excellence.
+              </p>
             </div>
           </div>
-        </section>
-      </>
-    )
-  }
-  
-  function GaugeIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m12 14 4-4" />
-        <path d="M3.34 19a10 10 0 1 1 17.32 0" />
-      </svg>
-    )
-  }
-  
-  
-  function PenToolIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m12 19 7-7 3 3-7 7-3-3z" />
-        <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-        <path d="m2 2 7.586 7.586" />
-        <circle cx="11" cy="11" r="2" />
-      </svg>
-    )
-  }
-  
-  
-  function WrenchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-      </svg>
-    )
-  }
+        </div>
+      </section>
+    </>
+  )
+}
+
+function GaugeIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m12 14 4-4" />
+      <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+    </svg>
+  )
+}
+
+function PenToolIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m12 19 7-7 3 3-7 7-3-3z" />
+      <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+      <path d="m2 2 7.586 7.586" />
+      <circle cx="11" cy="11" r="2" />
+    </svg>
+  )
+}
+
+function WrenchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  )
+}

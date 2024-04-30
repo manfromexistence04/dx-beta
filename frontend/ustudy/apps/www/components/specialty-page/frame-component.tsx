@@ -3,10 +3,10 @@ import type { NextPage } from "next"
 
 const FrameComponent: NextPage = () => {
   return (
-    <section className="font-headings-desktop-poppins-16px-regular text-21xl box-border flex max-w-full flex-row items-start justify-start self-stretch px-0 pb-[35px] pt-0 text-left ">
-      <div className="mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5 relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px]">
+    <section className="box-border flex max-w-full flex-row items-start justify-start self-stretch px-0 pb-[35px] pt-0 text-left font-headings-desktop-poppins-16px-regular text-21xl ">
+      <div className="relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px] mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5">
         <div className="relative z-0 hidden h-[248px] w-[1440px] max-w-full [background:linear-gradient(180deg,_)]" />
-        <div className="mq750:max-w-full flex w-[500px] max-w-[calc(100%_-_152px)] flex-col items-start justify-start gap-[9px]">
+        <div className="flex w-[500px] max-w-[calc(100%_-_152px)] flex-col items-start justify-start gap-[9px] mq750:max-w-full">
           <div className="flex flex-row items-start justify-center self-stretch px-5 py-0">
             <h1 className="title !m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
               College Search

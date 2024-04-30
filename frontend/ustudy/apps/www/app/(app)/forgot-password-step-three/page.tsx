@@ -1,43 +1,56 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client"
+
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 /* eslint-disable tailwindcss/no-contradicting-classname */
-import React from "react";
+import React from "react"
 import type { NextPage } from "next"
-import FrameComponent from "@/components/signup/frame-component"
+import Image from "next/image"
 import Link from "next/link"
+import { Input as NextuiInput } from "@nextui-org/react"
+import { Eye, EyeOff } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import FrameComponent from "@/components/signup/frame-component"
+import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
 import { Button, buttonVariants } from "@/registry/default/ui/button"
+import { Checkbox } from "@/registry/default/ui/checkbox"
 import { Input } from "@/registry/default/ui/input"
 import { Label } from "@/registry/default/ui/label"
-import Image from "next/image"
-import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
+
 import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
-import { cn } from "@/lib/utils"
-import { Input as NextuiInput } from "@nextui-org/react";
-import { Eye, EyeOff } from "lucide-react"
-import { Checkbox } from "@/registry/default/ui/checkbox";
 
 const ForgotPasswordStepOne: NextPage = () => {
-    const [isVisiblePassword, setIsVisiblePassword] = React.useState(true);
-    const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] = React.useState(true);
-    const togglePasswordVisibility = () => setIsVisiblePassword(!isVisiblePassword);
-    const toggleConfirmPasswordVisibility = () => setIsVisibleConfirmPassword(!isVisibleConfirmPassword);
+  const [isVisiblePassword, setIsVisiblePassword] = React.useState(true)
+  const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
+    React.useState(true)
+  const togglePasswordVisibility = () =>
+    setIsVisiblePassword(!isVisiblePassword)
+  const toggleConfirmPasswordVisibility = () =>
+    setIsVisibleConfirmPassword(!isVisibleConfirmPassword)
 
-    return (
-        <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-start lg:items-center lg:justify-start lg:justify-center">
-            <div className="relative mt-10 flex size-full h-auto items-center justify-center lg:m-0 lg:w-3/5 lg:rounded-sm">
-                <AspectRatio ratio={16 / 9}>
-                    <Image src="/rectangle-12911.png" alt="Image" fill={true} className="object-cover" />
-                </AspectRatio>
-                <div className="absolute bottom-0 left-0 flex h-[30%] max-h-[150px] w-full items-center justify-center bg-purple-800 bg-opacity-0 bg-clip-padding text-3xl font-bold backdrop-blur-3xl">
-                    Ustudy For All
-                </div>
-            </div>
-            <div className="flex h-auto w-full items-center justify-center lg:m-0 lg:h-full lg:flex-1">
-                <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
-                    <h1 className="text-center text-[45px] font-bold">Congratulations, you’ve changed the password</h1>
+  return (
+    <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-start lg:items-center lg:justify-start lg:justify-center">
+      <div className="relative mt-10 flex size-full h-auto items-center justify-center lg:m-0 lg:w-3/5 lg:rounded-sm">
+        <AspectRatio ratio={16 / 9}>
+          <Image
+            src="/rectangle-12911.png"
+            alt="Image"
+            fill={true}
+            className="object-cover"
+          />
+        </AspectRatio>
+        <div className="absolute bottom-0 left-0 flex h-[30%] max-h-[150px] w-full items-center justify-center bg-purple-800 bg-opacity-0 bg-clip-padding text-3xl font-bold backdrop-blur-3xl">
+          Ustudy For All
+        </div>
+      </div>
+      <div className="flex h-auto w-full items-center justify-center lg:m-0 lg:h-full lg:flex-1">
+        <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
+          <h1 className="text-center text-26xl font-bold">
+            Congratulations, you’ve changed the password
+          </h1>
 
-                    {/* <div className="my-10 grid min-w-full gap-2 text-center">
+          {/* <div className="my-10 grid min-w-full gap-2 text-center">
                         <h1 className="flex flex-col items-center justify-center font-bold">We’ve sent recover password link to
                             <span className="text-[#804DFE]">*****zov01@gmail.com</span>
                         </h1>
@@ -45,8 +58,8 @@ const ForgotPasswordStepOne: NextPage = () => {
                             Check your email to recover the password
                         </p>
                     </div> */}
-                    <div className="mt-3 flex w-full items-center justify-center">
-                        {/* <div className="grid w-full gap-2">
+          <div className="mt-3 flex w-full items-center justify-center">
+            {/* <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">Username</Label>
               <NextuiInput
                 type="text"
@@ -56,7 +69,7 @@ const ForgotPasswordStepOne: NextPage = () => {
                 className="text-muted-foreground w-full rounded-md !border"
               />
             </div> */}
-                        {/* <div className="grid w-full gap-2">
+            {/* <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">Email</Label>
               <NextuiInput
                 type="email"
@@ -67,7 +80,7 @@ const ForgotPasswordStepOne: NextPage = () => {
                 className="text-muted-foreground w-full rounded-md !border"
               />
             </div> */}
-                        {/* <div className="grid gap-2">
+            {/* <div className="grid gap-2">
               <div className="flex items-center">
                 <Label className="text-[#804DFE]" htmlFor="password">Password</Label>
 
@@ -91,13 +104,13 @@ const ForgotPasswordStepOne: NextPage = () => {
 
               />
             </div> */}
-                        {/* <Link
+            {/* <Link
                   href="/forgot-password"
                   className="flex w-full items-end justify-end text-sm underline"
                 >
                   Forgot your password?
                 </Link> */}
-                        {/* <div className="grid gap-2">
+            {/* <div className="grid gap-2">
               <div className="flex items-center">
                 <Label className="text-[#804DFE]" htmlFor="password">Confirm Password</Label>
               </div>
@@ -119,7 +132,7 @@ const ForgotPasswordStepOne: NextPage = () => {
 
               />
             </div> */}
-                        {/* <div className="flex w-full items-center space-x-2">
+            {/* <div className="flex w-full items-center space-x-2">
               <Checkbox id="terms" />
               <label
                 htmlFor="terms"
@@ -128,17 +141,17 @@ const ForgotPasswordStepOne: NextPage = () => {
                 I agree to the term of services and privacy statement
               </label>
             </div> */}
-                        <Link
-                            href="/login">
-                            <Button
-                                variant={"outline"}
-                                type="submit" className="mx-auto w-64">
-                                Login
-                            </Button>
-                        </Link>
-
-                    </div>
-                    {/* <div className="mt-4 min-w-full space-x-1 text-center text-sm">
+            <Link href="/login">
+              <Button
+                variant={"outline"}
+                type="submit"
+                className="mx-auto w-64"
+              >
+                Login
+              </Button>
+            </Link>
+          </div>
+          {/* <div className="mt-4 min-w-full space-x-1 text-center text-sm">
             <span>
               Don't have an account?
             </span>
@@ -146,10 +159,10 @@ const ForgotPasswordStepOne: NextPage = () => {
               Signup
             </Link>
           </div> */}
-                </div>
-            </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
-export default ForgotPasswordStepOne;
+export default ForgotPasswordStepOne

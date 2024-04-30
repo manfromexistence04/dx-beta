@@ -39,8 +39,8 @@ const FrameComponent2: NextPage = () => {
           </div>
         </div>
         <div className="relative h-[802px] min-w-[520px] max-w-full flex-1 !overflow-hidden overflow-x-auto mq750:min-w-full">
-          <div className="absolute inset-y-0 left-[87.6px] z-[1] h-full w-[549px] overflow-hidden rounded-b-none rounded-t-281xl bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]">
-            <div className="absolute left-0 top-0 hidden size-full rounded-b-none rounded-t-281xl bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]" />
+          <div className="rounded-t-281xl absolute inset-y-0 left-[87.6px] z-[1] h-full w-[549px] overflow-hidden rounded-b-none bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]">
+            <div className="rounded-t-281xl absolute left-0 top-0 hidden size-full rounded-b-none bg-black shadow-[0px_4px_4px_rgba(255,_221,_221,_0.25)_inset]" />
             <img
               className="absolute left-0 top-0 size-full object-cover"
               alt=""

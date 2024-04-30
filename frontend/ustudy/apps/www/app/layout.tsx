@@ -1,5 +1,6 @@
 import "@/styles/globals.css"
 import { Metadata, Viewport } from "next"
+import { Cormorant_Garamond, Libre_Franklin } from "next/font/google"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -11,8 +12,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher"
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
-import { Libre_Franklin } from 'next/font/google'
-import { Cormorant_Garamond } from 'next/font/google'
+
 import { Nextui } from "./nextui"
 
 export const metadata: Metadata = {
@@ -78,17 +78,16 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-
 const libre_franklin = Libre_Franklin({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-libre_franklin',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-libre_franklin",
 })
 const cormorant_garamond = Cormorant_Garamond({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-cormorant_garamond',
-  weight: "300"
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-cormorant_garamond",
+  weight: "300",
 })
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -98,7 +97,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "bg-background min-h-screen font-sans antialiased",
+            "min-h-screen bg-background font-sans antialiased",
             fontSans.variable
           )}
         >
@@ -110,7 +109,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           >
             <Nextui>
               <div vaul-drawer-wrapper="">
-                <div className="bg-background relative flex min-h-screen flex-col">
+                <div className="relative flex min-h-screen flex-col bg-background">
                   {children}
                 </div>
               </div>
@@ -121,7 +120,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <DefaultToaster />
               <NewYorkSonner />
             </Nextui>
-
           </ThemeProvider>
         </body>
       </html>
