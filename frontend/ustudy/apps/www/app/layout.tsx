@@ -13,6 +13,7 @@ import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 import { Libre_Franklin } from 'next/font/google'
 import { Cormorant_Garamond } from 'next/font/google'
+import { Nextui } from "./nextui"
 
 export const metadata: Metadata = {
   title: {
@@ -107,17 +108,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <div vaul-drawer-wrapper="">
-              <div className="bg-background relative flex min-h-screen flex-col">
-                {children}
+            <Nextui>
+              <div vaul-drawer-wrapper="">
+                <div className="bg-background relative flex min-h-screen flex-col">
+                  {children}
+                </div>
               </div>
-            </div>
-            <TailwindIndicator />
-            <ThemeSwitcher />
-            <Analytics />
-            <NewYorkToaster />
-            <DefaultToaster />
-            <NewYorkSonner />
+              <TailwindIndicator />
+              <ThemeSwitcher />
+              <Analytics />
+              <NewYorkToaster />
+              <DefaultToaster />
+              <NewYorkSonner />
+            </Nextui>
+
           </ThemeProvider>
         </body>
       </html>

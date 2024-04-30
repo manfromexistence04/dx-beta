@@ -57,7 +57,7 @@ const Header: NextPage = () => {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <section className=" g-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full !border-b backdrop-blur">
+    <section className=" bg-background/95 supports-[backdrop-filter]:bg-background/60 !sticky !top-0 z-50 w-full !border-b backdrop-blur">
       <header className="font-headings-desktop-poppins-16px-regular text-blueviolet-200 box-border flex h-[88px] max-w-full flex-1 flex-col items-start gap-[20px] px-0 py-5 text-left text-8xl lg:justify-start">
         <div className="hidden h-12 w-[158px]" />
         <div className="mq750:box-border mq750:px-10 box-border flex max-w-full flex-row items-start justify-start self-stretch px-20 py-0">
@@ -76,10 +76,10 @@ const Header: NextPage = () => {
               </Link>
 
             </div>
-            <div className="mq1225:flex-1 flex flex-col items-start justify-start px-0 pb-0 pt-1">
+            <div className="flex flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 lg:hidden">
               <div className="bg-neutrals-3 relative h-10 w-px" />
             </div>
-            <nav className="mq1225:hidden m-0 box-border flex max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-[13.5px]">
+            <nav className="m-0 box-border hidden max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-[13.5px] lg:flex">
               <nav className="font-dm-sans text-lightsteelblue-200 m-0 flex w-[468.9px] max-w-full flex-row items-start justify-between gap-[20px] text-left text-base">
                 <Link
                   href="/about"
@@ -171,7 +171,7 @@ const Header: NextPage = () => {
                 <SheetTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                    className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
                   >
                     <img
                       className="inline-block size-[50px] lg:hidden"
@@ -318,7 +318,7 @@ const Header: NextPage = () => {
               </Sheet>
 
               <div
-                className="mq1225:hidden flex cursor-pointer flex-row items-start justify-start"
+                className="hidden cursor-pointer flex-row items-start justify-start lg:flex"
                 onClick={onButtonsContainerClick}
               >
                 <div className="bg-blueviolet-200 flex flex-row items-center justify-center whitespace-nowrap rounded px-[23px] py-4">

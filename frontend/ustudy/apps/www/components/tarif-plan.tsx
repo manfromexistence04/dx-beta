@@ -25,7 +25,7 @@ const TarifPlan: NextPage<TarifPlanType> = ({
           </div>
         </div>
       </div>
-      <div className="flex min-h-[250px] flex-row items-end justify-start self-stretch overflow-hidden rounded-md border lg:min-h-[425px]">
+      <div className="flex min-h-[250px] flex-row items-end justify-start self-stretch overflow-hidden rounded-md border border-[#804DFE] lg:min-h-[425px]">
         <div className="border-darkslateblue mq450:gap-[16px] flex flex-1 flex-col items-start justify-start gap-[32px] rounded border-0 border-solid bg-black pb-[101.3px] pl-6 pr-5 pt-[27.7px]">
           <div className="relative flex flex-row items-start justify-start">
             <h1 className="font-inherit mq750:text-7xl mq750:leading-[26px] mq450:text-lgi mq450:leading-[19px] relative z-[1] m-0 font-bold leading-[100%] text-inherit">
