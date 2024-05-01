@@ -16,7 +16,7 @@ export const Timeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
         {timeLabels.map((label, index) => (
           <TableHead
             key={index}
-            className={cn("sticky top-0 z-10 bg-background border-x min-w-56 text-center lg:min-w-72 ")}
+            className={cn("sticky top-0 z-10 bg-background border-x min-w-56 text-center lg:min-w-72 backdrop-blur supports-[backdrop-filter]:bg-background/60")}
           >
             {label}
           </TableHead>

@@ -92,8 +92,8 @@ const CalendarContent: React.FC<CalendarContentProps> = ({ ...props }) => {
   }, [appointments]);
 
   return (
-    <div className="flex max-h-[calc(80vh_-_theme(spacing.16))] flex-col  ">
-      <div className="calendar-scroll flex-grow overflow-auto">
+    <div className="flex max-h-[calc(90vh_-_theme(spacing.16))] flex-col  ">
+      <div className="calendar-scroll flex-grow overflow-auto border rounded-md mt-3">
         <Table>
           <Timeline />
           <TableBody>

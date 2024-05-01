@@ -105,3 +105,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.calendar-scroll thead tr > *{
+  /* background: red !important; */
+  /* --background: 0, 100%, 50%; */
+  /* border-bottom: 1px solid red !important; */
+
+}
