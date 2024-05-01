@@ -32,13 +32,13 @@ export const dataTableConfig = {
     },
   ],
   featureFlags: [
-    {
-      label: "Advanced filter",
-      value: "advancedFilter" as const,
-      icon: MixIcon,
-      tooltipTitle: "Toggle advanced filter",
-      tooltipDescription: "A notion like query builder to filter rows.",
-    },
+    // {
+    //   label: "Advanced filter",
+    //   value: "advancedFilter" as const,
+    //   icon: MixIcon,
+    //   tooltipTitle: "Toggle advanced filter",
+    //   tooltipDescription: "A notion like query builder to filter rows.",
+    // },
     // {
     //   label: "Floating bar",
     //   value: "floatingBar" as const,
