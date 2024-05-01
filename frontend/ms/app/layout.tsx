@@ -43,7 +43,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <MainNav />
-          {children}
+          <div className="min-h-[80vh]">
+            {children}
+          </div>
           <Footer />
           <Toaster />
         </ThemeProvider>
