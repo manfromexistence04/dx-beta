@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "isolatedModules": true,
+    "noEmit": true,
+    "emitDeclarationOnly": false,
+    "paths": {
+      "internal/*": ["./internal/*"] //deprecated
+    }
+  },
+  "include": [
+    //
+    "./node",
+    "./bun",
+    "./builtins",
+    "./functions",
+    "./internal",
+    "./thirdparty",
+    "./builtins.d.ts",
+    "./private.d.ts",
+    "../../build/codegen/WebCoreJSBuiltins.d.ts"
+  ]
+}

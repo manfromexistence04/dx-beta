@@ -1,0 +1,7 @@
+node_modules/
+.husky/
+.next/
+dist/
+drizzle/
+coverage/
+pnpm-lock.yaml

@@ -11,7 +11,7 @@ tasks:
       before: |
           cd package && sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
       init: |
-          echo bun install
+          echo bun install && cd table && bun install && cd ..
       command: |
           echo bun run dev
 
