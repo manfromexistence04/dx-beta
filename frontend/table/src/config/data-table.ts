@@ -39,12 +39,12 @@ export const dataTableConfig = {
       tooltipTitle: "Toggle advanced filter",
       tooltipDescription: "A notion like query builder to filter rows.",
     },
-    {
-      label: "Floating bar",
-      value: "floatingBar" as const,
-      icon: SquareIcon,
-      tooltipTitle: "Toggle floating bar",
-      tooltipDescription: "A floating bar that sticks to the top of the table.",
-    },
+    // {
+    //   label: "Floating bar",
+    //   value: "floatingBar" as const,
+    //   icon: SquareIcon,
+    //   tooltipTitle: "Toggle floating bar",
+    //   tooltipDescription: "A floating bar that sticks to the top of the table.",
+    // },
   ],
 }
