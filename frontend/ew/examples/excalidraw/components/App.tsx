@@ -716,7 +716,7 @@ export default function App({
               type="checkbox"
               checked={theme === "dark"}
               onChange={() => {
-                setTheme(theme === "light" ? "dark" : "light");
+                setTheme(theme === "dark" ? "light" : "dark");
               }}
             />
             Switch to Dark Theme
