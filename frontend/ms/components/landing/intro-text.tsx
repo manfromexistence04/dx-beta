@@ -50,7 +50,7 @@ export default function IntroText() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="mt-10 flex items-center justify-center gap-x-6 "
           >
-            <Link href="/text-variants" className="z-50">
+            <Link href="/dashboard" className="z-50">
               <Button>Admin Panel</Button>
             </Link>
 
