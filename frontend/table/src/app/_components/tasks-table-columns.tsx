@@ -33,39 +33,15 @@ import { UpdateTaskSheet } from "./update-task-sheet"
 
 export function getColumns(): ColumnDef<Task>[] {
   return [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-          className="translate-y-0.5"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-          className="translate-y-0.5"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
-      accessorKey: "code",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Task" />
-      ),
-      cell: ({ row }) => <div className="w-20">{row.getValue("code")}</div>,
-      enableSorting: false,
-      enableHiding: false,
-    },
+    // {
+    //   accessorKey: "code",
+    //   header: ({ column }) => (
+    //     <DataTableColumnHeader className="text-center w-full" column={column} title="Task" />
+    //   ),
+    //   cell: ({ row }) => <div className="w-20">{row.getValue("code")}</div>,
+    //   enableSorting: false,
+    //   enableHiding: false,
+    // },
     {
       accessorKey: "title",
       header: ({ column }) => (
@@ -232,5 +208,30 @@ export function getColumns(): ColumnDef<Task>[] {
         )
       },
     },
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          aria-label="Select all"
+          className="translate-y-0.5"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          aria-label="Select row"
+          className="translate-y-0.5"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    }
   ]
 }
+

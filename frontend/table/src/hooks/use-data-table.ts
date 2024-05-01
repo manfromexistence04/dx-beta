@@ -342,3 +342,4 @@ export function useDataTable<TData, TValue>({
 
   return { table }
 }
+

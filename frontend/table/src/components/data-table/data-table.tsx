@@ -77,7 +77,7 @@ export function DataTable<TData>({
                   colSpan={table.getAllColumns().length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  I am most genious man on Earth and my name is Mahatab Hossain...
                 </TableCell>
               </TableRow>
             )}
