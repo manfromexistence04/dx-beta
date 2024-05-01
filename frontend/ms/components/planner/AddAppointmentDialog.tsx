@@ -93,7 +93,7 @@ const AddAppointmentDialog: React.FC = () => {
   return (
     <Dialog open={isOpened} onOpenChange={setIsOpened}>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Appointment</Button>
+        <Button variant="outline" className="p-5 ">Add Appointment</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

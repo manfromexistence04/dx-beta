@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { wrap } from "@motionone/utils";
@@ -38,22 +39,22 @@ export function FadeDownStagger({ key }: { key: number }) {
       }}
     >
       <motion.h1
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
-        Fade Down
+        Nurzhol Tabigat's
       </motion.h1>
       <motion.p
         className="mt-6 text-center md:text-2xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
-        Animation Preview
+        Admin Panel
       </motion.p>
       <motion.div
         className="mx-auto mt-6 flex items-center justify-center space-x-5"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
-        If you&apos;re seeing this, thank you for trying my project out! - C.J.A
+        If you&apos;re seeing this, thank you for trying my project out! - MAHABUB
       </motion.div>
     </motion.div>
   );
@@ -80,16 +81,16 @@ export function FadeUpStagger({ key }: { key: number }) {
       }}
     >
       <motion.h1
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
         variants={FADE_UP_ANIMATION_VARIANTS}
       >
-        Fade Up
+        Nurzhol Tabigat's
       </motion.h1>
       <motion.p
         className="mt-6 text-center md:text-2xl"
         variants={FADE_UP_ANIMATION_VARIANTS}
       >
-        Animation Preview
+        Admin Panel
       </motion.p>
       <motion.div
         className="mx-auto mt-6 flex items-center justify-center space-x-5"
@@ -114,9 +115,9 @@ export function MultiDirectionSlide({ key }: { key: number }) {
         animate="visible"
         variants={MULTIDIRECTION_SLIDE_VARIANTS}
         transition={{ duration: 1 }}
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Multi Direction
+        Nurzhol Tabigat's
       </motion.h1>
 
       <motion.h1
@@ -124,16 +125,16 @@ export function MultiDirectionSlide({ key }: { key: number }) {
         animate="visible"
         variants={MULTIDIRECTION_SLIDE_VARIANTS}
         transition={{ duration: 1 }}
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Slide
+        Admin Panel
       </motion.h1>
     </div>
   );
 }
 
 export function StaggeredFadeIn() {
-  const sentence = "Staggered Fade In";
+  const sentence = "Nurzhol Tabigat's Admin Panel";
   const words = sentence.split(" ");
 
   const wordVariants = {
@@ -144,7 +145,7 @@ export function StaggeredFadeIn() {
     <motion.h1
       initial="hidden"
       animate="visible"
-      className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+      className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
     >
       {words.map((word, i) => (
         <motion.span key={word} variants={wordVariants} custom={i}>
@@ -156,7 +157,7 @@ export function StaggeredFadeIn() {
 }
 
 export function LetterPullUp() {
-  const words = "Staggered Letter Pull Up";
+  const words = "Nurzhol Tabigat's Admin Panel";
   const letters = words.split("");
 
   const pullupVariant = {
@@ -179,7 +180,7 @@ export function LetterPullUp() {
           initial="initial"
           animate="animate"
           custom={i}
-          className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+          className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
         >
           {letter === " " ? <span>&nbsp;</span> : letter}
         </motion.h1>
@@ -204,13 +205,13 @@ export function WordPullUp() {
     show: { y: 0, opacity: 1 },
   };
 
-  const words = "Word Pull Up";
+  const words = "Nurzhol Tabigat's Admin Panel";
   return (
     <motion.h1
       variants={container}
       initial="hidden"
       animate="show"
-      className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+      className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
     >
       {words.split(" ").map((word, i) => (
         <motion.span
@@ -274,7 +275,7 @@ export function VelocityScroll() {
     return (
       <div className="parallax">
         <motion.div
-          className="scroller text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+          className="scroller text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
           style={{ x }}
         >
           <span>{children} </span>
@@ -287,14 +288,14 @@ export function VelocityScroll() {
   }
   return (
     <section>
-      <ParallaxText baseVelocity={5}>Variant Vault</ParallaxText>
-      <ParallaxText baseVelocity={-5}>Variant Vault</ParallaxText>
+      <ParallaxText baseVelocity={5}>Nurzhol Tabigat's</ParallaxText>
+      <ParallaxText baseVelocity={-5}>Admin Panel</ParallaxText>
     </section>
   );
 }
 
 export function RotateText() {
-  const words = ["ROTATE", "BETWEEN", "TEXT"];
+  const words = ["Nurzhol Tabigat's", " Admin Panel"];
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -313,7 +314,7 @@ export function RotateText() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.5 }}
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
         {words[index]}
       </motion.h1>
@@ -322,7 +323,7 @@ export function RotateText() {
 }
 
 export function TypingEffect() {
-  const text = "Typing Effect";
+  const text = "Nurzhol Tabigat's Admin Panel";
   const [displayedText, setDisplayedText] = React.useState("");
   const [i, setI] = React.useState(0);
 
@@ -342,8 +343,8 @@ export function TypingEffect() {
   }, [i]);
 
   return (
-    <h1 className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]">
-      {displayedText ? displayedText : "Typing Effect"}
+    <h1 className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
+      {displayedText ? displayedText : "Nurzhol Tabigat's Admin Panel"}
     </h1>
   );
 }
@@ -364,25 +365,25 @@ export function SeparateAway() {
         variants={variants1}
         initial="hidden"
         animate="visible"
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Separate
+        Nurzhol Tabigat's
       </motion.h1>
       <motion.h1
         custom={1}
         variants={variants1}
         initial="hidden"
         animate="visible"
-        className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Away
+        Admin Panel
       </motion.h1>
     </div>
   );
 }
 
 export function GradualSpacing() {
-  const text = "Gradual Spacing";
+  const text = "Nurzhol Tabigat's Admin Panel";
   const gradual = {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 },
@@ -398,7 +399,7 @@ export function GradualSpacing() {
             exit="hidden"
             variants={gradual}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
           >
             {char === " " ? <span>&nbsp;</span> : char}
           </motion.h1>
@@ -419,15 +420,15 @@ export function BlurIn() {
       animate="visible"
       transition={{ duration: 1 }}
       variants={variants1}
-      className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+      className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
     >
-      Blur In
+      Nurzhol Tabigat's Admin Panel
     </motion.h1>
   );
 }
 
 export function SlightFlip() {
-  const word = "Slight Flip Text";
+  const word = "Nurzhol Tabigat's Admin Panel";
   const variants1 = {
     hidden: { rotateX: -90, opacity: 0 },
     visible: { rotateX: 0, opacity: 1 },
@@ -443,7 +444,7 @@ export function SlightFlip() {
             exit="hidden"
             variants={variants1}
             transition={{ duration: 0.5, delay: i * 0.2 }}
-            className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
             style={{ transformOrigin: "50% 50%" }}
           >
             {char}
@@ -455,7 +456,7 @@ export function SlightFlip() {
 }
 
 export function WavyText() {
-  const word = "Wavy Text";
+  const word = "Nurzhol Tabigat's Admin Panel";
   const variants1 = {
     hidden: { y: 10 },
     visible: { y: -10 },
@@ -471,7 +472,7 @@ export function WavyText() {
             exit="hidden"
             variants={variants1}
             transition={{ yoyo: Infinity, duration: 0.5, delay: i * 0.2 }}
-            className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+            className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
           >
             {char}
           </motion.h1>

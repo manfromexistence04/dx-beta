@@ -219,7 +219,7 @@ export default function VariantCarousel() {
 
         <CardFooter className="flex justify-between items-center">
           <CardDescription>
-            <span>{variants[index].name}</span>
+            <span>MD MAHABUB HOSSAIN from upwork.</span>
           </CardDescription>
           {/* <Link
             href={`/text-variants#${variants[index].name
