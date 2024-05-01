@@ -16,26 +16,25 @@ const app = initializeApp(firebaseConfig);
 
 // Database
 const db = getFirestore(app);
-const docRef = doc(db, "users", "FORAxYegA51aV7ZWiB80");
-// const docRef = doc(db, "users", "John Doe");
+// const docRef = doc(db, "users", "FORAxYegA51aV7ZWiB80");
 
 // Create
-// const docRef = await addDoc(collection(db, "users"), {
-//   name: "John Doe",
-//   age: 30,
-// });
-// console.log(docRef);
+const Create = await addDoc(collection(db, "users"), {
+  name: "John Doe",
+  age: 30,
+});
+console.log(docRef);
 
 // Read
-// const querySnapshot = await getDocs(collection(db, "users"));
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data().name}`);
-// });
+const Read = await getDocs(collection(db, "users"));
+Read.forEach((doc) => {
+  console.log(`${doc.id} => ${doc.data().name}`);
+});
 
 // Update
-// await updateDoc(docRef, {
-//   name: "Ada Lovelace",
-// });
+await updateDoc(docRef, {
+  name: "Ada Lovelace",
+});
 
 // Delete
 await deleteDoc(docRef);
