@@ -1,33 +1,33 @@
 import {
   compressData,
   decompressData,
-} from "../../../../packages/excalidraw/dist/excalidraw/data/encode";
+} from "../@excalidraw/excalidraw/dist/excalidraw/data/encode";
 import {
   decryptData,
   generateEncryptionKey,
   IV_LENGTH_BYTES,
-} from "../../../../packages/excalidraw/dist/excalidraw/data/encryption";
-import { serializeAsJSON } from "../../../../packages/excalidraw/dist/excalidraw/data/json";
-import { restore } from "../../../../packages/excalidraw/dist/excalidraw/data/restore";
-import { ImportedDataState } from "../../../../packages/excalidraw/dist/excalidraw/data/types";
-import { SceneBounds } from "../../../../packages/excalidraw/dist/excalidraw/element/bounds";
-import { isInvisiblySmallElement } from "../../../../packages/excalidraw/dist/excalidraw/element/sizeHelpers";
-import { isInitializedImageElement } from "../../../../packages/excalidraw/dist/excalidraw/element/typeChecks";
+} from "../@excalidraw/excalidraw/dist/excalidraw/data/encryption";
+import { serializeAsJSON } from "../@excalidraw/excalidraw/dist/excalidraw/data/json";
+import { restore } from "../@excalidraw/excalidraw/dist/excalidraw/data/restore";
+import { ImportedDataState } from "../@excalidraw/excalidraw/dist/excalidraw/data/types";
+import { SceneBounds } from "../@excalidraw/excalidraw/dist/excalidraw/element/bounds";
+import { isInvisiblySmallElement } from "../@excalidraw/excalidraw/dist/excalidraw/element/sizeHelpers";
+import { isInitializedImageElement } from "../@excalidraw/excalidraw/dist/excalidraw/element/typeChecks";
 import {
   ExcalidrawElement,
   FileId,
   OrderedExcalidrawElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/types";
-import { t } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
+import { t } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
 import {
   AppState,
   BinaryFileData,
   BinaryFiles,
   SocketId,
   UserIdleState,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
-import { MakeBrand } from "../../../../packages/excalidraw/dist/excalidraw/utility-types";
-import { bytesToHexString } from "../../../../packages/excalidraw/dist/excalidraw/utils";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
+import { MakeBrand } from "../@excalidraw/excalidraw/dist/excalidraw/utility-types";
+import { bytesToHexString } from "../@excalidraw/excalidraw/dist/excalidraw/utils";
 import {
   DELETED_ELEMENT_TIMEOUT,
   FILE_UPLOAD_MAX_BYTES,

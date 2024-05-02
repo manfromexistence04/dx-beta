@@ -4,14 +4,14 @@ import {
   render,
   updateSceneData,
   waitFor,
-} from "../../../../packages/excalidraw/dist/excalidraw/tests/test-utils";
+} from "../@excalidraw/excalidraw/dist/excalidraw/tests/test-utils";
 import ExcalidrawApp from "../App";
-import { API } from "../../../../packages/excalidraw/dist/excalidraw/tests/helpers/api";
-import { syncInvalidIndices } from "../../../../packages/excalidraw/dist/excalidraw/fractionalIndex";
+import { API } from "../@excalidraw/excalidraw/dist/excalidraw/tests/helpers/api";
+import { syncInvalidIndices } from "../@excalidraw/excalidraw/dist/excalidraw/fractionalIndex";
 import {
   createRedoAction,
   createUndoAction,
-} from "../../../../packages/excalidraw/dist/excalidraw/actions/actionHistory";
+} from "../@excalidraw/excalidraw/dist/excalidraw/actions/actionHistory";
 import { StoreAction, newElementWith } from "../../../../packages/excalidraw/dist/excalidraw";
 
 const { h } = window;

@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
-import { copyTextToSystemClipboard } from "../../../../packages/excalidraw/dist/excalidraw/clipboard";
-import { trackEvent } from "../../../../packages/excalidraw/dist/excalidraw/analytics";
-import { getFrame } from "../../../../packages/excalidraw/dist/excalidraw/utils";
-import { useI18n } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
-import { KEYS } from "../../../../packages/excalidraw/dist/excalidraw/keys";
-import { Dialog } from "../../../../packages/excalidraw/dist/excalidraw/components/Dialog";
+import { copyTextToSystemClipboard } from "../@excalidraw/excalidraw/dist/excalidraw/clipboard";
+import { trackEvent } from "../@excalidraw/excalidraw/dist/excalidraw/analytics";
+import { getFrame } from "../@excalidraw/excalidraw/dist/excalidraw/utils";
+import { useI18n } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
+import { KEYS } from "../@excalidraw/excalidraw/dist/excalidraw/keys";
+import { Dialog } from "../@excalidraw/excalidraw/dist/excalidraw/components/Dialog";
 import {
   copyIcon,
   LinkIcon,
@@ -15,14 +15,14 @@ import {
   shareIOS,
   shareWindows,
   tablerCheckIcon,
-} from "../../../../packages/excalidraw/dist/excalidraw/components/icons";
-import { TextField } from "../../../../packages/excalidraw/dist/excalidraw/components/TextField";
-import { FilledButton } from "../../../../packages/excalidraw/dist/excalidraw/components/FilledButton";
+} from "../@excalidraw/excalidraw/dist/excalidraw/components/icons";
+import { TextField } from "../@excalidraw/excalidraw/dist/excalidraw/components/TextField";
+import { FilledButton } from "../@excalidraw/excalidraw/dist/excalidraw/components/FilledButton";
 import { activeRoomLinkAtom, CollabAPI } from "../collab/Collab";
 import { atom, useAtom, useAtomValue } from "jotai";
 
 import "./ShareDialog.scss";
-import { useUIAppState } from "../../../../packages/excalidraw/dist/excalidraw/context/ui-appState";
+import { useUIAppState } from "../@excalidraw/excalidraw/dist/excalidraw/context/ui-appState";
 
 type OnExportToBackend = () => void;
 type ShareDialogType = "share" | "collaborationOnly";

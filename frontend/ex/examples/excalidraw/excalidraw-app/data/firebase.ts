@@ -3,27 +3,27 @@ import {
   ExcalidrawElement,
   FileId,
   OrderedExcalidrawElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/types";
-import { getSceneVersion } from "../../../../packages/excalidraw/dist/excalidraw/element";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
+import { getSceneVersion } from "../@excalidraw/excalidraw/dist/excalidraw/element";
 import Portal from "../collab/Portal";
-import { restoreElements } from "../../../../packages/excalidraw/dist/excalidraw/data/restore";
+import { restoreElements } from "../@excalidraw/excalidraw/dist/excalidraw/data/restore";
 import {
   AppState,
   BinaryFileData,
   BinaryFileMetadata,
   DataURL,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
 import { FILE_CACHE_MAX_AGE_SEC } from "../app_constants";
-import { decompressData } from "../../../../packages/excalidraw/dist/excalidraw/data/encode";
+import { decompressData } from "../@excalidraw/excalidraw/dist/excalidraw/data/encode";
 import {
   encryptData,
   decryptData,
-} from "../../../../packages/excalidraw/dist/excalidraw/data/encryption";
-import { MIME_TYPES } from "../../../../packages/excalidraw/dist/excalidraw/constants";
+} from "../@excalidraw/excalidraw/dist/excalidraw/data/encryption";
+import { MIME_TYPES } from "../@excalidraw/excalidraw/dist/excalidraw/constants";
 import { getSyncableElements, SyncableExcalidrawElement } from ".";
-import { ResolutionType } from "../../../../packages/excalidraw/dist/excalidraw/utility-types";
+import { ResolutionType } from "../@excalidraw/excalidraw/dist/excalidraw/utility-types";
 import type { Socket } from "socket.io-client";
-import type { RemoteExcalidrawElement } from "../../../../packages/excalidraw/dist/excalidraw/data/reconcile";
+import type { RemoteExcalidrawElement } from "../@excalidraw/excalidraw/dist/excalidraw/data/reconcile";
 
 
 // private

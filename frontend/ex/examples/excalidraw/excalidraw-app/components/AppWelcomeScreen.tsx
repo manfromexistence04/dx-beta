@@ -1,9 +1,9 @@
 import React from "react";
-import { arrowBarToLeftIcon } from "../../../../packages/excalidraw/dist/excalidraw/components/icons";
-import { useI18n } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
-import { WelcomeScreen } from "../../../../packages/excalidraw/dist/excalidraw/index";
+import { arrowBarToLeftIcon } from "../@excalidraw/excalidraw/dist/excalidraw/components/icons";
+import { useI18n } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
+import { WelcomeScreen } from "../@excalidraw/excalidraw/dist/excalidraw/index";
 import { isExcalidrawPlusSignedUser } from "../app_constants";
-import { POINTER_EVENTS } from "../../../../packages/excalidraw/dist/excalidraw/constants";
+import { POINTER_EVENTS } from "../@excalidraw/excalidraw/dist/excalidraw/constants";
 
 export const AppWelcomeScreen: React.FC<{
   onCollabDialogOpen: () => any;

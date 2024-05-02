@@ -1,9 +1,9 @@
 import { atom, useAtom } from "jotai";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { THEME } from "../packages/excalidraw";
-import { EVENT } from "../packages/excalidraw/constants";
-import { Theme } from "../packages/excalidraw/element/types";
-import { CODES, KEYS } from "../packages/excalidraw/keys";
+import { THEME } from "../../../packages/excalidraw/dist/excalidraw";
+import { EVENT } from "@excalidraw/excalidraw/dist/excalidraw/constants";
+import { Theme } from "@excalidraw/excalidraw/dist/excalidraw/element/types";
+import { CODES, KEYS } from "@excalidraw/excalidraw/dist/excalidraw/keys";
 import { STORAGE_KEYS } from "./app_constants";
 
 export const appThemeAtom = atom<Theme | "system">(

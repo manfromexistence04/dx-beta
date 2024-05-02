@@ -1,11 +1,11 @@
-import { defaultLang } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
-import { UI } from "../../../../packages/excalidraw/dist/excalidraw/tests/helpers/ui";
+import { defaultLang } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
+import { UI } from "../@excalidraw/excalidraw/dist/excalidraw/tests/helpers/ui";
 import {
   screen,
   fireEvent,
   waitFor,
   render,
-} from "../../../../packages/excalidraw/dist/excalidraw/tests/test-utils";
+} from "../@excalidraw/excalidraw/dist/excalidraw/tests/test-utils";
 
 import ExcalidrawApp from "../App";
 

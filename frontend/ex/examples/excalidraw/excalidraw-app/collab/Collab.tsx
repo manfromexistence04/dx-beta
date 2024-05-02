@@ -3,15 +3,15 @@ import { PureComponent } from "react";
 import {
   ExcalidrawImperativeAPI,
   SocketId,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
-import { ErrorDialog } from "../../../../packages/excalidraw/dist/excalidraw/components/ErrorDialog";
-import { APP_NAME, ENV, EVENT } from "../../../../packages/excalidraw/dist/excalidraw/constants";
-import { ImportedDataState } from "../../../../packages/excalidraw/dist/excalidraw/data/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
+import { ErrorDialog } from "../@excalidraw/excalidraw/dist/excalidraw/components/ErrorDialog";
+import { APP_NAME, ENV, EVENT } from "../@excalidraw/excalidraw/dist/excalidraw/constants";
+import { ImportedDataState } from "../@excalidraw/excalidraw/dist/excalidraw/data/types";
 import {
   ExcalidrawElement,
   InitializedExcalidrawImageElement,
   OrderedExcalidrawElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
 import {
   StoreAction,
   getSceneVersion,
@@ -19,13 +19,13 @@ import {
   zoomToFitBounds,
   reconcileElements,
 } from "../../../../packages/excalidraw/dist/excalidraw";
-import { Collaborator, Gesture } from "../../../../packages/excalidraw/dist/excalidraw/types";
+import { Collaborator, Gesture } from "../@excalidraw/excalidraw/dist/excalidraw/types";
 import {
   assertNever,
   preventUnload,
   resolvablePromise,
   throttleRAF,
-} from "../../../../packages/excalidraw/dist/excalidraw/utils";
+} from "../@excalidraw/excalidraw/dist/excalidraw/utils";
 import {
   CURSOR_SYNC_TIMEOUT,
   FILE_UPLOAD_MAX_BYTES,
@@ -55,36 +55,36 @@ import {
   saveUsernameToLocalStorage,
 } from "../data/localStorage";
 import Portal from "./Portal";
-import { t } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
-import { UserIdleState } from "../../../../packages/excalidraw/dist/excalidraw/types";
+import { t } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
+import { UserIdleState } from "../@excalidraw/excalidraw/dist/excalidraw/types";
 import {
   IDLE_THRESHOLD,
   ACTIVE_THRESHOLD,
-} from "../../../../packages/excalidraw/dist/excalidraw/constants";
+} from "../@excalidraw/excalidraw/dist/excalidraw/constants";
 import {
   encodeFilesForUpload,
   FileManager,
   updateStaleImageStatuses,
 } from "../data/FileManager";
-import { AbortError } from "../../../../packages/excalidraw/dist/excalidraw/errors";
+import { AbortError } from "../@excalidraw/excalidraw/dist/excalidraw/errors";
 import {
   isImageElement,
   isInitializedImageElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/typeChecks";
-import { newElementWith } from "../../../../packages/excalidraw/dist/excalidraw/element/mutateElement";
-import { decryptData } from "../../../../packages/excalidraw/dist/excalidraw/data/encryption";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/typeChecks";
+import { newElementWith } from "../@excalidraw/excalidraw/dist/excalidraw/element/mutateElement";
+import { decryptData } from "../@excalidraw/excalidraw/dist/excalidraw/data/encryption";
 import { resetBrowserStateVersions } from "../data/tabSync";
 import { LocalData } from "../data/LocalData";
 import { atom } from "jotai";
 import { appJotaiStore } from "../app-jotai";
-import { Mutable, ValueOf } from "../../../../packages/excalidraw/dist/excalidraw/utility-types";
-import { getVisibleSceneBounds } from "../../../../packages/excalidraw/dist/excalidraw/element/bounds";
-import { withBatchedUpdates } from "../../../../packages/excalidraw/dist/excalidraw/reactUtils";
+import { Mutable, ValueOf } from "../@excalidraw/excalidraw/dist/excalidraw/utility-types";
+import { getVisibleSceneBounds } from "../@excalidraw/excalidraw/dist/excalidraw/element/bounds";
+import { withBatchedUpdates } from "../@excalidraw/excalidraw/dist/excalidraw/reactUtils";
 import { collabErrorIndicatorAtom } from "./CollabError";
 import type {
   ReconciledExcalidrawElement,
   RemoteExcalidrawElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/data/reconcile";
+} from "../@excalidraw/excalidraw/dist/excalidraw/data/reconcile";
 
 export const collabAPIAtom = atom<CollabAPI | null>(null);
 export const isCollaboratingAtom = atom(false);

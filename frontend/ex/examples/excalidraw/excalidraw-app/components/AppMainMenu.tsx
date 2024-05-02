@@ -2,9 +2,9 @@ import React from "react";
 import {
   arrowBarToLeftIcon,
   ExcalLogo,
-} from "../../../../packages/excalidraw/dist/excalidraw/components/icons";
-import { Theme } from "../../../../packages/excalidraw/dist/excalidraw/element/types";
-import { MainMenu } from "../../../../packages/excalidraw/dist/excalidraw/index";
+} from "../@excalidraw/excalidraw/dist/excalidraw/components/icons";
+import { Theme } from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
+import { MainMenu } from "../@excalidraw/excalidraw/dist/excalidraw/index";
 import { isExcalidrawPlusSignedUser } from "../app_constants";
 import { LanguageList } from "./LanguageList";
 

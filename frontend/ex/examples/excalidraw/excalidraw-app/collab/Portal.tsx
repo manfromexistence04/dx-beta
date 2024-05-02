@@ -7,17 +7,17 @@ import {
 
 import { TCollabClass } from "./Collab";
 
-import { OrderedExcalidrawElement } from "../../../../packages/excalidraw/dist/excalidraw/element/types";
+import { OrderedExcalidrawElement } from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
 import { WS_EVENTS, FILE_UPLOAD_TIMEOUT, WS_SUBTYPES } from "../app_constants";
 import {
   OnUserFollowedPayload,
   SocketId,
   UserIdleState,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
-import { trackEvent } from "../../../../packages/excalidraw/dist/excalidraw/analytics";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
+import { trackEvent } from "../@excalidraw/excalidraw/dist/excalidraw/analytics";
 import throttle from "lodash.throttle";
-import { newElementWith } from "../../../../packages/excalidraw/dist/excalidraw/element/mutateElement";
-import { encryptData } from "../../../../packages/excalidraw/dist/excalidraw/data/encryption";
+import { newElementWith } from "../@excalidraw/excalidraw/dist/excalidraw/element/mutateElement";
+import { encryptData } from "../@excalidraw/excalidraw/dist/excalidraw/data/encryption";
 import type { Socket } from "socket.io-client";
 import { StoreAction } from "../../../../packages/excalidraw/dist/excalidraw";
 

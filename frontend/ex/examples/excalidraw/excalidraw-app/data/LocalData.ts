@@ -19,21 +19,21 @@ import {
   setMany,
   get,
 } from "idb-keyval";
-import { clearAppStateForLocalStorage } from "../../../../packages/excalidraw/dist/excalidraw/appState";
-import { LibraryPersistedData } from "../../../../packages/excalidraw/dist/excalidraw/data/library";
-import { ImportedDataState } from "../../../../packages/excalidraw/dist/excalidraw/data/types";
-import { clearElementsForLocalStorage } from "../../../../packages/excalidraw/dist/excalidraw/element";
+import { clearAppStateForLocalStorage } from "../@excalidraw/excalidraw/dist/excalidraw/appState";
+import { LibraryPersistedData } from "../@excalidraw/excalidraw/dist/excalidraw/data/library";
+import { ImportedDataState } from "../@excalidraw/excalidraw/dist/excalidraw/data/types";
+import { clearElementsForLocalStorage } from "../@excalidraw/excalidraw/dist/excalidraw/element";
 import {
   ExcalidrawElement,
   FileId,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
 import {
   AppState,
   BinaryFileData,
   BinaryFiles,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
-import { MaybePromise } from "../../../../packages/excalidraw/dist/excalidraw/utility-types";
-import { debounce } from "../../../../packages/excalidraw/dist/excalidraw/utils";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
+import { MaybePromise } from "../@excalidraw/excalidraw/dist/excalidraw/utility-types";
+import { debounce } from "../@excalidraw/excalidraw/dist/excalidraw/utils";
 import { SAVE_TO_LOCAL_STORAGE_TIMEOUT, STORAGE_KEYS } from "../app_constants";
 import { FileManager } from "./FileManager";
 import { Locker } from "./Locker";

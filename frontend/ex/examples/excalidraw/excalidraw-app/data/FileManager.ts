@@ -1,20 +1,20 @@
 import { StoreAction } from "../../../../packages/excalidraw/dist/excalidraw";
-import { compressData } from "../../../../packages/excalidraw/dist/excalidraw/data/encode";
-import { newElementWith } from "../../../../packages/excalidraw/dist/excalidraw/element/mutateElement";
-import { isInitializedImageElement } from "../../../../packages/excalidraw/dist/excalidraw/element/typeChecks";
+import { compressData } from "../@excalidraw/excalidraw/dist/excalidraw/data/encode";
+import { newElementWith } from "../@excalidraw/excalidraw/dist/excalidraw/element/mutateElement";
+import { isInitializedImageElement } from "../@excalidraw/excalidraw/dist/excalidraw/element/typeChecks";
 import {
   ExcalidrawElement,
   ExcalidrawImageElement,
   FileId,
   InitializedExcalidrawImageElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/types";
-import { t } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
+import { t } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
 import {
   BinaryFileData,
   BinaryFileMetadata,
   ExcalidrawImperativeAPI,
   BinaryFiles,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
 
 export class FileManager {
   /** files being fetched */

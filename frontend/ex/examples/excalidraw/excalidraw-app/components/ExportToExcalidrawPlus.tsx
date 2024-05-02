@@ -1,30 +1,30 @@
 import React from "react";
-import { Card } from "../../../../packages/excalidraw/dist/excalidraw/components/Card";
-import { ToolButton } from "../../../../packages/excalidraw/dist/excalidraw/components/ToolButton";
-import { serializeAsJSON } from "../../../../packages/excalidraw/dist/excalidraw/data/json";
+import { Card } from "../@excalidraw/excalidraw/dist/excalidraw/components/Card";
+import { ToolButton } from "../@excalidraw/excalidraw/dist/excalidraw/components/ToolButton";
+import { serializeAsJSON } from "../@excalidraw/excalidraw/dist/excalidraw/data/json";
 import { loadFirebaseStorage, saveFilesToFirebase } from "../data/firebase";
 import {
   FileId,
   NonDeletedExcalidrawElement,
-} from "../../../../packages/excalidraw/dist/excalidraw/element/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/element/types";
 import {
   AppState,
   BinaryFileData,
   BinaryFiles,
-} from "../../../../packages/excalidraw/dist/excalidraw/types";
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
 import { nanoid } from "nanoid";
-import { useI18n } from "../../../../packages/excalidraw/dist/excalidraw/i18n";
+import { useI18n } from "../@excalidraw/excalidraw/dist/excalidraw/i18n";
 import {
   encryptData,
   generateEncryptionKey,
-} from "../../../../packages/excalidraw/dist/excalidraw/data/encryption";
-import { isInitializedImageElement } from "../../../../packages/excalidraw/dist/excalidraw/element/typeChecks";
+} from "../@excalidraw/excalidraw/dist/excalidraw/data/encryption";
+import { isInitializedImageElement } from "../@excalidraw/excalidraw/dist/excalidraw/element/typeChecks";
 import { FILE_UPLOAD_MAX_BYTES } from "../app_constants";
 import { encodeFilesForUpload } from "../data/FileManager";
-import { MIME_TYPES } from "../../../../packages/excalidraw/dist/excalidraw/constants";
-import { trackEvent } from "../../../../packages/excalidraw/dist/excalidraw/analytics";
-import { getFrame } from "../../../../packages/excalidraw/dist/excalidraw/utils";
-import { ExcalidrawLogo } from "../../../../packages/excalidraw/dist/excalidraw/components/ExcalidrawLogo";
+import { MIME_TYPES } from "../@excalidraw/excalidraw/dist/excalidraw/constants";
+import { trackEvent } from "../@excalidraw/excalidraw/dist/excalidraw/analytics";
+import { getFrame } from "../@excalidraw/excalidraw/dist/excalidraw/utils";
+import { ExcalidrawLogo } from "../@excalidraw/excalidraw/dist/excalidraw/components/ExcalidrawLogo";
 
 export const exportToExcalidrawPlus = async (
   elements: readonly NonDeletedExcalidrawElement[],
