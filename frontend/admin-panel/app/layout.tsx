@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* <MainNav /> */}
+          <MainNav />
           <div className="min-h-[80vh]">
             {children}
           </div>
