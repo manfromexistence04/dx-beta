@@ -156,7 +156,7 @@
     "hint_emptyPrivateLibrary": "Select an item on canvas to add it here."
   },
   "buttons": {
-    "clearReset": "Reset the canvas",
+    "clearReset": "Do it or else",
     "exportJSON": "Export to file",
     "exportImage": "Export image...",
     "export": "Save to...",
