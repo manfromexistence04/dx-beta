@@ -3,7 +3,7 @@ import * as excalidrawLib from "./whiteboard/hello-mode/excalidraw";
 import { Excalidraw } from "./whiteboard/hello-mode/excalidraw";
 import App from "./whiteboard/App";
 
-import "@excalidraw/excalidraw/index.css";
+// import "@excalidraw/excalidraw/index.css";
 
 const HelloTool: React.FC = () => {
   return (
