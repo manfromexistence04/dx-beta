@@ -20,21 +20,30 @@ import { ExcalidrawElement, OrderedExcalidrawElement } from "./element/types";
  *
  * @throws `InvalidFractionalIndexError` if invalid index is detected.
  */
-export declare const validateFractionalIndices: (indices: (ExcalidrawElement["index"] | undefined)[]) => void;
+export declare const validateFractionalIndices: (
+  indices: (ExcalidrawElement["index"] | undefined)[],
+) => void;
 /**
  * Order the elements based on the fractional indices.
  * - when fractional indices are identical, break the tie based on the element id
  * - when there is no fractional index in one of the elements, respect the order of the array
  */
-export declare const orderByFractionalIndex: (elements: OrderedExcalidrawElement[]) => OrderedExcalidrawElement[];
+export declare const orderByFractionalIndex: (
+  elements: OrderedExcalidrawElement[],
+) => OrderedExcalidrawElement[];
 /**
  * Synchronizes invalid fractional indices of moved elements with the array order by mutating passed elements.
  * If the synchronization fails or the result is invalid, it fallbacks to `syncInvalidIndices`.
  */
-export declare const syncMovedIndices: (elements: readonly ExcalidrawElement[], movedElements: Map<string, ExcalidrawElement>) => OrderedExcalidrawElement[];
+export declare const syncMovedIndices: (
+  elements: readonly ExcalidrawElement[],
+  movedElements: Map<string, ExcalidrawElement>,
+) => OrderedExcalidrawElement[];
 /**
  * Synchronizes all invalid fractional indices with the array order by mutating passed elements.
  *
  * WARN: in edge cases it could modify the elements which were not moved, as it's impossible to guess the actually moved elements from the elements array itself.
  */
-export declare const syncInvalidIndices: (elements: readonly ExcalidrawElement[]) => OrderedExcalidrawElement[];
+export declare const syncInvalidIndices: (
+  elements: readonly ExcalidrawElement[],
+) => OrderedExcalidrawElement[];

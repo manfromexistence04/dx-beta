@@ -407,10 +407,12 @@ export default function App({
         { sceneX: commentIcons[id].x, sceneY: commentIcons[id].y },
         appstate,
       );
-      ele.style.left = `${x - COMMENT_ICON_DIMENSION / 2 - appstate!.offsetLeft
-        }px`;
-      ele.style.top = `${y - COMMENT_ICON_DIMENSION / 2 - appstate!.offsetTop
-        }px`;
+      ele.style.left = `${
+        x - COMMENT_ICON_DIMENSION / 2 - appstate!.offsetLeft
+      }px`;
+      ele.style.top = `${
+        y - COMMENT_ICON_DIMENSION / 2 - appstate!.offsetTop
+      }px`;
     });
   };
 
@@ -645,9 +647,7 @@ export default function App({
 
   return (
     <div className="App" ref={appRef}>
-      <div className="excalidraw-wrapper">
-        {renderExcalidraw(children)}
-      </div>
+      <div className="excalidraw-wrapper">{renderExcalidraw(children)}</div>
     </div>
   );
 }

@@ -2,11 +2,14 @@ import React from "react";
 import { Theme } from "../element/types";
 export declare const iconFillColor: (theme: Theme) => string;
 type Opts = {
-    width?: number;
-    height?: number;
-    mirror?: true;
+  width?: number;
+  height?: number;
+  mirror?: true;
 } & React.SVGProps<SVGSVGElement>;
-export declare const createIcon: (d: string | React.ReactNode, opts?: number | Opts) => JSX.Element;
+export declare const createIcon: (
+  d: string | React.ReactNode,
+  opts?: number | Opts,
+) => JSX.Element;
 export declare const PlusPromoIcon: JSX.Element;
 export declare const LibraryIcon: JSX.Element;
 export declare const PlusIcon: JSX.Element;
@@ -87,12 +90,12 @@ export declare const CloseIcon: JSX.Element;
 export declare const clone: JSX.Element;
 export declare const shield: JSX.Element;
 export declare const file: JSX.Element;
-export declare const GroupIcon: React.MemoExoticComponent<({ theme }: {
-    theme: Theme;
-}) => JSX.Element>;
-export declare const UngroupIcon: React.MemoExoticComponent<({ theme }: {
-    theme: Theme;
-}) => JSX.Element>;
+export declare const GroupIcon: React.MemoExoticComponent<
+  ({ theme }: { theme: Theme }) => JSX.Element
+>;
+export declare const UngroupIcon: React.MemoExoticComponent<
+  ({ theme }: { theme: Theme }) => JSX.Element
+>;
 export declare const FillZigZagIcon: JSX.Element;
 export declare const FillHachureIcon: JSX.Element;
 export declare const FillCrossHatchIcon: JSX.Element;
@@ -100,9 +103,9 @@ export declare const FillSolidIcon: JSX.Element;
 export declare const StrokeWidthBaseIcon: JSX.Element;
 export declare const StrokeWidthBoldIcon: JSX.Element;
 export declare const StrokeWidthExtraBoldIcon: JSX.Element;
-export declare const StrokeStyleSolidIcon: React.MemoExoticComponent<({ theme }: {
-    theme: Theme;
-}) => JSX.Element>;
+export declare const StrokeStyleSolidIcon: React.MemoExoticComponent<
+  ({ theme }: { theme: Theme }) => JSX.Element
+>;
 export declare const StrokeStyleDashedIcon: JSX.Element;
 export declare const StrokeStyleDottedIcon: JSX.Element;
 export declare const SloppinessArchitectIcon: JSX.Element;
@@ -111,30 +114,30 @@ export declare const SloppinessCartoonistIcon: JSX.Element;
 export declare const EdgeSharpIcon: JSX.Element;
 export declare const EdgeRoundIcon: JSX.Element;
 export declare const ArrowheadNoneIcon: JSX.Element;
-export declare const ArrowheadArrowIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadCircleIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadCircleOutlineIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadBarIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadTriangleIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadTriangleOutlineIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadDiamondIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
-export declare const ArrowheadDiamondOutlineIcon: React.MemoExoticComponent<({ flip }: {
-    flip?: boolean | undefined;
-}) => JSX.Element>;
+export declare const ArrowheadArrowIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadCircleIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadCircleOutlineIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadBarIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadTriangleIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadTriangleOutlineIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadDiamondIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
+export declare const ArrowheadDiamondOutlineIcon: React.MemoExoticComponent<
+  ({ flip }: { flip?: boolean | undefined }) => JSX.Element
+>;
 export declare const FontSizeSmallIcon: JSX.Element;
 export declare const FontSizeMediumIcon: JSX.Element;
 export declare const FontSizeLargeIcon: JSX.Element;
@@ -145,15 +148,15 @@ export declare const FontFamilyCodeIcon: JSX.Element;
 export declare const TextAlignLeftIcon: JSX.Element;
 export declare const TextAlignCenterIcon: JSX.Element;
 export declare const TextAlignRightIcon: JSX.Element;
-export declare const TextAlignTopIcon: React.MemoExoticComponent<({ theme }: {
-    theme: Theme;
-}) => JSX.Element>;
-export declare const TextAlignBottomIcon: React.MemoExoticComponent<({ theme }: {
-    theme: Theme;
-}) => JSX.Element>;
-export declare const TextAlignMiddleIcon: React.MemoExoticComponent<({ theme }: {
-    theme: Theme;
-}) => JSX.Element>;
+export declare const TextAlignTopIcon: React.MemoExoticComponent<
+  ({ theme }: { theme: Theme }) => JSX.Element
+>;
+export declare const TextAlignBottomIcon: React.MemoExoticComponent<
+  ({ theme }: { theme: Theme }) => JSX.Element
+>;
+export declare const TextAlignMiddleIcon: React.MemoExoticComponent<
+  ({ theme }: { theme: Theme }) => JSX.Element
+>;
 export declare const publishIcon: JSX.Element;
 export declare const eraser: JSX.Element;
 export declare const handIcon: JSX.Element;

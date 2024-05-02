@@ -9,12 +9,7 @@ const LogoIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
-    <circle
-      cx="88"
-      cy="88"
-      fill="url(#pattern0_5_1958)"
-      r="88"
-    />
+    <circle cx="88" cy="88" fill="url(#pattern0_5_1958)" r="88" />
     <defs>
       <pattern
         height="1"
@@ -22,10 +17,7 @@ const LogoIcon = () => (
         patternContentUnits="objectBoundingBox"
         width="1"
       >
-        <use
-          transform="scale(0.00284091)"
-          xlinkHref="#image0_5_1958"
-        />
+        <use transform="scale(0.00284091)" xlinkHref="#image0_5_1958" />
       </pattern>
       <image
         height="352"

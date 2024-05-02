@@ -25,14 +25,14 @@ export declare const origin: () => NVector;
 export declare const direction: (x: number, y: number) => NVector;
 export declare const offset: (x: number, y: number) => NVector;
 type NVector = readonly [
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
 ];
 export declare const nvector: (value?: number, index?: number) => NVector;
 export declare const toString: (nvector: NVector) => string;

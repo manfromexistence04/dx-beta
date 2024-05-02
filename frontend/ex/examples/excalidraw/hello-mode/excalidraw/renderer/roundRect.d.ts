@@ -8,4 +8,12 @@
  * @param {Number} height The height of the rectangle
  * @param {Number} radius The corner radius
  */
-export declare const roundRect: (context: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number, strokeColor?: string) => void;
+export declare const roundRect: (
+  context: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number,
+  strokeColor?: string,
+) => void;

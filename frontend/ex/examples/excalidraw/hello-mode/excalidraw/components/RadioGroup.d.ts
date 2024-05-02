@@ -1,14 +1,19 @@
 /// <reference types="react" />
 import "./RadioGroup.scss";
 export type RadioGroupChoice<T> = {
-    value: T;
-    label: React.ReactNode;
-    ariaLabel?: string;
+  value: T;
+  label: React.ReactNode;
+  ariaLabel?: string;
 };
 export type RadioGroupProps<T> = {
-    choices: RadioGroupChoice<T>[];
-    value: T;
-    onChange: (value: T) => void;
-    name: string;
+  choices: RadioGroupChoice<T>[];
+  value: T;
+  onChange: (value: T) => void;
+  name: string;
 };
-export declare const RadioGroup: <T>({ onChange, value, choices, name, }: RadioGroupProps<T>) => JSX.Element;
+export declare const RadioGroup: <T>({
+  onChange,
+  value,
+  choices,
+  name,
+}: RadioGroupProps<T>) => JSX.Element;

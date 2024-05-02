@@ -5,7 +5,11 @@ import {
   SocketId,
 } from "../@excalidraw/excalidraw/dist/excalidraw/types";
 import { ErrorDialog } from "../@excalidraw/excalidraw/dist/excalidraw/components/ErrorDialog";
-import { APP_NAME, ENV, EVENT } from "../@excalidraw/excalidraw/dist/excalidraw/constants";
+import {
+  APP_NAME,
+  ENV,
+  EVENT,
+} from "../@excalidraw/excalidraw/dist/excalidraw/constants";
 import { ImportedDataState } from "../@excalidraw/excalidraw/dist/excalidraw/data/types";
 import {
   ExcalidrawElement,
@@ -19,7 +23,10 @@ import {
   zoomToFitBounds,
   reconcileElements,
 } from "../../../../packages/excalidraw/dist/excalidraw";
-import { Collaborator, Gesture } from "../@excalidraw/excalidraw/dist/excalidraw/types";
+import {
+  Collaborator,
+  Gesture,
+} from "../@excalidraw/excalidraw/dist/excalidraw/types";
 import {
   assertNever,
   preventUnload,
@@ -77,7 +84,10 @@ import { resetBrowserStateVersions } from "../data/tabSync";
 import { LocalData } from "../data/LocalData";
 import { atom } from "jotai";
 import { appJotaiStore } from "../app-jotai";
-import { Mutable, ValueOf } from "../@excalidraw/excalidraw/dist/excalidraw/utility-types";
+import {
+  Mutable,
+  ValueOf,
+} from "../@excalidraw/excalidraw/dist/excalidraw/utility-types";
 import { getVisibleSceneBounds } from "../@excalidraw/excalidraw/dist/excalidraw/element/bounds";
 import { withBatchedUpdates } from "../@excalidraw/excalidraw/dist/excalidraw/reactUtils";
 import { collabErrorIndicatorAtom } from "./CollabError";

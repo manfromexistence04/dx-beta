@@ -12,7 +12,10 @@ import {
   createRedoAction,
   createUndoAction,
 } from "../@excalidraw/excalidraw/dist/excalidraw/actions/actionHistory";
-import { StoreAction, newElementWith } from "../../../../packages/excalidraw/dist/excalidraw";
+import {
+  StoreAction,
+  newElementWith,
+} from "../../../../packages/excalidraw/dist/excalidraw";
 
 const { h } = window;
 

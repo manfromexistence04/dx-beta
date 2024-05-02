@@ -25,7 +25,6 @@ import { ResolutionType } from "../@excalidraw/excalidraw/dist/excalidraw/utilit
 import type { Socket } from "socket.io-client";
 import type { RemoteExcalidrawElement } from "../@excalidraw/excalidraw/dist/excalidraw/data/reconcile";
 
-
 // private
 // -----------------------------------------------------------------------------
 

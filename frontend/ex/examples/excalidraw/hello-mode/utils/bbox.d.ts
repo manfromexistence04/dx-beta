@@ -7,5 +7,11 @@ export declare function doBBoxesIntersect(a: Bounds, b: Bounds): boolean;
 export declare function translate(a: Point, b: Point): Point;
 export declare function isPointOnLine(l: LineSegment, p: Point): boolean;
 export declare function isPointRightOfLine(l: LineSegment, p: Point): boolean;
-export declare function isLineSegmentTouchingOrCrossingLine(a: LineSegment, b: LineSegment): boolean;
-export declare function doLineSegmentsIntersect(a: LineSegment, b: LineSegment): boolean;
+export declare function isLineSegmentTouchingOrCrossingLine(
+  a: LineSegment,
+  b: LineSegment,
+): boolean;
+export declare function doLineSegmentsIntersect(
+  a: LineSegment,
+  b: LineSegment,
+): boolean;

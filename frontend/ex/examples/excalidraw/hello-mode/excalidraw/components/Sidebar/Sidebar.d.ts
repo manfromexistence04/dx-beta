@@ -9,68 +9,114 @@ import "./Sidebar.scss";
  * Since we can only render one Sidebar at a time, we can use a simple flag.
  */
 export declare const isSidebarDockedAtom: import("jotai").PrimitiveAtom<boolean> & {
-    init: boolean;
+  init: boolean;
 };
-export declare const SidebarInner: React.ForwardRefExoticComponent<Omit<{
+export declare const SidebarInner: React.ForwardRefExoticComponent<
+  Omit<
+    {
+      name: string;
+      children: React.ReactNode;
+      onStateChange?:
+        | ((
+            state: {
+              name: string;
+              tab?: string | undefined;
+            } | null,
+          ) => void)
+        | undefined;
+      onDock?: ((docked: boolean) => void) | undefined;
+      docked?: boolean | undefined;
+      className?: string | undefined;
+      __fallback?: boolean | undefined;
+    } & Omit<React.RefAttributes<HTMLDivElement>, "onSelect">,
+    "ref"
+  > &
+    React.RefAttributes<HTMLDivElement>
+>;
+export declare const Sidebar: React.ForwardRefExoticComponent<
+  {
     name: string;
     children: React.ReactNode;
-    onStateChange?: ((state: {
-        name: string;
-        tab?: string | undefined;
-    } | null) => void) | undefined;
+    onStateChange?:
+      | ((
+          state: {
+            name: string;
+            tab?: string | undefined;
+          } | null,
+        ) => void)
+      | undefined;
     onDock?: ((docked: boolean) => void) | undefined;
     docked?: boolean | undefined;
     className?: string | undefined;
     __fallback?: boolean | undefined;
-} & Omit<React.RefAttributes<HTMLDivElement>, "onSelect">, "ref"> & React.RefAttributes<HTMLDivElement>>;
-export declare const Sidebar: React.ForwardRefExoticComponent<{
-    name: string;
-    children: React.ReactNode;
-    onStateChange?: ((state: {
-        name: string;
-        tab?: string | undefined;
-    } | null) => void) | undefined;
-    onDock?: ((docked: boolean) => void) | undefined;
-    docked?: boolean | undefined;
-    className?: string | undefined;
-    __fallback?: boolean | undefined;
-} & React.RefAttributes<HTMLDivElement>> & {
-    Header: {
-        ({ children, className, }: {
-            children?: React.ReactNode;
-            className?: string | undefined;
-        }): JSX.Element;
-        displayName: string;
-    };
-    TabTriggers: {
-        ({ children, ...rest }: {
-            children: React.ReactNode;
-        } & Omit<React.RefAttributes<HTMLDivElement>, "onSelect">): JSX.Element;
-        displayName: string;
-    };
-    TabTrigger: {
-        ({ children, tab, onSelect, ...rest }: {
-            children: React.ReactNode;
-            tab: string;
-            onSelect?: React.ReactEventHandler<HTMLButtonElement> | undefined;
-        } & Omit<React.HTMLAttributes<HTMLButtonElement>, "onSelect">): JSX.Element;
-        displayName: string;
-    };
-    Tabs: {
-        ({ children, ...rest }: {
-            children: React.ReactNode;
-        } & Omit<React.RefAttributes<HTMLDivElement>, "onSelect">): JSX.Element | null;
-        displayName: string;
-    };
-    Tab: {
-        ({ tab, children, ...rest }: {
-            tab: string;
-            children: React.ReactNode;
-        } & React.HTMLAttributes<HTMLDivElement>): JSX.Element;
-        displayName: string;
-    };
-    Trigger: {
-        ({ name, tab, icon, title, children, onToggle, className, style, }: import("./common").SidebarTriggerProps): JSX.Element;
-        displayName: string;
-    };
+  } & React.RefAttributes<HTMLDivElement>
+> & {
+  Header: {
+    ({
+      children,
+      className,
+    }: {
+      children?: React.ReactNode;
+      className?: string | undefined;
+    }): JSX.Element;
+    displayName: string;
+  };
+  TabTriggers: {
+    ({
+      children,
+      ...rest
+    }: {
+      children: React.ReactNode;
+    } & Omit<React.RefAttributes<HTMLDivElement>, "onSelect">): JSX.Element;
+    displayName: string;
+  };
+  TabTrigger: {
+    ({
+      children,
+      tab,
+      onSelect,
+      ...rest
+    }: {
+      children: React.ReactNode;
+      tab: string;
+      onSelect?: React.ReactEventHandler<HTMLButtonElement> | undefined;
+    } & Omit<React.HTMLAttributes<HTMLButtonElement>, "onSelect">): JSX.Element;
+    displayName: string;
+  };
+  Tabs: {
+    ({
+      children,
+      ...rest
+    }: {
+      children: React.ReactNode;
+    } & Omit<
+      React.RefAttributes<HTMLDivElement>,
+      "onSelect"
+    >): JSX.Element | null;
+    displayName: string;
+  };
+  Tab: {
+    ({
+      tab,
+      children,
+      ...rest
+    }: {
+      tab: string;
+      children: React.ReactNode;
+    } & React.HTMLAttributes<HTMLDivElement>): JSX.Element;
+    displayName: string;
+  };
+  Trigger: {
+    ({
+      name,
+      tab,
+      icon,
+      title,
+      children,
+      onToggle,
+      className,
+      style,
+    }: import("./common").SidebarTriggerProps): JSX.Element;
+    displayName: string;
+  };
 };

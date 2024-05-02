@@ -1,23 +1,76 @@
-import { ExcalidrawElement, ExcalidrawImageElement, ExcalidrawTextElement, ExcalidrawLinearElement, ExcalidrawGenericElement, NonDeleted, TextAlign, GroupId, VerticalAlign, Arrowhead, ExcalidrawFreeDrawElement, FontFamilyValues, ExcalidrawTextContainer, ExcalidrawFrameElement, ExcalidrawEmbeddableElement, ExcalidrawMagicFrameElement, ExcalidrawIframeElement, ElementsMap } from "./types";
+import {
+  ExcalidrawElement,
+  ExcalidrawImageElement,
+  ExcalidrawTextElement,
+  ExcalidrawLinearElement,
+  ExcalidrawGenericElement,
+  NonDeleted,
+  TextAlign,
+  GroupId,
+  VerticalAlign,
+  Arrowhead,
+  ExcalidrawFreeDrawElement,
+  FontFamilyValues,
+  ExcalidrawTextContainer,
+  ExcalidrawFrameElement,
+  ExcalidrawEmbeddableElement,
+  ExcalidrawMagicFrameElement,
+  ExcalidrawIframeElement,
+  ElementsMap,
+} from "./types";
 import { AppState } from "../types";
 import { MarkOptional, Mutable } from "../utility-types";
-export type ElementConstructorOpts = MarkOptional<Omit<ExcalidrawGenericElement, "id" | "type" | "isDeleted" | "updated">, "width" | "height" | "angle" | "groupIds" | "frameId" | "index" | "boundElements" | "seed" | "version" | "versionNonce" | "link" | "strokeStyle" | "fillStyle" | "strokeColor" | "backgroundColor" | "roughness" | "strokeWidth" | "roundness" | "locked" | "opacity" | "customData">;
-export declare const newElement: (opts: {
+export type ElementConstructorOpts = MarkOptional<
+  Omit<ExcalidrawGenericElement, "id" | "type" | "isDeleted" | "updated">,
+  | "width"
+  | "height"
+  | "angle"
+  | "groupIds"
+  | "frameId"
+  | "index"
+  | "boundElements"
+  | "seed"
+  | "version"
+  | "versionNonce"
+  | "link"
+  | "strokeStyle"
+  | "fillStyle"
+  | "strokeColor"
+  | "backgroundColor"
+  | "roughness"
+  | "strokeWidth"
+  | "roundness"
+  | "locked"
+  | "opacity"
+  | "customData"
+>;
+export declare const newElement: (
+  opts: {
     type: ExcalidrawGenericElement["type"];
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawGenericElement>;
-export declare const newEmbeddableElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawGenericElement>;
+export declare const newEmbeddableElement: (
+  opts: {
     type: "embeddable";
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawEmbeddableElement>;
-export declare const newIframeElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawEmbeddableElement>;
+export declare const newIframeElement: (
+  opts: {
     type: "iframe";
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawIframeElement>;
-export declare const newFrameElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawIframeElement>;
+export declare const newFrameElement: (
+  opts: {
     name?: string;
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawFrameElement>;
-export declare const newMagicFrameElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawFrameElement>;
+export declare const newMagicFrameElement: (
+  opts: {
     name?: string;
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawMagicFrameElement>;
-export declare const newTextElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawMagicFrameElement>;
+export declare const newTextElement: (
+  opts: {
     text: string;
     fontSize?: number;
     fontFamily?: FontFamilyValues;
@@ -26,36 +79,59 @@ export declare const newTextElement: (opts: {
     containerId?: ExcalidrawTextContainer["id"] | null;
     lineHeight?: ExcalidrawTextElement["lineHeight"];
     strokeWidth?: ExcalidrawTextElement["strokeWidth"];
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawTextElement>;
-export declare const refreshTextDimensions: (textElement: ExcalidrawTextElement, container: ExcalidrawTextContainer | null, elementsMap: ElementsMap, text?: string) => {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    text: string;
-} | undefined;
-export declare const updateTextElement: (textElement: ExcalidrawTextElement, container: ExcalidrawTextContainer | null, elementsMap: ElementsMap, { text, isDeleted, originalText, }: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawTextElement>;
+export declare const refreshTextDimensions: (
+  textElement: ExcalidrawTextElement,
+  container: ExcalidrawTextContainer | null,
+  elementsMap: ElementsMap,
+  text?: string,
+) =>
+  | {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      text: string;
+    }
+  | undefined;
+export declare const updateTextElement: (
+  textElement: ExcalidrawTextElement,
+  container: ExcalidrawTextContainer | null,
+  elementsMap: ElementsMap,
+  {
+    text,
+    isDeleted,
+    originalText,
+  }: {
     text: string;
     isDeleted?: boolean | undefined;
     originalText: string;
-}) => ExcalidrawTextElement;
-export declare const newFreeDrawElement: (opts: {
+  },
+) => ExcalidrawTextElement;
+export declare const newFreeDrawElement: (
+  opts: {
     type: "freedraw";
     points?: ExcalidrawFreeDrawElement["points"];
     simulatePressure: boolean;
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawFreeDrawElement>;
-export declare const newLinearElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawFreeDrawElement>;
+export declare const newLinearElement: (
+  opts: {
     type: ExcalidrawLinearElement["type"];
     startArrowhead?: Arrowhead | null;
     endArrowhead?: Arrowhead | null;
     points?: ExcalidrawLinearElement["points"];
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawLinearElement>;
-export declare const newImageElement: (opts: {
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawLinearElement>;
+export declare const newImageElement: (
+  opts: {
     type: ExcalidrawImageElement["type"];
     status?: ExcalidrawImageElement["status"];
     fileId?: ExcalidrawImageElement["fileId"];
     scale?: ExcalidrawImageElement["scale"];
-} & ElementConstructorOpts) => NonDeleted<ExcalidrawImageElement>;
+  } & ElementConstructorOpts,
+) => NonDeleted<ExcalidrawImageElement>;
 /**
  * Clones ExcalidrawElement data structure. Does not regenerate id, nonce, or
  * any value. The purpose is to to break object references for immutability
@@ -65,7 +141,9 @@ export declare const newImageElement: (opts: {
  * Only clones plain objects and arrays. Doesn't clone Date, RegExp, Map, Set,
  * Typed arrays and other non-null objects.
  */
-export declare const deepCopyElement: <T extends ExcalidrawElement>(val: T) => Mutable<T>;
+export declare const deepCopyElement: <T extends ExcalidrawElement>(
+  val: T,
+) => Mutable<T>;
 /**
  * utility wrapper to generate new id. In test env it reuses the old + postfix
  * for test assertions.
@@ -85,7 +163,12 @@ export declare const regenerateId: (previousId: string | null) => string;
  * @param element Element to duplicate
  * @param overrides Any element properties to override
  */
-export declare const duplicateElement: <TElement extends ExcalidrawElement>(editingGroupId: AppState["editingGroupId"], groupIdMapForOperation: Map<GroupId, GroupId>, element: TElement, overrides?: Partial<TElement> | undefined) => Readonly<TElement>;
+export declare const duplicateElement: <TElement extends ExcalidrawElement>(
+  editingGroupId: AppState["editingGroupId"],
+  groupIdMapForOperation: Map<GroupId, GroupId>,
+  element: TElement,
+  overrides?: Partial<TElement> | undefined,
+) => Readonly<TElement>;
 /**
  * Clones elements, regenerating their ids (including bindings) and group ids.
  *
@@ -96,7 +179,10 @@ export declare const duplicateElement: <TElement extends ExcalidrawElement>(edit
  *
  * NOTE by default does not randomize or regenerate anything except the id.
  */
-export declare const duplicateElements: (elements: readonly ExcalidrawElement[], opts?: {
+export declare const duplicateElements: (
+  elements: readonly ExcalidrawElement[],
+  opts?: {
     /** NOTE also updates version flags and `updated` */
     randomizeSeed: boolean;
-}) => ExcalidrawElement[];
+  },
+) => ExcalidrawElement[];

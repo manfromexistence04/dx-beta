@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { debounce, getVersion, nFormatter } from "@excalidraw/excalidraw/dist/excalidraw/utils";
+import {
+  debounce,
+  getVersion,
+  nFormatter,
+} from "@excalidraw/excalidraw/dist/excalidraw/utils";
 import {
   getElementsStorageSize,
   getTotalStorageSize,
