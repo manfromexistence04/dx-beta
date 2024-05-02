@@ -1,5 +1,5 @@
 "use client";
-import { Excalidraw, convertToExcalidrawElements } from "@excalidraw/excalidraw";
+import { Excalidraw, convertToExcalidrawElements, WelcomeScreen } from "@excalidraw/excalidraw";
 
 // import "@excalidraw/excalidraw/index.css";
 
@@ -11,9 +11,11 @@ const ExcalidrawWrapper: React.FC = () => {
     height: 141.9765625,
   },]));
   return (
-    <div className="h-screen w-screen ">  
-      <Excalidraw />
-    </div> 
+    <div className="h-screen w-screen !fixed top-0 left-0 z-0">
+      <Excalidraw>
+        <WelcomeScreen />
+      </Excalidraw>
+    </div>
   );
 };
 export default ExcalidrawWrapper;

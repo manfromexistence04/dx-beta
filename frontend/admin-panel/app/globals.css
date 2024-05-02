@@ -188,8 +188,7 @@ footer{
   left: 0 !important;
 }
 
-.dropdown-menu{
-  bottom: 100% !important;
-  top: 0;
 
-}
+/* .dropdown-menu-container{
+  margin-top: 100px !important;
+} */

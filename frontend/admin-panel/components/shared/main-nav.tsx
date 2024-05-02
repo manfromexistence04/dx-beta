@@ -43,7 +43,7 @@ export default function MainNav() {
 
   return (
     <motion.header
-      className={`h-20 fixed top-0 z-50 transition-all duration-200 flex items-center justify-start lg:px-[2%] px-12 !w-full ${
+      className={`h-20 sticky top-0 z-50 transition-all duration-200 flex items-center justify-start lg:px-[2%] px-12 !w-full ${
         isScrolled ? "bg-background/80 backdrop-blur-2xl border-b" : "border-b"
       }`}
       initial={{ y: -100 }}
