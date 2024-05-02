@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["<define:import.meta.env>"],
+  "sourcesContent": [""],
+  "mappings": ";;;;;AAAA;AAAA;AAAA;AAAA,uCAAC,KAAM,KAAI;AAAA;AAAA;",
+  "names": []
+}
