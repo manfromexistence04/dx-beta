@@ -3,9 +3,11 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   File,
+  GlobeIcon,
   Home,
   LineChart,
   ListFilter,
+  LocateIcon,
   MoreHorizontal,
   Package,
   Package2,
@@ -78,6 +80,7 @@ import {
   useVelocity,
   useAnimationFrame,
 } from "framer-motion";
+import { Separator } from "@/components/ui/separator"
 
 export function RotateText() {
   const words = ["University", "Management"];
@@ -107,6 +110,75 @@ export function RotateText() {
   );
 }
 
+export function Cards() {
+  return (
+    <Card className="w-full max-w-[600px] relative overflow-hidden lg:w-[800px] min-w-1/2">
+      <img
+        alt="University Image"
+        className="w-full h-[300px] object-cover"
+        height="300"
+        src="/doraemon.png"
+        style={{
+          aspectRatio: "600/300",
+          objectFit: "cover",
+        }}
+        width="600"
+      />
+      <div className="absolute bottom-4 left-4">
+        <img
+          alt="University Logo"
+          className="w-12 h-12 rounded-full"
+          height={50}
+          src="/✶┆.jpg"
+          style={{
+            aspectRatio: "50/50",
+            objectFit: "cover",
+          }}
+          width={50}
+        />
+      </div>
+      <CardContent className="p-6 space-y-4">
+        <div>
+          <h2 className="text-2xl font-bold">University of Vercel</h2>
+          <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mt-3">
+            <LocateIcon className="h-4 w-4" />
+            <span>New York, USA</span>
+            <Separator className="h-4" orientation="vertical" />
+            <GlobeIcon className="h-4 w-4" />
+            <span>International</span>
+          </div>
+        </div>
+        <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+          The University of Vercel is a leading institution of higher education, known for its innovative curriculum,
+          world-class faculty, and vibrant campus life. With campuses in New York and San Francisco, the university
+          offers a diverse range of undergraduate and graduate programs, preparing students to become leaders in their
+          fields.
+        </p>
+      </CardContent>
+      <CardFooter className="flex justify-end gap-2 p-4">
+        <Button variant="outline">Update</Button>
+        <Button variant="outline">Delete</Button>
+        <Button>View</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+export function Component() {
+  return (
+    <main className="container mx-auto px-4 py-8 md:px-6 lg:px-8">
+      <div className="flex items-center justify-between mb-6">
+
+        <RotateText />
+        <Button size="sm">Add New University</Button>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <Cards />
+        <Cards />
+        <Cards />
+      </div>
+    </main>
+  )
+}
 
 export default function Universities() {
   return (
@@ -477,7 +549,8 @@ export default function Universities() {
     //   </div>
     // </div>
     <>
-      Universities
+      {/* Universities */}
+      <Component />
     </>
   )
 }
