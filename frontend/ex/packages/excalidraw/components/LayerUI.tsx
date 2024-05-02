@@ -267,12 +267,12 @@ const LayerUI = ({
                           "zen-mode": appState.zenModeEnabled,
                         })}
                       >
-                        <HintViewer
+                        {/* <HintViewer
                           appState={appState}
                           isMobile={device.editor.isMobile}
                           device={device}
                           app={app}
-                        />
+                        /> */}
                         {heading}
                         <Stack.Row gap={1}>
                           <PenModeButton
