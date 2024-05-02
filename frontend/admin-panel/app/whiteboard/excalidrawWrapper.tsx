@@ -13,7 +13,7 @@ const ExcalidrawWrapper: React.FC = () => {
   return (
     <div className="h-screen w-screen !fixed top-0 left-0 z-0">
       <Excalidraw>
-        <WelcomeScreen />
+        {/* <WelcomeScreen /> */}
       </Excalidraw>
     </div>
   );

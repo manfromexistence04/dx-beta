@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import "../common.scss";
 
 const ExcalidrawWithClientOnly = dynamic(
-  async () => (await import("../excalidrawWrapper")).default,
+  async () => (await import("../hello-tool")).default,
   {
     ssr: false,
   },

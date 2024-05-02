@@ -1,8 +1,8 @@
 "use client";
 import * as excalidrawLib from "@excalidraw/excalidraw";
-import { Excalidraw } from "@excalidraw/excalidraw";
+import { Excalidraw, WelcomeScreen } from "@excalidraw/excalidraw";
 import App from "../../components/App";
-import ExcalidrawApp from "../../excalidraw-app/App";
+// import ExcalidrawApp from "../../excalidraw-app/App";
 
 import "@excalidraw/excalidraw/index.css";
 
@@ -11,14 +11,13 @@ const ExcalidrawWrapper: React.FC = () => {
     <>
       <App
         appTitle={"Excalidraw with Nextjs Example"}
-        useCustom={(api: any, args?: any[]) => {}}
+        useCustom={(api: any, args?: any[]) => { }}
         excalidrawLib={excalidrawLib}
       >
-        <Excalidraw />
+        <Excalidraw>
+          <WelcomeScreen />
+        </Excalidraw>
       </App>
-      {/* <div>
-        <ExcalidrawApp />
-      </div> */}
     </>
   );
 };
