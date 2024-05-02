@@ -163,3 +163,33 @@
 .no-visible-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+
+
+/* Ecalidraw Editor */
+
+
+.App-menu_top{
+  position: absolute !important;
+  bottom: 0px !important;
+
+  width: 100% !important;
+  align-items: center !important;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  z-index: 10000000000000;
+  margin: 0 auto !important;
+}
+
+footer{
+  position: absolute !important;
+  bottom: 75px !important;
+  left: 0 !important;
+}
+
+.dropdown-menu{
+  bottom: 100% !important;
+  top: 0;
+
+}
