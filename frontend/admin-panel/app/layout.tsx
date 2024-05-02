@@ -1,15 +1,14 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-
 import { Inter } from "next/font/google";
-
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-
 import MainNav from "@/components/shared/main-nav";
 import Footer from "@/components/shared/footer";
 import { Nextui } from "./nextui";
+import { TooltipProvider } from '@/components/plate-ui/tooltip';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,11 +43,17 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Nextui>
+          <TooltipProvider
+              disableHoverableContent
+              delayDuration={500}
+              skipDelayDuration={0}
+            >
             <MainNav />
             <div className="min-h-[80vh]">
               {children}
             </div>
             <Toaster />
+            </TooltipProvider>
           </Nextui>
         </ThemeProvider>
       </body>
