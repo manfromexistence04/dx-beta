@@ -1,21 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "plugins": [{ "name": "next" }]
   },
-  "include": ["packages", "excalidraw-app"],
+  "include": ["packages", "excalidraw-app","excalidraw-app/src", "excalidraw-app/dist/types/**/*.ts", "excalidraw-app/next-env.d.ts"],
   "exclude": ["packages/excalidraw/types", "examples"]
 }

@@ -9,14 +9,14 @@ import "@excalidraw/excalidraw/index.css";
 const ExcalidrawWrapper: React.FC = () => {
   return (
     <>
-      {/* <App
+      <App
         appTitle={"Excalidraw with Nextjs Example"}
         useCustom={(api: any, args?: any[]) => {}}
         excalidrawLib={excalidrawLib}
       >
         <Excalidraw />
-      </App> */}
-      <ExcalidrawApp />
+      </App>
+      {/* <ExcalidrawApp /> */}
     </>
   );
 };
