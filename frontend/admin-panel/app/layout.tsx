@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 import MainNav from "@/components/shared/main-nav";
 import Footer from "@/components/shared/footer";
+import { Nextui } from "./nextui";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,12 +43,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <MainNav />
-          <div className="min-h-[80vh]">
-            {children}
-          </div>
-          {/* <Footer /> */}
-          <Toaster />
+          <Nextui>
+            <MainNav />
+            <div className="min-h-[80vh]">
+              {children}
+            </div>
+            <Toaster />
+          </Nextui>
         </ThemeProvider>
       </body>
     </html>
