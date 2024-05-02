@@ -2,24 +2,21 @@
 import * as excalidrawLib from "@excalidraw/excalidraw";
 import { Excalidraw } from "@excalidraw/excalidraw";
 import App from "../../components/App";
-import ExcalidrawApp from "../../../../excalidraw-app/App";
 
 import "@excalidraw/excalidraw/index.css";
 
 const ExcalidrawWrapper: React.FC = () => {
   return (
     <>
-      {/* <App
+      <App
         appTitle={"Excalidraw with Nextjs Example"}
         useCustom={(api: any, args?: any[]) => {}}
         excalidrawLib={excalidrawLib}
       >
         <Excalidraw />
-      </App> */}
-      <ExcalidrawApp />
+      </App>
     </>
   );
 };
 
 export default ExcalidrawWrapper;
-
