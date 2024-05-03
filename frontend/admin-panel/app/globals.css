@@ -213,6 +213,10 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
 }
+/* .tag-location-university{
+  grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
+
+} */
 .center{
   display: flex;
   align-items: center;

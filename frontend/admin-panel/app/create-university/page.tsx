@@ -81,22 +81,30 @@ import {
     useAnimationFrame,
 } from "framer-motion";
 import { Separator } from "@/components/ui/separator"
+import { Textarea } from "@/components/ui/textarea"
 
 
 export default function CreateUniversity() {
     return (
         <>
-            <div className="create-university min-h-[100vh] border w-[80%] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 mt-5">
-                <div className="name-logo-description-university w-full grid gap-3">
-                    <h1 className="center w-full h-[250px] border rounded-md">Name</h1>
-                    <h1 className="center w-full h-[250px]">Logo</h1>
-                    <h1 className="center w-full h-[250px]">Description</h1>
-                    {/* <h1>Logo</h1>
-                <h1>Description</h1> */}
+            <div className="create-university min-h-[100vh] border w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 mt-5">
+                <div className="name-logo-description-university w-full grid gap-3 ">
+                    <div className="w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Name</h1>
+                        <Input type="text" placeholder="Enter University Name" />
+                    </div>
+                    <div className="w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
+                        <Input type="text" placeholder="Enter University Name" />
+                    </div>
+                    <div className="w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Description</h1>
+                        <Textarea placeholder="Type your description here."  />
+                    </div>
                 </div>
-                <div className="tag-location-university flex w-full flex-row items-center justify-between">
-                    <h1 className="center w-full h-[250px]">Tag</h1>
-                    <h1 className="center w-full h-[250px]">Location</h1>
+                <div className="tag-location-university w-full flex flex-col lg:flex-row items-center justify-between">
+                    <h1 className="center w-full h-[250px] border">Tag</h1>
+                    <h1 className="center w-full h-[250px] border">Location</h1>
                 </div>
 
                 <h1>Images</h1>
