@@ -86,7 +86,7 @@ export default function MainNav() {
           <ModeToggle />
           <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border mt-2 ring-2">
+            <Button variant="secondary" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border mt-2 ring-offset-background ring-2  ring-ring ring-offset-2">
               <Image
                 alt="User"
                 className="aspect-square rounded-full object-cover"

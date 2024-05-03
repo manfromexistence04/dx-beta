@@ -129,21 +129,21 @@ export default function Info() {
             <Image
               src="/website/ustudy-index.png"
               alt="Product screenshot"
-              className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+              className="!min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
               width={300}
               height={300}
             />
             <Image
               src="/website/ustudy-footer-calculator.png"
               alt="Product screenshot"
-              className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+              className="!min-w-full  !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
               width={300}
               height={300}
             />
             <Image
               src="/website/ustudy-rubix-cube.png"
               alt="Product screenshot"
-              className="!min-w-full max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
+              className="!min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
               width={300}
               height={300}
             />
