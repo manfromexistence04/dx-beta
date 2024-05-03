@@ -82,6 +82,80 @@ import {
 } from "framer-motion";
 import { Separator } from "@/components/ui/separator"
 
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+
+export function CarouselPlugin() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center">
+      <Carousel
+        plugins={[plugin.current]}
+        setApi={setApi}
+        className="w-full"
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+      >
+        <CarouselContent>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex items-center justify-center h-full w-full text-center !p-0">
+                    <AspectRatio ratio={16 / 9} className="bg-muted">
+                      <Image
+                        src="/doraemon.png"
+                        alt="Photo by Drew Beamer"
+                        fill
+                        className="rounded-md object-cover"
+                      />
+                    </AspectRatio>
+
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="text-sm text-muted-foreground w-[98%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0" />
+          <span className="flex-1 text-center">Slide {current} of {count}</span>
+          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0" />
+        </div>
+      </Carousel>
+    </div>
+
+  )
+}
+
 export function RotateText() {
   const words = ["University", "Management"];
   const [index, setIndex] = React.useState(0);
@@ -112,18 +186,8 @@ export function RotateText() {
 
 export function Cards() {
   return (
-    <Card className="w-full relative overflow-hidden">
-      <img
-        alt="University Image"
-        className="w-full h-[250px] object-cover "
-        height="300"
-        src="/doraemon.png"
-        style={{
-          aspectRatio: "16/9",
-          objectFit: "cover",
-        }}
-        width="250"
-      />
+    <Card className="w-full relative overflow-hidden hover:bg-primary-foreground">
+      <CarouselPlugin />
       <div className="absolute bottom-4 left-4">
         <img
           alt="University Logo"
@@ -170,7 +234,9 @@ export function Component() {
 
         {/* <RotateText /> */}
         <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Universities</span>
-        <Button size="sm">Add New University</Button>
+        <Link href="/create-university">
+          <Button size="sm">Add New University</Button>
+        </Link>
       </div>
       <div className="admin-panel-lists ">
         <Cards />
