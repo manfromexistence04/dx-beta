@@ -97,21 +97,21 @@ export default function CreateUniversity() {
                         <h1 className="text-4xl font-bold w-full text-left">Name</h1>
                         <Input type="text" placeholder="Enter University Name" />
                     </div>
-                    <div className="w-full h-auto border rounded-md flex flex-col space-y-5 items-start justify-start p-10">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-start justify-start p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
                         <DialogUploaderDemo />
                     </div>
-                    <div className="w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Description</h1>
                         <Textarea placeholder="Type your description here." />
                     </div>
                 </div>
-                <div className="tag-location-university w-full flex flex-col lg:flex-row items-center justify-between">
-                    <h1 className="center w-full h-[250px] border">Tag</h1>
-                    <h1 className="center w-full h-[250px] border">Location</h1>
+                <div className="tag-location-university w-full flex flex-col lg:flex-row items-center justify-between gap-2">
+                    <h1 className="hover-glow-border center w-full h-[250px] border rounded-md">Tag</h1>
+                    <h1 className="hover-glow-border center w-full h-[250px] border rounded-md">Location</h1>
                 </div>
 
-                <div className="w-full border rounded-md mx-auto h-auto min-h-[500px] pt-3 flex flex-col space-y-3">
+                <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                     <h1 className="text-4xl font-bold w-full text-left pl-4">Overview</h1>
                     <div className="w-full h-full border-t">
                         <PlateEditor />

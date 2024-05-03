@@ -185,7 +185,7 @@ export function FileUploader(props: FileUploaderProps) {
   const isDisabled = disabled || (files?.length ?? 0) >= maxFiles
 
   return (
-    <div className="relative flex flex-col gap-6 overflow-hidden">
+    <div className="hover-glow-border relative flex flex-col gap-6 overflow-hidden">
       <Dropzone
         onDrop={onDrop}
         accept={accept}

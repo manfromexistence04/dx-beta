@@ -17,7 +17,7 @@ interface UploadedFilesCardProps {
 
 export function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
   return (
-    <Card>
+    <Card className="hover-glow-border">
       <CardHeader>
         <CardTitle>Uploaded images</CardTitle>
         <CardDescription>View the uploaded images here</CardDescription>
