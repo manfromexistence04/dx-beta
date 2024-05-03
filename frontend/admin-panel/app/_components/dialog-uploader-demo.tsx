@@ -20,12 +20,12 @@ export function DialogUploaderDemo() {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">
-          Upload files {files.length > 0 && `(${files.length})`}
+          Upload logo {files.length > 0 && `(${files.length})`}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>Upload files</DialogTitle>
+          <DialogTitle>Upload logo</DialogTitle>
           <DialogDescription>
             Drag and drop your files here or click to browse.
           </DialogDescription>

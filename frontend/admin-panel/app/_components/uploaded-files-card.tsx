@@ -19,8 +19,8 @@ export function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Uploaded files</CardTitle>
-        <CardDescription>View the uploaded files here</CardDescription>
+        <CardTitle>Uploaded images</CardTitle>
+        <CardDescription>View the uploaded images here</CardDescription>
       </CardHeader>
       <CardContent>
         {uploadedFiles.length > 0 ? (
@@ -43,8 +43,8 @@ export function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
           </ScrollArea>
         ) : (
           <EmptyCard
-            title="No files uploaded"
-            description="Upload some files to see them here"
+            title="No images uploaded"
+            description="Upload some images to see them here"
             className="w-full"
           />
         )}

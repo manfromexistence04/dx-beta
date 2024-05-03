@@ -49,9 +49,10 @@ export default function RootLayout({
               skipDelayDuration={0}
             >
             <MainNav />
-            <div className="min-h-[80vh]">
+            <div className="min-h-[100vh] mb-24">
               {children}
             </div>
+            <Footer />
             <Toaster />
             </TooltipProvider>
           </Nextui>

@@ -116,7 +116,7 @@ export function CarouselPlugin() {
   }, [api])
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center relative">
       <Carousel
         plugins={[plugin.current]}
         setApi={setApi}
@@ -145,10 +145,10 @@ export function CarouselPlugin() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="text-sm text-muted-foreground w-[98%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0" />
-          <span className="flex-1 text-center">Slide {current} of {count}</span>
-          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0" />
+        <div className="glass absolute bottom-3 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white border-white" />
+          <span className="flex-1 text-center text-white">Slide {current} of {count}</span>
+          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white border-white" />
         </div>
       </Carousel>
     </div>
