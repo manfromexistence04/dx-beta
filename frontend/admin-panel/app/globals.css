@@ -298,7 +298,7 @@
   height: calc(100% + 10px);
   z-index: -1;
   animation: glower 20s linear infinite;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 @keyframes glower {

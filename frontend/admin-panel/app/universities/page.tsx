@@ -127,7 +127,7 @@ export function CarouselPlugin() {
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
-              <div className="p-1">
+              <div>
                 <Card>
                   <CardContent className="flex items-center justify-center h-full w-full text-center !p-0">
                     <AspectRatio ratio={16 / 9} className="bg-muted">
@@ -146,9 +146,9 @@ export function CarouselPlugin() {
           ))}
         </CarouselContent>
         <div className="glass absolute bottom-3 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white border-white" />
+          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-white" />
           <span className="flex-1 text-center text-white">Slide {current} of {count}</span>
-          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white border-white" />
+          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white border-white hover:text-white" />
         </div>
       </Carousel>
     </div>
@@ -186,7 +186,7 @@ export function RotateText() {
 
 export function Cards() {
   return (
-    <Card className="w-full relative overflow-hidden hover:bg-primary-foreground">
+    <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
       <CarouselPlugin />
       <div className="absolute bottom-4 left-4">
         <img

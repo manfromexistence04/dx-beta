@@ -4,8 +4,10 @@ import { AnimatePresence, motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
+import { Button } from "../button";
 import VariantCarousel from "./variant-carousel";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 export default function IntroText() {
   const ref = React.useRef(null);
@@ -50,13 +52,20 @@ export default function IntroText() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="mt-10 flex items-center justify-center gap-x-6 "
           >
-            <Link href="/dashboard" className="z-50">
-              <Button>Admin Panel</Button>
+            <Link href="/universities" className="z-50">
+              {/* <Button variant={"secondary"}>Admin Panel</Button> */}
+              <Button variant="expandIcon" Icon={ArrowRightIcon} iconPlacement="right">
+                Admin Panel
+              </Button>
             </Link>
 
             <Link href="https://www.upwork.com/" className="z-50">
-              <Button variant={"outline"} className="p-5">
-                Pay me &nbsp;<span aria-hidden="true">→</span>
+              {/* <Button variant={"outline"}>
+                MD MAHABUB HOSSAIN
+              </Button> */}
+
+              <Button variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                MD MAHABUB HOSSAIN
               </Button>
             </Link>
           </motion.div>

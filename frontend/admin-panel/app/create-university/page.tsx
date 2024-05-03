@@ -97,9 +97,12 @@ export default function CreateUniversity() {
                         <h1 className="text-4xl font-bold w-full text-left">Name</h1>
                         <Input type="text" placeholder="Enter University Name" />
                     </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-start justify-start p-10">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
+                        <div className="flex w-full items-start justify-start">
                         <DialogUploaderDemo />
+
+                        </div>
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Description</h1>

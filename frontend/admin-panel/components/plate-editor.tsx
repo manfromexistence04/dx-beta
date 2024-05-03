@@ -48,7 +48,7 @@ export default function PlateEditor() {
             </FixedToolbar>
 
             <Editor
-              className="p-3 px-16 min-w-[300px]"
+              className="p-3 px-16 !min-h-[500px]"
               autoFocus
               focusRing={false}
               variant="ghost"
