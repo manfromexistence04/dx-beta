@@ -35,7 +35,7 @@ const StateDropdown = () => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={openStateDropdown}
-                    className="w-[300px] cursor-pointer justify-between rounded-[6px] border"
+                    className="w-[275px] cursor-pointer justify-between rounded-[6px] border"
                     disabled={!countryValue || S.length === 0}
                 >
                     {stateValue ? (
@@ -48,7 +48,7 @@ const StateDropdown = () => {
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[300px] rounded-[6px] border p-0">
+            <PopoverContent className="w-[275px] rounded-[6px] border p-0">
                 <Command>
                     <CommandInput placeholder="Search state..." />
                     <CommandEmpty>No state found.</CommandEmpty>

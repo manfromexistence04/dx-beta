@@ -55,9 +55,9 @@ export default function PlateEditor() {
               size="md"
             />
 
-            <FloatingToolbar>
+            {/* <FloatingToolbar>
               <FloatingToolbarButtons />
-            </FloatingToolbar>
+            </FloatingToolbar> */}
 
             <MentionCombobox items={MENTIONABLES} />
 

@@ -43,7 +43,7 @@ export default function MainNav() {
 
   return (
     <motion.header
-      className={`navbar h-20 sticky top-0 z-10 transition-all duration-200 flex items-center justify-start lg:px-[2%] px-12 !w-full ${
+      className={`navbar h-20 sticky top-0 z-[100000000000000] transition-all duration-200 flex items-center justify-start lg:px-[2%] px-12 !w-full ${
         isScrolled ? "bg-background/80 backdrop-blur-2xl border-b" : "border-b"
       }`}
       initial={{ y: -100 }}
@@ -61,11 +61,11 @@ export default function MainNav() {
           </div>
         </div>
         <div className="flex lg:hidden z-50">
-          {/* <NavDropdown /> */}
+          <NavDropdown />
           <NavSheet />
         </div>
         <div className="hidden lg:flex space-x-1 z-50">
-          {/* <Link
+          <Link
             href="https://www.twitter.com/abdo_eth"
             rel="noreferrer"
             target="_blank"
@@ -82,22 +82,22 @@ export default function MainNav() {
             <Button className="flex items-center" variant="ghost" size="icon">
               <GitHubLogoIcon className="h-4 w-4" />
             </Button>
-          </Link> */}
+          </Link>
           <ModeToggle />
           <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
+            <Button variant="secondary" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border mt-2 ring-2">
               <Image
                 alt="User"
                 className="aspect-square rounded-full object-cover"
-                height="28"
+                height="23"
                 src="/Nurzhol Tabigat.jpg"
-                width="28"
+                width="23"
               />
               <span className="sr-only">Toggle user menu</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-[250px] ">
+          <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
             <DropdownMenuLabel>Nurzhol Tabigat</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Switch Account</DropdownMenuItem>

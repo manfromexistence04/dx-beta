@@ -37,7 +37,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={openCountryDropdown}
-                    className="w-[300px] justify-between rounded-[6px] border "
+                    className="w-[275px] justify-between rounded-[6px] border "
                     disabled={disabled}
                 >
                     <span>
@@ -57,7 +57,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[300px] rounded-[6px] border border-[#27272a] p-0">
+            <PopoverContent className="w-[275px] rounded-[6px] border p-0">
                 <Command>
                     <CommandInput placeholder="Search country..." />
                     <CommandEmpty>No country found.</CommandEmpty>
@@ -71,7 +71,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                                         setCountryValue(currentValue === lowerCase(country.name) ? currentValue : "");
                                         setOpenCountryDropdown(false);
                                     }}
-                                    className="flex cursor-pointer items-center justify-between text-xs hover:!bg-[#27272a] hover:!text-white"
+                                    className="flex cursor-pointer items-center justify-between text-xs"
                                 >
                                     <div className="flex items-end gap-2">
                                         <span>{country.emoji}</span>

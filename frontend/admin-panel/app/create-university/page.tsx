@@ -86,7 +86,8 @@ import PlateEditor from "@/components/plate-editor"
 import { Shell } from "@/components/shell"
 import { VariantTabs } from "../_components/variant-tabs"
 import { DialogUploaderDemo } from "../_components/dialog-uploader-demo"
-// import { DialogUploaderDemo } from ".,/,,/dialog-uploader-demo"
+import CountryDropdown from "@/components/dropdown/countries";
+import StateDropdown from "@/components/dropdown/states";
 
 export default function CreateUniversity() {
     return (
@@ -100,7 +101,7 @@ export default function CreateUniversity() {
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
                         <div className="flex w-full items-start justify-start">
-                        <DialogUploaderDemo />
+                            <DialogUploaderDemo />
 
                         </div>
                     </div>
@@ -111,7 +112,14 @@ export default function CreateUniversity() {
                 </div>
                 <div className="tag-location-university w-full flex flex-col lg:flex-row items-center justify-between gap-2">
                     <h1 className="hover-glow-border center w-full h-[250px] border rounded-md">Tag</h1>
-                    <h1 className="hover-glow-border center w-full h-[250px] border rounded-md">Location</h1>
+                    <div className="hover-glow-border flex flex-col items-start justify-center gap-3 w-full h-[250px] border rounded-md p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Location</h1>
+                        <div className="flex flex-col lg:flex-row items-center justify-start gap-3 w-full">
+                            <CountryDropdown />
+                            <StateDropdown />
+                        </div>
+
+                    </div>
                 </div>
 
                 <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">

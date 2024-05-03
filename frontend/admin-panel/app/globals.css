@@ -213,7 +213,10 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
 }
+.location{
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
+}
 /* .tag-location-university{
   grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
 
@@ -278,7 +281,7 @@
 
 .hover-glow-border:hover *, .hover-glow-border:hover *::placeholder{
   /* background: transparent !important; */
-  color: white !important;
+  /* color: white !important; */
 }
 .hover-glow-border:hover h1{
   background: transparent !important;
