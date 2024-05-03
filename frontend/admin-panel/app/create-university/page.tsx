@@ -93,7 +93,7 @@ export default function CreateUniversity() {
         <>
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 mt-5">
                 <div className="name-logo-description-university w-full grid gap-3 ">
-                    <div className="w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Name</h1>
                         <Input type="text" placeholder="Enter University Name" />
                     </div>
