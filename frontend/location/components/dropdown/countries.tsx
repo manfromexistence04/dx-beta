@@ -37,7 +37,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={openCountryDropdown}
-                    className="w-[300px] justify-between rounded-[6px] border !border-[#27272a] !bg-[#0f0f11] hover:!bg-[#0f0f11] focus:!bg-[#0f0f11] focus:!outline-none focus:!ring-2 focus:!ring-[#0f0f11] focus:!ring-offset-2 focus:!ring-offset-[#0f0f11]"
+                    className="w-[300px] justify-between rounded-[6px] border "
                     disabled={disabled}
                 >
                     <span>
