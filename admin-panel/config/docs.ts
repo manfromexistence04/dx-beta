@@ -41,7 +41,7 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
-      title: "Components",
+      title: "Pages",
       items: [
         {
           title: "Home",

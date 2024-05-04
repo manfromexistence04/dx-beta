@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Button as AnimatedButton } from "@/components/button"
 import { Input } from "@/components/ui/input"
 import React, { useRef } from 'react';
 import { Separator } from "@/components/ui/separator"
@@ -35,7 +36,7 @@ import { FixedToolbarButtons } from '@/components/plate-ui/fixed-toolbar-buttons
 import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
 import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
-import { ChevronsUpDown, Plus, X } from "lucide-react"
+import { ArrowRightIcon, ArrowLeftIcon, ChevronsUpDown, Plus, X } from "lucide-react"
 import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
@@ -62,6 +63,46 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import { Button as NextuiButton } from "@nextui-org/react";
+
+
+const CreateButton = () => {
+    const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+    const handleConfetti = async () => {
+        const { clientWidth, clientHeight } = document.documentElement;
+        const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+
+        const targetY = boundingBox?.y ?? 0;
+        const targetX = boundingBox?.x ?? 0;
+        const targetWidth = boundingBox?.width ?? 0;
+
+        const targetCenterX = targetX + targetWidth / 2;
+        const confetti = (await import("canvas-confetti")).default;
+
+        confetti({
+            zIndex: 999,
+            particleCount: 100,
+            spread: 70,
+            origin: {
+                y: targetY / clientHeight,
+                x: targetCenterX / clientWidth,
+            },
+        });
+    };
+
+    return (
+        <NextuiButton
+            ref={buttonRef}
+            disableRipple
+            className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+            size="md"
+            onPress={handleConfetti}
+        >
+            Create
+        </NextuiButton>
+    );
+};
 
 
 const FormSchema = z.object({
@@ -182,8 +223,27 @@ function Tags() {
 
 
 
+
 export default function CreateUniversity() {
 
+
+    let address: string = 'Bangladesh, Jhenaidah';
+    let educationCost: string = '1 335 000 ₸';
+    let email: string = 'rektorat@amu.kz';
+    let facebook: string = 'https://www.facebook.com/MeduniverAstana';
+    let hostel: string = 'есть';
+    let image: string = 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319';
+    let instagram: string = 'https://www.instagram.com/amu_mua_official';
+    let military: string = 'есть';
+    let phoneNumber: string = '(+77172539424)';
+    let region: string = 'г. Астана';
+    let status: string = 'акционированный';
+    let universityCode: string = '1';
+    let universityDescription: string = 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.';
+    let universityName: string = 'Медицинский университет Астана';
+    let website: string = 'https://amu.edu.kz/';
+
+    const [name, setName] = React.useState(universityName)
     const [isOpen, setIsOpen] = React.useState(false)
     const [phoneNumberDetails, setPhoneNumberDetails] = React.useState(false)
     const containerRef = useRef(null);
@@ -221,7 +281,18 @@ export default function CreateUniversity() {
 
     return (
         <>
-            <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 mt-5">
+            <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 pt-3">
+
+
+                <div className="action w-full my-3 flex items-center justify-between ">
+                    <Link href="/read-university" className="z-50">
+                        <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                            Back
+                        </AnimatedButton>
+                    </Link>
+                    <CreateButton />
+
+                </div>
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Name</h1>
@@ -250,17 +321,6 @@ export default function CreateUniversity() {
                             </SelectContent>
                         </Select>
                     </div>
-                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
-                        <div className="flex w-full items-start justify-start">
-                            <DialogUploaderDemo />
-
-                        </div>
-                    </div> */}
-                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Description</h1>
-                        <Textarea placeholder="Type your description here." />
-                    </div> */}
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">

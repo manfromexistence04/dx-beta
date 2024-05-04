@@ -11,8 +11,8 @@ import { buttonVariants } from "@/registry/new-york/ui/button"
 
 export function SiteHeader() {
   return (
-    <header className="navbar h-[4.5rem] flex items-center justify-center z-[100000000000000] sticky top-0 w-full bg-background/80 backdrop-blur-2xl border-b">
-      <div className="w-full flex h-14 items-center justify-center px-[0.5%]">
+    <header className="navbar h-[4.5rem] flex items-center justify-center z-10 sticky top-0 w-full bg-background/80 backdrop-blur-2xl border-b">
+      <div className="w-full flex h-14 items-center justify-center lg:px-[0.5%] px-10">
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">

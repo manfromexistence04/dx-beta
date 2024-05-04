@@ -19,21 +19,21 @@ const db = getFirestore(app);
 
 // Create
 // const Create = await addDoc(collection(db, "universities"), {
-//   address: 'Bangladesh, Jhenaidah',
-//   educationCost: '1 335 000 ₸',
-//   email: 'rektorat@amu.kz',
-//   facebook: 'https://www.facebook.com/MeduniverAstana',
-//   hostel: 'есть',
-//   image: 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319',
-//   instagram: 'https://www.instagram.com/amu_mua_official',
-//   military: 'есть',
-//   phoneNumber: '(+77172539424)',
-//   region: 'г. Астана',
-//   status: 'акционированный',
-//   universityCode: '1',
-//   universityDescription: 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.',
-//   universityName: 'Медицинский университет Астана',
-//   website: 'https://amu.edu.kz/',
+  address: 'Bangladesh, Jhenaidah',
+  educationCost: '1 335 000 ₸',
+  email: 'rektorat@amu.kz',
+  facebook: 'https://www.facebook.com/MeduniverAstana',
+  hostel: 'есть',
+  image: 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319',
+  instagram: 'https://www.instagram.com/amu_mua_official',
+  military: 'есть',
+  phoneNumber: '(+77172539424)',
+  region: 'г. Астана',
+  status: 'акционированный',
+  universityCode: '1',
+  universityDescription: 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.',
+  universityName: 'Медицинский университет Астана',
+  website: 'https://amu.edu.kz/',
 // });
 // console.log(docRef);
 
