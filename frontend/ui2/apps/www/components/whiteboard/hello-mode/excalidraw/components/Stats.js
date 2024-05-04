@@ -1,0 +1,13 @@
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { getCommonBounds } from "../element/bounds";
+import { t } from "../i18n";
+import { getTargetElements } from "../scene";
+import { CloseIcon } from "./icons";
+import { Island } from "./Island";
+import "./Stats.scss";
+export const Stats = (props) => {
+    const boundingBox = getCommonBounds(props.elements);
+    const selectedElements = getTargetElements(props.elements, props.appState);
+    const selectedBoundingBox = getCommonBounds(selectedElements);
+    return (_jsx("div", { className: "Stats", children: _jsxs(Island, { padding: 2, children: [_jsx("div", { className: "close", onClick: props.onClose, children: CloseIcon }), _jsx("h3", { children: t("stats.title") }), _jsx("table", { children: _jsxs("tbody", { children: [_jsx("tr", { children: _jsx("th", { colSpan: 2, children: t("stats.scene") }) }), _jsxs("tr", { children: [_jsx("td", { children: t("stats.elements") }), _jsx("td", { children: props.elements.length })] }), _jsxs("tr", { children: [_jsx("td", { children: t("stats.width") }), _jsx("td", { children: Math.round(boundingBox[2]) - Math.round(boundingBox[0]) })] }), _jsxs("tr", { children: [_jsx("td", { children: t("stats.height") }), _jsx("td", { children: Math.round(boundingBox[3]) - Math.round(boundingBox[1]) })] }), selectedElements.length === 1 && (_jsx("tr", { children: _jsx("th", { colSpan: 2, children: t("stats.element") }) })), selectedElements.length > 1 && (_jsxs(_Fragment, { children: [_jsx("tr", { children: _jsx("th", { colSpan: 2, children: t("stats.selected") }) }), _jsxs("tr", { children: [_jsx("td", { children: t("stats.elements") }), _jsx("td", { children: selectedElements.length })] })] })), selectedElements.length > 0 && (_jsxs(_Fragment, { children: [_jsxs("tr", { children: [_jsx("td", { children: "x" }), _jsx("td", { children: Math.round(selectedBoundingBox[0]) })] }), _jsxs("tr", { children: [_jsx("td", { children: "y" }), _jsx("td", { children: Math.round(selectedBoundingBox[1]) })] }), _jsxs("tr", { children: [_jsx("td", { children: t("stats.width") }), _jsx("td", { children: Math.round(selectedBoundingBox[2] - selectedBoundingBox[0]) })] }), _jsxs("tr", { children: [_jsx("td", { children: t("stats.height") }), _jsx("td", { children: Math.round(selectedBoundingBox[3] - selectedBoundingBox[1]) })] })] })), selectedElements.length === 1 && (_jsxs("tr", { children: [_jsx("td", { children: t("stats.angle") }), _jsx("td", { children: `${Math.round((selectedElements[0].angle * 180) / Math.PI)}°` })] })), props.renderCustomStats?.(props.elements, props.appState)] }) })] }) }));
+};
