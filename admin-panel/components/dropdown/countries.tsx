@@ -51,7 +51,7 @@ const CountryDropdown = ({ disabled }: CountryDropdownProps) => {
                                 </span>
                             </div>
                         ) : (
-                            <span>Select Country...</span>
+                            <span>Select Region...</span>
                         )}
                     </span>
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

@@ -43,7 +43,7 @@ const StateDropdown = () => {
                             <span>{S.find((state) => lowerCase(state.name) === stateValue)?.name}</span>
                         </div>
                     ) : (
-                        <span>Select State...</span>
+                        <span>Select Address...</span>
                     )}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>

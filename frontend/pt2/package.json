@@ -52,3 +52,4 @@
   },
   "trustedDependencies": ["@biomejs/biome"]
 }
+

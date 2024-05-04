@@ -57,12 +57,14 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-// import { Button } from "@/components/ui/button"
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import { Code } from "@/components/code";
+import { PhoneInput, getPhoneData } from "@/components/phone-input";
+import { Badge } from "@/components/ui/badge";
 
 const FormSchema = z.object({
     topics: z.array(
@@ -185,8 +187,8 @@ function Tags() {
 export default function CreateUniversity() {
 
     const [isOpen, setIsOpen] = React.useState(false)
+    const [phoneNumberDetails, setPhoneNumberDetails] = React.useState(false)
     const containerRef = useRef(null);
-
     const initialValue = [
         {
             id: '1',
@@ -194,15 +196,17 @@ export default function CreateUniversity() {
             children: [{ text: 'Hello, World!' }],
         },
     ];
+    const [phone, setPhone] = React.useState("+1 (408) 996–1010");
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPhone(e.target.value);
+    };
+    const phoneData = getPhoneData(phone);
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     });
-
     const [tags, setTags] = React.useState<Tag[]>([]);
-
     const { setValue } = form;
     const { toast } = useToast();
-
     function onSubmit(data: z.infer<typeof FormSchema>) {
         toast({
             title: 'You submitted the following values:',
@@ -212,6 +216,9 @@ export default function CreateUniversity() {
                 </pre>
             ),
         });
+    }
+    function showPhoneNumberDetails() {
+        setPhoneNumberDetails(!phoneNumberDetails);
     }
 
     return (
@@ -355,6 +362,11 @@ export default function CreateUniversity() {
                         </div>
 
                     </div> */}
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Phone Number</h1>
+                        <PhoneInput className="!p-0 !m-0 w-full" value={phone} onChange={handleOnChange} />
+                        <Button onClick={showPhoneNumberDetails} className="w-full">{phoneNumberDetails ? "Hide" : "Show"} Phone Number Details</Button>
+                    </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
                         <div className="flex w-full items-start justify-start">
@@ -370,6 +382,73 @@ export default function CreateUniversity() {
                         </div>
                     </div>
                 </div>
+                {phoneNumberDetails && <div className="min-w-[98%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
+                    <div className="flex gap-2">
+                        <p>Phone number: </p>
+                        <span className="font-semibold">{phoneData.phoneNumber || "-"}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Country code: </p>
+                        <span className="font-semibold">{phoneData.countryCode || "-"}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Country calling code: </p>
+                        <span className="font-semibold">
+                            {phoneData.countryCallingCode || "-"}
+                        </span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>National number: </p>
+                        <span className="font-semibold">
+                            {phoneData.nationalNumber || "-"}
+                        </span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>International number: </p>
+                        <span className="font-semibold">
+                            {phoneData.internationalNumber || "-"}
+                        </span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>URI: </p>
+                        <span className="font-semibold">{phoneData.uri || "-"}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p className="flex-shrink-0">Possible countries: </p>
+                        <span className="font-semibold">
+                            {phoneData.possibleCountries || "-"}
+                        </span>
+                    </div>
+                    <Separator />
+                    <Badge
+                        className={cn(
+                            "w-fit",
+                            phoneData.isValid
+                                ? "bg-green-500 text-green-50"
+                                : "bg-destructive text-destructive-foreground",
+                        )}
+                    >
+                        VALID NUMBER
+                    </Badge>
+                    <Separator />
+                    <Badge
+                        className={cn(
+                            "w-fit",
+                            phoneData.isPossible
+                                ? "bg-green-500 text-green-50"
+                                : "bg-destructive text-destructive-foreground",
+                        )}
+                    >
+                        POSSIBLE NUMBER
+                    </Badge>
+                </div>}
+
 
                 <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                     <h1 className="text-4xl font-bold w-full text-left pl-4">Overview</h1>
