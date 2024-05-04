@@ -1,28 +1,17 @@
 "use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import React, { useRef } from 'react';
-
-
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
-// import PlateEditor from "@/components/plate-editor"
 import { Shell } from "@/components/shell"
 import { VariantTabs } from "../_components/variant-tabs"
 import { DialogUploaderDemo } from "../_components/dialog-uploader-demo"
 import CountryDropdown from "@/components/dropdown/countries";
 import StateDropdown from "@/components/dropdown/states";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from '@/registry/default//ui/form';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,7 +24,6 @@ import { Plate } from '@udecode/plate-common';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
 import { commentsUsers, myUserId } from '@/lib/plate/comments';
 import { MENTIONABLES } from '@/lib/plate/mentionables';
 import { plugins } from '@/lib/plate/plate-plugins';
@@ -48,6 +36,18 @@ import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
 import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
 import { ChevronsUpDown, Plus, X } from "lucide-react"
+import { Code } from "@/components/code";
+import { PhoneInput, getPhoneData } from "@/components/phone-input";
+import { Badge } from "@/components/ui/badge";
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from '@/registry/default//ui/form';
 import {
     Select,
     SelectContent,
@@ -62,9 +62,7 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { Code } from "@/components/code";
-import { PhoneInput, getPhoneData } from "@/components/phone-input";
-import { Badge } from "@/components/ui/badge";
+
 
 const FormSchema = z.object({
     topics: z.array(
@@ -382,6 +380,7 @@ export default function CreateUniversity() {
                         </div>
                     </div>
                 </div>
+
                 {phoneNumberDetails && <div className="min-w-[98%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
                     <div className="flex gap-2">
                         <p>Phone number: </p>
@@ -449,9 +448,8 @@ export default function CreateUniversity() {
                     </Badge>
                 </div>}
 
-
                 <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
-                    <h1 className="text-4xl font-bold w-full text-left pl-4">Overview</h1>
+                    <h1 className="text-4xl font-bold w-full text-left pl-4">Description</h1>
                     <div className="w-full h-full border-t">
                         <DndProvider backend={HTML5Backend}>
                             <CommentsProvider users={commentsUsers} myUserId={myUserId}>
