@@ -135,6 +135,8 @@ export function CarouselPlugin() {
                         src="/doraemon.png"
                         alt="Photo by Drew Beamer"
                         fill
+                        sizes="(min-width: 250px) 300px, 100vw"
+                        loading="lazy"
                         className="rounded-md object-cover"
                       />
                     </AspectRatio>

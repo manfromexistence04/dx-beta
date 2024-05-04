@@ -8,14 +8,16 @@ import MainNav from "@/components/shared/main-nav";
 import Footer from "@/components/shared/footer";
 import { Nextui } from "./nextui";
 import { TooltipProvider } from '@/components/plate-ui/tooltip';
-
+import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
+import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
+import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] });
 
 const title =
-  "Variant Vault - A collection of Framer Motion variants for your next project.";
+  "Admin Panel";
 const description =
-  "Variant Vault is a collection of Framer Motion variants for your next project. All free to use and open source.";
+  "This is a highly cutomizable admin panel.";
 
 export const metadata: Metadata = {
   title,
@@ -43,21 +45,26 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Nextui>
-          <TooltipProvider
+            <TooltipProvider
               disableHoverableContent
               delayDuration={500}
               skipDelayDuration={0}
             >
-            <MainNav />
-            <div className="min-h-[100vh] mb-24">
-              {children}
-            </div>
-            <Footer />
-            <Toaster />
+              <MainNav />
+              <div className="min-h-[100vh] mb-24">
+                {children}
+              </div>
+              <Footer />
+              <Toaster />
+              <NewYorkToaster />
+              <DefaultToaster />
+              <NewYorkSonner />
             </TooltipProvider>
+
           </Nextui>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+
