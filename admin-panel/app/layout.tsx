@@ -52,7 +52,7 @@ export default function RootLayout({
               skipDelayDuration={0}
             >
               <SiteHeader />
-              <div className="min-h-[100vh] mb-24">
+              <div className="min-h-[90vh]">
                 {children}
               </div>
               <Footer />
