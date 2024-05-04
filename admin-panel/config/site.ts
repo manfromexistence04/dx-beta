@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-    name: 'Admin Panle',
+    name: 'Architecture Firm ',
     description:
         'Rich-data editor components built with Nextjs.',
     mainNav: [

@@ -91,14 +91,14 @@ export default function MainNav() {
                 alt="User"
                 className="aspect-square rounded-full object-cover"
                 height="23"
-                src="/Nurzhol Tabigat.jpg"
+                src="/Shoccho Sthapona.jpg"
                 width="23"
               />
               <span className="sr-only">Toggle user menu</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
-            <DropdownMenuLabel>Nurzhol Tabigat</DropdownMenuLabel>
+            <DropdownMenuLabel>Shoccho Sthapona</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Switch Account</DropdownMenuItem>
             <DropdownMenuItem>View Database</DropdownMenuItem>

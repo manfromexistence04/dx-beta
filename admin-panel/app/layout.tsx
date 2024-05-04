@@ -11,11 +11,12 @@ import { TooltipProvider } from '@/components/plate-ui/tooltip';
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
+import { SiteHeader } from "@/components/site-header";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const title =
-  "Admin Panel";
+  "Architecture Firm";
 const description =
   "This is a highly cutomizable admin panel.";
 
@@ -50,7 +51,7 @@ export default function RootLayout({
               delayDuration={500}
               skipDelayDuration={0}
             >
-              <MainNav />
+              <SiteHeader />
               <div className="min-h-[100vh] mb-24">
                 {children}
               </div>

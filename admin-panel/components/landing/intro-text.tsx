@@ -38,14 +38,14 @@ export default function IntroText() {
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="text-4xl font-bold tracking-tight sm:text-6xl"
           >
-            Admin Panel that changes the way you use it.
+            Architecture Firm that changes the way you use it.
           </motion.h1>
           <motion.p
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             className="mt-6 text-lg leading-8"
           >
             A collection of handmade, free, and ready to use operations &
-            variants operations for your next website.
+            variants operations for your next construction.
           </motion.p>
 
           <motion.div
@@ -53,9 +53,9 @@ export default function IntroText() {
             className="mt-10 flex items-center justify-center gap-x-6 "
           >
             <Link href="/universities" className="z-50">
-              {/* <Button variant={"secondary"}>Admin Panel</Button> */}
+              {/* <Button variant={"secondary"}>Architecture Firm</Button> */}
               <Button variant="expandIcon" Icon={ArrowRightIcon} iconPlacement="right">
-                Admin Panel
+                Architecture Firm
               </Button>
             </Link>
 
@@ -65,7 +65,7 @@ export default function IntroText() {
               </Button> */}
 
               <Button variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
-                MD MAHABUB HOSSAIN
+                Learn more
               </Button>
             </Link>
           </motion.div>
@@ -87,7 +87,7 @@ export default function IntroText() {
             >
               <div className="-m-2 rounded-xl  p-2 ring-1 ring-inset ring-primary/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                 <h1 className="text-xl font-bold tracking-tight sm:text-2xl mb-5">
-                  Admin Panel With High Level Customization.
+                  Architecture Firm With High Level Customization.
                 </h1>
 
                 <VariantCarousel />

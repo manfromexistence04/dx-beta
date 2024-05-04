@@ -213,10 +213,17 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
 }
-.location{
+
+.tag-location-university {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+}
+
+.location {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
 }
+
 /* .tag-location-university{
   grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
 
@@ -279,17 +286,20 @@
   position: relative;
 }
 
-.hover-glow-border:hover *, .hover-glow-border:hover *::placeholder{
+.hover-glow-border:hover *,
+.hover-glow-border:hover *::placeholder {
   /* background: transparent !important; */
   /* color: white !important; */
 }
-.hover-glow-border:hover h1{
+
+.hover-glow-border:hover h1 {
   background: transparent !important;
   border: none !important;
   outline: none !important;
 }
 
-.hover-glow-border:hover::before,.hover-glow-border:hover::after {
+.hover-glow-border:hover::before,
+.hover-glow-border:hover::after {
   content: '';
   position: absolute;
   left: -5px;
@@ -316,4 +326,57 @@
   100% {
     background-position: 0 0;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
+/** {
+  scrollbar-width: thin;
+  scrollbar-color: #397524 #DFE9EB;
+}*/
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 8.5px;
+  width: 8.5px;
+}
+
+*::-webkit-scrollbar-track {
+  /* border-radius: 5px; */
+  background-color: transparent;
+  /* background: rgba(255, 255, 255, 0); */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* *::-webkit-scrollbar-track:hover {
+  background-color: hsl(var(--primary-foreground));
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: hsl(var(--primary-foreground));
+} */
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 7.5px;
+  background-color: hsl(var(--border));
 }

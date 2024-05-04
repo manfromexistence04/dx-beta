@@ -42,13 +42,13 @@ export default function Features() {
             variants={FADE_UP_ANIMATION_VARIANTS}
             className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl"
           >
-            Beautiful Ui and Ux for you adminastration works.
+            Beautiful Ui and Ux for showcasing your construction works.
           </motion.p>
           <motion.p
             variants={FADE_UP_ANIMATION_VARIANTS}
             className="mt-6 text-lg leading-8"
           >
-            This admin just works, And gives up access to a Super Admin User.
+            This webiste just works, And gives up access to a Super Arcitecture.
           </motion.p>
         </div>
       </div>

@@ -20,19 +20,19 @@ const features = [
   {
     name: "Quick Navigation",
     description:
-      "A well-organized sidebar or menu with clear labels allows Nurzhol to find the needed section instantly, minimizing clicks and maximizing productivity",
+      "A well-organized sidebar or menu with clear labels allows Shoccho Sthapona to find the needed section instantly, minimizing clicks and maximizing productivity",
     icon: HeartFilledIcon,
   },
   {
     name: "Real-Time Previews",
     description:
-      " Let Nurzhol see how the added information will appear on the Ustudy website, ensuring everything looks polished before publishing.",
+      " Let Shoccho Sthapona see how the added information will appear on the Ustudy website, ensuring everything looks polished before publishing.",
     icon: HeartFilledIcon,
   },
   {
     name: "Clean and Uncluttered Design",
     description:
-      "A minimalist aesthetic with ample white space keeps the interface focused and reduces cognitive load for Nurzhol",
+      "A minimalist aesthetic with ample white space keeps the interface focused and reduces cognitive load for Shoccho Sthapona",
     icon: HeartFilledIcon,
   },
   {
@@ -44,7 +44,7 @@ const features = [
   {
     name: "Responsive Design",
     description:
-      "The admin panel adapts seamlessly across devices, allowing Nurzhol to manage Ustudy content from desktops, tablets, or even mobile phones.",
+      "The admin panel adapts seamlessly across devices, allowing Shoccho Sthapona to manage Ustudy content from desktops, tablets, or even mobile phones.",
     icon: HeartFilledIcon,
   },
 ];
@@ -88,7 +88,7 @@ export default function Info() {
                   variants={FADE_UP_ANIMATION_VARIANTS}
                   className="text-base font-semibold leading-7 text-muted-foreground"
                 >
-                  Streamlined Efficiency for Nurzhol
+                  Streamlined Efficiency for Shoccho Sthapona
                 </motion.h2>
                 <motion.p
                   variants={FADE_UP_ANIMATION_VARIANTS}

@@ -42,13 +42,13 @@ export function FadeDownStagger({ key }: { key: number }) {
         className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
-        Nurzhol Tabigat's
+        Shoccho Sthapona's
       </motion.h1>
       <motion.p
         className="mt-6 text-center md:text-2xl"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
-        Admin Panel
+        Architecture Firm
       </motion.p>
       <motion.div
         className="mx-auto mt-6 flex items-center justify-center space-x-5"
@@ -84,13 +84,13 @@ export function FadeUpStagger({ key }: { key: number }) {
         className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
         variants={FADE_UP_ANIMATION_VARIANTS}
       >
-        Nurzhol Tabigat's
+        Shoccho Sthapona's
       </motion.h1>
       <motion.p
         className="mt-6 text-center md:text-2xl"
         variants={FADE_UP_ANIMATION_VARIANTS}
       >
-        Admin Panel
+        Architecture Firm
       </motion.p>
       <motion.div
         className="mx-auto mt-6 flex items-center justify-center space-x-5"
@@ -117,7 +117,7 @@ export function MultiDirectionSlide({ key }: { key: number }) {
         transition={{ duration: 1 }}
         className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Nurzhol Tabigat's
+        Shoccho Sthapona's
       </motion.h1>
 
       <motion.h1
@@ -127,14 +127,14 @@ export function MultiDirectionSlide({ key }: { key: number }) {
         transition={{ duration: 1 }}
         className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Admin Panel
+        Architecture Firm
       </motion.h1>
     </div>
   );
 }
 
 export function StaggeredFadeIn() {
-  const sentence = "Nurzhol Tabigat's Admin Panel";
+  const sentence = "Shoccho Sthapona's Architecture Firm";
   const words = sentence.split(" ");
 
   const wordVariants = {
@@ -157,7 +157,7 @@ export function StaggeredFadeIn() {
 }
 
 export function LetterPullUp() {
-  const words = "Nurzhol Tabigat's Admin Panel";
+  const words = "Shoccho Sthapona's Architecture Firm";
   const letters = words.split("");
 
   const pullupVariant = {
@@ -205,7 +205,7 @@ export function WordPullUp() {
     show: { y: 0, opacity: 1 },
   };
 
-  const words = "Nurzhol Tabigat's Admin Panel";
+  const words = "Shoccho Sthapona's Architecture Firm";
   return (
     <motion.h1
       variants={container}
@@ -288,14 +288,14 @@ export function VelocityScroll() {
   }
   return (
     <section>
-      <ParallaxText baseVelocity={5}>Nurzhol Tabigat's</ParallaxText>
-      <ParallaxText baseVelocity={-5}>Admin Panel</ParallaxText>
+      <ParallaxText baseVelocity={5}>Shoccho Sthapona's</ParallaxText>
+      <ParallaxText baseVelocity={-5}>Architecture Firm</ParallaxText>
     </section>
   );
 }
 
 export function RotateText() {
-  const words = ["Nurzhol Tabigat's", " Admin Panel"];
+  const words = ["Shoccho Sthapona's", " Architecture Firm"];
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -323,7 +323,7 @@ export function RotateText() {
 }
 
 export function TypingEffect() {
-  const text = "Nurzhol Tabigat's Admin Panel";
+  const text = "Shoccho Sthapona's Architecture Firm";
   const [displayedText, setDisplayedText] = React.useState("");
   const [i, setI] = React.useState(0);
 
@@ -344,7 +344,7 @@ export function TypingEffect() {
 
   return (
     <h1 className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
-      {displayedText ? displayedText : "Nurzhol Tabigat's Admin Panel"}
+      {displayedText ? displayedText : "Shoccho Sthapona's Architecture Firm"}
     </h1>
   );
 }
@@ -367,7 +367,7 @@ export function SeparateAway() {
         animate="visible"
         className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Nurzhol Tabigat's
+        Shoccho Sthapona's
       </motion.h1>
       <motion.h1
         custom={1}
@@ -376,14 +376,14 @@ export function SeparateAway() {
         animate="visible"
         className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
-        Admin Panel
+        Architecture Firm
       </motion.h1>
     </div>
   );
 }
 
 export function GradualSpacing() {
-  const text = "Nurzhol Tabigat's Admin Panel";
+  const text = "Shoccho Sthapona's Architecture Firm";
   const gradual = {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 },
@@ -422,13 +422,13 @@ export function BlurIn() {
       variants={variants1}
       className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
     >
-      Nurzhol Tabigat's Admin Panel
+      Shoccho Sthapona's Architecture Firm
     </motion.h1>
   );
 }
 
 export function SlightFlip() {
-  const word = "Nurzhol Tabigat's Admin Panel";
+  const word = "Shoccho Sthapona's Architecture Firm";
   const variants1 = {
     hidden: { rotateX: -90, opacity: 0 },
     visible: { rotateX: 0, opacity: 1 },
@@ -456,7 +456,7 @@ export function SlightFlip() {
 }
 
 export function WavyText() {
-  const word = "Nurzhol Tabigat's Admin Panel";
+  const word = "Shoccho Sthapona's Architecture Firm";
   const variants1 = {
     hidden: { y: 10 },
     visible: { y: -10 },
