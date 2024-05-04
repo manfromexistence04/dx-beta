@@ -48,7 +48,7 @@ import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
 import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
 
-export function PlateEditor() {
+function PlateEditor() {
     const containerRef = useRef(null);
 
     const initialValue = [
@@ -103,7 +103,7 @@ const FormSchema = z.object({
     ),
 });
 
-export function Tags() {
+function Tags() {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     });

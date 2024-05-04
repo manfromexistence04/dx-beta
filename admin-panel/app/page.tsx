@@ -9,7 +9,7 @@ import {useRef} from "react";
 import {Button} from "@nextui-org/react";
 
 
-export const CustomButton = () => {
+const CustomButton = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const handleConfetti = async () => {

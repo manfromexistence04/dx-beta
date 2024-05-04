@@ -91,7 +91,7 @@ export default function MainNav() {
                 alt="User"
                 className="aspect-square rounded-full object-cover"
                 height="23"
-                src="/Shoccho Sthapona.jpg"
+                src="/Nurzhol Tabigat.jpg"
                 width="23"
               />
               <span className="sr-only">Toggle user menu</span>

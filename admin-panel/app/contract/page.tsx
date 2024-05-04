@@ -9,7 +9,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import { JSX, SVGProps } from "react"
-import { JSX, SVGProps } from "react"
 
 export default function Component() {
   return (

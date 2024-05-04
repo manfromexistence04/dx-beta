@@ -94,7 +94,7 @@ import Autoplay from "embla-carousel-autoplay"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 
-export function CarouselPlugin1() {
+function CarouselPlugin1() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
@@ -157,7 +157,7 @@ export function CarouselPlugin1() {
 
   )
 }
-export function CarouselPlugin2() {
+function CarouselPlugin2() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
@@ -220,7 +220,7 @@ export function CarouselPlugin2() {
 
   )
 }
-export function CarouselPlugin3() {
+function CarouselPlugin3() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
@@ -283,7 +283,7 @@ export function CarouselPlugin3() {
 
   )
 }
-export function RotateText() {
+function RotateText() {
   const words = ["Portflio", "Management"];
   const [index, setIndex] = React.useState(0);
 
@@ -311,7 +311,7 @@ export function RotateText() {
   );
 }
 
-export function Card1() {
+function Card1() {
   return (
     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
       <CarouselPlugin1 />
@@ -355,7 +355,7 @@ export function Card1() {
   )
 }
 
-export function Card2() {
+function Card2() {
   return (
     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
       <CarouselPlugin2 />
@@ -399,7 +399,7 @@ export function Card2() {
   )
 }
 
-export function Card3() {
+function Card3() {
   return (
     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
       <CarouselPlugin3 />
@@ -442,7 +442,7 @@ export function Card3() {
     </Card>
   )
 }
-export function Component() {
+export default function Component() {
   return (
     <main className="w-full py-5 px-[5%] h-auto">
       <div className="flex items-center justify-between mb-6">
@@ -462,10 +462,10 @@ export function Component() {
   )
 }
 
-export default function Portflio() {
-  return (
-    <>
-      <Component />
-    </>
-  )
-}
+// export default function Portflio() {
+//   return (
+//     <>
+//       <Component />
+//     </>
+//   )
+// }
