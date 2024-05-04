@@ -12,19 +12,19 @@ import { JSX, SVGProps } from "react"
 
 export default function Component() {
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 py-12 md:py-24">
+    <div className="bg-primary-foreground py-12 md:py-24">
       <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 md:p-12">
+        <div className="bg-background  rounded-lg shadow-lg p-8 md:p-12">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gray-900 dark:bg-gray-50 rounded-full flex items-center justify-center">
-                <BuildingIcon className="h-6 w-6 text-white dark:text-gray-900" />
+              <div className="w-12 h-12 bg-secondary-foreground rounded-full flex items-center justify-center">
+                <BuildingIcon className="h-6 w-6 text-primary" />
               </div>
               <h1 className="text-2xl font-bold">Contract</h1>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-gray-500 dark:text-gray-400 font-medium">Shoccho Sthapona</span>
-              <MountainIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+              <span className="text-muted-foreground  font-medium">Shoccho Sthapona</span>
+              <MountainIcon className="h-6 w-6 text-muted-foreground " />
             </div>
           </div>
           <div className="space-y-8">
