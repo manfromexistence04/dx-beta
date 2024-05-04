@@ -4,7 +4,8 @@ import { toast } from "sonner"
 import type { UploadFilesOptions } from "uploadthing/types"
 
 import { getErrorMessage } from "@/lib/handle-error"
-import { uploadFiles } from "@/lib/uploadthing"
+import { uploadFiles as uploadImages } from "@/lib/uploadthing"
+
 import { type OurFileRouter } from "@/app/api/uploadthing/core"
 
 interface UseUploadFileProps
@@ -19,19 +20,19 @@ export function useUploadFile(
   endpoint: keyof OurFileRouter,
   { defaultUploadedFiles = [], ...props }: UseUploadFileProps = {}
 ) {
-  const [uploadedFiles, setUploadedFiles] =
+  const [uploadedImages, setUploadedImages] =
     React.useState<UploadedFile[]>(defaultUploadedFiles)
-  const [progresses, setProgresses] = React.useState<Record<string, number>>({})
-  const [isUploading, setIsUploading] = React.useState(false)
+  const [imagesUploadingProgress, setImagesUploadingProgress] = React.useState<Record<string, number>>({})
+  const [isImagesUploading, setIsImagesUploading] = React.useState(false)
 
   async function uploadThings(files: File[]) {
-    setIsUploading(true)
+    setIsImagesUploading(true)
     try {
-      const res = await uploadFiles(endpoint, {
+      const res = await uploadImages(endpoint, {
         ...props,
         files,
         onUploadProgress: ({ file, progress }) => {
-          setProgresses((prev) => {
+          setImagesUploadingProgress((prev) => {
             return {
               ...prev,
               [file]: progress,
@@ -40,19 +41,19 @@ export function useUploadFile(
         },
       })
 
-      setUploadedFiles((prev) => (prev ? [...prev, ...res] : res))
+      setUploadedImages((prev) => (prev ? [...prev, ...res] : res))
     } catch (err) {
       toast.error(getErrorMessage(err))
     } finally {
-      setProgresses({})
-      setIsUploading(false)
+      setImagesUploadingProgress({})
+      setIsImagesUploading(false)
     }
   }
 
   return {
-    uploadedFiles,
-    progresses,
-    uploadFiles: uploadThings,
-    isUploading,
+    uploadedImages,
+    imagesUploadingProgress,
+    uploadImages: uploadThings,
+    isImagesUploading,
   }
 }

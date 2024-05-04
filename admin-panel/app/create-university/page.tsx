@@ -41,6 +41,9 @@ import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
 import { useDropdownStore } from "@/lib/store/dropdown";
+// import { useUploadFile as useUploadImages } from "@/hooks/use-upload-file"
+import { useUploadFile } from "@/hooks/use-upload-file"
+// import { useUploadFile as useUploadLogo } from "@/hooks/use-upload-logo"
 import {
     Form,
     FormControl,
@@ -65,6 +68,7 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { Button as NextuiButton } from "@nextui-org/react";
+// import axios from 'axios';
 
 
 const CreateButton = () => {
@@ -223,11 +227,106 @@ function Tags() {
 }
 
 
+// import Image from "next/image"
+import type { UploadedFile } from "@/types"
 
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { EmptyCard } from "@/components/empty-card"
+import { useUniversityImages } from "@/lib/store/university-images"
+
+interface UploadedFilesCardProps {
+    uploadedFiles: UploadedFile[]
+}
+
+function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
+    return (
+        <Card className="hover-glow-border">
+            <CardHeader>
+                <CardTitle>Uploaded images</CardTitle>
+                <CardDescription>View the uploaded images here</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {uploadedFiles.length > 0 ? (
+                    <ScrollArea className="pb-4">
+                        <div className="flex w-max space-x-2.5">
+                            {uploadedFiles.map((file) => (
+                                <div key={file.key} className="relative aspect-video w-64">
+                                    <Image
+                                        src={file.url}
+                                        alt={file.name}
+                                        fill
+                                        sizes="(min-width: 640px) 640px, 100vw"
+                                        loading="lazy"
+                                        className="rounded-md object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                        <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                ) : (
+                    <EmptyCard
+                        title="No images uploaded"
+                        description="Upload some images to see them here"
+                        className="w-full"
+                    />
+                )}
+            </CardContent>
+        </Card>
+    )
+}
 
 export default function CreateUniversity() {
+
+    const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadFile(
+        "imageUploader",
+        { defaultUploadedFiles: [] }
+    )
+    // const { uploadLogo, uploadedLogo } = useUploadLogo(
+    //     "imageUploader",
+    //     { defaultUploadedFiles: [] }
+    // )
+    // uploadedFiles.length > 0 ? uploadedFiles.map((file) => setInputedImages()
+    // {uploadedFiles.map((file) => (
+    //   ))}
     // const { countryValue, setCountryValue, openCountryDropdown, setOpenCountryDropdown } = useDropdownStore();
     const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
+    const { images } = useUniversityImages();
+    const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+    const handleConfetti = async () => {
+        const { clientWidth, clientHeight } = document.documentElement;
+        const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+
+        const targetY = boundingBox?.y ?? 0;
+        const targetX = boundingBox?.x ?? 0;
+        const targetWidth = boundingBox?.width ?? 0;
+
+        const targetCenterX = targetX + targetWidth / 2;
+        const confetti = (await import("canvas-confetti")).default;
+
+        confetti({
+            zIndex: 999,
+            particleCount: 100,
+            spread: 70,
+            origin: {
+                y: targetY / clientHeight,
+                x: targetCenterX / clientWidth,
+            },
+        });
+
+
+
+
+
+    };
 
     const [isOpen, setIsOpen] = React.useState(false)
     const [phoneNumberDetails, setPhoneNumberDetails] = React.useState(false)
@@ -269,7 +368,7 @@ export default function CreateUniversity() {
     let email: string = 'rektorat@amu.kz';
     let facebook: string = 'https://www.facebook.com/MeduniverAstana';
     let hostel: string = 'есть';
-    let image: string = 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319';
+    let image: any = ['https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319', 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319'];
     let instagram: string = 'https://www.instagram.com/amu_mua_official';
     let military: string = 'есть';
     let phoneNumber: string = '(+77172539424)';
@@ -293,10 +392,10 @@ export default function CreateUniversity() {
     const [inputedMilitary, setInputedMilitary] = React.useState(military)
     const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
     const [inputedLogo, setInputedLogo] = React.useState(logo)
-    const [inputedAddress, setInputedAddress] = React.useState(stateValue)
-    const [inputedRegion, setInputedRegion] = React.useState(countryValue)
+    const [inputedAddress, setInputedAddress] = React.useState(address)
+    const [inputedRegion, setInputedRegion] = React.useState(region)
     const [inputedDescription, setInputedDesciption] = React.useState(universityDescription)
-    const [inputedImages, setInputedImages] = React.useState(image)
+    const [inputedImages, setInputedImages] = React.useState("image")
 
     const handleNameChange = (event: any) => {
         setInputedName(event.target.value);
@@ -307,7 +406,7 @@ export default function CreateUniversity() {
     }
 
     const handleStatusChange = (event: any) => {
-        setInputedStatus(event.target.value);
+        setInputedStatus(event);
     }
 
     const handleFacebookChange = (event: any) => {
@@ -331,45 +430,91 @@ export default function CreateUniversity() {
     }
 
     const handleHostelChange = (event: any) => {
-        setInputedHostel(event.target.value);
+        setInputedHostel(event);
     }
 
     const handleMilitaryChange = (event: any) => {
-        setInputedMilitary(event.target.value);
-    }
-
-    // const handlePhoneNumberChange = (event: any) => {
-    //     setInputedPhoneNumber(event.target.value);
-    // }
-
-    const handleLogoChange = (event: any) => {
-        setInputedLogo(event.target.value);
-    }
-
-    const handleAddressChange = (event: any) => {
-        setInputedAddress(event.target.value);
-    }
-
-    const handleRegionChange = (event: any) => {
-        setInputedRegion(event.target.value);
+        setInputedMilitary(event);
     }
 
     const handleDescriptionChange = (event: any) => {
-        setInputedDesciption(event.target.value);
+        setInputedDesciption(JSON.stringify(event));
     }
 
-    const handleImagesChange = (event: any) => {
-        setInputedImages(event.target.value);
+    const create = (event: any) => {
+        // setInputedImages(event.target.value);
     }
 
+    // React.useEffect(() => {
+    //     const newImages: any = uploadedImages.map((item: { url: any }): any => { item });
+    //     setInputedImages(newImages);
+    //     console.log(`3${newImages}`)
+    // }, []);
 
+    // function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
+
+
+    //         {uploadedFiles.length > 0 ? (
+    //               {uploadedFiles.map((file) => (
+
+    //               ))}
+
+    //         ) : (
+    //         )}
+
+    // }
+
+    // uploadedImages.length > 0 ? uploadedImages.map((file: { url: any }) => { setInputedImages(file.url) }) : console.log("he");
+
+    // if (uploadedImages.length > 0) {
+    //     const newImages: any = uploadedImages.map((item: { url: any }): any => { item });
+    //     setInputedImages(newImages);
+    //     console.log(`2${newImages}`)
+
+    // }
+    // const newImages: any = uploadedImages.map((item: { url: any }): any => { item });
+    // setInputedImages(newImages);
+    // console.log(`4${newImages}`)
+    // if (uploadedLogo.length > 0) {
+    //     const newLogo: any = uploadedLogo.map((item: any) => { item.url });
+    //     setInputedLogo(newLogo);
+    //     console.log(`2${newLogo}`)
+
+    // }
+
+
+
+    const [data, setData] = React.useState(null);
+
+    React.useEffect(() => {
+        // const fetchData = async () => {
+        //     try {
+        //         const response = await axios.get('/api/route');
+        //         setData(response.data);
+        //     } catch (error) {
+        //         console.error('Error fetching data:', error);
+        //     }
+        // };
+
+        // fetchData();
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/route');
+                const jsonData = await response.json();
+                setData(jsonData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
 
     return (
         <>
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 pt-3">
 
-                {/* {inputedName} */}
                 <div>
                     <p>{`Name: ${inputedName}`}</p>
                     <p>{`Email: ${inputedEmail}`}</p>
@@ -381,12 +526,20 @@ export default function CreateUniversity() {
                     <p>{`University Code: ${inputedCode}`}</p>
                     <p>{`Hostel: ${inputedHostel}`}</p>
                     <p>{`Military: ${inputedMilitary}`}</p>
-                    <p>{`Phone Number: ${inputedPhoneNumber}`}</p>
+                    <p>{`Phone Number: ${phone}`}</p>
                     <p>{`Logo: ${inputedLogo}`}</p>
-                    <p>{`Address: ${inputedAddress}`}</p>
-                    <p>{`Region: ${inputedRegion}`}</p>
+                    <p>{`Address: ${stateValue}`}</p>
+                    <p>{`Region: ${countryValue}`}</p>
                     <p>{`Description: ${inputedDescription}`}</p>
-                    <p>{`Images: ${inputedImages}`}</p>
+                    <p>{`Images: ${images}`}</p>
+                    <div>
+            {data ? (
+                <div>{JSON.stringify(data)}</div>
+            ) : (
+                <div>Loading...</div>
+            )}
+        </div>
+                    {/* <UploadedFilesCard uploadedFiles={uploadedImages} /> */}
                 </div>
 
                 <div className="action w-full my-3 flex items-center justify-between ">
@@ -395,8 +548,16 @@ export default function CreateUniversity() {
                             Back
                         </AnimatedButton>
                     </Link>
-                    <CreateButton />
-
+                    {/* <CreateButton onClick={create}/> */}
+                    <NextuiButton
+                        ref={buttonRef}
+                        disableRipple
+                        className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+                        size="md"
+                        onPress={handleConfetti}
+                    >
+                        Create
+                    </NextuiButton>
                 </div>
 
                 <div className="name-logo-description-university w-full grid gap-3 ">
@@ -579,7 +740,7 @@ export default function CreateUniversity() {
                     <div className="w-full h-full border-t">
                         <DndProvider backend={HTML5Backend}>
                             <CommentsProvider users={commentsUsers} myUserId={myUserId}>
-                                <Plate plugins={plugins} initialValue={initialValue}>
+                                <Plate plugins={plugins} initialValue={initialValue} onChange={handleDescriptionChange}>
                                     <div
                                         ref={containerRef}
                                         className={cn(
@@ -597,6 +758,7 @@ export default function CreateUniversity() {
                                             focusRing={false}
                                             variant="ghost"
                                             size="md"
+
                                         />
 
                                         <MentionCombobox items={MENTIONABLES} />

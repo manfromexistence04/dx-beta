@@ -31,8 +31,8 @@ export function DialogUploaderDemo() {
           </DialogDescription>
         </DialogHeader>
         <FileUploader
-          maxFiles={8}
-          maxSize={8 * 1024 * 1024}
+          maxFiles={1}
+          maxSize={1 * 1024 * 1024}
           onValueChange={setFiles}
         />
       </DialogContent>

@@ -10,12 +10,17 @@ import {
 } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { EmptyCard } from "@/components/empty-card"
+import { useUniversityImages } from "@/lib/store/university-images";
 
 interface UploadedFilesCardProps {
   uploadedFiles: UploadedFile[]
 }
 
-export function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
+export function UploadedFilesCard({ uploadedFiles }: any) {
+  const { images } = useUniversityImages();
+  const newArray1: string = uploadedFiles.map((item: { url: any }) => item.url);
+  newArray1 === images;
+  
   return (
     <Card className="hover-glow-border">
       <CardHeader>
@@ -26,7 +31,12 @@ export function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
         {uploadedFiles.length > 0 ? (
           <ScrollArea className="pb-4">
             <div className="flex w-max space-x-2.5">
-              {uploadedFiles.map((file) => (
+              {
+
+              uploadedFiles.map((file:any) => {
+                // file.item === images;
+
+                return(
                 <div key={file.key} className="relative aspect-video w-64">
                   <Image
                     src={file.url}
@@ -37,7 +47,7 @@ export function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
                     className="rounded-md object-cover"
                   />
                 </div>
-              ))}
+              )})}
             </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
