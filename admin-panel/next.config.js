@@ -18,9 +18,6 @@ const config = {
       ],
       unoptimized: true,
     },
-    experimental: {
-      ppr: true,
-    },
   }
   
   module.exports = config
