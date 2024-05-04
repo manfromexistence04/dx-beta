@@ -40,6 +40,7 @@ import { ArrowRightIcon, ArrowLeftIcon, ChevronsUpDown, Plus, X } from "lucide-r
 import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
+import { useDropdownStore } from "@/lib/store/dropdown";
 import {
     Form,
     FormControl,
@@ -225,25 +226,9 @@ function Tags() {
 
 
 export default function CreateUniversity() {
+    // const { countryValue, setCountryValue, openCountryDropdown, setOpenCountryDropdown } = useDropdownStore();
+    const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
 
-
-    let address: string = 'Bangladesh, Jhenaidah';
-    let educationCost: string = '1 335 000 ₸';
-    let email: string = 'rektorat@amu.kz';
-    let facebook: string = 'https://www.facebook.com/MeduniverAstana';
-    let hostel: string = 'есть';
-    let image: string = 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319';
-    let instagram: string = 'https://www.instagram.com/amu_mua_official';
-    let military: string = 'есть';
-    let phoneNumber: string = '(+77172539424)';
-    let region: string = 'г. Астана';
-    let status: string = 'акционированный';
-    let universityCode: string = '1';
-    let universityDescription: string = 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.';
-    let universityName: string = 'Медицинский университет Астана';
-    let website: string = 'https://amu.edu.kz/';
-
-    const [name, setName] = React.useState(universityName)
     const [isOpen, setIsOpen] = React.useState(false)
     const [phoneNumberDetails, setPhoneNumberDetails] = React.useState(false)
     const containerRef = useRef(null);
@@ -279,10 +264,130 @@ export default function CreateUniversity() {
         setPhoneNumberDetails(!phoneNumberDetails);
     }
 
+    let address: string = 'Bangladesh, Jhenaidah';
+    let educationCost: string = '1 335 000 ₸';
+    let email: string = 'rektorat@amu.kz';
+    let facebook: string = 'https://www.facebook.com/MeduniverAstana';
+    let hostel: string = 'есть';
+    let image: string = 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319';
+    let instagram: string = 'https://www.instagram.com/amu_mua_official';
+    let military: string = 'есть';
+    let phoneNumber: string = '(+77172539424)';
+    let region: string = 'г. Астана';
+    let status: string = 'акционированный';
+    let universityCode: string = '1';
+    let universityDescription: string = 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.';
+    let universityName: string = 'Медицинский университет Астана';
+    let website: string = 'https://amu.edu.kz/';
+    let logo: string = 'https://amu.edu.kz/';
+
+    const [inputedName, setInputedName] = React.useState(universityName)
+    const [inputedEmail, setInputedEmail] = React.useState(email)
+    const [inputedStatus, setInputedStatus] = React.useState(status)
+    const [inputedFacebook, setInputedFacebook] = React.useState(facebook)
+    const [inputedInstragam, setInputedInstragam] = React.useState(instagram)
+    const [inputedCost, setInputedCost] = React.useState(educationCost)
+    const [inputedWebsite, setInputedWebsite] = React.useState(website)
+    const [inputedCode, setInputedCode] = React.useState(universityCode)
+    const [inputedHostel, setInputedHostel] = React.useState(hostel)
+    const [inputedMilitary, setInputedMilitary] = React.useState(military)
+    const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
+    const [inputedLogo, setInputedLogo] = React.useState(logo)
+    const [inputedAddress, setInputedAddress] = React.useState(stateValue)
+    const [inputedRegion, setInputedRegion] = React.useState(countryValue)
+    const [inputedDescription, setInputedDesciption] = React.useState(universityDescription)
+    const [inputedImages, setInputedImages] = React.useState(image)
+
+    const handleNameChange = (event: any) => {
+        setInputedName(event.target.value);
+    }
+
+    const handleEmailChange = (event: any) => {
+        setInputedEmail(event.target.value);
+    }
+
+    const handleStatusChange = (event: any) => {
+        setInputedStatus(event.target.value);
+    }
+
+    const handleFacebookChange = (event: any) => {
+        setInputedFacebook(event.target.value);
+    }
+
+    const handleInstagramChange = (event: any) => {
+        setInputedInstragam(event.target.value);
+    }
+
+    const handleCostChange = (event: any) => {
+        setInputedCost(event.target.value);
+    }
+
+    const handleWebsiteChange = (event: any) => {
+        setInputedWebsite(event.target.value);
+    }
+
+    const handleCodeChange = (event: any) => {
+        setInputedCode(event.target.value);
+    }
+
+    const handleHostelChange = (event: any) => {
+        setInputedHostel(event.target.value);
+    }
+
+    const handleMilitaryChange = (event: any) => {
+        setInputedMilitary(event.target.value);
+    }
+
+    // const handlePhoneNumberChange = (event: any) => {
+    //     setInputedPhoneNumber(event.target.value);
+    // }
+
+    const handleLogoChange = (event: any) => {
+        setInputedLogo(event.target.value);
+    }
+
+    const handleAddressChange = (event: any) => {
+        setInputedAddress(event.target.value);
+    }
+
+    const handleRegionChange = (event: any) => {
+        setInputedRegion(event.target.value);
+    }
+
+    const handleDescriptionChange = (event: any) => {
+        setInputedDesciption(event.target.value);
+    }
+
+    const handleImagesChange = (event: any) => {
+        setInputedImages(event.target.value);
+    }
+
+
+
+
     return (
         <>
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 pt-3">
 
+                {/* {inputedName} */}
+                <div>
+                    <p>{`Name: ${inputedName}`}</p>
+                    <p>{`Email: ${inputedEmail}`}</p>
+                    <p>{`Status: ${inputedStatus}`}</p>
+                    <p>{`Facebook: ${inputedFacebook}`}</p>
+                    <p>{`Instagram: ${inputedInstragam}`}</p>
+                    <p>{`Education Cost: ${inputedCost}`}</p>
+                    <p>{`Website: ${inputedWebsite}`}</p>
+                    <p>{`University Code: ${inputedCode}`}</p>
+                    <p>{`Hostel: ${inputedHostel}`}</p>
+                    <p>{`Military: ${inputedMilitary}`}</p>
+                    <p>{`Phone Number: ${inputedPhoneNumber}`}</p>
+                    <p>{`Logo: ${inputedLogo}`}</p>
+                    <p>{`Address: ${inputedAddress}`}</p>
+                    <p>{`Region: ${inputedRegion}`}</p>
+                    <p>{`Description: ${inputedDescription}`}</p>
+                    <p>{`Images: ${inputedImages}`}</p>
+                </div>
 
                 <div className="action w-full my-3 flex items-center justify-between ">
                     <Link href="/read-university" className="z-50">
@@ -293,18 +398,19 @@ export default function CreateUniversity() {
                     <CreateButton />
 
                 </div>
+
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Name</h1>
-                        <Input type="text" placeholder="Enter University Name" />
+                        <Input onChange={handleNameChange} type="text" placeholder="Enter University Name" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Email</h1>
-                        <Input type="email" placeholder="Enter University Name" />
+                        <Input onChange={handleEmailChange} type="email" placeholder="Enter University Name" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Status</h1>
-                        <Select>
+                        <Select onValueChange={handleStatusChange}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select a status" />
                             </SelectTrigger>
@@ -325,25 +431,29 @@ export default function CreateUniversity() {
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Facebook</h1>
-                        <Input type="text" placeholder="Enter University Facebook Link" />
+                        <Input onChange={handleFacebookChange} type="text" placeholder="Enter University Facebook Link" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Instragam</h1>
-                        <Input type="text" placeholder="Enter University Instragam Link" />
+                        <Input onChange={handleInstagramChange} type="text" placeholder="Enter University Instragam Link" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Website</h1>
-                        <Input type="text" placeholder="Enter University Website Link" />
+                        <Input onChange={handleWebsiteChange} type="text" placeholder="Enter University Website Link" />
+                    </div>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Cost</h1>
+                        <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Code</h1>
-                        <Input type="number" placeholder="Enter University Code" />
+                        <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Hostel</h1>
-                        <Select>
+                        <Select onValueChange={handleHostelChange}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select a Hostel Availability" />
                             </SelectTrigger>
@@ -359,7 +469,7 @@ export default function CreateUniversity() {
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Military</h1>
-                        <Select>
+                        <Select onValueChange={handleMilitaryChange}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select a Military Campain" />
                             </SelectTrigger>
@@ -376,50 +486,7 @@ export default function CreateUniversity() {
                     </div>
                 </div>
                 <div className="tag-location-university w-full grid gap-3 h-auto">
-                    {/* <div className="hover-glow-border flex flex-col items-start justify-center gap-3 w-full h-full rounded-md border p-10">
-                        <div className="flex flex-col lg:flex-row items-center justify-start gap-3 w-full">
-                            <section className="z-10 w-full flex flex-col items-start text-start gap-5">
-                                <div id="try" className="w-full">
-                                    <div className="w-full relative flex flex-col space-y-2">
-                                        <div className="preview flex max-h-auto w-full justify-start items-start ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md">
-                                            <Form {...form}>
-                                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col items-start">
-                                                    <FormField
-                                                        control={form.control}
-                                                        name="topics"
-                                                        render={({ field }) => (
-                                                            <FormItem className="flex flex-col items-start">
-                                                                <h1 className="text-4xl font-bold w-full text-left">Tag</h1>
 
-                                                                <FormControl className="w-full">
-                                                                    <TagInput
-                                                                        {...field}
-                                                                        placeholder="Enter a topic"
-                                                                        tags={tags}
-                                                                        className="sm:min-w-[450px]"
-                                                                        setTags={(newTags) => {
-                                                                            setTags(newTags);
-                                                                            setValue('topics', newTags as [Tag, ...Tag[]]);
-                                                                        }}
-                                                                    />
-                                                                </FormControl>
-                                                                <FormDescription className="text-left">
-                                                                    These are the topics that you&apos;re interested in.
-                                                                </FormDescription>
-                                                                <FormMessage />
-                                                            </FormItem>
-                                                        )}
-                                                    />
-                                                    <Button type="submit">Submit</Button>
-                                                </form>
-                                            </Form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-
-                    </div> */}
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Phone Number</h1>
                         <PhoneInput className="!p-0 !m-0 w-full" value={phone} onChange={handleOnChange} />
@@ -429,7 +496,6 @@ export default function CreateUniversity() {
                         <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
                         <div className="flex w-full items-start justify-start">
                             <DialogUploaderDemo />
-
                         </div>
                     </div>
                     <div className="hover-glow-border flex flex-col items-start justify-center gap-3 w-full h-full border rounded-md p-10">
@@ -555,4 +621,50 @@ export default function CreateUniversity() {
     )
 }
 
+
+
+{/* <div className="hover-glow-border flex flex-col items-start justify-center gap-3 w-full h-full rounded-md border p-10">
+                        <div className="flex flex-col lg:flex-row items-center justify-start gap-3 w-full">
+                            <section className="z-10 w-full flex flex-col items-start text-start gap-5">
+                                <div id="try" className="w-full">
+                                    <div className="w-full relative flex flex-col space-y-2">
+                                        <div className="preview flex max-h-auto w-full justify-start items-start ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md">
+                                            <Form {...form}>
+                                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col items-start">
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="topics"
+                                                        render={({ field }) => (
+                                                            <FormItem className="flex flex-col items-start">
+                                                                <h1 className="text-4xl font-bold w-full text-left">Tag</h1>
+
+                                                                <FormControl className="w-full">
+                                                                    <TagInput
+                                                                        {...field}
+                                                                        placeholder="Enter a topic"
+                                                                        tags={tags}
+                                                                        className="sm:min-w-[450px]"
+                                                                        setTags={(newTags) => {
+                                                                            setTags(newTags);
+                                                                            setValue('topics', newTags as [Tag, ...Tag[]]);
+                                                                        }}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormDescription className="text-left">
+                                                                    These are the topics that you&apos;re interested in.
+                                                                </FormDescription>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <Button type="submit">Submit</Button>
+                                                </form>
+                                            </Form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div> */}
 
