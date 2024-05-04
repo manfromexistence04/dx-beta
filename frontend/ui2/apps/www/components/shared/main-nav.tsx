@@ -2,8 +2,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
-import { Button } from "@/components/ui/button";
-import ModeToggle from "@/components/shared/mode-toggle";
+import { Button, buttonVariants } from "@/components/ui/button";
+// import ModeToggle from "@/components/mode-toggle";
 import { NavDropdown } from "@/components/shared/nav-dropdown";
 import NavLinks from "@/components/shared/nav-links";
 import VVLogo from "@/components/shared/vv-logo";
@@ -18,6 +18,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Icons } from "../icons";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
+import { ModeToggle } from "../mode-toggle";
 
 export default function MainNav() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -65,25 +69,43 @@ export default function MainNav() {
           <NavSheet />
         </div>
         <div className="hidden lg:flex space-x-1 z-50">
-          <Link
-            href="https://www.twitter.com/abdo_eth"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Button className="flex items-center" variant="ghost" size="icon">
-              <TwitterLogoIcon className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link
-            href="https://www.github.com/chrisabdo/motionvariants"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Button className="flex items-center" variant="ghost" size="icon">
-              <GitHubLogoIcon className="h-4 w-4" />
-            </Button>
-          </Link>
-          <ModeToggle />
+
+        <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({
+                    variant: "ghost",
+                  }),
+                  "w-9 px-0"
+                )}
+              >
+                <Icons.gitHub className="h-4 w-4" />
+                <span className="sr-only">GitHub</span>
+              </div>
+            </Link>
+            <Link
+              href={siteConfig.links.twitter}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div
+                className={cn(
+                  buttonVariants({
+                    variant: "ghost",
+                  }),
+                  "w-9 px-0"
+                )}
+              >
+                <Icons.twitter className="h-3 w-3 fill-current" />
+                <span className="sr-only">Twitter</span>
+              </div>
+            </Link>
+            <ModeToggle />
+            
           <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border mt-2 ring-offset-background ring-2  ring-ring ring-offset-2">

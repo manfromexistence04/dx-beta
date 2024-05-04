@@ -11,6 +11,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher"
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
+import { Nextui } from "./nextui"
 
 export const metadata: Metadata = {
   title: {
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
+            <Nextui>
             <div vaul-drawer-wrapper="">
               <div className="relative flex min-h-screen flex-col bg-background">
                 {children}
@@ -103,9 +105,39 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <NewYorkToaster />
             <DefaultToaster />
             <NewYorkSonner />
+
+            </Nextui>
+
           </ThemeProvider>
         </body>
       </html>
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

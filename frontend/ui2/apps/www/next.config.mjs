@@ -8,6 +8,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "utfs.io",
+      },
+      {
+        protocol: "https",
         hostname: "avatars.githubusercontent.com",
       },
       {
@@ -15,7 +19,9 @@ const nextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+    unoptimized: true,
   },
+
   redirects() {
     return [
       {
