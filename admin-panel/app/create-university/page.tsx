@@ -1,5 +1,22 @@
 "use client"
 
+import { initializeApp } from "firebase/app";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
+const firebaseConfig = {
+    apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+    authDomain: "ustudy-96678.firebaseapp.com",
+    projectId: "ustudy-96678",
+    storageBucket: "ustudy-96678.appspot.com",
+    messagingSenderId: "581632635532",
+    appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Database
+const db:any = getFirestore(app);
+// import db from "@/firebase";
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -8,8 +25,6 @@ import { Input } from "@/components/ui/input"
 import React, { useRef } from 'react';
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
-import { Shell } from "@/components/shell"
-import { VariantTabs } from "../_components/variant-tabs"
 import { DialogUploaderDemo } from "../_components/dialog-uploader-demo"
 import CountryDropdown from "@/components/dropdown/countries";
 import StateDropdown from "@/components/dropdown/states";
@@ -41,9 +56,8 @@ import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
 import { useDropdownStore } from "@/lib/store/dropdown";
-// import { useUploadFile as useUploadImages } from "@/hooks/use-upload-file"
-import { useUploadFile } from "@/hooks/use-upload-file"
-// import { useUploadFile as useUploadLogo } from "@/hooks/use-upload-logo"
+import { useUploadFile as useUploadImages } from "@/hooks/use-upload-file"
+import { useUploadFile as useUploadLogo } from "@/hooks/use-upload-logo"
 import {
     Form,
     FormControl,
@@ -52,7 +66,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from '@/registry/default//ui/form';
+} from '@/registry/default/ui/form';
 import {
     Select,
     SelectContent,
@@ -68,7 +82,71 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { Button as NextuiButton } from "@nextui-org/react";
-// import axios from 'axios';
+import { cva, type VariantProps } from "class-variance-authority"
+import { FileUploader } from "@/components/file-uploader"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import type { UploadedFile } from "@/types"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { EmptyCard } from "@/components/empty-card"
+import { useUniversityImages } from "@/lib/store/university-images"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
+
+
+
+interface UploadedFilesCardProps {
+    uploadedFiles: UploadedFile[]
+}
+interface UploadedFilesCardProps {
+    uploadedFiles: UploadedFile[]
+}
+interface ShellProps
+    extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof shellVariants> {
+    as?: React.ElementType
+}
+
+// Starting
+const shellVariants = cva("grid items-center gap-8 pb-8 pt-6 md:py-8", {
+    variants: {
+        variant: {
+            default: "container",
+            sidebar: "",
+            centered: "mx-auto mb-16 mt-20 max-w-md justify-center",
+            markdown: "container max-w-3xl gap-0 py-8 md:py-10 lg:py-10",
+        },
+    },
+    defaultVariants: {
+        variant: "default",
+    },
+})
+
+
+function Shell({
+    className,
+    as: Comp = "section",
+    variant,
+    ...props
+}: ShellProps) {
+    return (
+        <Comp className={cn(shellVariants({ variant }), className)} {...props} />
+    )
+}
 
 
 const CreateButton = () => {
@@ -108,8 +186,6 @@ const CreateButton = () => {
         </NextuiButton>
     );
 };
-
-
 const FormSchema = z.object({
     topics: z.array(
         z.object({
@@ -227,76 +303,57 @@ function Tags() {
 }
 
 
-// import Image from "next/image"
-import type { UploadedFile } from "@/types"
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { EmptyCard } from "@/components/empty-card"
-import { useUniversityImages } from "@/lib/store/university-images"
-
-interface UploadedFilesCardProps {
-    uploadedFiles: UploadedFile[]
-}
-
-function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
-    return (
-        <Card className="hover-glow-border">
-            <CardHeader>
-                <CardTitle>Uploaded images</CardTitle>
-                <CardDescription>View the uploaded images here</CardDescription>
-            </CardHeader>
-            <CardContent>
-                {uploadedFiles.length > 0 ? (
-                    <ScrollArea className="pb-4">
-                        <div className="flex w-max space-x-2.5">
-                            {uploadedFiles.map((file) => (
-                                <div key={file.key} className="relative aspect-video w-64">
-                                    <Image
-                                        src={file.url}
-                                        alt={file.name}
-                                        fill
-                                        sizes="(min-width: 640px) 640px, 100vw"
-                                        loading="lazy"
-                                        className="rounded-md object-cover"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <ScrollBar orientation="horizontal" />
-                    </ScrollArea>
-                ) : (
-                    <EmptyCard
-                        title="No images uploaded"
-                        description="Upload some images to see them here"
-                        className="w-full"
-                    />
-                )}
-            </CardContent>
-        </Card>
-    )
-}
+// function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
+//     return (
+//         <Card className="hover-glow-border">
+//             <CardHeader>
+//                 <CardTitle>Uploaded images</CardTitle>
+//                 <CardDescription>View the uploaded images here</CardDescription>
+//             </CardHeader>
+//             <CardContent>
+//                 {uploadedFiles.length > 0 ? (
+//                     <ScrollArea className="pb-4">
+//                         <div className="flex w-max space-x-2.5">
+//                             {uploadedFiles.map((file) => (
+//                                 <div key={file.key} className="relative aspect-video w-64">
+//                                     <Image
+//                                         src={file.url}
+//                                         alt={file.name}
+//                                         fill
+//                                         sizes="(min-width: 640px) 640px, 100vw"
+//                                         loading="lazy"
+//                                         className="rounded-md object-cover"
+//                                     />
+//                                 </div>
+//                             ))}
+//                         </div>
+//                         <ScrollBar orientation="horizontal" />
+//                     </ScrollArea>
+//                 ) : (
+//                     <EmptyCard
+//                         title="No images uploaded"
+//                         description="Upload some images to see them here"
+//                         className="w-full"
+//                     />
+//                 )}
+//             </CardContent>
+//         </Card>
+//     )
+// }
 
 export default function CreateUniversity() {
 
-    const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadFile(
+    const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
         "imageUploader",
         { defaultUploadedFiles: [] }
     )
-    // const { uploadLogo, uploadedLogo } = useUploadLogo(
-    //     "imageUploader",
-    //     { defaultUploadedFiles: [] }
-    // )
-    // uploadedFiles.length > 0 ? uploadedFiles.map((file) => setInputedImages()
-    // {uploadedFiles.map((file) => (
-    //   ))}
-    // const { countryValue, setCountryValue, openCountryDropdown, setOpenCountryDropdown } = useDropdownStore();
+    const { uploadLogo, logoUploadprogresses, isLogoUploading, uploadedLogo } = useUploadLogo(
+        "imageUploader",
+        { defaultUploadedFiles: [] }
+    )
+    const { toast } = useToast();
+
     const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
     const { images } = useUniversityImages();
     const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -322,9 +379,46 @@ export default function CreateUniversity() {
             },
         });
 
+        uploadedImages.map((file: any) => {
+            setInputedImages(file.url);
+            return null;
+        })
+        uploadedLogo.map((file: any) => {
+            setInputedLogo(file.url);
+            return null;
+        })
 
+        const Create = await addDoc(collection(db, "universities"), {
+            address: 'Bangladesh, Kaligonj',
+            educationCost: '1 335 000 ₸',
+            email: 'rektorat@amu.kz',
+            facebook: 'https://www.facebook.com/MeduniverAstana',
+            hostel: 'есть',
+            image: 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319',
+            instagram: 'https://www.instagram.com/amu_mua_official',
+            military: 'есть',
+            phoneNumber: '(+77172539424)',
+            region: 'г. Астана',
+            status: 'акционированный',
+            universityCode: '1',
+            universityDescription: 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.',
+            universityName: 'Медицинский университет Астана',
+            website: 'https://amu.edu.kz/',
+        });
+        console.log("Document written with ID: ", Create.id);
 
+        toast({
+            title: 'University has been created',
+            description: (
+                <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                    <span>You Can now update,view and delete this university!</span>
+                    <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
+                        <code className="text-muted-foreground bg-secondary">{JSON.stringify(Create, null, 2)}</code>
+                    </pre>
+                </div>
 
+            ),
+        });
 
     };
 
@@ -348,7 +442,6 @@ export default function CreateUniversity() {
     });
     const [tags, setTags] = React.useState<Tag[]>([]);
     const { setValue } = form;
-    const { toast } = useToast();
     function onSubmit(data: z.infer<typeof FormSchema>) {
         toast({
             title: 'You submitted the following values:',
@@ -395,7 +488,7 @@ export default function CreateUniversity() {
     const [inputedAddress, setInputedAddress] = React.useState(address)
     const [inputedRegion, setInputedRegion] = React.useState(region)
     const [inputedDescription, setInputedDesciption] = React.useState(universityDescription)
-    const [inputedImages, setInputedImages] = React.useState("image")
+    const [inputedImages, setInputedImages] = React.useState("please work!")
 
     const handleNameChange = (event: any) => {
         setInputedName(event.target.value);
@@ -441,81 +534,92 @@ export default function CreateUniversity() {
         setInputedDesciption(JSON.stringify(event));
     }
 
+    const imagesChange = () => {
+        setInputedDesciption(JSON.stringify(event));
+    }
     const create = (event: any) => {
         // setInputedImages(event.target.value);
     }
+    const updateImagesAndLogo = () => {
+        uploadedImages.map((file: any) => {
+            setInputedImages(file.url);
+            return null;
+        })
+        uploadedLogo.map((file: any) => {
+            setInputedLogo(file.url);
+            return null;
+        })
+    }
 
-    // React.useEffect(() => {
-    //     const newImages: any = uploadedImages.map((item: { url: any }): any => { item });
-    //     setInputedImages(newImages);
-    //     console.log(`3${newImages}`)
-    // }, []);
+    // function UploadedFilesCard({ uploadedFiles }: any) {
+    //     uploadedFiles.map((file: any) => {
+    //         setInputedImages(file.url)
+    //     })
 
-    // function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
+    //     return (
+    //         <Card className="hover-glow-border">
+    //             <CardHeader>
+    //                 <CardTitle>Uploaded images</CardTitle>
+    //                 <CardDescription>View the uploaded images here</CardDescription>
+    //             </CardHeader>
+    //             <CardContent>
+    //                 {uploadedFiles.length > 0 ? (
+    //                     <ScrollArea className="pb-4">
+    //                         <div className="flex w-max space-x-2.5">
+    //                             {
 
+    //                                 uploadedFiles.map((file: any) => {
+    //                                     // file.item === images;
 
-    //         {uploadedFiles.length > 0 ? (
-    //               {uploadedFiles.map((file) => (
-
-    //               ))}
-
-    //         ) : (
-    //         )}
-
+    //                                     return (
+    //                                         <div key={file.key} className="relative aspect-video w-64">
+    //                                             <Image
+    //                                                 src={file.url}
+    //                                                 alt={file.name}
+    //                                                 fill
+    //                                                 sizes="(min-width: 640px) 640px, 100vw"
+    //                                                 loading="lazy"
+    //                                                 className="rounded-md object-cover"
+    //                                             />
+    //                                         </div>
+    //                                     )
+    //                                 })}
+    //                         </div>
+    //                         <ScrollBar orientation="horizontal" />
+    //                     </ScrollArea>
+    //                 ) : (
+    //                     <EmptyCard
+    //                         title="No images uploaded"
+    //                         description="Upload some images to see them here"
+    //                         className="w-full"
+    //                     />
+    //                 )}
+    //             </CardContent>
+    //         </Card>
+    //     )
     // }
+    let testing1 = () => {
+        isImagesUploading ? uploadedImages.map((file: any) => {
+            setInputedImages(file.url);
+            return null;
+        }) : console.log("Not Uploaded Any Images Yet.")
+    };
+    testing1();
 
-    // uploadedImages.length > 0 ? uploadedImages.map((file: { url: any }) => { setInputedImages(file.url) }) : console.log("he");
-
-    // if (uploadedImages.length > 0) {
-    //     const newImages: any = uploadedImages.map((item: { url: any }): any => { item });
-    //     setInputedImages(newImages);
-    //     console.log(`2${newImages}`)
-
-    // }
-    // const newImages: any = uploadedImages.map((item: { url: any }): any => { item });
-    // setInputedImages(newImages);
-    // console.log(`4${newImages}`)
-    // if (uploadedLogo.length > 0) {
-    //     const newLogo: any = uploadedLogo.map((item: any) => { item.url });
-    //     setInputedLogo(newLogo);
-    //     console.log(`2${newLogo}`)
-
-    // }
-
-
-
-    const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
-        // const fetchData = async () => {
-        //     try {
-        //         const response = await axios.get('/api/route');
-        //         setData(response.data);
-        //     } catch (error) {
-        //         console.error('Error fetching data:', error);
-        //     }
-        // };
-
-        // fetchData();
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/route');
-                const jsonData = await response.json();
-                setData(jsonData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+        uploadedImages.map((file: any) => {
+            setInputedImages(file.url);
+            return null;
+        })
+    }, [isImagesUploading]);
 
 
     return (
         <>
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 pt-3">
 
-                <div>
+                {/* <div>
                     <p>{`Name: ${inputedName}`}</p>
                     <p>{`Email: ${inputedEmail}`}</p>
                     <p>{`Status: ${inputedStatus}`}</p>
@@ -531,16 +635,9 @@ export default function CreateUniversity() {
                     <p>{`Address: ${stateValue}`}</p>
                     <p>{`Region: ${countryValue}`}</p>
                     <p>{`Description: ${inputedDescription}`}</p>
-                    <p>{`Images: ${images}`}</p>
-                    <div>
-            {data ? (
-                <div>{JSON.stringify(data)}</div>
-            ) : (
-                <div>Loading...</div>
-            )}
-        </div>
-                    {/* <UploadedFilesCard uploadedFiles={uploadedImages} /> */}
-                </div>
+                    <p>{`Images: ${inputedImages}`}</p>
+                    <Button onClick={updateImagesAndLogo}>Update</Button>
+                </div> */}
 
                 <div className="action w-full my-3 flex items-center justify-between ">
                     <Link href="/read-university" className="z-50">
@@ -589,63 +686,7 @@ export default function CreateUniversity() {
                         </Select>
                     </div>
                 </div>
-                <div className="name-logo-description-university w-full grid gap-3 ">
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Facebook</h1>
-                        <Input onChange={handleFacebookChange} type="text" placeholder="Enter University Facebook Link" />
-                    </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Instragam</h1>
-                        <Input onChange={handleInstagramChange} type="text" placeholder="Enter University Instragam Link" />
-                    </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Website</h1>
-                        <Input onChange={handleWebsiteChange} type="text" placeholder="Enter University Website Link" />
-                    </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Cost</h1>
-                        <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
-                    </div>
-                </div>
-                <div className="name-logo-description-university w-full grid gap-3 ">
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Code</h1>
-                        <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
-                    </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Hostel</h1>
-                        <Select onValueChange={handleHostelChange}>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Select a Hostel Availability" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Is there is a hostel in this university?</SelectLabel>
-                                    <Separator className="mb-1" />
-                                    <SelectItem value="yes">Yes</SelectItem>
-                                    <SelectItem value="no">No</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Military</h1>
-                        <Select onValueChange={handleMilitaryChange}>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Select a Military Campain" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Are there is a military campain in this university?</SelectLabel>
-                                    <Separator className="mb-1" />
 
-                                    <SelectItem value="yes">Yes</SelectItem>
-                                    <SelectItem value="no">No</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                </div>
                 <div className="tag-location-university w-full grid gap-3 h-auto">
 
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -656,7 +697,58 @@ export default function CreateUniversity() {
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
                         <div className="flex w-full items-start justify-start">
-                            <DialogUploaderDemo />
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="outline">Upload Logo</Button>
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-[95%] sm:mx-auto lg:min-w-[750px] lg:max-w-[35%]">
+                                    <FileUploader
+                                        maxFiles={1}
+                                        maxSize={4 * 1024 * 1024}
+                                        progresses={logoUploadprogresses}
+                                        onUpload={uploadLogo}
+                                        disabled={isLogoUploading}
+                                    />
+                                    <Card className="hover-glow-border">
+                                        <CardHeader>
+                                            <CardTitle>Uploaded Logo</CardTitle>
+                                            <CardDescription>View the uploaded logo here</CardDescription>
+                                        </CardHeader>
+                                        <CardContent>
+                                            {uploadedLogo.length > 0 ? (
+                                                <ScrollArea className="pb-4">
+                                                    <div className="flex w-max space-x-2.5">
+                                                        {
+                                                            uploadedLogo.map((file: any) => {
+                                                                return (
+                                                                    <div key={file.key} className="relative aspect-video w-64">
+                                                                        <Image
+                                                                            src={file.url}
+                                                                            alt={file.name}
+                                                                            fill
+                                                                            sizes="(min-width: 640px) 640px, 100vw"
+                                                                            loading="lazy"
+                                                                            className="rounded-md object-cover"
+                                                                        />
+                                                                        <span>{file.name}</span>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                    <ScrollBar orientation="horizontal" />
+                                                </ScrollArea>
+                                            ) : (
+                                                <EmptyCard
+                                                    title="No images uploaded"
+                                                    description="Upload some images to see them here"
+                                                    className="w-full"
+                                                />
+                                            )}
+                                        </CardContent>
+                                    </Card>
+                                </DialogContent>
+                            </Dialog>
                         </div>
                     </div>
                     <div className="hover-glow-border flex flex-col items-start justify-center gap-3 w-full h-full border rounded-md p-10">
@@ -668,7 +760,7 @@ export default function CreateUniversity() {
                     </div>
                 </div>
 
-                {phoneNumberDetails && <div className="min-w-[98%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
+                {phoneNumberDetails && <div className="min-w-[99%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
                     <div className="flex gap-2">
                         <p>Phone number: </p>
                         <span className="font-semibold">{phoneData.phoneNumber || "-"}</span>
@@ -774,9 +866,130 @@ export default function CreateUniversity() {
                 </div>
 
                 <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
-                    <Shell>
+                    {/* <Shell>
                         <VariantTabs />
-                    </Shell>
+                    </Shell> */}
+                    <div className="w-full h-full flex flex-col space-y-4">
+                        <h1 className="text-4xl font-bold w-full text-left pl-4">Images</h1>
+                        <div className="space-y-6">
+                            <FileUploader
+                                maxFiles={10}
+                                maxSize={4 * 1024 * 1024}
+                                progresses={imagesUploadingProgress}
+                                onUpload={uploadImages}
+                                disabled={isImagesUploading}
+                            />
+                            <Card className="hover-glow-border">
+                                <CardHeader>
+                                    <CardTitle>Uploaded images</CardTitle>
+                                    <CardDescription>View the uploaded images here</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    {uploadedImages.length > 0 ? (
+                                        <ScrollArea className="pb-4">
+                                            <div className="flex w-max space-x-2.5">
+                                                {
+                                                    uploadedImages.map((file: any) => {
+                                                        // setInputedImages(file.url)
+                                                        return (
+                                                            <div key={file.key} className="relative aspect-video w-64">
+                                                                <Image
+                                                                    src={file.url}
+                                                                    alt={file.name}
+                                                                    fill
+                                                                    sizes="(min-width: 640px) 640px, 100vw"
+                                                                    loading="lazy"
+                                                                    className="rounded-md object-cover"
+                                                                />
+                                                                <span>{file.name}</span>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                                {/* {
+                                                    uploadedImages.map((file: any) => {
+                                                        setInputedImages(file.url);
+                                                        return null;
+                                                    })
+                                                } */}
+
+
+                                            </div>
+                                            <ScrollBar orientation="horizontal" />
+                                        </ScrollArea>
+                                    ) : (
+                                        <EmptyCard
+                                            title="No images uploaded"
+                                            description="Upload some images to see them here"
+                                            className="w-full"
+                                        />
+                                    )}
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div className="name-logo-description-university w-full grid gap-3 ">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Code</h1>
+                        <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
+                    </div>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Hostel</h1>
+                        <Select onValueChange={handleHostelChange}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select a Hostel Availability" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel>Is there is a hostel in this university?</SelectLabel>
+                                    <Separator className="mb-1" />
+                                    <SelectItem value="yes">Yes</SelectItem>
+                                    <SelectItem value="no">No</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Military</h1>
+                        <Select onValueChange={handleMilitaryChange}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select a Military Campain" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel>Are there is a military campain in this university?</SelectLabel>
+                                    <Separator className="mb-1" />
+
+                                    <SelectItem value="yes">Yes</SelectItem>
+                                    <SelectItem value="no">No</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+
+
+                <div className="name-logo-description-university w-full grid gap-3 ">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Facebook</h1>
+                        <Input onChange={handleFacebookChange} type="text" placeholder="Enter University Facebook Link" />
+                    </div>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Instragam</h1>
+                        <Input onChange={handleInstagramChange} type="text" placeholder="Enter University Instragam Link" />
+                    </div>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Website</h1>
+                        <Input onChange={handleWebsiteChange} type="text" placeholder="Enter University Website Link" />
+                    </div>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Cost</h1>
+                        <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
+                    </div>
                 </div>
             </div>
         </>
