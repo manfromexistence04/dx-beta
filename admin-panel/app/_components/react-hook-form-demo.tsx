@@ -29,7 +29,7 @@ type Schema = z.infer<typeof schema>
 
 export function ReactHookFormDemo() {
   const [loading, setLoading] = React.useState(false)
-  const { uploadFiles, progresses, uploadedFiles, isUploading } = useUploadFile(
+  const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadFile(
     "imageUploader",
     { defaultUploadedFiles: [] }
   )
@@ -43,7 +43,7 @@ export function ReactHookFormDemo() {
   function onSubmit(input: Schema) {
     setLoading(true)
 
-    toast.promise(uploadFiles(input.images), {
+    toast.promise(uploadImages(input.images), {
       loading: "Uploading images...",
       success: () => {
         form.reset()
@@ -76,16 +76,16 @@ export function ReactHookFormDemo() {
                     onValueChange={field.onChange}
                     maxFiles={4}
                     maxSize={4 * 1024 * 1024}
-                    progresses={progresses}
+                    progresses={imagesUploadingProgress}
                     // pass the onUpload function here for direct upload
                     // onUpload={uploadFiles}
-                    disabled={isUploading}
+                    disabled={isImagesUploading}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
-              {uploadedFiles.length > 0 ? (
-                <UploadedFilesCard uploadedFiles={uploadedFiles} />
+              {uploadImages.length > 0 ? (
+                <UploadedFilesCard uploadedFiles={uploadImages} />
               ) : null}
             </div>
           )}
