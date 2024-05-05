@@ -3,20 +3,22 @@
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
 const firebaseConfig = {
-    apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
-    authDomain: "ustudy-96678.firebaseapp.com",
-    projectId: "ustudy-96678",
-    storageBucket: "ustudy-96678.appspot.com",
-    messagingSenderId: "581632635532",
-    appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
+    apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
+    authDomain: "ustudy-70041.firebaseapp.com",
+    projectId: "ustudy-70041",
+    storageBucket: "ustudy-70041.appspot.com",
+    messagingSenderId: "209553469910",
+    appId: "1:209553469910:web:5787a019905baf47c73477",
+    measurementId: "G-NNPVVRK9VK"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // Database
-const db:any = getFirestore(app);
+const db: any = getFirestore(app);
 // import db from "@/firebase";
+import { ImageIcon } from "@radix-ui/react-icons"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -51,7 +53,7 @@ import { FixedToolbarButtons } from '@/components/plate-ui/fixed-toolbar-buttons
 import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
 import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
-import { ArrowRightIcon, ArrowLeftIcon, ChevronsUpDown, Plus, X } from "lucide-react"
+import { ArrowRightIcon, ArrowLeftIcon, ChevronsUpDown, Plus, X, Projector, CloudUpload, Loader2 } from "lucide-react"
 import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
@@ -115,232 +117,6 @@ interface UploadedFilesCardProps {
 interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
 }
-interface ShellProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof shellVariants> {
-    as?: React.ElementType
-}
-
-// Starting
-const shellVariants = cva("grid items-center gap-8 pb-8 pt-6 md:py-8", {
-    variants: {
-        variant: {
-            default: "container",
-            sidebar: "",
-            centered: "mx-auto mb-16 mt-20 max-w-md justify-center",
-            markdown: "container max-w-3xl gap-0 py-8 md:py-10 lg:py-10",
-        },
-    },
-    defaultVariants: {
-        variant: "default",
-    },
-})
-
-
-function Shell({
-    className,
-    as: Comp = "section",
-    variant,
-    ...props
-}: ShellProps) {
-    return (
-        <Comp className={cn(shellVariants({ variant }), className)} {...props} />
-    )
-}
-
-
-const CreateButton = () => {
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-    const handleConfetti = async () => {
-        const { clientWidth, clientHeight } = document.documentElement;
-        const boundingBox = buttonRef.current?.getBoundingClientRect?.();
-
-        const targetY = boundingBox?.y ?? 0;
-        const targetX = boundingBox?.x ?? 0;
-        const targetWidth = boundingBox?.width ?? 0;
-
-        const targetCenterX = targetX + targetWidth / 2;
-        const confetti = (await import("canvas-confetti")).default;
-
-        confetti({
-            zIndex: 999,
-            particleCount: 100,
-            spread: 70,
-            origin: {
-                y: targetY / clientHeight,
-                x: targetCenterX / clientWidth,
-            },
-        });
-    };
-
-    return (
-        <NextuiButton
-            ref={buttonRef}
-            disableRipple
-            className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
-            size="md"
-            onPress={handleConfetti}
-        >
-            Create
-        </NextuiButton>
-    );
-};
-const FormSchema = z.object({
-    topics: z.array(
-        z.object({
-            id: z.string(),
-            text: z.string(),
-        }),
-    ),
-});
-function PlateEditor() {
-    const containerRef = useRef(null);
-
-    const initialValue = [
-        {
-            id: '1',
-            type: ELEMENT_PARAGRAPH,
-            children: [{ text: 'Hello, World!' }],
-        },
-    ];
-
-    return (
-        <DndProvider backend={HTML5Backend}>
-            <CommentsProvider users={commentsUsers} myUserId={myUserId}>
-                <Plate plugins={plugins} initialValue={initialValue}>
-                    <div
-                        ref={containerRef}
-                        className={cn(
-                            'relative',
-                            '[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4'
-                        )}
-                    >
-                        <FixedToolbar>
-                            <FixedToolbarButtons />
-                        </FixedToolbar>
-
-                        <Editor
-                            className="p-3 px-7 !min-h-[500px]"
-                            autoFocus
-                            focusRing={false}
-                            variant="ghost"
-                            size="md"
-                        />
-
-                        <MentionCombobox items={MENTIONABLES} />
-
-                        <CommentsPopover />
-
-                        <CursorOverlay containerRef={containerRef} />
-                    </div>
-                </Plate>
-            </CommentsProvider>
-        </DndProvider>
-    );
-}
-function Tags() {
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    });
-
-    const [tags, setTags] = React.useState<Tag[]>([]);
-
-    const { setValue } = form;
-    const { toast } = useToast();
-
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        toast({
-            title: 'You submitted the following values:',
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        });
-    }
-
-    return (
-        <section className="z-10 w-full flex flex-col items-center text-center gap-5">
-            <div id="try" className="w-full py-8">
-                <div className="w-full relative my-4 flex flex-col space-y-2">
-                    <div className="preview flex min-h-[350px] w-full justify-center p-10 items-center mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border">
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col items-start">
-                                <FormField
-                                    control={form.control}
-                                    name="topics"
-                                    render={({ field }) => (
-                                        <FormItem className="flex flex-col items-start">
-                                            <FormLabel className="text-left">Topics</FormLabel>
-                                            <FormControl className="w-full">
-                                                <TagInput
-                                                    {...field}
-                                                    placeholder="Enter a topic"
-                                                    tags={tags}
-                                                    className="sm:min-w-[450px]"
-                                                    setTags={(newTags) => {
-                                                        setTags(newTags);
-                                                        setValue('topics', newTags as [Tag, ...Tag[]]);
-                                                    }}
-                                                />
-                                            </FormControl>
-                                            <FormDescription className="text-left">
-                                                These are the topics that you&apos;re interested in.
-                                            </FormDescription>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <Button type="submit">Submit</Button>
-                            </form>
-                        </Form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
-
-
-
-// function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
-//     return (
-//         <Card className="hover-glow-border">
-//             <CardHeader>
-//                 <CardTitle>Uploaded images</CardTitle>
-//                 <CardDescription>View the uploaded images here</CardDescription>
-//             </CardHeader>
-//             <CardContent>
-//                 {uploadedFiles.length > 0 ? (
-//                     <ScrollArea className="pb-4">
-//                         <div className="flex w-max space-x-2.5">
-//                             {uploadedFiles.map((file) => (
-//                                 <div key={file.key} className="relative aspect-video w-64">
-//                                     <Image
-//                                         src={file.url}
-//                                         alt={file.name}
-//                                         fill
-//                                         sizes="(min-width: 640px) 640px, 100vw"
-//                                         loading="lazy"
-//                                         className="rounded-md object-cover"
-//                                     />
-//                                 </div>
-//                             ))}
-//                         </div>
-//                         <ScrollBar orientation="horizontal" />
-//                     </ScrollArea>
-//                 ) : (
-//                     <EmptyCard
-//                         title="No images uploaded"
-//                         description="Upload some images to see them here"
-//                         className="w-full"
-//                     />
-//                 )}
-//             </CardContent>
-//         </Card>
-//     )
-// }
 
 export default function CreateUniversity() {
 
@@ -389,22 +165,24 @@ export default function CreateUniversity() {
         })
 
         const Create = await addDoc(collection(db, "universities"), {
-            address: 'Bangladesh, Kaligonj',
-            educationCost: '1 335 000 ₸',
-            email: 'rektorat@amu.kz',
-            facebook: 'https://www.facebook.com/MeduniverAstana',
-            hostel: 'есть',
-            image: 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319',
-            instagram: 'https://www.instagram.com/amu_mua_official',
-            military: 'есть',
-            phoneNumber: '(+77172539424)',
-            region: 'г. Астана',
-            status: 'акционированный',
-            universityCode: '1',
-            universityDescription: 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.',
-            universityName: 'Медицинский университет Астана',
-            website: 'https://amu.edu.kz/',
+            address: inputedAddress,
+            educationCost: inputedCost,
+            email: inputedEmail,
+            facebook: inputedFacebook,
+            hostel: inputedHostel,
+            image: inputedImages,
+            instagram: inputedInstragam,
+            military: inputedMilitary,
+            phoneNumber: inputedPhoneNumber,
+            region: inputedRegion,
+            status: inputedStatus,
+            universityCode: inputedCode,
+            universityDescription: inputedDescription,
+            universityName: inputedName,
+            website: inputedWebsite,
+            logo: inputedLogo
         });
+
         console.log("Document written with ID: ", Create.id);
 
         toast({
@@ -413,18 +191,18 @@ export default function CreateUniversity() {
                 <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                     <span>You Can now update,view and delete this university!</span>
                     <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
-                        <code className="text-muted-foreground bg-secondary">{JSON.stringify(Create, null, 2)}</code>
+                        <code className="text-muted-foreground bg-secondary">{JSON.stringify(Create.id, null, 2)}</code>
                     </pre>
                 </div>
 
             ),
         });
-        // redirect(`/portfolio`)
-
         router.push('/portfolio')
 
     };
 
+    const [inputedValues, setInputedValues] = React.useState(false);
+    const [createButtonDisabled, setCreateButtonDisabled] = React.useState(true);
     const [isOpen, setIsOpen] = React.useState(false)
     const [phoneNumberDetails, setPhoneNumberDetails] = React.useState(false)
     const containerRef = useRef(null);
@@ -440,21 +218,6 @@ export default function CreateUniversity() {
         setPhone(e.target.value);
     };
     const phoneData = getPhoneData(phone);
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    });
-    const [tags, setTags] = React.useState<Tag[]>([]);
-    const { setValue } = form;
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        toast({
-            title: 'You submitted the following values:',
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        });
-    }
     function showPhoneNumberDetails() {
         setPhoneNumberDetails(!phoneNumberDetails);
     }
@@ -476,22 +239,39 @@ export default function CreateUniversity() {
     let website: string = 'https://amu.edu.kz/';
     let logo: string = 'https://amu.edu.kz/';
 
-    const [inputedName, setInputedName] = React.useState(universityName)
-    const [inputedEmail, setInputedEmail] = React.useState(email)
-    const [inputedStatus, setInputedStatus] = React.useState(status)
-    const [inputedFacebook, setInputedFacebook] = React.useState(facebook)
-    const [inputedInstragam, setInputedInstragam] = React.useState(instagram)
-    const [inputedCost, setInputedCost] = React.useState(educationCost)
-    const [inputedWebsite, setInputedWebsite] = React.useState(website)
-    const [inputedCode, setInputedCode] = React.useState(universityCode)
-    const [inputedHostel, setInputedHostel] = React.useState(hostel)
-    const [inputedMilitary, setInputedMilitary] = React.useState(military)
+    // const [inputedName, setInputedName] = React.useState(universityName)
+    // const [inputedEmail, setInputedEmail] = React.useState(email)
+    // const [inputedStatus, setInputedStatus] = React.useState(status)
+    // const [inputedFacebook, setInputedFacebook] = React.useState(facebook)
+    // const [inputedInstragam, setInputedInstragam] = React.useState(instagram)
+    // const [inputedCost, setInputedCost] = React.useState(educationCost)
+    // const [inputedWebsite, setInputedWebsite] = React.useState(website)
+    // const [inputedCode, setInputedCode] = React.useState(universityCode)
+    // const [inputedHostel, setInputedHostel] = React.useState(hostel)
+    // const [inputedMilitary, setInputedMilitary] = React.useState(military)
+    // const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
+    // const [inputedLogo, setInputedLogo] = React.useState(logo)
+    // const [inputedAddress, setInputedAddress] = React.useState(address)
+    // const [inputedRegion, setInputedRegion] = React.useState(region)
+    // const [inputedDescription, setInputedDesciption] = React.useState(universityDescription)
+    // const [inputedImages, setInputedImages] = React.useState("Images")
+
+    const [inputedName, setInputedName] = React.useState("")
+    const [inputedEmail, setInputedEmail] = React.useState("")
+    const [inputedStatus, setInputedStatus] = React.useState("")
+    const [inputedFacebook, setInputedFacebook] = React.useState("")
+    const [inputedInstragam, setInputedInstragam] = React.useState("")
+    const [inputedCost, setInputedCost] = React.useState("")
+    const [inputedWebsite, setInputedWebsite] = React.useState("")
+    const [inputedCode, setInputedCode] = React.useState("")
+    const [inputedHostel, setInputedHostel] = React.useState("")
+    const [inputedMilitary, setInputedMilitary] = React.useState("")
     const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
-    const [inputedLogo, setInputedLogo] = React.useState(logo)
-    const [inputedAddress, setInputedAddress] = React.useState(address)
-    const [inputedRegion, setInputedRegion] = React.useState(region)
-    const [inputedDescription, setInputedDesciption] = React.useState(universityDescription)
-    const [inputedImages, setInputedImages] = React.useState("please work!")
+    const [inputedLogo, setInputedLogo] = React.useState("")
+    const [inputedAddress, setInputedAddress] = React.useState("")
+    const [inputedRegion, setInputedRegion] = React.useState("")
+    const [inputedDescription, setInputedDesciption] = React.useState("")
+    const [inputedImages, setInputedImages] = React.useState("")
 
     const handleNameChange = (event: any) => {
         setInputedName(event.target.value);
@@ -540,10 +320,10 @@ export default function CreateUniversity() {
     const imagesChange = () => {
         setInputedDesciption(JSON.stringify(event));
     }
-    const create = (event: any) => {
-        // setInputedImages(event.target.value);
-    }
-    const updateImagesAndLogo = () => {
+    // const create = (event: any) => {
+    //     // setInputedImages(event.target.value);
+    // }
+    const syncImagesAndLogo = () => {
         uploadedImages.map((file: any) => {
             setInputedImages(file.url);
             return null;
@@ -552,64 +332,11 @@ export default function CreateUniversity() {
             setInputedLogo(file.url);
             return null;
         })
+        setCreateButtonDisabled(!createButtonDisabled);
     }
-
-    // function UploadedFilesCard({ uploadedFiles }: any) {
-    //     uploadedFiles.map((file: any) => {
-    //         setInputedImages(file.url)
-    //     })
-
-    //     return (
-    //         <Card className="hover-glow-border">
-    //             <CardHeader>
-    //                 <CardTitle>Uploaded images</CardTitle>
-    //                 <CardDescription>View the uploaded images here</CardDescription>
-    //             </CardHeader>
-    //             <CardContent>
-    //                 {uploadedFiles.length > 0 ? (
-    //                     <ScrollArea className="pb-4">
-    //                         <div className="flex w-max space-x-2.5">
-    //                             {
-
-    //                                 uploadedFiles.map((file: any) => {
-    //                                     // file.item === images;
-
-    //                                     return (
-    //                                         <div key={file.key} className="relative aspect-video w-64">
-    //                                             <Image
-    //                                                 src={file.url}
-    //                                                 alt={file.name}
-    //                                                 fill
-    //                                                 sizes="(min-width: 640px) 640px, 100vw"
-    //                                                 loading="lazy"
-    //                                                 className="rounded-md object-cover"
-    //                                             />
-    //                                         </div>
-    //                                     )
-    //                                 })}
-    //                         </div>
-    //                         <ScrollBar orientation="horizontal" />
-    //                     </ScrollArea>
-    //                 ) : (
-    //                     <EmptyCard
-    //                         title="No images uploaded"
-    //                         description="Upload some images to see them here"
-    //                         className="w-full"
-    //                     />
-    //                 )}
-    //             </CardContent>
-    //         </Card>
-    //     )
-    // }
-    let testing1 = () => {
-        isImagesUploading ? uploadedImages.map((file: any) => {
-            setInputedImages(file.url);
-            return null;
-        }) : console.log("Not Uploaded Any Images Yet.")
-    };
-    testing1();
-
-
+    const handleInputedValues = () => {
+        setInputedValues(!inputedValues);
+    }
     React.useEffect(() => {
         uploadedImages.map((file: any) => {
             setInputedImages(file.url);
@@ -620,7 +347,7 @@ export default function CreateUniversity() {
 
     return (
         <>
-            <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col lg:space-y-3 mx-auto p-10 pt-3">
+            <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 mx-auto p-10 pt-3">
 
                 {/* <div>
                     <p>{`Name: ${inputedName}`}</p>
@@ -642,23 +369,188 @@ export default function CreateUniversity() {
                     <Button onClick={updateImagesAndLogo}>Update</Button>
                 </div> */}
 
-                <div className="action w-full my-3 flex items-center justify-between ">
-                    <Link href="/read-university" className="z-50">
+
+
+                <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
+                    <div className="w-full h-full flex items-start justify-start space-x-3">
+                        <Link href="/read-university" className="z-50">
+                            <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                Back
+                            </AnimatedButton>
+                        </Link>
+                        <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                            {inputedValues ? "Hide" : "Show"} Inputed Values
+                        </AnimatedButton>
+                        {/* <NextuiButton
+                            ref={buttonRef}
+                            disableRipple
+                            className="center overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+                            size="md"
+                            onPress={handleConfetti}
+                        >
+                            Toggle Inputed Values
+                        </NextuiButton> */}
+                    </div>
+                    {/* <Link href="/read-university" className="z-50">
                         <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                             Back
                         </AnimatedButton>
-                    </Link>
-                    {/* <CreateButton onClick={create}/> */}
-                    <NextuiButton
-                        ref={buttonRef}
-                        disableRipple
-                        className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
-                        size="md"
-                        onPress={handleConfetti}
-                    >
-                        Create
-                    </NextuiButton>
+                    </Link> */}
+                    <div className="w-full h-full flex items-end justify-end space-x-3">
+
+                        {/* <NextuiButton
+                            ref={buttonRef}
+                            disableRipple
+                            className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+                            size="md"
+                            onPress={handleConfetti}
+                        >
+                            Sync Uploaded Files
+                        </NextuiButton> */}
+                        <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                            Sync Uploaded Files
+                        </AnimatedButton>
+                        {/* <NextuiButton
+                            ref={buttonRef}
+                            color="danger"
+                            className={cn("")}
+                            size="md"
+                            isDisabled={createButtonDisabled} 
+                            onPress={handleConfetti}
+                        >
+                            Create
+                        </NextuiButton> */}
+                        <Button
+                            className="!py-0"
+                            disabled={createButtonDisabled}
+                            onClick={handleConfetti}
+                        >
+                            {
+                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            }
+                            Create
+                        </Button>
+                    </div>
+
+
                 </div>
+
+                {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
+                    <div className="flex gap-2">
+                        <p>Name: </p>
+                        <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Email: </p>
+                        <span className="font-semibold">{inputedEmail || "No Email is Provided."}</span>
+                    </div>
+
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Facebook: </p>
+                        <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Instagram: </p>
+                        <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Education Cost: </p>
+                        <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Website: </p>
+                        <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>University Code: </p>
+                        <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
+                    </div>
+                    <Separator />
+
+
+                    <div className="flex gap-2">
+                        <p>Phone Number: </p>
+                        <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Logo: </p>
+                        <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Address: </p>
+                        <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Region: </p>
+                        <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Description: </p>
+                        <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Images: </p>
+                        <span className="font-semibold">{inputedImages || "No Images are Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Hostel: </p>
+                        {/* <span className="font-semibold">{inputedHostel || "No Hostel Information is Provided."}</span> */}
+                        {
+                            <Badge
+                                className={cn(
+                                    "w-fit text-center",
+                                    inputedHostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                )}
+                            >
+                                {inputedHostel || "No Hostel Information Provided."}
+                            </Badge>
+                        }
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Military: </p>
+                        {/* <span className="font-semibold">{inputedMilitary || "No Military Information is Provided."}</span> */}
+                        {
+                            <Badge
+                                className={cn(
+                                    "w-fit",
+                                    inputedMilitary ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                )}
+                            >
+                                {inputedMilitary || 'No Military Status Provided.'}
+                            </Badge>
+                        }
+                    </div>
+
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Status: </p>
+                        {
+                            <Badge
+                                className={cn(
+                                    "w-fit",
+                                    inputedStatus ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                )}
+                            >
+                                {inputedStatus || "No Status Provided."}
+                            </Badge>
+                        }
+                    </div>
+                </div>}
+
+
 
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -689,7 +581,6 @@ export default function CreateUniversity() {
                         </Select>
                     </div>
                 </div>
-
                 <div className="tag-location-university w-full grid gap-3 h-auto">
 
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -697,61 +588,102 @@ export default function CreateUniversity() {
                         <PhoneInput className="!p-0 !m-0 w-full" value={phone} onChange={handleOnChange} />
                         <Button onClick={showPhoneNumberDetails} className="w-full">{phoneNumberDetails ? "Hide" : "Show"} Phone Number Details</Button>
                     </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-5 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
-                        <div className="flex w-full items-start justify-start">
-                            <Dialog>
-                                <DialogTrigger asChild>
-                                    <Button variant="outline">Upload Logo</Button>
-                                </DialogTrigger>
-                                <DialogContent className="sm:max-w-[95%] sm:mx-auto lg:min-w-[750px] lg:max-w-[35%]">
-                                    <FileUploader
-                                        maxFiles={1}
-                                        maxSize={4 * 1024 * 1024}
-                                        progresses={logoUploadprogresses}
-                                        onUpload={uploadLogo}
-                                        disabled={isLogoUploading}
-                                    />
-                                    <Card className="hover-glow-border">
-                                        <CardHeader>
-                                            <CardTitle>Uploaded Logo</CardTitle>
-                                            <CardDescription>View the uploaded logo here</CardDescription>
-                                        </CardHeader>
-                                        <CardContent>
-                                            {uploadedLogo.length > 0 ? (
-                                                <ScrollArea className="pb-4">
-                                                    <div className="flex w-max space-x-2.5">
-                                                        {
-                                                            uploadedLogo.map((file: any) => {
-                                                                return (
-                                                                    <div key={file.key} className="relative aspect-video w-64">
-                                                                        <Image
-                                                                            src={file.url}
-                                                                            alt={file.name}
-                                                                            fill
-                                                                            sizes="(min-width: 640px) 640px, 100vw"
-                                                                            loading="lazy"
-                                                                            className="rounded-md object-cover"
-                                                                        />
-                                                                        <span>{file.name}</span>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                    <ScrollBar orientation="horizontal" />
-                                                </ScrollArea>
-                                            ) : (
-                                                <EmptyCard
-                                                    title="No images uploaded"
-                                                    description="Upload some images to see them here"
-                                                    className="w-full"
-                                                />
-                                            )}
-                                        </CardContent>
-                                    </Card>
-                                </DialogContent>
-                            </Dialog>
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex lg:flex-row flex-col items-center justify-start p-10">
+                        <div className="leftLogo flex flex-col items-start justify-center lg:h-full h-auto space-y-3 w-1/2">
+                            <h1 className="text-4xl font-bold w-auto text-left">Logo</h1>
+                            <div className="flex w-auto items-start justify-start">
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button variant="outline">Upload Logo</Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="sm:max-w-[95%] sm:mx-auto lg:min-w-[750px] lg:max-w-[35%]">
+                                        <FileUploader
+                                            maxFiles={1}
+                                            maxSize={4 * 1024 * 1024}
+                                            progresses={logoUploadprogresses}
+                                            onUpload={uploadLogo}
+                                            disabled={isLogoUploading}
+                                        />
+                                        <Card className="hover-glow-border">
+                                            <CardHeader>
+                                                <CardTitle>Uploaded Logo</CardTitle>
+                                                <CardDescription>View the uploaded logo here</CardDescription>
+                                            </CardHeader>
+                                            <CardContent>
+                                                {uploadedLogo.length > 0 ? (
+                                                    <ScrollArea className="pb-4">
+                                                        <div className="flex w-max space-x-2.5">
+                                                            {
+                                                                uploadedLogo.map((file: any) => {
+                                                                    return (
+                                                                        <div key={file.key} className="relative aspect-video w-64">
+                                                                            <Image
+                                                                                src={file.url}
+                                                                                alt={file.name}
+                                                                                fill
+                                                                                sizes="(min-width: 640px) 640px, 100vw"
+                                                                                loading="lazy"
+                                                                                className="rounded-md object-cover"
+                                                                            />
+                                                                            <span>{file.name}</span>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </div>
+                                                        <ScrollBar orientation="horizontal" />
+                                                    </ScrollArea>
+                                                ) : (
+                                                    <EmptyCard
+                                                        title="No images uploaded"
+                                                        description="Upload some images to see them here"
+                                                        className="w-full"
+                                                    />
+                                                )}
+                                            </CardContent>
+                                        </Card>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
+
+                        </div>
+
+                        <div className="flex items-center justify-end lg:h-full h-auto RightLogoSide w-1/2">
+                            {uploadedLogo.length > 0 ? (
+                                <div className="flex w-full h-full">
+                                    {
+                                        uploadedLogo.map((file: any) => {
+                                            return (
+                                                <div key={file.key} className="relative aspect-video w-full h-full overflow-hidden">
+                                                    <Image
+                                                        src={file.url}
+                                                        alt={file.name}
+                                                        fill
+                                                        sizes="(min-width: 100%) 100%, 50vw"
+                                                        loading="lazy"
+                                                        className="rounded-md object-cover"
+                                                    />
+                                                    <span>{file.name}</span>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            ) : (
+                                <Card
+                                    className={cn(
+                                        "flex w-full flex-col items-center justify-center space-y-3 bg-transparent p-3",
+                                    )}
+                                >
+                                    <div className="shrink-0 rounded-full border border-dashed p-4">
+                                        <ImageIcon className="size-8 text-muted-foreground" aria-hidden="true" />
+                                    </div>
+                                    <div className="flex flex-col items-center text-center">
+                                        <CardDescription>Uplaod Logo to see them here</CardDescription>
+                                    </div>
+                                </Card>
+
+                            )}
                         </div>
                     </div>
                     <div className="hover-glow-border flex flex-col items-start justify-center gap-3 w-full h-full border rounded-md p-10">
@@ -762,7 +694,6 @@ export default function CreateUniversity() {
                         </div>
                     </div>
                 </div>
-
                 {phoneNumberDetails && <div className="min-w-[99%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
                     <div className="flex gap-2">
                         <p>Phone number: </p>
@@ -829,7 +760,6 @@ export default function CreateUniversity() {
                         POSSIBLE NUMBER
                     </Badge>
                 </div>}
-
                 <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                     <h1 className="text-4xl font-bold w-full text-left pl-4">Description</h1>
                     <div className="w-full h-full border-t">
@@ -867,7 +797,6 @@ export default function CreateUniversity() {
                         </DndProvider>
                     </div>
                 </div>
-
                 <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
                     {/* <Shell>
                         <VariantTabs />
@@ -909,14 +838,6 @@ export default function CreateUniversity() {
                                                         )
                                                     })
                                                 }
-                                                {/* {
-                                                    uploadedImages.map((file: any) => {
-                                                        setInputedImages(file.url);
-                                                        return null;
-                                                    })
-                                                } */}
-
-
                                             </div>
                                             <ScrollBar orientation="horizontal" />
                                         </ScrollArea>
@@ -935,7 +856,7 @@ export default function CreateUniversity() {
 
 
 
-                {/* <div className="name-logo-description-university w-full grid gap-3 ">
+                <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Code</h1>
                         <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
@@ -991,7 +912,43 @@ export default function CreateUniversity() {
                         <h1 className="text-4xl font-bold w-full text-left">Cost</h1>
                         <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
                     </div>
-                </div> */}
+                </div>
+
+
+
+                <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
+                    <Link href="/read-university" className="z-50 w-full">
+                        <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
+                            Back
+                        </AnimatedButton>
+                    </Link>
+                    <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                            {inputedValues ? "Hide" : "Show"} Inputed Values
+                        </AnimatedButton>
+                    <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                            Sync Uploaded Files
+                        </AnimatedButton>
+                        <AnimatedButton
+                            className="!py-0 w-full"
+                            disabled={createButtonDisabled}
+                            onClick={handleConfetti}
+                        >
+                            {
+                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            }
+                            Create
+                        </AnimatedButton>
+                    {/* <NextuiButton
+                        ref={buttonRef}
+                        disableRipple
+                        className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground !min-w-full lg:w-auto"
+                        size="md"
+                        onPress={handleConfetti}
+                    >
+                        Create
+                    </NextuiButton> */}
+
+                </div>
 
             </div>
         </>
@@ -1045,3 +1002,246 @@ export default function CreateUniversity() {
 
                     </div> */}
 
+// const form = useForm<z.infer<typeof FormSchema>>({
+//     resolver: zodResolver(FormSchema),
+// });
+// const [tags, setTags] = React.useState<Tag[]>([]);
+// const { setValue } = form;
+// function onSubmit(data: z.infer<typeof FormSchema>) {
+//     toast({
+//         title: 'You submitted the following values:',
+//         description: (
+//             <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+//                 <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+//             </pre>
+//         ),
+//     });
+// }
+
+
+// interface ShellProps
+//     extends React.HTMLAttributes<HTMLDivElement>,
+//     VariantProps<typeof shellVariants> {
+//     as?: React.ElementType
+// }
+
+// Starting
+// const shellVariants = cva("grid items-center gap-8 pb-8 pt-6 md:py-8", {
+//     variants: {
+//         variant: {
+//             default: "container",
+//             sidebar: "",
+//             centered: "mx-auto mb-16 mt-20 max-w-md justify-center",
+//             markdown: "container max-w-3xl gap-0 py-8 md:py-10 lg:py-10",
+//         },
+//     },
+//     defaultVariants: {
+//         variant: "default",
+//     },
+// })
+
+
+// function Shell({
+//     className,
+//     as: Comp = "section",
+//     variant,
+//     ...props
+// }: ShellProps) {
+//     return (
+//         <Comp className={cn(shellVariants({ variant }), className)} {...props} />
+//     )
+// }
+
+
+// const CreateButton = () => {
+//     const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+//     const handleConfetti = async () => {
+//         const { clientWidth, clientHeight } = document.documentElement;
+//         const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+
+//         const targetY = boundingBox?.y ?? 0;
+//         const targetX = boundingBox?.x ?? 0;
+//         const targetWidth = boundingBox?.width ?? 0;
+
+//         const targetCenterX = targetX + targetWidth / 2;
+//         const confetti = (await import("canvas-confetti")).default;
+
+//         confetti({
+//             zIndex: 999,
+//             particleCount: 100,
+//             spread: 70,
+//             origin: {
+//                 y: targetY / clientHeight,
+//                 x: targetCenterX / clientWidth,
+//             },
+//         });
+//     };
+
+//     return (
+//         <NextuiButton
+//             ref={buttonRef}
+//             disableRipple
+//             className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+//             size="md"
+//             onPress={handleConfetti}
+//         >
+//             Create
+//         </NextuiButton>
+//     );
+// };
+// const FormSchema = z.object({
+//     topics: z.array(
+//         z.object({
+//             id: z.string(),
+//             text: z.string(),
+//         }),
+//     ),
+// });
+// function PlateEditor() {
+//     const containerRef = useRef(null);
+
+//     const initialValue = [
+//         {
+//             id: '1',
+//             type: ELEMENT_PARAGRAPH,
+//             children: [{ text: 'Hello, World!' }],
+//         },
+//     ];
+
+//     return (
+//         <DndProvider backend={HTML5Backend}>
+//             <CommentsProvider users={commentsUsers} myUserId={myUserId}>
+//                 <Plate plugins={plugins} initialValue={initialValue}>
+//                     <div
+//                         ref={containerRef}
+//                         className={cn(
+//                             'relative',
+//                             '[&_.slate-start-area-left]:!w-[64px] [&_.slate-start-area-right]:!w-[64px] [&_.slate-start-area-top]:!h-4'
+//                         )}
+//                     >
+//                         <FixedToolbar>
+//                             <FixedToolbarButtons />
+//                         </FixedToolbar>
+
+//                         <Editor
+//                             className="p-3 px-7 !min-h-[500px]"
+//                             autoFocus
+//                             focusRing={false}
+//                             variant="ghost"
+//                             size="md"
+//                         />
+
+//                         <MentionCombobox items={MENTIONABLES} />
+
+//                         <CommentsPopover />
+
+//                         <CursorOverlay containerRef={containerRef} />
+//                     </div>
+//                 </Plate>
+//             </CommentsProvider>
+//         </DndProvider>
+//     );
+// }
+// function Tags() {
+//     const form = useForm<z.infer<typeof FormSchema>>({
+//         resolver: zodResolver(FormSchema),
+//     });
+
+//     const [tags, setTags] = React.useState<Tag[]>([]);
+
+//     const { setValue } = form;
+//     const { toast } = useToast();
+
+//     function onSubmit(data: z.infer<typeof FormSchema>) {
+//         toast({
+//             title: 'You submitted the following values:',
+//             description: (
+//                 <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+//                     <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+//                 </pre>
+//             ),
+//         });
+//     }
+
+//     return (
+//         <section className="z-10 w-full flex flex-col items-center text-center gap-5">
+//             <div id="try" className="w-full py-8">
+//                 <div className="w-full relative my-4 flex flex-col space-y-2">
+//                     <div className="preview flex min-h-[350px] w-full justify-center p-10 items-center mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border">
+//                         <Form {...form}>
+//                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col items-start">
+//                                 <FormField
+//                                     control={form.control}
+//                                     name="topics"
+//                                     render={({ field }) => (
+//                                         <FormItem className="flex flex-col items-start">
+//                                             <FormLabel className="text-left">Topics</FormLabel>
+//                                             <FormControl className="w-full">
+//                                                 <TagInput
+//                                                     {...field}
+//                                                     placeholder="Enter a topic"
+//                                                     tags={tags}
+//                                                     className="sm:min-w-[450px]"
+//                                                     setTags={(newTags) => {
+//                                                         setTags(newTags);
+//                                                         setValue('topics', newTags as [Tag, ...Tag[]]);
+//                                                     }}
+//                                                 />
+//                                             </FormControl>
+//                                             <FormDescription className="text-left">
+//                                                 These are the topics that you&apos;re interested in.
+//                                             </FormDescription>
+//                                             <FormMessage />
+//                                         </FormItem>
+//                                     )}
+//                                 />
+//                                 <Button type="submit">Submit</Button>
+//                             </form>
+//                         </Form>
+//                     </div>
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// }
+
+
+
+// function UploadedFilesCard({ uploadedFiles }: UploadedFilesCardProps) {
+//     return (
+//         <Card className="hover-glow-border">
+//             <CardHeader>
+//                 <CardTitle>Uploaded images</CardTitle>
+//                 <CardDescription>View the uploaded images here</CardDescription>
+//             </CardHeader>
+//             <CardContent>
+//                 {uploadedFiles.length > 0 ? (
+//                     <ScrollArea className="pb-4">
+//                         <div className="flex w-max space-x-2.5">
+//                             {uploadedFiles.map((file) => (
+//                                 <div key={file.key} className="relative aspect-video w-64">
+//                                     <Image
+//                                         src={file.url}
+//                                         alt={file.name}
+//                                         fill
+//                                         sizes="(min-width: 640px) 640px, 100vw"
+//                                         loading="lazy"
+//                                         className="rounded-md object-cover"
+//                                     />
+//                                 </div>
+//                             ))}
+//                         </div>
+//                         <ScrollBar orientation="horizontal" />
+//                     </ScrollArea>
+//                 ) : (
+//                     <EmptyCard
+//                         title="No images uploaded"
+//                         description="Upload some images to see them here"
+//                         className="w-full"
+//                     />
+//                 )}
+//             </CardContent>
+//         </Card>
+//     )
+// }

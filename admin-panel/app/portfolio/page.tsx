@@ -1,4 +1,23 @@
 "use client"
+
+import { initializeApp } from "firebase/app";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
+const firebaseConfig = {
+  apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
+  authDomain: "ustudy-70041.firebaseapp.com",
+  projectId: "ustudy-70041",
+  storageBucket: "ustudy-70041.appspot.com",
+  messagingSenderId: "209553469910",
+  appId: "1:209553469910:web:5787a019905baf47c73477",
+  measurementId: "G-NNPVVRK9VK"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Database
+const db: any = getFirestore(app);
+
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -18,7 +37,7 @@ import {
   ShoppingCart,
   Users2,
 } from "lucide-react"
-
+import { Skeleton } from "@/components/ui/skeleton"
 import { Badge } from "@/components/ui/badge"
 import {
   Breadcrumb,
@@ -67,7 +86,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import React from "react";
+import React, { ReactNode, useState } from "react";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { wrap } from "@motionone/utils";
 import {
@@ -443,20 +462,149 @@ function Card3() {
   )
 }
 export default function Component() {
+
+  const [universities, setUniversities] = useState([]);
+  const [data, setData] = useState<any | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  const handleConfetti = async () => {
+    const Read = await getDocs(collection(db, "universities"));
+    Read.forEach((doc) => {
+      let newArray: any = doc.data();
+      setUniversities(newArray);
+      console.log(`${doc.id} => ${doc.data().address}`);
+      alert(newArray);
+    });
+  };
+  // const plugin = React.useRef(
+  //   Autoplay({ delay: 2000, stopOnInteraction: true })
+  // )
+  // const [api, setApi] = React.useState<CarouselApi>()
+  // const [current, setCurrent] = React.useState(0)
+  // const [count, setCount] = React.useState(0)
+
+  // React.useEffect(() => {
+  //   if (!api) {
+  //     return
+  //   }
+
+  //   setCount(api.scrollSnapList().length)
+  //   setCurrent(api.selectedScrollSnap() + 1)
+
+  //   api.on("select", () => {
+  //     setCurrent(api.selectedScrollSnap() + 1)
+  //   })
+  // }, [api]);
+  // React.useEffect(() => {
+
+  //   const handleConfetti = async () => {
+  //     const Read = await getDocs(collection(db, "universities"));
+  //     Read.forEach((doc) => {
+  //       let newArray: any = doc.data();
+  //       setUniversities(newArray);
+  //       console.log(`${doc.id} => ${doc.data().address}`);
+  //       // alert(newArray);
+  //     });
+  //   };
+  //   handleConfetti();
+  // }, []);
+  React.useEffect(() => {
+    // const fetchData = async () => {
+    //   setIsLoading(true);
+    //   try {
+    //     // const doc = await firebase.firestore().collection('yourCollection').doc('yourDoc').get();
+    //     // const data = doc.data() as any;
+    //     const Read = await getDocs(collection(db, "universities"));
+    //     Read.forEach((doc) => {
+    //       let newArray: any = doc.data();
+    //       setUniversities(newArray);
+    //     setData(newArray);
+    //     });
+    //   } catch (error) {
+    //     console.error('Failed to fetch data:', error);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
+
+    // fetchData();
+
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const querySnapshot = await getDocs(collection(db, "universities"));
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));
+        setData(data);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data) {
+    return <div>No data available</div>;
+  }
+
   return (
     <main className="w-full py-5 px-[5%] h-auto">
       <div className="flex items-center justify-between mb-6">
 
         {/* <RotateText /> */}
         <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Portflios</span>
-        <Link href="/create-university">
+        {/* <Link href="/create-university">
           <Button size="sm">Add New Portflio</Button>
-        </Link>
+        </Link> */}
+        <Button onClick={handleConfetti} size="sm">Add New Portflio</Button>
+
       </div>
       <div className="admin-panel-lists ">
-        <Card1 />
-        <Card2 />
-        <Card3 />
+        {/* {universities} */}
+
+
+
+        {/* <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-auto">
+          <Skeleton className="h-[225px] w-full rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-7 w-full" />
+          </div>
+        </div>
+        <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-auto">
+          <Skeleton className="h-[225px] w-full rounded-xl" />
+          <div className="space-y-2">
+            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-7 w-full" />
+          </div>
+        </div> */}
+
+
+
+
+      </div>
+      <div className="bg-primary-foreground h-max w-full mx-auto p-5 border rounded-md overflow-x-hidden">
+        {/* {data.map((item: { id: React.Key | null | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }) => (
+        <div key={item.id}>
+          {item.name}
+        </div>
+      ))} */}
+        {JSON.stringify(data)}
+        {/* {data.map((item: {
+            [x: string]: ReactNode; id: React.Key | null | undefined;
+          }) => (
+            <div key={item.id}>
+              {item.title}
+            </div>
+          ))} */}
+
       </div>
     </main>
   )

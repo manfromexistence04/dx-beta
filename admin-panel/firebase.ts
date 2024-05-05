@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
-    authDomain: "ustudy-96678.firebaseapp.com",
-    projectId: "ustudy-96678",
-    storageBucket: "ustudy-96678.appspot.com",
-    messagingSenderId: "581632635532",
-    appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
-};
-
+    apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
+    authDomain: "ustudy-70041.firebaseapp.com",
+    projectId: "ustudy-70041",
+    storageBucket: "ustudy-70041.appspot.com",
+    messagingSenderId: "209553469910",
+    appId: "1:209553469910:web:5787a019905baf47c73477",
+    measurementId: "G-NNPVVRK9VK"
+  };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -18,32 +18,32 @@ const db:any = getFirestore(app);
 // const docRef = doc(db, "universities", "6PScoZGddeLUjivK5Bny");
 
 // Create
-const Create = await addDoc(collection(db, "universities"), {
-    address: 'Bangladesh, Kaligonj',
-    educationCost: '1 335 000 ₸',
-    email: 'rektorat@amu.kz',
-    facebook: 'https://www.facebook.com/MeduniverAstana',
-    hostel: 'есть',
-    image: 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319',
-    instagram: 'https://www.instagram.com/amu_mua_official',
-    military: 'есть',
-    phoneNumber: '(+77172539424)',
-    region: 'г. Астана',
-    status: 'акционированный',
-    universityCode: '1',
-    universityDescription: 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.',
-    universityName: 'Медицинский университет Астана',
-    website: 'https://amu.edu.kz/',
-});
-console.log("Document written with ID: ", Create.id);
+// const Create = await addDoc(collection(db, "universities"), {
+//     address: 'Bangladesh, Kaligonj',
+//     educationCost: '1 335 000 ₸',
+//     email: 'rektorat@amu.kz',
+//     facebook: 'https://www.facebook.com/MeduniverAstana',
+//     hostel: 'есть',
+//     image: 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319',
+//     instagram: 'https://www.instagram.com/amu_mua_official',
+//     military: 'есть',
+//     phoneNumber: '(+77172539424)',
+//     region: 'г. Астана',
+//     status: 'акционированный',
+//     universityCode: '1',
+//     universityDescription: 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.',
+//     universityName: 'Медицинский университет Астана',
+//     website: 'https://amu.edu.kz/',
+// });
+// console.log("Document written with ID: ", Create.id);
 
 // console.log(docRef);
 
 // Read
-// const Read = await getDocs(collection(db, "universities"));
-// Read.forEach((doc) => {
-//     console.log(`${doc.id} => ${doc.data().address}`);
-// });
+const Read = await getDocs(collection(db, "universities"));
+Read.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+});
 
 // Read ONE
 // const universitiesRef = await getDoc(collection(db, "universities"));
