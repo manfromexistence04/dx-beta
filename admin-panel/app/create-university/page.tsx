@@ -106,8 +106,8 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-
-
+import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
@@ -353,7 +353,7 @@ export default function CreateUniversity() {
         { defaultUploadedFiles: [] }
     )
     const { toast } = useToast();
-
+    const router = useRouter()
     const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
     const { images } = useUniversityImages();
     const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -419,6 +419,9 @@ export default function CreateUniversity() {
 
             ),
         });
+        // redirect(`/portfolio`)
+
+        router.push('/portfolio')
 
     };
 
@@ -932,7 +935,7 @@ export default function CreateUniversity() {
 
 
 
-                <div className="name-logo-description-university w-full grid gap-3 ">
+                {/* <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Code</h1>
                         <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
@@ -971,8 +974,6 @@ export default function CreateUniversity() {
                         </Select>
                     </div>
                 </div>
-
-
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Facebook</h1>
@@ -990,7 +991,8 @@ export default function CreateUniversity() {
                         <h1 className="text-4xl font-bold w-full text-left">Cost</h1>
                         <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
                     </div>
-                </div>
+                </div> */}
+
             </div>
         </>
     )

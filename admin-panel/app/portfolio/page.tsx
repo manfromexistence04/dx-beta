@@ -449,7 +449,7 @@ export default function Component() {
 
         {/* <RotateText /> */}
         <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Portflios</span>
-        <Link href="/create-portfolio">
+        <Link href="/create-university">
           <Button size="sm">Add New Portflio</Button>
         </Link>
       </div>
