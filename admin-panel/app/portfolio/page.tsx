@@ -114,6 +114,7 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
 function CarouselPlugin1() {
@@ -170,9 +171,9 @@ function CarouselPlugin1() {
           ))}
         </CarouselContent>
         <div className="glass absolute bottom-3 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-white" />
-          <span className="flex-1 text-center text-white">Slide {current} of {count}</span>
-          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white border-white hover:text-white" />
+          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border  hover: border-white" />
+          <span className="flex-1 text-center ">Slide {current} of {count}</span>
+          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border  border-white hover:" />
         </div>
       </Carousel>
     </div>
@@ -233,9 +234,9 @@ function CarouselPlugin2() {
           ))}
         </CarouselContent>
         <div className="glass absolute bottom-3 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-white" />
-          <span className="flex-1 text-center text-white">Slide {current} of {count}</span>
-          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white border-white hover:text-white" />
+          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border  hover: border-white" />
+          <span className="flex-1 text-center ">Slide {current} of {count}</span>
+          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border  border-white hover:" />
         </div>
       </Carousel>
     </div>
@@ -296,9 +297,9 @@ function CarouselPlugin3() {
           ))}
         </CarouselContent>
         <div className="glass absolute bottom-3 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-white" />
-          <span className="flex-1 text-center text-white">Slide {current} of {count}</span>
-          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white border-white hover:text-white" />
+          <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border  hover: border-white" />
+          <span className="flex-1 text-center ">Slide {current} of {count}</span>
+          <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border  border-white hover:" />
         </div>
       </Carousel>
     </div>
@@ -472,6 +473,28 @@ const App = () => {
   const [lastDoc, setLastDoc] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+
   useEffect(() => {
     const fetchDocs = async () => {
       setLoading(true);
@@ -503,6 +526,13 @@ const App = () => {
     setDocs([...docs, ...newDocs]);
     setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
     setLoading(false);
+  };
+  const deleteDoc = async (id: any) => {
+    // await deleteDoc(doc(db, "universities", id));
+    const docRef = doc(db, "universities", "57XLA8AOeTkpIHGhMEYD")
+    await deleteDoc(docRef)
+    // const newDocs = docs.filter((doc) => doc.id !== id);
+    // setDocs(newDocs);
   };
 
 
@@ -574,8 +604,6 @@ const App = () => {
       </div>
     </main>;
   }
-
-
   return (
     <main className="w-full py-5 px-[5%] h-auto mb-10">
       <div className="flex items-center justify-between mb-6">
@@ -584,26 +612,54 @@ const App = () => {
           <Button size="sm">Add New Portflio</Button>
         </Link>
       </div>
-
-
       <div className="admin-panel-lists place-content-center">
         {docs.map((doc) => (
           <div key={doc.id}>
-
+{/* {doc.id} */}
             <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
-              <CarouselPlugin2 />
+              <div className="w-full flex flex-col items-center justify-center relative">
+                <Carousel
+                  plugins={[plugin.current]}
+                  setApi={setApi}
+                  className="w-full"
+                  onMouseEnter={plugin.current.stop}
+                  onMouseLeave={plugin.current.reset}
+                >
+                  <CarouselContent>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div>
+                          <Card>
+                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                              <AspectRatio ratio={16 / 9} className="">
+                                <Image
+                                  src={doc.images || "/placeholder.svg"}
+                                  alt="Images"
+                                  fill
+                                  sizes="(min-width: 250px) 300px, 100vw"
+                                  loading="lazy"
+                                  className="rounded-md object-cover"
+                                />
+                              </AspectRatio>
+
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border  hover: border-white" />
+                    <span className="flex-1 text-center ">Slide {current} of {count}</span>
+                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border  border-white hover:" />
+                  </div>
+                </Carousel>
+              </div>
               <div className="absolute bottom-4 left-4">
-                <img
-                  alt="Portflio Logo"
-                  className="w-12 h-12 rounded-full"
-                  height={50}
-                  src={doc.logo || "/naruto.png"}
-                  style={{
-                    aspectRatio: "50/50",
-                    objectFit: "cover",
-                  }}
-                  width={50}
-                />
+                <Avatar>
+                  <AvatarImage src={doc.logo} alt="@Ustudy" />
+                  <AvatarFallback>UY</AvatarFallback>
+                </Avatar>
               </div>
               <CardContent className="p-6 space-y-4">
                 <div>
@@ -620,7 +676,7 @@ const App = () => {
               </CardContent>
               <CardFooter className="flex justify-end p-4 space-x-2">
                 <Button variant="outline">Update</Button>
-                <Button variant="secondary">Delete</Button>
+                <Button onClick={() => deleteDoc(doc.id)} variant="secondary">Delete</Button>
               </CardFooter>
             </Card>
 
