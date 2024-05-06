@@ -194,7 +194,12 @@
 .admin-panel-lists {
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 500px));
+  grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+}
+.admin-panel-lists-loading {
+  display: grid;
+  grid-gap: 3em;
+  grid-template-columns: repeat(auto-fit, minmax(400px, auto));
 }
 
 .text-overflow-clamp {
