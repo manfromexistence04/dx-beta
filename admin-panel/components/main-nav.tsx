@@ -22,31 +22,31 @@ export function MainNav() {
       </Link>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
         <Link
-          href="/home"
+          href="/university"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/home" ? "text-foreground" : "text-foreground/60"
+            pathname === "/university" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Home
+          University
         </Link>
         <Link
-          href="/portfolio"
+          href="/specialities"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/portfolio" ? "text-foreground" : "text-foreground/60"
+            pathname === "/specialities" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Portfolio
+          Specialities
         </Link>
         <Link
-          href="/contract"
+          href="/questions"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/contract" ? "text-foreground" : "text-foreground/60"
+            pathname === "/questions" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Contract
+          Questions
         </Link>
         <Link
           href="/whiteboard"

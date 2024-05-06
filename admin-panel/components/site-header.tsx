@@ -8,6 +8,22 @@ import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { ModeToggle } from "@/components/mode-toggle"
 import { buttonVariants } from "@/registry/new-york/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { Button } from "@/components/ui/button";
+import { NavDropdown } from "@/components/shared/nav-dropdown";
+import NavLinks from "@/components/shared/nav-links";
+import VVLogo from "@/components/shared/vv-logo";
+import { motion } from "framer-motion";
 
 export function SiteHeader() {
   return (
@@ -38,6 +54,30 @@ export function SiteHeader() {
               </div>
             </Link>
             <ModeToggle />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border ring-offset-background ring-2 ring-ring ring-offset-2">
+                  <Image
+                    alt="User"
+                    className="aspect-square rounded-full object-cover"
+                    height="23"
+                    src="/Nurzhol Tabigat.jpg"
+                    width="23"
+                  />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
+                <DropdownMenuLabel>Shoccho Sthapona</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Switch Account</DropdownMenuItem>
+                <DropdownMenuItem>View Database</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuItem>Help</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
       </div>
