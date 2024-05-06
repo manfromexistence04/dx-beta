@@ -154,17 +154,17 @@ export default function CreateUniversity() {
             },
         });
 
-        uploadedImages.map((file: any) => {
-            setInputedImages(file.url);
-            return null;
-        })
-        uploadedLogo.map((file: any) => {
-            setInputedLogo(file.url);
-            return null;
-        })
+        // uploadedImages.map((file: any) => {
+        //     setInputedImages(file.url);
+        //     return null;
+        // })
+        // uploadedLogo.map((file: any) => {
+        //     setInputedLogo(file.url);
+        //     return null;
+        // })
 
         const Create = await addDoc(collection(db, "universities"), {
-            address: inputedAddress,
+            address: stateValue,
             educationCost: inputedCost,
             email: inputedEmail,
             facebook: inputedFacebook,
@@ -173,7 +173,7 @@ export default function CreateUniversity() {
             instagram: inputedInstragam,
             military: inputedMilitary,
             phoneNumber: inputedPhoneNumber,
-            region: inputedRegion,
+            region: countryValue,
             status: inputedStatus,
             universityCode: inputedCode,
             universityDescription: inputedDescription,
@@ -267,10 +267,10 @@ export default function CreateUniversity() {
     const [inputedMilitary, setInputedMilitary] = React.useState("")
     const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
     const [inputedLogo, setInputedLogo] = React.useState("")
-    const [inputedAddress, setInputedAddress] = React.useState("")
-    const [inputedRegion, setInputedRegion] = React.useState("")
+    const [inputedAddress, setInputedAddress] = React.useState(stateValue)
+    const [inputedRegion, setInputedRegion] = React.useState(countryValue)
     const [inputedDescription, setInputedDesciption] = React.useState("")
-    const [inputedImages, setInputedImages] = React.useState("")
+    const [inputedImages, setInputedImages] = React.useState([])
 
     const handleNameChange = (event: any) => {
         setInputedName(event.target.value);
@@ -323,10 +323,13 @@ export default function CreateUniversity() {
     //     // setInputedImages(event.target.value);
     // }
     const syncImagesAndLogo = () => {
-        uploadedImages.map((file: any) => {
-            setInputedImages(file.url);
-            return null;
-        })
+        // uploadedImages.map((file: any) => {
+        //     setInputedImages(file.url);
+        //     return null;
+        // })
+        const newArray2: any = uploadedImages.map((file) => file.url);
+        setInputedImages(newArray2);
+
         uploadedLogo.map((file: any) => {
             setInputedLogo(file.url);
             return null;
@@ -336,40 +339,17 @@ export default function CreateUniversity() {
     const handleInputedValues = () => {
         setInputedValues(!inputedValues);
     }
-    React.useEffect(() => {
-        uploadedImages.map((file: any) => {
-            setInputedImages(file.url);
-            return null;
-        })
-    }, [isImagesUploading]);
+    // React.useEffect(() => {
+    //     uploadedImages.map((file: any) => {
+    //         setInputedImages(file.url);
+    //         return null;
+    //     })
+    // }, [isImagesUploading]);
 
 
     return (
         <>
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 mx-auto p-10 pt-3">
-
-                {/* <div>
-                    <p>{`Name: ${inputedName}`}</p>
-                    <p>{`Email: ${inputedEmail}`}</p>
-                    <p>{`Status: ${inputedStatus}`}</p>
-                    <p>{`Facebook: ${inputedFacebook}`}</p>
-                    <p>{`Instagram: ${inputedInstragam}`}</p>
-                    <p>{`Education Cost: ${inputedCost}`}</p>
-                    <p>{`Website: ${inputedWebsite}`}</p>
-                    <p>{`University Code: ${inputedCode}`}</p>
-                    <p>{`Hostel: ${inputedHostel}`}</p>
-                    <p>{`Military: ${inputedMilitary}`}</p>
-                    <p>{`Phone Number: ${phone}`}</p>
-                    <p>{`Logo: ${inputedLogo}`}</p>
-                    <p>{`Address: ${stateValue}`}</p>
-                    <p>{`Region: ${countryValue}`}</p>
-                    <p>{`Description: ${inputedDescription}`}</p>
-                    <p>{`Images: ${inputedImages}`}</p>
-                    <Button onClick={updateImagesAndLogo}>Update</Button>
-                </div> */}
-
-
-
                 <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                     <div className="w-full h-full flex items-start justify-start space-x-3">
                         <Link href="/read-university" className="z-50">
@@ -380,45 +360,11 @@ export default function CreateUniversity() {
                         <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                             {inputedValues ? "Hide" : "Show"} Inputed Values
                         </AnimatedButton>
-                        {/* <NextuiButton
-                            ref={buttonRef}
-                            disableRipple
-                            className="center overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
-                            size="md"
-                            onPress={handleConfetti}
-                        >
-                            Toggle Inputed Values
-                        </NextuiButton> */}
                     </div>
-                    {/* <Link href="/read-university" className="z-50">
-                        <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
-                            Back
-                        </AnimatedButton>
-                    </Link> */}
                     <div className="w-full h-full flex items-end justify-end space-x-3">
-
-                        {/* <NextuiButton
-                            ref={buttonRef}
-                            disableRipple
-                            className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
-                            size="md"
-                            onPress={handleConfetti}
-                        >
-                            Sync Uploaded Files
-                        </NextuiButton> */}
                         <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                             Sync Uploaded Files
                         </AnimatedButton>
-                        {/* <NextuiButton
-                            ref={buttonRef}
-                            color="danger"
-                            className={cn("")}
-                            size="md"
-                            isDisabled={createButtonDisabled} 
-                            onPress={handleConfetti}
-                        >
-                            Create
-                        </NextuiButton> */}
                         <Button
                             className="!py-0"
                             disabled={createButtonDisabled}
@@ -433,7 +379,6 @@ export default function CreateUniversity() {
 
 
                 </div>
-
                 {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
                     <div className="flex gap-2">
                         <p>Name: </p>
@@ -500,7 +445,7 @@ export default function CreateUniversity() {
                     <Separator />
                     <div className="flex gap-2">
                         <p>Images: </p>
-                        <span className="font-semibold">{inputedImages || "No Images are Provided."}</span>
+                        <span className="font-semibold">{`[/n${inputedImages}/n]` || "No Images are Provided."}</span>
                     </div>
                     <Separator />
                     <div className="flex gap-2">
@@ -548,9 +493,6 @@ export default function CreateUniversity() {
                         }
                     </div>
                 </div>}
-
-
-
                 <div className="name-logo-description-university w-full grid gap-3 ">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Name</h1>
@@ -570,11 +512,11 @@ export default function CreateUniversity() {
                                 <SelectGroup>
                                     <SelectLabel>What is the operating method of this university?</SelectLabel>
                                     <Separator className="mb-1" />
-                                    <SelectItem value="apple">Non Profit</SelectItem>
-                                    <SelectItem value="banana">Public</SelectItem>
-                                    <SelectItem value="blueberry">Liberal</SelectItem>
-                                    <SelectItem value="grapes">Community</SelectItem>
-                                    <SelectItem value="pineapple">Corporatized</SelectItem>
+                                    <SelectItem value="Non Profit">Non Profit</SelectItem>
+                                  <SelectItem value="Public">Public</SelectItem>
+                                  <SelectItem value="Liberal">Liberal</SelectItem>
+                                  <SelectItem value="Community">Community</SelectItem>
+                                  <SelectItem value="Community">Corporatized</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -634,8 +576,8 @@ export default function CreateUniversity() {
                                                     </ScrollArea>
                                                 ) : (
                                                     <EmptyCard
-                                                        title="No images uploaded"
-                                                        description="Upload some images to see them here"
+                                                        title="No logo uploaded"
+                                                        description="Upload logo to see it here."
                                                         className="w-full"
                                                     />
                                                 )}
@@ -832,7 +774,7 @@ export default function CreateUniversity() {
                                                                     loading="lazy"
                                                                     className="rounded-md object-cover"
                                                                 />
-                                                                <span>{file.name}</span>
+                                                                {/* <span>{file.name}</span> */}
                                                             </div>
                                                         )
                                                     })
@@ -937,18 +879,7 @@ export default function CreateUniversity() {
                             }
                             Create
                         </AnimatedButton>
-                    {/* <NextuiButton
-                        ref={buttonRef}
-                        disableRipple
-                        className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground !min-w-full lg:w-auto"
-                        size="md"
-                        onPress={handleConfetti}
-                    >
-                        Create
-                    </NextuiButton> */}
-
                 </div>
-
             </div>
         </>
     )
