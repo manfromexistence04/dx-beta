@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 
 // Database
 const db:any = getFirestore(app);
-// const docRef = doc(db, "universities", "6PScoZGddeLUjivK5Bny");
+// const docRef = doc(db, "universities", "2rLDMTTCDb0fa4W6MzG8");
 
 // Create
 // const Create = await addDoc(collection(db, "universities"), {
@@ -40,10 +40,10 @@ const db:any = getFirestore(app);
 // console.log(docRef);
 
 // Read
-const Read = await getDocs(collection(db, "universities"));
-Read.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-});
+// const Read = await getDocs(collection(db, "universities"));
+// Read.forEach((doc) => {
+//     console.log(`${doc.id} => ${doc.data()}`);
+// });
 
 // Read ONE
 // const universitiesRef = await getDoc(collection(db, "universities"));
@@ -58,8 +58,9 @@ Read.forEach((doc) => {
 // });
 
 // Delete
-// await deleteDoc(docRef);
-// await getDoc(docRef);
+const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb");
+await deleteDoc(docRef);
+console.log(docRef.id);
 
 // console.log(await getDoc(docRef).id);
 // const docRef = db.collection('universities').doc('SF');

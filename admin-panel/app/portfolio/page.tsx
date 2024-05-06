@@ -333,7 +333,6 @@ function RotateText() {
     </AnimatePresence>
   );
 }
-
 function Card1() {
   return (
     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
@@ -377,7 +376,6 @@ function Card1() {
     </Card>
   )
 }
-
 function Card2() {
   return (
     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
@@ -421,7 +419,6 @@ function Card2() {
     </Card>
   )
 }
-
 function Card3() {
   return (
     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
@@ -494,7 +491,6 @@ const App = () => {
     })
   }, [api])
 
-
   useEffect(() => {
     const fetchDocs = async () => {
       setLoading(true);
@@ -527,12 +523,36 @@ const App = () => {
     setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
     setLoading(false);
   };
-  const deleteDoc = async (id: any) => {
-    // await deleteDoc(doc(db, "universities", id));
-    const docRef = doc(db, "universities", "57XLA8AOeTkpIHGhMEYD")
-    await deleteDoc(docRef)
-    // const newDocs = docs.filter((doc) => doc.id !== id);
-    // setDocs(newDocs);
+  // const deleteDoc = async (id: any) => {
+
+  //   const docRef = doc(db, "universities", id);
+  //   const docSnapshot = await getDoc(docRef);
+
+  //   if (docSnapshot.exists()) {
+  //     const doc = docSnapshot.data();
+  //     await deleteDoc(docRef)
+  //     const newDocs = docs.filter((doc) => doc.id !== id);
+  //     setDocs(newDocs);
+  //   }
+
+  // };
+
+  const deleteDoc = async () => {
+
+    // const docRef = doc(db, "universities", id);
+    // const docSnapshot = await getDoc(docRef);
+
+    // if (docSnapshot.exists()) {
+    //   const doc = docSnapshot.data();
+    //   await deleteDoc(doc)
+
+    //   const newDocs = docs.filter((doc) => doc.id !== id);
+    //   setDocs(newDocs);
+    // }
+    // const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb");
+    // await deleteDoc(docRef);
+    // console.log(docRef.id);
+
   };
 
 
@@ -615,7 +635,7 @@ const App = () => {
       <div className="admin-panel-lists place-content-center">
         {docs.map((doc) => (
           <div key={doc.id}>
-{/* {doc.id} */}
+            {/* {doc.id} */}
             <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
               <div className="w-full flex flex-col items-center justify-center relative">
                 <Carousel
@@ -676,7 +696,7 @@ const App = () => {
               </CardContent>
               <CardFooter className="flex justify-end p-4 space-x-2">
                 <Button variant="outline">Update</Button>
-                <Button onClick={() => deleteDoc(doc.id)} variant="secondary">Delete</Button>
+                <Button onClick={() => deleteDoc()} variant="secondary">Delete</Button>
               </CardFooter>
             </Card>
 
