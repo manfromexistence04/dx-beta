@@ -40,4 +40,238 @@ const CustomButton = () => {
 };
 
 export default CustomButton;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const App = () => {
+//   const [docs, setDocs] = useState([]);
+//   const [lastDoc, setLastDoc] = useState(null);
+//   const [loading, setLoading] = useState(false);
+
+//   useEffect(() => {
+//     const fetchDocs = async () => {
+//       setLoading(true);
+//       const q = query(collection(db, "collection"), limit(10));
+//       const querySnapshot = await getDocs(q);
+//       const newDocs = querySnapshot.docs.map((doc) => ({
+//         id: doc.id,
+//         ...doc.data(),
+//       }));
+//       setDocs(newDocs);
+//       setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+//       setLoading(false);
+//     };
+//     fetchDocs();
+//   }, []);
+
+//   const loadMore = async () => {
+//     setLoading(true);
+//     const q = query(
+//       collection(db, "collection"),
+//       startAfter(lastDoc),
+//       limit(10)
+//     );
+//     const querySnapshot = await getDocs(q);
+//     const newDocs = querySnapshot.docs.map((doc) => ({
+//       id: doc.id,
+//       ...doc.data(),
+//     }));
+//     setDocs([...docs, ...newDocs]);
+//     setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+//     setLoading(false);
+//   };
+
+//   return (
+//     <div>
+//       {docs.map((doc) => (
+//         <div key={doc.id}>{doc.name}</div>
+//       ))}
+//       <button onClick={loadMore} disabled={loading}>
+//         Load More
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+// export function Component() {
+//   const [universities, setUniversities] = useState([]);
+//   const [data, setData] = useState<any | null>(null);
+//   const [isLoading, setIsLoading] = useState(true);
+//   const handleConfetti = async () => {
+//     const Read = await getDocs(collection(db, "universities"));
+//     Read.forEach((doc) => {
+//       let newArray: any = doc.data();
+//       setUniversities(newArray);
+//       console.log(`${doc.id} => ${doc.data().address}`);
+//       alert(newArray);
+//     });
+//   };
+//   React.useEffect(() => {
+//     const fetchData = async () => {
+//       setIsLoading(true);
+//       try {
+//         const querySnapshot = await getDocs(collection(db, "universities"));
+//         const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));
+//         setData(data);
+//       } catch (error) {
+//         console.error('Failed to fetch data:', error);
+//       } finally {
+//         setIsLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   if (isLoading) {
+//     return <main className="w-full py-5 px-[5%] h-auto">
+//       <div className="flex items-center justify-between mb-6">
+//         <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Portflios</span>
+//         <Button onClick={handleConfetti} size="sm">Add New Portflio</Button>
+//       </div>
+//       <div className="admin-panel-lists-loading">
+//         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>
+
+//         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>        <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>        <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>        <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>
+
+//         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>
+
+//         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>        <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>        <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>
+//         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+//           <Skeleton className="h-[225px] w-full rounded-xl" />
+//           <div className="space-y-2">
+//             <Skeleton className="h-7 w-full" />
+//             <Skeleton className="h-7 w-full" />
+//           </div>
+//         </div>
+//       </div>
+//     </main>;
+//   }
+
+//   if (!data) {
+//     return <div>No data available</div>;
+//   }
+
+//   return (
+//     <main className="w-full py-5 px-[5%] h-auto">
+//       <div className="flex items-center justify-between mb-6">
+//         <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Portflios</span>
+//         <Link href="/create-university">
+//           <Button size="sm">Add New Portflio</Button>
+//         </Link>
+//         <Button onClick={handleConfetti} size="sm">Add New Portflio</Button>
+//       </div>
+//       <div className="bg-primary-foreground h-max w-full mx-auto p-5 border rounded-md overflow-x-hidden">
+//         {JSON.stringify(data)}
+
+//       </div>
+//     </main>
+//   )
+// }
+
+// export function Portflio() {
+//   return (
+//     <>
+//       <Component />
+//     </>
+//   )
+// }
+
 ```

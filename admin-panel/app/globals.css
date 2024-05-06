@@ -196,6 +196,7 @@
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fit, minmax(400px, auto));
 }
+
 .admin-panel-lists-loading {
   display: grid;
   grid-gap: 3em;
@@ -384,4 +385,30 @@
 *::-webkit-scrollbar-thumb {
   border-radius: 7.5px;
   background-color: hsl(var(--border));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mesh {
+  background-color: #b399ff;
+  background-image:
+    radial-gradient(at 36% 73%, hsla(303, 66%, 60%, 1) 0px, transparent 50%),
+    radial-gradient(at 25% 73%, hsla(16, 83%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 67% 52%, hsla(342, 88%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 96% 53%, hsla(238, 79%, 62%, 1) 0px, transparent 50%),
+    radial-gradient(at 95% 40%, hsla(352, 73%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 34% 39%, hsla(210, 76%, 76%, 1) 0px, transparent 50%),
+    radial-gradient(at 30% 83%, hsla(202, 72%, 68%, 1) 0px, transparent 50%);
 }
