@@ -14,7 +14,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 // Database
 const db: any = getFirestore(app);
 // import db from "@/firebase";
@@ -170,7 +169,7 @@ export default function CreateUniversity() {
             email: inputedEmail,
             facebook: inputedFacebook,
             hostel: inputedHostel,
-            image: inputedImages,
+            images: inputedImages,
             instagram: inputedInstragam,
             military: inputedMilitary,
             phoneNumber: inputedPhoneNumber,

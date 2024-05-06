@@ -4,8 +4,6 @@ import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect } from "react";
 import { limit, query, onSnapshot } from "firebase/firestore";
-// import { db } from "./firebase-config";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
   authDomain: "ustudy-70041.firebaseapp.com",
@@ -15,13 +13,10 @@ const firebaseConfig = {
   appId: "1:209553469910:web:5787a019905baf47c73477",
   measurementId: "G-NNPVVRK9VK"
 };
-
-// Initialize Firebase
+// Iniialize Firebase
 const app = initializeApp(firebaseConfig);
-
 // Database
 const db: any = getFirestore(app);
-
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -115,6 +110,16 @@ import {
 import Autoplay from "embla-carousel-autoplay"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { cn } from "@/lib/utils";
 
 
 function CarouselPlugin1() {
@@ -537,23 +542,25 @@ const App = () => {
 
   // };
 
-  const deleteDoc = async () => {
+  // const deleteDoc = async () => {
 
-    // const docRef = doc(db, "universities", id);
-    // const docSnapshot = await getDoc(docRef);
+  //   // const docRef = doc(db, "universities", id);
+  //   // const docSnapshot = await getDoc(docRef);
 
-    // if (docSnapshot.exists()) {
-    //   const doc = docSnapshot.data();
-    //   await deleteDoc(doc)
+  //   // if (docSnapshot.exists()) {
+  //   //   const doc = docSnapshot.data();
+  //   //   await deleteDoc(doc)
 
-    //   const newDocs = docs.filter((doc) => doc.id !== id);
-    //   setDocs(newDocs);
-    // }
-    // const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb");
-    // await deleteDoc(docRef);
-    // console.log(docRef.id);
+  //     // const newDocs = docs.filter((doc) => doc.id !== id);
+  //     // setDocs(newDocs);
+  //   // }
+  //   // const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb");
+  //   // await deleteDoc(docRef);
+  //   // console.log(docRef.id);
+  //   const DELETE = "HELLO";
+  //   await deleteDoc(doc(db, "universities", "qEpsl95Yghu9w7X8jqfI"));
 
-  };
+  // };
 
 
   if (loading) {
@@ -633,74 +640,300 @@ const App = () => {
         </Link>
       </div>
       <div className="admin-panel-lists place-content-center">
-        {docs.map((doc) => (
-          <div key={doc.id}>
+        {docs.map((items) => (
+          <div key={items.id}>
             {/* {doc.id} */}
-            <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
-              <div className="w-full flex flex-col items-center justify-center relative">
-                <Carousel
-                  plugins={[plugin.current]}
-                  setApi={setApi}
-                  className="w-full"
-                  onMouseEnter={plugin.current.stop}
-                  onMouseLeave={plugin.current.reset}
-                >
-                  <CarouselContent>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <CarouselItem key={index}>
-                        <div>
-                          <Card>
-                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                              <AspectRatio ratio={16 / 9} className="">
-                                <Image
-                                  src={doc.images || "/placeholder.svg"}
-                                  alt="Images"
-                                  fill
-                                  sizes="(min-width: 250px) 300px, 100vw"
-                                  loading="lazy"
-                                  className="rounded-md object-cover"
-                                />
-                              </AspectRatio>
 
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border  hover: border-white" />
-                    <span className="flex-1 text-center ">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border  border-white hover:" />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
+                  <div className="w-full flex flex-col items-center justify-center relative">
+                    <Carousel
+                      plugins={[plugin.current]}
+                      setApi={setApi}
+                      className="w-full"
+                      onMouseEnter={plugin.current.stop}
+                      onMouseLeave={plugin.current.reset}
+                    >
+                      <CarouselContent>
+                        {Array.from({ length: 5 }).map((_, index) => (
+                          <CarouselItem key={index}>
+                            <div>
+                              <Card>
+                                <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                                  <AspectRatio ratio={16 / 9} className="">
+                                    <Image
+                                      src={items.images || "/placeholder.svg"}
+                                      alt="Images"
+                                      fill
+                                      sizes="(min-width: 250px) 300px, 100vw"
+                                      loading="lazy"
+                                      className="rounded-md object-cover"
+                                    />
+                                  </AspectRatio>
+
+                                </CardContent>
+                              </Card>
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                        <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border  hover: border-white" />
+                        <span className="flex-1 text-center ">Slide {current} of {count}</span>
+                        <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border  border-white hover:" />
+                      </div>
+                    </Carousel>
                   </div>
-                </Carousel>
-              </div>
-              <div className="absolute bottom-4 left-4">
-                <Avatar>
-                  <AvatarImage src={doc.logo} alt="@Ustudy" />
-                  <AvatarFallback>UY</AvatarFallback>
-                </Avatar>
-              </div>
-              <CardContent className="p-6 space-y-4">
-                <div>
-                  <h2 className="text-2xl font-bold">{doc.universityName}</h2>
-                  <div className="flex items-center space-x-2 text-sm text-primary mt-3">
-                    <LocateIcon className="h-4 w-4" />
-                    <span>{doc.address}</span>
-                    <Separator className="h-4" orientation="vertical" />
-                    <GlobeIcon className="h-4 w-4" />
-                    <span>{doc.region}</span>
+                  <div className="absolute bottom-4 left-4">
+                    <Avatar>
+                      <AvatarImage src={items.logo} alt="@Ustudy" />
+                      <AvatarFallback>UY</AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <CardContent className="p-6 space-y-4">
+                    <div>
+                      <h2 className="text-2xl font-bold">{items.universityName}</h2>
+                      <div className="flex items-center space-x-2 text-sm text-primary mt-3">
+                        <LocateIcon className="h-4 w-4" />
+                        <span>{items.address}</span>
+                        <Separator className="h-4" orientation="vertical" />
+                        <GlobeIcon className="h-4 w-4" />
+                        <span>{items.region}</span>
+                      </div>
+                    </div>
+                    <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription}</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-end p-4 space-x-2">
+                    <Button variant="outline">Update</Button>
+                    <Button onClick={async () => {
+                      await deleteDoc(doc(db, "universities", items.id));
+                      const newDocs = docs.filter((item) => item.id !== items.id);
+                      setDocs(newDocs);
+                    }} variant="secondary">Delete</Button>
+                  </CardFooter>
+                </Card>
+
+
+              </DialogTrigger>
+              <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
+                {/* <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
+                    <div className="flex gap-2">
+                        <p>Name: </p>
+                        <span className="font-semibold">{items.name || "No Name is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Email: </p>
+                        <span className="font-semibold">{items.email || "No Email is Provided."}</span>
+                    </div>
+
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Facebook: </p>
+                        <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Instagram: </p>
+                        <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Education Cost: </p>
+                        <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Website: </p>
+                        <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>University Code: </p>
+                        <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
+                    </div>
+                    <Separator />
+
+
+                    <div className="flex gap-2">
+                        <p>Phone Number: </p>
+                        <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Logo: </p>
+                        <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Address: </p>
+                        <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Region: </p>
+                        <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Description: </p>
+                        <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Images: </p>
+                        <span className="font-semibold">{inputedImages || "No Images are Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Hostel: </p>
+                        {
+                            <Badge
+                                className={cn(
+                                    "w-fit text-center",
+                                    inputedHostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                )}
+                            >
+                                {inputedHostel || "No Hostel Information Provided."}
+                            </Badge>
+                        }
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Military: </p>
+                        {
+                            <Badge
+                                className={cn(
+                                    "w-fit",
+                                    inputedMilitary ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                )}
+                            >
+                                {inputedMilitary || 'No Military Status Provided.'}
+                            </Badge>
+                        }
+                    </div>
+
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Status: </p>
+                        {
+                            <Badge
+                                className={cn(
+                                    "w-fit",
+                                    inputedStatus ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                )}
+                            >
+                                {inputedStatus || "No Status Provided."}
+                            </Badge>
+                        }
+                    </div>
+                </div> */}
+                <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
+                  <div className="flex gap-2">
+                    <p>Name: </p>
+                    <span className="font-semibold">{items.univeristyName || "No Name is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Email: </p>
+                    <span className="font-semibold">{items.email || "No Email is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Facebook: </p>
+                    <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Instagram: </p>
+                    <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Education Cost: </p>
+                    <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Website: </p>
+                    <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>University Code: </p>
+                    <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Phone Number: </p>
+                    <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Logo: </p>
+                    <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Address: </p>
+                    <span className="font-semibold">{items.address || "No Address is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Region: </p>
+                    <span className="font-semibold">{items.region || "No Region is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Description: </p>
+                    <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Images: </p>
+                    <span className="font-semibold">{items.images || "No Images are Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Hostel: </p>
+                    <Badge
+                      className={cn(
+                        "w-fit text-center",
+                        items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {items.hostel || "No Hostel Information Provided."}
+                    </Badge>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Military: </p>
+                    <Badge
+                      className={cn(
+                        "w-fit",
+                        items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {items.military || 'No Military Status Provided.'}
+                    </Badge>
+                  </div>
+                  <Separator />
+                  <div className="flex gap-2">
+                    <p>Status: </p>
+                    <Badge
+                      className={cn(
+                        "w-fit",
+                        items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {items.status || "No Status Provided."}
+                    </Badge>
                   </div>
                 </div>
-                <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{doc.universityDescription}</p>
-              </CardContent>
-              <CardFooter className="flex justify-end p-4 space-x-2">
-                <Button variant="outline">Update</Button>
-                <Button onClick={() => deleteDoc()} variant="secondary">Delete</Button>
-              </CardFooter>
-            </Card>
 
-
+              </DialogContent>
+            </Dialog>
 
           </div>
         ))}
