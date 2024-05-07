@@ -127,26 +127,27 @@ export default function Info() {
           </div>
           <div className="flex flex-col items-center justify-center space-y-3">
             <Image
-              src="/website/01.png"
+              src="/website/ustudy-index.png"
               alt="Product screenshot"
               className="!min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0 !max-h-[300px]"
               width={300}
               height={200}
             />
             <Image
-              src="/website/02.png"
+              src="/website/ustudy-rubix-cube.png"
               alt="Product screenshot"
               className="!min-w-full  !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0 !max-h-[300px]"
               width={300}
               height={300}
             />
             <Image
-              src="/website/03.jpg"
+              src="/website/ustudy-footer-calculator.png"
               alt="Product screenshot"
               className="!min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0 !max-h-[300px]"
               width={300}
               height={300}
             />
+
           </div>
 
         </div>

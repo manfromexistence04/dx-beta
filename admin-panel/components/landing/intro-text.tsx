@@ -45,7 +45,7 @@ export default function IntroText() {
             className="mt-6 text-lg leading-8"
           >
             A collection of handmade, free, and ready to use operations &
-            variants operations for your next construction.
+            variants operations for your next adminastration work.
           </motion.p>
 
           <motion.div
