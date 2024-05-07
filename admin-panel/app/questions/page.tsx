@@ -500,7 +500,7 @@ const Question = () => {
       <main className="w-full py-5 px-[5%] h-auto pb-7 min-h-[90vh]">
         <div className="flex items-center justify-between mb-6">
           <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Questions</span>
-          <Link href="/create-university">
+          <Link href="/create-question">
             <Button size="sm">Add New Question</Button>
           </Link>
         </div>
