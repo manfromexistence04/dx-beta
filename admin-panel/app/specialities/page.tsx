@@ -282,30 +282,128 @@ const Specialty = () => {
 
 
     // For this page :)
-    const [inputedRuralQuota1, setInputedRuralQuota1] = React.useState("123");
-    const [inputedRuralQuota2, setInputedRuralQuota2] = React.useState("119");
-    const [inputedRuralQuota3, setInputedRuralQuota3] = React.useState("119");
-    const [inputedLevel, setInputedLevel] = React.useState("bachelor");
-    const [inputedOrphanQuota2, setInputedOrphanQuota2] = React.useState("83");
-    const [inputedDisabilitiesQuota2, setInputedDisabilitiesQuota2] = React.useState("75");
-    const [inputedOrphanQuota3, setInputedOrphanQuota3] = React.useState("80");
-    const [inputedGeneralCompetition1, setInputedGeneralCompetition1] = React.useState("123");
-    const [inputedLargeFamiliesQuota2, setInputedLargeFamiliesQuota2] = React.useState("114");
-    const [inputedGeneralCompetition2, setInputedGeneralCompetition2] = React.useState("122");
-    const [inputedGeneralCompetition3, setInputedGeneralCompetition3] = React.useState("120");
-    const [inputedSpecialtyCode, setInputedSpecialtyCode] = React.useState("B007");
-    const [inputedDisabilitiesQuota1, setInputedDisabilitiesQuota1] = React.useState("95");
-    const [inputedAverageSalary, setInputedAverageSalary] = React.useState("307574 ₸");
-    const [inputedSubjects, setInputedSubjects] = React.useState("creative examMathematics");
-    const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
-    const [inputedThreshold, setInputedThreshold] = React.useState("80");
-    const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
+    const [inputedRuralQuota1, setInputedRuralQuota1] = React.useState("");
+    const [inputedRuralQuota2, setInputedRuralQuota2] = React.useState("");
+    const [inputedRuralQuota3, setInputedRuralQuota3] = React.useState("");
+    const [inputedLevel, setInputedLevel] = React.useState("");
+    const [inputedOrphanQuota2, setInputedOrphanQuota2] = React.useState("");
+    const [inputedDisabilitiesQuota2, setInputedDisabilitiesQuota2] = React.useState("");
+    const [inputedOrphanQuota3, setInputedOrphanQuota3] = React.useState("");
+    const [inputedGeneralCompetition1, setInputedGeneralCompetition1] = React.useState("");
+    const [inputedLargeFamiliesQuota2, setInputedLargeFamiliesQuota2] = React.useState("");
+    const [inputedGeneralCompetition2, setInputedGeneralCompetition2] = React.useState("");
+    const [inputedGeneralCompetition3, setInputedGeneralCompetition3] = React.useState("");
+    const [inputedSpecialtyCode, setInputedSpecialtyCode] = React.useState("");
+    const [inputedDisabilitiesQuota1, setInputedDisabilitiesQuota1] = React.useState("");
+    const [inputedAverageSalary, setInputedAverageSalary] = React.useState("");
+    const [inputedSubjects, setInputedSubjects] = React.useState("");
+    const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("");
+    const [inputedThreshold, setInputedThreshold] = React.useState("");
+    const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("");
     const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
-    const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
-    const [inputedUniversities, setInputedUniversities] = React.useState("astana");
-    const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
-    const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
-    const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high");
+    const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("");
+    const [inputedUniversities, setInputedUniversities] = React.useState("");
+    const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("");
+    const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("");
+    const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("");
+
+
+    const handleRuralQuota1Change = (event: any) => {
+        setInputedRuralQuota1(event.target.value);
+    }
+
+    const handleRuralQuota2Change = (event: any) => {
+        setInputedRuralQuota2(event.target.value);
+    }
+
+    const handleRuralQuota3Change = (event: any) => {
+        setInputedRuralQuota3(event.target.value);
+    }
+
+    const handleLevelChange = (event: any) => {
+        setInputedLevel(event.target.value);
+    }
+
+    const handleOrphanQuota2Change = (event: any) => {
+        setInputedOrphanQuota2(event.target.value);
+    }
+
+    const handleDisabilitiesQuota2Change = (event: any) => {
+        setInputedDisabilitiesQuota2(event.target.value);
+    }
+
+    const handleOrphanQuota3Change = (event: any) => {
+        setInputedOrphanQuota3(event.target.value);
+    }
+
+    const handleGeneralCompetition1Change = (event: any) => {
+        setInputedGeneralCompetition1(event.target.value);
+    }
+
+    const handleLargeFamiliesQuota2Change = (event: any) => {
+        setInputedLargeFamiliesQuota2(event.target.value);
+    }
+
+    const handleGeneralCompetition2Change = (event: any) => {
+        setInputedGeneralCompetition2(event.target.value);
+    }
+
+    const handleGeneralCompetition3Change = (event: any) => {
+        setInputedGeneralCompetition3(event.target.value);
+    }
+
+    const handleSpecialtyCodeChange = (event: any) => {
+        setInputedSpecialtyCode(event.target.value);
+    }
+
+    const handleDisabilitiesQuota1Change = (event: any) => {
+        setInputedDisabilitiesQuota1(event.target.value);
+    }
+
+    const handleAverageSalaryChange = (event: any) => {
+        setInputedAverageSalary(event.target.value);
+    }
+
+    const handleSubjectsChange = (event: any) => {
+        setInputedSubjects(event.target.value);
+    }
+
+    const handleLargeFamiliesQuota1Change = (event: any) => {
+        setInputedLargeFamiliesQuota1(event.target.value);
+    }
+
+    const handleThresholdChange = (event: any) => {
+        setInputedThreshold(event.target.value);
+    }
+
+    const handleSpecialtyNameChange = (event: any) => {
+        setInputedSpecialtyName(event.target.value);
+    }
+
+    const handleDisabilitiesQuota3Change = (event: any) => {
+        setInputedDisabilitiesQuota3(event.target.value);
+    }
+
+    const handleOrphanQuota1Change = (event: any) => {
+        setInputedOrphanQuota1(event.target.value);
+    }
+
+    const handleUniversitiesChange = (event: any) => {
+        setInputedUniversities(event.target.value);
+    }
+
+    const handleLargeFamiliesQuota3Change = (event: any) => {
+        setInputedLargeFamiliesQuota3(event.target.value);
+    }
+
+    const handleAvailableGrantCountChange = (event: any) => {
+        setInputedAvailableGrantCount(event.target.value);
+    }
+
+    const handleDemandForSpecialtyChange = (event: any) => {
+        setInputedDemandForSpecialty(event.target.value);
+    }
+
 
     const handleNameChange = (event: any) => {
         setInputedName(event.target.value);
@@ -352,6 +450,87 @@ const Specialty = () => {
     const handleInputedValues = () => {
         setInputedValues(!inputedValues);
     }
+    // const fetchDocs = async () => {
+    //     setLoading(true);
+    //     const q = query(collection(db, "specialties"), limit(8));
+    //     const querySnapshot = await getDocs(q);
+    //     const newDocs = querySnapshot.docs.map((doc) => ({
+    //         id: doc.id,
+    //         ...doc.data(),
+    //     }));
+    //     setDocs(newDocs);
+    //     // Configuring Data for Update:
+    //     docs.map((item: any) => {
+    //         setInputedRuralQuota1(item.ruralQuota1);
+    //         setInputedRuralQuota2(item.ruralQuota2);
+    //         setInputedRuralQuota3(item.ruralQuota3);
+    //         setInputedLevel(item.level);
+    //         setInputedOrphanQuota2(item.orphanQuota2);
+    //         setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
+    //         setInputedOrphanQuota3(item.orphanQuota3);
+    //         setInputedGeneralCompetition1(item.generalCompetition1);
+    //         setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
+    //         setInputedGeneralCompetition2(item.generalCompetition2);
+    //         setInputedGeneralCompetition3(item.generalCompetition3);
+    //         setInputedSpecialtyCode(item.specialtyCode);
+    //         setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
+    //         setInputedAverageSalary(item.averageSalary);
+    //         setInputedSubjects(item.subjects);
+    //         setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
+    //         setInputedThreshold(item.threshold);
+    //         setInputedSpecialtyName(item.specialtyName);
+    //         setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
+    //         setInputedOrphanQuota1(item.orphanQuota1);
+    //         setInputedUniversities(item.universities);
+    //         setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
+    //         setInputedAvailableGrantCount(item.availableGrantCount);
+    //         setInputedDemandForSpecialty(item.demandForSpecialty);
+
+    //     })
+    //     setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    //     setLoading(false);
+    // };
+
+    const fetchData = async () => {
+        // setLoading(true);
+        // const q = query(collection(db, "specialties"), limit(8));
+        // const querySnapshot = await getDocs(q);
+        // const newDocs = querySnapshot.docs.map((doc) => ({
+        //     id: doc.id,
+        //     ...doc.data(),
+        // }));
+        // setDocs(newDocs);
+        // Configuring Data for Update:
+        docs.map((item: any) => {
+            setInputedRuralQuota1(item.ruralQuota1);
+            setInputedRuralQuota2(item.ruralQuota2);
+            setInputedRuralQuota3(item.ruralQuota3);
+            setInputedLevel(item.level);
+            setInputedOrphanQuota2(item.orphanQuota2);
+            setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
+            setInputedOrphanQuota3(item.orphanQuota3);
+            setInputedGeneralCompetition1(item.generalCompetition1);
+            setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
+            setInputedGeneralCompetition2(item.generalCompetition2);
+            setInputedGeneralCompetition3(item.generalCompetition3);
+            setInputedSpecialtyCode(item.specialtyCode);
+            setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
+            setInputedAverageSalary(item.averageSalary);
+            setInputedSubjects(item.subjects);
+            setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
+            setInputedThreshold(item.threshold);
+            setInputedSpecialtyName(item.specialtyName);
+            setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
+            setInputedOrphanQuota1(item.orphanQuota1);
+            setInputedUniversities(item.universities);
+            setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
+            setInputedAvailableGrantCount(item.availableGrantCount);
+            setInputedDemandForSpecialty(item.demandForSpecialty);
+
+        })
+        // setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+        // setLoading(false);
+    };
 
     // This page
     React.useEffect(() => {
@@ -377,23 +556,6 @@ const Specialty = () => {
             setDocs(newDocs);
             // Configuring Data for Update:
             docs.map((item: any) => {
-                // setInputedAddress(item.address);
-                // setInputedCost(item.educationCost);
-                // setInputedEmail(item.email);
-                // setInputedFacebook(item.facebook);
-                // setInputedHostel(item.hostel);
-                // setInputedImages(item.images);
-                // setInputedInstragam(item.instagram);
-                // setInputedMilitary(item.military);
-                // setInputedPhoneNumber(item.phoneNumber);
-                // setInputedRegion(item.region);
-                // setInputedStatus(item.status);
-                // setInputedCode(item.universityCode);
-                // setInputedDescription(item.universityDescription);
-                // setInputedName(item.universityName);
-                // setInputedWebsite(item.website);
-                // setInputedLogo(item.logo);
-                // Assuming `item` is an object with the properties you mentioned
                 setInputedRuralQuota1(item.ruralQuota1);
                 setInputedRuralQuota2(item.ruralQuota2);
                 setInputedRuralQuota3(item.ruralQuota3);
@@ -424,6 +586,7 @@ const Specialty = () => {
             setLoading(false);
         };
         fetchDocs();
+
     }, []);
 
     const loadMore = async () => {
@@ -459,7 +622,7 @@ const Specialty = () => {
     if (loading) {
         return <main className="w-full py-5 px-[5%] h-auto">
             <div className="flex items-center justify-between mb-6">
-                <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Universities</span>
+                <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Specialities</span>
             </div>
             <div className="admin-panel-lists-loading place-content-center">
                 <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
@@ -524,14 +687,6 @@ const Specialty = () => {
             </div>
         </main>;
     }
-    const descriptionResult = (theObject: any) => {
-        theObject.forEach((itemParent: any) => {
-            itemParent.children.forEach((child: any) => {
-                console.log(child.text);
-            });
-        });
-    }
-
     return (
         <main className="w-full py-5 px-[5%] h-auto mb-10">
             <div className="flex items-center justify-between mb-6">
@@ -568,7 +723,7 @@ const Specialty = () => {
 
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button size="sm" variant="outline">
+                                        <Button onClick={fetchData} size="sm" variant="outline">
                                             View
                                         </Button>
                                     </DialogTrigger>
@@ -853,9 +1008,604 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
 
                                 <div className="flex gap-2">
-                                    <Button size="sm" variant="secondary">
-                                        Update
-                                    </Button>
+                                    <Sheet>
+                                        <SheetTrigger asChild>
+                                            <Button onClick={handleConfetti} variant="default">Update</Button>
+                                        </SheetTrigger>
+                                        <SheetContent side={"bottom"} className="h-[90vh] !max-w-[1600px] mx-auto rounded-xl">
+                                            <ScrollArea className="h-full w-full rounded-md border">
+                                                <div className="create-university min-h-[100vh] lg:flex lg:flex-col space-y-3 p-10 pt-3 !min-w-full lg:!min-w-[1500px]">
+                                                    <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
+                                                        <div className="w-full h-full flex items-start justify-start space-x-3">
+                                                            <Link href="/read-university" className="z-50">
+                                                                <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                                                    Back
+                                                                </AnimatedButton>
+                                                            </Link>
+                                                            <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                                                {inputedValues ? "Hide" : "Show"} Inputed Values
+                                                            </AnimatedButton>
+                                                        </div>
+
+                                                        <div className="w-full h-full flex items-end justify-end space-x-3">
+                                                            {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                                                Sync Uploaded Files
+                                                            </AnimatedButton> */}
+                                                            <Button
+                                                                className="!py-0"
+                                                                // disabled={createButtonDisabled}
+                                                                onClick={async () => {
+                                                                    const { clientWidth, clientHeight } = document.documentElement;
+                                                                    const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+                                                                    const targetY = boundingBox?.y ?? 0;
+                                                                    const targetX = boundingBox?.x ?? 0;
+                                                                    const targetWidth = boundingBox?.width ?? 0;
+                                                                    const targetCenterX = targetX + targetWidth / 2;
+                                                                    const confetti = (await import("canvas-confetti")).default;
+                                                                    confetti({
+                                                                        zIndex: 999,
+                                                                        particleCount: 100,
+                                                                        spread: 70,
+                                                                        origin: {
+                                                                            y: targetY / clientHeight,
+                                                                            x: targetCenterX / clientWidth,
+                                                                        },
+                                                                    });
+
+
+                                                                    const updateRef = doc(db, "specialties", items.id);
+                                                                    const Update: any = await updateDoc(updateRef, {
+                                                                        ruralQuota1: inputedRuralQuota1,
+                                                                        ruralQuota3: inputedRuralQuota3,
+                                                                        level: inputedLevel,
+                                                                        orphanQuota2: inputedOrphanQuota2,
+                                                                        disabilitiesQuota2: inputedDisabilitiesQuota2,
+                                                                        orphanQuota3: inputedOrphanQuota3,
+                                                                        generalCompetition1: inputedGeneralCompetition1,
+                                                                        largeFamiliesQuota2: inputedLargeFamiliesQuota2,
+                                                                        generalCompetition2: inputedGeneralCompetition2,
+                                                                        generalCompetition3: inputedGeneralCompetition3,
+                                                                        specialtyCode: inputedSpecialtyCode,
+                                                                        disabilitiesQuota1: inputedDisabilitiesQuota1,
+                                                                        averageSalary: inputedAverageSalary,
+                                                                        subjects: inputedSubjects,
+                                                                        largeFamiliesQuota1: inputedLargeFamiliesQuota1,
+                                                                        threshold: inputedThreshold,
+                                                                        specialtyName: inputedSpecialtyName,
+                                                                        disabilitiesQuota3: inputedDisabilitiesQuota3,
+                                                                        ruralQuota2: inputedRuralQuota2,
+                                                                        orphanQuota1: inputedOrphanQuota1,
+                                                                        universities: inputedUniversities,
+                                                                        largeFamiliesQuota3: inputedLargeFamiliesQuota3,
+                                                                        availableGrantCount: inputedAvailableGrantCount,
+                                                                        demandForSpecialty: inputedDemandForSpecialty
+
+                                                                    })
+                                                                    toast({
+                                                                        title: 'University has been Updated Successfully.',
+                                                                        description: (
+                                                                            <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                                                                                <span>You Can now view and delete this university!</span>
+                                                                                <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
+                                                                                    {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
+                                                                                </pre>
+                                                                            </div>
+                                                                        ),
+                                                                    });
+
+
+                                                                    // setSheetToggle(!sheetToggle)
+                                                                    // router.push('/specialities')
+                                                                    // setSheetToggle(true)
+
+                                                                    // console.log("Document written with ID: ", Update.id);
+                                                                    // const newDocs = docs.filter((item) => item.id !== items.id);
+                                                                    // setDocs(newDocs);
+                                                                    // fetchDocs()
+                                                                }}
+                                                            >
+                                                                {/* {
+                                                                    createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                                } */}
+                                                                Update
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                    {/* {inputedValues && <div className="div">
+                                                        <div className="flex gap-2">
+                                                            <p>Name: </p>
+                                                            <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Email: </p>
+                                                            <span className="font-semibold">{inputedEmail || "No Email is Provided."}</span>
+                                                        </div>
+
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Facebook: </p>
+                                                            <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Instagram: </p>
+                                                            <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Education Cost: </p>
+                                                            <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Website: </p>
+                                                            <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>University Code: </p>
+                                                            <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+
+                                                        <div className="flex gap-2">
+                                                            <p>Phone Number: </p>
+                                                            <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Logo: </p>
+                                                            <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Address: </p>
+                                                            <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Region: </p>
+                                                            <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Description: </p>
+                                                            <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Images: </p>
+                                                            <span className="font-semibold">{`[
+                              "${items.images}"
+                              ]` || "No Images are Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Hostel: </p>
+                                                            {
+                                                                <Badge
+                                                                    className={cn(
+                                                                        "w-fit text-center",
+                                                                        inputedHostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                                                    )}
+                                                                >
+                                                                    {inputedHostel || "No Hostel Information Provided."}
+                                                                </Badge>
+                                                            }
+                                                        </div>
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Military: </p>
+                                                            {
+                                                                <Badge
+                                                                    className={cn(
+                                                                        "w-fit",
+                                                                        inputedMilitary ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                                                    )}
+                                                                >
+                                                                    {inputedMilitary || 'No Military Status Provided.'}
+                                                                </Badge>
+                                                            }
+                                                        </div>
+
+                                                        <Separator />
+                                                        <div className="flex gap-2">
+                                                            <p>Status: </p>
+                                                            {
+                                                                <Badge
+                                                                    className={cn(
+                                                                        "w-fit",
+                                                                        inputedStatus ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                                                                    )}
+                                                                >
+                                                                    {inputedStatus || "No Status Provided."}
+                                                                </Badge>
+                                                            }
+                                                        </div>
+                                                    </div>} */}
+
+                                                    {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
+                                                        <div className="flex gap-2">
+                                                            <p>RuralQuota1: </p>
+                                                            <span className="font-semibold">{inputedRuralQuota1 || "No RuralQuota1 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>RuralQuota2: </p>
+                                                            <span className="font-semibold">{inputedRuralQuota2 || "No RuralQuota2 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>RuralQuota3: </p>
+                                                            <span className="font-semibold">{inputedRuralQuota3 || "No RuralQuota3 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>Level: </p>
+                                                            <span className="font-semibold">{inputedLevel || "No Level is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>OrphanQuota2: </p>
+                                                            <span className="font-semibold">{inputedOrphanQuota2 || "No OrphanQuota2 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>DisabilitiesQuota2: </p>
+                                                            <span className="font-semibold">{inputedDisabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
+                                                        </div>
+
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>OrphanQuota3: </p>
+                                                            <span className="font-semibold">{inputedOrphanQuota3 || "No OrphanQuota3 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>GeneralCompetition1: </p>
+                                                            <span className="font-semibold">{inputedGeneralCompetition1 || "No GeneralCompetition1 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>LargeFamiliesQuota2: </p>
+                                                            <span className="font-semibold">{inputedLargeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+
+
+                                                        <div className="flex gap-2">
+                                                            <p>GeneralCompetition2: </p>
+                                                            <span className="font-semibold">{inputedGeneralCompetition2 || "No GeneralCompetition2 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>GeneralCompetition3: </p>
+                                                            <span className="font-semibold">{inputedGeneralCompetition3 || "No GeneralCompetition3 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>SpecialtyCode: </p>
+                                                            <span className="font-semibold">{inputedSpecialtyCode || "No SpecialtyCode is Provided."}</span>
+                                                        </div>
+
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>DisabilitiesQuota1: </p>
+                                                            <span className="font-semibold">{inputedDisabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>AverageSalary: </p>
+                                                            <span className="font-semibold">{inputedAverageSalary || "No AverageSalary is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>Subjects: </p>
+                                                            <span className="font-semibold">{inputedSubjects || "No Subjects is Provided."}</span>
+                                                        </div>
+
+
+                                                        <Separator />
+
+
+
+                                                        {/* const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
+const [inputedThreshold, setInputedThreshold] = React.useState("80");
+const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
+const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
+const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
+const [inputedUniversities, setInputedUniversities] = React.useState("astana");
+const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
+const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
+const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high"); */}
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>LargeFamiliesQuota1: </p>
+                                                            <span className="font-semibold">{inputedLargeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>SpecialtyName: </p>
+                                                            <span className="font-semibold">{inputedSpecialtyName || "No SpecialtyName is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>DisabilitiesQuota3: </p>
+                                                            <span className="font-semibold">{inputedDisabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
+                                                        </div>
+
+                                                        <Separator />
+
+
+
+
+                                                        <div className="flex gap-2">
+                                                            <p>OrphanQuota1: </p>
+                                                            <span className="font-semibold">{inputedOrphanQuota1 || "No OrphanQuota1 is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>Universities: </p>
+                                                            <span className="font-semibold">{inputedUniversities || "No Universities is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>LargeFamiliesQuota3: </p>
+                                                            <span className="font-semibold">{inputedLargeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
+                                                        </div>
+
+
+
+
+                                                        <Separator />
+
+
+
+
+                                                        <div className="flex gap-2">
+                                                            <p>AvailableGrantCount: </p>
+                                                            <span className="font-semibold">{inputedAvailableGrantCount || "No AvailableGrantCount is Provided."}</span>
+                                                        </div>
+                                                        <Separator />
+
+                                                        <div className="flex gap-2">
+                                                            <p>DemandForSpecialty: </p>
+                                                            <span className="font-semibold">{inputedDemandForSpecialty || "No DemandForSpecialty is Provided."}</span>
+                                                        </div>
+                                                    </div>}
+
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">RuralQuota1</h1>
+                                                            <Input onChange={handleRuralQuota1Change} type="text" placeholder="Enter Speciality RuralQuota1 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">RuralQuota2</h1>
+                                                            <Input onChange={handleRuralQuota2Change} type="text" placeholder="Enter Speciality RuralQuota2 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">RuralQuota3</h1>
+                                                            <Input onChange={handleRuralQuota3Change} type="text" placeholder="Enter Speciality RuralQuota3 Info" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">Level</h1>
+                                                            <Input onChange={handleLevelChange} type="text" placeholder="Enter Speciality Level Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">OrphanQuota2</h1>
+                                                            <Input onChange={handleOrphanQuota2Change} type="text" placeholder="Enter Speciality OrphanQuota2 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">DisabilitiesQuota2</h1>
+                                                            <Input onChange={handleDisabilitiesQuota2Change} type="text" placeholder="Enter Speciality DisabilitiesQuota2 Info" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">OrphanQuota3</h1>
+                                                            <Input onChange={handleOrphanQuota3Change} type="text" placeholder="Enter Speciality OrphanQuota3 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">GeneralCompetition1</h1>
+                                                            <Input onChange={handleGeneralCompetition1Change} type="text" placeholder="Enter Speciality GeneralCompetition1 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">LargeFamiliesQuota2</h1>
+                                                            <Input onChange={handleLargeFamiliesQuota2Change} type="text" placeholder="Enter Speciality LargeFamiliesQuota2 Info" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">GeneralCompetition2</h1>
+                                                            <Input onChange={handleGeneralCompetition2Change} type="text" placeholder="Enter Speciality GeneralCompetition2 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">GeneralCompetition3</h1>
+                                                            <Input onChange={handleGeneralCompetition3Change} type="text" placeholder="Enter Speciality GeneralCompetition3 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">SpecialtyCode</h1>
+                                                            <Input onChange={handleSpecialtyCodeChange} type="text" placeholder="Enter Speciality SpecialtyCode Info" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">DisabilitiesQuota1</h1>
+                                                            <Input onChange={handleDisabilitiesQuota1Change} type="text" placeholder="Enter Speciality DisabilitiesQuota1 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">AverageSalary</h1>
+                                                            <Input onChange={handleAverageSalaryChange} type="text" placeholder="Enter Speciality AverageSalary Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
+                                                            <Input onChange={handleSubjectsChange} type="text" placeholder="Enter Speciality Subjects Info" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">LargeFamiliesQuota1</h1>
+                                                            <Input onChange={handleLargeFamiliesQuota1Change} type="text" placeholder="Enter Speciality LargeFamiliesQuota1 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">Threshold</h1>
+                                                            <Input onChange={handleThresholdChange} type="text" placeholder="Enter Speciality Threshold Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">SpecialtyName</h1>
+                                                            <Input onChange={handleSpecialtyNameChange} type="text" placeholder="Enter Speciality SpecialtyName Info" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">DisabilitiesQuota3</h1>
+                                                            <Input onChange={handleDisabilitiesQuota3Change} type="text" placeholder="Enter Speciality DisabilitiesQuota3 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">OrphanQuota1</h1>
+                                                            <Input onChange={handleOrphanQuota1Change} type="text" placeholder="Enter Speciality OrphanQuota1 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
+                                                            <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter Speciality Universities Info" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="name-logo-description-university w-full grid gap-3">
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">LargeFamiliesQuota3</h1>
+                                                            <Input onChange={handleLargeFamiliesQuota3Change} type="text" placeholder="Enter Speciality LargeFamiliesQuota3 Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">AvailableGrantCount</h1>
+                                                            <Input onChange={handleAvailableGrantCountChange} type="text" placeholder="Enter Speciality AvailableGrantCount Info" />
+                                                        </div>
+                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                            <h1 className="text-4xl font-bold w-full text-left">DemandForSpecialty</h1>
+                                                            <Input onChange={handleDemandForSpecialtyChange} type="text" placeholder="Enter Speciality DemandForSpecialty Info" />
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
+                                                        <Link href="/read-university" className="z-50 w-full">
+                                                            <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
+                                                                Back
+                                                            </AnimatedButton>
+                                                        </Link>
+                                                        <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                                                            {inputedValues ? "Hide" : "Show"} Inputed Values
+                                                        </AnimatedButton>
+                                                        {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                                                            Sync Uploaded Files
+                                                        </AnimatedButton> */}
+                                                        <AnimatedButton
+                                                            className="!py-0 w-full"
+                                                            // disabled={createButtonDisabled}
+                                                            onClick={async () => {
+                                                                const { clientWidth, clientHeight } = document.documentElement;
+                                                                const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+                                                                const targetY = boundingBox?.y ?? 0;
+                                                                const targetX = boundingBox?.x ?? 0;
+                                                                const targetWidth = boundingBox?.width ?? 0;
+                                                                const targetCenterX = targetX + targetWidth / 2;
+                                                                const confetti = (await import("canvas-confetti")).default;
+                                                                confetti({
+                                                                    zIndex: 999,
+                                                                    particleCount: 100,
+                                                                    spread: 70,
+                                                                    origin: {
+                                                                        y: targetY / clientHeight,
+                                                                        x: targetCenterX / clientWidth,
+                                                                    },
+                                                                });
+                                                                const updateRef = doc(db, "specialties", items.id);
+                                                                const Update: any = await updateDoc(updateRef, {
+                                                                    ruralQuota1: inputedRuralQuota1,
+                                                                    ruralQuota3: inputedRuralQuota3,
+                                                                    level: inputedLevel,
+                                                                    orphanQuota2: inputedOrphanQuota2,
+                                                                    disabilitiesQuota2: inputedDisabilitiesQuota2,
+                                                                    orphanQuota3: inputedOrphanQuota3,
+                                                                    generalCompetition1: inputedGeneralCompetition1,
+                                                                    largeFamiliesQuota2: inputedLargeFamiliesQuota2,
+                                                                    generalCompetition2: inputedGeneralCompetition2,
+                                                                    generalCompetition3: inputedGeneralCompetition3,
+                                                                    specialtyCode: inputedSpecialtyCode,
+                                                                    disabilitiesQuota1: inputedDisabilitiesQuota1,
+                                                                    averageSalary: inputedAverageSalary,
+                                                                    subjects: inputedSubjects,
+                                                                    largeFamiliesQuota1: inputedLargeFamiliesQuota1,
+                                                                    threshold: inputedThreshold,
+                                                                    specialtyName: inputedSpecialtyName,
+                                                                    disabilitiesQuota3: inputedDisabilitiesQuota3,
+                                                                    ruralQuota2: inputedRuralQuota2,
+                                                                    orphanQuota1: inputedOrphanQuota1,
+                                                                    universities: inputedUniversities,
+                                                                    largeFamiliesQuota3: inputedLargeFamiliesQuota3,
+                                                                    availableGrantCount: inputedAvailableGrantCount,
+                                                                    demandForSpecialty: inputedDemandForSpecialty
+
+                                                                })
+
+                                                                toast({
+                                                                    title: 'University has been Updated Successfully.',
+                                                                    description: (
+                                                                        <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                                                                            <span>You Can now view and delete this university!</span>
+                                                                            <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
+                                                                                {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
+                                                                            </pre>
+                                                                        </div>
+                                                                    ),
+                                                                });
+
+                                                                // router.push('/specialities')
+                                                                // setSheetToggle(true)
+
+                                                                // setSheetToggle(!sheetToggle)
+                                                                // router.push('/university')
+                                                                // fetchDocs()
+                                                            }}
+                                                        >
+                                                            {/* {
+                                                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                            } */}
+                                                            Update
+                                                        </AnimatedButton>
+
+                                                    </div>
+                                                </div>
+                                            </ScrollArea>
+                                        </SheetContent>
+                                    </Sheet>
                                     <Button onClick={async () => {
                                         await deleteDoc(doc(db, "specialtities", items.id));
                                         const newDocs = docs.filter((item) => item.id !== items.id);
