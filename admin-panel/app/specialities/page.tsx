@@ -643,12 +643,15 @@ const Specialty = () => {
                         </Card> */}
 
 
-
-                        {Object.keys(items).map((key) => (
-                            <li key={key}>
-                                <strong>{key}:</strong> {items[key]}
-                            </li>
-                        ))}
+                        <div className="flex flex-col border rounded-lg text-sm !mb-3 overflow-hidden min-w-[300px] max-w-[100%] mx-auto items-center justify-start">
+                            {Object.keys(items).map((key) => (
+                                <div key={key} className="flex gap-2 border-b w-full p-3">
+                                    <p>{key}:</p>
+                                    <span className="font-semibold">{items[key] || "No value is Provided."}</span>
+                                </div>
+                            ))}
+                            {/* <Separator /> */}
+                        </div>
 
                     </div>
                 ))}

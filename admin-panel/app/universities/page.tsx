@@ -988,7 +988,7 @@ const University = () => {
                             </Button>
                           </div>
                         </div>
-                        {inputedValues && <div className="flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden min-w-[300px] max-w-[100%] mx-auto">
+                        {inputedValues && <div className="div">
                           <div className="flex gap-2">
                             <p>Name: </p>
                             <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
