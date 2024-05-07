@@ -1,6 +1,27 @@
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {}
+
+// module.exports = nextConfig
 /**
- * @type { import("next").NextConfig }
+ * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
+ * for Docker builds.
  */
-module.exports = {
-  reactStrictMode: false
-}
+
+/** @type {import("next").NextConfig} */
+const config = {
+    images: {
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "utfs.io",
+        },
+      ],
+      unoptimized: true,
+    },
+    experimental: {
+      ppr: true,
+    },
+  }
+  
+  module.exports = config
+  
