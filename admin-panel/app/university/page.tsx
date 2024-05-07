@@ -380,7 +380,7 @@ const University = () => {
     setInputedMilitary(event);
   }
   const handleDescriptionChange = (event: any) => {
-    setInputedDescription(event);
+    setInputedDescription(JSON.stringify(event));
   }
   // const create = (event: any) => {
   //     // setInputedImages(event.target.value);
@@ -707,19 +707,15 @@ const University = () => {
                   )
                 })
                 } */}
-                <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription}</p>
 
-
-
-
-                {/* 
+                {/* <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{JSON.stringify(items.universityDescription)}</p> */}
                 {typeof items.universityDescription === "object" ? JSON.parse(items.universityDescription).map((item: any) => (
                   <div key={item.id}>
                     {item.children.map((child: any) => (
                       <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground" key={child.text}>{child.text}</p>
                     ))}
                   </div>
-                )) : <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription || "No Description Provided for this university."}</p>} */}
+                )) : <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription || "No Description Provided for this university."}</p>}
 
 
 
@@ -899,7 +895,7 @@ const University = () => {
                                   region: countryValue || items.region,
                                   status: inputedStatus || items.status,
                                   universityCode: inputedCode || items.universityCode,
-                                  universityDescription: inputedDescription || items.universityDescription,
+                                  universityDescription: inputedDescription,
                                   universityName: inputedName || items.universityName,
                                   website: inputedWebsite || items.website,
                                   // logo: inputedLogo || items.logo
@@ -1256,7 +1252,7 @@ const University = () => {
                         </div>}
                         <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                           <h1 className="text-4xl font-bold w-full text-left pl-4">Description</h1>
-                          {/* <div className="w-full h-full border-t">
+                          <div className="w-full h-full border-t">
                             <DndProvider backend={HTML5Backend}>
                               <CommentsProvider users={commentsUsers} myUserId={myUserId}>
                                 <Plate plugins={plugins} initialValue={initialValue} onChange={handleDescriptionChange}>
@@ -1289,8 +1285,8 @@ const University = () => {
                                 </Plate>
                               </CommentsProvider>
                             </DndProvider>
-                          </div> */}
-                          <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." />
+                          </div>
+                          {/* <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." /> */}
                         </div>
                         <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
                           <div className="w-full h-full flex flex-col space-y-4">
