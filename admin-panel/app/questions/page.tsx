@@ -424,7 +424,7 @@ const Question = () => {
   if (loading) {
     return <main className="w-full py-5 px-[5%] h-auto">
       <div className="flex items-center justify-between mb-6">
-        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Universities</span>
+        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Questions</span>
       </div>
       <div className="admin-panel-lists-loading place-content-center">
         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
@@ -535,7 +535,18 @@ const Question = () => {
                             )
                           })
                         }
-                      </div>) : "No Answers Are Provided."
+                      </div>) : (<div className="flex items-center justify-between rounded-lg border p-3">
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            No Answers are provided.
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button size="icon" variant="ghost">
+                            <CheckIcon className="h-5 w-5" />
+                          </Button>
+                        </div>
+                      </div>)
                     }
 
 
@@ -579,15 +590,46 @@ const Question = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col justify-start items-start gap-2">
-                  <div className="flex items-center gap-2 w-full">
-                    <Badge variant="outline">Communication</Badge>
-                    <Badge variant="outline">Problem-Solving</Badge>
-                    <Badge variant="outline">Adaptability</Badge>
-                  </div>
+
+
+                  {
+                    items.results.length > 0 ? (<div className="flex items-center gap-2 w-full">
+                      {
+                        items.results.map((index: any) => {
+                          return (
+                              <Badge key={index} variant="outline" className="text-xs text-center">{index}</Badge>
+                          )
+                        })
+                      }
+                    </div>) : (<div className="flex items-center gap-2 w-full">
+                      <Badge variant="outline">Nothing</Badge>
+                    </div>)
+                  }
                   <div className="flex gap-2 w-full justify-between mt-3">
-                    <Button size="sm" variant="outline">
-                      View
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">View</Button>
+                      </DialogTrigger>
+                      <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
+                        <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm overflow-hidden">
+                          <div className="flex gap-2 p-3">
+                            <p>MainQuestion: </p>
+                            <span className="font-semibold">{items.mainQuestion || "No Main Questing is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex gap-2 p-3">
+                            <p>Answers: </p>
+                            <span className="font-semibold">{JSON.stringify(items.answers,null,2) || "No Main Questing is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex gap-2 p-3">
+                            <p>Results: </p>
+                            <span className="font-semibold">{JSON.stringify(items.results,null,2) || "No Main Questing is Provided."}</span>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+
                     <div className="flex gap-2">
                       <Button size="sm" variant="secondary">
                         Update
