@@ -152,22 +152,30 @@ export default function CreateSpeciality() {
             },
         });
         const Create = await addDoc(collection(db, "universities"), {
-            address: stateValue,
-            educationCost: inputedCost,
-            email: inputedEmail,
-            facebook: inputedFacebook,
-            hostel: inputedHostel,
-            images: inputedImages,
-            instagram: inputedInstragam,
-            military: inputedMilitary,
-            phoneNumber: inputedPhoneNumber,
-            region: countryValue,
-            status: inputedStatus,
-            universityCode: inputedCode,
-            universityDescription: inputedDescription,
-            universityName: inputedName,
-            website: inputedWebsite,
-            logo: inputedLogo
+            ruralQuota1: inputedRuralQuota1,
+            ruralQuota3: inputedRuralQuota3,
+            level: inputedLevel,
+            orphanQuota2: inputedOrphanQuota2,
+            disabilitiesQuota2: inputedDisabilitiesQuota2,
+            orphanQuota3: inputedOrphanQuota3,
+            generalCompetition1: inputedGeneralCompetition1,
+            largeFamiliesQuota2: inputedLargeFamiliesQuota2,
+            generalCompetition2: inputedGeneralCompetition2,
+            generalCompetition3: inputedGeneralCompetition3,
+            specialtyCode: inputedSpecialtyCode,
+            disabilitiesQuota1: inputedDisabilitiesQuota1,
+            averageSalary: inputedAverageSalary,
+            subjects: inputedSubjects,
+            largeFamiliesQuota1: inputedLargeFamiliesQuota1,
+            threshold: inputedThreshold,
+            specialtyName: inputedSpecialtyName,
+            disabilitiesQuota3: inputedDisabilitiesQuota3,
+            ruralQuota2: inputedRuralQuota2,
+            orphanQuota1: inputedOrphanQuota1,
+            universities: inputedUniversities,
+            largeFamiliesQuota3: inputedLargeFamiliesQuota3,
+            availableGrantCount: inputedAvailableGrantCount,
+            demandForSpecialty: inputedDemandForSpecialty
         });
         console.log("Document written with ID: ", Create.id);
         toast({
@@ -507,248 +515,297 @@ export default function CreateSpeciality() {
                             // disabled={createButtonDisabled}
                             onClick={handleConfetti}
                         >
-                            {
+                            {/* {
                                 createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            }
+                            } */}
                             Create
                         </Button>
                     </div>
 
 
                 </div>
-                {/* {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
-                    <div className="flex gap-2">
-                        <p>Name: </p>
-                        <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Email: </p>
-                        <span className="font-semibold">{inputedEmail || "No Email is Provided."}</span>
-                    </div>
+                {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
 
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Facebook: </p>
-                        <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Instagram: </p>
-                        <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Education Cost: </p>
-                        <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Website: </p>
-                        <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>University Code: </p>
-                        <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
-                    </div>
-                    <Separator />
 
 
                     <div className="flex gap-2">
-                        <p>Phone Number: </p>
-                        <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
+                        <p>RuralQuota1: </p>
+                        <span className="font-semibold">{inputedRuralQuota1 || "No RuralQuota1 is Provided."}</span>
                     </div>
                     <Separator />
+
                     <div className="flex gap-2">
-                        <p>Logo: </p>
-                        <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
+                        <p>RuralQuota2: </p>
+                        <span className="font-semibold">{inputedRuralQuota2 || "No RuralQuota2 is Provided."}</span>
                     </div>
                     <Separator />
+
                     <div className="flex gap-2">
-                        <p>Address: </p>
-                        <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
+                        <p>RuralQuota3: </p>
+                        <span className="font-semibold">{inputedRuralQuota3 || "No RuralQuota3 is Provided."}</span>
                     </div>
                     <Separator />
+
                     <div className="flex gap-2">
-                        <p>Region: </p>
-                        <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
+                        <p>Level: </p>
+                        <span className="font-semibold">{inputedLevel || "No Level is Provided."}</span>
                     </div>
                     <Separator />
+
                     <div className="flex gap-2">
-                        <p>Description: </p>
-                        <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
+                        <p>OrphanQuota2: </p>
+                        <span className="font-semibold">{inputedOrphanQuota2 || "No OrphanQuota2 is Provided."}</span>
                     </div>
                     <Separator />
+
                     <div className="flex gap-2">
-                        <p>Images: </p>
-                        <span className="font-semibold">{`[/n${inputedImages}/n]` || "No Images are Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Hostel: </p>
-                        {
-                            <Badge
-                                className={cn(
-                                    "w-fit text-center",
-                                    inputedHostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                )}
-                            >
-                                {inputedHostel || "No Hostel Information Provided."}
-                            </Badge>
-                        }
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
-                        <p>Military: </p>
-                        {
-                            <Badge
-                                className={cn(
-                                    "w-fit",
-                                    inputedMilitary ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                )}
-                            >
-                                {inputedMilitary || 'No Military Status Provided.'}
-                            </Badge>
-                        }
+                        <p>DisabilitiesQuota2: </p>
+                        <span className="font-semibold">{inputedDisabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
                     </div>
 
                     <Separator />
+
                     <div className="flex gap-2">
-                        <p>Status: </p>
-                        {
-                            <Badge
-                                className={cn(
-                                    "w-fit",
-                                    inputedStatus ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                )}
-                            >
-                                {inputedStatus || "No Status Provided."}
-                            </Badge>
-                        }
+                        <p>OrphanQuota3: </p>
+                        <span className="font-semibold">{inputedOrphanQuota3 || "No OrphanQuota3 is Provided."}</span>
                     </div>
-                </div>} */}
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>GeneralCompetition1: </p>
+                        <span className="font-semibold">{inputedGeneralCompetition1 || "No GeneralCompetition1 is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>LargeFamiliesQuota2: </p>
+                        <span className="font-semibold">{inputedLargeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
+                    </div>
+                    <Separator />
 
 
-                {/* <div className="name-logo-description-university w-full grid gap-3">
 
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">RuralQuota1</h1>
-                        <Input onChange={handleRuralQuota1Change} type="text" placeholder="Enter University RuralQuota1 Info" />
+                    <div className="flex gap-2">
+                        <p>GeneralCompetition2: </p>
+                        <span className="font-semibold">{inputedGeneralCompetition2 || "No GeneralCompetition2 is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>GeneralCompetition3: </p>
+                        <span className="font-semibold">{inputedGeneralCompetition3 || "No GeneralCompetition3 is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>SpecialtyCode: </p>
+                        <span className="font-semibold">{inputedSpecialtyCode || "No SpecialtyCode is Provided."}</span>
                     </div>
 
-                </div> */}
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>DisabilitiesQuota1: </p>
+                        <span className="font-semibold">{inputedDisabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>AverageSalary: </p>
+                        <span className="font-semibold">{inputedAverageSalary || "No AverageSalary is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>Subjects: </p>
+                        <span className="font-semibold">{inputedSubjects || "No Subjects is Provided."}</span>
+                    </div>
+
+
+                    <Separator />
+
+
+
+                    {/* const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
+    const [inputedThreshold, setInputedThreshold] = React.useState("80");
+    const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
+    const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
+    const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
+    const [inputedUniversities, setInputedUniversities] = React.useState("astana");
+    const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
+    const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
+    const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high"); */}
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>LargeFamiliesQuota1: </p>
+                        <span className="font-semibold">{inputedLargeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>SpecialtyName: </p>
+                        <span className="font-semibold">{inputedSpecialtyName || "No SpecialtyName is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>DisabilitiesQuota3: </p>
+                        <span className="font-semibold">{inputedDisabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
+                    </div>
+
+                    <Separator />
+
+
+
+
+                    <div className="flex gap-2">
+                        <p>OrphanQuota1: </p>
+                        <span className="font-semibold">{inputedOrphanQuota1 || "No OrphanQuota1 is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>Universities: </p>
+                        <span className="font-semibold">{inputedUniversities || "No Universities is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>LargeFamiliesQuota3: </p>
+                        <span className="font-semibold">{inputedLargeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
+                    </div>
+
+
+
+
+                    <Separator />
+
+
+
+
+                    <div className="flex gap-2">
+                        <p>AvailableGrantCount: </p>
+                        <span className="font-semibold">{inputedAvailableGrantCount || "No AvailableGrantCount is Provided."}</span>
+                    </div>
+                    <Separator />
+
+                    <div className="flex gap-2">
+                        <p>DemandForSpecialty: </p>
+                        <span className="font-semibold">{inputedDemandForSpecialty || "No DemandForSpecialty is Provided."}</span>
+                    </div>
+                </div>}
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">RuralQuota1</h1>
-                        <Input onChange={handleRuralQuota1Change} type="text" placeholder="Enter University RuralQuota1 Info" />
+                        <Input onChange={handleRuralQuota1Change} type="text" placeholder="Enter Speciality RuralQuota1 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">RuralQuota2</h1>
-                        <Input onChange={handleRuralQuota2Change} type="text" placeholder="Enter University RuralQuota2 Info" />
+                        <Input onChange={handleRuralQuota2Change} type="text" placeholder="Enter Speciality RuralQuota2 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">RuralQuota3</h1>
-                        <Input onChange={handleRuralQuota3Change} type="text" placeholder="Enter University RuralQuota3 Info" />
+                        <Input onChange={handleRuralQuota3Change} type="text" placeholder="Enter Speciality RuralQuota3 Info" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Level</h1>
-                        <Input onChange={handleLevelChange} type="text" placeholder="Enter University Level Info" />
+                        <Input onChange={handleLevelChange} type="text" placeholder="Enter Speciality Level Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">OrphanQuota2</h1>
-                        <Input onChange={handleOrphanQuota2Change} type="text" placeholder="Enter University OrphanQuota2 Info" />
+                        <Input onChange={handleOrphanQuota2Change} type="text" placeholder="Enter Speciality OrphanQuota2 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">DisabilitiesQuota2</h1>
-                        <Input onChange={handleDisabilitiesQuota2Change} type="text" placeholder="Enter University DisabilitiesQuota2 Info" />
+                        <Input onChange={handleDisabilitiesQuota2Change} type="text" placeholder="Enter Speciality DisabilitiesQuota2 Info" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">OrphanQuota3</h1>
-                        <Input onChange={handleOrphanQuota3Change} type="text" placeholder="Enter University OrphanQuota3 Info" />
+                        <Input onChange={handleOrphanQuota3Change} type="text" placeholder="Enter Speciality OrphanQuota3 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">GeneralCompetition1</h1>
-                        <Input onChange={handleGeneralCompetition1Change} type="text" placeholder="Enter University GeneralCompetition1 Info" />
+                        <Input onChange={handleGeneralCompetition1Change} type="text" placeholder="Enter Speciality GeneralCompetition1 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">LargeFamiliesQuota2</h1>
-                        <Input onChange={handleLargeFamiliesQuota2Change} type="text" placeholder="Enter University LargeFamiliesQuota2 Info" />
+                        <Input onChange={handleLargeFamiliesQuota2Change} type="text" placeholder="Enter Speciality LargeFamiliesQuota2 Info" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">GeneralCompetition2</h1>
-                        <Input onChange={handleGeneralCompetition2Change} type="text" placeholder="Enter University GeneralCompetition2 Info" />
+                        <Input onChange={handleGeneralCompetition2Change} type="text" placeholder="Enter Speciality GeneralCompetition2 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">GeneralCompetition3</h1>
-                        <Input onChange={handleGeneralCompetition3Change} type="text" placeholder="Enter University GeneralCompetition3 Info" />
+                        <Input onChange={handleGeneralCompetition3Change} type="text" placeholder="Enter Speciality GeneralCompetition3 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">SpecialtyCode</h1>
-                        <Input onChange={handleSpecialtyCodeChange} type="text" placeholder="Enter University SpecialtyCode Info" />
+                        <Input onChange={handleSpecialtyCodeChange} type="text" placeholder="Enter Speciality SpecialtyCode Info" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">DisabilitiesQuota1</h1>
-                        <Input onChange={handleDisabilitiesQuota1Change} type="text" placeholder="Enter University DisabilitiesQuota1 Info" />
+                        <Input onChange={handleDisabilitiesQuota1Change} type="text" placeholder="Enter Speciality DisabilitiesQuota1 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">AverageSalary</h1>
-                        <Input onChange={handleAverageSalaryChange} type="text" placeholder="Enter University AverageSalary Info" />
+                        <Input onChange={handleAverageSalaryChange} type="text" placeholder="Enter Speciality AverageSalary Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
-                        <Input onChange={handleSubjectsChange} type="text" placeholder="Enter University Subjects Info" />
+                        <Input onChange={handleSubjectsChange} type="text" placeholder="Enter Speciality Subjects Info" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">LargeFamiliesQuota1</h1>
-                        <Input onChange={handleLargeFamiliesQuota1Change} type="text" placeholder="Enter University LargeFamiliesQuota1 Info" />
+                        <Input onChange={handleLargeFamiliesQuota1Change} type="text" placeholder="Enter Speciality LargeFamiliesQuota1 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Threshold</h1>
-                        <Input onChange={handleThresholdChange} type="text" placeholder="Enter University Threshold Info" />
+                        <Input onChange={handleThresholdChange} type="text" placeholder="Enter Speciality Threshold Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">SpecialtyName</h1>
-                        <Input onChange={handleSpecialtyNameChange} type="text" placeholder="Enter University SpecialtyName Info" />
+                        <Input onChange={handleSpecialtyNameChange} type="text" placeholder="Enter Speciality SpecialtyName Info" />
                     </div>
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">DisabilitiesQuota3</h1>
-                        <Input onChange={handleDisabilitiesQuota3Change} type="text" placeholder="Enter University DisabilitiesQuota3 Info" />
+                        <Input onChange={handleDisabilitiesQuota3Change} type="text" placeholder="Enter Speciality DisabilitiesQuota3 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">OrphanQuota1</h1>
-                        <Input onChange={handleOrphanQuota1Change} type="text" placeholder="Enter University OrphanQuota1 Info" />
+                        <Input onChange={handleOrphanQuota1Change} type="text" placeholder="Enter Speciality OrphanQuota1 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
-                        <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter University Universities Info" />
+                        <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter Speciality Universities Info" />
                     </div>
                 </div>
 
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">LargeFamiliesQuota3</h1>
-                        <Input onChange={handleLargeFamiliesQuota3Change} type="text" placeholder="Enter University LargeFamiliesQuota3 Info" />
+                        <Input onChange={handleLargeFamiliesQuota3Change} type="text" placeholder="Enter Speciality LargeFamiliesQuota3 Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">AvailableGrantCount</h1>
-                        <Input onChange={handleAvailableGrantCountChange} type="text" placeholder="Enter University AvailableGrantCount Info" />
+                        <Input onChange={handleAvailableGrantCountChange} type="text" placeholder="Enter Speciality AvailableGrantCount Info" />
                     </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">DemandForSpecialty</h1>
-                        <Input onChange={handleDemandForSpecialtyChange} type="text" placeholder="Enter University DemandForSpecialty Info" />
+                        <Input onChange={handleDemandForSpecialtyChange} type="text" placeholder="Enter Speciality DemandForSpecialty Info" />
                     </div>
                 </div>
 
@@ -780,9 +837,9 @@ export default function CreateSpeciality() {
                         // disabled={createButtonDisabled}
                         onClick={handleConfetti}
                     >
-                        {
+                        {/* {
                             createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        }
+                        } */}
                         Create
                     </AnimatedButton>
                 </div>

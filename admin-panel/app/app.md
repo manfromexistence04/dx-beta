@@ -2058,7 +2058,7 @@ function CheckIcon(props) {
 
 
 
-                
+
                     {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Facebook</h1>
                         <Input onChange={handleFacebookChange} type="text" placeholder="Enter University Facebook Link" />
@@ -2076,3 +2076,9 @@ function CheckIcon(props) {
                         <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
                     </div> */}
                     ```
+
+
+                        <div className="flex gap-2">
+                        <p>RuralQuota1: </p>
+                        <span className="font-semibold">{inputedRuralQuota1 || "No RuralQuota1 is Provided."}</span>
+                    </div>                

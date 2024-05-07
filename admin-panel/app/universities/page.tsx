@@ -1521,7 +1521,8 @@ const University = () => {
 
 
                               const updateRef = doc(db, "universities", items.id);
-                              const Update: any = await updateDoc(updateRef, {
+
+                              items.logo ? await updateDoc(updateRef, {
                                 address: stateValue || items.address,
                                 educationCost: inputedCost || items.educationCost,
                                 email: inputedEmail || items.email,
@@ -1537,8 +1538,25 @@ const University = () => {
                                 universityDescription: inputedDescription || items.universityDescription,
                                 universityName: inputedName || items.universityName,
                                 website: inputedWebsite || items.website,
-                                // logo: inputedLogo || items.logo
+                                logo: inputedLogo || items.logo
+                              }) : await updateDoc(updateRef, {
+                                address: stateValue || items.address,
+                                educationCost: inputedCost || items.educationCost,
+                                email: inputedEmail || items.email,
+                                facebook: inputedFacebook || items.facebook,
+                                hostel: inputedHostel || items.hostel,
+                                images: inputedImages || items.images,
+                                instagram: inputedInstragam || items.instagram,
+                                military: inputedMilitary || items.military,
+                                phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                region: countryValue || items.region,
+                                status: inputedStatus || items.status,
+                                universityCode: inputedCode || items.universityCode,
+                                universityDescription: inputedDescription || items.universityDescription,
+                                universityName: inputedName || items.universityName,
+                                website: inputedWebsite || items.website,
                               });
+
                               toast({
                                 title: 'University has been Updated Successfully.',
                                 description: (
