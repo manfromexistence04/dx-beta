@@ -15,7 +15,7 @@ const ExcalidrawWrapper: React.FC = () => {
           <WelcomeScreen.Center>
             <WelcomeScreen.Center.Logo>
               <Icons.logo className="h-6 w-6" />
-              <span>Archistructure Firm</span>
+              <span>Admin Panle For Nurzhol Tabigat, minialgo.kz</span>
 
             </WelcomeScreen.Center.Logo>
 
@@ -26,6 +26,13 @@ const ExcalidrawWrapper: React.FC = () => {
               <WelcomeScreen.Center.MenuItemLink href="https://www.upwork.com/freelancers/~01221bf135ed62b3b3">
                 Upwork
               </WelcomeScreen.Center.MenuItemLink>
+              <WelcomeScreen.Center.MenuItemLink href="https://www.youtube.com/channel/UCK0IEdLWxA2EFgucri7z4SA">
+                Youtube
+              </WelcomeScreen.Center.MenuItemLink>
+              <WelcomeScreen.Center.MenuItemLink href="https://discord.gg/62JDu4dY">
+                Discord
+              </WelcomeScreen.Center.MenuItemLink>
+          
               <WelcomeScreen.Center.MenuItemHelp />
             </WelcomeScreen.Center.Menu>
           </WelcomeScreen.Center>
