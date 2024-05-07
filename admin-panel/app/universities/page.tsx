@@ -478,6 +478,23 @@ const University = () => {
     };
     fetchDocs();
   }, []);
+  // const loadMore = async () => {
+  //   setLoading(true);
+  //   const q = query(
+  //     collection(db, "universities"),
+  //     startAfter(lastDoc),
+  //     limit(8)
+  //   );
+  //   const querySnapshot = await getDocs(q);
+  //   const newDocs = querySnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   }));
+  //   setDocs([...docs, ...newDocs]);
+  //   setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+  //   setLoading(false);
+  // };
+
   const loadMore = async () => {
     setLoading(true);
     const q = query(
@@ -486,6 +503,18 @@ const University = () => {
       limit(8)
     );
     const querySnapshot = await getDocs(q);
+    if (querySnapshot.docs.length === 0) {
+      toast({
+        title: 'There is no more data in the database.',
+        description: (
+          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+            <span>Please add more data to load more!</span>
+          </div>
+        ),
+      });
+      setLoading(false);
+      return;
+    }
     const newDocs = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -494,6 +523,7 @@ const University = () => {
     setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
     setLoading(false);
   };
+
   if (loading) {
     return <main className="w-full py-5 px-[5%] h-auto">
       <div className="flex items-center justify-between mb-6">
@@ -1514,7 +1544,7 @@ const University = () => {
                   await deleteDoc(doc(db, "universities", items.id));
                   const newDocs = docs.filter((item) => item.id !== items.id);
                   setDocs(newDocs);
-                }} variant="secondary">
+                }} variant="destructive">
                   Delete
                 </Button>
               </CardFooter>

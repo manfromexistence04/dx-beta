@@ -22,13 +22,13 @@ export function MainNav() {
       </Link>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
         <Link
-          href="/university"
+          href="/universities"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/university" ? "text-foreground" : "text-foreground/60"
+            pathname === "/universities" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          University
+          Universities
         </Link>
         <Link
           href="/specialities"

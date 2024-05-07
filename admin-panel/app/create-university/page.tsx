@@ -205,7 +205,7 @@ export default function CreateUniversity() {
 
             ),
         });
-        router.push('/university')
+        router.push('/universities')
 
     };
 
