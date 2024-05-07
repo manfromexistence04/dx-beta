@@ -217,6 +217,13 @@ function CheckIcon(props: any) {
 }
 
 const Question = () => {
+
+
+
+  const [inputedMainQuestion, setInputedMainQuestion] = React.useState("")
+  const [resultsTag, setResultslTag] = React.useState<any[]>([]);
+  const [answersTag, setAnswersTag] = React.useState<any[]>([]);
+
   const [docs, setDocs] = useState<any[]>([]);
   const [lastDoc, setLastDoc] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -280,6 +287,178 @@ const Question = () => {
   function showPhoneNumberDetails() {
     setPhoneNumberDetails(!phoneNumberDetails);
   }
+
+  const [inputedRuralQuota1, setInputedRuralQuota1] = React.useState("");
+  const [inputedRuralQuota2, setInputedRuralQuota2] = React.useState("");
+  const [inputedRuralQuota3, setInputedRuralQuota3] = React.useState("");
+  const [inputedLevel, setInputedLevel] = React.useState("");
+  const [inputedOrphanQuota2, setInputedOrphanQuota2] = React.useState("");
+  const [inputedDisabilitiesQuota2, setInputedDisabilitiesQuota2] = React.useState("");
+  const [inputedOrphanQuota3, setInputedOrphanQuota3] = React.useState("");
+  const [inputedGeneralCompetition1, setInputedGeneralCompetition1] = React.useState("");
+  const [inputedLargeFamiliesQuota2, setInputedLargeFamiliesQuota2] = React.useState("");
+  const [inputedGeneralCompetition2, setInputedGeneralCompetition2] = React.useState("");
+  const [inputedGeneralCompetition3, setInputedGeneralCompetition3] = React.useState("");
+  const [inputedSpecialtyCode, setInputedSpecialtyCode] = React.useState("");
+  const [inputedDisabilitiesQuota1, setInputedDisabilitiesQuota1] = React.useState("");
+  const [inputedAverageSalary, setInputedAverageSalary] = React.useState("");
+  const [inputedSubjects, setInputedSubjects] = React.useState("");
+  const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("");
+  const [inputedThreshold, setInputedThreshold] = React.useState("");
+  const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("");
+  const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
+  const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("");
+  const [inputedUniversities, setInputedUniversities] = React.useState("");
+  const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("");
+  const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("");
+  const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("");
+
+
+  const handleRuralQuota1Change = (event: any) => {
+    setInputedRuralQuota1(event.target.value);
+  }
+
+  const handleRuralQuota2Change = (event: any) => {
+    setInputedRuralQuota2(event.target.value);
+  }
+
+  const handleRuralQuota3Change = (event: any) => {
+    setInputedRuralQuota3(event.target.value);
+  }
+
+  const handleLevelChange = (event: any) => {
+    setInputedLevel(event.target.value);
+  }
+
+  const handleOrphanQuota2Change = (event: any) => {
+    setInputedOrphanQuota2(event.target.value);
+  }
+
+  const handleDisabilitiesQuota2Change = (event: any) => {
+    setInputedDisabilitiesQuota2(event.target.value);
+  }
+
+  const handleOrphanQuota3Change = (event: any) => {
+    setInputedOrphanQuota3(event.target.value);
+  }
+
+  const handleGeneralCompetition1Change = (event: any) => {
+    setInputedGeneralCompetition1(event.target.value);
+  }
+
+  const handleLargeFamiliesQuota2Change = (event: any) => {
+    setInputedLargeFamiliesQuota2(event.target.value);
+  }
+
+  const handleGeneralCompetition2Change = (event: any) => {
+    setInputedGeneralCompetition2(event.target.value);
+  }
+
+  const handleGeneralCompetition3Change = (event: any) => {
+    setInputedGeneralCompetition3(event.target.value);
+  }
+
+  const handleSpecialtyCodeChange = (event: any) => {
+    setInputedSpecialtyCode(event.target.value);
+  }
+
+  const handleDisabilitiesQuota1Change = (event: any) => {
+    setInputedDisabilitiesQuota1(event.target.value);
+  }
+
+  const handleAverageSalaryChange = (event: any) => {
+    setInputedAverageSalary(event.target.value);
+  }
+
+  const handleSubjectsChange = (event: any) => {
+    setInputedSubjects(event.target.value);
+  }
+
+  const handleLargeFamiliesQuota1Change = (event: any) => {
+    setInputedLargeFamiliesQuota1(event.target.value);
+  }
+
+  const handleThresholdChange = (event: any) => {
+    setInputedThreshold(event.target.value);
+  }
+
+  const handleSpecialtyNameChange = (event: any) => {
+    setInputedSpecialtyName(event.target.value);
+  }
+
+  const handleDisabilitiesQuota3Change = (event: any) => {
+    setInputedDisabilitiesQuota3(event.target.value);
+  }
+
+  const handleOrphanQuota1Change = (event: any) => {
+    setInputedOrphanQuota1(event.target.value);
+  }
+
+  const handleUniversitiesChange = (event: any) => {
+    setInputedUniversities(event.target.value);
+  }
+
+  const handleLargeFamiliesQuota3Change = (event: any) => {
+    setInputedLargeFamiliesQuota3(event.target.value);
+  }
+
+  const handleAvailableGrantCountChange = (event: any) => {
+    setInputedAvailableGrantCount(event.target.value);
+  }
+
+  const handleDemandForSpecialtyChange = (event: any) => {
+    setInputedDemandForSpecialty(event.target.value);
+  }
+
+
+  // const handleNameChange = (event: any) => {
+  //     setInputedName(event.target.value);
+  // }
+  // const handleEmailChange = (event: any) => {
+  //     setInputedEmail(event.target.value);
+  // }
+  // const handleStatusChange = (event: any) => {
+  //     setInputedStatus(event);
+  // }
+  // const handleFacebookChange = (event: any) => {
+  //     setInputedFacebook(event.target.value);
+  // }
+  // const handleInstagramChange = (event: any) => {
+  //     setInputedInstragam(event.target.value);
+  // }
+  // const handleCostChange = (event: any) => {
+  //     setInputedCost(event.target.value);
+  // }
+  // const handleWebsiteChange = (event: any) => {
+  //     setInputedWebsite(event.target.value);
+  // }
+  // const handleCodeChange = (event: any) => {
+  //     setInputedCode(event.target.value);
+  // }
+  // const handleHostelChange = (event: any) => {
+  //     setInputedHostel(event);
+  // }
+  // const handleMilitaryChange = (event: any) => {
+  //     setInputedMilitary(event);
+  // }
+  // const handleDescriptionChange = (event: any) => {
+  //     setInputedDescription(JSON.stringify(event));
+  // }
+  // const syncImagesAndLogo = () => {
+  //     const newArray2: any = uploadedImages.map((file) => file.url);
+  //     setInputedImages(newArray2);
+  //     uploadedLogo.map((file: any) => {
+  //         setInputedLogo(file.url);
+  //         return null;
+  //     })
+  //     setCreateButtonDisabled(!createButtonDisabled);
+  // }
+  // const handleInputedValues = () => {
+  //     setInputedValues(!inputedValues);
+  // }
+
+
+
   const [loadingMore, setLoadingMore] = React.useState(false)
   const [inputedName, setInputedName] = React.useState("")
   const [inputedEmail, setInputedEmail] = React.useState("")
@@ -342,6 +521,9 @@ const Question = () => {
   const handleInputedValues = () => {
     setInputedValues(!inputedValues);
   }
+  const handleMainQuestion = (event: any) => {
+    setInputedMainQuestion(event.target.value);
+  }
 
   // This page
   React.useEffect(() => {
@@ -367,22 +549,9 @@ const Question = () => {
       setDocs(newDocs);
       // Configuring Data for Update:
       docs.map((item: any) => {
-        setInputedAddress(item.address);
-        setInputedCost(item.educationCost);
-        setInputedEmail(item.email);
-        setInputedFacebook(item.facebook);
-        setInputedHostel(item.hostel);
-        setInputedImages(item.images);
-        setInputedInstragam(item.instagram);
-        setInputedMilitary(item.military);
-        setInputedPhoneNumber(item.phoneNumber);
-        setInputedRegion(item.region);
-        setInputedStatus(item.status);
-        setInputedCode(item.universityCode);
-        setInputedDescription(item.universityDescription);
-        setInputedName(item.universityName);
-        setInputedWebsite(item.website);
-        setInputedLogo(item.logo);
+        setInputedMainQuestion(item.mainQuestion);
+        setAnswersTag(item.answers);
+        setResultslTag(item.results);
       })
       setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
       setLoading(false);
@@ -548,45 +717,6 @@ const Question = () => {
                         </div>
                       </div>)
                     }
-
-
-
-                    {/* <div className="flex items-center justify-between rounded-lg border p-3">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Effectively communicate ideas, collaborate, and build relationships.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button size="icon" variant="ghost">
-                        <CheckIcon className="h-5 w-5" />
-                      </Button>
-                    </div>
-                  </div> */}
-                    {/* <div className="flex items-center justify-between rounded-lg border p-3">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Identify, analyze, and solve problems effectively.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button size="icon" variant="ghost">
-                        <CheckIcon className="h-5 w-5" />
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between rounded-lg border p-3">
-                    <div>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        The ability to quickly adjust to changing circumstances and learn new skills.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button size="icon" variant="ghost">
-                        <CheckIcon className="h-5 w-5" />
-                      </Button>
-                    </div>
-                  </div> */}
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col justify-start items-start gap-2">
@@ -597,7 +727,7 @@ const Question = () => {
                       {
                         items.results.map((index: any) => {
                           return (
-                              <Badge key={index} variant="outline" className="text-xs text-center">{index}</Badge>
+                            <Badge key={index} variant="outline" className="text-xs text-center">{index}</Badge>
                           )
                         })
                       }
@@ -619,21 +749,224 @@ const Question = () => {
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Answers: </p>
-                            <span className="font-semibold">{JSON.stringify(items.answers,null,2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Results: </p>
-                            <span className="font-semibold">{JSON.stringify(items.results,null,2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                         </div>
                       </DialogContent>
                     </Dialog>
 
                     <div className="flex gap-2">
-                      <Button size="sm" variant="secondary">
-                        Update
-                      </Button>
+                      <Sheet>
+                        <SheetTrigger asChild>
+                          <Button onClick={handleConfetti} variant="default">Update</Button>
+                        </SheetTrigger>
+                        <SheetContent side={"bottom"} className="h-[90vh] !max-w-[1600px] mx-auto rounded-xl">
+                          <ScrollArea className="h-full w-full rounded-md border">
+                            <div className="create-university min-h-[100vh] lg:flex lg:flex-col space-y-3 p-10 pt-3 !min-w-full lg:!min-w-[1500px]">
+                              <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
+                                <div className="w-full h-full flex items-start justify-start space-x-3">
+                                  <Link href="/read-university" className="z-50">
+                                    <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                      Back
+                                    </AnimatedButton>
+                                  </Link>
+                                  <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                    {inputedValues ? "Hide" : "Show"} Inputed Values
+                                  </AnimatedButton>
+                                </div>
+
+                                <div className="w-full h-full flex items-end justify-end space-x-3">
+                                  {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                                                                Sync Uploaded Files
+                                                            </AnimatedButton> */}
+                                  <Button
+                                    className="!py-0"
+                                    // disabled={createButtonDisabled}
+                                    onClick={async () => {
+                                      const { clientWidth, clientHeight } = document.documentElement;
+                                      const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+                                      const targetY = boundingBox?.y ?? 0;
+                                      const targetX = boundingBox?.x ?? 0;
+                                      const targetWidth = boundingBox?.width ?? 0;
+                                      const targetCenterX = targetX + targetWidth / 2;
+                                      const confetti = (await import("canvas-confetti")).default;
+                                      confetti({
+                                        zIndex: 999,
+                                        particleCount: 100,
+                                        spread: 70,
+                                        origin: {
+                                          y: targetY / clientHeight,
+                                          x: targetCenterX / clientWidth,
+                                        },
+                                      });
+
+
+                                      const updateRef = doc(db, "questions", items.id);
+                                      const Update: any = await updateDoc(updateRef, {
+                                        mainQuestion: inputedMainQuestion,
+                                        answers: answersTag.map(obj => obj.text),
+                                        results: resultsTag.map(obj => obj.text)
+                                      })
+
+
+
+
+
+                                      toast({
+                                        title: 'University has been Updated Successfully.',
+                                        description: (
+                                          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                                            <span>You Can now view and delete this university!</span>
+                                            <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
+                                              {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
+                                            </pre>
+                                          </div>
+                                        ),
+                                      });
+
+
+                                      // setSheetToggle(!sheetToggle)
+                                      // router.push('/specialities')
+                                      // setSheetToggle(true)
+
+                                      // console.log("Document written with ID: ", Update.id);
+                                      // const newDocs = docs.filter((item) => item.id !== items.id);
+                                      // setDocs(newDocs);
+                                      // fetchDocs()
+                                    }}
+                                  >
+                                    {/* {
+                                                                    createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                                } */}
+                                    Update
+                                  </Button>
+                                </div>
+                              </div>
+
+
+
+                              {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
+                                <div className="flex gap-2 p-3">
+                                  <p>MainQestion: </p>
+                                  <span className="font-semibold">{inputedMainQuestion || "No MainQestion is Provided."}</span>
+                                </div>
+                                <Separator />
+                                <div className="flex gap-2 p-3">
+                                  <p>Answers: </p>
+                                  <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Answers is Provided."}</span>
+                                </div>
+                                <Separator />
+                                <div className="flex gap-2 p-3">
+                                  <p>Results: </p>
+                                  <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Results is Provided."}</span>
+                                </div>
+                              </div>}
+
+                              <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                <h1 className="text-4xl font-bold w-full text-left">Answers</h1>
+                                <TagInput
+                                  placeholder="Enter Your Results"
+                                  tags={answersTag}
+                                  className="sm:min-w-[450px]"
+                                  setTags={(newTags) => {
+                                    setAnswersTag(newTags);
+                                  }}
+                                />
+                              </div>
+                              <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                <h1 className="text-4xl font-bold w-full text-left">Results</h1>
+                                <TagInput
+                                  placeholder="Enter Your Results"
+                                  tags={resultsTag}
+                                  className="sm:min-w-[450px]"
+                                  setTags={(newTags) => {
+                                    setResultslTag(newTags);
+                                  }}
+                                />
+                              </div>
+                              <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                <h1 className="text-4xl font-bold w-full text-left">MainQuestion</h1>
+                                <Input onChange={handleMainQuestion} type="text" placeholder="Enter MainQuestion" />
+                              </div>
+
+
+
+                              <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
+                                <Link href="/read-university" className="z-50 w-full">
+                                  <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
+                                    Back
+                                  </AnimatedButton>
+                                </Link>
+                                <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                                  {inputedValues ? "Hide" : "Show"} Inputed Values
+                                </AnimatedButton>
+                                {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                                                            Sync Uploaded Files
+                                                        </AnimatedButton> */}
+                                <AnimatedButton
+                                  className="!py-0 w-full"
+                                  // disabled={createButtonDisabled}
+                                  onClick={async () => {
+                                    const { clientWidth, clientHeight } = document.documentElement;
+                                    const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+                                    const targetY = boundingBox?.y ?? 0;
+                                    const targetX = boundingBox?.x ?? 0;
+                                    const targetWidth = boundingBox?.width ?? 0;
+                                    const targetCenterX = targetX + targetWidth / 2;
+                                    const confetti = (await import("canvas-confetti")).default;
+                                    confetti({
+                                      zIndex: 999,
+                                      particleCount: 100,
+                                      spread: 70,
+                                      origin: {
+                                        y: targetY / clientHeight,
+                                        x: targetCenterX / clientWidth,
+                                      },
+                                    });
+                                    const updateRef = doc(db, "questions", items.id);
+                                    const Update: any = await updateDoc(updateRef, {
+                                      mainQuestion: inputedMainQuestion,
+                                      answers: answersTag.map(obj => obj.text),
+                                      results: resultsTag.map(obj => obj.text)
+                                    })
+
+
+                                    toast({
+                                      title: 'University has been Updated Successfully.',
+                                      description: (
+                                        <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                                          <span>You Can now view and delete this university!</span>
+                                          <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
+                                            {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
+                                          </pre>
+                                        </div>
+                                      ),
+                                    });
+
+                                    // router.push('/specialities')
+                                    // setSheetToggle(true)
+
+                                    // setSheetToggle(!sheetToggle)
+                                    // router.push('/university')
+                                    // fetchDocs()
+                                  }}
+                                >
+                                  {/* {
+                                                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                            } */}
+                                  Update
+                                </AnimatedButton>
+
+                              </div>
+                            </div>
+                          </ScrollArea>
+                        </SheetContent>
+                      </Sheet>
                       <Button onClick={async () => {
                         await deleteDoc(doc(db, "questions", items.id));
                         const newDocs = docs.filter((item) => item.id !== items.id);

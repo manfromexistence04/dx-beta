@@ -199,6 +199,12 @@ import { useRouter } from 'next/navigation'
 
 
 const Specialty = () => {
+
+
+
+    const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
+    const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
+
     const [docs, setDocs] = useState<any[]>([]);
     const [lastDoc, setLastDoc] = useState<any>(null);
     const [loading, setLoading] = useState(false);
@@ -300,7 +306,7 @@ const Specialty = () => {
     const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("");
     const [inputedThreshold, setInputedThreshold] = React.useState("");
     const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("");
-    const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
+    const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("");
     const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("");
     const [inputedUniversities, setInputedUniversities] = React.useState("");
     const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("");
@@ -1017,7 +1023,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                 <div className="create-university min-h-[100vh] lg:flex lg:flex-col space-y-3 p-10 pt-3 !min-w-full lg:!min-w-[1500px]">
                                                     <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                                                         <div className="w-full h-full flex items-start justify-start space-x-3">
-                                                            <Link href="/read-university" className="z-50">
+                                                            <Link href="/specialities" className="z-50">
                                                                 <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                                                     Back
                                                                 </AnimatedButton>
@@ -1068,18 +1074,18 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                         disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
                                                                         averageSalary: inputedAverageSalary || items.averageSalary,
-                                                                        subjects: inputedSubjects || items.subjects,
+                                                                        subjects: subjectsTag.map(obj => obj.text) || items.subjects,
                                                                         largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
                                                                         threshold: inputedThreshold || items.threshold,
                                                                         specialtyName: inputedSpecialtyName || items.specialtyName,
                                                                         disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
                                                                         ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
                                                                         orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
-                                                                        universities: inputedUniversities || items.universities,
+                                                                        universities: universitiesTag.map(obj => obj.text) || items.universities,
                                                                         largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                         availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                         demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-                                                                        
+    
     
                                                                     })
 
@@ -1401,6 +1407,30 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                         </div>
                                                     </div>}
 
+
+                                                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                        <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
+                                                        <TagInput
+                                                            placeholder="Enter Your Results"
+                                                            tags={subjectsTag}
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setSubjectsTag(newTags);
+                                                            }}
+                                                        />
+                                                    </div>
+
+                                                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                        <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
+                                                        <TagInput
+                                                            placeholder="Enter Your Results"
+                                                            tags={universitiesTag}
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setUniversitiesTag(newTags);
+                                                            }}
+                                                        />
+                                                    </div>
                                                     <div className="name-logo-description-university w-full grid gap-3">
                                                         <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                             <h1 className="text-4xl font-bold w-full text-left">RuralQuota1</h1>
@@ -1466,10 +1496,10 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             <h1 className="text-4xl font-bold w-full text-left">AverageSalary</h1>
                                                             <Input onChange={handleAverageSalaryChange} type="text" placeholder="Enter Speciality AverageSalary Info" />
                                                         </div>
-                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                        {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                             <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
                                                             <Input onChange={handleSubjectsChange} type="text" placeholder="Enter Speciality Subjects Info" />
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                     <div className="name-logo-description-university w-full grid gap-3">
                                                         <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -1494,10 +1524,10 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             <h1 className="text-4xl font-bold w-full text-left">OrphanQuota1</h1>
                                                             <Input onChange={handleOrphanQuota1Change} type="text" placeholder="Enter Speciality OrphanQuota1 Info" />
                                                         </div>
-                                                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                        {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                             <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
                                                             <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter Speciality Universities Info" />
-                                                        </div>
+                                                        </div> */}
                                                     </div>
 
                                                     <div className="name-logo-description-university w-full grid gap-3">
@@ -1521,7 +1551,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
 
                                                     <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
-                                                        <Link href="/read-university" className="z-50 w-full">
+                                                        <Link href="/specialities" className="z-50 w-full">
                                                             <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
                                                                 Back
                                                             </AnimatedButton>
@@ -1567,18 +1597,18 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                     specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                     disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
                                                                     averageSalary: inputedAverageSalary || items.averageSalary,
-                                                                    subjects: inputedSubjects || items.subjects,
+                                                                    subjects: subjectsTag.map(obj => obj.text) || items.subjects,
                                                                     largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
                                                                     threshold: inputedThreshold || items.threshold,
                                                                     specialtyName: inputedSpecialtyName || items.specialtyName,
                                                                     disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
                                                                     ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
                                                                     orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
-                                                                    universities: inputedUniversities || items.universities,
+                                                                    universities: universitiesTag.map(obj => obj.text) || items.universities,
                                                                     largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                     availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                     demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-                                                                    
+
 
                                                                 })
 

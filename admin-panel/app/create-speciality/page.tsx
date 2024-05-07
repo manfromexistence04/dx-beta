@@ -117,6 +117,12 @@ interface UploadedFilesCardProps {
 
 export default function CreateSpeciality() {
 
+
+
+
+    const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
+    const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
+
     const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
         "imageUploader",
         { defaultUploadedFiles: [] }
@@ -165,14 +171,14 @@ export default function CreateSpeciality() {
             specialtyCode: inputedSpecialtyCode,
             disabilitiesQuota1: inputedDisabilitiesQuota1,
             averageSalary: inputedAverageSalary,
-            subjects: inputedSubjects,
+            subjects: subjectsTag.map(obj => obj.text),
             largeFamiliesQuota1: inputedLargeFamiliesQuota1,
             threshold: inputedThreshold,
             specialtyName: inputedSpecialtyName,
             disabilitiesQuota3: inputedDisabilitiesQuota3,
             ruralQuota2: inputedRuralQuota2,
             orphanQuota1: inputedOrphanQuota1,
-            universities: inputedUniversities,
+            universities: universitiesTag.map(obj => obj.text),
             largeFamiliesQuota3: inputedLargeFamiliesQuota3,
             availableGrantCount: inputedAvailableGrantCount,
             demandForSpecialty: inputedDemandForSpecialty
@@ -467,20 +473,20 @@ export default function CreateSpeciality() {
     // const create = (event: any) => {
     //     // setInputedImages(event.target.value);
     // }
-    const syncImagesAndLogo = () => {
-        // uploadedImages.map((file: any) => {
-        //     setInputedImages(file.url);
-        //     return null;
-        // })
-        const newArray2: any = uploadedImages.map((file) => file.url);
-        setInputedImages(newArray2);
+    // const syncImagesAndLogo = () => {
+    //     // uploadedImages.map((file: any) => {
+    //     //     setInputedImages(file.url);
+    //     //     return null;
+    //     // })
+    //     const newArray2: any = uploadedImages.map((file) => file.url);
+    //     setInputedImages(newArray2);
 
-        uploadedLogo.map((file: any) => {
-            setInputedLogo(file.url);
-            return null;
-        })
-        setCreateButtonDisabled(!createButtonDisabled);
-    }
+    //     uploadedLogo.map((file: any) => {
+    //         setInputedLogo(file.url);
+    //         return null;
+    //     })
+    //     setCreateButtonDisabled(!createButtonDisabled);
+    // }
     const handleInputedValues = () => {
         setInputedValues(!inputedValues);
     }
@@ -695,6 +701,32 @@ export default function CreateSpeciality() {
                         <span className="font-semibold">{inputedDemandForSpecialty || "No DemandForSpecialty is Provided."}</span>
                     </div>
                 </div>}
+
+
+                <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
+                    <TagInput
+                        placeholder="Enter Your Results"
+                        tags={subjectsTag}
+                        className="sm:min-w-[450px]"
+                        setTags={(newTags) => {
+                            setSubjectsTag(newTags);
+                        }}
+                    />
+                </div>
+
+                <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
+                    <TagInput
+                        placeholder="Enter Your Results"
+                        tags={universitiesTag}
+                        className="sm:min-w-[450px]"
+                        setTags={(newTags) => {
+                            setUniversitiesTag(newTags);
+                        }}
+                    />
+                </div>
+
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">RuralQuota1</h1>
@@ -760,10 +792,11 @@ export default function CreateSpeciality() {
                         <h1 className="text-4xl font-bold w-full text-left">AverageSalary</h1>
                         <Input onChange={handleAverageSalaryChange} type="text" placeholder="Enter Speciality AverageSalary Info" />
                     </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
                         <Input onChange={handleSubjectsChange} type="text" placeholder="Enter Speciality Subjects Info" />
-                    </div>
+                    </div> */}
+
                 </div>
                 <div className="name-logo-description-university w-full grid gap-3">
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -788,10 +821,11 @@ export default function CreateSpeciality() {
                         <h1 className="text-4xl font-bold w-full text-left">OrphanQuota1</h1>
                         <Input onChange={handleOrphanQuota1Change} type="text" placeholder="Enter Speciality OrphanQuota1 Info" />
                     </div>
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
                         <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter Speciality Universities Info" />
-                    </div>
+                    </div> */}
+
                 </div>
 
                 <div className="name-logo-description-university w-full grid gap-3">
@@ -829,9 +863,9 @@ export default function CreateSpeciality() {
                     <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
                         {inputedValues ? "Hide" : "Show"} Inputed Values
                     </AnimatedButton>
-                    <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                    {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
                         Sync Uploaded Files
-                    </AnimatedButton>
+                    </AnimatedButton> */}
                     <AnimatedButton
                         className="!py-0 w-full"
                         // disabled={createButtonDisabled}
