@@ -1529,3 +1529,178 @@ function CheckIcon(props) {
   )
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+                    // <div key={items.id}>
+
+                    //     <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
+                    //         <CardHeader>
+                    //             <CardTitle>Computer Science</CardTitle>
+                    //             <CardDescription>Bachelor's Degree</CardDescription>
+                    //         </CardHeader>
+                    //         <CardContent className="grid gap-4">
+                    //             <div className="flex items-center justify-between">
+                    //                 <span className="text-gray-500 dark:text-gray-400">Demand:</span>
+                    //                 <span className="font-medium">High</span>
+                    //             </div>
+                    //             <div className="flex items-center justify-between">
+                    //                 <span className="text-gray-500 dark:text-gray-400">Average Salary:</span>
+                    //                 <span className="font-medium">$85,000</span>
+                    //             </div>
+                    //             <div className="flex items-center justify-between">
+                    //                 <span className="text-gray-500 dark:text-gray-400">Specialty Code:</span>
+                    //                 <span className="font-medium">CS101</span>
+                    //             </div>
+                    //         </CardContent>
+                    //         <CardFooter className="flex justify-between">
+
+
+                    //             <Dialog>
+                    //                 <DialogTrigger asChild>
+                    //                     <Button size="sm" variant="outline">
+                    //                         View
+                    //                     </Button>
+                    //                 </DialogTrigger>
+                    //                 <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
+                    //                     <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
+                    //                         <div className="flex gap-2">
+                    //                             <p>Name: </p>
+                    //                             <span className="font-semibold">{items.universityName || "No Name is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Email: </p>
+                    //                             <span className="font-semibold">{items.email || "No Email is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Facebook: </p>
+                    //                             <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Instagram: </p>
+                    //                             <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Education Cost: </p>
+                    //                             <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Website: </p>
+                    //                             <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>University Code: </p>
+                    //                             <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Phone Number: </p>
+                    //                             <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Logo: </p>
+                    //                             <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Address: </p>
+                    //                             <span className="font-semibold">{items.address || "No Address is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Region: </p>
+                    //                             <span className="font-semibold">{items.region || "No Region is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Description: </p>
+                    //                             <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Images: </p>
+                    //                             <span className="font-semibold">{`[
+                    //           "${items.images}"
+                    //           ]` || "No Images are Provided."}</span>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Hostel: </p>
+                    //                             <Badge
+                    //                                 className={cn(
+                    //                                     "w-fit text-center",
+                    //                                     items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                    //                                 )}
+                    //                             >
+                    //                                 {items.hostel || "No Hostel Information Provided."}
+                    //                             </Badge>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Military: </p>
+                    //                             <Badge
+                    //                                 className={cn(
+                    //                                     "w-fit",
+                    //                                     items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                    //                                 )}
+                    //                             >
+                    //                                 {items.military || 'No Military Status Provided.'}
+                    //                             </Badge>
+                    //                         </div>
+                    //                         <Separator />
+                    //                         <div className="flex gap-2">
+                    //                             <p>Status: </p>
+                    //                             <Badge
+                    //                                 className={cn(
+                    //                                     "w-fit",
+                    //                                     items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                    //                                 )}
+                    //                             >
+                    //                                 {items.status || "No Status Provided."}
+                    //                             </Badge>
+                    //                         </div>
+                    //                     </div>
+
+                    //                 </DialogContent>
+                    //             </Dialog>
+
+
+                    //             <div className="flex gap-2">
+                    //                 <Button size="sm" variant="secondary">
+                    //                     Update
+                    //                 </Button>
+                    //                 <Button onClick={async () => {
+                    //                     await deleteDoc(doc(db, "specialtities", items.id));
+                    //                     const newDocs = docs.filter((item) => item.id !== items.id);
+                    //                     setDocs(newDocs);
+                    //                 }} size="sm" variant="destructive">
+                    //                     Delete
+                    //                 </Button>
+                    //             </div>
+                    //         </CardFooter>
+                    //     </Card>
+
+                    // </div>
+                    ```

@@ -498,16 +498,16 @@ const Question = () => {
   return (
     <main className="w-full py-5 px-[5%] h-auto mb-10">
       <div className="flex items-center justify-between mb-6">
-        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Specialties</span>
+        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Questions</span>
         <Link href="/create-university">
-          <Button size="sm">Add New Specialty</Button>
+          <Button size="sm">Add New Question</Button>
         </Link>
       </div>
       <div className="admin-panel-lists place-content-center">
         {docs.map((items) => (
           <div key={items.id}>
 
-            <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
+            {/* <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
               <CardHeader>
                 <CardTitle>What's the most important skill?</CardTitle>
               </CardHeader>
@@ -565,13 +565,23 @@ const Question = () => {
                     <Button size="sm" variant="secondary">
                       Update
                     </Button>
-                    <Button className="" size="sm" variant="destructive">
+                    <Button onClick={async () => {
+                      await deleteDoc(doc(db, "questions", items.id));
+                      const newDocs = docs.filter((item) => item.id !== items.id);
+                      setDocs(newDocs);
+                    }} size="sm" variant="destructive">
                       Delete
                     </Button>
                   </div>
                 </div>
               </CardFooter>
-            </Card>
+            </Card> */}
+            {Object.keys(items).map((key) => (
+              <li key={key}>
+                <strong>{key}:</strong> {items[key]}
+              </li>
+            ))}
+
           </div>
         ))}
       </div>
