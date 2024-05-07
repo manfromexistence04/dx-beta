@@ -321,7 +321,7 @@ export default function CreateUniversity() {
         setInputedMilitary(event);
     }
     const handleDescriptionChange = (event: any) => {
-        setInputedDescription(event.target.value);
+        setInputedDesciption(event.target.value);
       }
 
     const imagesChange = () => {
