@@ -380,7 +380,7 @@ const University = () => {
     setInputedMilitary(event);
   }
   const handleDescriptionChange = (event: any) => {
-    setInputedDescription(JSON.stringify(event));
+    setInputedDescription(event.target.value);
   }
   // const create = (event: any) => {
   //     // setInputedImages(event.target.value);
@@ -429,7 +429,37 @@ const University = () => {
   //   },
   // ];
 
-
+  const fetchDocs = async () => {
+    setLoading(true);
+    const q = query(collection(db, "universities"), limit(8));
+    const querySnapshot = await getDocs(q);
+    const newDocs = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setDocs(newDocs);
+    // Configuring Data for Update:
+    docs.map((item: any) => {
+      setInputedAddress(item.address);
+      setInputedCost(item.educationCost);
+      setInputedEmail(item.email);
+      setInputedFacebook(item.facebook);
+      setInputedHostel(item.hostel);
+      setInputedImages(item.images);
+      setInputedInstragam(item.instagram);
+      setInputedMilitary(item.military);
+      setInputedPhoneNumber(item.phoneNumber);
+      setInputedRegion(item.region);
+      setInputedStatus(item.status);
+      setInputedCode(item.universityCode);
+      setInputedDescription(item.universityDescription);
+      setInputedName(item.universityName);
+      setInputedWebsite(item.website);
+      setInputedLogo(item.logo);
+    })
+    setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    setLoading(false);
+  };
 
   // This page
   React.useEffect(() => {
@@ -872,7 +902,7 @@ const University = () => {
                   </SheetTrigger>
                   <SheetContent side={"bottom"} className="h-[90vh] !max-w-[1600px] mx-auto rounded-xl">
                     <ScrollArea className="h-full w-full rounded-md border">
-                      <div className="create-university min-h-[100vh] lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 p-10 pt-3 w-full mx-auto">
+                      <div className="create-university min-h-[100vh] lg:flex lg:flex-col space-y-3 p-10 pt-3 !min-w-full lg:!min-w-[1500px]">
                         <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                           <div className="w-full h-full flex items-start justify-start space-x-3">
                             <Link href="/read-university" className="z-50">
@@ -943,12 +973,12 @@ const University = () => {
                                 });
 
 
-                                setSheetToggle(!sheetToggle)
-                                router.push('/university')
-
+                                // setSheetToggle(!sheetToggle)
+                                // router.push('/universities')
                                 // console.log("Document written with ID: ", Update.id);
                                 // const newDocs = docs.filter((item) => item.id !== items.id);
                                 // setDocs(newDocs);
+                                fetchDocs()
                               }}
                             >
                               {
@@ -1282,7 +1312,7 @@ const University = () => {
                         </div>}
                         <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                           <h1 className="text-4xl font-bold w-full text-left pl-4">Description</h1>
-                          <div className="w-full h-full border-t">
+                          {/* <div className="w-full h-full border-t">
                             <DndProvider backend={HTML5Backend}>
                               <CommentsProvider users={commentsUsers} myUserId={myUserId}>
                                 <Plate plugins={plugins} initialValue={initialValue} onChange={handleDescriptionChange}>
@@ -1315,8 +1345,8 @@ const University = () => {
                                 </Plate>
                               </CommentsProvider>
                             </DndProvider>
-                          </div>
-                          {/* <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." /> */}
+                          </div> */}
+                          <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." />
                         </div>
                         <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
                           <div className="w-full h-full flex flex-col space-y-4">
@@ -1522,9 +1552,9 @@ const University = () => {
                               });
 
 
-                              setSheetToggle(!sheetToggle)
-                              router.push('/university')
-
+                              // setSheetToggle(!sheetToggle)
+                              // router.push('/university')
+                              fetchDocs()
                             }}
                           >
                             {
@@ -1544,7 +1574,7 @@ const University = () => {
                   await deleteDoc(doc(db, "universities", items.id));
                   const newDocs = docs.filter((item) => item.id !== items.id);
                   setDocs(newDocs);
-                }} variant="destructive">
+                }} className="bg-red-500 text-white hover:bg-red-600" variant="destructive">
                   Delete
                 </Button>
               </CardFooter>

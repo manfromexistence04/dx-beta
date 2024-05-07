@@ -569,7 +569,7 @@ const Question = () => {
                       await deleteDoc(doc(db, "questions", items.id));
                       const newDocs = docs.filter((item) => item.id !== items.id);
                       setDocs(newDocs);
-                    }} size="sm" variant="destructive">
+                    }} className="bg-red-500 text-white hover:bg-red-600" size="sm" variant="destructive">
                       Delete
                     </Button>
                   </div>

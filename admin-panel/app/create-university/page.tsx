@@ -320,10 +320,9 @@ export default function CreateUniversity() {
     const handleMilitaryChange = (event: any) => {
         setInputedMilitary(event);
     }
-
     const handleDescriptionChange = (event: any) => {
-        setInputedDesciption(JSON.stringify(event));
-    }
+        setInputedDescription(event.target.value);
+      }
 
     const imagesChange = () => {
         setInputedDesciption(JSON.stringify(event));
@@ -712,7 +711,7 @@ export default function CreateUniversity() {
                 </div>}
                 <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                     <h1 className="text-4xl font-bold w-full text-left pl-4">Description</h1>
-                    <div className="w-full h-full border-t">
+                    {/* <div className="w-full h-full border-t">
                         <DndProvider backend={HTML5Backend}>
                             <CommentsProvider users={commentsUsers} myUserId={myUserId}>
                                 <Plate plugins={plugins} initialValue={initialValue} onChange={handleDescriptionChange}>
@@ -745,7 +744,9 @@ export default function CreateUniversity() {
                                 </Plate>
                             </CommentsProvider>
                         </DndProvider>
-                    </div>
+                    </div> */}
+                          <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." />
+
                 </div>
                 <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
                     {/* <Shell>
