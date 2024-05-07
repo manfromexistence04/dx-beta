@@ -32,7 +32,7 @@ Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.
 # Project Description: Web App Development for Android App
 
 ## Overview
-Shoccho Sthapona, the client behind **minialgo.kz**, seeks to enhance their existing Android app by creating a complementary web app. The goal is to provide users with a seamless experience across both platforms. The project involves building a front-end web app and an admin panel that manages universities, specialties, and testing questions.
+Nurzhol Tabigat, the client behind **minialgo.kz**, seeks to enhance their existing Android app by creating a complementary web app. The goal is to provide users with a seamless experience across both platforms. The project involves building a front-end web app and an admin panel that manages universities, specialties, and testing questions.
 
   <a href="https://dx.vercel.app">
     <img src="logo-big.png" height="450">

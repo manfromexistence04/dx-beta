@@ -280,6 +280,7 @@ const Question = () => {
   function showPhoneNumberDetails() {
     setPhoneNumberDetails(!phoneNumberDetails);
   }
+  const [loadingMore, setLoadingMore] = React.useState(false)
   const [inputedName, setInputedName] = React.useState("")
   const [inputedEmail, setInputedEmail] = React.useState("")
   const [inputedStatus, setInputedStatus] = React.useState("")
@@ -391,6 +392,7 @@ const Question = () => {
 
   const loadMore = async () => {
     setLoading(true);
+
     const q = query(
       collection(db, "questions"),
       startAfter(lastDoc),
@@ -481,9 +483,6 @@ const Question = () => {
             <Skeleton className="h-7 w-full" />
           </div>
         </div>
-
-
-
       </div>
     </main>;
   }
@@ -496,24 +495,52 @@ const Question = () => {
   }
 
   return (
-    <main className="w-full py-5 px-[5%] h-auto mb-10">
-      <div className="flex items-center justify-between mb-6">
-        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Questions</span>
-        <Link href="/create-university">
-          <Button size="sm">Add New Question</Button>
-        </Link>
-      </div>
-      <div className="admin-panel-lists place-content-center">
-        {docs.map((items) => (
-          <div key={items.id}>
 
-            {/* <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
-              <CardHeader>
-                <CardTitle>What's the most important skill?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-4">
-                  <div className="flex items-center justify-between rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
+    <div>
+      <main className="w-full py-5 px-[5%] h-auto pb-7 min-h-[90vh]">
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Questions</span>
+          <Link href="/create-university">
+            <Button size="sm">Add New Question</Button>
+          </Link>
+        </div>
+        <div className="admin-panel-lists place-content-center">
+          {docs.map((items) => (
+            <div key={items.id}>
+
+              <Card className="hover-glow-border w-full relative bg-primary-foreground">
+                <CardHeader>
+                  <CardTitle>{items.mainQuestion}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-4">
+
+                    {
+                      items.answers.length > 0 ? (<div className="space-y-3">
+                        {
+                          items.answers.map((index: any) => {
+                            return (
+                              <div key={index} className="flex items-center justify-between rounded-lg border p-3">
+                                <div>
+                                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    {index}
+                                  </p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Button size="icon" variant="ghost">
+                                    <CheckIcon className="h-5 w-5" />
+                                  </Button>
+                                </div>
+                              </div>
+                            )
+                          })
+                        }
+                      </div>) : "No Answers Are Provided."
+                    }
+
+
+
+                    {/* <div className="flex items-center justify-between rounded-lg border p-3">
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         Effectively communicate ideas, collaborate, and build relationships.
@@ -524,8 +551,8 @@ const Question = () => {
                         <CheckIcon className="h-5 w-5" />
                       </Button>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-between rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
+                  </div> */}
+                    {/* <div className="flex items-center justify-between rounded-lg border p-3">
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         Identify, analyze, and solve problems effectively.
@@ -537,7 +564,7 @@ const Question = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
+                  <div className="flex items-center justify-between rounded-lg border p-3">
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         The ability to quickly adjust to changing circumstances and learn new skills.
@@ -548,47 +575,54 @@ const Question = () => {
                         <CheckIcon className="h-5 w-5" />
                       </Button>
                     </div>
+                  </div> */}
                   </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex flex-col justify-start items-start gap-2">
-                <div className="flex items-center gap-2 w-full">
-                  <Badge variant="outline">Communication</Badge>
-                  <Badge variant="outline">Problem-Solving</Badge>
-                  <Badge variant="outline">Adaptability</Badge>
-                </div>
-                <div className="flex gap-2 w-full justify-between mt-3">
-                  <Button size="sm" variant="outline">
-                    View
-                  </Button>
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="secondary">
-                      Update
-                    </Button>
-                    <Button onClick={async () => {
-                      await deleteDoc(doc(db, "questions", items.id));
-                      const newDocs = docs.filter((item) => item.id !== items.id);
-                      setDocs(newDocs);
-                    }} className="bg-red-500 text-white hover:bg-red-600" size="sm" variant="destructive">
-                      Delete
-                    </Button>
+                </CardContent>
+                <CardFooter className="flex flex-col justify-start items-start gap-2">
+                  <div className="flex items-center gap-2 w-full">
+                    <Badge variant="outline">Communication</Badge>
+                    <Badge variant="outline">Problem-Solving</Badge>
+                    <Badge variant="outline">Adaptability</Badge>
                   </div>
-                </div>
-              </CardFooter>
-            </Card> */}
-            {Object.keys(items).map((key) => (
+                  <div className="flex gap-2 w-full justify-between mt-3">
+                    <Button size="sm" variant="outline">
+                      View
+                    </Button>
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="secondary">
+                        Update
+                      </Button>
+                      <Button onClick={async () => {
+                        await deleteDoc(doc(db, "questions", items.id));
+                        const newDocs = docs.filter((item) => item.id !== items.id);
+                        setDocs(newDocs);
+                      }} className="bg-red-500 text-white hover:bg-red-600" size="sm" variant="destructive">
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                </CardFooter>
+              </Card>
+              {/* {Object.keys(items).map((key) => (
               <li key={key}>
                 <strong>{key}:</strong> {items[key]}
               </li>
-            ))}
+            ))} */}
 
-          </div>
-        ))}
-      </div>
-      <Button variant={'outline'} className="w-full mt-5" onClick={loadMore} disabled={loading}>
-        Load More
-      </Button>
-    </main>
+            </div>
+          ))}
+        </div>
+
+        <Button variant={'outline'} className="w-full mt-7" onClick={loadMore} disabled={loading}>
+          {
+            loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          }
+          Load More
+        </Button>
+      </main>
+
+    </div>
+
   );
 };
 export default Question;

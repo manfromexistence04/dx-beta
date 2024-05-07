@@ -18,7 +18,7 @@ export default function Blockquote() {
   const ref = React.useRef(null);
   const isInView = useInView(ref);
 
-  const wordsfade = "Architecture Firm";
+  const wordsfade = "Admin Panel";
   const lettersfade = wordsfade.split("");
   return (
     <div className="relative mx-auto lg:mx-0">

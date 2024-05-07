@@ -98,7 +98,7 @@ export default function MainNav() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
-            <DropdownMenuLabel>Shoccho Sthapona</DropdownMenuLabel>
+            <DropdownMenuLabel>Nurzhol Tabigat</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Switch Account</DropdownMenuItem>
             <DropdownMenuItem>View Database</DropdownMenuItem>

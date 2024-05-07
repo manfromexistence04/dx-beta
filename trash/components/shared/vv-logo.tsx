@@ -33,7 +33,7 @@ export default function VVLogo() {
                 src="/logo.png"
                 width="25"
               />
-            Architecture Firm 
+            Admin Panel 
           </Button>
         </Link>
       </HoverCardTrigger>

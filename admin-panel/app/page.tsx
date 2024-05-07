@@ -5,15 +5,15 @@ import Features from "@/components/landing/features";
 import Blockquote from "@/components/landing/blockquote";
 import Info from "@/components/landing/info";
 import WebsiteTab from "@/components/tab";
-import {useRef} from "react";
-import {Button} from "@nextui-org/react";
+import { useRef } from "react";
+import { Button } from "@nextui-org/react";
 
 
 const CustomButton = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const handleConfetti = async () => {
-    const {clientWidth, clientHeight} = document.documentElement;
+    const { clientWidth, clientHeight } = document.documentElement;
     const boundingBox = buttonRef.current?.getBoundingClientRect?.();
 
     const targetY = boundingBox?.y ?? 0;
@@ -69,7 +69,7 @@ export default function Home() {
             </div>
 
             {/* <CustomButton /> */}
-            
+
             <div className="py-12 sm:py-0">
               <IntroText />
             </div>

@@ -23,7 +23,7 @@ export default function Component() {
               <h1 className="text-2xl font-bold">Contract</h1>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-muted-foreground  font-medium">Shoccho Sthapona</span>
+              <span className="text-muted-foreground  font-medium">Nurzhol Tabigat</span>
               <MountainIcon className="h-6 w-6 text-muted-foreground " />
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function Component() {
               <h2 className="text-lg font-semibold mb-4">Terms and Conditions</h2>
               <div className="space-y-4">
                 <p>
-                  I, Shoccho Sthapona, the owner of Shoccho Sthapona Architecture Firm, hereby agree to the terms and
+                  I, Nurzhol Tabigat, the owner of Nurzhol Tabigat Admin Panel, hereby agree to the terms and
                   conditions of this contract.
                 </p>
                 <div className="flex items-center space-x-2">

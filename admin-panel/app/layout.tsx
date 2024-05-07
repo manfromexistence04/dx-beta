@@ -16,7 +16,7 @@ import { SiteHeader } from "@/components/site-header";
 const inter = Inter({ subsets: ["latin"] });
 
 const title =
-  "Architecture Firm";
+  "Admin Panel";
 const description =
   "This is a highly cutomizable admin panel.";
 

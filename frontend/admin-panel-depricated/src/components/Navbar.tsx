@@ -208,7 +208,7 @@ export default function Navbar() {
                 alt="Product image"
                 className="aspect-square rounded-full object-cover"
                 height="35"
-                src="/Shoccho Sthapona.jpg"
+                src="/Nurzhol Tabigat.jpg"
                 width="35"
               />
               <span className="sr-only">Toggle user menu</span>
