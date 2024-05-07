@@ -2,16 +2,25 @@
 
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
+// const firebaseConfig = {
+//     apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
+//     authDomain: "ustudy-70041.firebaseapp.com",
+//     projectId: "ustudy-70041",
+//     storageBucket: "ustudy-70041.appspot.com",
+//     messagingSenderId: "209553469910",
+//     appId: "1:209553469910:web:5787a019905baf47c73477",
+//     measurementId: "G-NNPVVRK9VK"
+// };
 const firebaseConfig = {
-    apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
-    authDomain: "ustudy-70041.firebaseapp.com",
-    projectId: "ustudy-70041",
-    storageBucket: "ustudy-70041.appspot.com",
-    messagingSenderId: "209553469910",
-    appId: "1:209553469910:web:5787a019905baf47c73477",
-    measurementId: "G-NNPVVRK9VK"
-};
+    apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+    authDomain: "ustudy-96678.firebaseapp.com",
+    projectId: "ustudy-96678",
+    storageBucket: "ustudy-96678.appspot.com",
+    messagingSenderId: "581632635532",
+    appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
+  };
 
+  
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Database
@@ -196,7 +205,7 @@ export default function CreateUniversity() {
 
             ),
         });
-        router.push('/portfolio')
+        router.push('/university')
 
     };
 

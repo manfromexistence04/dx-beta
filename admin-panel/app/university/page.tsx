@@ -4,15 +4,26 @@ import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect, useRef } from "react";
 import { limit, query, onSnapshot } from "firebase/firestore";
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
+//   authDomain: "ustudy-70041.firebaseapp.com",
+//   projectId: "ustudy-70041",
+//   storageBucket: "ustudy-70041.appspot.com",
+//   messagingSenderId: "209553469910",
+//   appId: "1:209553469910:web:5787a019905baf47c73477",
+//   measurementId: "G-NNPVVRK9VK"
+// };
 const firebaseConfig = {
-  apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
-  authDomain: "ustudy-70041.firebaseapp.com",
-  projectId: "ustudy-70041",
-  storageBucket: "ustudy-70041.appspot.com",
-  messagingSenderId: "209553469910",
-  appId: "1:209553469910:web:5787a019905baf47c73477",
-  measurementId: "G-NNPVVRK9VK"
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
 };
+
+
+
 // Iniialize Firebase
 const app = initializeApp(firebaseConfig);
 // Database
@@ -369,7 +380,7 @@ const University = () => {
     setInputedMilitary(event);
   }
   const handleDescriptionChange = (event: any) => {
-    setInputedDescription(JSON.stringify(event));
+    setInputedDescription(event);
   }
   // const create = (event: any) => {
   //     // setInputedImages(event.target.value);
@@ -486,7 +497,7 @@ const University = () => {
   if (loading) {
     return <main className="w-full py-5 px-[5%] h-auto">
       <div className="flex items-center justify-between mb-6">
-        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Portflios</span>
+        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Universities</span>
       </div>
       <div className="admin-panel-lists-loading place-content-center">
         <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
@@ -564,15 +575,14 @@ const University = () => {
   return (
     <main className="w-full py-5 px-[5%] h-auto mb-10">
       <div className="flex items-center justify-between mb-6">
-        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Portflios</span>
+        <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Universities</span>
         <Link href="/create-university">
-          <Button size="sm">Add New Portflio</Button>
+          <Button size="sm">Add New University</Button>
         </Link>
       </div>
       <div className="admin-panel-lists place-content-center">
         {docs.map((items) => (
           <div key={items.id}>
-            {/* {doc.id} */}
             <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
               <div className="w-full flex flex-col items-center justify-center relative">
                 <Carousel
@@ -583,7 +593,7 @@ const University = () => {
                   onMouseLeave={plugin.current.reset}
                 >
                   <CarouselContent>
-                    {items.images.map((index: any) => (
+                    {items.images && items.images.map((index: any) => (
                       <CarouselItem key={index}>
                         <div>
                           <Card>
@@ -605,13 +615,35 @@ const University = () => {
                     ))}
 
 
+                    {items.image && Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                              <AspectRatio ratio={16 / 9} className="">
+                                <Image
+                                  src={items.image || "/placeholder.svg"}
+                                  alt="Images"
+                                  fill
+                                  sizes="(min-width: 250px) 300px, 100vw"
+                                  loading="lazy"
+                                  className="rounded-md object-cover"
+                                />
+                              </AspectRatio>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+
+
                     {/* {items.images.map((item,index) => (
                       <span key={index} className="w-full h-full">{item.index}</span>
                     ))} */}
 
 
 
-                    {items.images}
+                    {/* {items.images} */}
 
 
 
@@ -675,19 +707,19 @@ const University = () => {
                   )
                 })
                 } */}
-                {/* <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription}</p> */}
+                <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription}</p>
 
 
 
 
-
+                {/* 
                 {typeof items.universityDescription === "object" ? JSON.parse(items.universityDescription).map((item: any) => (
                   <div key={item.id}>
                     {item.children.map((child: any) => (
                       <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground" key={child.text}>{child.text}</p>
                     ))}
                   </div>
-                )) : <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription || "No Description Provided for this university."}</p>}
+                )) : <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{items.universityDescription || "No Description Provided for this university."}</p>} */}
 
 
 
@@ -870,7 +902,7 @@ const University = () => {
                                   universityDescription: inputedDescription || items.universityDescription,
                                   universityName: inputedName || items.universityName,
                                   website: inputedWebsite || items.website,
-                                  logo: inputedLogo || items.logo
+                                  // logo: inputedLogo || items.logo
                                 });
                                 toast({
                                   title: 'University has been Updated Successfully.',
@@ -886,6 +918,8 @@ const University = () => {
 
 
                                 setSheetToggle(!sheetToggle)
+                                router.push('/university')
+
                                 // console.log("Document written with ID: ", Update.id);
                                 // const newDocs = docs.filter((item) => item.id !== items.id);
                                 // setDocs(newDocs);
@@ -1222,7 +1256,7 @@ const University = () => {
                         </div>}
                         <div className="hover-glow-border w-full border rounded-md mx-auto h-auto pt-3 flex flex-col space-y-3">
                           <h1 className="text-4xl font-bold w-full text-left pl-4">Description</h1>
-                          <div className="w-full h-full border-t">
+                          {/* <div className="w-full h-full border-t">
                             <DndProvider backend={HTML5Backend}>
                               <CommentsProvider users={commentsUsers} myUserId={myUserId}>
                                 <Plate plugins={plugins} initialValue={initialValue} onChange={handleDescriptionChange}>
@@ -1255,7 +1289,8 @@ const University = () => {
                                 </Plate>
                               </CommentsProvider>
                             </DndProvider>
-                          </div>
+                          </div> */}
+                          <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." />
                         </div>
                         <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
                           <div className="w-full h-full flex flex-col space-y-4">
@@ -1446,7 +1481,7 @@ const University = () => {
                                 universityDescription: inputedDescription || items.universityDescription,
                                 universityName: inputedName || items.universityName,
                                 website: inputedWebsite || items.website,
-                                logo: inputedLogo || items.logo
+                                // logo: inputedLogo || items.logo
                               });
                               toast({
                                 title: 'University has been Updated Successfully.',
@@ -1462,6 +1497,8 @@ const University = () => {
 
 
                               setSheetToggle(!sheetToggle)
+                              router.push('/university')
+
                             }}
                           >
                             {
@@ -1484,58 +1521,8 @@ const University = () => {
                 }} variant="secondary">
                   Delete
                 </Button>
-
               </CardFooter>
             </Card>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         ))}
       </div>
