@@ -107,7 +107,8 @@ const CalendarToolbar: React.FC<CalendarToolbarProps> = ({
       className={cn("flex items-center justify-end space-x-2", className)}
       {...props}
     >
-      <RotateText />
+      {/* <RotateText /> */}
+      <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Plan Your Time!</span>
       <div className="flex-1"></div>
       <AddAppointmentDialog />
       <DateRangePicker

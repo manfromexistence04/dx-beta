@@ -46,14 +46,14 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Nurzhol Tabigat</h3>
             <p className="text-primary mb-4">
-              Innovative architecture firm dedicated to creating sustainable and visually stunning designs.
+              Admin Panel That Shapes the Future.
             </p>
             <div className="flex space-x-4">
               <a className="text-primary hover:text-muted-foreground transition-colors" href="#">
-                +1 (234) 567-890
+                +880 1722 595705
               </a>
               <a className="text-primary hover:text-muted-foreground transition-colors" href="#">
-                info@shocchosthapona.com
+                ajju40959@gmail.com || minialgo.kz@gmail.com
               </a>
             </div>
           </div>
