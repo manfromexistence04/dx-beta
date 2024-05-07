@@ -493,13 +493,13 @@ const Specialty = () => {
 
     const fetchData = async () => {
         // setLoading(true);
-        // const q = query(collection(db, "specialties"), limit(8));
-        // const querySnapshot = await getDocs(q);
-        // const newDocs = querySnapshot.docs.map((doc) => ({
-        //     id: doc.id,
-        //     ...doc.data(),
-        // }));
-        // setDocs(newDocs);
+        const q = query(collection(db, "specialties"), limit(8));
+        const querySnapshot = await getDocs(q);
+        const newDocs = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setDocs(newDocs);
         // Configuring Data for Update:
         docs.map((item: any) => {
             setInputedRuralQuota1(item.ruralQuota1);
@@ -723,7 +723,7 @@ const Specialty = () => {
 
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button onClick={fetchData} size="sm" variant="outline">
+                                        <Button size="sm" variant="outline">
                                             View
                                         </Button>
                                     </DialogTrigger>
@@ -838,56 +838,56 @@ const Specialty = () => {
 
                                             <div className="flex gap-2">
                                                 <p>RuralQuota1: </p>
-                                                <span className="font-semibold">{inputedRuralQuota1 || "No RuralQuota1 is Provided."}</span>
+                                                <span className="font-semibold">{items.ruralQuota1 || "No RuralQuota1 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>RuralQuota2: </p>
-                                                <span className="font-semibold">{inputedRuralQuota2 || "No RuralQuota2 is Provided."}</span>
+                                                <span className="font-semibold">{items.ruralQuota2 || "No RuralQuota2 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>RuralQuota3: </p>
-                                                <span className="font-semibold">{inputedRuralQuota3 || "No RuralQuota3 is Provided."}</span>
+                                                <span className="font-semibold">{items.ruralQuota3 || "No RuralQuota3 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>Level: </p>
-                                                <span className="font-semibold">{inputedLevel || "No Level is Provided."}</span>
+                                                <span className="font-semibold">{items.level || "No Level is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>OrphanQuota2: </p>
-                                                <span className="font-semibold">{inputedOrphanQuota2 || "No OrphanQuota2 is Provided."}</span>
+                                                <span className="font-semibold">{items.orphanQuota2 || "No OrphanQuota2 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>DisabilitiesQuota2: </p>
-                                                <span className="font-semibold">{inputedDisabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
+                                                <span className="font-semibold">{items.disabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
                                             </div>
 
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>OrphanQuota3: </p>
-                                                <span className="font-semibold">{inputedOrphanQuota3 || "No OrphanQuota3 is Provided."}</span>
+                                                <span className="font-semibold">{items.orphanQuota3 || "No OrphanQuota3 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>GeneralCompetition1: </p>
-                                                <span className="font-semibold">{inputedGeneralCompetition1 || "No GeneralCompetition1 is Provided."}</span>
+                                                <span className="font-semibold">{items.generalCompetition1 || "No GeneralCompetition1 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>LargeFamiliesQuota2: </p>
-                                                <span className="font-semibold">{inputedLargeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
+                                                <span className="font-semibold">{items.largeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
                                             </div>
                                             <Separator />
 
@@ -895,38 +895,38 @@ const Specialty = () => {
 
                                             <div className="flex gap-2">
                                                 <p>GeneralCompetition2: </p>
-                                                <span className="font-semibold">{inputedGeneralCompetition2 || "No GeneralCompetition2 is Provided."}</span>
+                                                <span className="font-semibold">{items.generalCompetition2 || "No GeneralCompetition2 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>GeneralCompetition3: </p>
-                                                <span className="font-semibold">{inputedGeneralCompetition3 || "No GeneralCompetition3 is Provided."}</span>
+                                                <span className="font-semibold">{items.generalCompetition3 || "No GeneralCompetition3 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>SpecialtyCode: </p>
-                                                <span className="font-semibold">{inputedSpecialtyCode || "No SpecialtyCode is Provided."}</span>
+                                                <span className="font-semibold">{items.specialtyCode || "No SpecialtyCode is Provided."}</span>
                                             </div>
 
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>DisabilitiesQuota1: </p>
-                                                <span className="font-semibold">{inputedDisabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
+                                                <span className="font-semibold">{items.disabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>AverageSalary: </p>
-                                                <span className="font-semibold">{inputedAverageSalary || "No AverageSalary is Provided."}</span>
+                                                <span className="font-semibold">{items.averageSalary || "No AverageSalary is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>Subjects: </p>
-                                                <span className="font-semibold">{inputedSubjects || "No Subjects is Provided."}</span>
+                                                <span className="font-semibold">{items.subjects || "No Subjects is Provided."}</span>
                                             </div>
 
 
@@ -947,19 +947,19 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                             <div className="flex gap-2">
                                                 <p>LargeFamiliesQuota1: </p>
-                                                <span className="font-semibold">{inputedLargeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
+                                                <span className="font-semibold">{items.largeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>SpecialtyName: </p>
-                                                <span className="font-semibold">{inputedSpecialtyName || "No SpecialtyName is Provided."}</span>
+                                                <span className="font-semibold">{items.specialtyName || "No SpecialtyName is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>DisabilitiesQuota3: </p>
-                                                <span className="font-semibold">{inputedDisabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
+                                                <span className="font-semibold">{items.disabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
                                             </div>
 
                                             <Separator />
@@ -969,19 +969,19 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                             <div className="flex gap-2">
                                                 <p>OrphanQuota1: </p>
-                                                <span className="font-semibold">{inputedOrphanQuota1 || "No OrphanQuota1 is Provided."}</span>
+                                                <span className="font-semibold">{items.orphanQuota1 || "No OrphanQuota1 is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>Universities: </p>
-                                                <span className="font-semibold">{inputedUniversities || "No Universities is Provided."}</span>
+                                                <span className="font-semibold">{items.universities || "No Universities is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>LargeFamiliesQuota3: </p>
-                                                <span className="font-semibold">{inputedLargeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
+                                                <span className="font-semibold">{items.largeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
                                             </div>
 
 
@@ -994,13 +994,13 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                             <div className="flex gap-2">
                                                 <p>AvailableGrantCount: </p>
-                                                <span className="font-semibold">{inputedAvailableGrantCount || "No AvailableGrantCount is Provided."}</span>
+                                                <span className="font-semibold">{items.availableGrantCount || "No AvailableGrantCount is Provided."}</span>
                                             </div>
                                             <Separator />
 
                                             <div className="flex gap-2">
                                                 <p>DemandForSpecialty: </p>
-                                                <span className="font-semibold">{inputedDemandForSpecialty || "No DemandForSpecialty is Provided."}</span>
+                                                <span className="font-semibold">{items.demandForSpecialty || "No DemandForSpecialty is Provided."}</span>
                                             </div>
                                         </div>
                                     </DialogContent>
@@ -1055,32 +1055,38 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                                     const updateRef = doc(db, "specialties", items.id);
                                                                     const Update: any = await updateDoc(updateRef, {
-                                                                        ruralQuota1: inputedRuralQuota1,
-                                                                        ruralQuota3: inputedRuralQuota3,
-                                                                        level: inputedLevel,
-                                                                        orphanQuota2: inputedOrphanQuota2,
-                                                                        disabilitiesQuota2: inputedDisabilitiesQuota2,
-                                                                        orphanQuota3: inputedOrphanQuota3,
-                                                                        generalCompetition1: inputedGeneralCompetition1,
-                                                                        largeFamiliesQuota2: inputedLargeFamiliesQuota2,
-                                                                        generalCompetition2: inputedGeneralCompetition2,
-                                                                        generalCompetition3: inputedGeneralCompetition3,
-                                                                        specialtyCode: inputedSpecialtyCode,
-                                                                        disabilitiesQuota1: inputedDisabilitiesQuota1,
-                                                                        averageSalary: inputedAverageSalary,
-                                                                        subjects: inputedSubjects,
-                                                                        largeFamiliesQuota1: inputedLargeFamiliesQuota1,
-                                                                        threshold: inputedThreshold,
-                                                                        specialtyName: inputedSpecialtyName,
-                                                                        disabilitiesQuota3: inputedDisabilitiesQuota3,
-                                                                        ruralQuota2: inputedRuralQuota2,
-                                                                        orphanQuota1: inputedOrphanQuota1,
-                                                                        universities: inputedUniversities,
-                                                                        largeFamiliesQuota3: inputedLargeFamiliesQuota3,
-                                                                        availableGrantCount: inputedAvailableGrantCount,
-                                                                        demandForSpecialty: inputedDemandForSpecialty
-
+                                                                        ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
+                                                                        ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
+                                                                        level: inputedLevel || items.level,
+                                                                        orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
+                                                                        disabilitiesQuota2: inputedDisabilitiesQuota2 || items.disabilitiesQuota2,
+                                                                        orphanQuota3: inputedOrphanQuota3 || items.orphanQuota3,
+                                                                        generalCompetition1: inputedGeneralCompetition1 || items.generalCompetition1,
+                                                                        largeFamiliesQuota2: inputedLargeFamiliesQuota2 || items.largeFamiliesQuota2,
+                                                                        generalCompetition2: inputedGeneralCompetition2 || items.generalCompetition2,
+                                                                        generalCompetition3: inputedGeneralCompetition3 || items.generalCompetition3,
+                                                                        specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                        disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
+                                                                        averageSalary: inputedAverageSalary || items.averageSalary,
+                                                                        subjects: inputedSubjects || items.subjects,
+                                                                        largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
+                                                                        threshold: inputedThreshold || items.threshold,
+                                                                        specialtyName: inputedSpecialtyName || items.specialtyName,
+                                                                        disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
+                                                                        ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
+                                                                        orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
+                                                                        universities: inputedUniversities || items.universities,
+                                                                        largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
+                                                                        availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
+                                                                        demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
+                                                                        
+    
                                                                     })
+
+
+
+
+
                                                                     toast({
                                                                         title: 'University has been Updated Successfully.',
                                                                         description: (
@@ -1548,32 +1554,34 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                 });
                                                                 const updateRef = doc(db, "specialties", items.id);
                                                                 const Update: any = await updateDoc(updateRef, {
-                                                                    ruralQuota1: inputedRuralQuota1,
-                                                                    ruralQuota3: inputedRuralQuota3,
-                                                                    level: inputedLevel,
-                                                                    orphanQuota2: inputedOrphanQuota2,
-                                                                    disabilitiesQuota2: inputedDisabilitiesQuota2,
-                                                                    orphanQuota3: inputedOrphanQuota3,
-                                                                    generalCompetition1: inputedGeneralCompetition1,
-                                                                    largeFamiliesQuota2: inputedLargeFamiliesQuota2,
-                                                                    generalCompetition2: inputedGeneralCompetition2,
-                                                                    generalCompetition3: inputedGeneralCompetition3,
-                                                                    specialtyCode: inputedSpecialtyCode,
-                                                                    disabilitiesQuota1: inputedDisabilitiesQuota1,
-                                                                    averageSalary: inputedAverageSalary,
-                                                                    subjects: inputedSubjects,
-                                                                    largeFamiliesQuota1: inputedLargeFamiliesQuota1,
-                                                                    threshold: inputedThreshold,
-                                                                    specialtyName: inputedSpecialtyName,
-                                                                    disabilitiesQuota3: inputedDisabilitiesQuota3,
-                                                                    ruralQuota2: inputedRuralQuota2,
-                                                                    orphanQuota1: inputedOrphanQuota1,
-                                                                    universities: inputedUniversities,
-                                                                    largeFamiliesQuota3: inputedLargeFamiliesQuota3,
-                                                                    availableGrantCount: inputedAvailableGrantCount,
-                                                                    demandForSpecialty: inputedDemandForSpecialty
+                                                                    ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
+                                                                    ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
+                                                                    level: inputedLevel || items.level,
+                                                                    orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
+                                                                    disabilitiesQuota2: inputedDisabilitiesQuota2 || items.disabilitiesQuota2,
+                                                                    orphanQuota3: inputedOrphanQuota3 || items.orphanQuota3,
+                                                                    generalCompetition1: inputedGeneralCompetition1 || items.generalCompetition1,
+                                                                    largeFamiliesQuota2: inputedLargeFamiliesQuota2 || items.largeFamiliesQuota2,
+                                                                    generalCompetition2: inputedGeneralCompetition2 || items.generalCompetition2,
+                                                                    generalCompetition3: inputedGeneralCompetition3 || items.generalCompetition3,
+                                                                    specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                    disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
+                                                                    averageSalary: inputedAverageSalary || items.averageSalary,
+                                                                    subjects: inputedSubjects || items.subjects,
+                                                                    largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
+                                                                    threshold: inputedThreshold || items.threshold,
+                                                                    specialtyName: inputedSpecialtyName || items.specialtyName,
+                                                                    disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
+                                                                    ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
+                                                                    orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
+                                                                    universities: inputedUniversities || items.universities,
+                                                                    largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
+                                                                    availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
+                                                                    demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
+                                                                    
 
                                                                 })
+
 
                                                                 toast({
                                                                     title: 'University has been Updated Successfully.',
@@ -1607,7 +1615,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                         </SheetContent>
                                     </Sheet>
                                     <Button onClick={async () => {
-                                        await deleteDoc(doc(db, "specialtities", items.id));
+                                        await deleteDoc(doc(db, "specialties", items.id));
                                         const newDocs = docs.filter((item) => item.id !== items.id);
                                         setDocs(newDocs);
                                     }} className="bg-red-500 text-white hover:bg-red-600" size="sm" variant="destructive">
