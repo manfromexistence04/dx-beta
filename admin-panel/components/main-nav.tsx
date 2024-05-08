@@ -31,13 +31,13 @@ export function MainNav() {
           Universities
         </Link>
         <Link
-          href="/specialities"
+          href="/specialties"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/specialities" ? "text-foreground" : "text-foreground/60"
+            pathname === "/specialties" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Specialities
+          Specialties
         </Link>
         <Link
           href="/questions"

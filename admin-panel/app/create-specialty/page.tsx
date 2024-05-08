@@ -116,13 +116,8 @@ interface UploadedFilesCardProps {
 }
 
 export default function CreateSpeciality() {
-
-
-
-
     const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
     const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
-
     const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
         "imageUploader",
         { defaultUploadedFiles: [] }

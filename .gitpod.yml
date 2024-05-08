@@ -1,11 +1,13 @@
 tasks:
     - name: dx
       init: |
+          cd admin-panel
           npm install -g bun
           bun install
           bun pm trust --all
+          bun run dev
       command: |
-          bun run test
+          bun run dev
 
     - name: package
       before: |

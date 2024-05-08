@@ -11,7 +11,7 @@ export const siteConfig = {
         },
     ],
     links: {
-        twitter: 'https://twitter.com/zbeyens',
+        twitter: 'https://twitter.com/manofexistence1',
         github: 'https://github.com/udecode/plate',
         docs: 'https://platejs.org',
     },
