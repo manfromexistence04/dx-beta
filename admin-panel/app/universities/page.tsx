@@ -4,15 +4,6 @@ import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect, useRef } from "react";
 import { limit, query, onSnapshot } from "firebase/firestore";
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
-//   authDomain: "ustudy-70041.firebaseapp.com",
-//   projectId: "ustudy-70041",
-//   storageBucket: "ustudy-70041.appspot.com",
-//   messagingSenderId: "209553469910",
-//   appId: "1:209553469910:web:5787a019905baf47c73477",
-//   measurementId: "G-NNPVVRK9VK"
-// };
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -710,9 +701,9 @@ const University = () => {
 
                   </CarouselContent>
                   <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-yellow-300 hover:text-white border-yellow-300" />
-                    <span className="flex-1 text-center text-yellow-300 hover:text-white">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-yellow-300 border-yellow-300 hover:text-white" />
+                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white hover:border-accent-foreground" />
+                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
+                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white hover:border-accent-foreground" />
                   </div>
                 </Carousel>
               </div>

@@ -432,7 +432,7 @@ export default function CreateSpeciality() {
 
                     <div className="flex gap-2">
                         <p>Subjects: </p>
-                        <span className="font-semibold">{inputedSubjects || "No Subjects is Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(subjectsTag,null,2) || "No Subjects is Provided."}</span>
                     </div>
 
                     <Separator />
@@ -467,7 +467,7 @@ export default function CreateSpeciality() {
 
                     <div className="flex gap-2">
                         <p>Universities: </p>
-                        <span className="font-semibold">{inputedUniversities || "No Universities is Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(universitiesTag,null,2) || "No Universities is Provided."}</span>
                     </div>
                     <Separator />
 
