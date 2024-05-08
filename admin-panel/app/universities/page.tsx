@@ -358,7 +358,7 @@ const University = () => {
 
   const handleImageChange = (event: any) => {
     setInputedImage(event.target.value);
-}
+  }
 
   const handleInstagramChange = (event: any) => {
     setInputedInstragam(event.target.value);
@@ -652,7 +652,7 @@ const University = () => {
                   onMouseEnter={plugin.current.stop}
                   onMouseLeave={plugin.current.reset}
                 >
-                  <CarouselContent className="w-full min-h-full">
+                  <CarouselContent>
                     {items.images && items.images.map((index: any) => (
                       <CarouselItem key={index}>
                         <div>
@@ -682,8 +682,8 @@ const University = () => {
                             <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
                               <AspectRatio ratio={16 / 9} className="">
                                 <Image
-                                  src={items.image || "/placeholder.svg"}
-                                  alt="Images"
+                                  src={items.image || "/placeholder-logo.svg"}
+                                  alt="Image"
                                   fill
                                   sizes="(min-width: 250px) 300px, 100vw"
                                   loading="lazy"
@@ -851,14 +851,14 @@ const University = () => {
                       <Separator />
                       <div className="flex gap-2">
                         <p>Images: </p>
-                        <span className="font-semibold">{JSON.stringify(items.images,null,2) || "No Images are Provided."}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex gap-2">
+                        <span className="font-semibold">{JSON.stringify(items.images, null, 2) || "No Images are Provided."}</span>
+                      </div>
+                      <Separator />
+                      <div className="flex gap-2">
                         <p>Image: </p>
-                        <span className="font-semibold">{items.image || "No Images are Provided."}</span>
-                    </div>
-                    <Separator />
+                        <span className="font-semibold">{items.image || "No Image is Provided."}</span>
+                      </div>
+                      <Separator />
 
                       <div className="flex gap-2">
                         <p>Hostel: </p>
@@ -952,6 +952,7 @@ const University = () => {
                                   email: inputedEmail || items.email,
                                   facebook: inputedFacebook || items.facebook,
                                   hostel: inputedHostel || items.hostel,
+                                  image: inputedImage || items.image,
                                   images: inputedImages || items.images,
                                   instagram: inputedInstragam || items.instagram,
                                   military: inputedMilitary || items.military,
@@ -969,6 +970,7 @@ const University = () => {
                                   email: inputedEmail || items.email,
                                   facebook: inputedFacebook || items.facebook,
                                   hostel: inputedHostel || items.hostel,
+                                  image: inputedImage || items.image,
                                   images: inputedImages || items.images,
                                   instagram: inputedInstragam || items.instagram,
                                   military: inputedMilitary || items.military,
@@ -1075,9 +1077,12 @@ const University = () => {
                           <Separator />
                           <div className="flex gap-2">
                             <p>Images: </p>
-                            <span className="font-semibold">{`[
-                              "${items.images}"
-                              ]` || "No Images are Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex gap-2">
+                            <p>Image: </p>
+                            <span className="font-semibold">{inputedImage || "No Image is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
@@ -1448,6 +1453,11 @@ const University = () => {
                           </div>
                         </div>
                         <div className="name-logo-description-university w-full grid gap-3 ">
+
+                          <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                            <h1 className="text-4xl font-bold w-full text-left">Image</h1>
+                            <Input onChange={handleImageChange} type="text" placeholder="Enter University Image" />
+                          </div>
                           <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                             <h1 className="text-4xl font-bold w-full text-left">Code</h1>
                             <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
@@ -1549,6 +1559,7 @@ const University = () => {
                                 email: inputedEmail || items.email,
                                 facebook: inputedFacebook || items.facebook,
                                 hostel: inputedHostel || items.hostel,
+                                image: inputedImage || items.image,
                                 images: inputedImages || items.images,
                                 instagram: inputedInstragam || items.instagram,
                                 military: inputedMilitary || items.military,
@@ -1566,6 +1577,7 @@ const University = () => {
                                 email: inputedEmail || items.email,
                                 facebook: inputedFacebook || items.facebook,
                                 hostel: inputedHostel || items.hostel,
+                                image: inputedImage || items.image,
                                 images: inputedImages || items.images,
                                 instagram: inputedInstragam || items.instagram,
                                 military: inputedMilitary || items.military,
