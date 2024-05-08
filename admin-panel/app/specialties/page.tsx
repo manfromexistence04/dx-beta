@@ -628,7 +628,7 @@ const Specialty = () => {
     if (loading) {
         return <main className="w-full py-5 px-[5%] h-auto">
             <div className="flex items-center justify-between mb-6">
-                <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Specialities</span>
+                <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Specialties</span>
             </div>
             <div className="admin-panel-lists-loading place-content-center">
                 <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
@@ -734,114 +734,8 @@ const Specialty = () => {
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
-                                        {/* <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
-                                            <div className="flex gap-2">
-                                                <p>Name: </p>
-                                                <span className="font-semibold">{items.universityName || "No Name is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Email: </p>
-                                                <span className="font-semibold">{items.email || "No Email is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Facebook: </p>
-                                                <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Instagram: </p>
-                                                <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Education Cost: </p>
-                                                <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Website: </p>
-                                                <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>University Code: </p>
-                                                <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Phone Number: </p>
-                                                <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Logo: </p>
-                                                <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Address: </p>
-                                                <span className="font-semibold">{items.address || "No Address is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Region: </p>
-                                                <span className="font-semibold">{items.region || "No Region is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Description: </p>
-                                                <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Images: </p>
-                                                <span className="font-semibold">{`[
-                              "${items.images}"
-                              ]` || "No Images are Provided."}</span>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Hostel: </p>
-                                                <Badge
-                                                    className={cn(
-                                                        "w-fit text-center",
-                                                        items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                                    )}
-                                                >
-                                                    {items.hostel || "No Hostel Information Provided."}
-                                                </Badge>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Military: </p>
-                                                <Badge
-                                                    className={cn(
-                                                        "w-fit",
-                                                        items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                                    )}
-                                                >
-                                                    {items.military || 'No Military Status Provided.'}
-                                                </Badge>
-                                            </div>
-                                            <Separator />
-                                            <div className="flex gap-2">
-                                                <p>Status: </p>
-                                                <Badge
-                                                    className={cn(
-                                                        "w-fit",
-                                                        items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                                    )}
-                                                >
-                                                    {items.status || "No Status Provided."}
-                                                </Badge>
-                                            </div>
-                                        </div> */}
+                                    
                                         <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
-
-
-
                                             <div className="flex gap-2">
                                                 <p>RuralQuota1: </p>
                                                 <span className="font-semibold">{items.ruralQuota1 || "No RuralQuota1 is Provided."}</span>
@@ -1105,138 +999,13 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                         ),
                                                                     });
 
-
-                                                                    // setSheetToggle(!sheetToggle)
-                                                                    // router.push('/specialities')
-                                                                    // setSheetToggle(true)
-
-                                                                    // console.log("Document written with ID: ", Update.id);
-                                                                    // const newDocs = docs.filter((item) => item.id !== items.id);
-                                                                    // setDocs(newDocs);
-                                                                    // fetchDocs()
                                                                 }}
                                                             >
-                                                                {/* {
-                                                                    createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                                                } */}
                                                                 Update
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                    {/* {inputedValues && <div className="div">
-                                                        <div className="flex gap-2">
-                                                            <p>Name: </p>
-                                                            <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Email: </p>
-                                                            <span className="font-semibold">{inputedEmail || "No Email is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Facebook: </p>
-                                                            <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Instagram: </p>
-                                                            <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Education Cost: </p>
-                                                            <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Website: </p>
-                                                            <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>University Code: </p>
-                                                            <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>Phone Number: </p>
-                                                            <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Logo: </p>
-                                                            <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Address: </p>
-                                                            <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Region: </p>
-                                                            <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Description: </p>
-                                                            <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Images: </p>
-                                                            <span className="font-semibold">{`[
-                              "${items.images}"
-                              ]` || "No Images are Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Hostel: </p>
-                                                            {
-                                                                <Badge
-                                                                    className={cn(
-                                                                        "w-fit text-center",
-                                                                        inputedHostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                                                    )}
-                                                                >
-                                                                    {inputedHostel || "No Hostel Information Provided."}
-                                                                </Badge>
-                                                            }
-                                                        </div>
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Military: </p>
-                                                            {
-                                                                <Badge
-                                                                    className={cn(
-                                                                        "w-fit",
-                                                                        inputedMilitary ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                                                    )}
-                                                                >
-                                                                    {inputedMilitary || 'No Military Status Provided.'}
-                                                                </Badge>
-                                                            }
-                                                        </div>
-
-                                                        <Separator />
-                                                        <div className="flex gap-2">
-                                                            <p>Status: </p>
-                                                            {
-                                                                <Badge
-                                                                    className={cn(
-                                                                        "w-fit",
-                                                                        inputedStatus ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                                                                    )}
-                                                                >
-                                                                    {inputedStatus || "No Status Provided."}
-                                                                </Badge>
-                                                            }
-                                                        </div>
-                                                    </div>} */}
+                                                
 
                                                     {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
                                                         <div className="flex gap-2">
@@ -1335,17 +1104,6 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                         <Separator />
 
-
-
-                                                        {/* const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
-const [inputedThreshold, setInputedThreshold] = React.useState("80");
-const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
-const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
-const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
-const [inputedUniversities, setInputedUniversities] = React.useState("astana");
-const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
-const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
-const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high"); */}
                                                         <Separator />
 
                                                         <div className="flex gap-2">

@@ -23,14 +23,7 @@ import { Button as AnimatedButton } from "@/components/button"
 import { Input } from "@/components/ui/input"
 import React, { useRef } from 'react';
 import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
-import { DialogUploaderDemo } from "../_components/dialog-uploader-demo"
-import CountryDropdown from "@/components/dropdown/countries";
-import StateDropdown from "@/components/dropdown/states";
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { ToastAction } from "@/registry/default//ui/toast"
+
 import { useToast } from "@/registry/default/ui/use-toast"
 import { Tag, TagInput } from 'emblor';
 import { cn } from '@udecode/cn';
@@ -118,31 +111,18 @@ interface UploadedFilesCardProps {
 export default function CreateSpeciality() {
     const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
     const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
-    const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
-        "imageUploader",
-        { defaultUploadedFiles: [] }
-    )
-    const { uploadLogo, logoUploadprogresses, isLogoUploading, uploadedLogo } = useUploadLogo(
-        "imageUploader",
-        { defaultUploadedFiles: [] }
-    )
     const { toast } = useToast();
     const router = useRouter()
-    const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
-    const { images } = useUniversityImages();
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     const handleConfetti = async () => {
         const { clientWidth, clientHeight } = document.documentElement;
         const boundingBox = buttonRef.current?.getBoundingClientRect?.();
-
         const targetY = boundingBox?.y ?? 0;
         const targetX = boundingBox?.x ?? 0;
         const targetWidth = boundingBox?.width ?? 0;
-
         const targetCenterX = targetX + targetWidth / 2;
         const confetti = (await import("canvas-confetti")).default;
-
         confetti({
             zIndex: 999,
             particleCount: 100,
@@ -152,7 +132,8 @@ export default function CreateSpeciality() {
                 x: targetCenterX / clientWidth,
             },
         });
-        const Create = await addDoc(collection(db, "universities"), {
+
+        const Create = await addDoc(collection(db, "specialties"), {
             ruralQuota1: inputedRuralQuota1,
             ruralQuota3: inputedRuralQuota3,
             level: inputedLevel,
@@ -180,10 +161,10 @@ export default function CreateSpeciality() {
         });
         console.log("Document written with ID: ", Create.id);
         toast({
-            title: 'University has been created',
+            title: 'Specialtie has been created',
             description: (
                 <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                    <span>You Can now update,view and delete this university!</span>
+                    <span>You Can now update,view and delete this specialties!</span>
                     <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
                         <code className="text-muted-foreground bg-secondary">{JSON.stringify(Create.id, null, 2)}</code>
                     </pre>
@@ -191,21 +172,11 @@ export default function CreateSpeciality() {
 
             ),
         });
-        router.push('/specialities')
+        router.push('/specialties')
     };
 
     const [inputedValues, setInputedValues] = React.useState(false);
-    const [createButtonDisabled, setCreateButtonDisabled] = React.useState(true);
-    const [isOpen, setIsOpen] = React.useState(false)
     const [phoneNumberDetails, setPhoneNumberDetails] = React.useState(false)
-    const containerRef = useRef(null);
-    const initialValue = [
-        {
-            id: '1',
-            type: ELEMENT_PARAGRAPH,
-            children: [{ text: 'Hello, World!' }],
-        },
-    ];
     const [phone, setPhone] = React.useState("+1 (408) 996–1010");
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
@@ -214,82 +185,32 @@ export default function CreateSpeciality() {
     function showPhoneNumberDetails() {
         setPhoneNumberDetails(!phoneNumberDetails);
     }
-    let address: string = 'Bangladesh, Jhenaidah';
-    let educationCost: string = '1 335 000 ₸';
-    let email: string = 'rektorat@amu.kz';
-    let facebook: string = 'https://www.facebook.com/MeduniverAstana';
-    let hostel: string = 'есть';
-    let image: any = ['https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319', 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319'];
-    let instagram: string = 'https://www.instagram.com/amu_mua_official';
-    let military: string = 'есть';
-    let phoneNumber: string = '(+77172539424)';
-    let region: string = 'г. Астана';
-    let status: string = 'акционированный';
-    let universityCode: string = '1';
-    let universityDescription: string = 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.';
-    let universityName: string = 'Медицинский университет Астана';
-    let website: string = 'https://amu.edu.kz/';
-    let logo: string = 'https://amu.edu.kz/';
-
-    // const [inputedName, setInputedName] = React.useState(universityName)
-    // const [inputedEmail, setInputedEmail] = React.useState(email)
-    // const [inputedStatus, setInputedStatus] = React.useState(status)
-    // const [inputedFacebook, setInputedFacebook] = React.useState(facebook)
-    // const [inputedInstragam, setInputedInstragam] = React.useState(instagram)
-    // const [inputedCost, setInputedCost] = React.useState(educationCost)
-    // const [inputedWebsite, setInputedWebsite] = React.useState(website)
-    // const [inputedCode, setInputedCode] = React.useState(universityCode)
-    // const [inputedHostel, setInputedHostel] = React.useState(hostel)
-    // const [inputedMilitary, setInputedMilitary] = React.useState(military)
-    // const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
-    // const [inputedLogo, setInputedLogo] = React.useState(logo)
-    // const [inputedAddress, setInputedAddress] = React.useState(address)
-    // const [inputedRegion, setInputedRegion] = React.useState(region)
-    // const [inputedDescription, setInputedDesciption] = React.useState(universityDescription)
-    // const [inputedImages, setInputedImages] = React.useState("Images")
-
-    const [inputedName, setInputedName] = React.useState("")
-    const [inputedEmail, setInputedEmail] = React.useState("")
-    const [inputedStatus, setInputedStatus] = React.useState("")
-    const [inputedFacebook, setInputedFacebook] = React.useState("")
-    const [inputedInstragam, setInputedInstragam] = React.useState("")
-    const [inputedCost, setInputedCost] = React.useState("")
-    const [inputedWebsite, setInputedWebsite] = React.useState("")
-    const [inputedCode, setInputedCode] = React.useState("")
-    const [inputedHostel, setInputedHostel] = React.useState("")
-    const [inputedMilitary, setInputedMilitary] = React.useState("")
-    const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
-    const [inputedLogo, setInputedLogo] = React.useState("")
-    const [inputedAddress, setInputedAddress] = React.useState(stateValue)
-    const [inputedRegion, setInputedRegion] = React.useState(countryValue)
-    const [inputedDescription, setInputedDesciption] = React.useState("")
-    const [inputedImages, setInputedImages] = React.useState([])
 
     // Related To This Page :)
-    const [inputedRuralQuota1, setInputedRuralQuota1] = React.useState("123");
-    const [inputedRuralQuota2, setInputedRuralQuota2] = React.useState("119");
-    const [inputedRuralQuota3, setInputedRuralQuota3] = React.useState("119");
-    const [inputedLevel, setInputedLevel] = React.useState("bachelor");
-    const [inputedOrphanQuota2, setInputedOrphanQuota2] = React.useState("83");
-    const [inputedDisabilitiesQuota2, setInputedDisabilitiesQuota2] = React.useState("75");
-    const [inputedOrphanQuota3, setInputedOrphanQuota3] = React.useState("80");
-    const [inputedGeneralCompetition1, setInputedGeneralCompetition1] = React.useState("123");
-    const [inputedLargeFamiliesQuota2, setInputedLargeFamiliesQuota2] = React.useState("114");
-    const [inputedGeneralCompetition2, setInputedGeneralCompetition2] = React.useState("122");
-    const [inputedGeneralCompetition3, setInputedGeneralCompetition3] = React.useState("120");
-    const [inputedSpecialtyCode, setInputedSpecialtyCode] = React.useState("B007");
-    const [inputedDisabilitiesQuota1, setInputedDisabilitiesQuota1] = React.useState("95");
-    const [inputedAverageSalary, setInputedAverageSalary] = React.useState("307574 ₸");
-    const [inputedSubjects, setInputedSubjects] = React.useState("creative examMathematics");
-    const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
-    const [inputedThreshold, setInputedThreshold] = React.useState("80");
-    const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
-    const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
-    const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
-    const [inputedUniversities, setInputedUniversities] = React.useState("astana");
-    const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
-    const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
-    const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high");
+    const [inputedRuralQuota1, setInputedRuralQuota1] = React.useState("");
+    const [inputedRuralQuota2, setInputedRuralQuota2] = React.useState("");
+    const [inputedRuralQuota3, setInputedRuralQuota3] = React.useState("");
+    const [inputedLevel, setInputedLevel] = React.useState("");
+    const [inputedOrphanQuota2, setInputedOrphanQuota2] = React.useState("");
+    const [inputedDisabilitiesQuota2, setInputedDisabilitiesQuota2] = React.useState("");
+    const [inputedOrphanQuota3, setInputedOrphanQuota3] = React.useState("");
+    const [inputedGeneralCompetition1, setInputedGeneralCompetition1] = React.useState("");
+    const [inputedLargeFamiliesQuota2, setInputedLargeFamiliesQuota2] = React.useState("");
+    const [inputedGeneralCompetition2, setInputedGeneralCompetition2] = React.useState("");
+    const [inputedGeneralCompetition3, setInputedGeneralCompetition3] = React.useState("");
+    const [inputedSpecialtyCode, setInputedSpecialtyCode] = React.useState("");
+    const [inputedDisabilitiesQuota1, setInputedDisabilitiesQuota1] = React.useState("");
+    const [inputedAverageSalary, setInputedAverageSalary] = React.useState("");
+    const [inputedSubjects, setInputedSubjects] = React.useState("");
+    const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("");
+    const [inputedThreshold, setInputedThreshold] = React.useState("");
+    const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("");
+    const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("");
+    const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("");
+    const [inputedUniversities, setInputedUniversities] = React.useState("");
+    const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("");
+    const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("");
+    const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("");
 
     const handleRuralQuota1Change = (event: any) => {
         setInputedRuralQuota1(event.target.value);
@@ -388,110 +309,9 @@ export default function CreateSpeciality() {
     }
 
 
-
-    //     const [ruralQuota1, setRuralQuota1] = React.useState("123");
-    // const [ruralQuota2, setRuralQuota2] = React.useState("119");
-    // const [level, setLevel] = React.useState("bachelor");
-    // const [orphanQuota2, setOrphanQuota2] = React.useState("83");
-    // const [disabilitiesQuota2, setDisabilitiesQuota2] = React.useState("75");
-    // const [orphanQuota3, setOrphanQuota3] = React.useState("80");
-    // const [generalCompetition1, setGeneralCompetition1] = React.useState("123");
-    // const [largeFamiliesQuota2, setLargeFamiliesQuota2] = React.useState("114");
-    // const [generalCompetition2, setGeneralCompetition2] = React.useState("122");
-    // const [generalCompetition3, setGeneralCompetition3] = React.useState("120");
-    // const [specialtyCode, setSpecialtyCode] = React.useState("B007");
-    // const [disabilitiesQuota1, setDisabilitiesQuota1] = React.useState("95");
-    // const [averageSalary, setAverageSalary] = React.useState("307574 ₸");
-    // const [subjects, setSubjects] = React.useState("creative examMathematics");
-    // const [largeFamiliesQuota1, setLargeFamiliesQuota1] = React.useState("114");
-    // const [threshold, setThreshold] = React.useState("80");
-    // const [specialtyName, setSpecialtyName] = React.useState("Подготовка учителей физической культуры");
-    // const [disabilitiesQuota3, setDisabilitiesQuota3] = React.useState("97");
-    // const [ruralQuota2, setRuralQuota2] = React.useState("119");
-    // const [orphanQuota1, setOrphanQuota1] = React.useState("84");
-    // const [universities, setUniversities] = React.useState("astana");
-    // const [largeFamiliesQuota3, setLargeFamiliesQuota3] = React.useState("107");
-    // const [availableGrantCount, setAvailableGrantCount] = React.useState("547");
-    // const [demandForSpecialty, setDemandForSpecialty] = React.useState("high");
-
-
-
-    const handleNameChange = (event: any) => {
-        setInputedName(event.target.value);
-    }
-    // const handleRuralQuota1Change = (event: any) => {
-    //     setInputedRuralQuota1(event.target.value);
-    // }
-
-    const handleEmailChange = (event: any) => {
-        setInputedEmail(event.target.value);
-    }
-
-    const handleStatusChange = (event: any) => {
-        setInputedStatus(event);
-    }
-
-    const handleFacebookChange = (event: any) => {
-        setInputedFacebook(event.target.value);
-    }
-
-    const handleInstagramChange = (event: any) => {
-        setInputedInstragam(event.target.value);
-    }
-
-    const handleCostChange = (event: any) => {
-        setInputedCost(event.target.value);
-    }
-
-    const handleWebsiteChange = (event: any) => {
-        setInputedWebsite(event.target.value);
-    }
-
-    const handleCodeChange = (event: any) => {
-        setInputedCode(event.target.value);
-    }
-
-    const handleHostelChange = (event: any) => {
-        setInputedHostel(event);
-    }
-
-    const handleMilitaryChange = (event: any) => {
-        setInputedMilitary(event);
-    }
-    const handleDescriptionChange = (event: any) => {
-        setInputedDesciption(event.target.value);
-    }
-
-    const imagesChange = () => {
-        setInputedDesciption(JSON.stringify(event));
-    }
-    // const create = (event: any) => {
-    //     // setInputedImages(event.target.value);
-    // }
-    // const syncImagesAndLogo = () => {
-    //     // uploadedImages.map((file: any) => {
-    //     //     setInputedImages(file.url);
-    //     //     return null;
-    //     // })
-    //     const newArray2: any = uploadedImages.map((file) => file.url);
-    //     setInputedImages(newArray2);
-
-    //     uploadedLogo.map((file: any) => {
-    //         setInputedLogo(file.url);
-    //         return null;
-    //     })
-    //     setCreateButtonDisabled(!createButtonDisabled);
-    // }
     const handleInputedValues = () => {
         setInputedValues(!inputedValues);
     }
-    // React.useEffect(() => {
-    //     uploadedImages.map((file: any) => {
-    //         setInputedImages(file.url);
-    //         return null;
-    //     })
-    // }, [isImagesUploading]);
-
 
     return (
         <>
@@ -508,17 +328,10 @@ export default function CreateSpeciality() {
                         </AnimatedButton>
                     </div>
                     <div className="w-full h-full flex items-end justify-end space-x-3">
-                        {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
-                            Sync Uploaded Files
-                        </AnimatedButton> */}
                         <Button
                             className="!py-0"
-                            // disabled={createButtonDisabled}
                             onClick={handleConfetti}
                         >
-                            {/* {
-                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            } */}
                             Create
                         </Button>
                     </div>
@@ -622,20 +435,6 @@ export default function CreateSpeciality() {
                         <span className="font-semibold">{inputedSubjects || "No Subjects is Provided."}</span>
                     </div>
 
-
-                    <Separator />
-
-
-
-                    {/* const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
-    const [inputedThreshold, setInputedThreshold] = React.useState("80");
-    const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
-    const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
-    const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
-    const [inputedUniversities, setInputedUniversities] = React.useState("astana");
-    const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
-    const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
-    const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high"); */}
                     <Separator />
 
                     <div className="flex gap-2">
@@ -858,17 +657,11 @@ export default function CreateSpeciality() {
                     <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
                         {inputedValues ? "Hide" : "Show"} Inputed Values
                     </AnimatedButton>
-                    {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
-                        Sync Uploaded Files
-                    </AnimatedButton> */}
+
                     <AnimatedButton
                         className="!py-0 w-full"
-                        // disabled={createButtonDisabled}
                         onClick={handleConfetti}
                     >
-                        {/* {
-                            createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        } */}
                         Create
                     </AnimatedButton>
                 </div>
