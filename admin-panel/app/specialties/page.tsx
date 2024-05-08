@@ -697,7 +697,7 @@ const Specialty = () => {
         <main className="w-full py-5 px-[5%] h-auto mb-10">
             <div className="flex items-center justify-between mb-6">
                 <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Specialties</span>
-                <Link href="/create-speciality">
+                <Link href="/create-specialty">
                     <Button size="sm">Add New Specialty</Button>
                 </Link>
             </div>

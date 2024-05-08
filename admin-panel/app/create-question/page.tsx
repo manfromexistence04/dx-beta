@@ -163,7 +163,7 @@ export default function CreateUniversity() {
             title: 'University has been created',
             description: (
                 <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                    <span>You Can now update,view and delete this university!</span>
+                    <span>You Can now update,view and delete this question!</span>
                     <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
                         <code className="text-muted-foreground bg-secondary">{JSON.stringify(Create.id, null, 2)}</code>
                     </pre>
