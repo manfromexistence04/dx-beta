@@ -749,12 +749,12 @@ const Question = () => {
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Answers: </p>
-                            <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Results: </p>
-                            <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                         </div>
                       </DialogContent>
@@ -858,12 +858,12 @@ const Question = () => {
                                 <Separator />
                                 <div className="flex gap-2 p-3">
                                   <p>Answers: </p>
-                                  <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Answers is Provided."}</span>
+                                  <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Answers is Provided."}</span>
                                 </div>
                                 <Separator />
                                 <div className="flex gap-2 p-3">
                                   <p>Results: </p>
-                                  <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Results is Provided."}</span>
+                                  <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Results is Provided."}</span>
                                 </div>
                               </div>}
 
