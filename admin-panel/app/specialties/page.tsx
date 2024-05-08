@@ -826,7 +826,7 @@ const Specialty = () => {
 
                                             <div className="flex gap-2">
                                                 <p>Subjects: </p>
-                                                <span className="font-semibold">{items.subjects || "No Subjects is Provided."}</span>
+                                                <span className="font-semibold">{JSON.stringify(items.subjects,null,2) || "No Subjects is Provided."}</span>
                                             </div>
 
 
@@ -875,7 +875,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                             <div className="flex gap-2">
                                                 <p>Universities: </p>
-                                                <span className="font-semibold">{items.universities || "No Universities is Provided."}</span>
+                                                <span className="font-semibold">{JSON.stringify(items.universities,null,2) || "No Universities is Provided."}</span>
                                             </div>
                                             <Separator />
 
@@ -955,7 +955,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                                     const updateRef = doc(db, "specialties", items.id);
                                                                     const Update: any = await updateDoc(updateRef, {
-                                                                        ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
+                                                                        ruralQuota1: inputedRuralQuota1 || items.ruralQuota1,
                                                                         ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
                                                                         level: inputedLevel || items.level,
                                                                         orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
@@ -991,7 +991,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                         title: 'University has been Updated Successfully.',
                                                                         description: (
                                                                             <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                                                                                <span>You Can now view and delete this university!</span>
+                                                                                <span>You Can now view and delete this specialty!</span>
                                                                                 <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
                                                                                     {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                                                                 </pre>
@@ -1098,7 +1098,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                         <div className="flex gap-2">
                                                             <p>Subjects: </p>
-                                                            <span className="font-semibold">{inputedSubjects || "No Subjects is Provided."}</span>
+                                                            <span className="font-semibold">{JSON.stringify(subjectsTag,null,2) || "No Subjects is Provided."}</span>
                                                         </div>
 
 
@@ -1136,7 +1136,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                         <div className="flex gap-2">
                                                             <p>Universities: </p>
-                                                            <span className="font-semibold">{inputedUniversities || "No Universities is Provided."}</span>
+                                                            <span className="font-semibold">{JSON.stringify(universitiesTag,null,2) || "No Universities is Provided."}</span>
                                                         </div>
                                                         <Separator />
 

@@ -749,12 +749,12 @@ const Question = () => {
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Answers: </p>
-                            <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Results: </p>
-                            <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                         </div>
                       </DialogContent>
@@ -940,7 +940,7 @@ const Question = () => {
                                       title: 'University has been Updated Successfully.',
                                       description: (
                                         <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                                          <span>You Can now view and delete this university!</span>
+                                          <span>You Can now view and delete this question!</span>
                                           <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
                                             {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                           </pre>
