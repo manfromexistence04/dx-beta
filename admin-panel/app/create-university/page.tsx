@@ -2,7 +2,6 @@
 
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
-
 const firebaseConfig = {
     apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
     authDomain: "ustudy-96678.firebaseapp.com",
@@ -157,6 +156,7 @@ export default function CreateUniversity() {
             email: inputedEmail,
             facebook: inputedFacebook,
             hostel: inputedHostel,
+            image: inputedImage,
             images: inputedImages,
             instagram: inputedInstragam,
             military: inputedMilitary,
@@ -259,6 +259,7 @@ export default function CreateUniversity() {
     const [inputedRegion, setInputedRegion] = React.useState(countryValue)
     const [inputedDescription, setInputedDesciption] = React.useState("")
     const [inputedImages, setInputedImages] = React.useState([])
+    const [inputedImage, setInputedImage] = React.useState("")
 
     const handleNameChange = (event: any) => {
         setInputedName(event.target.value);
@@ -275,7 +276,9 @@ export default function CreateUniversity() {
     const handleFacebookChange = (event: any) => {
         setInputedFacebook(event.target.value);
     }
-
+    const handleImageChange = (event: any) => {
+        setInputedImage(event.target.value);
+    }
     const handleInstagramChange = (event: any) => {
         setInputedInstragam(event.target.value);
     }
@@ -432,7 +435,12 @@ export default function CreateUniversity() {
                     <Separator />
                     <div className="flex gap-2">
                         <p>Images: </p>
-                        <span className="font-semibold">{`[/n${inputedImages}/n]` || "No Images are Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(inputedImages,null,2) || "No Images are Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Image: </p>
+                        <span className="font-semibold">{inputedImage || "No Images are Provided."}</span>
                     </div>
                     <Separator />
                     <div className="flex gap-2">
@@ -503,7 +511,7 @@ export default function CreateUniversity() {
                                   <SelectItem value="Public">Public</SelectItem>
                                   <SelectItem value="Liberal">Liberal</SelectItem>
                                   <SelectItem value="Community">Community</SelectItem>
-                                  <SelectItem value="Community">Corporatized</SelectItem>
+                                  <SelectItem value="Corporatized">Corporatized</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -787,6 +795,10 @@ export default function CreateUniversity() {
 
 
                 <div className="name-logo-description-university w-full grid gap-3 ">
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Image</h1>
+                        <Input onChange={handleImageChange} type="text" placeholder="Enter University Image" />
+                    </div>
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Code</h1>
                         <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />

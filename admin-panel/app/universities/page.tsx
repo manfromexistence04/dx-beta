@@ -340,6 +340,8 @@ const University = () => {
   const [inputedRegion, setInputedRegion] = React.useState(countryValue)
   const [inputedDescription, setInputedDescription] = React.useState("")
   const [inputedImages, setInputedImages] = React.useState([])
+  const [inputedImage, setInputedImage] = React.useState("")
+
   const handleNameChange = (event: any) => {
     setInputedName(event.target.value);
   }
@@ -352,6 +354,12 @@ const University = () => {
   const handleFacebookChange = (event: any) => {
     setInputedFacebook(event.target.value);
   }
+
+
+  const handleImageChange = (event: any) => {
+    setInputedImage(event.target.value);
+}
+
   const handleInstagramChange = (event: any) => {
     setInputedInstragam(event.target.value);
   }
@@ -483,6 +491,7 @@ const University = () => {
         setInputedFacebook(item.facebook);
         setInputedHostel(item.hostel);
         setInputedImages(item.images);
+        setInputedImage(item.image);
         setInputedInstragam(item.instagram);
         setInputedMilitary(item.military);
         setInputedPhoneNumber(item.phoneNumber);
@@ -643,7 +652,7 @@ const University = () => {
                   onMouseEnter={plugin.current.stop}
                   onMouseLeave={plugin.current.reset}
                 >
-                  <CarouselContent>
+                  <CarouselContent className="w-full min-h-full">
                     {items.images && items.images.map((index: any) => (
                       <CarouselItem key={index}>
                         <div>
@@ -701,9 +710,9 @@ const University = () => {
 
                   </CarouselContent>
                   <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white hover:border-accent-foreground" />
+                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
                     <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white hover:border-accent-foreground" />
+                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
                   </div>
                 </Carousel>
               </div>
@@ -842,11 +851,15 @@ const University = () => {
                       <Separator />
                       <div className="flex gap-2">
                         <p>Images: </p>
-                        <span className="font-semibold">{`[
-                              "${items.images}"
-                              ]` || "No Images are Provided."}</span>
-                      </div>
-                      <Separator />
+                        <span className="font-semibold">{JSON.stringify(items.images,null,2) || "No Images are Provided."}</span>
+                    </div>
+                    <Separator />
+                    <div className="flex gap-2">
+                        <p>Image: </p>
+                        <span className="font-semibold">{items.image || "No Images are Provided."}</span>
+                    </div>
+                    <Separator />
+
                       <div className="flex gap-2">
                         <p>Hostel: </p>
                         <Badge
