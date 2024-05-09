@@ -643,17 +643,18 @@ const University = () => {
       <div className="admin-panel-lists place-content-center">
         {docs.map((items) => (
           <div key={items.id}>
-            <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
-              <div className="w-full flex flex-col items-center justify-center relative">
+            <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
+              <div className="w-full flex flex-col items-center justify-center relative min-h-auto">
                 <Carousel
                   plugins={[plugin.current]}
                   setApi={setApi}
-                  className="w-full"
+                  className="w-full !min-h-min"
                   onMouseEnter={plugin.current.stop}
                   onMouseLeave={plugin.current.reset}
                 >
                   <CarouselContent>
-                    {items.images && items.images.map((index: any) => (
+
+                    {items.images && items.images.length > 0 ? items.images.map((index: any) => (
                       <CarouselItem key={index}>
                         <div>
                           <Card>
@@ -672,17 +673,14 @@ const University = () => {
                           </Card>
                         </div>
                       </CarouselItem>
-                    ))}
-
-
-                    {items.image && Array.from({ length: 5 }).map((_, index) => (
+                    )) : items.image ? Array.from({ length: 5 }).map((_, index) => (
                       <CarouselItem key={index}>
                         <div className="p-1">
                           <Card>
                             <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
                               <AspectRatio ratio={16 / 9} className="">
                                 <Image
-                                  src={items.image || "/placeholder-logo.svg"}
+                                  src={items.image || "/placeholder.svg"}
                                   alt="Image"
                                   fill
                                   sizes="(min-width: 250px) 300px, 100vw"
@@ -694,7 +692,29 @@ const University = () => {
                           </Card>
                         </div>
                       </CarouselItem>
-                    ))}
+                    )) : "" }
+
+
+                    {/* {items.image && Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                              <AspectRatio ratio={16 / 9} className="">
+                                <Image
+                                  src={items.image || "/placeholder.svg"}
+                                  alt="Image"
+                                  fill
+                                  sizes="(min-width: 250px) 300px, 100vw"
+                                  loading="lazy"
+                                  className="rounded-md object-cover"
+                                />
+                              </AspectRatio>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))} */}
 
 
                     {/* {items.images.map((item,index) => (
@@ -703,19 +723,42 @@ const University = () => {
 
 
 
+                    {/* {Object.keys(items.images).length === 0 ? "0" : "1"} */}
+
                     {/* {items.images} */}
 
 
+                    {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
 
 
                   </CarouselContent>
-                  <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+
+                  {/* {items.images === "" && <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
                     <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
                     <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
                     <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
-                  </div>
+                  </div>} */}
+                  {/* {[items.images] ? "0" : "1"} */}
+
+                  {/* {items.images.length > 0 ? (<div>0</div>) : "1"}  */}
+
+                  {/* {items.images ? items.images.length : "1"} */}
+
+                  {items.images && items.images.length > 0 ? <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
+                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
+                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
+                  </div> : ""
+                    }
+
+                  {/* {items.images ? <div>{`${items.images} fdasfdsf`}</div> : <div>No imagea are provi`</div>} */}
+                  {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
+
                 </Carousel>
               </div>
+              {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">No image is provided.</div>}
+              {/* {items.images && items.images.length > 0 ? "0" : "1"} */}
+
               <div className="absolute bottom-4 left-4">
                 <Avatar>
                   <AvatarImage src={items.logo} alt="@Ustudy" />
