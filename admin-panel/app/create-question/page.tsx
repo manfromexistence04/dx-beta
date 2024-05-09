@@ -298,7 +298,7 @@ export default function CreateUniversity() {
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 mx-auto p-10 pt-3">
                 <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                     <div className="w-full h-full flex items-start justify-start space-x-3">
-                        <Link href="/read-university" className="z-50">
+                        <Link href="/questions" className="z-50">
                             <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                 Back
                             </AnimatedButton>

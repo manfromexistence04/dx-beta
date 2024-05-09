@@ -577,7 +577,7 @@ export default function CreateSpeciality() {
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 mx-auto p-10 pt-3">
                 <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                     <div className="w-full h-full flex items-start justify-start space-x-3">
-                        <Link href="/read-university" className="z-50">
+                        <Link href="/specialities" className="z-50">
                             <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                 Back
                             </AnimatedButton>
@@ -1077,7 +1077,7 @@ export default function CreateSpeciality() {
 
 
                 <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
-                    <Link href="/read-university" className="z-50 w-full">
+                    <Link href="/specialities" className="z-50 w-full">
                         <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
                             Back
                         </AnimatedButton>

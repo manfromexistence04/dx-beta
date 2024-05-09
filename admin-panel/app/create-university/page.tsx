@@ -9,7 +9,7 @@ const firebaseConfig = {
     storageBucket: "ustudy-96678.appspot.com",
     messagingSenderId: "581632635532",
     appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
-  };
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Database
@@ -107,12 +107,42 @@ import { Label } from "@/components/ui/label"
 import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
+
 interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
 }
 interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default function CreateUniversity() {
 
@@ -286,7 +316,9 @@ export default function CreateUniversity() {
     const handleCostChange = (event: any) => {
         setInputedCost(event.target.value);
     }
-
+    const handleLogoChange = (event: any) => {
+        setInputedLogo(event.target.value);
+    }
     const handleWebsiteChange = (event: any) => {
         setInputedWebsite(event.target.value);
     }
@@ -304,7 +336,7 @@ export default function CreateUniversity() {
     }
     const handleDescriptionChange = (event: any) => {
         setInputedDesciption(event.target.value);
-      }
+    }
 
     const imagesChange = () => {
         setInputedDesciption(JSON.stringify(event));
@@ -342,7 +374,7 @@ export default function CreateUniversity() {
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 mx-auto p-10 pt-3">
                 <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                     <div className="w-full h-full flex items-start justify-start space-x-3">
-                        <Link href="/read-university" className="z-50">
+                        <Link href="/universities" className="z-50">
                             <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                 Back
                             </AnimatedButton>
@@ -435,7 +467,7 @@ export default function CreateUniversity() {
                     <Separator />
                     <div className="flex gap-2">
                         <p>Images: </p>
-                        <span className="font-semibold">{JSON.stringify(inputedImages,null,2) || "No Images are Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
                     </div>
                     <Separator />
                     <div className="flex gap-2">
@@ -508,10 +540,10 @@ export default function CreateUniversity() {
                                     <SelectLabel>What is the operating method of this university?</SelectLabel>
                                     <Separator className="mb-1" />
                                     <SelectItem value="Non Profit">Non Profit</SelectItem>
-                                  <SelectItem value="Public">Public</SelectItem>
-                                  <SelectItem value="Liberal">Liberal</SelectItem>
-                                  <SelectItem value="Community">Community</SelectItem>
-                                  <SelectItem value="Corporatized">Corporatized</SelectItem>
+                                    <SelectItem value="Public">Public</SelectItem>
+                                    <SelectItem value="Liberal">Liberal</SelectItem>
+                                    <SelectItem value="Community">Community</SelectItem>
+                                    <SelectItem value="Corporatized">Corporatized</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -732,7 +764,7 @@ export default function CreateUniversity() {
                             </CommentsProvider>
                         </DndProvider>
                     </div> */}
-                          <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." />
+                    <Textarea onChange={handleDescriptionChange} className="w-full min-h-[350px]" placeholder="Type your description here." />
 
                 </div>
                 <div className="w-full border rounded-md mx-auto h-auto min-h-[300px]">
@@ -795,10 +827,40 @@ export default function CreateUniversity() {
 
 
                 <div className="name-logo-description-university w-full grid gap-3 ">
-                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+
+                    {/* <Collapsible
+                    open={isOpen}
+                    onOpenChange={setIsOpen}
+                    className="w-[350px] space-y-2"
+                >
+                    <div className="flex items-center justify-between space-x-4 px-4">
+                        <h4 className="text-sm font-semibold">
+                            Add Files Link
+                        </h4>
+                        <CollapsibleTrigger asChild>
+                            <Button variant="ghost" size="sm" className="w-9 p-0">
+                                <ChevronsUpDown className="h-4 w-4" />
+                                <span className="sr-only">Toggle</span>
+                            </Button>
+                        </CollapsibleTrigger>
+                    </div>
+                    <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                        @radix-ui/primitives
+                    </div>
+                    <CollapsibleContent className="space-y-2">
+                        <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                            @radix-ui/colors
+                        </div>
+                        <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                            @stitches/react
+                        </div>
+                    </CollapsibleContent>
+                </Collapsible> */}
+
+                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Image</h1>
                         <Input onChange={handleImageChange} type="text" placeholder="Enter University Image" />
-                    </div>
+                    </div> */}
                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                         <h1 className="text-4xl font-bold w-full text-left">Code</h1>
                         <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
@@ -857,34 +919,106 @@ export default function CreateUniversity() {
                 </div>
 
 
+                <Collapsible
+                    open={isOpen}
+                    onOpenChange={setIsOpen}
+                    className="w-full space-y-2"
+                >
+                    <div className="flex items-center justify-between space-x-4 px-4">
+                        <h4 className="text-sm font-semibold">
+                            Add Files Link
+                        </h4>
+                        <CollapsibleTrigger asChild>
+                            <Button variant="ghost" size="sm" className="w-9 p-0">
+                                <ChevronsUpDown className="h-4 w-4" />
+                                <span className="sr-only">Toggle</span>
+                            </Button>
+                        </CollapsibleTrigger>
+                    </div>
+                    {/* <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                        @radix-ui/primitives
+                    </div> */}
+
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
+                        <Input onChange={handleLogoChange} type="text" placeholder="Enter Logo Link" />
+                    </div>
+
+                    <CollapsibleContent className="space-y-2">
+                        {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    <h1 className="text-4xl font-bold w-full text-left">Images</h1>
+                    <TagInput
+                        placeholder="Enter Images Link"
+                        tags={inputedImages}
+                        draggable
+                        className="sm:min-w-[450px]"
+                        setTags={(newTags:any) => {
+                            setInputedImages(newTags);
+                        }}
+                    />
+                </div> */}
+
+                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                            <h1 className="text-4xl font-bold w-full text-left">Images</h1>
+                            <Input onChange={handleImageChange} type="text" placeholder="Enter Images Link" />
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </CollapsibleContent>
+                </Collapsible>
+
 
                 <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
-                    <Link href="/read-university" className="z-50 w-full">
+                    <Link href="/universities" className="z-50 w-full">
                         <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
                             Back
                         </AnimatedButton>
                     </Link>
                     <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
-                            {inputedValues ? "Hide" : "Show"} Inputed Values
-                        </AnimatedButton>
+                        {inputedValues ? "Hide" : "Show"} Inputed Values
+                    </AnimatedButton>
                     <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
-                            Sync Uploaded Files
-                        </AnimatedButton>
-                        <AnimatedButton
-                            className="!py-0 w-full"
-                            disabled={createButtonDisabled}
-                            onClick={handleConfetti}
-                        >
-                            {
-                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            }
-                            Create
-                        </AnimatedButton>
+                        Sync Uploaded Files
+                    </AnimatedButton>
+                    <AnimatedButton
+                        className="!py-0 w-full"
+                        disabled={createButtonDisabled}
+                        onClick={handleConfetti}
+                    >
+                        {
+                            createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        }
+                        Create
+                    </AnimatedButton>
                 </div>
             </div>
         </>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

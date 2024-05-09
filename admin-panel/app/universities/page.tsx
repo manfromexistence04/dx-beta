@@ -359,6 +359,9 @@ const University = () => {
   const handleImageChange = (event: any) => {
     setInputedImage(event.target.value);
   }
+  const handleLogoChange = (event: any) => {
+    setInputedLogo(event.target.value);
+  }
 
   const handleInstagramChange = (event: any) => {
     setInputedInstragam(event.target.value);
@@ -1142,7 +1145,7 @@ const University = () => {
                       <div className="create-university min-h-[100vh] lg:flex lg:flex-col space-y-3 p-10 pt-3 !min-w-full lg:!min-w-[1500px]">
                         <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                           <div className="w-full h-full flex items-start justify-start space-x-3">
-                            <Link href="/read-university" className="z-50">
+                            <Link href="/universities" className="z-50">
                               <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                 Back
                               </AnimatedButton>
@@ -1687,10 +1690,10 @@ const University = () => {
                         </div>
                         <div className="name-logo-description-university w-full grid gap-3 ">
 
-                          <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                          {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                             <h1 className="text-4xl font-bold w-full text-left">Image</h1>
                             <Input onChange={handleImageChange} type="text" placeholder="Enter University Image" />
-                          </div>
+                          </div> */}
                           <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                             <h1 className="text-4xl font-bold w-full text-left">Code</h1>
                             <Input onChange={handleCodeChange} type="number" placeholder="Enter University Code" />
@@ -1747,11 +1750,64 @@ const University = () => {
                             <Input onChange={handleCostChange} type="text" placeholder="Enter University Website Link" />
                           </div>
                         </div>
+                        <Collapsible
+                    open={isOpen}
+                    onOpenChange={setIsOpen}
+                    className="w-full space-y-2"
+                >
+                    <div className="flex items-center justify-between space-x-4 px-4">
+                        <h4 className="text-sm font-semibold">
+                            Add Files Link
+                        </h4>
+                        <CollapsibleTrigger asChild>
+                            <Button variant="ghost" size="sm" className="w-9 p-0">
+                                <ChevronsUpDown className="h-4 w-4" />
+                                <span className="sr-only">Toggle</span>
+                            </Button>
+                        </CollapsibleTrigger>
+                    </div>
+                    {/* <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                        @radix-ui/primitives
+                    </div> */}
 
+                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                        <h1 className="text-4xl font-bold w-full text-left">Logo</h1>
+                        <Input onChange={handleLogoChange} type="text" placeholder="Enter Logo Link" />
+                    </div>
+
+                    <CollapsibleContent className="space-y-2">
+                        {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                    <h1 className="text-4xl font-bold w-full text-left">Images</h1>
+                    <TagInput
+                        placeholder="Enter Images Link"
+                        tags={inputedImages}
+                        draggable
+                        className="sm:min-w-[450px]"
+                        setTags={(newTags:any) => {
+                            setInputedImages(newTags);
+                        }}
+                    />
+                </div> */}
+
+                        <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                            <h1 className="text-4xl font-bold w-full text-left">Images</h1>
+                            <Input onChange={handleImageChange} type="text" placeholder="Enter Images Link" />
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </CollapsibleContent>
+                </Collapsible>
 
 
                         <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
-                          <Link href="/read-university" className="z-50 w-full">
+                          <Link href="/universities" className="z-50 w-full">
                             <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
                               Back
                             </AnimatedButton>
