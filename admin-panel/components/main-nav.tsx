@@ -48,7 +48,7 @@ export function MainNav() {
         >
           Questions
         </Link>
-        <Link
+        {/* <Link
           href="/whiteboard"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -65,7 +65,7 @@ export function MainNav() {
           )}
         >
           Planner
-        </Link>
+        </Link> */}
         {/* <Link
           href={siteConfig.links.github}
           className={cn(

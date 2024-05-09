@@ -514,22 +514,6 @@ const University = () => {
     };
     fetchDocs();
   }, []);
-  // const loadMore = async () => {
-  //   setLoading(true);
-  //   const q = query(
-  //     collection(db, "universities"),
-  //     startAfter(lastDoc),
-  //     limit(8)
-  //   );
-  //   const querySnapshot = await getDocs(q);
-  //   const newDocs = querySnapshot.docs.map((doc) => ({
-  //     id: doc.id,
-  //     ...doc.data(),
-  //   }));
-  //   setDocs([...docs, ...newDocs]);
-  //   setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-  //   setLoading(false);
-  // };
 
   const loadMore = async () => {
     setLoading(true);
@@ -790,7 +774,6 @@ const University = () => {
                 </Carousel>
               </div>
               {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">No image is provided.</div>}
-              {/* {items.images && items.images.length > 0 ? "0" : "1"} */}
 
               <div className="absolute bottom-4 left-4">
                 <Avatar>
@@ -864,114 +847,288 @@ const University = () => {
                     <Button variant="outline">View</Button>
                   </DialogTrigger>
                   <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
-                    <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
-                      <div className="flex gap-2">
-                        <p>Name: </p>
-                        <span className="font-semibold">{items.universityName || "No Name is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Email: </p>
-                        <span className="font-semibold">{items.email || "No Email is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Facebook: </p>
-                        <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Instagram: </p>
-                        <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Education Cost: </p>
-                        <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Website: </p>
-                        <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>University Code: </p>
-                        <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Phone Number: </p>
-                        <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Logo: </p>
-                        <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Address: </p>
-                        <span className="font-semibold">{items.address || "No Address is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Region: </p>
-                        <span className="font-semibold">{items.region || "No Region is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Description: </p>
-                        <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Images: </p>
-                        <span className="font-semibold">{JSON.stringify(items.images, null, 2) || "No Images are Provided."}</span>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Image: </p>
-                        <span className="font-semibold">{items.image || "No Image is Provided."}</span>
-                      </div>
-                      <Separator />
 
-                      <div className="flex gap-2">
-                        <p>Hostel: </p>
-                        <Badge
-                          className={cn(
-                            "w-fit text-center",
-                            items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                          )}
-                        >
-                          {items.hostel || "No Hostel Information Provided."}
-                        </Badge>
+
+
+                    <ScrollArea className="w-full rounded-md border !max-h-[80vh] !p-0">
+                      <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden">
+
+                        <div className="w-full min-h-[350px] h-auto rounded-md mb-20">
+                          <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
+                            <div className="w-full flex flex-col items-center justify-center relative min-h-auto">
+                              <Carousel
+                                plugins={[plugin.current]}
+                                setApi={setApi}
+                                className="w-full !min-h-min"
+                                onMouseEnter={plugin.current.stop}
+                                onMouseLeave={plugin.current.reset}
+                              >
+                                <CarouselContent>
+
+                                  {items.images && items.images.length > 0 ? items.images.map((index: any) => (
+
+                                    <CarouselItem key={index}>
+                                      <div className="p-1">
+                                        <Card>
+                                          <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                                            <AspectRatio ratio={16 / 9} className="">
+                                              <Image
+                                                src={index || "/placeholder.svg"}
+                                                alt="Images"
+                                                fill
+                                                sizes="(min-width: 250px) 300px, 100vw"
+                                                loading="lazy"
+                                                className="rounded-md object-cover"
+                                              />
+                                            </AspectRatio>
+                                          </CardContent>
+                                        </Card>
+                                      </div>
+                                    </CarouselItem>
+
+
+
+                                  )) : items.image ? Array.from({ length: 5 }).map((_, index) => (
+                                    <CarouselItem key={index}>
+                                      <div className="p-1">
+                                        <Card>
+                                          <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                                            <AspectRatio ratio={16 / 9} className="">
+                                              <Image
+                                                src={items.image || "/placeholder.svg"}
+                                                alt="Image"
+                                                fill
+                                                sizes="(min-width: 250px) 300px, 100vw"
+                                                loading="lazy"
+                                                className="rounded-md object-cover"
+                                              />
+                                            </AspectRatio>
+                                          </CardContent>
+                                        </Card>
+                                      </div>
+                                    </CarouselItem>
+                                  )) : ""}
+
+
+
+
+                                  {/* {Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                              <AspectRatio ratio={16 / 9} className="">
+                                <Image
+                                  src={items.image || "/placeholder.svg"}
+                                  alt="Image"
+                                  fill
+                                  sizes="(min-width: 250px) 300px, 100vw"
+                                  loading="lazy"
+                                  className="rounded-md object-cover"
+                                />
+                              </AspectRatio>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))} */}
+
+                                  {/* {items.image && Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                              <AspectRatio ratio={16 / 9} className="">
+                                <Image
+                                  src={items.image || "/placeholder.svg"}
+                                  alt="Image"
+                                  fill
+                                  sizes="(min-width: 250px) 300px, 100vw"
+                                  loading="lazy"
+                                  className="rounded-md object-cover"
+                                />
+                              </AspectRatio>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))} */}
+
+
+                                  {/* {items.images.map((item,index) => (
+                      <span key={index} className="w-full h-full">{item.index}</span>
+                    ))} */}
+
+
+
+                                  {/* {Object.keys(items.images).length === 0 ? "0" : "1"} */}
+
+                                  {/* {items.images} */}
+
+
+                                  {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
+
+
+                                </CarouselContent>
+                                <div className="absolute bottom-[-75px] left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-full h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                                  <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
+                                  <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
+                                  <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
+                                </div>
+
+                                {/* {items.images === "" && <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
+                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
+                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
+                  </div>} */}
+                                {/* {[items.images] ? "0" : "1"} */}
+
+                                {/* {items.images.length > 0 ? (<div>0</div>) : "1"}  */}
+
+                                {/* {items.images ? items.images.length : "1"} */}
+
+                                {/* {items.images && items.images.length > 0 ? <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
+                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
+                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
+                  </div> : ""
+                  } */}
+
+                                {/* {items.images ? <div>{`${items.images} fdasfdsf`}</div> : <div>No imagea are provi`</div>} */}
+                                {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
+
+                              </Carousel>
+                            </div>
+                            {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">No image is provided.</div>}
+
+                            <div className="absolute bottom-4 left-4">
+                              <Avatar>
+                                <AvatarImage src={items.logo} alt="@Ustudy" />
+                                <AvatarFallback>UY</AvatarFallback>
+                              </Avatar>
+                            </div>
+
+
+
+
+
+
+                          </Card>
+
+                        </div>
+                        <Separator />
+
+                        <div className="flex gap-2">
+                          <p>Name: </p>
+                          <span className="font-semibold">{items.universityName || "No Name is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Email: </p>
+                          <span className="font-semibold">{items.email || "No Email is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Facebook: </p>
+                          <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Instagram: </p>
+                          <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Education Cost: </p>
+                          <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Website: </p>
+                          <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>University Code: </p>
+                          <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Phone Number: </p>
+                          <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Logo: </p>
+                          <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Address: </p>
+                          <span className="font-semibold">{items.address || "No Address is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Region: </p>
+                          <span className="font-semibold">{items.region || "No Region is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Description: </p>
+                          <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Images: </p>
+                          <span className="font-semibold">{JSON.stringify(items.images, null, 2) || "No Images are Provided."}</span>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Image: </p>
+                          <span className="font-semibold">{items.image || "No Image is Provided."}</span>
+                        </div>
+                        <Separator />
+
+                        <div className="flex gap-2">
+                          <p>Hostel: </p>
+                          <Badge
+                            className={cn(
+                              "w-fit text-center",
+                              items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                            )}
+                          >
+                            {items.hostel || "No Hostel Information Provided."}
+                          </Badge>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Military: </p>
+                          <Badge
+                            className={cn(
+                              "w-fit",
+                              items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                            )}
+                          >
+                            {items.military || 'No Military Status Provided.'}
+                          </Badge>
+                        </div>
+                        <Separator />
+                        <div className="flex gap-2">
+                          <p>Status: </p>
+                          <Badge
+                            className={cn(
+                              "w-fit",
+                              items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                            )}
+                          >
+                            {items.status || "No Status Provided."}
+                          </Badge>
+                        </div>
                       </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Military: </p>
-                        <Badge
-                          className={cn(
-                            "w-fit",
-                            items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                          )}
-                        >
-                          {items.military || 'No Military Status Provided.'}
-                        </Badge>
-                      </div>
-                      <Separator />
-                      <div className="flex gap-2">
-                        <p>Status: </p>
-                        <Badge
-                          className={cn(
-                            "w-fit",
-                            items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                          )}
-                        >
-                          {items.status || "No Status Provided."}
-                        </Badge>
-                      </div>
-                    </div>
+
+                    </ ScrollArea>
+
+
 
                   </DialogContent>
                 </Dialog>

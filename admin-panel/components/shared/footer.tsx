@@ -48,14 +48,14 @@ export default function Footer() {
             <p className="text-primary mb-4">
               Admin Panel That Shapes the Future.
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               <a className="text-primary hover:text-muted-foreground transition-colors" href="#">
                 +880 1722 595705
               </a>
               <a className="text-primary hover:text-muted-foreground transition-colors" href="#">
                 ajju40959@gmail.com || minialgo.kz@gmail.com
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold mb-4">Quick Links</h3>

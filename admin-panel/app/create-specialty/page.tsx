@@ -1,7 +1,7 @@
 "use client"
 
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 const firebaseConfig = {
     apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
     authDomain: "ustudy-96678.firebaseapp.com",
@@ -10,6 +10,7 @@ const firebaseConfig = {
     messagingSenderId: "581632635532",
     appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
 };
+import { limit, query, onSnapshot } from "firebase/firestore";
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Database
@@ -23,6 +24,7 @@ import { Button as AnimatedButton } from "@/components/button"
 import { Input } from "@/components/ui/input"
 import React, { useRef } from 'react';
 import { Separator } from "@/components/ui/separator"
+import { useEffect, useState } from "react";
 
 import { useToast } from "@/registry/default/ui/use-toast"
 import { Tag, TagInput } from 'emblor';
@@ -100,6 +102,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import { Skeleton } from "@/registry/default/ui/skeleton";
 
 interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
@@ -109,6 +112,16 @@ interface UploadedFilesCardProps {
 }
 
 export default function CreateSpeciality() {
+
+
+
+    const [docs, setDocs] = useState<any[]>([]);
+    const [lastDoc, setLastDoc] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
+
+    const [universities, setUniversities] = useState<any[]>([]);
+    const [subjects, setSubjects] = useState<any[]>([]);
+
     const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
     const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
     const { toast } = useToast();
@@ -212,6 +225,31 @@ export default function CreateSpeciality() {
     const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("");
     const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("");
 
+
+
+
+
+
+
+
+    const [inputedName, setInputedName] = React.useState("")
+    const [inputedEmail, setInputedEmail] = React.useState("")
+    const [inputedStatus, setInputedStatus] = React.useState("")
+    const [inputedFacebook, setInputedFacebook] = React.useState("")
+    const [inputedInstragam, setInputedInstragam] = React.useState("")
+    const [inputedCost, setInputedCost] = React.useState("")
+    const [inputedWebsite, setInputedWebsite] = React.useState("")
+    const [inputedCode, setInputedCode] = React.useState("")
+    const [inputedHostel, setInputedHostel] = React.useState("")
+    const [inputedMilitary, setInputedMilitary] = React.useState("")
+    const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
+    const [inputedLogo, setInputedLogo] = React.useState("")
+    const [inputedAddress, setInputedAddress] = React.useState("")
+    const [inputedRegion, setInputedRegion] = React.useState("")
+    const [inputedDescription, setInputedDescription] = React.useState("")
+    const [inputedImages, setInputedImages] = React.useState([])
+    const [inputedImage, setInputedImage] = React.useState("")
+
     const handleRuralQuota1Change = (event: any) => {
         setInputedRuralQuota1(event.target.value);
     }
@@ -313,6 +351,239 @@ export default function CreateSpeciality() {
         setInputedValues(!inputedValues);
     }
 
+
+
+    // React.useEffect(() => {
+    //     const fetchUniversities = async () => {
+    //         //   setLoading(true);
+    //         //   const q = query(collection(db, "universities"), limit(8));
+    //         // const querySnapshot = await getDocs(collection(db, "universities"));
+    //         // const newUniversitiesDocs = querySnapshot.docs.map((doc) => ({
+    //         //     id: doc.id,
+    //         //     ...doc.data(),
+    //         // }));
+    //         // newUniversitiesDocs.map((item: any) => {
+    //         //     setUniversities(item.universitiesName)
+    //         // });
+    //         const q = query(collection(db, "universities"), limit(8));
+    //         const querySnapshot = await getDocs(q);
+    //         const newDocs = querySnapshot.docs.map((doc) => ({
+    //             id: doc.id,
+    //             ...doc.data(),
+    //         }));
+    //         setDocs(newDocs);
+    //         // Configuring Data for Update:
+    //         docs.map((item: any) => {
+    //             setUniversities(item.universitiesName);
+    //             // setInputedRuralQuota2(item.ruralQuota2);
+    //             // setInputedRuralQuota3(item.ruralQuota3);
+    //             // setInputedLevel(item.level);
+    //             // setInputedOrphanQuota2(item.orphanQuota2);
+    //             // setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
+    //             // setInputedOrphanQuota3(item.orphanQuota3);
+    //             // setInputedGeneralCompetition1(item.generalCompetition1);
+    //             // setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
+    //             // setInputedGeneralCompetition2(item.generalCompetition2);
+    //             // setInputedGeneralCompetition3(item.generalCompetition3);
+    //             // setInputedSpecialtyCode(item.specialtyCode);
+    //             // setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
+    //             // setInputedAverageSalary(item.averageSalary);
+    //             // setInputedSubjects(item.subjects);
+    //             // setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
+    //             // setInputedThreshold(item.threshold);
+    //             // setInputedSpecialtyName(item.specialtyName);
+    //             // setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
+    //             // setInputedOrphanQuota1(item.orphanQuota1);
+    //             // setInputedUniversities(item.universities);
+    //             // setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
+    //             // setInputedAvailableGrantCount(item.availableGrantCount);
+    //             // setInputedDemandForSpecialty(item.demandForSpecialty);
+
+    //         })
+    //         //   newUniversitiesDocs.map((item: any) => {
+    //         //     // setInputedAddress(item.address);
+    //         //     // setInputedCost(item.educationCost);
+    //         //     // setInputedEmail(item.email);
+    //         //     // setInputedFacebook(item.facebook);
+    //         //     // setInputedHostel(item.hostel);
+    //         //     // setInputedImages(item.images);
+    //         //     // setInputedImage(item.image);
+    //         //     // setInputedInstragam(item.instagram);
+    //         //     // setInputedMilitary(item.military);
+    //         //     // setInputedPhoneNumber(item.phoneNumber);
+    //         //     // setInputedRegion(item.region);
+    //         //     // setInputedStatus(item.status);
+    //         //     // setInputedCode(item.universityCode);
+    //         //     // setInputedDescription(item.universityDescription);
+    //         //     // setInputedName(item.universityName);
+    //         //     // setInputedWebsite(item.website);
+    //         //     // setInputedLogo(item.logo);
+    //         //   })
+
+
+    //         // Configuring Data for Update:
+    //         //   docs.map((item: any) => {
+    //         //     setInputedAddress(item.address);
+    //         //     setInputedCost(item.educationCost);
+    //         //     setInputedEmail(item.email);
+    //         //     setInputedFacebook(item.facebook);
+    //         //     setInputedHostel(item.hostel);
+    //         //     setInputedImages(item.images);
+    //         //     setInputedImage(item.image);
+    //         //     setInputedInstragam(item.instagram);
+    //         //     setInputedMilitary(item.military);
+    //         //     setInputedPhoneNumber(item.phoneNumber);
+    //         //     setInputedRegion(item.region);
+    //         //     setInputedStatus(item.status);
+    //         //     setInputedCode(item.universityCode);
+    //         //     setInputedDescription(item.universityDescription);
+    //         //     setInputedName(item.universityName);
+    //         //     setInputedWebsite(item.website);
+    //         //     setInputedLogo(item.logo);
+    //         //   })
+    //         //   setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    //         //   setLoading(false);
+    //     };
+    //     fetchUniversities();
+    // }, []);
+
+
+    useEffect(() => {
+        const fetchDocs = async () => {
+            setLoading(true);
+            const q = query(collection(db, "universities"), limit(8));
+            const querySnapshot = await getDocs(q);
+            const newDocs = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setDocs(newDocs);
+            // Configuring Data for Update:
+            docs.map((item: any) => {
+                setInputedAddress(item.address);
+                setInputedCost(item.educationCost);
+                setInputedEmail(item.email);
+                setInputedFacebook(item.facebook);
+                setInputedHostel(item.hostel);
+                setInputedImages(item.images);
+                setInputedImage(item.image);
+                setInputedInstragam(item.instagram);
+                setInputedMilitary(item.military);
+                setInputedPhoneNumber(item.phoneNumber);
+                setInputedRegion(item.region);
+                setInputedStatus(item.status);
+                setInputedCode(item.universityCode);
+                setInputedDescription(item.universityDescription);
+                setInputedName(item.universityName);
+                setInputedWebsite(item.website);
+                setInputedLogo(item.logo);
+            })
+            setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+            setLoading(false);
+        };
+        fetchDocs();
+    }, []);
+
+    const loadMore = async () => {
+        setLoading(true);
+        const q = query(
+            collection(db, "universities"),
+            startAfter(lastDoc),
+            limit(8)
+        );
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.docs.length === 0) {
+            toast({
+                title: 'There is no more data in the database.',
+                description: (
+                    <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                        <span>Please add more data to load more!</span>
+                    </div>
+                ),
+            });
+            setLoading(false);
+            return;
+        }
+        const newDocs = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setDocs([...docs, ...newDocs]);
+        setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+        setLoading(false);
+    };
+
+    if (loading) {
+        return <main className="w-full py-5 px-[5%] h-auto">
+            <div className="flex items-center justify-between mb-6">
+                <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Universities</span>
+            </div>
+            <div className="admin-panel-lists-loading place-content-center">
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+                <div className="flex flex-col space-y-3 rounded-xl border min-h-max p-5 w-full max-w-[90%]">
+                    <Skeleton className="h-[225px] w-full rounded-xl" />
+                    <div className="space-y-2">
+                        <Skeleton className="h-7 w-full" />
+                        <Skeleton className="h-7 w-full" />
+                    </div>
+                </div>
+
+
+
+            </div>
+        </main>;
+    }
+
+
+
     return (
         <>
             <div className="create-university min-h-[100vh] w-full lg:max-w-[1500px] lg:flex lg:flex-col space-y-3 mx-auto p-10 pt-3">
@@ -338,6 +609,8 @@ export default function CreateSpeciality() {
 
 
                 </div>
+
+                {/* {universities} */}
                 {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
 
 
@@ -432,7 +705,7 @@ export default function CreateSpeciality() {
 
                     <div className="flex gap-2">
                         <p>Subjects: </p>
-                        <span className="font-semibold">{JSON.stringify(subjectsTag,null,2) || "No Subjects is Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(subjectsTag, null, 2) || "No Subjects is Provided."}</span>
                     </div>
 
                     <Separator />
@@ -467,7 +740,7 @@ export default function CreateSpeciality() {
 
                     <div className="flex gap-2">
                         <p>Universities: </p>
-                        <span className="font-semibold">{JSON.stringify(universitiesTag,null,2) || "No Universities is Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(universitiesTag, null, 2) || "No Universities is Provided."}</span>
                     </div>
                     <Separator />
 
@@ -497,10 +770,164 @@ export default function CreateSpeciality() {
                 </div>}
 
 
+                {/* {docs.map((items) => (
+                    <div key={items.id}>{items.address}</div>))} */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {docs.map((items) => (
+                    <div key={items.id}>
+                        <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
+
+                            {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">{items.universityName}</div>}
+
+
+                        </Card>
+                    </div>
+                ))}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                     <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
                     <TagInput
-                        placeholder="Enter Your Results"
+                        placeholder="Enter Your Subjects"
                         tags={subjectsTag}
                         className="sm:min-w-[450px]"
                         setTags={(newTags) => {
@@ -512,9 +939,17 @@ export default function CreateSpeciality() {
                 <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                     <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
                     <TagInput
-                        placeholder="Enter Your Results"
+                        placeholder="Enter Your Universities"
                         tags={universitiesTag}
+
+                        enableAutocomplete
+                        restrictTagsToAutocompleteOptions
+                        autocompleteOptions={universities}
+                        truncate={4}
+                        draggable
+
                         className="sm:min-w-[450px]"
+
                         setTags={(newTags) => {
                             setUniversitiesTag(newTags);
                         }}
