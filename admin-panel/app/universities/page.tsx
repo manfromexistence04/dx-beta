@@ -205,9 +205,9 @@ const University = () => {
   const [docs, setDocs] = useState<any[]>([]);
   const [lastDoc, setLastDoc] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  )
+  // const plugin = React.useRef(
+  //   Autoplay({ delay: 2000, stopOnInteraction: true })
+  // )
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -428,37 +428,41 @@ const University = () => {
   //   },
   // ];
 
-  const fetchDocs = async () => {
-    setLoading(true);
-    const q = query(collection(db, "universities"), limit(8));
-    const querySnapshot = await getDocs(q);
-    const newDocs = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    setDocs(newDocs);
-    // Configuring Data for Update:
-    docs.map((item: any) => {
-      setInputedAddress(item.address);
-      setInputedCost(item.educationCost);
-      setInputedEmail(item.email);
-      setInputedFacebook(item.facebook);
-      setInputedHostel(item.hostel);
-      setInputedImages(item.images);
-      setInputedInstragam(item.instagram);
-      setInputedMilitary(item.military);
-      setInputedPhoneNumber(item.phoneNumber);
-      setInputedRegion(item.region);
-      setInputedStatus(item.status);
-      setInputedCode(item.universityCode);
-      setInputedDescription(item.universityDescription);
-      setInputedName(item.universityName);
-      setInputedWebsite(item.website);
-      setInputedLogo(item.logo);
-    })
-    setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-    setLoading(false);
-  };
+  // const fetchDocs = async () => {
+  //   setLoading(true);
+  //   const q = query(collection(db, "universities"), limit(8));
+  //   const querySnapshot = await getDocs(q);
+  //   const newDocs = querySnapshot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     ...doc.data(),
+  //   }));
+  //   setDocs(newDocs);
+  //   // Configuring Data for Update:
+  //   docs.map((item: any) => {
+  //     setInputedAddress(item.address);
+  //     setInputedCost(item.educationCost);
+  //     setInputedEmail(item.email);
+  //     setInputedFacebook(item.facebook);
+  //     setInputedHostel(item.hostel);
+  //     setInputedImages(item.images);
+  //     setInputedInstragam(item.instagram);
+  //     setInputedMilitary(item.military);
+  //     setInputedPhoneNumber(item.phoneNumber);
+  //     setInputedRegion(item.region);
+  //     setInputedStatus(item.status);
+  //     setInputedCode(item.universityCode);
+  //     setInputedDescription(item.universityDescription);
+  //     setInputedName(item.universityName);
+  //     setInputedWebsite(item.website);
+  //     setInputedLogo(item.logo);
+  //   })
+  //   setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+  //   setLoading(false);
+  // };
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
 
   // This page
   React.useEffect(() => {
@@ -473,6 +477,8 @@ const University = () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
+
+
   useEffect(() => {
     const fetchDocs = async () => {
       setLoading(true);
@@ -655,8 +661,9 @@ const University = () => {
                   <CarouselContent>
 
                     {items.images && items.images.length > 0 ? items.images.map((index: any) => (
+
                       <CarouselItem key={index}>
-                        <div>
+                        <div className="p-1">
                           <Card>
                             <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
                               <AspectRatio ratio={16 / 9} className="">
@@ -673,6 +680,9 @@ const University = () => {
                           </Card>
                         </div>
                       </CarouselItem>
+
+
+
                     )) : items.image ? Array.from({ length: 5 }).map((_, index) => (
                       <CarouselItem key={index}>
                         <div className="p-1">
@@ -692,8 +702,31 @@ const University = () => {
                           </Card>
                         </div>
                       </CarouselItem>
-                    )) : "" }
+                    )) : ""}
 
+
+
+
+                    {/* {Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
+                              <AspectRatio ratio={16 / 9} className="">
+                                <Image
+                                  src={items.image || "/placeholder.svg"}
+                                  alt="Image"
+                                  fill
+                                  sizes="(min-width: 250px) 300px, 100vw"
+                                  loading="lazy"
+                                  className="rounded-md object-cover"
+                                />
+                              </AspectRatio>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))} */}
 
                     {/* {items.image && Array.from({ length: 5 }).map((_, index) => (
                       <CarouselItem key={index}>
@@ -744,12 +777,12 @@ const University = () => {
 
                   {/* {items.images ? items.images.length : "1"} */}
 
-                  {items.images && items.images.length > 0 ? <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                  {/* {items.images && items.images.length > 0 ? <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
                     <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
                     <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
                     <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
                   </div> : ""
-                    }
+                  } */}
 
                   {/* {items.images ? <div>{`${items.images} fdasfdsf`}</div> : <div>No imagea are provi`</div>} */}
                   {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
