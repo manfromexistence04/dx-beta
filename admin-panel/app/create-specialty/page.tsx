@@ -122,12 +122,11 @@ export default function CreateSpeciality() {
     const [docs, setDocs] = useState<any[]>([]);
     const [lastDoc, setLastDoc] = useState<any>(null);
     const [loading, setLoading] = useState(false);
-
     const [universities, setUniversities] = useState<any[]>([]);
     const [subjects, setSubjects] = useState<any[]>([]);
 
-    const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
-    const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
+    const [subjectsTag, setSubjectsTag] = React.useState<any[]>([]);
+    const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([]);
     const { toast } = useToast();
     const router = useRouter()
     const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -164,14 +163,14 @@ export default function CreateSpeciality() {
             specialtyCode: inputedSpecialtyCode,
             disabilitiesQuota1: inputedDisabilitiesQuota1,
             averageSalary: inputedAverageSalary,
-            subjects: subjectsTag.map(obj => obj.text),
+            subjects: subjectsTag.flatMap(item => item.text),
             largeFamiliesQuota1: inputedLargeFamiliesQuota1,
             threshold: inputedThreshold,
             specialtyName: inputedSpecialtyName,
             disabilitiesQuota3: inputedDisabilitiesQuota3,
             ruralQuota2: inputedRuralQuota2,
             orphanQuota1: inputedOrphanQuota1,
-            universities: universitiesTag.map(obj => obj.text),
+            universities: universitiesTag.flatMap(item => item.text),
             largeFamiliesQuota3: inputedLargeFamiliesQuota3,
             availableGrantCount: inputedAvailableGrantCount,
             demandForSpecialty: inputedDemandForSpecialty
@@ -694,7 +693,7 @@ export default function CreateSpeciality() {
 
                     <div className="flex gap-2">
                         <p>Subjects: </p>
-                        <span className="font-semibold">{JSON.stringify(subjectsTag, null, 2) || "No Subjects is Provided."}</span>
+                        <span className="font-semibold">{subjectsTag.map(item => item.text.map((tag: any) => tag)) || "No Subjects is Provided."}</span>
                     </div>
 
                     <Separator />
@@ -729,7 +728,7 @@ export default function CreateSpeciality() {
 
                     <div className="flex gap-2">
                         <p>Universities: </p>
-                        <span className="font-semibold">{JSON.stringify(universitiesTag, null, 2) || "No Universities is Provided."}</span>
+                        <span className="font-semibold">{universitiesTag.flatMap(item => item.text) || "No Universities is Provided."}</span>
                     </div>
                     <Separator />
 
@@ -923,21 +922,6 @@ export default function CreateSpeciality() {
                             id: items.id,
                             text: items.subjects.map((item: any)=>item || `No Subjects Are Provided at id:${uuid()}`) || `No Subject Provided at id:${items.id}`,
                         }))}
-                        // autocompleteOptions={subjects.flatMap((items) => (
-                        //     items.subjects.map((subject) => ({
-                        //         id: subject,
-                        //         text: subject,
-                        //     }))
-                        // ))}
-
-                        // autocompleteOptions={docs.flatMap((items) => (
-                        //     Array.isArray(items.subjects) ? items.subjects.map((subject: any) => ({
-                        //         id: subject,
-                        //         text: subject,
-                        //     })) : []
-                        // ))}
-
-                        // truncate={4}
                         draggable
                         className="sm:min-w-[450px]"
                         setTags={(newTags) => {
@@ -957,7 +941,6 @@ export default function CreateSpeciality() {
                             id: items.id,
                             text: items.universityName || `Not Universities Are Provided at id:${items.id}`,
                         }))}
-                        // truncate={4}
                         draggable
                         className="sm:min-w-[450px]"
                         setTags={(newTags) => {

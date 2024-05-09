@@ -196,11 +196,15 @@ import { Label } from "@/components/ui/label"
 import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
-
+function uuid() {
+    return crypto.getRandomValues(new Uint32Array(1))[0].toString();
+}
 
 const Specialty = () => {
 
 
+    const [universities, setUniversities] = useState<any[]>([]);
+    const [subjects, setSubjects] = useState<any[]>([]);
 
     const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
     const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
@@ -497,46 +501,46 @@ const Specialty = () => {
     //     setLoading(false);
     // };
 
-    const fetchData = async () => {
-        // setLoading(true);
-        const q = query(collection(db, "specialties"), limit(8));
-        const querySnapshot = await getDocs(q);
-        const newDocs = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setDocs(newDocs);
-        // Configuring Data for Update:
-        docs.map((item: any) => {
-            setInputedRuralQuota1(item.ruralQuota1);
-            setInputedRuralQuota2(item.ruralQuota2);
-            setInputedRuralQuota3(item.ruralQuota3);
-            setInputedLevel(item.level);
-            setInputedOrphanQuota2(item.orphanQuota2);
-            setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
-            setInputedOrphanQuota3(item.orphanQuota3);
-            setInputedGeneralCompetition1(item.generalCompetition1);
-            setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
-            setInputedGeneralCompetition2(item.generalCompetition2);
-            setInputedGeneralCompetition3(item.generalCompetition3);
-            setInputedSpecialtyCode(item.specialtyCode);
-            setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
-            setInputedAverageSalary(item.averageSalary);
-            setInputedSubjects(item.subjects);
-            setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
-            setInputedThreshold(item.threshold);
-            setInputedSpecialtyName(item.specialtyName);
-            setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
-            setInputedOrphanQuota1(item.orphanQuota1);
-            setInputedUniversities(item.universities);
-            setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
-            setInputedAvailableGrantCount(item.availableGrantCount);
-            setInputedDemandForSpecialty(item.demandForSpecialty);
+    // const fetchData = async () => {
+    //     // setLoading(true);
+    //     const q = query(collection(db, "specialties"), limit(8));
+    //     const querySnapshot = await getDocs(q);
+    //     const newDocs = querySnapshot.docs.map((doc) => ({
+    //         id: doc.id,
+    //         ...doc.data(),
+    //     }));
+    //     setDocs(newDocs);
+    //     // Configuring Data for Update:
+    //     docs.map((item: any) => {
+    //         setInputedRuralQuota1(item.ruralQuota1);
+    //         setInputedRuralQuota2(item.ruralQuota2);
+    //         setInputedRuralQuota3(item.ruralQuota3);
+    //         setInputedLevel(item.level);
+    //         setInputedOrphanQuota2(item.orphanQuota2);
+    //         setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
+    //         setInputedOrphanQuota3(item.orphanQuota3);
+    //         setInputedGeneralCompetition1(item.generalCompetition1);
+    //         setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
+    //         setInputedGeneralCompetition2(item.generalCompetition2);
+    //         setInputedGeneralCompetition3(item.generalCompetition3);
+    //         setInputedSpecialtyCode(item.specialtyCode);
+    //         setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
+    //         setInputedAverageSalary(item.averageSalary);
+    //         setInputedSubjects(item.subjects);
+    //         setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
+    //         setInputedThreshold(item.threshold);
+    //         setInputedSpecialtyName(item.specialtyName);
+    //         setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
+    //         setInputedOrphanQuota1(item.orphanQuota1);
+    //         setInputedUniversities(item.universities);
+    //         setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
+    //         setInputedAvailableGrantCount(item.availableGrantCount);
+    //         setInputedDemandForSpecialty(item.demandForSpecialty);
 
-        })
-        // setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-        // setLoading(false);
-    };
+    //     })
+    //     // setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    //     // setLoading(false);
+    // };
 
     // This page
     React.useEffect(() => {
@@ -591,6 +595,24 @@ const Specialty = () => {
             setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
             setLoading(false);
         };
+        const fetchUniversities = async () => {
+            const querySnapshot = await getDocs(collection(db, "universities"));
+            const newDocs = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setUniversities(newDocs);
+        };
+        const fetchSubjects = async () => {
+            const querySnapshot = await getDocs(collection(db, "subjects"));
+            const newDocs = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setSubjects(newDocs);
+        };
+        fetchUniversities();
+        fetchSubjects();
         fetchDocs();
 
     }, []);
@@ -734,7 +756,7 @@ const Specialty = () => {
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
-                                    
+
                                         <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
                                             <div className="flex gap-2">
                                                 <p>RuralQuota1: </p>
@@ -830,7 +852,6 @@ const Specialty = () => {
                                             </div>
 
 
-                                            <Separator />
 
 
 
@@ -968,19 +989,19 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                         disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
                                                                         averageSalary: inputedAverageSalary || items.averageSalary,
-                                                                        subjects: subjectsTag.map(obj => obj.text) || items.subjects,
+                                                                        subjects: subjectsTag.flatMap(item => item.text) || items.subjects,
                                                                         largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
                                                                         threshold: inputedThreshold || items.threshold,
                                                                         specialtyName: inputedSpecialtyName || items.specialtyName,
                                                                         disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
                                                                         ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
                                                                         orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
-                                                                        universities: universitiesTag.map(obj => obj.text) || items.universities,
+                                                                        universities: universitiesTag.flatMap(item => item.text) || items.universities,
                                                                         largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                         availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                         demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-    
-    
+
+
                                                                     })
 
 
@@ -1005,7 +1026,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             </Button>
                                                         </div>
                                                     </div>
-                                                
+
 
                                                     {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
                                                         <div className="flex gap-2">
@@ -1098,7 +1119,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                         <div className="flex gap-2">
                                                             <p>Subjects: </p>
-                                                            <span className="font-semibold">{JSON.stringify(subjectsTag,null,2) || "No Subjects is Provided."}</span>
+                                                            <span className="font-semibold">{subjectsTag.flatMap(item => item.text) || "No Subjects is Provided."}</span>
                                                         </div>
 
 
@@ -1136,7 +1157,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                         <div className="flex gap-2">
                                                             <p>Universities: </p>
-                                                            <span className="font-semibold">{JSON.stringify(universitiesTag,null,2) || "No Universities is Provided."}</span>
+                                                            <span className="font-semibold">{universitiesTag.flatMap(item => item.text) || "No Universities is Provided."}</span>
                                                         </div>
                                                         <Separator />
 
@@ -1166,7 +1187,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                     </div>}
 
 
-                                                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                         <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
                                                         <TagInput
                                                             placeholder="Enter Your Results"
@@ -1177,7 +1198,6 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             }}
                                                         />
                                                     </div>
-
                                                     <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                         <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
                                                         <TagInput
@@ -1188,7 +1208,46 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                 setUniversitiesTag(newTags);
                                                             }}
                                                         />
+                                                    </div> */}
+                                                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                        <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
+                                                        <TagInput
+                                                            placeholder="Enter Your Subjects"
+                                                            tags={subjectsTag}
+                                                            enableAutocomplete
+                                                            restrictTagsToAutocompleteOptions
+                                                            autocompleteOptions={subjects.map((items) => ({
+                                                                id: items.id,
+                                                                text: items.subjects.map((item: any) => item || `No Subjects Are Provided at id:${uuid()}`) || `No Subject Provided at id:${items.id}`,
+                                                            }))}
+                                                            draggable
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setSubjectsTag(newTags);
+                                                            }}
+                                                        />
                                                     </div>
+
+                                                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                        <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
+                                                        <TagInput
+                                                            placeholder="Enter Your Universities"
+                                                            tags={universitiesTag}
+                                                            enableAutocomplete
+                                                            restrictTagsToAutocompleteOptions
+                                                            autocompleteOptions={universities.map((items) => ({
+                                                                id: items.id,
+                                                                text: items.universityName || `Not Universities Are Provided at id:${items.id}`,
+                                                            }))}
+                                                            draggable
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setUniversitiesTag(newTags);
+                                                            }}
+                                                        />
+                                                    </div>
+
+
                                                     <div className="name-logo-description-university w-full grid gap-3">
                                                         <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                             <h1 className="text-4xl font-bold w-full text-left">RuralQuota1</h1>
@@ -1355,14 +1414,14 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                     specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                     disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
                                                                     averageSalary: inputedAverageSalary || items.averageSalary,
-                                                                    subjects: subjectsTag.map(obj => obj.text) || items.subjects,
+                                                                    subjects: subjectsTag.flatMap(item => item.text) || items.subjects,
                                                                     largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
                                                                     threshold: inputedThreshold || items.threshold,
                                                                     specialtyName: inputedSpecialtyName || items.specialtyName,
                                                                     disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
                                                                     ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
                                                                     orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
-                                                                    universities: universitiesTag.map(obj => obj.text) || items.universities,
+                                                                    universities: universitiesTag.flatMap(item => item.text) || items.universities,
                                                                     largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                     availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                     demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
