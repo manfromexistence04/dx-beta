@@ -104,6 +104,10 @@ import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { Skeleton } from "@/registry/default/ui/skeleton";
 
+function uuid() {
+    return crypto.getRandomValues(new Uint32Array(1))[0].toString();
+}
+
 interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
 }
@@ -449,39 +453,24 @@ export default function CreateSpeciality() {
 
 
     useEffect(() => {
-        const fetchDocs = async () => {
-            setLoading(true);
-            const q = query(collection(db, "universities"), limit(8));
-            const querySnapshot = await getDocs(q);
+        const fetchUniversities = async () => {
+            const querySnapshot = await getDocs(collection(db, "universities"));
             const newDocs = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
             }));
-            setDocs(newDocs);
-            // Configuring Data for Update:
-            docs.map((item: any) => {
-                setInputedAddress(item.address);
-                setInputedCost(item.educationCost);
-                setInputedEmail(item.email);
-                setInputedFacebook(item.facebook);
-                setInputedHostel(item.hostel);
-                setInputedImages(item.images);
-                setInputedImage(item.image);
-                setInputedInstragam(item.instagram);
-                setInputedMilitary(item.military);
-                setInputedPhoneNumber(item.phoneNumber);
-                setInputedRegion(item.region);
-                setInputedStatus(item.status);
-                setInputedCode(item.universityCode);
-                setInputedDescription(item.universityDescription);
-                setInputedName(item.universityName);
-                setInputedWebsite(item.website);
-                setInputedLogo(item.logo);
-            })
-            setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-            setLoading(false);
+            setUniversities(newDocs);
         };
-        fetchDocs();
+        const fetchSubjects = async () => {
+            const querySnapshot = await getDocs(collection(db, "subjects"));
+            const newDocs = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setSubjects(newDocs);
+        };
+        fetchUniversities();
+        fetchSubjects();
     }, []);
 
     const loadMore = async () => {
@@ -610,7 +599,7 @@ export default function CreateSpeciality() {
 
                 </div>
 
-                {/* {universities} */}
+                {/* {JSON.stringify(universities,null,2)} */}
                 {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
 
 
@@ -883,18 +872,17 @@ export default function CreateSpeciality() {
 
 
 
-                {docs.map((items) => (
+                {/* {docs.map((items) => (
                     <div key={items.id}>
                         <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
 
-                            {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">{items.universityName}</div>}
-
+                            <div>{items.universityName}</div>
 
                         </Card>
                     </div>
                 ))}
 
-
+ */}
 
 
 
@@ -929,6 +917,28 @@ export default function CreateSpeciality() {
                     <TagInput
                         placeholder="Enter Your Subjects"
                         tags={subjectsTag}
+                        enableAutocomplete
+                        restrictTagsToAutocompleteOptions
+                        autocompleteOptions={subjects.map((items) => ({
+                            id: items.id,
+                            text: items.subjects.map((item: any)=>item || `No Subjects Are Provided at id:${uuid()}`) || `No Subject Provided at id:${items.id}`,
+                        }))}
+                        // autocompleteOptions={subjects.flatMap((items) => (
+                        //     items.subjects.map((subject) => ({
+                        //         id: subject,
+                        //         text: subject,
+                        //     }))
+                        // ))}
+
+                        // autocompleteOptions={docs.flatMap((items) => (
+                        //     Array.isArray(items.subjects) ? items.subjects.map((subject: any) => ({
+                        //         id: subject,
+                        //         text: subject,
+                        //     })) : []
+                        // ))}
+
+                        // truncate={4}
+                        draggable
                         className="sm:min-w-[450px]"
                         setTags={(newTags) => {
                             setSubjectsTag(newTags);
@@ -941,15 +951,15 @@ export default function CreateSpeciality() {
                     <TagInput
                         placeholder="Enter Your Universities"
                         tags={universitiesTag}
-
                         enableAutocomplete
                         restrictTagsToAutocompleteOptions
-                        autocompleteOptions={universities}
-                        truncate={4}
+                        autocompleteOptions={universities.map((items) => ({
+                            id: items.id,
+                            text: items.universityName || `Not Universities Are Provided at id:${items.id}`,
+                        }))}
+                        // truncate={4}
                         draggable
-
                         className="sm:min-w-[450px]"
-
                         setTags={(newTags) => {
                             setUniversitiesTag(newTags);
                         }}
