@@ -1,5 +1,5 @@
 {
-  "name": "dx-ui-cli",
+  "name": "dx-cli-nodejs",
   "private": false,
   "type": "module",
   "license": "MIT",

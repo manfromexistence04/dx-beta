@@ -11,7 +11,7 @@ module.exports = async(value, prompt, context = {}) => {
   // ? Select your favorite colors >
   // ^             ^               ^
   // prefix     message        separator
-  let promptLine = [prefix, message, separator].filter(Boolean).join(' ');
+  let promptLine = [message].filter(Boolean).join(' ');
   prompt.state.prompt = promptLine;
 
   let header = context.header || await prompt.header();

@@ -189,7 +189,7 @@ class StringPrompt extends Prompt {
     let separator = await this.separator();
     let message = await this.message();
 
-    let prompt = [prefix, message, separator].filter(Boolean).join(' ');
+    let prompt = [message].filter(Boolean).join(' ');
     this.state.prompt = prompt;
 
     let header = await this.header();

@@ -16,11 +16,12 @@ import { initStoreComponentsData } from './constants/component';
 import { getStore, store } from './constants/store';
 import { getComponents } from './scripts/helpers';
 import Table from "./table/src/main";
+import { prompt } from "./enquirer/lib/prompt";
 import terminalLink from 'terminal-link';
 import { CohereClient } from "cohere-ai";
 const prompts = require('prompts');
 prompts.override(require('yargs').argv);
-const { prompt } = require('er/index.js');
+// const { prompt } = require('enquirer/index.js');
 const { spawn } = require('child_process');
 const cohere = new CohereClient({
     token: "agnI51GCGhkPOpIxQdo3Hqkdw3D60OXYIAvBwfan",
@@ -105,10 +106,10 @@ $$ |  $$ | $$  $$<   $$  /   $$ |  $$ |$$ |
 ui
     .name('ui')
     .usage('[command]')
-    // .description(`${chalkAnimation.rainbow(
-    //     `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
-    // )}`)
-    .description("dx-ui --> : Streamline UI Development with a CLI Tool for Efficient Component Integration")
+    .description(`${chalkAnimation.rainbow(
+        `Dx/Ui(v${pkg.version}): Streamline UI Development with a CLI Tool for Efficient Component Integration`
+    )}`)
+    // .description("dx-ui --> : Streamline UI Development with a CLI Tool for Efficient Component Integration")
     .version(pkg.version, '-v, --version', 'Output the current version')
     .helpOption('-h, --help', 'Display help for command')
     .allowUnknownOption()
