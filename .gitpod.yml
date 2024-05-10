@@ -1,22 +1,21 @@
 tasks:
     - name: dx
       init: |
-          cd admin-panel
           npm install -g bun
+          sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
           bun install
           bun pm trust --all
-          bun run dev
+        #   bun run dev
       command: |
           bun run dev
 
-    - name: package
-      before: |
-          cd package && sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
-      init: |
-          echo bun install && cd table && bun install && cd ..
-      command: |
-          echo bun run dev
-
+    # - name: package
+    #   before: |
+    #       cd package && sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+    #   init: |
+    #       echo bun install && cd table && bun install && cd ..
+    #   command: |
+    #       echo bun run dev
     # - name: frontend
     #   init: |
     #       echo npm install
