@@ -23,7 +23,6 @@ import { Input } from "@/components/ui/input"
 import React, { useRef } from 'react';
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
-import { DialogUploaderDemo } from "../_components/dialog-uploader-demo"
 import CountryDropdown from "@/components/dropdown/countries";
 import StateDropdown from "@/components/dropdown/states";
 import { z } from 'zod';
