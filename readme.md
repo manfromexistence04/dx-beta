@@ -719,3 +719,38 @@ function Card3() {
 
 
 ```
+
+<!-- 
+// import withPWA from "next-pwa";
+// export default withPWA({
+//   ...nextConfig,
+  
+//   dest: "public",
+//   swSrc: "service-worker.js",
+// });
+
+// export default withPWA({
+//   ...nextConfig,
+  
+//   // dest: "public",
+//   // swSrc: "service-worker.js",
+
+
+//   dest: 'public',
+//   disable: process.env.NODE_ENV === 'development',
+//   register: true,
+//   scope: '/app',
+//   sw: 'service-worker.js',
+
+
+
+// });
+
+
+
+
+
+
+  // disable: process.env.NODE_ENV === 'development',
+
+ -->

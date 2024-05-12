@@ -38,6 +38,7 @@
     "@changesets/cli": "^2.26.1",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
+    "@ducanh2912/next-pwa": "^10.2.7",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@inkjs/ui": "^1.0.0",
     "@manypkg/cli": "^0.20.0",
