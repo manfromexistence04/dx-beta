@@ -180,6 +180,9 @@
     "vaul": "^0.9.0",
     "zod": "^3.21.4",
     "zustand": "^4.4.7"
+
+
+
   },
   "devDependencies": {
     "@babel/core": "7.18.9",
@@ -236,7 +239,16 @@
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "lint-staged": "^15.0.2"
+    "lint-staged": "^15.0.2",
+
+
+
+
+
+    "@clerk/nextjs": "5.0.0-beta.39",
+    "@types/react-syntax-highlighter": "^15.5.11",
+    "prism-react-renderer": "^2.3.1",
+    "react-syntax-highlighter": "^15.5.0"
   },
   "trustedDependencies": [
     "@biomejs/biome",
