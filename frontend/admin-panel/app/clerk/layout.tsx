@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <ClerkProvider
         appearance={{
-          variables: { colorPrimary: '#000000' },
+          variables: { colorPrimary: 'hsl(263.4, 70%, 50.4%)' },
           elements: {
             formButtonPrimary: 'bg-black border border-black border-solid hover:bg-white hover:text-black',
             socialButtonsBlockButton:

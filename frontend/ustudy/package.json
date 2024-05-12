@@ -14,11 +14,11 @@
   "scripts": {
     "build": "turbo run format:write && turbo run lint:fix && turbo run build",
     "build:cli": "turbo --filter=shadcn-ui build",
-    "build:registry": "pnpm --filter=www build:registry",
+    "build:registry": "bun--filter=www build:registry",
     "dev": "turbo run dev --parallel",
     "cli:dev": "turbo --filter=shadcn-ui dev",
-    "cli:start": "pnpm --filter=shadcn-ui start:dev",
-    "www:dev": "pnpm --filter=www dev",
+    "cli:start": "bun--filter=shadcn-ui start:dev",
+    "www:dev": "bun--filter=www dev",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "preview": "turbo run preview",
@@ -28,8 +28,8 @@
     "sync:templates": "./scripts/sync-templates.sh \"templates/*\"",
     "check": "turbo lint typecheck format:check",
     "release": "changeset version",
-    "pub:beta": "cd packages/cli && pnpm pub:beta",
-    "pub:release": "cd packages/cli && pnpm pub:release",
+    "pub:beta": "cd packages/cli && bunpub:beta",
+    "pub:release": "cd packages/cli && bunpub:release",
     "test": "turbo run test --force"
   },
   "dependencies": {
