@@ -1,4 +1,4 @@
-import { LearnMore } from "./components/learn-more";
+import { LearnMore } from "../components/learn-more";
 import screenshotDevices from "./images/user-button@2xrl.webp";
 import signIn from "./images/sign-in@2xrl.webp";
 import verify from "./images/verify@2xrl.webp";
@@ -8,9 +8,9 @@ import logo from "./images/logo.png";
 import "./home.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Footer } from "./components/footer";
+import { Footer } from "../components/footer";
 
-import { CARDS } from "./consts/cards";
+import { CARDS } from "../consts/cards";
 
 export default function Home() {
   return (
