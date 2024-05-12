@@ -8,9 +8,7 @@
     "name": "manfromexistence",
     "url": "https://twitter.com/manfromexistence"
   },
-  "workspaces": [
-    "frontend/*"
-  ],
+
   "scripts": {
     "build": "turbo run build",
     "build:cli": "turbo --filter=manfromexistence-ui build",

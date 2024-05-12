@@ -51,11 +51,12 @@ export default function RootLayout({
               delayDuration={500}
               skipDelayDuration={0}
             >
-              <SiteHeader />
+              {/* <SiteHeader />
               <div className="min-h-[90vh]">
                 {children}
               </div>
-              <Footer />
+              <Footer /> */}
+              {children}
               <Toaster />
               <NewYorkToaster />
               <DefaultToaster />
