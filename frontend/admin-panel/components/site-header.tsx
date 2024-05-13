@@ -1,5 +1,6 @@
-import Link from "next/link"
+"use client"
 
+import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { CommandMenu } from "@/components/command-menu"
@@ -25,8 +26,11 @@ import NavLinks from "@/components/shared/nav-links";
 import VVLogo from "@/components/shared/vv-logo";
 import { motion } from "framer-motion";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useAuth } from "@clerk/nextjs";
+import { User } from "lucide-react"
 
 export function SiteHeader() {
+  const { sessionId } = useAuth();
   return (
     <header className="navbar h-[4.5rem] flex items-center justify-center z-10 sticky top-0 w-full bg-background/80 backdrop-blur-2xl border-b">
       <div className="w-full flex h-14 items-center justify-center lg:px-[0.5%] px-10">
@@ -80,22 +84,92 @@ export function SiteHeader() {
               </DropdownMenuContent>
             </DropdownMenu> */}
 
-            <div className="flex items-center gap-2">
-              <OrganizationSwitcher
-                appearance={{
-                  elements: {
-                    organizationPreviewAvatarBox: "size-6",
-                  },
-                }}
-              />
-              <UserButton
-                appearance={{
-                  elements: {
-                    userButtonAvatarBox: "size-6",
-                  },
-                }}
-              />
-            </div>
+
+
+            {
+
+              !sessionId ? (<DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border ring-offset-background ring-2 ring-ring ring-offset-2 ml-2">
+                    {/* <Image
+                      alt="User"
+                      className="aspect-square rounded-full object-cover"
+                      height="23"
+                      src="/Nurzhol Tabigat.jpg"
+                      width="23"
+                    /> */}
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
+                  <DropdownMenuLabel>You Need An Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/sign-in">
+                      SignIn
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/sign-up">
+                      SignUp
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/sign-up">
+                      Freelancer
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/sign-up">
+                      Upwork
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/sign-up">
+                      Fiverr
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/sign-up">
+                      Youtube
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/sign-up">
+                      Discord
+                    </Link>
+                  </DropdownMenuItem>
+
+
+
+
+                  {/* <DropdownMenuItem>View Database</DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuItem>Help</DropdownMenuItem> */}
+                  {/* <DropdownMenuSeparator />
+                  <DropdownMenuItem>Logout</DropdownMenuItem> */}
+                </DropdownMenuContent>
+              </DropdownMenu>) : (<div className="flex items-center gap-2">
+                <OrganizationSwitcher
+                  appearance={{
+                    elements: {
+                      organizationPreviewAvatarBox: "size-6",
+                    },
+                  }}
+                />
+                <UserButton
+                  appearance={{
+                    elements: {
+                      userButtonAvatarBox: "size-6",
+                    },
+                  }}
+                />
+              </div>)
+            }
+
+
           </nav>
         </div>
       </div>
