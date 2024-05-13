@@ -145,8 +145,8 @@ export default async function DashboardPage() {
           </div>
         </div>
       </main>
-      <LearnMore cards={DASHBOARD_CARDS} />
-      <Footer />
+      {/* <LearnMore cards={DASHBOARD_CARDS} />
+      <Footer /> */}
     </>
   );
 }

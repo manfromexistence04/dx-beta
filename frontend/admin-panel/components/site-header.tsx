@@ -24,6 +24,7 @@ import { NavDropdown } from "@/components/shared/nav-dropdown";
 import NavLinks from "@/components/shared/nav-links";
 import VVLogo from "@/components/shared/vv-logo";
 import { motion } from "framer-motion";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 export function SiteHeader() {
   return (
@@ -54,7 +55,7 @@ export function SiteHeader() {
               </div>
             </Link>
             <ModeToggle />
-            <DropdownMenu>
+            {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border ring-offset-background ring-2 ring-ring ring-offset-2">
                   <Image
@@ -77,7 +78,24 @@ export function SiteHeader() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Logout</DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
+
+            <div className="flex items-center gap-2">
+              <OrganizationSwitcher
+                appearance={{
+                  elements: {
+                    organizationPreviewAvatarBox: "size-6",
+                  },
+                }}
+              />
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: "size-6",
+                  },
+                }}
+              />
+            </div>
           </nav>
         </div>
       </div>
