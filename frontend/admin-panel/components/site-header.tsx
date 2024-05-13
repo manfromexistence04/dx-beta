@@ -98,7 +98,7 @@ export function SiteHeader() {
                       src="/Nurzhol Tabigat.jpg"
                       width="23"
                     /> */}
-                    <User className="h-5 w-5" />
+                    <User className="h-[1.2rem] w-[1.2rem]" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
