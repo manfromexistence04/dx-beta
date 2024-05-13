@@ -133,7 +133,7 @@ import {
 import { ImageIcon } from "@radix-ui/react-icons"
 import { Button as AnimatedButton } from "@/components/button"
 import { Textarea } from "@/components/ui/textarea"
-import { DialogUploaderDemo } from "../_components/dialog-uploader-demo"
+
 import CountryDropdown from "@/components/dropdown/countries";
 import StateDropdown from "@/components/dropdown/states";
 import { z } from 'zod';
