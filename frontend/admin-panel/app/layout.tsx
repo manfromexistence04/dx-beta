@@ -15,6 +15,7 @@ import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -73,7 +74,7 @@ export default function RootLayout({
                 <div className="min-h-[90vh]">
                   {children}
                 </div>
-                <Footer />
+                <SiteFooter />
                 <Toaster />
                 <NewYorkToaster />
                 <DefaultToaster />

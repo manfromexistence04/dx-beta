@@ -59,38 +59,12 @@ export function SiteHeader() {
               </div>
             </Link>
             <ModeToggle />
-            {/* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border ring-offset-background ring-2 ring-ring ring-offset-2">
-                  <Image
-                    alt="User"
-                    className="aspect-square rounded-full object-cover"
-                    height="23"
-                    src="/Nurzhol Tabigat.jpg"
-                    width="23"
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
-                <DropdownMenuLabel>Nurzhol Tabigat</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Switch Account</DropdownMenuItem>
-                <DropdownMenuItem>View Database</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuItem>Help</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu> */}
-
-
 
             {
 
               !sessionId ? (<DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full max-h-[25px] max-w-[25px] border ring-offset-background ring-2 ring-ring ring-offset-2 ml-2">
+                  <Button variant="ghost" size="icon" className="w-9 px-0">
                     {/* <Image
                       alt="User"
                       className="aspect-square rounded-full object-cover"
@@ -102,7 +76,7 @@ export function SiteHeader() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[250px] !z-[10000000000000000000000000000000000000000000000000000000000000000000]">
-                  <DropdownMenuLabel>You Need An Account</DropdownMenuLabel>
+                  <DropdownMenuLabel>Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <Link href="/sign-in">
@@ -140,11 +114,22 @@ export function SiteHeader() {
                       Discord
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link href="/whiteboard">
+                      Whiteboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/planner">
+                      Planner
+                    </Link>
+                  </DropdownMenuItem>
 
 
-
-
-                  {/* <DropdownMenuItem>View Database</DropdownMenuItem>
+                  {/* 
+                  ring-offset-background ring-2 ring-ring ring-offset-2 
+                  <DropdownMenuItem>View Database</DropdownMenuItem>
                   <DropdownMenuItem>Settings</DropdownMenuItem>
                   <DropdownMenuItem>Support</DropdownMenuItem>
                   <DropdownMenuItem>Help</DropdownMenuItem> */}
