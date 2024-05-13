@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
 // import React, { useState, useEffect } from 'react';
@@ -171,11 +170,11 @@ import React, { useState } from 'react';
 const RandomImage = () => {
   const [imageUrl, setImageUrl] = useState('https://source.unsplash.com/random/300x200'); // Initial image size
 
-  const getRandomImage:any = () => {
-    const width = window.innerWidth; // Random width between 100 and 1100
-    const height = window.innerHeight; // Random height between 100 and 700
-    setImageUrl(`https://source.unsplash.com/random/300x200`);
-    // setImageUrl(`https://source.unsplash.com/random/${width}x${height}`);
+  const getRandomImage = () => {
+    const width = Math.floor(Math.random() * 500) + 200; // Random width between 100 and 1100
+    const height = Math.floor(Math.random() * 600) + 300; // Random height between 100 and 700
+    setImageUrl(`https://source.unsplash.com/random/${width}x${height}`);
+    // setImageUrl(`https://app.leonardo.ai/auth/login`);
   };
 
   return (
