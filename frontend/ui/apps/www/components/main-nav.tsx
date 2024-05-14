@@ -21,67 +21,77 @@ export function MainNav() {
         </span>
       </Link>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
-        <Link
-          href="/docs"
+      <Link
+          href="/home"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname === "/docs" ? "text-foreground" : "text-foreground/60"
+            pathname === "/home" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Docs
+          Home
         </Link>
         <Link
-          href="/docs/components"
+          href="/universities"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/docs/components")
-              ? "text-foreground"
-              : "text-foreground/60"
+            pathname === "/universities" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Components
+          Universities
         </Link>
         <Link
-          href="/themes"
+          href="/specialties"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/themes")
-              ? "text-foreground"
-              : "text-foreground/60"
+            pathname === "/specialties" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Themes
+          Specialties
         </Link>
         <Link
-          href="/examples"
+          href="/questions"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/examples")
-              ? "text-foreground"
-              : "text-foreground/60"
+            pathname === "/questions" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Examples
+          Questions
         </Link>
         <Link
-          href="/blocks"
+          href="/settings"
           className={cn(
             "transition-colors hover:text-foreground/80",
-            pathname?.startsWith("/blocks")
-              ? "text-foreground"
-              : "text-foreground/60"
+            pathname === "/settings" ? "text-foreground" : "text-foreground/60"
           )}
         >
-          Blocks
+          Settings
+        </Link>
+        {/* <Link
+          href="/whiteboard"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/whiteboard" ? "text-foreground" : "text-foreground/60"
+          )}
+        >
+          Whiteboard
         </Link>
         <Link
+          href="/planner"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/planner" ? "text-foreground" : "text-foreground/60"
+          )}
+        >
+          Planner
+        </Link> */}
+        {/* <Link
           href={siteConfig.links.github}
           className={cn(
             "hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
           )}
         >
           GitHub
-        </Link>
+        </Link> */}
       </nav>
     </div>
   )
