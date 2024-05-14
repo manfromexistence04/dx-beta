@@ -52,6 +52,7 @@ import {
   ToggleGroupItem,
 } from "@/registry/default/ui/toggle-group"
 import { siteConfig } from "@/config/site"
+import { usePathname } from "next/navigation"
 
 
 
@@ -109,11 +110,10 @@ export function ThemeCustomizer() {
                         )}
                         style={
                           {
-                            "--theme-primary": `hsl(${
-                              theme?.activeColor[
-                                mode === "dark" ? "dark" : "light"
-                              ]
-                            })`,
+                            "--theme-primary": `hsl(${theme?.activeColor[
+                              mode === "dark" ? "dark" : "light"
+                            ]
+                              })`,
                           } as React.CSSProperties
                         }
                       >
@@ -289,9 +289,8 @@ function Customizer() {
                   )}
                   style={
                     {
-                      "--theme-primary": `hsl(${
-                        theme?.activeColor[mode === "dark" ? "dark" : "light"]
-                      })`,
+                      "--theme-primary": `hsl(${theme?.activeColor[mode === "dark" ? "dark" : "light"]
+                        })`,
                     } as React.CSSProperties
                   }
                 >
@@ -327,7 +326,7 @@ function Customizer() {
                   }}
                   className={cn(
                     config.radius === parseFloat(value) &&
-                      "border-primary border-2"
+                    "border-primary border-2"
                   )}
                 >
                   {value}
@@ -487,7 +486,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
                   {
                     activeTheme?.cssVars.light[
-                      prefix as keyof typeof activeTheme.cssVars.light
+                    prefix as keyof typeof activeTheme.cssVars.light
                     ]
                   }
                   ;
@@ -496,7 +495,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
                   {
                     activeTheme?.cssVars.light[
-                      `${prefix}-foreground` as keyof typeof activeTheme.cssVars.light
+                    `${prefix}-foreground` as keyof typeof activeTheme.cssVars.light
                     ]
                   }
                   ;
@@ -543,7 +542,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
                   {
                     activeTheme?.cssVars.dark[
-                      prefix as keyof typeof activeTheme.cssVars.dark
+                    prefix as keyof typeof activeTheme.cssVars.dark
                     ]
                   }
                   ;
@@ -552,7 +551,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
                   {
                     activeTheme?.cssVars.dark[
-                      `${prefix}-foreground` as keyof typeof activeTheme.cssVars.dark
+                    `${prefix}-foreground` as keyof typeof activeTheme.cssVars.dark
                     ]
                   }
                   ;
@@ -646,6 +645,7 @@ const BASE_STYLES_WITH_VARIABLES = `
 export function SiteFooter() {
 
   const { setTheme } = useTheme()
+  const pathname = usePathname()
 
   return (
     // <footer className="py-6 md:px-8 md:py-0">
@@ -674,8 +674,14 @@ export function SiteFooter() {
     //   </div>
     // </footer>
     <footer className="flex min-h-[300px] w-full items-center justify-center border-t py-16">
-      <div className="w-auto px-3 sm:px-6 lg:px-8">
-        <div className="grid max-w-[1200px] grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6">
+      <div className={cn(
+        "w-full px-3 sm:px-6 lg:px-8",
+        pathname === "/home" ? "lg:px-[1%]" : "lg:px-[5%]"
+      )}>
+        <div className={cn(
+          "grid grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6 mx-auto",
+          pathname === "/home" ? "max-w-[1200px]" : "w-full"
+        )}>
           <div className="space-y-3">
             <a className="font-semidark text-xl" href="#">
               Get all updates.
@@ -684,7 +690,7 @@ export function SiteFooter() {
               <Input
                 type="email"
                 placeholder="Enter you email"
-                className="w-[185px]"
+                className="min-w-[185px] w-full"
               />
               <Button variant="default">Suscribe</Button>
             </div>
@@ -750,9 +756,15 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
+          <div className={cn(
+            "flex w-full flex-col",
+            pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
+          )}>
             <h3 className="text-lg font-medium">Developer</h3>
-            <ul className="mt-4 space-y-2">
+            <ul className={cn(
+              "flex w-full flex-col mt-4 space-y-2",
+              pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
+            )}>
               <li>
                 <a
                   href={siteConfig.links.github}
@@ -806,9 +818,15 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
+          <div className={cn(
+            "flex w-full flex-col",
+            pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
+          )}>
             <h3 className="text-lg font-medium">Company</h3>
-            <ul className="mt-4 space-y-2">
+            <ul className={cn(
+              "flex w-full flex-col mt-4 space-y-2",
+              pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
+            )}>
               <li>
                 <a
                   href={siteConfig.links.github}
@@ -861,9 +879,17 @@ export function SiteFooter() {
               </li>
             </ul>
           </div>
-          <div>
+
+
+          <div className={cn(
+            "flex w-full flex-col",
+            pathname === "/home" ? "items-start justify-start " : "items-end justify-start"
+          )}>
             <h3 className="text-lg font-medium">Resource</h3>
-            <ul className="mt-4 space-y-2">
+            <ul className={cn(
+              "flex w-full flex-col mt-4 space-y-2",
+              pathname === "/home" ? "items-start justify-start " : "items-end justify-start"
+            )}>
               <li>
                 <a
                   href={siteConfig.links.github}
@@ -917,7 +943,10 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="space-y-3">
+          <div className={cn(
+            "space-y-3 flex w-full flex-col",
+            pathname === "/home" ? "items-start justify-start " : "items-end justify-start"
+          )}>
             <span className="text-md">Preferences</span>
             {/* <div className="flex w-min flex-row items-start justify-start space-x-1 rounded-full border p-1">
               <ToggleGroup type="single">

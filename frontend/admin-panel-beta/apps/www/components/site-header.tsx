@@ -36,12 +36,18 @@ import {
 import { CardsCookieSettings } from "@/registry/default/example/cards/cookie-settings"
 import Notifications from "./notifications"
 import { CardsReportIssue } from "@/registry/default/example/cards/report-issue"
+import { usePathname } from "next/navigation"
 
 export function SiteHeader() {
   const { sessionId } = useAuth();
+  const pathname = usePathname()
+
   return (
     <header className="navbar h-[4.5rem] flex items-center justify-center z-10 sticky top-0 w-full bg-background/80 backdrop-blur-2xl border-b">
-      <div className="w-full flex h-14 items-center justify-center lg:px-[1%] px-10">
+      <div className={cn(
+        "w-full flex h-14 items-center justify-center px-10",
+        pathname === "/home" ? "lg:px-[1%]" : "lg:px-[5%]"
+      )}>
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -159,26 +165,21 @@ export function SiteHeader() {
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button variant="outline">Feedback</Button>
-                    {/* <div className="border rounded-full p-2">
-                      <Bell className="h-4 w-4" />
-                    </div> */}
                   </PopoverTrigger>
-                  <PopoverContent className="w-[425px] !pt-0 pb-3 px-3">
+                  <PopoverContent className="w-[425px] !p-0 border-none">
                     <CardsReportIssue />
-                    {/* <CardsCookieSettings />
-                    <Notifications /> */}
-
                   </PopoverContent>
                 </Popover>
 
+                <Button variant="outline">
+                  <OrganizationSwitcher
+                    appearance={{
+                      elements: {
+                        organizationPreviewAvatarBox: "size-8",
+                      },
+                    }}
+                  /></Button>
 
-                <OrganizationSwitcher
-                  appearance={{
-                    elements: {
-                      organizationPreviewAvatarBox: "size-8",
-                    },
-                  }}
-                />
 
 
                 <Popover>
