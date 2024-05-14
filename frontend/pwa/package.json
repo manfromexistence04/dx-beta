@@ -1,6 +1,6 @@
 {
-  "name": "next-app-dir-with-pwa",
-  "version": "0.1.0",
+  "name": "it-expert-now",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,3 +19,4 @@
     "eslint-config-next": "13.4.2"
   }
 }
+
