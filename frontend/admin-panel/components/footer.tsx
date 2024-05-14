@@ -13,10 +13,11 @@ import {
 } from "@/registry/default/ui/toggle-group"
 
 export function SiteFooter() {
+
   const { setTheme } = useTheme()
 
   return (
-    <footer className="flex min-h-[300px] w-full items-center justify-center border-t pt-10 pb-16">
+    <footer className="flex min-h-[300px] w-full items-center justify-center border-t py-16">
       <div className="w-auto px-3 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6 max-w-[1200px]">
           <div className="space-y-3">
