@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Copy from "./copy.jsx";
+import Copy from "./copy";
 import { motion, useInView } from "framer-motion";
-import AllVariants from "./all-variants.jsx";
+import AllVariants from "./all-variants";
 
 export default function Intro() {
   const ref = React.useRef(null);

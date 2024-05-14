@@ -9,7 +9,7 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { buttonVariants } from './button.jsx';
+import { buttonVariants } from './button';
 
 export function CommentResolveButton() {
   const comment = useComment()!;

@@ -11,13 +11,13 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { Button } from './button.jsx';
+import { Button } from './button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from './dropdown-menu.jsx';
+} from './dropdown-menu';
 
 export function CommentMoreDropdown() {
   const editButtonState = useCommentEditButtonState();

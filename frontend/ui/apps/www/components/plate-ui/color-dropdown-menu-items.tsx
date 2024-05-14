@@ -6,10 +6,10 @@ import { cn } from '@udecode/cn';
 
 import { Icons } from '@/components/icons';
 
-import { buttonVariants } from './button.jsx';
-import { TColor } from './color-dropdown-menu.jsx';
-import { DropdownMenuItem } from './dropdown-menu.jsx';
-import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip.jsx';
+import { buttonVariants } from './button';
+import { TColor } from './color-dropdown-menu';
+import { DropdownMenuItem } from './dropdown-menu';
+import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 
 type ColorDropdownMenuItemProps = {
   value: string;

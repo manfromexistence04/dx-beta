@@ -12,9 +12,9 @@ import { Icons } from '@/components/icons';
 import { CommentToolbarButton } from '@/components/plate-ui/comment-toolbar-button';
 import { LinkToolbarButton } from '@/components/plate-ui/link-toolbar-button';
 
-import { MarkToolbarButton } from './mark-toolbar-button.jsx';
-import { MoreDropdownMenu } from './more-dropdown-menu.jsx';
-import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu.jsx';
+import { MarkToolbarButton } from './mark-toolbar-button';
+import { MoreDropdownMenu } from './more-dropdown-menu';
+import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu';
 
 export function FloatingToolbarButtons() {
   const readOnly = useEditorReadOnly();

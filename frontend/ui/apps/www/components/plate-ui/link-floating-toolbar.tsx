@@ -19,10 +19,10 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { buttonVariants } from './button.jsx';
-import { inputVariants } from './input.jsx';
-import { popoverVariants } from './popover.jsx';
-import { Separator } from './separator.jsx';
+import { buttonVariants } from './button';
+import { inputVariants } from './input';
+import { popoverVariants } from './popover';
+import { Separator } from './separator';
 
 const floatingOptions: UseVirtualFloatingOptions = {
   placement: 'bottom-start',

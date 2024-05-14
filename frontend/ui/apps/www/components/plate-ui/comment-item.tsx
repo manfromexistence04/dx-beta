@@ -8,10 +8,10 @@ import {
 } from '@udecode/plate-comments';
 import { formatDistance } from 'date-fns';
 
-import { CommentAvatar } from './comment-avatar.jsx';
-import { CommentMoreDropdown } from './comment-more-dropdown.jsx';
-import { CommentResolveButton } from './comment-resolve-button.jsx';
-import { CommentValue } from './comment-value.jsx';
+import { CommentAvatar } from './comment-avatar';
+import { CommentMoreDropdown } from './comment-more-dropdown';
+import { CommentResolveButton } from './comment-resolve-button';
+import { CommentValue } from './comment-value';
 
 type PlateCommentProps = {
   commentId: string;

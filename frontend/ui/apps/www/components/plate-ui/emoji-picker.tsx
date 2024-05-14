@@ -2,11 +2,11 @@ import React from 'react';
 import { cn } from '@udecode/cn';
 import { EmojiSettings, UseEmojiPickerType } from '@udecode/plate-emoji';
 
-import { EmojiPickerContent } from './emoji-picker-content.jsx';
-import { EmojiPickerNavigation } from './emoji-picker-navigation.jsx';
-import { EmojiPickerPreview } from './emoji-picker-preview.jsx';
-import { EmojiPickerSearchAndClear } from './emoji-picker-search-and-clear.jsx';
-import { EmojiPickerSearchBar } from './emoji-picker-search-bar.jsx';
+import { EmojiPickerContent } from './emoji-picker-content';
+import { EmojiPickerNavigation } from './emoji-picker-navigation';
+import { EmojiPickerPreview } from './emoji-picker-preview';
+import { EmojiPickerSearchAndClear } from './emoji-picker-search-and-clear';
+import { EmojiPickerSearchBar } from './emoji-picker-search-bar';
 
 export function EmojiPicker({
   i18n,

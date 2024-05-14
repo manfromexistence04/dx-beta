@@ -7,7 +7,7 @@ import { Command as CommandPrimitive } from 'cmdk';
 
 import { Icons } from '@/components/icons';
 
-import { Dialog, DialogContent } from './dialog.jsx';
+import { Dialog, DialogContent } from './dialog';
 
 export const Command = withCn(
   CommandPrimitive,

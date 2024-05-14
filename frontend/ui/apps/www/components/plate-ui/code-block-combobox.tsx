@@ -11,15 +11,15 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { Button } from './button.jsx';
+import { Button } from './button';
 import {
   Command,
   CommandEmpty,
   CommandInput,
   CommandItem,
   CommandList,
-} from './command.jsx';
-import { Popover, PopoverContent, PopoverTrigger } from './popover.jsx';
+} from './command';
+import { Popover, PopoverContent, PopoverTrigger } from './popover';
 
 const languages: { value: string; label: string }[] = [
   { value: 'text', label: 'Plain Text' },

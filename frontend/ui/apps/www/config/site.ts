@@ -15,4 +15,6 @@ export const siteConfig = {
         github: 'https://github.com/udecode/plate',
         docs: 'https://platejs.org',
     },
+    url: "https://ui.shadcn.com",
+    ogImage: "https://ui.shadcn.com/og.jpg",
 };

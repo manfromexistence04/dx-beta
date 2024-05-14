@@ -4,7 +4,7 @@ import { useOutdentButton } from '@udecode/plate-indent';
 
 import { Icons } from '@/components/icons';
 
-import { ToolbarButton } from './toolbar.jsx';
+import { ToolbarButton } from './toolbar';
 
 export const OutdentToolbarButton = withRef<typeof ToolbarButton>(
   (rest, ref) => {

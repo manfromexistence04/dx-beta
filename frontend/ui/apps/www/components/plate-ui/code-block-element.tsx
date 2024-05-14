@@ -7,7 +7,7 @@ import { cn, withRef } from '@udecode/cn';
 import { useCodeBlockElementState } from '@udecode/plate-code-block';
 import { PlateElement } from '@udecode/plate-common';
 
-import { CodeBlockCombobox } from './code-block-combobox.jsx';
+import { CodeBlockCombobox } from './code-block-combobox';
 
 export const CodeBlockElement = withRef<typeof PlateElement>(
   ({ className, children, ...props }, ref) => {

@@ -11,13 +11,13 @@ import { ResizableProvider, useResizableStore } from '@udecode/plate-resizable';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { Tweet } from 'react-tweet';
 
-import { Caption, CaptionTextarea } from './caption.jsx';
-import { MediaPopover } from './media-popover.jsx';
+import { Caption, CaptionTextarea } from './caption';
+import { MediaPopover } from './media-popover';
 import {
   mediaResizeHandleVariants,
   Resizable,
   ResizeHandle,
-} from './resizable.jsx';
+} from './resizable';
 
 export const MediaEmbedElement = withHOC(
   ResizableProvider,

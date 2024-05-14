@@ -14,10 +14,10 @@ import { useReadOnly, useSelected } from 'slate-react';
 
 import { Icons } from '@/components/icons';
 
-import { Button, buttonVariants } from './button.jsx';
-import { inputVariants } from './input.jsx';
-import { Popover, PopoverAnchor, PopoverContent } from './popover.jsx';
-import { Separator } from './separator.jsx';
+import { Button, buttonVariants } from './button';
+import { inputVariants } from './input';
+import { Popover, PopoverAnchor, PopoverContent } from './popover';
+import { Separator } from './separator';
 
 export interface MediaPopoverProps {
   pluginKey?: string;

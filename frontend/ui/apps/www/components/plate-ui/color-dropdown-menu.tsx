@@ -8,13 +8,13 @@ import {
 } from '@udecode/plate-font';
 
 import { DEFAULT_COLORS, DEFAULT_CUSTOM_COLORS } from './color-constants.js';
-import { ColorPicker } from './color-picker.jsx';
+import { ColorPicker } from './color-picker';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from './dropdown-menu.jsx';
-import { ToolbarButton } from './toolbar.jsx';
+} from './dropdown-menu';
+import { ToolbarButton } from './toolbar';
 
 export type TColor = {
   name: string;

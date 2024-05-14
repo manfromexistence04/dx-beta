@@ -33,7 +33,7 @@ export default function SignInPage() {
               <SignIn.Step name="start">
                 <Card className="w-full sm:w-96">
                   <CardHeader>
-                    <CardTitle>Sign in to Acme Co</CardTitle>
+                    <CardTitle>Sign in to Admin Panel</CardTitle>
                     <CardDescription>Welcome back! Please sign in to continue</CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-y-4">

@@ -4,7 +4,7 @@ import { useOrganization, useSession, useUser } from "@clerk/nextjs";
 import clsx from "clsx";
 import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import theme from "./theme.js";
+import theme from "./theme";
 
 const TYPES = ["user", "session", "organization"];
 

@@ -25,16 +25,16 @@ import { useReadOnly, useSelected } from 'slate-react';
 
 import { Icons, iconVariants } from '@/components/icons';
 
-import { Button } from './button.jsx';
+import { Button } from './button';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuPortal,
   DropdownMenuTrigger,
-} from './dropdown-menu.jsx';
-import { Popover, PopoverContent, popoverVariants } from './popover.jsx';
-import { Separator } from './separator.jsx';
+} from './dropdown-menu';
+import { Popover, PopoverContent, popoverVariants } from './popover';
+import { Separator } from './separator';
 
 export const TableBordersDropdownMenuContent = withRef<
   typeof DropdownMenuPrimitive.Content

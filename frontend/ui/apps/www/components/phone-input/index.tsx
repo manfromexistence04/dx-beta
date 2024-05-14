@@ -26,8 +26,8 @@ import parsePhoneNumberFromString, {
 } from "libphonenumber-js";
 import { Check, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
-import { countries } from "./countries.js";
-import { useStateHistory } from "./use-state-history.js";
+import { countries } from "./countries";
+import { useStateHistory } from "./use-state-history";
 
 export type Country = (typeof countries)[number];
 

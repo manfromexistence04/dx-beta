@@ -8,7 +8,7 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { ToolbarButton } from './toolbar.jsx';
+import { ToolbarButton } from './toolbar';
 
 export const ListToolbarButton = withRef<
   typeof ToolbarButton,

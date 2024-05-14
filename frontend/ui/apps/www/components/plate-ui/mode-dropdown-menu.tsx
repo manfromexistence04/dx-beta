@@ -16,8 +16,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
   useOpenState,
-} from './dropdown-menu.jsx';
-import { ToolbarButton } from './toolbar.jsx';
+} from './dropdown-menu';
+import { ToolbarButton } from './toolbar';
 
 export function ModeDropdownMenu(props: DropdownMenuProps) {
   const editor = useEditorRef();

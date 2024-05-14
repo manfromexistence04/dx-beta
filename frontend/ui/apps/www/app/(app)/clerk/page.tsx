@@ -7,10 +7,10 @@ import logo from "./images/logo.png";
 import "./home.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Footer } from "./components/footer.jsx";
+import { Footer } from "./components/footer";
 
-import { CARDS } from "./consts/cards.js";
-import { LearnMore } from "./components/learn-more.jsx";
+import { CARDS } from "./consts/cards";
+import { LearnMore } from "./components/learn-more";
 
 export default function Home() {
   return (

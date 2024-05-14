@@ -25,11 +25,11 @@ import { MoreDropdownMenu } from '@/components/plate-ui/more-dropdown-menu';
 import { OutdentToolbarButton } from '@/components/plate-ui/outdent-toolbar-button';
 import { TableDropdownMenu } from '@/components/plate-ui/table-dropdown-menu';
 
-import { InsertDropdownMenu } from './insert-dropdown-menu.jsx';
-import { MarkToolbarButton } from './mark-toolbar-button.jsx';
-import { ModeDropdownMenu } from './mode-dropdown-menu.jsx';
-import { ToolbarGroup } from './toolbar.jsx';
-import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu.jsx';
+import { InsertDropdownMenu } from './insert-dropdown-menu';
+import { MarkToolbarButton } from './mark-toolbar-button';
+import { ModeDropdownMenu } from './mode-dropdown-menu';
+import { ToolbarGroup } from './toolbar';
+import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu';
 
 export function FixedToolbarButtons() {
   const readOnly = useEditorReadOnly();

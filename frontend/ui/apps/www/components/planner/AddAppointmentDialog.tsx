@@ -33,7 +33,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "../ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { TimePicker } from "./time-picker.jsx";
+import { TimePicker } from "./time-picker";
 import { Calendar } from "../ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import {

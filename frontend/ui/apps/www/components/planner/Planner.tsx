@@ -1,17 +1,17 @@
 import React, { FC, useEffect } from "react";
-import CalendarToolbar from "./PlannerToolbar.jsx";
-import Appointment from "./Appointment.jsx";
+import CalendarToolbar from "./PlannerToolbar";
+import Appointment from "./Appointment";
 import { Appointment as AppointmentType, Resource } from "@/models";
 import {
   PlannerDataContextProvider,
   useData,
 } from "@/contexts/PlannerDataContext";
 import { PlannerProvider, useCalendar } from "@/contexts/PlannerContext";
-import { Timeline } from "./Timeline.jsx";
+import { Timeline } from "./Timeline";
 import { Table, TableBody, TableRow } from "../ui/table";
-import ResourceTableCell from "./ResourceTableCell.jsx";
+import ResourceTableCell from "./ResourceTableCell";
 import { calculateNewDates, filterAppointments } from "@/lib/utils";
-import DropTableCell from "./DropTableCell.jsx";
+import DropTableCell from "./DropTableCell";
 import { monitorForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 
 export interface PlannerProps extends React.HTMLAttributes<HTMLDivElement> {

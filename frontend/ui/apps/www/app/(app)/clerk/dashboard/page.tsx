@@ -1,11 +1,11 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { UserDetails } from "../components/user-details.jsx";
+import { UserDetails } from "../components/user-details";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { CodeSwitcher } from "../components/code-switcher.jsx";
-import { LearnMore } from "../components/learn-more.jsx";
-import { Footer } from "../components/footer.jsx";
+import { CodeSwitcher } from "../components/code-switcher";
+import { LearnMore } from "../components/learn-more";
+import { Footer } from "../components/footer";
 
-import { DASHBOARD_CARDS } from "../consts/cards.js";
+import { DASHBOARD_CARDS } from "../consts/cards";
 
 export default async function DashboardPage() {
   const { userId } = auth().protect();

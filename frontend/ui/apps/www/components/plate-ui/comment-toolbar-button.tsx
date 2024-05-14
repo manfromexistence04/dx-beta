@@ -5,7 +5,7 @@ import { useCommentAddButton } from '@udecode/plate-comments';
 
 import { Icons } from '@/components/icons';
 
-import { ToolbarButton } from './toolbar.jsx';
+import { ToolbarButton } from './toolbar';
 
 export function CommentToolbarButton() {
   const { hidden, props } = useCommentAddButton();

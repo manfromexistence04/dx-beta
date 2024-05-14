@@ -4,13 +4,13 @@ import { PlateElement, withHOC } from '@udecode/plate-common';
 import { ELEMENT_IMAGE, Image, useMediaState } from '@udecode/plate-media';
 import { ResizableProvider, useResizableStore } from '@udecode/plate-resizable';
 
-import { Caption, CaptionTextarea } from './caption.jsx';
-import { MediaPopover } from './media-popover.jsx';
+import { Caption, CaptionTextarea } from './caption';
+import { MediaPopover } from './media-popover';
 import {
   mediaResizeHandleVariants,
   Resizable,
   ResizeHandle,
-} from './resizable.jsx';
+} from './resizable';
 
 export const ImageElement = withHOC(
   ResizableProvider,

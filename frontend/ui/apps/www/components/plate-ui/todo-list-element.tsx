@@ -6,7 +6,7 @@ import {
   useTodoListElementState,
 } from '@udecode/plate-list';
 
-import { Checkbox } from './checkbox.jsx';
+import { Checkbox } from './checkbox';
 
 export const TodoListElement = withRef<typeof PlateElement>(
   ({ className, children, ...props }, ref) => {

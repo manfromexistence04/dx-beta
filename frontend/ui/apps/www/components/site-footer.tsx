@@ -673,7 +673,7 @@ export function SiteFooter() {
     //     </p>
     //   </div>
     // </footer>
-    <footer className="mt-16 flex min-h-[300px] w-full items-center justify-center border-t py-16">
+    <footer className="flex min-h-[300px] w-full items-center justify-center border-t py-16">
       <div className="w-auto px-3 sm:px-6 lg:px-8">
         <div className="grid max-w-[1200px] grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6">
           <div className="space-y-3">

@@ -7,7 +7,7 @@ import {
   MentionPlugin,
 } from '@udecode/plate-mention';
 
-import { Combobox } from './combobox.jsx';
+import { Combobox } from './combobox';
 
 export function MentionCombobox({
   pluginKey = ELEMENT_MENTION,

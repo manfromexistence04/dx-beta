@@ -9,13 +9,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import MainNav from "@/components/shared/main-nav";
 import Footer from "@/components/shared/footer";
-import { Nextui } from "./nextui.jsx";
+import { Nextui } from "./nextui";
 import { TooltipProvider } from '@/components/plate-ui/tooltip';
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/footer";
+import { SiteFooter } from "@/components/site-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     creator: "@abdo_eth",
   },
   metadataBase: new URL("https://variantvault.chrisabdo.dev"),
-  themeColor: "#ffffff",
+  // themeColor: "#ffffff",
 };
 export default function RootLayout({
   children,

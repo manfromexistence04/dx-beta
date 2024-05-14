@@ -9,7 +9,7 @@ import NavLinks from "@/components/shared/nav-links";
 import VVLogo from "@/components/shared/vv-logo";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import NavSheet from "./nav-sheet.jsx";
+import NavSheet from "./nav-sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,

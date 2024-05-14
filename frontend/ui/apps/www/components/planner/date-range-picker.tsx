@@ -2,19 +2,19 @@
 'use client'
 
 import React, { type FC, useState, useEffect, useRef } from 'react'
-import { Button } from './button.jsx'
-import { Popover, PopoverContent, PopoverTrigger } from './popover.jsx'
-import { Calendar } from './calendar.jsx'
-import { DateInput } from './date-input.jsx'
-import { Label } from './label.jsx'
+import { Button } from './button'
+import { Popover, PopoverContent, PopoverTrigger } from './popover'
+import { Calendar } from './calendar'
+import { DateInput } from './date-input'
+import { Label } from './label'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from './select.jsx'
-import { Switch } from './switch.jsx'
+} from './select'
+import { Switch } from './switch'
 import { ChevronUpIcon, ChevronDownIcon, CheckIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 

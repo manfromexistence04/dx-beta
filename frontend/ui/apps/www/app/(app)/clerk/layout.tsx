@@ -4,8 +4,8 @@ import Script from 'next/script';
 import { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import { LearnMore } from './components/learn-more.jsx';
-import { Footer } from './components/footer.jsx';
+import { LearnMore } from './components/learn-more';
+import { Footer } from './components/footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://clerk-next-app.vercel.app/'),

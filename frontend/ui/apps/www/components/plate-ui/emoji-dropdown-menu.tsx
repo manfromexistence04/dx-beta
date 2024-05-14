@@ -6,10 +6,10 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { emojiCategoryIcons, emojiSearchIcons } from './emoji-icons.jsx';
-import { EmojiPicker } from './emoji-picker.jsx';
-import { EmojiToolbarDropdown } from './emoji-toolbar-dropdown.jsx';
-import { ToolbarButton } from './toolbar.jsx';
+import { emojiCategoryIcons, emojiSearchIcons } from './emoji-icons';
+import { EmojiPicker } from './emoji-picker';
+import { EmojiToolbarDropdown } from './emoji-toolbar-dropdown';
+import { ToolbarButton } from './toolbar';
 
 type EmojiDropdownMenuProps = {
   options?: EmojiDropdownMenuOptions;

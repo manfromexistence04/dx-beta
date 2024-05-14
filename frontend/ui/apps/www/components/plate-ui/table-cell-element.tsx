@@ -8,7 +8,7 @@ import {
   useTableCellElementState,
 } from '@udecode/plate-table';
 
-import { ResizeHandle } from './resizable.jsx';
+import { ResizeHandle } from './resizable';
 
 export const TableCellElement = withRef<
   typeof PlateElement,

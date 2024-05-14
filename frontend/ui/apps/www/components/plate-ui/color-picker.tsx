@@ -3,12 +3,12 @@
 import React from 'react';
 import { cn, withRef } from '@udecode/cn';
 
-import { buttonVariants } from './button.jsx';
-import { TColor } from './color-dropdown-menu.jsx';
-import { ColorDropdownMenuItems } from './color-dropdown-menu-items.jsx';
-import { ColorsCustom } from './colors-custom.jsx';
-import { DropdownMenuItem } from './dropdown-menu.jsx';
-import { Separator } from './separator.jsx';
+import { buttonVariants } from './button';
+import { TColor } from './color-dropdown-menu';
+import { ColorDropdownMenuItems } from './color-dropdown-menu-items';
+import { ColorsCustom } from './colors-custom';
+import { DropdownMenuItem } from './dropdown-menu';
+import { Separator } from './separator';
 
 export const ColorPickerContent = withRef<
   'div',

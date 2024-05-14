@@ -4,11 +4,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useCalendar } from "@/contexts/PlannerContext";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { DateRangePicker } from "./date-range-picker.jsx";
+import { DateRangePicker } from "./date-range-picker";
 import { DateRange } from "react-day-picker";
 import { endOfDay, endOfWeek, startOfWeek } from "date-fns";
 import { useData } from "@/contexts/PlannerDataContext";
-import AddAppointmentDialog from "./AddAppointmentDialog.jsx";
+import AddAppointmentDialog from "./AddAppointmentDialog";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { wrap } from "@motionone/utils";
 import {

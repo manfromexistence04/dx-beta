@@ -11,10 +11,10 @@ import {
 } from '@udecode/plate-comments';
 import { PortalBody } from '@udecode/plate-common';
 
-import { CommentCreateForm } from './comment-create-form.jsx';
-import { CommentItem } from './comment-item.jsx';
-import { CommentReplyItems } from './comment-reply-items.jsx';
-import { popoverVariants } from './popover.jsx';
+import { CommentCreateForm } from './comment-create-form';
+import { CommentItem } from './comment-item';
+import { CommentReplyItems } from './comment-reply-items';
+import { popoverVariants } from './popover';
 
 export type FloatingCommentsContentProps = {
   disableForm?: boolean;

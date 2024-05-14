@@ -65,12 +65,12 @@ export const metadata: Metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-}
+// export const viewport: Viewport = {
+//   themeColor: [
+//     { media: "(prefers-color-scheme: light)", color: "white" },
+//     { media: "(prefers-color-scheme: dark)", color: "black" },
+//   ],
+// }
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -93,22 +93,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <ThemeWrapper
+            {/* <ThemeWrapper
               defaultTheme="zinc"
-            // className="relative flex flex-col items-start md:flex-row md:items-center"
             >
-              <div vaul-drawer-wrapper="">
-                <div className="bg-background relative flex min-h-[200vh] flex-col">
-                  {children}
-                </div>
+
+            </ThemeWrapper> */}
+            <div vaul-drawer-wrapper="">
+              <div className="bg-background relative flex flex-col">
+                {children}
               </div>
-              <TailwindIndicator />
+            </div>
+            {/* <TailwindIndicator />
               <ThemeSwitcher />
               <Analytics />
               <NewYorkToaster />
               <DefaultToaster />
-              <NewYorkSonner />
-            </ThemeWrapper>
+              <NewYorkSonner /> */}
           </ThemeProvider>
         </body>
       </html>

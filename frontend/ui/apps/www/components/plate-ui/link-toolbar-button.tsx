@@ -7,7 +7,7 @@ import {
 
 import { Icons } from '@/components/icons';
 
-import { ToolbarButton } from './toolbar.jsx';
+import { ToolbarButton } from './toolbar';
 
 export const LinkToolbarButton = withRef<typeof ToolbarButton>((rest, ref) => {
   const state = useLinkToolbarButtonState();

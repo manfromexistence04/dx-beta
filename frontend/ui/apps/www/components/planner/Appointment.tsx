@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
 import { Calendar } from "../ui/calendar";
-import { TimePicker } from "./time-picker.jsx";
+import { TimePicker } from "./time-picker";
 
 interface AppointmentProps {
   appointment: AppointmentType;

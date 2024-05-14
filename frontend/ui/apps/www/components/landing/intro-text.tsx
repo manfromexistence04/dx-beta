@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 // import { Button } from "../ui/button";
-import { Button } from "../components/button.jsx";
-import VariantCarousel from "./variant-carousel.jsx";
+import { Button } from "@/components/button";
+import VariantCarousel from "./variant-carousel";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 export default function IntroText() {

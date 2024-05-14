@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "../ui/button.jsx";
+import { Button } from "../ui/button";
 import {
   CodeIcon,
   ReloadIcon,

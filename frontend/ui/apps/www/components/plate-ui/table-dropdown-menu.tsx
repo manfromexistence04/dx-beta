@@ -27,8 +27,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
   useOpenState,
-} from './dropdown-menu.jsx';
-import { ToolbarButton } from './toolbar.jsx';
+} from './dropdown-menu';
+import { ToolbarButton } from './toolbar';
 
 export function TableDropdownMenu(props: DropdownMenuProps) {
   const tableSelected = useEditorSelector(

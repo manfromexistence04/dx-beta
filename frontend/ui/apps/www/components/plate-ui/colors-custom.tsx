@@ -6,9 +6,9 @@ import { useColorsCustom, useColorsCustomState } from '@udecode/plate-font';
 import { buttonVariants } from '@/components/plate-ui/button';
 import { DropdownMenuItem } from '@/components/plate-ui/dropdown-menu';
 
-import { TColor } from './color-dropdown-menu.jsx';
-import { ColorDropdownMenuItems } from './color-dropdown-menu-items.jsx';
-import { ColorInput } from './color-input.jsx';
+import { TColor } from './color-dropdown-menu';
+import { ColorDropdownMenuItems } from './color-dropdown-menu-items';
+import { ColorInput } from './color-input';
 
 type ColorsCustomProps = {
   color?: string;

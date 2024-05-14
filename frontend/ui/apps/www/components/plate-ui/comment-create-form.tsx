@@ -8,9 +8,9 @@ import {
   useCommentsSelectors,
 } from '@udecode/plate-comments';
 
-import { buttonVariants } from './button.jsx';
-import { CommentAvatar } from './comment-avatar.jsx';
-import { inputVariants } from './input.jsx';
+import { buttonVariants } from './button';
+import { CommentAvatar } from './comment-avatar';
+import { inputVariants } from './input';
 
 export function CommentCreateForm() {
   const myUserId = useCommentsSelectors().myUserId();

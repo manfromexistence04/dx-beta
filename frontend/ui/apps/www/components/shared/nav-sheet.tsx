@@ -16,7 +16,7 @@ import {
   SunIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-import ModeToggle from "./mode-toggle.jsx";
+import ModeToggle from "./mode-toggle";
 import Link from "next/link";
 const projects = [
   {
