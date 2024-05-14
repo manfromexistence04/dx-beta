@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/popover"
 import { CardsCookieSettings } from "@/registry/default/example/cards/cookie-settings"
 import Notifications from "./notifications"
+import { CardsReportIssue } from "@/registry/default/example/cards/report-issue"
 
 export function SiteHeader() {
   const { sessionId } = useAuth();
@@ -154,6 +155,23 @@ export function SiteHeader() {
 
 
               ) : (<div className="flex items-center gap-2">
+
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button variant="outline">Feedback</Button>
+                    {/* <div className="border rounded-full p-2">
+                      <Bell className="h-4 w-4" />
+                    </div> */}
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[425px] !pt-0 pb-3 px-3">
+                    <CardsReportIssue />
+                    {/* <CardsCookieSettings />
+                    <Notifications /> */}
+
+                  </PopoverContent>
+                </Popover>
+
+
                 <OrganizationSwitcher
                   appearance={{
                     elements: {
@@ -171,7 +189,8 @@ export function SiteHeader() {
                     </div>
                   </PopoverTrigger>
                   <PopoverContent className="w-[425px] !pt-0 pb-3 px-3">
-                    {/* <CardsCookieSettings /> */}
+                    {/* <CardsReportIssue />
+                    <CardsCookieSettings /> */}
                     <Notifications />
 
                   </PopoverContent>

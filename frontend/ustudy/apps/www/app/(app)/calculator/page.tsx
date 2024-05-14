@@ -3,90 +3,82 @@ import type { NextPage } from "next"
 // import FrameComponent from "@/components/specialty-page/frame-component"
 import FrameComponent from "@/components/calculator/page"
 import Component from "@/components/specialty-page/component"
+import { promises as fs } from "fs"
+import path from "path"
+import { Metadata } from "next"
+import Image from "next/image"
+import { z } from "zod"
 
-// export function Rank() {
-//   return (
-//     <div className="overflow-x-auto">
-//       <table className="w-full table-auto border-collapse">
-//         <thead>
-//           <tr className="bg-gray-100 dark:bg-gray-800">
-//             <th className="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">
-//               Player Name
-//             </th>
-//             <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">
-//               Score
-//             </th>
-//             <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">
-//               Rank
-//             </th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr className="border-b border-gray-200 dark:border-gray-700">
-//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-//               John Doe
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               1250
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               1
-//             </td>
-//           </tr>
-//           <tr className="border-b border-gray-200 dark:border-gray-700">
-//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-//               Jane Smith
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               1100
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               2
-//             </td>
-//           </tr>
-//           <tr className="border-b border-gray-200 dark:border-gray-700">
-//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-//               Bob Johnson
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               950
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               3
-//             </td>
-//           </tr>
-//           <tr className="border-b border-gray-200 dark:border-gray-700">
-//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-//               Alice Williams
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               850
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               4
-//             </td>
-//           </tr>
-//           <tr className="border-b border-gray-200 dark:border-gray-700">
-//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
-//               Tom Wilson
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               750
-//             </td>
-//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
-//               5
-//             </td>
-//           </tr>
-//         </tbody>
-//       </table>
-//     </div>
-//   )
-// }
+import { columns } from "./components/columns"
+import { DataTable } from "./components/data-table"
+import { UserNav } from "./components/user-nav"
+import { taskSchema } from "./data/schema"
+
+export const metadata: Metadata = {
+  title: "Tasks",
+  description: "A task and issue tracker build using Tanstack Table.",
+}
+
+// Simulate a database read for tasks.
+async function getTasks() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "app/(app)/calculator/data/tasks.json")
+  )
+
+  const tasks = JSON.parse(data.toString())
+
+  return z.array(taskSchema).parse(tasks)
+}
+
+export async function TaskPage() {
+  const tasks = await getTasks()
+
+  return (
+    <>
+      <div className="md:hidden">
+        <Image
+          src="/examples/tasks-light.png"
+          width={1280}
+          height={998}
+          alt="Playground"
+          className="block dark:hidden"
+        />
+        <Image
+          src="/examples/tasks-dark.png"
+          width={1280}
+          height={998}
+          alt="Playground"
+          className="hidden dark:block"
+        />
+      </div>
+      <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+        <div className="flex items-center justify-between space-y-2">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Calculation Advanced History!</h2>
+            <p className="text-muted-foreground">
+              Here&apos;s a list of advanvece calculations history!
+            </p>
+          </div>
+          <div className="flex items-center space-x-2">
+            <UserNav />
+          </div>
+        </div>
+        <DataTable data={tasks} columns={columns} />
+      </div>
+    </>
+  )
+}
+
 
 const Calculator: NextPage = () => {
   return (
     <div className="calculator">
       <FrameComponent />
+      <div className="mx-auto max-w-[1200px]">
+
+      <TaskPage />
+
+      </div>
     </div>
   )
 }
@@ -174,3 +166,82 @@ export default Calculator
 // }
 
 // export default SpecialtyPage
+
+// export function Rank() {
+//   return (
+//     <div className="overflow-x-auto">
+//       <table className="w-full table-auto border-collapse">
+//         <thead>
+//           <tr className="bg-gray-100 dark:bg-gray-800">
+//             <th className="px-4 py-3 text-left font-medium text-gray-700 dark:text-gray-300">
+//               Player Name
+//             </th>
+//             <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">
+//               Score
+//             </th>
+//             <th className="px-4 py-3 text-right font-medium text-gray-700 dark:text-gray-300">
+//               Rank
+//             </th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               John Doe
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               1250
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               1
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Jane Smith
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               1100
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               2
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Bob Johnson
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               950
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               3
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Alice Williams
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               850
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               4
+//             </td>
+//           </tr>
+//           <tr className="border-b border-gray-200 dark:border-gray-700">
+//             <td className="px-4 py-3 text-left font-medium text-gray-900 dark:text-gray-100">
+//               Tom Wilson
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               750
+//             </td>
+//             <td className="px-4 py-3 text-right text-gray-900 dark:text-gray-100">
+//               5
+//             </td>
+//           </tr>
+//         </tbody>
+//       </table>
+//     </div>
+//   )
+// }
