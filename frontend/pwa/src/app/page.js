@@ -1,16 +1,10 @@
-import Head from 'next/head';
+import Home from "@/components/Home";
 
-const Home = () => {
-  return (
-    <>
-      <Head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#000000" />
-      </Head>
-      <div>Homepage</div>
-    </>
-  );
+export const metadata = {
+  title: "Next PWA",
+  description: "Next PWA example using next-pwa and app directory",
 };
 
-export default Home;
+export default function Page() {
+  return <Home title="App" />;
+}
