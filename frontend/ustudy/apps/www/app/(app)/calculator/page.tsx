@@ -56,7 +56,7 @@ export async function TaskPage() {
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Calculation Advanced History!</h2>
             <p className="text-muted-foreground">
-              Here&apos;s a list of advanvece calculations history!
+              Here&apos;s a list of super usefull calculations history!
             </p>
           </div>
           <div className="flex items-center space-x-2">
@@ -75,9 +75,7 @@ const Calculator: NextPage = () => {
     <div className="calculator">
       <FrameComponent />
       <div className="mx-auto max-w-[1200px]">
-
-      <TaskPage />
-
+        <TaskPage />
       </div>
     </div>
   )

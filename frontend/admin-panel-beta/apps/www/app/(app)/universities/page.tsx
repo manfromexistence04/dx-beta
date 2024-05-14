@@ -4,21 +4,6 @@ import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect, useRef } from "react";
 import { limit, query, onSnapshot } from "firebase/firestore";
-const firebaseConfig = {
-  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
-  authDomain: "ustudy-96678.firebaseapp.com",
-  projectId: "ustudy-96678",
-  storageBucket: "ustudy-96678.appspot.com",
-  messagingSenderId: "581632635532",
-  appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
-};
-
-
-
-// Iniialize Firebase
-const app = initializeApp(firebaseConfig);
-// Database
-const db: any = getFirestore(app);
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -200,6 +185,16 @@ import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9"
+};
+const app = initializeApp(firebaseConfig);
+const db: any = getFirestore(app);
 
 const University = () => {
   const [docs, setDocs] = useState<any[]>([]);

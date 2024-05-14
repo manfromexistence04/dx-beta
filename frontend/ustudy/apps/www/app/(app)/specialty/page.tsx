@@ -4,20 +4,81 @@ import type { NextPage } from "next"
 // import Header from "../components/header";
 import GroupComponent from "@/components/specialty-page/group-component"
 import TableCell from "@/components/specialty-page/table-cell"
+import { promises as fs } from "fs"
+import path from "path"
+import { Metadata } from "next"
+import Image from "next/image"
+import { z } from "zod"
 
-// import Footer from "../components/footer";
+import { columns } from "./components/columns"
+import { DataTable } from "./components/data-table"
+import { UserNav } from "./components/user-nav"
+import { taskSchema } from "./data/schema"
 
+export const metadata: Metadata = {
+  title: "Tasks",
+  description: "A task and issue tracker build using Tanstack Table.",
+}
+
+// Simulate a database read for tasks.
+async function getTasks() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "app/(app)/calculator/data/tasks.json")
+  )
+
+  const tasks = JSON.parse(data.toString())
+
+  return z.array(taskSchema).parse(tasks)
+}
+
+export async function TaskPage() {
+  const tasks = await getTasks()
+
+  return (
+    <>
+      <div className="md:hidden">
+        <Image
+          src="/examples/tasks-light.png"
+          width={1280}
+          height={998}
+          alt="Playground"
+          className="block dark:hidden"
+        />
+        <Image
+          src="/examples/tasks-dark.png"
+          width={1280}
+          height={998}
+          alt="Playground"
+          className="hidden dark:block"
+        />
+      </div>
+      <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+        {/* <div className="flex items-center justify-between space-y-2">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Calculation Advanced History!</h2>
+            <p className="text-muted-foreground">
+              Here&apos;s a list of super usefull calculations history!
+            </p>
+          </div>
+          <div className="flex items-center space-x-2">
+            <UserNav />
+          </div>
+        </div> */}
+        <DataTable data={tasks} columns={columns} />
+      </div>
+    </>
+  )
+}
 const SpecialtyPage: NextPage = () => {
   return (
-    <div className="relative box-border flex w-full flex-col items-start justify-start gap-[64px] overflow-hidden bg-black px-0 pb-[13px] pt-0 leading-[normal] tracking-[normal] mq750:gap-[32px] mq450:gap-[16px]">
-      <main className="flex max-w-full flex-col items-start justify-start self-stretch">
-        {/* <Header /> */}
+    <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-[13px] pt-0 leading-[normal] tracking-[normal]">
+      {/* <main className="flex max-w-full flex-col items-start justify-start self-stretch">
         <form className="m-0 flex max-w-full flex-col items-end justify-start self-stretch">
           <GroupComponent />
           <div className="!mx-auto !mb-32 mt-[-17px] box-border flex w-[1413px] max-w-full flex-row items-start justify-center border !p-10 px-5">
-            <div className="bg-gray1-500 border-gray1-200 z-[3] box-border flex w-[1235px] max-w-full shrink-0 flex-col items-start justify-start overflow-hidden rounded-lg border-DEFAULT border-solid px-0 !pb-0 pb-[55px] pt-0 shadow-[0px_4px_8px_-2px_rgba(16,_24,_40,_0.1),_0px_2px_4px_-2px_rgba(16,_24,_40,_0.06)] mq750:box-border mq750:pb-9">
+            <div className="bg-gray1-500 border-gray1-200 mq750:box-border mq750:pb-9 z-[3] box-border flex w-[1235px] max-w-full shrink-0 flex-col items-start justify-start overflow-hidden rounded-lg border-DEFAULT border-solid px-0 !pb-0 pb-[55px] pt-0 shadow-[0px_4px_8px_-2px_rgba(16,_24,_40,_0.1),_0px_2px_4px_-2px_rgba(16,_24,_40,_0.06)]">
               <div className="flex max-w-full flex-row flex-wrap items-start justify-start self-stretch [row-gap:20px]">
-                <div className="flex min-w-[565px] max-w-full flex-1 flex-col items-start justify-start overflow-x-auto mq750:min-w-full">
+                <div className="mq750:min-w-full flex min-w-[565px] max-w-full flex-1 flex-col items-start justify-start overflow-x-auto">
                   <div className="bg-gray1-400 border-gray1-400 box-border flex w-[807px] flex-row items-center justify-start border-b-DEFAULT border-solid px-6 pb-[13px] pt-[15px]">
                     <div className="flex flex-row items-center justify-start">
                       <div className="font-headings-desktop-poppins-16px-bold relative inline-block min-w-[66px] text-left text-sm font-medium leading-[18px] text-gray-500">
@@ -155,49 +216,49 @@ const SpecialtyPage: NextPage = () => {
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <div className="bg-gray1-400 box-border flex w-[66px] flex-row items-center justify-start rounded-md py-2 pl-3 pr-0">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block w-[131px] shrink-0 text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block w-[131px] shrink-0 text-left text-base">
                         B009
                       </div>
                     </div>
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <div className="bg-gray1-400 box-border flex w-[66px] flex-row items-center justify-start rounded-md py-2 pl-3 pr-0">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block w-[131px] shrink-0 text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block w-[131px] shrink-0 text-left text-base">
                         B031
                       </div>
                     </div>
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <button className="bg-gray1-400 hover:bg-darkslategray flex cursor-pointer flex-row items-center justify-start rounded-md py-2 pl-3 pr-[15px] [border:none]">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block min-w-[39px] text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block min-w-[39px] text-left text-base">
                         B047
                       </div>
                     </button>
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <button className="bg-gray1-400 hover:bg-darkslategray flex cursor-pointer flex-row items-center justify-start rounded-md px-3 py-2 [border:none]">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block min-w-[42px] text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block min-w-[42px] text-left text-base">
                         B009
                       </div>
                     </button>
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <button className="bg-gray1-400 hover:bg-darkslategray flex cursor-pointer flex-row items-center justify-start rounded-md px-3 py-2 [border:none]">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block min-w-[42px] text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block min-w-[42px] text-left text-base">
                         B009
                       </div>
                     </button>
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <button className="bg-gray1-400 hover:bg-darkslategray flex cursor-pointer flex-row items-center justify-start rounded-md px-3 py-2 [border:none]">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block min-w-[42px] text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block min-w-[42px] text-left text-base">
                         B009
                       </div>
                     </button>
                   </div>
                   <div className="border-gray1-200 flex flex-row items-center justify-start self-stretch border-b-DEFAULT border-solid px-6 pb-4 pt-[17.5px]">
                     <button className="bg-gray1-400 hover:bg-darkslategray flex cursor-pointer flex-row items-center justify-start rounded-md px-3 py-2 [border:none]">
-                      <div className="font-headings-desktop-poppins-16px-bold relative inline-block min-w-[42px] text-left text-base text-shade-white">
+                      <div className="font-headings-desktop-poppins-16px-bold text-shade-white relative inline-block min-w-[42px] text-left text-base">
                         B009
                       </div>
                     </button>
@@ -205,7 +266,7 @@ const SpecialtyPage: NextPage = () => {
                 </div>
               </div>
               <div className="border-gray1-200 flex flex-row items-start justify-end gap-[16px] self-stretch overflow-x-auto border-t-DEFAULT border-solid px-6 pb-4 pt-3">
-                <div className="flex flex-row items-start justify-start gap-[2px] py-0 pl-0 pr-6 mq450:flex-wrap">
+                <div className="mq450:flex-wrap flex flex-row items-start justify-start gap-[2px] py-0 pl-0 pr-6">
                   <div className="bg-gray1-400 flex flex-row items-start justify-start overflow-hidden rounded-lg">
                     <div className="flex flex-row items-start justify-start rounded-lg px-[17px] py-2.5">
                       <div className="font-headings-desktop-poppins-16px-bold text-primary-600 relative inline-block min-w-[6px] text-left text-base font-medium leading-[20px]">
@@ -288,7 +349,12 @@ const SpecialtyPage: NextPage = () => {
             </div>
           </div>
         </form>
-      </main>
+      </main> */}
+      <GroupComponent />
+
+      <div className="mx-auto w-auto lg:w-[1150px]">
+        <TaskPage />
+      </div>
       {/* <Footer /> */}
     </div>
   )
