@@ -754,3 +754,9 @@ function Card3() {
   // disable: process.env.NODE_ENV === 'development',
 
  -->
+
+
+
+<!-- 1. Video-Link: https://www.loom.com/share/93ef101e41484d74b3553e3dd2e203d8?sid=54f8258b-9f99-4522-8074-f125348f90a6
+2. Live: https://mosharraf2-freelancer-nextjs-pwa.vercel.app/
+3. Code: Check Messages Chat -->
