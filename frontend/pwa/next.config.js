@@ -8,7 +8,20 @@ const withPWA = withPWAInit({
   buildExcludes: ["app-build-manifest.json"],
   disable: process.env.NODE_ENV === 'development',
   // register: true,
-
+  fallbacks: {
+    // Failed page requests fallback to this.
+    document: "/~offline",
+    // This is for /_next/.../.json files.
+    data: "/fallback.json",
+    // This is for images.
+    image: "/fallback.webp",
+    // This is for audio files.
+    audio: "/fallback.mp3",
+    // This is for video files.
+    video: "/fallback.mp4",
+    // This is for fonts.
+    font: "/fallback-font.woff2",
+  },
 });
 
 const generateAppDirEntry = (entry) => {
