@@ -1,6 +1,18 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
+import Link from "next/link"
+// import { ArrowUpDown, MenuIcon, Text } from "lucide-react";
+import {
+  HamburgerMenuIcon,
+  LaptopIcon,
+  MagicWandIcon,
+  MoonIcon,
+  MoveIcon,
+  SunIcon,
+} from "@radix-ui/react-icons"
+import { useTheme } from "next-themes"
+
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,22 +26,10 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-// import { ArrowUpDown, MenuIcon, Text } from "lucide-react";
-import {
-  HamburgerMenuIcon,
-  LaptopIcon,
-  MagicWandIcon,
-  MoonIcon,
-  MoveIcon,
-  SunIcon,
-} from "@radix-ui/react-icons";
-import { useTheme } from "next-themes";
-import Link from "next/link";
+} from "@/components/ui/dropdown-menu"
 
 export function NavDropdown() {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -37,7 +37,7 @@ export function NavDropdown() {
           <HamburgerMenuIcon />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 mr-6">
+      <DropdownMenuContent className="mr-6 w-56">
         <DropdownMenuLabel>
           <Link href="/">Variant Vault</Link>
         </DropdownMenuLabel>
@@ -46,13 +46,13 @@ export function NavDropdown() {
           <DropdownMenuItem>
             Text Variants
             <DropdownMenuShortcut>
-              <MagicWandIcon className="w-4 h-4" />
+              <MagicWandIcon className="size-4" />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
             Page Variants
             <DropdownMenuShortcut>
-              <MoveIcon className="w-4 h-4" />
+              <MoveIcon className="size-4" />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -65,19 +65,19 @@ export function NavDropdown() {
                 <DropdownMenuItem onSelect={() => setTheme("light")}>
                   Light
                   <DropdownMenuShortcut>
-                    <SunIcon className="w-4 h-4" />
+                    <SunIcon className="size-4" />
                   </DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => setTheme("dark")}>
                   Dark
                   <DropdownMenuShortcut>
-                    <MoonIcon className="w-4 h-4" />
+                    <MoonIcon className="size-4" />
                   </DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => setTheme("system")}>
                   System
                   <DropdownMenuShortcut>
-                    <LaptopIcon className="w-4 h-4" />
+                    <LaptopIcon className="size-4" />
                   </DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
@@ -90,5 +90,5 @@ export function NavDropdown() {
         <DropdownMenuItem>API</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

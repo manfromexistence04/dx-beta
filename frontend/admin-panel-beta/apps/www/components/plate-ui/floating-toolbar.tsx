@@ -1,60 +1,60 @@
-'use client';
+"use client"
 
-import React from 'react';
-import { cn, withRef } from '@udecode/cn';
-import { PortalBody, useComposedRef } from '@udecode/plate-common';
+import React from "react"
+import { cn, withRef } from "@udecode/cn"
+import { PortalBody, useComposedRef } from "@udecode/plate-common"
 import {
   flip,
   FloatingToolbarState,
   offset,
   useFloatingToolbar,
   useFloatingToolbarState,
-} from '@udecode/plate-floating';
+} from "@udecode/plate-floating"
 
-import { Toolbar } from './toolbar';
+import { Toolbar } from "./toolbar"
 
 export const FloatingToolbar = withRef<
   typeof Toolbar,
   {
-    state?: FloatingToolbarState;
+    state?: FloatingToolbarState
   }
 >(({ state, children, ...props }, componentRef) => {
   const floatingToolbarState = useFloatingToolbarState({
     ...state,
     floatingOptions: {
-      placement: 'top',
+      placement: "top",
       middleware: [
         offset(12),
         flip({
           padding: 12,
           fallbackPlacements: [
-            'top-start',
-            'top-end',
-            'bottom-start',
-            'bottom-end',
+            "top-start",
+            "top-end",
+            "bottom-start",
+            "bottom-end",
           ],
         }),
       ],
       ...state?.floatingOptions,
     },
-  });
+  })
 
   const {
     ref: floatingRef,
     props: rootProps,
     hidden,
-  } = useFloatingToolbar(floatingToolbarState);
+  } = useFloatingToolbar(floatingToolbarState)
 
-  const ref = useComposedRef<HTMLDivElement>(componentRef, floatingRef);
+  const ref = useComposedRef<HTMLDivElement>(componentRef, floatingRef)
 
-  if (hidden) return null;
+  if (hidden) return null
 
   return (
     <PortalBody>
       <Toolbar
         ref={ref}
         className={cn(
-          'absolute z-50 whitespace-nowrap border bg-popover px-1 opacity-100 shadow-md print:hidden'
+          "bg-popover absolute z-50 whitespace-nowrap border px-1 opacity-100 shadow-md print:hidden"
         )}
         {...rootProps}
         {...props}
@@ -62,5 +62,5 @@ export const FloatingToolbar = withRef<
         {children}
       </Toolbar>
     </PortalBody>
-  );
-});
+  )
+})

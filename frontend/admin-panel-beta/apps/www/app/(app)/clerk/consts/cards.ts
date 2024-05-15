@@ -19,7 +19,7 @@ export const CARDS = [
     href: "https://clerk.com/docs/organizations/overview?utm_source=vercel-template&utm_medium=template_repos&utm_campaign=nextjs_template",
     linkText: "Components",
   },
-];
+]
 
 export const DASHBOARD_CARDS = [
   {
@@ -42,4 +42,4 @@ export const DASHBOARD_CARDS = [
     href: "https://clerk.com/docs/deployments/overview#deploying-to-production",
     linkText: "Production",
   },
-];
+]

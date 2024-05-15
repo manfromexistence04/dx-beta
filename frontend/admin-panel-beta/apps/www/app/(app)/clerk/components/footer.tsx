@@ -1,10 +1,10 @@
 export function Footer() {
   return (
-    <footer className="max-w-[75rem] bg-white w-full mx-auto pt-6 border-t border-[#EEEEF0] flex justify-between pb-24">
+    <footer className="mx-auto flex w-full max-w-[75rem] justify-between border-t border-[#EEEEF0] bg-white pb-24 pt-6">
       <a
         href="https://clerk.dev"
         target="_blank"
-        className="flex gap-2 font-medium text-[0.8125rem] items-center"
+        className="flex items-center gap-2 text-[0.8125rem] font-medium"
       >
         <svg
           width="16"
@@ -30,12 +30,12 @@ export function Footer() {
         Clerk
         <span className="text-[#5E5F6E]">{new Date().getFullYear()}</span>
       </a>
-      <ul className="flex ml-auto gap-2">
+      <ul className="ml-auto flex gap-2">
         <li>
           <a
             href="https://clerk.com/docs?utm_source=vercel-template&utm_medium=template_repos&utm_campaign=nextjs_template"
             target="_blank"
-            className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
+            className="flex items-center gap-2 rounded-full px-3 py-2 text-[0.8125rem] font-medium hover:bg-gray-100"
           >
             Clerk Docs{" "}
             <svg
@@ -60,7 +60,7 @@ export function Footer() {
           <a
             href="https://github.com/devagrawal09/clerk-nextjs-template"
             target="_blank"
-            className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
+            className="flex items-center gap-2 rounded-full px-3 py-2 text-[0.8125rem] font-medium hover:bg-gray-100"
           >
             <svg
               width="16"
@@ -88,7 +88,7 @@ export function Footer() {
           <a
             href="https://twitter.com/ClerkDev"
             target="_blank"
-            className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
+            className="flex items-center gap-2 rounded-full px-3 py-2 text-[0.8125rem] font-medium hover:bg-gray-100"
           >
             <svg
               width="16"
@@ -116,7 +116,7 @@ export function Footer() {
           <a
             href="https://discord.com/invite/b5rXHjAg7A"
             target="_blank"
-            className="flex items-center gap-2 font-medium text-[0.8125rem] rounded-full px-3 py-2 hover:bg-gray-100"
+            className="flex items-center gap-2 rounded-full px-3 py-2 text-[0.8125rem] font-medium hover:bg-gray-100"
           >
             <svg
               width="16"
@@ -142,5 +142,5 @@ export function Footer() {
         </li>
       </ul>
     </footer>
-  );
+  )
 }

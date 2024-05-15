@@ -13,13 +13,12 @@ import {
 } from "@/registry/default/ui/toggle-group"
 
 export function SiteFooter() {
-
   const { setTheme } = useTheme()
 
   return (
     <footer className="flex min-h-[300px] w-full items-center justify-center border-t py-16">
       <div className="w-auto px-3 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6 max-w-[1200px]">
+        <div className="grid max-w-[1200px] grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6">
           <div className="space-y-3">
             <a className="font-semidark text-xl" href="#">
               Get all updates.
@@ -262,43 +261,41 @@ export function SiteFooter() {
           </div>
 
           <div className="space-y-3">
-              <span className="text-md">Preferences</span>
-              <div className="flex w-min flex-row items-start justify-start space-x-1 rounded-full border p-1">
-                <ToggleGroup type="single">
-                  <ToggleGroupItem
-                    onClick={() => setTheme("dark")}
-                    className="rounded-full text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]"
-                    value="dark"
-                    aria-label="Toggle dark"
-                  >
-                    <MoonIcon className="h-4 w-4" />
-                  </ToggleGroupItem>
-                  <ToggleGroupItem
-                    onClick={() => setTheme("light")}
-                    className="rounded-full text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]"
-                    value="light"
-                    aria-label="Toggle light"
-                  >
-                    <SunIcon className="h-4 w-4" />
-                  </ToggleGroupItem>
-                  <ToggleGroupItem
-                    onClick={() => setTheme("system")}
-                    className="rounded-full text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]"
-                    value="system"
-                    aria-label="Toggle system"
-                  >
-                    <Monitor className="h-4 w-4" />
-                  </ToggleGroupItem>
-                </ToggleGroup>
-              </div>
+            <span className="text-md">Preferences</span>
+            <div className="flex w-min flex-row items-start justify-start space-x-1 rounded-full border p-1">
+              <ToggleGroup type="single">
+                <ToggleGroupItem
+                  onClick={() => setTheme("dark")}
+                  className="rounded-full text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]"
+                  value="dark"
+                  aria-label="Toggle dark"
+                >
+                  <MoonIcon className="size-4" />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  onClick={() => setTheme("light")}
+                  className="rounded-full text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]"
+                  value="light"
+                  aria-label="Toggle light"
+                >
+                  <SunIcon className="size-4" />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  onClick={() => setTheme("system")}
+                  className="rounded-full text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]"
+                  value="system"
+                  aria-label="Toggle system"
+                >
+                  <Monitor className="size-4" />
+                </ToggleGroupItem>
+              </ToggleGroup>
             </div>
-
+          </div>
         </div>
       </div>
     </footer>
   )
 }
-
 
 // export function Footer() {
 //   return (

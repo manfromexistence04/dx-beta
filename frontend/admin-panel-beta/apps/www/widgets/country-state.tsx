@@ -2,22 +2,22 @@
 /*                             External Dependency                            */
 /* -------------------------------------------------------------------------- */
 
-import React from "react";
+import React from "react"
 
 /* -------------------------------------------------------------------------- */
 /*                             Internal Dependency                            */
 /* -------------------------------------------------------------------------- */
 
-import CountryDropdown from "@/components/dropdown/countries";
-import StateDropdown from "@/components/dropdown/states";
+import CountryDropdown from "@/components/dropdown/countries"
+import StateDropdown from "@/components/dropdown/states"
 
 const CountryState = () => {
-    return (
-        <div className="flex w-[1000px] items-center justify-center gap-4">
-            <CountryDropdown />
-            <StateDropdown />
-        </div>
-    );
-};
+  return (
+    <div className="flex w-[1000px] items-center justify-center gap-4">
+      <CountryDropdown />
+      <StateDropdown />
+    </div>
+  )
+}
 
-export default CountryState;
+export default CountryState

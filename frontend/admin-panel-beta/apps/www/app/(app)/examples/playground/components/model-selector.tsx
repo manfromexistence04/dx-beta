@@ -64,7 +64,7 @@ export function ModelSelector({ models, types, ...props }: ModelSelectorProps) {
             className="w-full justify-between"
           >
             {selectedModel ? selectedModel.name : "Select a model..."}
-            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <CaretSortIcon className="ml-2 size-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent align="end" className="w-[250px] p-0">
@@ -77,7 +77,7 @@ export function ModelSelector({ models, types, ...props }: ModelSelectorProps) {
             >
               <div className="grid gap-2">
                 <h4 className="font-medium leading-none">{peekedModel.name}</h4>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-sm">
                   {peekedModel.description}
                 </div>
                 {peekedModel.strengths ? (
@@ -85,7 +85,7 @@ export function ModelSelector({ models, types, ...props }: ModelSelectorProps) {
                     <h5 className="text-sm font-medium leading-none">
                       Strengths
                     </h5>
-                    <ul className="text-sm text-muted-foreground">
+                    <ul className="text-muted-foreground text-sm">
                       {peekedModel.strengths}
                     </ul>
                   </div>
@@ -154,7 +154,7 @@ function ModelItem({ model, isSelected, onSelect, onPeek }: ModelItemProps) {
       {model.name}
       <CheckIcon
         className={cn(
-          "ml-auto h-4 w-4",
+          "ml-auto size-4",
           isSelected ? "opacity-100" : "opacity-0"
         )}
       />

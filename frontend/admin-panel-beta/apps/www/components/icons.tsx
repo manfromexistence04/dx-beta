@@ -147,34 +147,6 @@ export const Icons = {
   ),
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // type IconProps = React.HTMLAttributes<SVGElement>
 // import React from 'react';
 // import { cva } from 'class-variance-authority';
@@ -405,8 +377,6 @@ export const Icons = {
 //   moon: Moon,
 //   sun: SunMedium,
 
-
-
 //   logo: (props: IconProps) => (
 //     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
 //       <rect width="256" height="256" fill="none" />
@@ -552,7 +522,6 @@ export const Icons = {
 //     </svg>
 //   ),
 // }
-
 
 // export const iconVariants = cva('', {
 //   variants: {

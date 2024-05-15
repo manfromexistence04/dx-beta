@@ -1,20 +1,21 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import React from "react";
+import React from "react"
+import { motion, useInView } from "framer-motion"
+
 // import { useInView } from "react-intersection-observer";
 
 export default function Features() {
   //   const { ref: refAbout, inView: inViewAbout } = useInView({
   //     triggerOnce: false,
   //   });
-  const ref = React.useRef(null);
-  const isInView = useInView(ref);
+  const ref = React.useRef(null)
+  const isInView = useInView(ref)
 
   const FADE_UP_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   return (
     <motion.div
       ref={ref}
@@ -34,7 +35,7 @@ export default function Features() {
         <div className="mx-auto max-w-2xl lg:text-center">
           <motion.h2
             variants={FADE_UP_ANIMATION_VARIANTS}
-            className="text-base font-semibold leading-7 text-muted-foreground"
+            className="text-muted-foreground text-base font-semibold leading-7"
           >
             Everything you need
           </motion.h2>
@@ -48,10 +49,11 @@ export default function Features() {
             variants={FADE_UP_ANIMATION_VARIANTS}
             className="mt-6 text-lg leading-8"
           >
-            This webiste just works, And gives up access to a Super Adminastrator.
+            This webiste just works, And gives up access to a Super
+            Adminastrator.
           </motion.p>
         </div>
       </div>
     </motion.div>
-  );
+  )
 }

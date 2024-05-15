@@ -1,25 +1,25 @@
-import { auth, clerkClient } from "@clerk/nextjs/server";
-import { UserDetails } from "../components/user-details";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { CodeSwitcher } from "../components/code-switcher";
-import { LearnMore } from "../components/learn-more";
-import { Footer } from "../components/footer";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
+import { auth, clerkClient } from "@clerk/nextjs/server"
 
-import { DASHBOARD_CARDS } from "../consts/cards";
+import { CodeSwitcher } from "../components/code-switcher"
+import { Footer } from "../components/footer"
+import { LearnMore } from "../components/learn-more"
+import { UserDetails } from "../components/user-details"
+import { DASHBOARD_CARDS } from "../consts/cards"
 
 export default async function DashboardPage() {
-  const { userId } = auth().protect();
+  const { userId } = auth().protect()
 
-  const user = await clerkClient.users.getUser(userId);
+  const user = await clerkClient.users.getUser(userId)
 
-  if (!user) return null;
+  if (!user) return null
 
   return (
     <>
-      <main className="max-w-[75rem] w-full mx-auto">
+      <main className="mx-auto w-full max-w-[75rem]">
         <div className="grid grid-cols-[1fr_20.5rem] gap-10 pb-10">
           <div>
-            <header className="flex gap-4 h-16 justify-between items-center w-full">
+            <header className="flex h-16 w-full items-center justify-between gap-4">
               <div className="flex gap-4">
                 <a href="https://clerk.com/docs" target="_blank">
                   <svg
@@ -44,7 +44,7 @@ export default async function DashboardPage() {
                     />
                   </svg>
                 </a>
-                <div aria-hidden className="w-px h-6 bg-[#C7C7C8]" />
+                <div aria-hidden className="h-6 w-px bg-[#C7C7C8]" />
                 <a href="https://nextjs.org/" target="_blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +140,7 @@ export default async function DashboardPage() {
             </header>
             <UserDetails />
           </div>
-          <div className="pt-[3.5rem]">
+          <div className="pt-14">
             <CodeSwitcher />
           </div>
         </div>
@@ -148,5 +148,5 @@ export default async function DashboardPage() {
       {/* <LearnMore cards={DASHBOARD_CARDS} />
       <Footer /> */}
     </>
-  );
+  )
 }

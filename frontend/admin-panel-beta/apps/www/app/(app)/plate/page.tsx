@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import Link from "next/link"
 
-import { siteConfig } from '@/config/site';
-import PlateEditor from '@/components/plate-editor';
-import { buttonVariants } from '@/components/plate-ui/button';
+import { siteConfig } from "@/config/site"
+import PlateEditor from "@/components/plate-editor"
+import { buttonVariants } from "@/components/plate-ui/button"
 
 export default function IndexPage() {
   return (
@@ -11,8 +11,8 @@ export default function IndexPage() {
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           Plate Playground.
         </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          Plugin system & primitive component library.{' '}
+        <p className="text-muted-foreground max-w-[700px] text-lg">
+          Plugin system & primitive component library.{" "}
           <br className="hidden sm:inline" />
           CLI for styled components. Customizable. Open Source. And Next.js 14
           Ready.
@@ -31,16 +31,15 @@ export default function IndexPage() {
           target="_blank"
           rel="noreferrer"
           href={siteConfig.links.github}
-          className={buttonVariants({ variant: 'outline' })}
+          className={buttonVariants({ variant: "outline" })}
         >
           GitHub
         </Link>
       </div>
 
-      <div className="max-w-[1336px] rounded-lg border bg-background shadow">
+      <div className="bg-background max-w-[1336px] rounded-lg border shadow">
         <PlateEditor />
       </div>
     </section>
-  );
+  )
 }
-

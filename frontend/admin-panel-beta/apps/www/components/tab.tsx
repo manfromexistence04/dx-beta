@@ -1,7 +1,8 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { Tabs } from "@/components/ui/tab";
+import Image from "next/image"
+
+import { Tabs } from "@/components/ui/tab"
 
 // export default function WebsiteTab() {
 //   const tabs = [
@@ -126,22 +127,20 @@ import { Tabs } from "@/components/ui/tab";
 //   );
 // }
 
-
-
 export default function WebsiteTab() {
   const tabs = [
     {
       title: "Home",
       value: "home",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>One</p>
           <Image
             src="/website/1.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
@@ -150,14 +149,14 @@ export default function WebsiteTab() {
       title: "FAQ",
       value: "faq",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>Two</p>
           <Image
             src="/website/2.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
@@ -166,14 +165,14 @@ export default function WebsiteTab() {
       title: "Career Guidence",
       value: "career-guidence",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>Three</p>
           <Image
             src="/website/03.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
@@ -182,14 +181,14 @@ export default function WebsiteTab() {
       title: "Specialies",
       value: "specialies",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>Four</p>
           <Image
             src="/website/4.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
@@ -198,14 +197,14 @@ export default function WebsiteTab() {
       title: "Collages",
       value: "collages",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>Five</p>
           <Image
             src="/website/5.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
@@ -214,14 +213,14 @@ export default function WebsiteTab() {
       title: "Calculator",
       value: "calculator",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>Six</p>
           <Image
             src="/website/6.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
@@ -230,25 +229,25 @@ export default function WebsiteTab() {
       title: "Signup",
       value: "signup",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-lg p-10 text-xl md:text-4xl font-bold text-white border bg-primary-foreground">
+        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
           <p>Seven</p>
           <Image
             src="/website/7.png"
             alt="dummy image"
             width="1000"
             height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+            className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
           />
         </div>
       ),
     },
-  ];
+  ]
 
   return (
-    <div className="h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-40">
+    <div className="b relative mx-auto my-40 flex h-80 w-full max-w-5xl flex-col items-start  justify-start [perspective:1000px] md:h-[40rem]">
       <Tabs tabs={tabs} />
     </div>
-  );
+  )
 }
 
 const DummyContent = () => {
@@ -258,7 +257,7 @@ const DummyContent = () => {
       alt="dummy image"
       width="1000"
       height="1000"
-      className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+      className="absolute inset-x-0 -bottom-10  mx-auto h-3/5 w-[90%] rounded-xl object-cover object-left-top md:h-[90%]"
     />
-  );
-};
+  )
+}

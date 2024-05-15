@@ -1,14 +1,15 @@
-import React, { createContext, useContext, useState, useMemo } from "react";
-import { startOfDay, endOfDay, startOfWeek } from "date-fns";
-import { DateRange } from "react-day-picker";
-import { getLabelsForView } from "@/lib/utils";
+import React, { createContext, useContext, useMemo, useState } from "react"
+import { endOfDay, startOfDay, startOfWeek } from "date-fns"
+import { DateRange } from "react-day-picker"
+
+import { getLabelsForView } from "@/lib/utils"
 
 interface PlannerContextType {
-  viewMode: "day" | "week" | "month" | "year";
-  timeLabels: string[];
-  dateRange: DateRange;
-  currentDateRange: DateRange;
-  setDateRange: (dateRange: DateRange) => void;
+  viewMode: "day" | "week" | "month" | "year"
+  timeLabels: string[]
+  dateRange: DateRange
+  currentDateRange: DateRange
+  setDateRange: (dateRange: DateRange) => void
 }
 
 const defaultContextValue: PlannerContextType = {
@@ -17,11 +18,11 @@ const defaultContextValue: PlannerContextType = {
   dateRange: { from: startOfWeek(new Date()), to: endOfDay(new Date()) },
   currentDateRange: { from: startOfDay(new Date()), to: endOfDay(new Date()) },
   setDateRange: (dateRange: DateRange) => {
-    console.log(dateRange);
+    console.log(dateRange)
   },
-};
+}
 
-const PlannerContext = createContext<PlannerContextType>(defaultContextValue);
+const PlannerContext = createContext<PlannerContextType>(defaultContextValue)
 
 export const PlannerProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -29,23 +30,23 @@ export const PlannerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [dateRange, setDateRange] = useState<DateRange>({
     from: startOfDay(new Date()),
     to: endOfDay(new Date()),
-  });
+  })
 
   const viewMode = useMemo(() => {
     const days =
-      (Number(dateRange.to) - Number(dateRange.from)) / (1000 * 3600 * 24);
-    if (days < 1) return "day";
-    if (days <= 7) return "week";
-    if (days <= 31) return "month";
-    return "year";
-  }, [dateRange]);
+      (Number(dateRange.to) - Number(dateRange.from)) / (1000 * 3600 * 24)
+    if (days < 1) return "day"
+    if (days <= 7) return "week"
+    if (days <= 31) return "month"
+    return "year"
+  }, [dateRange])
 
   const timeLabels = useMemo(() => {
     return getLabelsForView(viewMode, {
       start: dateRange.from ?? startOfDay(new Date()),
       end: dateRange.to ?? endOfDay(new Date()),
-    });
-  }, [viewMode, dateRange]);
+    })
+  }, [viewMode, dateRange])
 
   const value = {
     timeLabels,
@@ -53,15 +54,13 @@ export const PlannerProvider: React.FC<{ children: React.ReactNode }> = ({
     setDateRange,
     viewMode: viewMode as "day" | "week" | "month" | "year",
     currentDateRange: dateRange,
-  };
+  }
 
   return (
-    <PlannerContext.Provider value={value}>
-      {children}
-    </PlannerContext.Provider>
-  );
-};
+    <PlannerContext.Provider value={value}>{children}</PlannerContext.Provider>
+  )
+}
 
 export const useCalendar = () => {
-  return useContext(PlannerContext);
-};
+  return useContext(PlannerContext)
+}

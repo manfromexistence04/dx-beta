@@ -64,12 +64,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   Tooltip,
   TooltipContent,
@@ -78,14 +73,12 @@ import {
 
 export default function Specialties() {
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+    <div className="bg-muted/40 flex min-h-screen w-full flex-col">
       <div className="flex flex-col sm:gap-4 sm:py-4">
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
           <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              <Card
-                className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
-              >
+              <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
                 <CardHeader className="pb-3">
                   <CardTitle>Your Orders</CardTitle>
                   <CardDescription className="max-w-lg text-balance leading-relaxed">
@@ -103,7 +96,7 @@ export default function Specialties() {
                   <CardTitle className="text-4xl">$1,329</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     +25% from last week
                   </div>
                 </CardContent>
@@ -117,7 +110,7 @@ export default function Specialties() {
                   <CardTitle className="text-4xl">$5,329</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     +10% from last month
                   </div>
                 </CardContent>
@@ -141,7 +134,7 @@ export default function Specialties() {
                         size="sm"
                         className="h-7 gap-1 text-sm"
                       >
-                        <ListFilter className="h-3.5 w-3.5" />
+                        <ListFilter className="size-3.5" />
                         <span className="sr-only sm:not-sr-only">Filter</span>
                       </Button>
                     </DropdownMenuTrigger>
@@ -164,7 +157,7 @@ export default function Specialties() {
                     variant="outline"
                     className="h-7 gap-1 text-sm"
                   >
-                    <File className="h-3.5 w-3.5" />
+                    <File className="size-3.5" />
                     <span className="sr-only sm:not-sr-only">Export</span>
                   </Button>
                 </div>
@@ -198,7 +191,7 @@ export default function Specialties() {
                         <TableRow className="bg-accent">
                           <TableCell>
                             <div className="font-medium">Liam Johnson</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               liam@example.com
                             </div>
                           </TableCell>
@@ -218,7 +211,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Olivia Smith</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               olivia@example.com
                             </div>
                           </TableCell>
@@ -238,7 +231,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Noah Williams</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               noah@example.com
                             </div>
                           </TableCell>
@@ -258,7 +251,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Emma Brown</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               emma@example.com
                             </div>
                           </TableCell>
@@ -278,7 +271,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Liam Johnson</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               liam@example.com
                             </div>
                           </TableCell>
@@ -298,7 +291,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Liam Johnson</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               liam@example.com
                             </div>
                           </TableCell>
@@ -318,7 +311,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Olivia Smith</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               olivia@example.com
                             </div>
                           </TableCell>
@@ -338,7 +331,7 @@ export default function Specialties() {
                         <TableRow>
                           <TableCell>
                             <div className="font-medium">Emma Brown</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
+                            <div className="text-muted-foreground hidden text-sm md:inline">
                               emma@example.com
                             </div>
                           </TableCell>
@@ -363,19 +356,17 @@ export default function Specialties() {
             </Tabs>
           </div>
           <div>
-            <Card
-              className="overflow-hidden" x-chunk="dashboard-05-chunk-4"
-            >
-              <CardHeader className="flex flex-row items-start bg-muted/50">
+            <Card className="overflow-hidden" x-chunk="dashboard-05-chunk-4">
+              <CardHeader className="bg-muted/50 flex flex-row items-start">
                 <div className="grid gap-0.5">
                   <CardTitle className="group flex items-center gap-2 text-lg">
                     Order Oe31b70H
                     <Button
                       size="icon"
                       variant="outline"
-                      className="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
+                      className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
                     >
-                      <Copy className="h-3 w-3" />
+                      <Copy className="size-3" />
                       <span className="sr-only">Copy Order ID</span>
                     </Button>
                   </CardTitle>
@@ -383,15 +374,15 @@ export default function Specialties() {
                 </div>
                 <div className="ml-auto flex items-center gap-1">
                   <Button size="sm" variant="outline" className="h-8 gap-1">
-                    <Truck className="h-3.5 w-3.5" />
+                    <Truck className="size-3.5" />
                     <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
                       Track Order
                     </span>
                   </Button>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button size="icon" variant="outline" className="h-8 w-8">
-                        <MoreVertical className="h-3.5 w-3.5" />
+                      <Button size="icon" variant="outline" className="size-8">
+                        <MoreVertical className="size-3.5" />
                         <span className="sr-only">More</span>
                       </Button>
                     </DropdownMenuTrigger>
@@ -445,7 +436,7 @@ export default function Specialties() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid gap-3">
                     <div className="font-semibold">Shipping Information</div>
-                    <address className="grid gap-0.5 not-italic text-muted-foreground">
+                    <address className="text-muted-foreground grid gap-0.5 not-italic">
                       <span>Liam Johnson</span>
                       <span>1234 Main St.</span>
                       <span>Anytown, CA 12345</span>
@@ -485,8 +476,8 @@ export default function Specialties() {
                   <div className="font-semibold">Payment Information</div>
                   <dl className="grid gap-3">
                     <div className="flex items-center justify-between">
-                      <dt className="flex items-center gap-1 text-muted-foreground">
-                        <CreditCard className="h-4 w-4" />
+                      <dt className="text-muted-foreground flex items-center gap-1">
+                        <CreditCard className="size-4" />
                         Visa
                       </dt>
                       <dd>**** **** **** 4532</dd>
@@ -494,21 +485,21 @@ export default function Specialties() {
                   </dl>
                 </div>
               </CardContent>
-              <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
-                <div className="text-xs text-muted-foreground">
+              <CardFooter className="bg-muted/50 flex flex-row items-center border-t px-6 py-3">
+                <div className="text-muted-foreground text-xs">
                   Updated <time dateTime="2023-11-23">November 23, 2023</time>
                 </div>
                 <Pagination className="ml-auto mr-0 w-auto">
                   <PaginationContent>
                     <PaginationItem>
-                      <Button size="icon" variant="outline" className="h-6 w-6">
-                        <ChevronLeft className="h-3.5 w-3.5" />
+                      <Button size="icon" variant="outline" className="size-6">
+                        <ChevronLeft className="size-3.5" />
                         <span className="sr-only">Previous Order</span>
                       </Button>
                     </PaginationItem>
                     <PaginationItem>
-                      <Button size="icon" variant="outline" className="h-6 w-6">
-                        <ChevronRight className="h-3.5 w-3.5" />
+                      <Button size="icon" variant="outline" className="size-6">
+                        <ChevronRight className="size-3.5" />
                         <span className="sr-only">Next Order</span>
                       </Button>
                     </PaginationItem>

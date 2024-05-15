@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
 // import {
 //   FADE_DOWN_ANIMATION_VARIANTS,
 //   FADE_UP_ANIMATION_VARIANTS,
 // } from "@/lib/constants";
-import { motion, useInView } from "framer-motion";
-import React from "react";
+import React from "react"
 // import { useInView } from "react-intersection-observer";
-import Image from "next/image";
-import { HeartFilledIcon } from "@radix-ui/react-icons";
+import Image from "next/image"
+import { HeartFilledIcon } from "@radix-ui/react-icons"
+import { motion, useInView } from "framer-motion"
 
 const features = [
   {
@@ -47,25 +47,25 @@ const features = [
       "The admin panel adapts seamlessly across devices, allowing Nurzhol Tabigat to manage Ustudy content from desktops, tablets, or even mobile phones.",
     icon: HeartFilledIcon,
   },
-];
+]
 
 export default function Info() {
   //   const { ref: refBottom, inView: inViewBottom } = useInView({
   //     triggerOnce: false,
   //   });
-  const ref = React.useRef(null);
-  const isInView = useInView(ref);
+  const ref = React.useRef(null)
+  const isInView = useInView(ref)
 
   const FADE_DOWN_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: -10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   const FADE_UP_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   return (
-    <div className="overflow-hidden py-1 sm:py-32 mt-12">
+    <div className="mt-12 overflow-hidden py-1 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
@@ -86,7 +86,7 @@ export default function Info() {
               >
                 <motion.h2
                   variants={FADE_UP_ANIMATION_VARIANTS}
-                  className="text-base font-semibold leading-7 text-muted-foreground"
+                  className="text-muted-foreground text-base font-semibold leading-7"
                 >
                   Streamlined Efficiency for Nurzhol Tabigat
                 </motion.h2>
@@ -100,8 +100,8 @@ export default function Info() {
                   variants={FADE_UP_ANIMATION_VARIANTS}
                   className="mt-6 text-lg leading-8 "
                 >
-                  Ready to use powers for your next project. Just add,remove,update
-                  and delete data.
+                  Ready to use powers for your next project. Just
+                  add,remove,update and delete data.
                 </motion.p>
 
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 lg:max-w-none">
@@ -113,7 +113,7 @@ export default function Info() {
                     >
                       <dt className="inline font-semibold">
                         <feature.icon
-                          className="absolute left-1 top-1 h-5 w-5 text-muted-foreground"
+                          className="text-muted-foreground absolute left-1 top-1 size-5"
                           aria-hidden="true"
                         />
                         {feature.name}
@@ -129,29 +129,27 @@ export default function Info() {
             <Image
               src="/website/ustudy-index.png"
               alt="Product screenshot"
-              className="!min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0 !max-h-[300px]"
+              className="!max-h-[300px] !min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
               width={300}
               height={200}
             />
             <Image
               src="/website/ustudy-rubix-cube.png"
               alt="Product screenshot"
-              className="!min-w-full  !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0 !max-h-[300px]"
+              className="!max-h-[300px]  !min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
               width={300}
               height={300}
             />
             <Image
               src="/website/ustudy-footer-calculator.png"
               alt="Product screenshot"
-              className="!min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0 !max-h-[300px]"
+              className="!max-h-[300px] !min-w-full !max-w-[350px] rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-auto md:-ml-4 lg:-ml-0"
               width={300}
               height={300}
             />
-
           </div>
-
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,27 +1,27 @@
 "use client"
 
-import IntroText from "@/components/landing/intro-text";
-import Features from "@/components/landing/features";
-import Blockquote from "@/components/landing/blockquote";
-import Info from "@/components/landing/info";
-import WebsiteTab from "@/components/tab";
-import { useRef } from "react";
-import { Button } from "@nextui-org/react";
+import { useRef } from "react"
+import { Button } from "@nextui-org/react"
 
+import Blockquote from "@/components/landing/blockquote"
+import Features from "@/components/landing/features"
+import Info from "@/components/landing/info"
+import IntroText from "@/components/landing/intro-text"
+import WebsiteTab from "@/components/tab"
 
 const CustomButton = () => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null)
 
   const handleConfetti = async () => {
-    const { clientWidth, clientHeight } = document.documentElement;
-    const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+    const { clientWidth, clientHeight } = document.documentElement
+    const boundingBox = buttonRef.current?.getBoundingClientRect?.()
 
-    const targetY = boundingBox?.y ?? 0;
-    const targetX = boundingBox?.x ?? 0;
-    const targetWidth = boundingBox?.width ?? 0;
+    const targetY = boundingBox?.y ?? 0
+    const targetX = boundingBox?.x ?? 0
+    const targetWidth = boundingBox?.width ?? 0
 
-    const targetCenterX = targetX + targetWidth / 2;
-    const confetti = (await import("canvas-confetti")).default;
+    const targetCenterX = targetX + targetWidth / 2
+    const confetti = (await import("canvas-confetti")).default
 
     confetti({
       zIndex: 999,
@@ -31,27 +31,26 @@ const CustomButton = () => {
         y: targetY / clientHeight,
         x: targetCenterX / clientWidth,
       },
-    });
-  };
+    })
+  }
 
   return (
     <Button
       ref={buttonRef}
       disableRipple
-      className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+      className="center hover:bg-primary-foreground bg-background hover:text-accent-foreground relative overflow-visible !rounded-md border"
       size="lg"
       onPress={handleConfetti}
     >
       Press me
     </Button>
-  );
-};
-
+  )
+}
 
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen bg-background">
+      <div className="bg-background min-h-screen">
         <main className="isolate">
           {/* Hero section */}
           <div className="relative pt-14">
@@ -104,7 +103,7 @@ export default function Home() {
                 aria-hidden="true"
               >
                 <div
-                  className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-r from-[#ff4694] to-[#776fff] opacity-[0.45]"
+                  className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-r from-[#ff4694] to-[#776fff] opacity-45"
                   style={{
                     clipPath:
                       "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
@@ -127,10 +126,8 @@ export default function Home() {
               <Blockquote />
             </div>
           </div>
-
         </main>
       </div>
     </>
-
-  );
+  )
 }

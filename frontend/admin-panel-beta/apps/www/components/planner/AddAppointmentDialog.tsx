@@ -1,22 +1,19 @@
-"use client";
+"use client"
 
-import React, { useEffect, useRef, useState, useTransition } from "react";
-import { format } from "date-fns";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import React, { useEffect, useRef, useState, useTransition } from "react"
+import { useData } from "@/contexts/PlannerDataContext"
 import {
   Appointment as AppointmentType,
   createAppointmentSchema,
-} from "@/models/Appointment";
-import { useData } from "@/contexts/PlannerDataContext";
-import { Button } from "../ui/button";
+} from "@/models/Appointment"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import { z } from "zod"
+
+import { cn } from "@/lib/utils"
 import {
   Dialog,
   DialogClose,
@@ -26,29 +23,34 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Input } from "../ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { TimePicker } from "./time-picker";
-import { Calendar } from "../ui/calendar";
-import { CalendarIcon } from "lucide-react";
+} from "@/components/ui/dialog"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { toast } from "sonner";
+} from "@/components/ui/select"
+
+import { Button } from "../ui/button"
+import { Calendar } from "../ui/calendar"
+import { Input } from "../ui/input"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
+import { TimePicker } from "./time-picker"
 
 const AddAppointmentDialog: React.FC = () => {
-  const { addAppointment, resources } = useData();
-  const [isOpened, setIsOpened] = useState(false);
-  const [isPending, startAddAppointmentTransition] = useTransition();
+  const { addAppointment, resources } = useData()
+  const [isOpened, setIsOpened] = useState(false)
+  const [isPending, startAddAppointmentTransition] = useTransition()
   const form = useForm<AppointmentType>({
     resolver: zodResolver(createAppointmentSchema),
     defaultValues: {
@@ -57,9 +59,9 @@ const AddAppointmentDialog: React.FC = () => {
       end: new Date(new Date().getTime() + 60 * 60 * 1000),
       resourceId: "",
     },
-  });
+  })
   function onSubmit(values: z.infer<typeof createAppointmentSchema>) {
-    const id = crypto.randomUUID();
+    const id = crypto.randomUUID()
     const newAppointment: AppointmentType = {
       details: {
         service: "Music",
@@ -70,30 +72,32 @@ const AddAppointmentDialog: React.FC = () => {
       start: values.start,
       end: values.end,
       resourceId: values.resourceId,
-    };
+    }
 
     startAddAppointmentTransition(() => {
       toast.promise(
         () =>
           new Promise((resolve) => {
-            resolve(addAppointment(newAppointment));
+            resolve(addAppointment(newAppointment))
           }),
         {
           loading: "Adding appointment",
           success: "Appointment added",
           error: "Failed to add appointment",
-        },
-      );
-      form.reset();
-    });
+        }
+      )
+      form.reset()
+    })
     setTimeout(() => {
-      setIsOpened(false);
-    }, 1000);
+      setIsOpened(false)
+    }, 1000)
   }
   return (
     <Dialog open={isOpened} onOpenChange={setIsOpened}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="p-5 ">Add Appointment</Button>
+        <Button variant="outline" className="p-5 ">
+          Add Appointment
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -127,10 +131,10 @@ const AddAppointmentDialog: React.FC = () => {
                           variant="outline"
                           className={cn(
                             "w-[280px] justify-start text-left font-normal",
-                            !field.value && "text-muted-foreground",
+                            !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 size-4" />
                           {field.value ? (
                             format(field.value, "PPP HH:mm:ss")
                           ) : (
@@ -147,7 +151,7 @@ const AddAppointmentDialog: React.FC = () => {
                         onSelect={field.onChange}
                         initialFocus
                       />
-                      <div className="border-t border-border p-3">
+                      <div className="border-border border-t p-3">
                         <TimePicker
                           setDate={field.onChange}
                           date={field.value}
@@ -171,10 +175,10 @@ const AddAppointmentDialog: React.FC = () => {
                           variant="outline"
                           className={cn(
                             "w-[280px] justify-start text-left font-normal",
-                            !field.value && "text-muted-foreground",
+                            !field.value && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          <CalendarIcon className="mr-2 size-4" />
                           {field.value ? (
                             format(field.value, "PPP HH:mm:ss")
                           ) : (
@@ -190,7 +194,7 @@ const AddAppointmentDialog: React.FC = () => {
                         onSelect={field.onChange}
                         initialFocus
                       />
-                      <div className="border-t border-border p-3">
+                      <div className="border-border border-t p-3">
                         <TimePicker
                           setDate={field.onChange}
                           date={field.value}
@@ -217,7 +221,7 @@ const AddAppointmentDialog: React.FC = () => {
                         <SelectValue>
                           {field.value
                             ? resources.find(
-                                (resource) => resource.id === field.value,
+                                (resource) => resource.id === field.value
                               )?.name
                             : "Select a resource"}
                         </SelectValue>
@@ -243,7 +247,7 @@ const AddAppointmentDialog: React.FC = () => {
         </Form>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default AddAppointmentDialog;
+export default AddAppointmentDialog

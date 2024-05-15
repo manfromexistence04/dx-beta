@@ -1,24 +1,24 @@
-import React from 'react';
-import { ComboboxItemProps } from '@udecode/plate-combobox';
+import React from "react"
+import { ComboboxItemProps } from "@udecode/plate-combobox"
 import {
   EmojiItemData,
   KEY_EMOJI,
   TEmojiCombobox,
   useEmojiComboboxState,
-} from '@udecode/plate-emoji';
+} from "@udecode/plate-emoji"
 
-import { Combobox } from './combobox';
+import { Combobox } from "./combobox"
 
 export function EmojiComboboxItem({ item }: ComboboxItemProps<EmojiItemData>) {
   const {
     data: { id, emoji },
-  } = item;
+  } = item
 
   return (
     <div>
       {emoji} :{id}:
     </div>
-  );
+  )
 }
 
 export function EmojiCombobox({
@@ -26,7 +26,7 @@ export function EmojiCombobox({
   id = pluginKey,
   ...props
 }: TEmojiCombobox) {
-  const { trigger, onSelectItem } = useEmojiComboboxState({ pluginKey });
+  const { trigger, onSelectItem } = useEmojiComboboxState({ pluginKey })
 
   return (
     <Combobox
@@ -37,5 +37,5 @@ export function EmojiCombobox({
       onRenderItem={EmojiComboboxItem}
       {...props}
     />
-  );
+  )
 }

@@ -1,20 +1,22 @@
-"use client";
+"use client"
 
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-import Link from "next/link";
-import React from "react";
+import { cn } from "@/lib/utils"
 
 export default function NavLinks() {
-  const pathname = usePathname();
+  const pathname = usePathname()
   return (
-    <div className="flex items-center space-x-6 text-md">
+    <div className="text-md flex items-center space-x-6">
       <Link
         href="/home"
         className={cn(
-          "transition-colors hover:text-foreground/80",
-          pathname === "/universities" ? "text-foreground" : "text-foreground/60"
+          "hover:text-foreground/80 transition-colors",
+          pathname === "/universities"
+            ? "text-foreground"
+            : "text-foreground/60"
         )}
       >
         Home
@@ -22,10 +24,8 @@ export default function NavLinks() {
       <Link
         href="/portfolio"
         className={cn(
-          "transition-colors hover:text-foreground/80",
-          pathname === "/specialties"
-            ? "text-foreground"
-            : "text-foreground/60"
+          "hover:text-foreground/80 transition-colors",
+          pathname === "/specialties" ? "text-foreground" : "text-foreground/60"
         )}
       >
         Portfolio
@@ -33,10 +33,8 @@ export default function NavLinks() {
       <Link
         href="/contract"
         className={cn(
-          "transition-colors hover:text-foreground/80",
-          pathname === "/questions"
-            ? "text-foreground"
-            : "text-foreground/60"
+          "hover:text-foreground/80 transition-colors",
+          pathname === "/questions" ? "text-foreground" : "text-foreground/60"
         )}
       >
         Contract
@@ -44,10 +42,8 @@ export default function NavLinks() {
       <Link
         href="/whiteboard"
         className={cn(
-          "transition-colors hover:text-foreground/80",
-          pathname === "/whiteboard"
-            ? "text-foreground"
-            : "text-foreground/60"
+          "hover:text-foreground/80 transition-colors",
+          pathname === "/whiteboard" ? "text-foreground" : "text-foreground/60"
         )}
       >
         Whiteboard
@@ -55,10 +51,8 @@ export default function NavLinks() {
       <Link
         href="/planner"
         className={cn(
-          "transition-colors hover:text-foreground/80",
-          pathname === "/planner"
-            ? "text-foreground"
-            : "text-foreground/60"
+          "hover:text-foreground/80 transition-colors",
+          pathname === "/planner" ? "text-foreground" : "text-foreground/60"
         )}
       >
         Planner
@@ -74,5 +68,5 @@ export default function NavLinks() {
         Questions
       </h1> */}
     </div>
-  );
+  )
 }

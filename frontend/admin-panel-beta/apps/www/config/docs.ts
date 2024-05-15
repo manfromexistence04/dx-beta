@@ -29,11 +29,13 @@ export const docsConfig: DocsConfig = {
           title: "Tag",
           href: "/tag",
           items: [],
-        },        {
+        },
+        {
           title: "Usage",
           href: "/usage",
           items: [],
-        },        {
+        },
+        {
           title: "Whiteboard",
           href: "/whiteboard",
           items: [],
@@ -47,11 +49,13 @@ export const docsConfig: DocsConfig = {
           title: "Home",
           href: "/home",
           items: [],
-        },        {
+        },
+        {
           title: "Plate",
           href: "/plate",
           items: [],
-        },        {
+        },
+        {
           title: "Portfolio",
           href: "/portfolio",
           items: [],
@@ -70,7 +74,8 @@ export const docsConfig: DocsConfig = {
           title: "Location",
           href: "/location",
           items: [],
-        },        {
+        },
+        {
           title: "Setting",
           href: "/setting",
           items: [],

@@ -69,8 +69,6 @@
 
 // export default FetchWebsiteHTML;
 
-
-
 // import React, { useEffect, useState } from 'react';
 // import axios from 'axios';
 
@@ -162,27 +160,26 @@
 // };
 
 // export default MyComponent;
-
-
-
-import React, { useState } from 'react';
+import React, { useState } from "react"
 
 const RandomImage = () => {
-  const [imageUrl, setImageUrl] = useState('https://source.unsplash.com/random/300x200'); // Initial image size
+  const [imageUrl, setImageUrl] = useState(
+    "https://source.unsplash.com/random/300x200"
+  ) // Initial image size
 
   const getRandomImage = () => {
-    const width = Math.floor(Math.random() * 500) + 200; // Random width between 100 and 1100
-    const height = Math.floor(Math.random() * 600) + 300; // Random height between 100 and 700
-    setImageUrl(`https://source.unsplash.com/random/${width}x${height}`);
+    const width = Math.floor(Math.random() * 500) + 200 // Random width between 100 and 1100
+    const height = Math.floor(Math.random() * 600) + 300 // Random height between 100 and 700
+    setImageUrl(`https://source.unsplash.com/random/${width}x${height}`)
     // setImageUrl(`https://app.leonardo.ai/auth/login`);
-  };
+  }
 
   return (
     <div>
       <img src={imageUrl} alt="Random Unsplash Image" />
       <button onClick={getRandomImage}>Get New Image</button>
     </div>
-  );
-};
+  )
+}
 
-export default RandomImage;
+export default RandomImage

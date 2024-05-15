@@ -1,28 +1,30 @@
 "use client"
 
-import React, { useEffect, useMemo, useState } from "react";
-import { useCalendar } from "@/contexts/PlannerContext";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
-import { DateRangePicker } from "./date-range-picker";
-import { DateRange } from "react-day-picker";
-import { endOfDay, endOfWeek, startOfWeek } from "date-fns";
-import { useData } from "@/contexts/PlannerDataContext";
-import AddAppointmentDialog from "./AddAppointmentDialog";
-import { HeartFilledIcon } from "@radix-ui/react-icons";
-import { wrap } from "@motionone/utils";
+import React, { useEffect, useMemo, useState } from "react"
+import { useCalendar } from "@/contexts/PlannerContext"
+import { useData } from "@/contexts/PlannerDataContext"
+import { wrap } from "@motionone/utils"
+import { HeartFilledIcon } from "@radix-ui/react-icons"
+import { endOfDay, endOfWeek, startOfWeek } from "date-fns"
 import {
-  motion,
   AnimatePresence,
+  motion,
+  useAnimationFrame,
+  useMotionValue,
   useScroll,
   useSpring,
   useTransform,
-  useMotionValue,
   useVelocity,
-  useAnimationFrame,
-} from "framer-motion";
+} from "framer-motion"
+import { DateRange } from "react-day-picker"
 
-interface CalendarToolbarProps extends React.HTMLAttributes<HTMLDivElement> { }
+import { cn } from "@/lib/utils"
+
+import { Button } from "../ui/button"
+import AddAppointmentDialog from "./AddAppointmentDialog"
+import { DateRangePicker } from "./date-range-picker"
+
+interface CalendarToolbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 // export function TypingEffect() {
 //   const text = "Plan Your Time.";
@@ -51,17 +53,17 @@ interface CalendarToolbarProps extends React.HTMLAttributes<HTMLDivElement> { }
 //   );
 // }
 export function RotateText() {
-  const words = ["Plan your time", "To maximize your productivity."];
-  const [index, setIndex] = React.useState(0);
+  const words = ["Plan your time", "To maximize your productivity."]
+  const [index, setIndex] = React.useState(0)
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 3000);
+      setIndex((prevIndex) => (prevIndex + 1) % words.length)
+    }, 3000)
 
     // Clean up interval on unmount
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval)
+  }, [])
   return (
     <AnimatePresence mode="wait">
       <motion.h1
@@ -70,37 +72,37 @@ export function RotateText() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.5 }}
-        className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
+        className="font-display text-center text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]"
       >
         {words[index]}
       </motion.h1>
     </AnimatePresence>
-  );
+  )
 }
 const CalendarToolbar: React.FC<CalendarToolbarProps> = ({
   className,
   ...props
 }) => {
-  const { setDateRange } = useCalendar();
-  const { addResource, addAppointment } = useData();
+  const { setDateRange } = useCalendar()
+  const { addResource, addAppointment } = useData()
 
   const [range, setRange] = useState<DateRange>({
     from: startOfWeek(new Date(), {
       locale: { options: { weekStartsOn: 1 } },
     }),
     to: endOfWeek(new Date()),
-  });
+  })
   const handleDateRangeUpdate = (range: DateRange) => {
-    const from = range.from;
-    const to = range.to ?? endOfDay(range.from as Date);
+    const from = range.from
+    const to = range.to ?? endOfDay(range.from as Date)
     setDateRange({
       from: from,
-      to: to
-    });
-  };
+      to: to,
+    })
+  }
   useEffect(() => {
-    setDateRange(range);
-  }, [range]);
+    setDateRange(range)
+  }, [range])
 
   return (
     <div
@@ -108,7 +110,9 @@ const CalendarToolbar: React.FC<CalendarToolbarProps> = ({
       {...props}
     >
       {/* <RotateText /> */}
-      <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Plan Your Time!</span>
+      <span className="font-display text-center text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
+        Plan Your Time!
+      </span>
       <div className="flex-1"></div>
       <AddAppointmentDialog />
       <DateRangePicker
@@ -119,7 +123,7 @@ const CalendarToolbar: React.FC<CalendarToolbarProps> = ({
         showCompare={false}
       />
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(CalendarToolbar);
+export default React.memo(CalendarToolbar)

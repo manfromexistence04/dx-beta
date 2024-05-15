@@ -1,2 +1,2 @@
-export * from './Appointment.js';
-export * from './Resource.js';
+export * from "./Appointment"
+export * from "./Resource"

@@ -1,20 +1,19 @@
-export type SiteConfig = typeof siteConfig;
+export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-    name: 'Admin Panel ',
-    description:
-        'Rich-data editor components built with Nextjs.',
-    mainNav: [
-        {
-            title: 'Home',
-            href: '/',
-        },
-    ],
-    links: {
-        twitter: 'https://twitter.com/manofexistence1',
-        github: 'https://github.com/udecode/plate',
-        docs: 'https://platejs.org',
+  name: "Admin Panel ",
+  description: "Rich-data editor components built with Nextjs.",
+  mainNav: [
+    {
+      title: "Home",
+      href: "/",
     },
-    url: "https://ui.shadcn.com",
-    ogImage: "https://ui.shadcn.com/og.jpg",
-};
+  ],
+  links: {
+    twitter: "https://twitter.com/manofexistence1",
+    github: "https://github.com/udecode/plate",
+    docs: "https://platejs.org",
+  },
+  url: "https://ui.shadcn.com",
+  ogImage: "https://ui.shadcn.com/og.jpg",
+}

@@ -41,6 +41,7 @@ import { Skeleton } from "@/registry/new-york/ui/skeleton"
 import { Theme, themes } from "@/registry/themes"
 
 import "@/styles/mdx.css"
+
 import {
   Tooltip,
   TooltipContent,
@@ -61,7 +62,7 @@ export function ThemeCustomizer() {
       <Drawer>
         <DrawerTrigger asChild>
           <Button variant="outline" className="md:hidden">
-            <Paintbrush className="mr-2 h-4 w-4" />
+            <Paintbrush className="mr-2 size-4" />
             Customize
           </Button>
         </DrawerTrigger>
@@ -92,7 +93,7 @@ export function ThemeCustomizer() {
                           })
                         }
                         className={cn(
-                          "flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
+                          "flex size-9 items-center justify-center rounded-full border-2 text-xs",
                           isActive
                             ? "border-[--theme-primary]"
                             : "border-transparent"
@@ -109,11 +110,11 @@ export function ThemeCustomizer() {
                       >
                         <span
                           className={cn(
-                            "flex h-6 w-6 items-center justify-center rounded-full bg-[--theme-primary]"
+                            "flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
                           )}
                         >
                           {isActive && (
-                            <CheckIcon className="h-4 w-4 text-white" />
+                            <CheckIcon className="size-4 text-white" />
                           )}
                         </span>
                         <span className="sr-only">{theme.label}</span>
@@ -121,7 +122,7 @@ export function ThemeCustomizer() {
                     </TooltipTrigger>
                     <TooltipContent
                       align="center"
-                      className="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
+                      className="rounded-lg bg-zinc-900 text-zinc-50"
                     >
                       {theme.label}
                     </TooltipContent>
@@ -131,24 +132,24 @@ export function ThemeCustomizer() {
             </>
           ) : (
             <div className="mr-1 flex items-center gap-4">
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
             </div>
           )}
         </div>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline">
-              <Paintbrush className="mr-2 h-4 w-4" />
+              <Paintbrush className="mr-2 size-4" />
               Customize
             </Button>
           </PopoverTrigger>
           <PopoverContent
             align="center"
-            className="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
+            className="z-40 w-[340px] rounded-lg bg-white p-6 dark:bg-zinc-950"
           >
             <Customizer />
           </PopoverContent>
@@ -185,7 +186,7 @@ function Customizer() {
         <Button
           variant="ghost"
           size="icon"
-          className="ml-auto rounded-[0.5rem]"
+          className="ml-auto rounded-lg"
           onClick={() => {
             setConfig({
               ...config,
@@ -204,11 +205,11 @@ function Customizer() {
             <Label className="text-xs">Style</Label>
             <Popover>
               <PopoverTrigger>
-                <InfoCircledIcon className="ml-1 h-3 w-3" />
+                <InfoCircledIcon className="ml-1 size-3" />
                 <span className="sr-only">About styles</span>
               </PopoverTrigger>
               <PopoverContent
-                className="space-y-3 rounded-[0.5rem] text-sm"
+                className="space-y-3 rounded-lg text-sm"
                 side="right"
                 align="start"
                 alignOffset={-20}
@@ -287,10 +288,10 @@ function Customizer() {
                 >
                   <span
                     className={cn(
-                      "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+                      "mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
                     )}
                   >
-                    {isActive && <CheckIcon className="h-4 w-4 text-white" />}
+                    {isActive && <CheckIcon className="size-4 text-white" />}
                   </span>
                   {theme.label}
                 </Button>
@@ -391,9 +392,9 @@ function CopyCodeButton() {
           className="md:hidden"
         >
           {hasCopied ? (
-            <CheckIcon className="mr-2 h-4 w-4" />
+            <CheckIcon className="mr-2 size-4" />
           ) : (
-            <CopyIcon className="mr-2 h-4 w-4" />
+            <CopyIcon className="mr-2 size-4" />
           )}
           Copy
         </Button>
@@ -430,9 +431,9 @@ function CopyCodeButton() {
                 className="bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground absolute right-4 top-4"
               >
                 {hasCopied ? (
-                  <CheckIcon className="mr-2 h-4 w-4" />
+                  <CheckIcon className="mr-2 size-4" />
                 ) : (
-                  <CopyIcon className="mr-2 h-4 w-4" />
+                  <CopyIcon className="mr-2 size-4" />
                 )}
                 Copy
               </Button>

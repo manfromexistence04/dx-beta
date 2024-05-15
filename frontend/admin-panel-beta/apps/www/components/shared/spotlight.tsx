@@ -1,8 +1,9 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { CodeIcon } from "@radix-ui/react-icons";
+import * as React from "react"
+import { CodeIcon } from "@radix-ui/react-icons"
 
+import { cn } from "@/lib/utils"
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,36 +11,36 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/command"
+
+import { Button } from "../ui/button"
 
 export function Spotlight({ filteredVariants }: any) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && e.metaKey) {
-        setOpen((open) => !open);
+        setOpen((open) => !open)
       }
-    };
+    }
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
 
   return (
     <div className="w-full">
       <Button
         variant="outline"
         className={cn(
-          "relative w-full justify-start text-sm text-muted-foreground sm:pr-12"
+          "text-muted-foreground relative w-full justify-start text-sm sm:pr-12"
         )}
         onClick={() => setOpen(true)}
       >
         <span className="hidden lg:inline-flex">Search variants...</span>
         <span className="inline-flex lg:hidden">Search...</span>
-        <kbd className="pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <kbd className="bg-muted pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
@@ -59,11 +60,11 @@ export function Spotlight({ filteredVariants }: any) {
                 onSelect={() => {
                   window.location.href = `#${variant.name
                     .toLowerCase()
-                    .replace(" ", "-")}`;
-                  setOpen(false);
+                    .replace(" ", "-")}`
+                  setOpen(false)
                 }}
               >
-                <CodeIcon className="mr-2 h-4 w-4" />
+                <CodeIcon className="mr-2 size-4" />
                 <span>{variant.name}</span>
               </CommandItem>
             ))}
@@ -71,5 +72,5 @@ export function Spotlight({ filteredVariants }: any) {
         </CommandList>
       </CommandDialog>
     </div>
-  );
+  )
 }

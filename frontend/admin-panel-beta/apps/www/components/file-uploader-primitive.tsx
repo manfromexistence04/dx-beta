@@ -244,9 +244,9 @@ const fileUploaderInputVariants = cva(
     variants: {
       variant: {
         default:
-          "grid h-52 w-full place-items-center rounded-lg border-2 border-dashed border-muted-foreground/25 px-5 py-2.5 text-center ring-offset-background transition hover:bg-muted/25 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[state=active]:border-muted-foreground/50",
+          "border-muted-foreground/25 ring-offset-background hover:bg-muted/25 focus-visible:ring-ring data-[state=active]:border-muted-foreground/50 grid h-52 w-full place-items-center rounded-lg border-2 border-dashed px-5 py-2.5 text-center transition focus-visible:ring-2 focus-visible:ring-offset-2",
         button:
-          "inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90",
+          "bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-9 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium shadow",
         headless: "",
       },
     },
@@ -294,11 +294,11 @@ const FileUploaderTrigger = React.forwardRef<
         <div className="flex flex-col items-center justify-center gap-4 sm:px-5">
           <div className="rounded-full border border-dashed p-3">
             <UploadIcon
-              className="size-7 text-muted-foreground"
+              className="text-muted-foreground size-7"
               aria-hidden="true"
             />
           </div>
-          <p className="font-medium text-muted-foreground">
+          <p className="text-muted-foreground font-medium">
             Drop the files here
           </p>
         </div>
@@ -306,15 +306,15 @@ const FileUploaderTrigger = React.forwardRef<
         <div className="flex flex-col items-center justify-center gap-4 sm:px-5">
           <div className="rounded-full border border-dashed p-3">
             <UploadIcon
-              className="size-7 text-muted-foreground"
+              className="text-muted-foreground size-7"
               aria-hidden="true"
             />
           </div>
           <div className="space-y-px">
-            <p className="font-medium text-muted-foreground">
+            <p className="text-muted-foreground font-medium">
               Drag {`'n'`} drop files here, or click to select files
             </p>
-            <p className="text-sm text-muted-foreground/70">
+            <p className="text-muted-foreground/70 text-sm">
               You can upload
               {maxFiles > 1
                 ? ` ${maxFiles === Infinity ? "multiple" : maxFiles}
@@ -361,10 +361,10 @@ const FileUploaderItem = React.forwardRef<
         ) : null}
         <div className="flex w-full flex-col gap-2">
           <div className="space-y-px">
-            <p className="line-clamp-1 text-sm font-medium text-foreground/80">
+            <p className="text-foreground/80 line-clamp-1 text-sm font-medium">
               {file.name}
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               {formatBytes(file.size)}
             </p>
           </div>

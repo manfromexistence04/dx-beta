@@ -1,7 +1,7 @@
-import AllVariants from "@/components/usage/all-variants";
-import CallToAction from "@/components/usage/call-to-action";
-import Copy from "@/components/usage/copy";
-import Intro from "@/components/usage/intro";
+import AllVariants from "@/components/usage/all-variants"
+import CallToAction from "@/components/usage/call-to-action"
+import Copy from "@/components/usage/copy"
+import Intro from "@/components/usage/intro"
 
 export default function Home() {
   const faqs = [
@@ -37,7 +37,7 @@ export default function Home() {
     },
 
     // More questions...
-  ];
+  ]
   return (
     <div>
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
@@ -52,7 +52,7 @@ export default function Home() {
                 <dt className="text-base font-semibold leading-7">
                   {faq.question}
                 </dt>
-                <dd className="mt-2 text-base leading-7 text-muted-foreground">
+                <dd className="text-muted-foreground mt-2 text-base leading-7">
                   {faq.answer}
                 </dd>
               </div>
@@ -61,5 +61,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }

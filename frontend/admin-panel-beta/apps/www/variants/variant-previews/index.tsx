@@ -1,28 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
-import { HeartFilledIcon } from "@radix-ui/react-icons";
-import { wrap } from "@motionone/utils";
+import React from "react"
+import { wrap } from "@motionone/utils"
+import { HeartFilledIcon } from "@radix-ui/react-icons"
 import {
-  motion,
   AnimatePresence,
+  motion,
+  useAnimationFrame,
+  useMotionValue,
   useScroll,
   useSpring,
   useTransform,
-  useMotionValue,
   useVelocity,
-  useAnimationFrame,
-} from "framer-motion";
+} from "framer-motion"
 
 interface ParallaxProps {
-  children: string;
-  baseVelocity: number;
+  children: string
+  baseVelocity: number
 }
 
 export function FadeDownStagger({ key }: { key: number }) {
   const FADE_DOWN_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: -10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   return (
     <motion.div
       key={key}
@@ -54,17 +54,18 @@ export function FadeDownStagger({ key }: { key: number }) {
         className="mx-auto mt-6 flex items-center justify-center space-x-5"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
       >
-        If you&apos;re seeing this, thank you for trying my project out! - MAHABUB
+        If you&apos;re seeing this, thank you for trying my project out! -
+        MAHABUB
       </motion.div>
     </motion.div>
-  );
+  )
 }
 
 export function FadeUpStagger({ key }: { key: number }) {
   const FADE_UP_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   return (
     <motion.div
       key={key}
@@ -99,7 +100,7 @@ export function FadeUpStagger({ key }: { key: number }) {
         <HeartFilledIcon />
       </motion.div>
     </motion.div>
-  );
+  )
 }
 
 export function MultiDirectionSlide({ key }: { key: number }) {
@@ -107,7 +108,7 @@ export function MultiDirectionSlide({ key }: { key: number }) {
     hidden: { opacity: 0, x: "-25vw" },
     visible: { opacity: 1, x: 0 },
     right: { opacity: 0, x: "25vw" },
-  };
+  }
   return (
     <div className="overflow-hidden" key={key}>
       <motion.h1
@@ -130,17 +131,17 @@ export function MultiDirectionSlide({ key }: { key: number }) {
         Admin Panel
       </motion.h1>
     </div>
-  );
+  )
 }
 
 export function StaggeredFadeIn() {
-  const sentence = "Nurzhol Tabigat's Admin Panel";
-  const words = sentence.split(" ");
+  const sentence = "Nurzhol Tabigat's Admin Panel"
+  const words = sentence.split(" ")
 
   const wordVariants = {
     hidden: { opacity: 0 },
     visible: (i: any) => ({ y: 0, opacity: 1, transition: { delay: i * 0.1 } }),
-  };
+  }
   return (
     <motion.h1
       initial="hidden"
@@ -153,12 +154,12 @@ export function StaggeredFadeIn() {
         </motion.span>
       ))}
     </motion.h1>
-  );
+  )
 }
 
 export function LetterPullUp() {
-  const words = "Nurzhol Tabigat's Admin Panel";
-  const letters = words.split("");
+  const words = "Nurzhol Tabigat's Admin Panel"
+  const letters = words.split("")
 
   const pullupVariant = {
     initial: { y: 100, opacity: 0 },
@@ -169,7 +170,7 @@ export function LetterPullUp() {
         delay: i * 0.05, // Delay each letter's animation by 0.05 seconds
       },
     }),
-  };
+  }
 
   return (
     <div className="flex justify-center">
@@ -186,7 +187,7 @@ export function LetterPullUp() {
         </motion.h1>
       ))}
     </div>
-  );
+  )
 }
 
 export function WordPullUp() {
@@ -198,14 +199,14 @@ export function WordPullUp() {
         staggerChildren: 0.2,
       },
     },
-  };
+  }
 
   const item = {
     hidden: { y: 20, opacity: 0 },
     show: { y: 0, opacity: 1 },
-  };
+  }
 
-  const words = "Nurzhol Tabigat's Admin Panel";
+  const words = "Nurzhol Tabigat's Admin Panel"
   return (
     <motion.h1
       variants={container}
@@ -223,47 +224,47 @@ export function WordPullUp() {
         </motion.span>
       ))}
     </motion.h1>
-  );
+  )
 }
 
 export function VelocityScroll() {
   function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
-    const baseX = useMotionValue(0);
-    const { scrollY } = useScroll();
-    const scrollVelocity = useVelocity(scrollY);
+    const baseX = useMotionValue(0)
+    const { scrollY } = useScroll()
+    const scrollVelocity = useVelocity(scrollY)
     const smoothVelocity = useSpring(scrollVelocity, {
       damping: 50,
       stiffness: 400,
-    });
+    })
     const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
       clamp: false,
-    });
+    })
 
     /**
      * This is a magic wrapping for the length of the text - you
      * have to replace for wrapping that works for you or dynamically
      * calculate
      */
-    const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+    const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`)
 
-    const directionFactor = React.useRef<number>(1);
+    const directionFactor = React.useRef<number>(1)
     useAnimationFrame((t, delta) => {
-      let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+      let moveBy = directionFactor.current * baseVelocity * (delta / 1000)
 
       /**
        * This is what changes the direction of the scroll once we
        * switch scrolling directions.
        */
       if (velocityFactor.get() < 0) {
-        directionFactor.current = -1;
+        directionFactor.current = -1
       } else if (velocityFactor.get() > 0) {
-        directionFactor.current = 1;
+        directionFactor.current = 1
       }
 
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
+      moveBy += directionFactor.current * moveBy * velocityFactor.get()
 
-      baseX.set(baseX.get() + moveBy);
-    });
+      baseX.set(baseX.get() + moveBy)
+    })
 
     /**
      * The number of times to repeat the child text should be dynamically calculated
@@ -284,28 +285,28 @@ export function VelocityScroll() {
           <span>{children} </span>
         </motion.div>
       </div>
-    );
+    )
   }
   return (
     <section>
       <ParallaxText baseVelocity={5}>Nurzhol Tabigat's</ParallaxText>
       <ParallaxText baseVelocity={-5}>Admin Panel</ParallaxText>
     </section>
-  );
+  )
 }
 
 export function RotateText() {
-  const words = ["Nurzhol Tabigat's", " Admin Panel"];
-  const [index, setIndex] = React.useState(0);
+  const words = ["Nurzhol Tabigat's", " Admin Panel"]
+  const [index, setIndex] = React.useState(0)
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 3000);
+      setIndex((prevIndex) => (prevIndex + 1) % words.length)
+    }, 3000)
 
     // Clean up interval on unmount
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval)
+  }, [])
   return (
     <AnimatePresence mode="wait">
       <motion.h1
@@ -319,34 +320,34 @@ export function RotateText() {
         {words[index]}
       </motion.h1>
     </AnimatePresence>
-  );
+  )
 }
 
 export function TypingEffect() {
-  const text = "Nurzhol Tabigat's Admin Panel";
-  const [displayedText, setDisplayedText] = React.useState("");
-  const [i, setI] = React.useState(0);
+  const text = "Nurzhol Tabigat's Admin Panel"
+  const [displayedText, setDisplayedText] = React.useState("")
+  const [i, setI] = React.useState(0)
 
   React.useEffect(() => {
     const typingEffect = setInterval(() => {
       if (i < text.length) {
-        setDisplayedText((prevState) => prevState + text.charAt(i));
-        setI(i + 1);
+        setDisplayedText((prevState) => prevState + text.charAt(i))
+        setI(i + 1)
       } else {
-        clearInterval(typingEffect);
+        clearInterval(typingEffect)
       }
-    }, 200);
+    }, 200)
 
     return () => {
-      clearInterval(typingEffect);
-    };
-  }, [i]);
+      clearInterval(typingEffect)
+    }
+  }, [i])
 
   return (
     <h1 className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
       {displayedText ? displayedText : "Nurzhol Tabigat's Admin Panel"}
     </h1>
-  );
+  )
 }
 
 export function SeparateAway() {
@@ -357,7 +358,7 @@ export function SeparateAway() {
       y: custom * 5,
       transition: { duration: 1.5 },
     }),
-  };
+  }
   return (
     <div>
       <motion.h1
@@ -379,15 +380,15 @@ export function SeparateAway() {
         Admin Panel
       </motion.h1>
     </div>
-  );
+  )
 }
 
 export function GradualSpacing() {
-  const text = "Nurzhol Tabigat's Admin Panel";
+  const text = "Nurzhol Tabigat's Admin Panel"
   const gradual = {
     hidden: { opacity: 0, x: -20 },
     visible: { opacity: 1, x: 0 },
-  };
+  }
   return (
     <div className="flex space-x-1 justify-center">
       <AnimatePresence>
@@ -406,14 +407,14 @@ export function GradualSpacing() {
         ))}
       </AnimatePresence>
     </div>
-  );
+  )
 }
 
 export function BlurIn() {
   const variants1 = {
     hidden: { filter: "blur(10px)", opacity: 0 },
     visible: { filter: "blur(0px)", opacity: 1 },
-  };
+  }
   return (
     <motion.h1
       initial="hidden"
@@ -424,15 +425,15 @@ export function BlurIn() {
     >
       Nurzhol Tabigat's Admin Panel
     </motion.h1>
-  );
+  )
 }
 
 export function SlightFlip() {
-  const word = "Nurzhol Tabigat's Admin Panel";
+  const word = "Nurzhol Tabigat's Admin Panel"
   const variants1 = {
     hidden: { rotateX: -90, opacity: 0 },
     visible: { rotateX: 0, opacity: 1 },
-  };
+  }
   return (
     <div className="flex space-x-2 justify-center">
       <AnimatePresence>
@@ -452,15 +453,15 @@ export function SlightFlip() {
         ))}
       </AnimatePresence>
     </div>
-  );
+  )
 }
 
 export function WavyText() {
-  const word = "Nurzhol Tabigat's Admin Panel";
+  const word = "Nurzhol Tabigat's Admin Panel"
   const variants1 = {
     hidden: { y: 10 },
     visible: { y: -10 },
-  };
+  }
   return (
     <div className="flex space-x-2 justify-center">
       <AnimatePresence>
@@ -479,5 +480,5 @@ export function WavyText() {
         ))}
       </AnimatePresence>
     </div>
-  );
+  )
 }

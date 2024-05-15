@@ -1,32 +1,34 @@
-import screenshotDevices from "./images/user-button@2xrl.webp";
-import signIn from "./images/sign-in@2xrl.webp";
-import verify from "./images/verify@2xrl.webp";
-import userButton2 from "./images/user-button-2@2xrl.webp";
-import signUp from "./images/sign-up@2xrl.webp";
-import logo from "./images/logo.png";
-import "./home.css";
-import Image from "next/image";
-import Link from "next/link";
-import { Footer } from "./components/footer";
+import logo from "./images/logo.png"
+import signIn from "./images/sign-in@2xrl.webp"
+import signUp from "./images/sign-up@2xrl.webp"
+import userButton2 from "./images/user-button-2@2xrl.webp"
+import screenshotDevices from "./images/user-button@2xrl.webp"
+import verify from "./images/verify@2xrl.webp"
 
-import { CARDS } from "./consts/cards";
-import { LearnMore } from "./components/learn-more";
+import "./home.css"
+
+import Image from "next/image"
+import Link from "next/link"
+
+import { Footer } from "./components/footer"
+import { LearnMore } from "./components/learn-more"
+import { CARDS } from "./consts/cards"
 
 export default function Home() {
   return (
     <>
-      <main className="bg-[#FAFAFA] relative">
-        <div className="w-full bg-white max-w-[75rem] mx-auto flex flex-col border-l border-r border-[#F2F2F2] row-span-3">
-          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px bg-[#F2F2F2]" />
+      <main className="relative bg-[#FAFAFA]">
+        <div className="row-span-3 mx-auto flex w-full max-w-[75rem] flex-col border-x border-[#F2F2F2] bg-white">
+          <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-[#F2F2F2]" />
           <Image
             alt="Device"
-            className="size-64 bg-transparent absolute left-1/2 -translate-x-[23.75rem] -top-6 h-[51.375rem] object-contain w-[39.0625rem]"
+            className="absolute -top-6 left-1/2 size-64 h-[51.375rem] w-[39.0625rem] -translate-x-[23.75rem] bg-transparent object-contain"
             src={logo}
             unoptimized
           />
 
-          <div className="px-12 py-16 border-b border-[#F2F2F4]">
-            <div className="bg-[#F4F4F5] px-4 py-3 rounded-full inline-flex gap-4">
+          <div className="border-b border-[#F2F2F4] px-12 py-16">
+            <div className="inline-flex gap-4 rounded-full bg-[#F4F4F5] px-4 py-3">
               <a href="https://clerk.com/docs" target="_blank">
                 <svg
                   width="24"
@@ -50,7 +52,7 @@ export default function Home() {
                   />
                 </svg>
               </a>
-              <div aria-hidden className="w-px h-6 bg-[#C7C7C8]" />
+              <div aria-hidden className="h-6 w-px bg-[#C7C7C8]" />
               <a href="https://nextjs.org/" target="_blank">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -121,32 +123,32 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="p-10 border-b border-[#F2F2F2]">
-            <h1 className="text-5xl font-bold tracking-tight text-[#131316] relative">
+          <div className="border-b border-[#F2F2F2] p-10">
+            <h1 className="relative text-5xl font-bold tracking-tight text-[#131316]">
               Auth starts here
             </h1>
 
-            <p className="text-[#5E5F6E] pt-3 pb-6 max-w-[30rem] text-[1.0625rem] relative">
+            <p className="relative max-w-[30rem] pb-6 pt-3 text-[1.0625rem] text-[#5E5F6E]">
               A simple and powerful Next.js template featuring authentication
               and user management powered by Clerk.
             </p>
-            <div className="flex gap-3 relative">
+            <div className="relative flex gap-3">
               <Link
                 href="/clerk/sign-in"
-                className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold"
+                className="rounded-full bg-[#131316] px-4 py-2 text-sm font-semibold text-white"
               >
                 Sign In
               </Link>
               <Link
                 href="/#features"
-                className="px-4 py-2 rounded-full text-[#131316] text-sm font-semibold bg-[#F7F7F8]"
+                className="rounded-full bg-[#F7F7F8] px-4 py-2 text-sm font-semibold text-[#131316]"
               >
                 Learn more
               </Link>
             </div>
           </div>
-          <div className="flex gap-8 w-full h-[41.25rem] scale-[1.03]">
-            <div className="space-y-8 translate-y-12">
+          <div className="flex h-[41.25rem] w-full scale-[1.03] gap-8">
+            <div className="translate-y-12 space-y-8">
               <Image
                 alt="Device"
                 src={signUp}
@@ -154,7 +156,7 @@ export default function Home() {
                 className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
               />
             </div>
-            <div className="space-y-8 -translate-y-4">
+            <div className="-translate-y-4 space-y-8">
               <Image
                 alt="Device"
                 src={verify}
@@ -168,7 +170,7 @@ export default function Home() {
                 className="flex-none rounded-xl bg-white shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5"
               />
             </div>
-            <div className="space-y-8 -translate-y-[22.5rem]">
+            <div className="-translate-y-[22.5rem] space-y-8">
               <Image
                 alt="Device"
                 src={signIn}
@@ -184,10 +186,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="absolute left-0 right-0 bottom-0 h-[18.75rem] bg-gradient-to-t from-white" />
+        <div className="absolute inset-x-0 bottom-0 h-[18.75rem] bg-gradient-to-t from-white" />
       </main>
       <LearnMore cards={CARDS} />
       <Footer />
     </>
-  );
+  )
 }

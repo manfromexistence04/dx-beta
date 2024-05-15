@@ -1,22 +1,24 @@
-"use client";
+"use client"
 
-import { AnimatePresence, motion, useInView } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { AnimatePresence, motion, useInView } from "framer-motion"
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
+
 // import { Button } from "../ui/button";
-import { Button } from "@/components/button";
-import VariantCarousel from "./variant-carousel";
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import { Button } from "@/components/button"
+
+import VariantCarousel from "./variant-carousel"
 
 export default function IntroText() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref);
+  const ref = React.useRef(null)
+  const isInView = useInView(ref)
 
   const FADE_DOWN_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: -10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
@@ -54,17 +56,29 @@ export default function IntroText() {
           >
             <Link href="/universities" className="z-50">
               {/* <Button variant={"secondary"}>Admin Panel</Button> */}
-              <Button variant="expandIcon" Icon={ArrowRightIcon} iconPlacement="right">
+              <Button
+                variant="expandIcon"
+                Icon={ArrowRightIcon}
+                iconPlacement="right"
+              >
                 Admin Panel
               </Button>
             </Link>
 
-            <Link href="https://www.upwork.com/freelancers/~01221bf135ed62b3b3" className="z-50">
+            <Link
+              href="https://www.upwork.com/freelancers/~01221bf135ed62b3b3"
+              className="z-50"
+            >
               {/* <Button variant={"outline"}>
                 MD MAHABUB HOSSAIN
               </Button> */}
 
-              <Button variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+              <Button
+                variant="expandIcon"
+                Icon={ArrowLeftIcon}
+                iconPlacement="left"
+                className="border-input bg-background hover:bg-accent text-accent-foreground border"
+              >
                 Learn more
               </Button>
             </Link>
@@ -85,8 +99,8 @@ export default function IntroText() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <div className="-m-2 rounded-xl  p-2 ring-1 ring-inset ring-primary/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <h1 className="text-xl font-bold tracking-tight sm:text-2xl mb-5">
+              <div className="ring-primary/10 -m-2  rounded-xl p-2 ring-1 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
+                <h1 className="mb-5 text-xl font-bold tracking-tight sm:text-2xl">
                   Admin Panel With High Level Customization.
                 </h1>
 
@@ -97,5 +111,5 @@ export default function IntroText() {
         </motion.div>
       </div>
     </div>
-  );
+  )
 }

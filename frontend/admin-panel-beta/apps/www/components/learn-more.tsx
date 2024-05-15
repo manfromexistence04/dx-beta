@@ -1,19 +1,19 @@
 interface Card {
-  title: string;
-  description: string;
-  href: string;
-  linkText: string;
+  title: string
+  description: string
+  href: string
+  linkText: string
 }
 
 export function LearnMore({ cards }: { cards: Card[] }) {
   return (
     <div className="relative bg-white" id="features">
-      <div className="grid grid-cols-4 gap-8 max-w-[75rem] mx-auto w-full pt-16 pb-24">
+      <div className="mx-auto grid w-full max-w-[75rem] grid-cols-4 gap-8 pb-24 pt-16">
         <div>
-          <span className="text-[0.8125rem]/5 text-[#6C47FF] font-medium">
+          <span className="text-[0.8125rem]/5 font-medium text-[#6C47FF]">
             What is next
           </span>
-          <h2 className="text-xl/[1.625rem] font-semibold text-[#131316] tracking-tight mt-2 mb-3">
+          <h2 className="mb-3 mt-2 text-xl/[1.625rem] font-semibold tracking-tight text-[#131316]">
             Learn more from our&nbsp;resources
           </h2>
           <p className="text-[0.8125rem]/5 text-[#5E5F6E]">
@@ -26,17 +26,17 @@ export function LearnMore({ cards }: { cards: Card[] }) {
             key={card.title}
             href={card.href}
             target="_blank"
-            className="border border-[#F2F2F4] rounded-lg overflow-hidden flex flex-col"
+            className="flex flex-col overflow-hidden rounded-lg border border-[#F2F2F4]"
           >
-            <div className="px-4 py-3 bg-[#FAFAFB] space-y-1 flex-1">
-              <h3 className="text-sm font-medium text-[#131316] tracking-tight">
+            <div className="flex-1 space-y-1 bg-[#FAFAFB] px-4 py-3">
+              <h3 className="text-sm font-medium tracking-tight text-[#131316]">
                 {card.title}
               </h3>
               <p className="text-[0.8125rem]/5 text-[#5E5F6E]">
                 {card.description}
               </p>
             </div>
-            <div className="bg-[#F5F5F7] text-[#131316] px-4 py-2 text-[0.8125rem]/5 font-medium flex items-center gap-1.5 border-t border-[#EDEDF0]">
+            <div className="flex items-center gap-1.5 border-t border-[#EDEDF0] bg-[#F5F5F7] px-4 py-2 text-[0.8125rem]/5 font-medium text-[#131316]">
               {card.linkText}
               <svg
                 width="16"
@@ -66,5 +66,5 @@ export function LearnMore({ cards }: { cards: Card[] }) {
         ))}
       </div>
     </div>
-  );
+  )
 }

@@ -5,7 +5,6 @@ import type { UploadFilesOptions } from "uploadthing/types"
 
 import { getErrorMessage } from "@/lib/handle-error"
 import { uploadFiles as uploadImages } from "@/lib/uploadthing"
-
 import { type OurFileRouter } from "@/app/api/uploadthing/core"
 
 interface UseUploadFileProps
@@ -22,7 +21,9 @@ export function useUploadFile(
 ) {
   const [uploadedImages, setUploadedImages] =
     React.useState<UploadedFile[]>(defaultUploadedFiles)
-  const [imagesUploadingProgress, setImagesUploadingProgress] = React.useState<Record<string, number>>({})
+  const [imagesUploadingProgress, setImagesUploadingProgress] = React.useState<
+    Record<string, number>
+  >({})
   const [isImagesUploading, setIsImagesUploading] = React.useState(false)
 
   async function uploadThings(files: File[]) {

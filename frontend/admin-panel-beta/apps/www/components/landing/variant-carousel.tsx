@@ -1,21 +1,7 @@
-"use client";
+"use client"
 
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "../ui/button";
-import {
-  CodeIcon,
-  ReloadIcon,
-  TriangleLeftIcon,
-  TriangleRightIcon,
-} from "@radix-ui/react-icons";
+import React from "react"
+import Link from "next/link"
 import {
   BlurIn,
   FadeDownStagger,
@@ -31,7 +17,23 @@ import {
   VelocityScroll,
   WavyText,
   WordPullUp,
-} from "@/variants/variant-previews";
+} from "@/variants/variant-previews"
+import {
+  CodeIcon,
+  ReloadIcon,
+  TriangleLeftIcon,
+  TriangleRightIcon,
+} from "@radix-ui/react-icons"
+import { motion } from "framer-motion"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import {
   Select,
   SelectContent,
@@ -40,36 +42,34 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { motion } from "framer-motion";
-import Link from "next/link";
+} from "@/components/ui/tooltip"
+
+import { Button } from "../ui/button"
 
 export default function VariantCarousel() {
-  let generateZeros = (n: number) => Array(n).fill(0);
-  let [keys, setKeys] = React.useState(generateZeros(20));
-  let [index, setIndex] = React.useState(0);
-  let [key, setKey] = React.useState(0); // new state for component key
+  let generateZeros = (n: number) => Array(n).fill(0)
+  let [keys, setKeys] = React.useState(generateZeros(20))
+  let [index, setIndex] = React.useState(0)
+  let [key, setKey] = React.useState(0) // new state for component key
 
   const nextVariant = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % variants.length);
-  };
+    setIndex((prevIndex) => (prevIndex + 1) % variants.length)
+  }
 
   const prevVariant = () => {
-    setIndex(
-      (prevIndex) => (prevIndex + variants.length - 1) % variants.length
-    );
-  };
+    setIndex((prevIndex) => (prevIndex + variants.length - 1) % variants.length)
+  }
 
   const resetVariant = () => {
     // resetting the animation by providing a new key to the component
-    setKey((prevKey) => prevKey + 1);
-  };
+    setKey((prevKey) => prevKey + 1)
+  }
 
   let variants = [
     {
@@ -145,7 +145,7 @@ export default function VariantCarousel() {
       preview: <WavyText />,
       id: 14,
     },
-  ];
+  ]
 
   let buttons = [
     {
@@ -163,7 +163,7 @@ export default function VariantCarousel() {
       tooltipText: "Reset Variant",
       icon: ReloadIcon,
     },
-  ];
+  ]
 
   return (
     <div>
@@ -172,7 +172,7 @@ export default function VariantCarousel() {
           <CardTitle>
             <div className="flex justify-between space-x-1">
               <Select onValueChange={(value: any) => setIndex(value - 1)}>
-                <SelectTrigger className="w-[250px] bg-background">
+                <SelectTrigger className="bg-background w-[250px]">
                   <SelectValue placeholder="Search variants" />
                 </SelectTrigger>
                 <SelectContent>
@@ -187,7 +187,7 @@ export default function VariantCarousel() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <div className="flex space-x-1 justify-end">
+              <div className="flex justify-end space-x-1">
                 {buttons.map((button, i) => (
                   <TooltipProvider key={i}>
                     <Tooltip>
@@ -217,7 +217,7 @@ export default function VariantCarousel() {
           </CardContent>
         </div>
 
-        <CardFooter className="flex justify-between items-center">
+        <CardFooter className="flex items-center justify-between">
           <CardDescription>
             <span>MD MAHABUB HOSSAIN from upwork.</span>
           </CardDescription>
@@ -234,5 +234,5 @@ export default function VariantCarousel() {
         </CardFooter>
       </Card>
     </div>
-  );
+  )
 }

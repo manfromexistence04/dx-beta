@@ -1,7 +1,3 @@
-export const Code = ({
-	children,
-}: {
-	children: React.ReactNode;
-}) => (
-	<code className="bg-muted py-0.5 px-1.5 rounded-md w-fit">{children}</code>
-);
+export const Code = ({ children }: { children: React.ReactNode }) => (
+  <code className="bg-muted w-fit rounded-md px-1.5 py-0.5">{children}</code>
+)

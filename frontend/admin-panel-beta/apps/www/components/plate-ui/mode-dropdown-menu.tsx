@@ -1,13 +1,13 @@
-import React from 'react';
-import { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
+import React from "react"
+import { DropdownMenuProps } from "@radix-ui/react-dropdown-menu"
 import {
   focusEditor,
   useEditorReadOnly,
   useEditorRef,
   usePlateStore,
-} from '@udecode/plate-common';
+} from "@udecode/plate-common"
 
-import { Icons } from '@/components/icons';
+import { Icons } from "@/components/icons"
 
 import {
   DropdownMenu,
@@ -16,17 +16,17 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
   useOpenState,
-} from './dropdown-menu';
-import { ToolbarButton } from './toolbar';
+} from "./dropdown-menu"
+import { ToolbarButton } from "./toolbar"
 
 export function ModeDropdownMenu(props: DropdownMenuProps) {
-  const editor = useEditorRef();
-  const setReadOnly = usePlateStore().set.readOnly();
-  const readOnly = useEditorReadOnly();
-  const openState = useOpenState();
+  const editor = useEditorRef()
+  const setReadOnly = usePlateStore().set.readOnly()
+  const readOnly = useEditorReadOnly()
+  const openState = useOpenState()
 
-  let value = 'editing';
-  if (readOnly) value = 'viewing';
+  let value = "editing"
+  if (readOnly) value = "viewing"
 
   const item: any = {
     editing: (
@@ -41,7 +41,7 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
         <span className="hidden lg:inline">Viewing</span>
       </>
     ),
-  };
+  }
 
   return (
     <DropdownMenu modal={false} {...openState} {...props}>
@@ -61,18 +61,18 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
           className="flex flex-col gap-0.5"
           value={value}
           onValueChange={(newValue) => {
-            if (newValue !== 'viewing') {
-              setReadOnly(false);
+            if (newValue !== "viewing") {
+              setReadOnly(false)
             }
 
-            if (newValue === 'viewing') {
-              setReadOnly(true);
-              return;
+            if (newValue === "viewing") {
+              setReadOnly(true)
+              return
             }
 
-            if (newValue === 'editing') {
-              focusEditor(editor);
-              return;
+            if (newValue === "editing") {
+              focusEditor(editor)
+              return
             }
           }}
         >
@@ -86,5 +86,5 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

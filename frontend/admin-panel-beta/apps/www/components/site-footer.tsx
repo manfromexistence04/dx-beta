@@ -8,11 +8,12 @@ import {
   MoonIcon,
   ResetIcon,
   SunIcon,
-  UnderlineIcon
+  UnderlineIcon,
 } from "@radix-ui/react-icons"
 import template from "lodash.template"
 import { Paintbrush } from "lucide-react"
 import { useTheme } from "next-themes"
+
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
 import { copyToClipboardWithMeta } from "@/components/copy-button"
@@ -40,23 +41,21 @@ import { Skeleton } from "@/registry/new-york/ui/skeleton"
 import { Theme, themes } from "@/registry/themes"
 
 import "@/styles/mdx.css"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/registry/new-york/ui/tooltip"
+
+import { usePathname } from "next/navigation"
+
+import { siteConfig } from "@/config/site"
 import { Button } from "@/registry/default/ui/button"
 import { Input } from "@/registry/default/ui/input"
 import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/registry/default/ui/toggle-group"
-import { siteConfig } from "@/config/site"
-import { usePathname } from "next/navigation"
-
-
-
-
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/registry/new-york/ui/tooltip"
 
 export function ThemeCustomizer() {
   const [config, setConfig] = useConfig()
@@ -72,7 +71,7 @@ export function ThemeCustomizer() {
       <Drawer>
         <DrawerTrigger asChild>
           <Button variant="outline" className="md:hidden">
-            <Paintbrush className="mr-2 h-4 w-4" />
+            <Paintbrush className="mr-2 size-4" />
             Customize Theme
           </Button>
         </DrawerTrigger>
@@ -103,27 +102,28 @@ export function ThemeCustomizer() {
                           })
                         }
                         className={cn(
-                          "flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
+                          "flex size-9 items-center justify-center rounded-full border-2 text-xs",
                           isActive
                             ? "border-[--theme-primary]"
                             : "border-transparent"
                         )}
                         style={
                           {
-                            "--theme-primary": `hsl(${theme?.activeColor[
-                              mode === "dark" ? "dark" : "light"
-                            ]
-                              })`,
+                            "--theme-primary": `hsl(${
+                              theme?.activeColor[
+                                mode === "dark" ? "dark" : "light"
+                              ]
+                            })`,
                           } as React.CSSProperties
                         }
                       >
                         <span
                           className={cn(
-                            "flex h-6 w-6 items-center justify-center rounded-full bg-[--theme-primary]"
+                            "flex size-6 items-center justify-center rounded-full bg-[--theme-primary]"
                           )}
                         >
                           {isActive && (
-                            <CheckIcon className="h-4 w-4 text-white" />
+                            <CheckIcon className="size-4 text-white" />
                           )}
                         </span>
                         <span className="sr-only">{theme.label}</span>
@@ -131,7 +131,7 @@ export function ThemeCustomizer() {
                     </TooltipTrigger>
                     <TooltipContent
                       align="center"
-                      className="rounded-[0.5rem] bg-zinc-900 text-zinc-50"
+                      className="rounded-lg bg-zinc-900 text-zinc-50"
                     >
                       {theme.label}
                     </TooltipContent>
@@ -141,24 +141,24 @@ export function ThemeCustomizer() {
             </>
           ) : (
             <div className="mr-1 flex items-center gap-4">
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
+              <Skeleton className="size-6 rounded-full" />
             </div>
           )}
         </div>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline">
-              <Paintbrush className="mr-2 h-4 w-4" />
+              <Paintbrush className="mr-2 size-4" />
               Customize Theme
             </Button>
           </PopoverTrigger>
           <PopoverContent
             align="center"
-            className="z-40 w-[340px] rounded-[0.5rem] bg-white p-6 dark:bg-zinc-950"
+            className="z-40 w-[340px] rounded-lg bg-white p-6 dark:bg-zinc-950"
           >
             <Customizer />
           </PopoverContent>
@@ -195,7 +195,7 @@ function Customizer() {
         <Button
           variant="ghost"
           size="icon"
-          className="ml-auto rounded-[0.5rem]"
+          className="ml-auto rounded-lg"
           onClick={() => {
             setConfig({
               ...config,
@@ -214,11 +214,11 @@ function Customizer() {
             <Label className="text-xs">Style</Label>
             <Popover>
               <PopoverTrigger>
-                <InfoCircledIcon className="ml-1 h-3 w-3" />
+                <InfoCircledIcon className="ml-1 size-3" />
                 <span className="sr-only">About styles</span>
               </PopoverTrigger>
               <PopoverContent
-                className="space-y-3 rounded-[0.5rem] text-sm"
+                className="space-y-3 rounded-lg text-sm"
                 side="right"
                 align="start"
                 alignOffset={-20}
@@ -289,17 +289,18 @@ function Customizer() {
                   )}
                   style={
                     {
-                      "--theme-primary": `hsl(${theme?.activeColor[mode === "dark" ? "dark" : "light"]
-                        })`,
+                      "--theme-primary": `hsl(${
+                        theme?.activeColor[mode === "dark" ? "dark" : "light"]
+                      })`,
                     } as React.CSSProperties
                   }
                 >
                   <span
                     className={cn(
-                      "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+                      "mr-1 flex size-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
                     )}
                   >
-                    {isActive && <CheckIcon className="h-4 w-4 text-white" />}
+                    {isActive && <CheckIcon className="size-4 text-white" />}
                   </span>
                   {theme.label}
                 </Button>
@@ -326,7 +327,7 @@ function Customizer() {
                   }}
                   className={cn(
                     config.radius === parseFloat(value) &&
-                    "border-primary border-2"
+                      "border-primary border-2"
                   )}
                 >
                   {value}
@@ -400,9 +401,9 @@ function CopyCodeButton() {
           className="md:hidden"
         >
           {hasCopied ? (
-            <CheckIcon className="mr-2 h-4 w-4" />
+            <CheckIcon className="mr-2 size-4" />
           ) : (
-            <CopyIcon className="mr-2 h-4 w-4" />
+            <CopyIcon className="mr-2 size-4" />
           )}
           Copy
         </Button>
@@ -439,9 +440,9 @@ function CopyCodeButton() {
                 className="bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground absolute right-4 top-4"
               >
                 {hasCopied ? (
-                  <CheckIcon className="mr-2 h-4 w-4" />
+                  <CheckIcon className="mr-2 size-4" />
                 ) : (
-                  <CopyIcon className="mr-2 h-4 w-4" />
+                  <CopyIcon className="mr-2 size-4" />
                 )}
                 Copy
               </Button>
@@ -486,7 +487,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
                   {
                     activeTheme?.cssVars.light[
-                    prefix as keyof typeof activeTheme.cssVars.light
+                      prefix as keyof typeof activeTheme.cssVars.light
                     ]
                   }
                   ;
@@ -495,7 +496,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
                   {
                     activeTheme?.cssVars.light[
-                    `${prefix}-foreground` as keyof typeof activeTheme.cssVars.light
+                      `${prefix}-foreground` as keyof typeof activeTheme.cssVars.light
                     ]
                   }
                   ;
@@ -542,7 +543,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}:{" "}
                   {
                     activeTheme?.cssVars.dark[
-                    prefix as keyof typeof activeTheme.cssVars.dark
+                      prefix as keyof typeof activeTheme.cssVars.dark
                     ]
                   }
                   ;
@@ -551,7 +552,7 @@ function CustomizerCode() {
                   &nbsp;&nbsp;&nbsp;&nbsp;--{prefix}-foreground:{" "}
                   {
                     activeTheme?.cssVars.dark[
-                    `${prefix}-foreground` as keyof typeof activeTheme.cssVars.dark
+                      `${prefix}-foreground` as keyof typeof activeTheme.cssVars.dark
                     ]
                   }
                   ;
@@ -639,11 +640,7 @@ const BASE_STYLES_WITH_VARIABLES = `
 }
 `
 
-
-
-
 export function SiteFooter() {
-
   const { setTheme } = useTheme()
   const pathname = usePathname()
 
@@ -674,14 +671,18 @@ export function SiteFooter() {
     //   </div>
     // </footer>
     <footer className="flex min-h-[300px] w-full items-center justify-center border-t py-16">
-      <div className={cn(
-        "w-full px-3 sm:px-6 lg:px-8",
-        pathname === "/home" ? "lg:px-[1%]" : "lg:px-[5%]"
-      )}>
-        <div className={cn(
-          "grid grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6 mx-auto",
-          pathname === "/home" ? "max-w-[1200px]" : "w-full"
-        )}>
+      <div
+        className={cn(
+          "w-full px-3 sm:px-6 lg:px-8",
+          pathname === "/home" ? "lg:px-[1%]" : "lg:px-[5%]"
+        )}
+      >
+        <div
+          className={cn(
+            "mx-auto grid grid-cols-1 place-content-center gap-5 md:grid-cols-3 xl:grid-cols-6",
+            pathname === "/home" ? "max-w-[1200px]" : "w-full"
+          )}
+        >
           <div className="space-y-3">
             <a className="font-semidark text-xl" href="#">
               Get all updates.
@@ -690,7 +691,7 @@ export function SiteFooter() {
               <Input
                 type="email"
                 placeholder="Enter you email"
-                className="min-w-[185px] w-full"
+                className="w-full min-w-[185px]"
               />
               <Button variant="default">Suscribe</Button>
             </div>
@@ -756,15 +757,23 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className={cn(
-            "flex w-full flex-col",
-            pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
-          )}>
+          <div
+            className={cn(
+              "flex w-full flex-col",
+              pathname === "/home"
+                ? "items-start justify-start "
+                : "items-center justify-center"
+            )}
+          >
             <h3 className="text-lg font-medium">Developer</h3>
-            <ul className={cn(
-              "flex w-full flex-col mt-4 space-y-2",
-              pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
-            )}>
+            <ul
+              className={cn(
+                "mt-4 flex w-full flex-col space-y-2",
+                pathname === "/home"
+                  ? "items-start justify-start "
+                  : "items-center justify-center"
+              )}
+            >
               <li>
                 <a
                   href={siteConfig.links.github}
@@ -818,15 +827,23 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className={cn(
-            "flex w-full flex-col",
-            pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
-          )}>
+          <div
+            className={cn(
+              "flex w-full flex-col",
+              pathname === "/home"
+                ? "items-start justify-start "
+                : "items-center justify-center"
+            )}
+          >
             <h3 className="text-lg font-medium">Company</h3>
-            <ul className={cn(
-              "flex w-full flex-col mt-4 space-y-2",
-              pathname === "/home" ? "items-start justify-start " : "items-center justify-center"
-            )}>
+            <ul
+              className={cn(
+                "mt-4 flex w-full flex-col space-y-2",
+                pathname === "/home"
+                  ? "items-start justify-start "
+                  : "items-center justify-center"
+              )}
+            >
               <li>
                 <a
                   href={siteConfig.links.github}
@@ -880,16 +897,23 @@ export function SiteFooter() {
             </ul>
           </div>
 
-
-          <div className={cn(
-            "flex w-full flex-col",
-            pathname === "/home" ? "items-start justify-start " : "items-end justify-start"
-          )}>
+          <div
+            className={cn(
+              "flex w-full flex-col",
+              pathname === "/home"
+                ? "items-start justify-start "
+                : "items-end justify-start"
+            )}
+          >
             <h3 className="text-lg font-medium">Resource</h3>
-            <ul className={cn(
-              "flex w-full flex-col mt-4 space-y-2",
-              pathname === "/home" ? "items-start justify-start " : "items-end justify-start"
-            )}>
+            <ul
+              className={cn(
+                "mt-4 flex w-full flex-col space-y-2",
+                pathname === "/home"
+                  ? "items-start justify-start "
+                  : "items-end justify-start"
+              )}
+            >
               <li>
                 <a
                   href={siteConfig.links.github}
@@ -943,10 +967,14 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className={cn(
-            "space-y-3 flex w-full flex-col",
-            pathname === "/home" ? "items-start justify-start " : "items-end justify-start"
-          )}>
+          <div
+            className={cn(
+              "flex w-full flex-col space-y-3",
+              pathname === "/home"
+                ? "items-start justify-start "
+                : "items-end justify-start"
+            )}
+          >
             <span className="text-md">Preferences</span>
             {/* <div className="flex w-min flex-row items-start justify-start space-x-1 rounded-full border p-1">
               <ToggleGroup type="single">
@@ -977,9 +1005,7 @@ export function SiteFooter() {
               </ToggleGroup>
             </div> */}
             <ThemeCustomizer />
-
           </div>
-
         </div>
       </div>
     </footer>

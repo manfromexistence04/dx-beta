@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import React from "react";
+import React from "react"
+import { motion, useInView } from "framer-motion"
 
 export default function Blockquote() {
   const pullupVariant = {
@@ -13,13 +13,13 @@ export default function Blockquote() {
         delay: i * 0.05, // Delay each letter's animation by 0.05 seconds
       },
     }),
-  };
+  }
 
-  const ref = React.useRef(null);
-  const isInView = useInView(ref);
+  const ref = React.useRef(null)
+  const isInView = useInView(ref)
 
-  const wordsfade = "Admin Panel";
-  const lettersfade = wordsfade.split("");
+  const wordsfade = "Admin Panel"
+  const lettersfade = wordsfade.split("")
   return (
     <div className="relative mx-auto lg:mx-0">
       <figure>
@@ -46,7 +46,7 @@ export default function Blockquote() {
                   initial="initial"
                   animate={isInView ? "animate" : "initial"}
                   custom={i}
-                  className="text-white text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+                  className="font-display text-center text-4xl font-bold tracking-[-0.02em] text-white drop-shadow-sm md:text-7xl md:leading-[5rem]"
                 >
                   {letter === " " ? "\u00A0" : letter}
                 </motion.h1>
@@ -56,5 +56,5 @@ export default function Blockquote() {
         </blockquote>
       </figure>
     </div>
-  );
+  )
 }

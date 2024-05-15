@@ -1,18 +1,19 @@
-"use client";
+"use client"
 
-import { useOrganization, useSession, useUser } from "@clerk/nextjs";
-import clsx from "clsx";
-import { useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import theme from "./theme";
+import { useState } from "react"
+import { useOrganization, useSession, useUser } from "@clerk/nextjs"
+import clsx from "clsx"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 
-const TYPES = ["user", "session", "organization"];
+import theme from "./theme"
+
+const TYPES = ["user", "session", "organization"]
 
 export function CodeSwitcher() {
-  const [selectedType, setSelectedType] = useState(TYPES[0]);
-  const { user } = useUser();
-  const { session } = useSession();
-  const { organization } = useOrganization();
+  const [selectedType, setSelectedType] = useState(TYPES[0])
+  const { user } = useUser()
+  const { session } = useSession()
+  const { organization } = useOrganization()
 
   const selectedCode = JSON.stringify(
     {
@@ -22,15 +23,15 @@ export function CodeSwitcher() {
     }[selectedType],
     null,
     2
-  );
+  )
 
   const typesToShow = organization
     ? TYPES
-    : TYPES.filter((type) => type !== "organization");
+    : TYPES.filter((type) => type !== "organization")
 
   return (
     <div className={clsx(organization ? "h-[54.625rem]" : "h-[41.625rem]")}>
-      <div className="w-full bg-[#F7F7F8] rounded-md p-[0.1875rem] flex gap-1.5">
+      <div className="flex w-full gap-1.5 rounded-md bg-[#F7F7F8] p-[0.1875rem]">
         {typesToShow.map((type) => (
           <button
             className={clsx(
@@ -53,9 +54,9 @@ export function CodeSwitcher() {
             {selectedCode}
           </SyntaxHighlighter>
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-white to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-[#EEEEF0]" />
+        <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-[#EEEEF0]" />
       </div>
     </div>
-  );
+  )
 }

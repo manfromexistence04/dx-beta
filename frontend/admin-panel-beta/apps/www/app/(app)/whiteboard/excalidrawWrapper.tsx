@@ -1,22 +1,28 @@
-"use client";
-import { Icons } from "@/components/icons";
-import { Excalidraw, convertToExcalidrawElements, WelcomeScreen, MainMenu } from "@excalidraw/excalidraw";
-import { useTheme } from "next-themes";
+"use client"
+
+import {
+  convertToExcalidrawElements,
+  Excalidraw,
+  MainMenu,
+  WelcomeScreen,
+} from "@excalidraw/excalidraw"
+import { useTheme } from "next-themes"
+
+import { Icons } from "@/components/icons"
 
 // import "@excalidraw/excalidraw/index.css";
 
 const ExcalidrawWrapper: React.FC = () => {
-  let themeStatus: any = localStorage.getItem('theme');
-  const { theme }: any = useTheme();
+  let themeStatus: any = localStorage.getItem("theme")
+  const { theme }: any = useTheme()
   return (
-    <div className="h-screen w-screen !fixed top-0 left-0 z-0">
+    <div className="!fixed left-0 top-0 z-0 h-screen w-screen">
       <Excalidraw theme={theme}>
         <WelcomeScreen>
           <WelcomeScreen.Center>
             <WelcomeScreen.Center.Logo>
-              <Icons.logo className="h-6 w-6" />
+              <Icons.logo className="size-6" />
               <span>Admin Panle For Nurzhol Tabigat, minialgo.kz</span>
-
             </WelcomeScreen.Center.Logo>
 
             <WelcomeScreen.Center.Heading>
@@ -32,33 +38,31 @@ const ExcalidrawWrapper: React.FC = () => {
               <WelcomeScreen.Center.MenuItemLink href="https://discord.gg/62JDu4dY">
                 Discord
               </WelcomeScreen.Center.MenuItemLink>
-          
+
               <WelcomeScreen.Center.MenuItemHelp />
             </WelcomeScreen.Center.Menu>
           </WelcomeScreen.Center>
 
           <MainMenu>
-          <MainMenu.DefaultItems.LoadScene />
-          <MainMenu.DefaultItems.SaveToActiveFile />
-          <MainMenu.DefaultItems.SaveAsImage />
-          {/* <MainMenu.DefaultItems.CommandPalette /> */}
-          <MainMenu.DefaultItems.ClearCanvas />
-          {/* <MainMenu.DefaultItems.LiveCollaborationTrigger /> */}
-          <MainMenu.DefaultItems.Export />
-          <MainMenu.DefaultItems.ChangeCanvasBackground />
+            <MainMenu.DefaultItems.LoadScene />
+            <MainMenu.DefaultItems.SaveToActiveFile />
+            <MainMenu.DefaultItems.SaveAsImage />
+            {/* <MainMenu.DefaultItems.CommandPalette /> */}
+            <MainMenu.DefaultItems.ClearCanvas />
+            {/* <MainMenu.DefaultItems.LiveCollaborationTrigger /> */}
+            <MainMenu.DefaultItems.Export />
+            <MainMenu.DefaultItems.ChangeCanvasBackground />
 
-          {/* <MainMenu.Item onSelect={() => window.alert("Item1")}>
+            {/* <MainMenu.Item onSelect={() => window.alert("Item1")}>
             Item1
           </MainMenu.Item>
           <MainMenu.Item onSelect={() => window.alert("Item2")}>
             Item 2
           </MainMenu.Item> */}
-        </MainMenu>
+          </MainMenu>
         </WelcomeScreen>
-
-
       </Excalidraw>
     </div>
-  );
-};
-export default ExcalidrawWrapper;
+  )
+}
+export default ExcalidrawWrapper

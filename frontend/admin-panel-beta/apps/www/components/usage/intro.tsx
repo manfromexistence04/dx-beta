@@ -1,18 +1,19 @@
-"use client";
+"use client"
 
-import React from "react";
-import Copy from "./copy";
-import { motion, useInView } from "framer-motion";
-import AllVariants from "./all-variants";
+import React from "react"
+import { motion, useInView } from "framer-motion"
+
+import AllVariants from "./all-variants"
+import Copy from "./copy"
 
 export default function Intro() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref);
+  const ref = React.useRef(null)
+  const isInView = useInView(ref)
 
   const FADE_DOWN_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: -10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
-  };
+  }
   return (
     <div>
       <motion.div
@@ -45,15 +46,15 @@ export default function Intro() {
 
         <motion.div
           variants={FADE_DOWN_ANIMATION_VARIANTS}
-          className="w-full mt-10 flex items-center justify-center gap-x-6 "
+          className="mt-10 flex w-full items-center justify-center gap-x-6 "
         >
-          <div className="not-prose my-6 rounded-2xl bg-primary-foreground w-full">
-            <div className="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-2 rounded-t-lg border bg-primary-foreground px-4">
+          <div className="not-prose bg-primary-foreground my-6 w-full rounded-2xl">
+            <div className="bg-primary-foreground flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-2 rounded-t-lg border px-4">
               <h3 className="mr-auto pt-3 text-xs font-semibold ">
                 Step 1: Install Framer Motion
               </h3>
             </div>
-            <div className="group border-l border-r border-b rounded-b-lg">
+            <div className="group rounded-b-lg border-x border-b">
               <div className="relative">
                 <pre className="overflow-x-auto p-4 text-xs">
                   <code className="language-bash">
@@ -71,11 +72,11 @@ export default function Intro() {
 
         <motion.div
           variants={FADE_DOWN_ANIMATION_VARIANTS}
-          className="w-full mt-10"
+          className="mt-10 w-full"
         >
           <motion.div
             variants={FADE_DOWN_ANIMATION_VARIANTS}
-            className="w-full mt-10 gap-x-6 "
+            className="mt-10 w-full gap-x-6 "
           >
             <p className="mt-4 text-lg">
               Here are all the variant definitions in case you want to make a
@@ -93,5 +94,5 @@ export default function Intro() {
         <p className="mt-4 text-lg"></p>
       </div>
     </div>
-  );
+  )
 }

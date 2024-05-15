@@ -1,3 +1,13 @@
+import React from "react"
+import Link from "next/link"
+import {
+  GitHubLogoIcon,
+  HamburgerMenuIcon,
+  HomeIcon,
+  SunIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons"
+
 import {
   Sheet,
   SheetContent,
@@ -5,19 +15,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet"
 
-import React from "react";
-import { Button } from "../ui/button";
-import {
-  GitHubLogoIcon,
-  HamburgerMenuIcon,
-  HomeIcon,
-  SunIcon,
-  TwitterLogoIcon,
-} from "@radix-ui/react-icons";
-import ModeToggle from "./mode-toggle";
-import Link from "next/link";
+import { Button } from "../ui/button"
+import ModeToggle from "./mode-toggle"
+
 const projects = [
   {
     name: "Home",
@@ -31,9 +33,9 @@ const projects = [
     name: "Text Variants",
     href: "/text-variants",
   },
-];
+]
 function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }
 export default function NavSheet() {
   return (
@@ -47,7 +49,7 @@ export default function NavSheet() {
         <SheetHeader>
           <SheetTitle>Variant Vault</SheetTitle>
           <SheetDescription>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <Link
                   href="https://www.twitter.com/abdo_eth"
@@ -59,7 +61,7 @@ export default function NavSheet() {
                     variant="ghost"
                     size="icon"
                   >
-                    <TwitterLogoIcon className="h-4 w-4" />
+                    <TwitterLogoIcon className="size-4" />
                   </Button>
                 </Link>
                 <Link
@@ -72,7 +74,7 @@ export default function NavSheet() {
                     variant="ghost"
                     size="icon"
                   >
-                    <GitHubLogoIcon className="h-4 w-4" />
+                    <GitHubLogoIcon className="size-4" />
                   </Button>
                 </Link>
               </div>
@@ -86,7 +88,7 @@ export default function NavSheet() {
                   <Link
                     key={project.name}
                     href={project.href}
-                    className="col-span-1 flex rounded-md shadow-sm hover:bg-primary-foreground transition-all duration-200"
+                    className="hover:bg-primary-foreground col-span-1 flex rounded-md shadow-sm transition-all duration-200"
                   >
                     <div className="flex flex-1 items-center justify-between truncate rounded-md border">
                       <div className="flex-1 truncate px-4 py-2 text-sm">
@@ -101,5 +103,5 @@ export default function NavSheet() {
         </SheetHeader>
       </SheetContent>
     </Sheet>
-  );
+  )
 }

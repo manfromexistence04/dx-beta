@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+
 import { Metadata, Viewport } from "next"
 
 import { siteConfig } from "@/config/site"
@@ -8,10 +9,10 @@ import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/providers"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { ThemeWrapper } from "@/components/theme-wrapper"
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
-import { ThemeWrapper } from "@/components/theme-wrapper"
 
 export const metadata: Metadata = {
   title: {

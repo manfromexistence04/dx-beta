@@ -1,14 +1,16 @@
-import React, { FC, useState } from "react";
-import { useData } from "@/contexts/PlannerDataContext";
-import { Resource } from "@/models";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { cn } from "@/lib/utils";
-import { TableCell } from "../ui/table";
+import React, { FC, useState } from "react"
+import { useData } from "@/contexts/PlannerDataContext"
+import { Resource } from "@/models"
+
+import { cn } from "@/lib/utils"
+
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { TableCell } from "../ui/table"
 
 export interface ResourceTableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
-  resourceItem: Resource;
+  resourceItem: Resource
 }
 
 const ResourceTableCell: FC<ResourceTableCellProps> = ({
@@ -17,9 +19,12 @@ const ResourceTableCell: FC<ResourceTableCellProps> = ({
   ...props
 }) => {
   return (
-    <TableCell className={cn(className,"sticky left-0 z-10 border-y bg-background")} {...props}>
+    <TableCell
+      className={cn(className, "bg-background sticky left-0 z-10 border-y")}
+      {...props}
+    >
       <div className="flex items-center space-x-4   ">
-        <div className="relative h-10 w-10">
+        <div className="relative size-10">
           <img
             className="rounded-full object-fill"
             src={resourceItem.details.image}
@@ -29,7 +34,7 @@ const ResourceTableCell: FC<ResourceTableCellProps> = ({
         <h2>{resourceItem.name}</h2>
       </div>
     </TableCell>
-  );
-};
+  )
+}
 
-export default ResourceTableCell;
+export default ResourceTableCell

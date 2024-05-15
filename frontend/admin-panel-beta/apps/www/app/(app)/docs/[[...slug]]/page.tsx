@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation"
-import { allDocs } from "contentlayer/generated"
+import { allDocs } from "@/.contentlayer/generated"
 
 import "@/styles/mdx.css"
+
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ChevronRightIcon, ExternalLinkIcon } from "@radix-ui/react-icons"
@@ -89,19 +90,17 @@ export default async function DocPage({ params }: DocPageProps) {
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
-        <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
-          <div className="overflow-hidden text-ellipsis whitespace-nowrap">
-            Docs
-          </div>
-          <ChevronRightIcon className="h-4 w-4" />
-          <div className="font-medium text-foreground">{doc.title}</div>
+        <div className="text-muted-foreground mb-4 flex items-center space-x-1 text-sm">
+          <div className="truncate">Docs</div>
+          <ChevronRightIcon className="size-4" />
+          <div className="text-foreground font-medium">{doc.title}</div>
         </div>
         <div className="space-y-2">
           <h1 className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}>
             {doc.title}
           </h1>
           {doc.description && (
-            <p className="text-lg text-muted-foreground">
+            <p className="text-muted-foreground text-lg">
               <Balancer>{doc.description}</Balancer>
             </p>
           )}
@@ -116,7 +115,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 Docs
-                <ExternalLinkIcon className="h-3 w-3" />
+                <ExternalLinkIcon className="size-3" />
               </Link>
             )}
             {doc.links?.api && (
@@ -127,7 +126,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
                 API Reference
-                <ExternalLinkIcon className="h-3 w-3" />
+                <ExternalLinkIcon className="size-3" />
               </Link>
             )}
           </div>

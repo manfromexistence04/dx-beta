@@ -40,7 +40,7 @@ export function FadeDown() {
     </motion.div>
   );
 }
-`;
+`
 
 export const FADE_UP_CODE = `import { motion } from "framer-motion";
 
@@ -84,7 +84,7 @@ export function FadeUpStagger() {
     </motion.div>
   );
 }
-`;
+`
 
 export const MULTIDIRECTION_SLIDE_CODE = `import { motion } from "framer-motion";
 
@@ -118,7 +118,7 @@ export function MultiDirectionSlide() {
     </div>
   );
 }
-`;
+`
 
 export const STAGGERED_FADE_IN_CODE = `
 import React from "react";
@@ -145,7 +145,7 @@ export default function StaggeredFade() {
     </motion.h1>
   );
 }
-`;
+`
 
 export const STAGGERED_PULL_UP_CODE = `import { motion } from "framer-motion";
 
@@ -181,7 +181,7 @@ export function LetterPullUp() {
     </div>
   );
 }
-`;
+`
 
 export const RIPPLE_PULL_UP_CODE = `import { motion } from "framer-motion";
 
@@ -221,7 +221,7 @@ export function WordPullUp() {
     </motion.h1>
   );
 }
-`;
+`
 
 export const VELOCITY_CODE = `// this comes from the framer-motion docs, just ported to twcss
 import { wrap } from "@motionone/utils";
@@ -308,7 +308,7 @@ export function VelocityScroll() {
     </section>
   );
 }
-`;
+`
 
 export const ROTATE_WORDS_CODE = `import { AnimatePresence, motion } from "framer-motion";
 export default function RotateText() {
@@ -338,7 +338,7 @@ export default function RotateText() {
     </AnimatePresence>
   );
 }
-`;
+`
 
 export const TYPING_EFFECT_CODE = `import { motion } from "framer-motion";
 
@@ -368,7 +368,7 @@ export function TypingEffect() {
     </h1>
   );
 }
-`;
+`
 
 export const SEPARATE_CODE = `import { motion } from "framer-motion";
 
@@ -404,7 +404,7 @@ export function SeparateAway() {
     </div>
   );
 }
-`;
+`
 
 export const GRADUAL_SPACING_CODE = `import { AnimatePresence, motion } from "framer-motion";
 
@@ -434,7 +434,7 @@ export function GradualSpacing() {
     </div>
   );
 }
-`;
+`
 
 export const BLUR_IN_CODE = `import { motion } from "framer-motion";
 
@@ -455,7 +455,7 @@ export function BlurIn() {
     </motion.h1>
   );
 }
-`;
+`
 
 export const SLIGHT_FLIP_CODE = `import { AnimatePresence, motion } from "framer-motion";
 
@@ -486,7 +486,7 @@ export function SlightFlip() {
     </div>
   );
 }
-`;
+`
 
 export const WAVY_TEXT_CODE = `import { motion, AnimatePresence } from "framer-motion";
 
@@ -516,4 +516,4 @@ export function WavyText() {
     </div>
   );
 }
-`;
+`

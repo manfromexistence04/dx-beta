@@ -1,20 +1,29 @@
-import { initializeApp } from "firebase/app";
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc } from "firebase/firestore";
+import { initializeApp } from "firebase/app"
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
-    authDomain: "ustudy-70041.firebaseapp.com",
-    projectId: "ustudy-70041",
-    storageBucket: "ustudy-70041.appspot.com",
-    messagingSenderId: "209553469910",
-    appId: "1:209553469910:web:5787a019905baf47c73477",
-    measurementId: "G-NNPVVRK9VK"
-  };
+  apiKey: "AIzaSyDaTltvsBtb0PUUNqjNPKpUTzHyLuhefiY",
+  authDomain: "ustudy-70041.firebaseapp.com",
+  projectId: "ustudy-70041",
+  storageBucket: "ustudy-70041.appspot.com",
+  messagingSenderId: "209553469910",
+  appId: "1:209553469910:web:5787a019905baf47c73477",
+  measurementId: "G-NNPVVRK9VK",
+}
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig)
 
 // Database
-const db:any = getFirestore(app);
+const db: any = getFirestore(app)
 // const docRef = doc(db, "universities", "2rLDMTTCDb0fa4W6MzG8");
 
 // Create
@@ -50,7 +59,7 @@ const db:any = getFirestore(app);
 // const snapshot = await universitiesRef.get();
 // snapshot.forEach(doc => {
 //   console.log(doc.id, '=>', doc.data());
-// });  
+// });
 // console.log()
 // Update
 // await updateDoc(docRef, {
@@ -58,9 +67,9 @@ const db:any = getFirestore(app);
 // });
 
 // Delete
-const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb");
-await deleteDoc(docRef);
-console.log(docRef.id);
+const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb")
+await deleteDoc(docRef)
+console.log(docRef.id)
 
 // console.log(await getDoc(docRef).id);
 // const docRef = db.collection('universities').doc('SF');
@@ -69,8 +78,7 @@ console.log(docRef.id);
 //   console.log('No such document!');
 // } else {
 //   console.log('Document data:', docKer.data());
-// }  
-
+// }
 
 // const docRef = doc(db, "universities", "6PScoZGddeLUjivK5Bny");
 // const docSnap = await getDoc(docRef);
@@ -81,6 +89,4 @@ console.log(docRef.id);
 //     console.log("No such document!");
 // }
 
-
-
-export default {db};
+export default { db }
