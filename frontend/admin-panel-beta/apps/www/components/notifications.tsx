@@ -161,7 +161,7 @@ type PositionType = "left" | "right"
 //   };
 // });
 
-const items = [
+const items: any = [
   {
     label: `Notifications`,
     key: 1,
@@ -193,11 +193,7 @@ const Notifications: React.FC = () => {
 
   return (
     <>
-      <Tabs
-        horizontalMargin="0 0 0 0"
-        tabBarExtraContent={operations}
-        items={items}
-      />
+      <Tabs tabBarExtraContent={operations} items={items} />
       {/* <br />
       <br />
       <br />

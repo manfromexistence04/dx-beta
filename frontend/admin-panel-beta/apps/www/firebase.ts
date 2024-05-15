@@ -67,9 +67,9 @@ const db: any = getFirestore(app)
 // });
 
 // Delete
-const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb")
-await deleteDoc(docRef)
-console.log(docRef.id)
+// const docRef = doc(db, "universities", "sfMxougK5zBzYvLxr0eb")
+// await deleteDoc(docRef)
+// console.log(docRef.id)
 
 // console.log(await getDoc(docRef).id);
 // const docRef = db.collection('universities').doc('SF');

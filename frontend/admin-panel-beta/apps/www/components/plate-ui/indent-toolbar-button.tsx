@@ -2,7 +2,7 @@ import React from "react"
 import { withRef } from "@udecode/cn"
 import { useIndentButton } from "@udecode/plate-indent"
 
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/icons-plate-ui"
 
 import { ToolbarButton } from "./toolbar"
 

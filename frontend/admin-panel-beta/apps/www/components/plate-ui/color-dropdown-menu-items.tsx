@@ -4,7 +4,7 @@ import React from "react"
 import { DropdownMenuItemProps } from "@radix-ui/react-dropdown-menu"
 import { cn } from "@udecode/cn"
 
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/icons-plate-ui"
 
 import { buttonVariants } from "./button"
 import { TColor } from "./color-dropdown-menu"

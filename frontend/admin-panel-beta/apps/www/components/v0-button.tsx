@@ -3,7 +3,7 @@
 import * as React from "react"
 import { editInV0 } from "@/actions/edit-in-v0"
 import { Loader2 } from "lucide-react"
-import { useFormStatus } from "react-dom"
+// import { useFormStatus } from "react-dom"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
@@ -135,7 +135,7 @@ function Form({
   size = "default",
   ...props
 }: Omit<React.ComponentProps<typeof V0Button>, "block">) {
-  const { pending } = useFormStatus()
+  const pending = true
 
   return (
     <V0Tooltip size={size}>

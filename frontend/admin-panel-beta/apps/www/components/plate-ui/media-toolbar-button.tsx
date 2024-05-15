@@ -6,7 +6,7 @@ import {
   useMediaToolbarButton,
 } from "@udecode/plate-media"
 
-import { Icons } from "@/components/icons"
+import { Icons } from "@/components/icons-plate-ui"
 
 import { ToolbarButton } from "./toolbar"
 
