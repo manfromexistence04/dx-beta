@@ -8,7 +8,7 @@
     "url": "https://twitter.com/shadcn"
   },
   "workspaces": [
-    "apps/*"
+    "apps/www"
   ],
   "scripts": {
     "build": "turbo run lint:fix && turbo run format:write && turbo run build",
