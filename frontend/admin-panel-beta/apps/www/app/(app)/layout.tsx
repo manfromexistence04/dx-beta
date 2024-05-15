@@ -1,3 +1,5 @@
+"use client"
+
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs';
 import Script from 'next/script';
@@ -16,54 +18,58 @@ import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { dark } from '@clerk/themes';
+import { useTheme } from "next-themes"
 
 const inter = Inter({ subsets: ["latin"] });
 
-const title =
-  "Admin Panel";
-const description =
-  "This is a highly cutomizable admin panel.";
+// const title =
+//   "Admin Panel";
+// const description =
+//   "This is a highly cutomizable admin panel.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    title,
-    description,
-  },
-  twitter: {
-    title,
-    description,
-    card: "summary_large_image",
-    creator: "@abdo_eth",
-  },
-  metadataBase: new URL("https://variantvault.chrisabdo.dev"),
-  // themeColor: "#ffffff",
-};
+// export const metadata: Metadata = {
+//   title,
+//   description,
+//   openGraph: {
+//     title,
+//     description,
+//   },
+//   twitter: {
+//     title,
+//     description,
+//     card: "summary_large_image",
+//     creator: "@abdo_eth",
+//   },
+//   metadataBase: new URL("https://variantvault.chrisabdo.dev"),
+//   // themeColor: "#ffffff",
+// };
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
+
+
   return (
     <html lang="en">
-      <ClerkProvider
-        appearance={{
-          variables: { colorPrimary: 'hsl(263.4, 70%, 50.4%)' },
-          elements: {
-            formButtonPrimary: 'bg-black border border-black border-solid hover:bg-white hover:text-black',
-            socialButtonsBlockButton:
-              'bg-white border-gray-200 hover:bg-transparent hover:border-black text-gray-600 hover:text-black',
-            socialButtonsBlockButtonText: 'font-semibold',
-            formButtonReset:
-              'bg-white border border-solid border-gray-200 hover:bg-transparent hover:border-black text-gray-500 hover:text-black',
-            membersPageInviteButton: 'bg-black border border-black border-solid hover:bg-white hover:text-black',
-            card: 'bg-[#fafafa]',
-          },
-        }}
-      >
-        <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+
+        <ClerkProvider
+          appearance={{
+            baseTheme: isDarkMode ? dark : undefined,
+            variables: {
+              colorPrimary: 'hsl(263.4, 70%, 50.4%)', // change this value (you can get it from you're css variables, make sure to include 'hsl' and commas)
+            },
+
+          }}
+        >
+          <body className={inter.className}>
             <Nextui>
               <TooltipProvider
                 disableHoverableContent
@@ -82,9 +88,9 @@ export default function RootLayout({
               </TooltipProvider>
 
             </Nextui>
-          </ThemeProvider>
-        </body>
-      </ClerkProvider>
+          </body>
+        </ClerkProvider>
+      </ThemeProvider>
 
 
       <Script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js" />
@@ -94,3 +100,17 @@ export default function RootLayout({
   );
 }
 
+
+
+
+// variables: { colorPrimary: 'hsl(263.4, 70%, 50.4%)' },
+// elements: {
+//   formButtonPrimary: 'bg-black border border-black border-solid hover:bg-white hover:text-black',
+//   socialButtonsBlockButton:
+//     'bg-white border-gray-200 hover:bg-transparent hover:border-black text-gray-600 hover:text-black',
+//   socialButtonsBlockButtonText: 'font-semibold',
+//   formButtonReset:
+//     'bg-white border border-solid border-gray-200 hover:bg-transparent hover:border-black text-gray-500 hover:text-black',
+//   membersPageInviteButton: 'bg-black border border-black border-solid hover:bg-white hover:text-black',
+//   card: 'bg-[#fafafa]',
+// },

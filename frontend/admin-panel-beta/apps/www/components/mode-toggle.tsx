@@ -13,6 +13,7 @@ import {
 } from "@/registry/new-york/ui/dropdown-menu"
 
 export function ModeToggle() {
+  
   const { setTheme } = useTheme()
 
   return (

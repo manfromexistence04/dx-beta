@@ -98,49 +98,49 @@ export function SiteHeader() {
                       <DropdownMenuLabel>Account</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link href="/sign-in">
+                        <Link  className="w-full text-left" href="/sign-in">
                           SignIn
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/sign-up">
+                        <Link  className="w-full text-left" href="/sign-up">
                           SignUp
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link href="/sign-up">
+                        <Link  className="w-full text-left" href="/sign-up">
                           Freelancer
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/sign-up">
+                        <Link  className="w-full text-left" href="/sign-up">
                           Upwork
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/sign-up">
+                        <Link  className="w-full text-left" href="/sign-up">
                           Fiverr
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/sign-up">
+                        <Link  className="w-full text-left" href="/sign-up">
                           Youtube
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/sign-up">
+                        <Link  className="w-full text-left" href="/sign-up">
                           Discord
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link href="/whiteboard">
+                        <Link  className="w-full text-left" href="/whiteboard">
                           Whiteboard
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/planner">
+                        <Link  className="w-full text-left" href="/planner">
                           Planner
                         </Link>
                       </DropdownMenuItem>
@@ -173,6 +173,7 @@ export function SiteHeader() {
 
                 <Button variant="outline">
                   <OrganizationSwitcher
+
                     appearance={{
                       elements: {
                         organizationPreviewAvatarBox: "size-8",
