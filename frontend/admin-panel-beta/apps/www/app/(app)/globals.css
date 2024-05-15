@@ -499,8 +499,7 @@
 .cl-breadcrumbsItemDivider,
 .cl-fileDropAreaHint,
 .cl-fileDropAreaFooterHint,
-.cl-form
-  p[data-localization-key='userProfile.emailAddressPage.emailCode.formHint'],
+.cl-form p[data-localization-key='userProfile.emailAddressPage.emailCode.formHint'],
 p[data-localization-key='userProfile.profilePage.successMessage'] {
   @apply text-muted-foreground;
 }
@@ -595,3 +594,7 @@ button[data-localization-key='userProfile.start.dangerSection.deleteAccountButto
   @apply text-foreground hover:bg-secondary;
 }
 
+button .cl-internal-8m6ad5:hover,button .cl-internal-8m6ad5 {
+  background: transparent !important;
+
+}
