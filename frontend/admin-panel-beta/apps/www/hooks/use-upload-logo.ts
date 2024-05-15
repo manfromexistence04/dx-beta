@@ -5,7 +5,7 @@ import type { UploadFilesOptions } from "uploadthing/types"
 
 import { getErrorMessage } from "@/lib/handle-error"
 import { uploadFiles as uploadLogo } from "@/lib/uploadLogo"
-import { type OurFileRouter } from "@/app/api/uploadthing/core"
+import { type OurFileRouter } from "@/app/(app)/api/uploadthing/core"
 
 interface UseUploadFileProps
   extends Pick<

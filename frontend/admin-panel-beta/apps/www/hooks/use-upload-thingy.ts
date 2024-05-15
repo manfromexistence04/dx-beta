@@ -2,7 +2,7 @@ import * as React from "react"
 import { type UseUploadthingProps } from "@uploadthing/react"
 
 import { useUploadThing } from "@/lib/uploadthing"
-import { type OurFileRouter } from "@/app/api/uploadthing/core"
+import { type OurFileRouter } from "@/app/(app)/api/uploadthing/core"
 
 interface UseUploadThingyProps
   extends UseUploadthingProps<OurFileRouter, keyof OurFileRouter> {}
