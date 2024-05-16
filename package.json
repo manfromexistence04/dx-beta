@@ -8,7 +8,6 @@
     "name": "manfromexistence",
     "url": "https://twitter.com/manfromexistence"
   },
-
   "scripts": {
     "build": "turbo run build",
     "build:cli": "turbo --filter=manfromexistence-ui build",
@@ -20,6 +19,7 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "preview": "turbo run preview",
+    "prepare": "husky install",
     "typecheck": "turbo run typecheck",
     "format:write": "turbo run format:write",
     "format:check": "turbo run format:check",
@@ -51,7 +51,7 @@
     "eslint-config-turbo": "^1.9.9",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.12.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.11",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "pretty-quick": "^3.1.3",
