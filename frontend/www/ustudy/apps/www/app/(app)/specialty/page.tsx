@@ -97,9 +97,9 @@ async function TaskPage() {
               Here&apos;s a list of super usefull specialties you can from Ustudy!
             </p> */}
           </div>
-          <div className="flex items-center space-x-2">
+          {/* <div className="flex items-center space-x-2">
             <UserNav />
-          </div>
+          </div> */}
         </div>
         <DataTable data={tasks} columns={columns} />
       </div>
