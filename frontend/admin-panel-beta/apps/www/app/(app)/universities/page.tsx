@@ -195,6 +195,16 @@ import {
 } from "@/registry/default/ui/form"
 import { useToast } from "@/registry/default/ui/use-toast"
 
+
+
+
+
+
+
+
+
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -205,6 +215,11 @@ const firebaseConfig = {
 }
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
+
+
+
+
+
 
 const University = () => {
   const [docs, setDocs] = useState<any[]>([])
@@ -2234,4 +2249,5 @@ const University = () => {
     </main>
   )
 }
+
 export default University

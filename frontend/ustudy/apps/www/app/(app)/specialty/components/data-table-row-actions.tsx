@@ -28,14 +28,14 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = taskSchema.parse(row.original)
+  const task = row.original
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="flex size-8 p-0 data-[state=open]:bg-muted"
+          className="data-[state=open]:bg-muted flex size-8 p-0"
         >
           <DotsHorizontalIcon className="size-4" />
           <span className="sr-only">Open menu</span>
