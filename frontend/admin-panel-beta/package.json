@@ -7,9 +7,7 @@
     "name": "shadcn",
     "url": "https://twitter.com/shadcn"
   },
-  "workspaces": [
-    "apps/www"
-  ],
+
   "scripts": {
     "build": "turbo run build",
     "build:cli": "turbo --filter=shadcn-ui build",

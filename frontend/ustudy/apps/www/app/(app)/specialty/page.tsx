@@ -28,7 +28,7 @@ async function getTasks() {
 
   const tasks = JSON.parse(data.toString())
 
-  return z.array(taskSchema).parse(tasks)
+  return tasks;
 }
 
 async function TaskPage() {
