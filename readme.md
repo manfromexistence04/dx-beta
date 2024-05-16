@@ -764,3 +764,66 @@ function Card3() {
 
 
 
+<!-- 
+
+## Firebase Firestore Database Design for Admission Calculator (Updated)
+
+This document outlines the design for a Firebase Firestore database to support an admission calculator application.
+
+**Collections:**
+
+* **Specialties:**
+    * **Document ID:** Unique identifier for each specialty (e.g., "medicine", "engineering").
+    * **Fields:**
+        * **name:** Name of the specialty (e.g., "Medicine", "Computer Science").
+        * **subjects:** Array of subject IDs (references to the Subjects collection).
+        * **possibleScoreGeneralCompetition:** Possible score for general competition.
+        * **possibleScoreRuralQuota:** Possible score for rural quota.
+        * **possibleScoreOrphanQuota:** Possible score for orphan quota.
+        * **possibleScoreDisabilityQuota:** Possible score for disability quota.
+        * **possibleScoreLargeFamilyQuota:** Possible score for large family quota.
+        * **minScores:** Array of objects containing minimum scores for the last 3 years (e.g., `{ year: 2021, score: 95 }`).
+* **Subjects:**
+    * **Document ID:** Unique identifier for each subject (e.g., "biology", "physics").
+    * **Fields:**
+        * **name:** Name of the subject (e.g., "Biology", "Physics").
+
+**Calculation Logic:**
+
+* **ENT Point Calculation:** This calculation is not stored in Firestore as it depends on user input and varies.
+* **Possible Score Calculation:**
+    * Retrieve the `minScores` array from the selected specialty document.
+    * Calculate the possible score based on the number of elements in the `minScores` array:
+        * **Three elements:** Use Formula 1: `PossibleScore = (e1 + e2 + e3 - e1 + e3 - e2) / 2 * 3`
+        * **Two elements:** Use the value of the second element as the possible score.
+        * **One element:** Use the value of the first element as the possible score.
+* **Admission Chance Calculation:**
+    * Use Formula 2 to calculate the admission chance for each quota: `AdmissionChance = 50% + (userScore - PossibleScore) * (140 - PossibleScore) / 3 * 100 * 100%`
+    * Round the result down to the nearest integer.
+
+**Data Retrieval:**
+
+1. The client-side application retrieves the necessary data from Firestore:
+    * Specialty document based on the selected specialty.
+    * Subject documents based on the subject IDs in the selected specialty.
+2. The application performs the ENT point calculation based on user input.
+3. The application retrieves the `minScores` array from the selected specialty document.
+4. The application calculates the possible score using the appropriate logic based on the number of elements in the `minScores` array.
+5. Finally, the application uses Formula 2 with the retrieved data and calculated ENT point to determine the admission chance for each quota.
+
+**Benefits of this Design:**
+
+* **Flexibility:** Easily accommodates changes in the minimum score calculation logic.
+* **Data Integrity:** Stores only constant values in Firestore, reducing server load and maintaining data integrity.
+* **Scalability:** Easily accommodates new specialties and subjects by adding new documents to the respective collections.
+
+**Additional Considerations:**
+
+* Implement proper security rules to restrict access to sensitive data.
+* Consider Cloud Functions for Firebase for complex calculations or data transformations on the server-side if needed.
+* Use a robust client-side library for interacting with Firestore.
+
+**Note:** This design is a guideline and can be adapted to your specific needs and requirements. Remember to update it accordingly.
+
+
+ -->
