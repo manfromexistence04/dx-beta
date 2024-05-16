@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://dx.vercel.app">
-    <img src="logo.png" height="250">
+    <img src="./media/logo.png" height="250">
     <h3 align="center">Dx</h3>
   </a>
 </p>
