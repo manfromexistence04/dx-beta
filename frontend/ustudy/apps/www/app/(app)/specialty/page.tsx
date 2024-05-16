@@ -1,14 +1,14 @@
 /* eslint-disable tailwindcss/no-contradicting-classname */
-import type { NextPage } from "next"
+
+import { promises as fs } from "fs"
+import path from "path"
+import { Metadata, type NextPage } from "next"
+import Image from "next/image"
+import { z } from "zod"
 
 // import Header from "../components/header";
 import GroupComponent from "@/components/specialty-page/group-component"
 import TableCell from "@/components/specialty-page/table-cell"
-import { promises as fs } from "fs"
-import path from "path"
-import { Metadata } from "next"
-import Image from "next/image"
-import { z } from "zod"
 
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
@@ -31,7 +31,7 @@ async function getTasks() {
   return z.array(taskSchema).parse(tasks)
 }
 
-export async function TaskPage() {
+async function TaskPage() {
   const tasks = await getTasks()
 
   return (
