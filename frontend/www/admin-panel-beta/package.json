@@ -11,7 +11,7 @@
     "apps/www"
   ],
   "scripts": {
-    "build": "turbo run format:write && turbo run lint:fix && turbo run build",
+    "build": "turbo run format:write && turbo run build",
     "build:cli": "turbo --filter=shadcn-ui build",
     "build:registry": "bun --filter=www build:registry",
     "dev": "turbo run dev --parallel",
