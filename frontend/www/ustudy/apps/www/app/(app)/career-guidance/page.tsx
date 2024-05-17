@@ -19,13 +19,13 @@ import { Label } from "@/registry/default//ui/label"
 export default function Component() {
   return (
     <>
-      <section className="w-full bg-background py-12 dark:bg-gray-800 md:py-24 lg:py-32">
+      <section className="w-full bg-background py-12 md:py-24 lg:py-32">
         <div className="container grid items-center gap-8 px-4 md:px-6 lg:grid-cols-2">
           <div className="space-y-4">
             <h1 className="sm:text-4xl text-3xl font-bold tracking-tighter md:text-5xl">
               Find Your Dream Job
             </h1>
-            <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            <p className="max-w-[600px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Discover the perfect job opportunity that aligns with your skills
               and passions. Browse our extensive listings and apply today.
             </p>
@@ -88,17 +88,17 @@ export default function Component() {
                 <h2 className="text-2xl font-bold tracking-tight">
                   Explore Job Opportunities
                 </h2>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="text-gray-500 ">
                   Browse our curated list of open positions.
                 </p>
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 pt-5 px-5">
                     <h3 className="text-lg font-semibold">
                       Senior Frontend Engineer
                     </h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 ">
                       Lead the development of our cutting-edge web application.
                       Collaborate with a talented team of engineers and
                       designers.
@@ -107,9 +107,9 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 pt-5 px-5">
                     <h3 className="text-lg font-semibold">Product Designer</h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 ">
                       Join our design team and help shape the user experience of
                       our innovative products. Bring your creativity and
                       attention to detail.
@@ -118,11 +118,11 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 pt-5 px-5">
                     <h3 className="text-lg font-semibold">
                       Digital Marketing Specialist
                     </h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 ">
                       Develop and execute effective digital marketing campaigns
                       to drive growth and engagement for our brand. Leverage
                       data-driven insights.
@@ -131,11 +131,11 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 pt-5 px-5">
                     <h3 className="text-lg font-semibold">
                       Sales Representative
                     </h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 ">
                       Join our sales team and help businesses discover our
                       innovative solutions. Excellent communication and
                       negotiation skills required.
@@ -144,9 +144,9 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 pt-5 px-5">
                     <h3 className="text-lg font-semibold">Financial Analyst</h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 ">
                       Analyze financial data and provide insights to help our
                       company make informed decisions. Strong analytical and
                       problem-solving skills needed.
@@ -155,9 +155,9 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2">
+                  <CardContent className="space-y-2 pt-5 px-5">
                     <h3 className="text-lg font-semibold">Content Writer</h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 ">
                       Craft engaging and informative content to support our
                       marketing initiatives. Excellent writing and research
                       skills required.
