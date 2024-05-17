@@ -172,7 +172,7 @@ export default function VariantCarousel() {
           <CardTitle>
             <div className="flex justify-between space-x-1">
               <Select onValueChange={(value: any) => setIndex(value - 1)}>
-                <SelectTrigger className="bg-background w-[250px]">
+                <SelectTrigger className="w-[250px] bg-background">
                   <SelectValue placeholder="Search variants" />
                 </SelectTrigger>
                 <SelectContent>

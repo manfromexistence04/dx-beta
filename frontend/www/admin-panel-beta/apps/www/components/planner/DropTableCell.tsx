@@ -44,7 +44,7 @@ const DropTableCell: FC<DropTableCellProps> = ({
   return (
     <TableCell
       className={cn(
-        "bg-background border",
+        "border bg-background",
         isOver ? "bg-primary-foreground" : "bg-background"
       )}
       ref={ref}

@@ -47,7 +47,7 @@ export default function MainNav() {
   return (
     <motion.header
       className={`navbar sticky top-0 z-[100000000000000] flex h-20 !w-full items-center justify-start px-12 transition-all duration-200 lg:px-[2%] ${
-        isScrolled ? "bg-background/80 border-b backdrop-blur-2xl" : "border-b"
+        isScrolled ? "border-b bg-background/80 backdrop-blur-2xl" : "border-b"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -92,7 +92,7 @@ export default function MainNav() {
               <Button
                 variant="secondary"
                 size="icon"
-                className="ring-offset-background ring-ring mt-2 max-h-[25px] max-w-[25px] rounded-full border  ring-2 ring-offset-2"
+                className="mt-2 max-h-[25px] max-w-[25px] rounded-full border ring-2 ring-ring  ring-offset-2 ring-offset-background"
               >
                 <Image
                   alt="User"

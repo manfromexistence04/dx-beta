@@ -24,7 +24,7 @@ export function MainNav() {
         <Link
           href="/home"
           className={cn(
-            "hover:text-foreground/80 transition-colors",
+            "transition-colors hover:text-foreground/80",
             pathname === "/home" ? "text-foreground" : "text-foreground/60"
           )}
         >
@@ -33,7 +33,7 @@ export function MainNav() {
         <Link
           href="/universities"
           className={cn(
-            "hover:text-foreground/80 transition-colors",
+            "transition-colors hover:text-foreground/80",
             pathname === "/universities"
               ? "text-foreground"
               : "text-foreground/60"
@@ -44,7 +44,7 @@ export function MainNav() {
         <Link
           href="/specialties"
           className={cn(
-            "hover:text-foreground/80 transition-colors",
+            "transition-colors hover:text-foreground/80",
             pathname === "/specialties"
               ? "text-foreground"
               : "text-foreground/60"
@@ -55,7 +55,7 @@ export function MainNav() {
         <Link
           href="/questions"
           className={cn(
-            "hover:text-foreground/80 transition-colors",
+            "transition-colors hover:text-foreground/80",
             pathname === "/questions" ? "text-foreground" : "text-foreground/60"
           )}
         >
@@ -64,7 +64,7 @@ export function MainNav() {
         <Link
           href="/settings"
           className={cn(
-            "hover:text-foreground/80 transition-colors",
+            "transition-colors hover:text-foreground/80",
             pathname === "/settings" ? "text-foreground" : "text-foreground/60"
           )}
         >

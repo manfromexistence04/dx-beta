@@ -8,7 +8,7 @@ export function Announcement() {
   return (
     <Link
       href="/docs/changelog"
-      className="bg-muted inline-flex items-center rounded-lg px-3 py-1 text-sm font-medium"
+      className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
     >
       <Blocks className="size-4" />{" "}
       <Separator className="mx-2 h-4" orientation="vertical" />{" "}

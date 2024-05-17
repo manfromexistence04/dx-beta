@@ -40,12 +40,12 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="bg-background text-muted-foreground border-t py-12 md:py-16">
+    <footer className="border-t bg-background py-12 text-muted-foreground md:py-16">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <h3 className="mb-4 text-2xl font-bold">Nurzhol Tabigat</h3>
-            <p className="text-primary mb-4">
+            <p className="mb-4 text-primary">
               Admin Panel That Shapes the Future.
             </p>
             {/* <div className="flex space-x-4">
@@ -61,49 +61,49 @@ export default function Footer() {
             <h3 className="mb-4 text-2xl font-bold">Quick Links</h3>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Home
               </a>
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 About
               </a>
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Services
               </a>
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Portfolio
               </a>
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Contact
               </a>
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Blog
               </a>
               <a
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Careers
               </a>
               <Link
-                className="text-primary hover:text-muted-foreground transition-colors"
+                className="text-primary transition-colors hover:text-muted-foreground"
                 href="#"
               >
                 Terms & Conditions
@@ -111,7 +111,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="text-primary mt-8 text-center">
+        <div className="mt-8 text-center text-primary">
           © 2024 Nurzhol Tabigat. All rights reserved.
         </div>
       </div>

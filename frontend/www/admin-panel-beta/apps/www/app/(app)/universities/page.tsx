@@ -67,6 +67,7 @@ import {
 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+
 import { commentsUsers, myUserId } from "@/lib/plate/comments"
 import { MENTIONABLES } from "@/lib/plate/mentionables"
 import { plugins } from "@/lib/plate/plate-plugins"
@@ -192,15 +193,6 @@ import {
 } from "@/registry/default/ui/form"
 import { useToast } from "@/registry/default/ui/use-toast"
 
-
-
-
-
-
-
-
-
-
 // Firebase Configurations
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
@@ -212,11 +204,6 @@ const firebaseConfig = {
 }
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
-
-
-
-
-
 
 const University = () => {
   const [docs, setDocs] = useState<any[]>([])
@@ -416,7 +403,7 @@ const University = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -524,7 +511,7 @@ const University = () => {
       <div className="admin-panel-lists place-content-center">
         {docs.map((items) => (
           <div key={items.id}>
-            <Card className="hover-glow-border hover:bg-primary-foreground relative flex size-full flex-col">
+            <Card className="hover-glow-border relative flex size-full flex-col hover:bg-primary-foreground">
               <div className="min-h-auto relative flex w-full flex-col items-center justify-center">
                 <Carousel
                   plugins={[plugin.current]}
@@ -602,7 +589,7 @@ const University = () => {
                     {items.universityName ||
                       "No Name Provided for this university."}
                   </h2>
-                  <div className="text-primary mt-3 flex items-center space-x-2 text-sm">
+                  <div className="mt-3 flex items-center space-x-2 text-sm text-primary">
                     <LocateIcon className="size-4" />
                     <span>{items.address || "Nothing."}</span>
                     <Separator className="h-4" orientation="vertical" />
@@ -615,7 +602,7 @@ const University = () => {
                     <div key={item.id}>
                       {item.children.map((child: any) => (
                         <p
-                          className="text-overflow-clamp text-muted-foreground text-sm leading-relaxed"
+                          className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground"
                           key={child.text}
                         >
                           {child.text}
@@ -624,7 +611,7 @@ const University = () => {
                     </div>
                   ))
                 ) : (
-                  <p className="text-overflow-clamp text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">
                     {items.universityDescription ||
                       "No Description Provided for this university."}
                   </p>
@@ -639,7 +626,7 @@ const University = () => {
                     <ScrollArea className="!max-h-[80vh] w-full rounded-md border !p-0">
                       <div className="flex w-full flex-col gap-2 overflow-hidden rounded-lg p-3 text-sm">
                         <div className="mb-20 h-auto min-h-[350px] w-full rounded-md">
-                          <Card className="hover-glow-border hover:bg-primary-foreground relative flex size-full flex-col">
+                          <Card className="hover-glow-border relative flex size-full flex-col hover:bg-primary-foreground">
                             <div className="min-h-auto relative flex w-full flex-col items-center justify-center">
                               <Carousel
                                 plugins={[plugin.current]}
@@ -706,14 +693,13 @@ const University = () => {
                                           )
                                         )
                                       : ""}
-
                                 </CarouselContent>
-                                <div className="text-muted-foreground absolute bottom-[-75px] left-1/2 mx-auto flex h-16 w-full -translate-x-1/2 items-center justify-between rounded-2xl border px-5 text-sm">
-                                  <CarouselPrevious className="border-accent-foreground !relative !left-0 !top-0 -translate-y-0 border !bg-transparent text-white hover:border-white hover:text-white" />
-                                  <span className="hover:accent-foreground flex-1 text-center text-white">
+                                <div className="absolute bottom-[-75px] left-1/2 mx-auto flex h-16 w-full -translate-x-1/2 items-center justify-between rounded-2xl border px-5 text-sm text-muted-foreground">
+                                  <CarouselPrevious className="!relative !left-0 !top-0 -translate-y-0 border border-accent-foreground !bg-transparent text-white hover:border-white hover:text-white" />
+                                  <span className="flex-1 text-center text-white hover:accent-foreground">
                                     Slide {current} of {count}
                                   </span>
-                                  <CarouselNext className="border-accent-foreground !relative !right-0 !top-0 -translate-y-0 border !bg-transparent  text-white hover:border-white hover:text-white" />
+                                  <CarouselNext className="!relative !right-0 !top-0 -translate-y-0 border border-accent-foreground !bg-transparent  text-white hover:border-white hover:text-white" />
                                 </div>
                               </Carousel>
                             </div>
@@ -906,7 +892,7 @@ const University = () => {
                                 variant="expandIcon"
                                 Icon={ArrowLeftIcon}
                                 iconPlacement="left"
-                                className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                                className="border border-input bg-background text-accent-foreground hover:bg-accent"
                               >
                                 Back
                               </AnimatedButton>
@@ -916,7 +902,7 @@ const University = () => {
                               variant="expandIcon"
                               Icon={Projector}
                               iconPlacement="left"
-                              className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                              className="border border-input bg-background text-accent-foreground hover:bg-accent"
                             >
                               {inputedValues ? "Hide" : "Show"} Inputed Values
                             </AnimatedButton>
@@ -928,7 +914,7 @@ const University = () => {
                               variant="expandIcon"
                               Icon={CloudUpload}
                               iconPlacement="left"
-                              className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                              className="border border-input bg-background text-accent-foreground hover:bg-accent"
                             >
                               Sync Uploaded Files
                             </AnimatedButton>
@@ -1023,18 +1009,16 @@ const University = () => {
                                   title:
                                     "University has been Updated Successfully.",
                                   description: (
-                                    <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+                                    <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                       <span>
                                         You Can now view and delete this
                                         university!
                                       </span>
-                                      <pre className="bg-background max-h-[500px] overflow-auto">
-                                      </pre>
+                                      <pre className="max-h-[500px] overflow-auto bg-background"></pre>
                                     </div>
                                   ),
                                 })
                                 // Refresh The Page
-
                               }}
                             >
                               {createButtonDisabled && (
@@ -1373,7 +1357,7 @@ const University = () => {
                                 >
                                   <div className="shrink-0 rounded-full border border-dashed p-4">
                                     <ImageIcon
-                                      className="text-muted-foreground size-8"
+                                      className="size-8 text-muted-foreground"
                                       aria-hidden="true"
                                     />
                                   </div>
@@ -1563,7 +1547,6 @@ const University = () => {
                                   ) : (
                                     <ScrollArea className="pb-4">
                                       <div className="flex w-max space-x-2.5">
-
                                         <EmptyCard
                                           title="No images uploaded"
                                           description="Upload some images to see them here"
@@ -1725,7 +1708,7 @@ const University = () => {
                               variant="expandIcon"
                               Icon={ArrowLeftIcon}
                               iconPlacement="left"
-                              className="border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full border lg:w-auto"
+                              className="!min-w-full border border-input bg-secondary text-accent-foreground hover:bg-accent lg:w-auto"
                             >
                               Back
                             </AnimatedButton>
@@ -1735,7 +1718,7 @@ const University = () => {
                             variant="expandIcon"
                             Icon={Projector}
                             iconPlacement="left"
-                            className="border-input bg-background hover:bg-accent text-accent-foreground w-full border"
+                            className="w-full border border-input bg-background text-accent-foreground hover:bg-accent"
                           >
                             {inputedValues ? "Hide" : "Show"} Inputed Values
                           </AnimatedButton>
@@ -1744,7 +1727,7 @@ const University = () => {
                             variant="expandIcon"
                             Icon={CloudUpload}
                             iconPlacement="left"
-                            className="border-input bg-background hover:bg-accent text-accent-foreground w-full border"
+                            className="w-full border border-input bg-background text-accent-foreground hover:bg-accent"
                           >
                             Sync Uploaded Files
                           </AnimatedButton>
@@ -1835,19 +1818,17 @@ const University = () => {
                                 title:
                                   "University has been Updated Successfully.",
                                 description: (
-                                  <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+                                  <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                     <span>
                                       You Can now view and delete this
                                       university!
                                     </span>
-                                    <pre className="bg-background max-h-[500px] overflow-auto">
-                                    </pre>
+                                    <pre className="max-h-[500px] overflow-auto bg-background"></pre>
                                   </div>
                                 ),
                               })
 
                               // Refresh The Page
-
                             }}
                           >
                             {createButtonDisabled && (
@@ -1890,4 +1871,3 @@ const University = () => {
 }
 
 export default University
-;

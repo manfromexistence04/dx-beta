@@ -159,7 +159,7 @@ const Appointment: React.FC<AppointmentProps> = ({
                                 onSelect={field.onChange}
                                 initialFocus
                               />
-                              <div className="border-border border-t p-3">
+                              <div className="border-t border-border p-3">
                                 <TimePicker
                                   setDate={field.onChange}
                                   date={field.value}
@@ -202,7 +202,7 @@ const Appointment: React.FC<AppointmentProps> = ({
                                 onSelect={field.onChange}
                                 initialFocus
                               />
-                              <div className="border-border border-t p-3">
+                              <div className="border-t border-border p-3">
                                 <TimePicker
                                   setDate={field.onChange}
                                   date={field.value}

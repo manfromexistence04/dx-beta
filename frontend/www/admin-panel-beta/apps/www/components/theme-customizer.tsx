@@ -179,7 +179,7 @@ function Customizer() {
           <div className="font-semibold leading-none tracking-tight">
             Customize
           </div>
-          <div className="text-muted-foreground text-xs">
+          <div className="text-xs text-muted-foreground">
             Pick a style and color for your components.
           </div>
         </div>
@@ -240,7 +240,7 @@ function Customizer() {
               size="sm"
               onClick={() => setConfig({ ...config, style: "default" })}
               className={cn(
-                config.style === "default" && "border-primary border-2"
+                config.style === "default" && "border-2 border-primary"
               )}
             >
               Default
@@ -250,7 +250,7 @@ function Customizer() {
               size="sm"
               onClick={() => setConfig({ ...config, style: "new-york" })}
               className={cn(
-                config.style === "new-york" && "border-primary border-2"
+                config.style === "new-york" && "border-2 border-primary"
               )}
             >
               New York
@@ -276,7 +276,7 @@ function Customizer() {
                   }}
                   className={cn(
                     "justify-start",
-                    isActive && "border-primary border-2"
+                    isActive && "border-2 border-primary"
                   )}
                   style={
                     {
@@ -318,7 +318,7 @@ function Customizer() {
                   }}
                   className={cn(
                     config.radius === parseFloat(value) &&
-                      "border-primary border-2"
+                      "border-2 border-primary"
                   )}
                 >
                   {value}
@@ -336,7 +336,7 @@ function Customizer() {
                   variant={"outline"}
                   size="sm"
                   onClick={() => setMode("light")}
-                  className={cn(mode === "light" && "border-primary border-2")}
+                  className={cn(mode === "light" && "border-2 border-primary")}
                 >
                   <SunIcon className="mr-1 -translate-x-1" />
                   Light
@@ -345,7 +345,7 @@ function Customizer() {
                   variant={"outline"}
                   size="sm"
                   onClick={() => setMode("dark")}
-                  className={cn(mode === "dark" && "border-primary border-2")}
+                  className={cn(mode === "dark" && "border-2 border-primary")}
                 >
                   <MoonIcon className="mr-1 -translate-x-1" />
                   Dark
@@ -428,7 +428,7 @@ function CopyCodeButton() {
                   )
                   setHasCopied(true)
                 }}
-                className="bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground absolute right-4 top-4"
+                className="absolute right-4 top-4 bg-muted text-muted-foreground hover:bg-muted hover:text-muted-foreground"
               >
                 {hasCopied ? (
                   <CheckIcon className="mr-2 size-4" />
@@ -453,7 +453,7 @@ function CustomizerCode() {
     <ThemeWrapper defaultTheme="zinc" className="relative space-y-4">
       <div data-rehype-pretty-code-fragment="">
         <pre className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900">
-          <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
             <span className="line text-white">@layer base &#123;</span>
             <span className="line text-white">&nbsp;&nbsp;:root &#123;</span>
             <span className="line text-white">

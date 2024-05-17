@@ -13,7 +13,7 @@ export default function NavLinks() {
       <Link
         href="/home"
         className={cn(
-          "hover:text-foreground/80 transition-colors",
+          "transition-colors hover:text-foreground/80",
           pathname === "/universities"
             ? "text-foreground"
             : "text-foreground/60"
@@ -24,7 +24,7 @@ export default function NavLinks() {
       <Link
         href="/portfolio"
         className={cn(
-          "hover:text-foreground/80 transition-colors",
+          "transition-colors hover:text-foreground/80",
           pathname === "/specialties" ? "text-foreground" : "text-foreground/60"
         )}
       >
@@ -33,7 +33,7 @@ export default function NavLinks() {
       <Link
         href="/contract"
         className={cn(
-          "hover:text-foreground/80 transition-colors",
+          "transition-colors hover:text-foreground/80",
           pathname === "/questions" ? "text-foreground" : "text-foreground/60"
         )}
       >
@@ -42,7 +42,7 @@ export default function NavLinks() {
       <Link
         href="/whiteboard"
         className={cn(
-          "hover:text-foreground/80 transition-colors",
+          "transition-colors hover:text-foreground/80",
           pathname === "/whiteboard" ? "text-foreground" : "text-foreground/60"
         )}
       >
@@ -51,7 +51,7 @@ export default function NavLinks() {
       <Link
         href="/planner"
         className={cn(
-          "hover:text-foreground/80 transition-colors",
+          "transition-colors hover:text-foreground/80",
           pathname === "/planner" ? "text-foreground" : "text-foreground/60"
         )}
       >

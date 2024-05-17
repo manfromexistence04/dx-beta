@@ -72,7 +72,7 @@ export function V0Button({
               description: (
                 <div className="flex items-center">
                   Only the Default style is available in{" "}
-                  <V0Logo className="text-foreground ml-1" aria-label="v0" />.
+                  <V0Logo className="ml-1 text-foreground" aria-label="v0" />.
                 </div>
               ),
             })

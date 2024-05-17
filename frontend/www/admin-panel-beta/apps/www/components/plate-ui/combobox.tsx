@@ -72,7 +72,7 @@ export function ComboboxContent(props: ComboboxContentProps) {
           side="bottom"
           align="start"
           className={cn(
-            "bg-popover z-[500] m-0 max-h-[288px] w-[300px] overflow-scroll rounded-md p-0 shadow-md"
+            "z-[500] m-0 max-h-[288px] w-[300px] overflow-scroll rounded-md bg-popover p-0 shadow-md"
           )}
           onOpenAutoFocus={(event) => event.preventDefault()}
         >

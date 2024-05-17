@@ -35,7 +35,7 @@ export default function Features() {
         <div className="mx-auto max-w-2xl lg:text-center">
           <motion.h2
             variants={FADE_UP_ANIMATION_VARIANTS}
-            className="text-muted-foreground text-base font-semibold leading-7"
+            className="text-base font-semibold leading-7 text-muted-foreground"
           >
             Everything you need
           </motion.h2>

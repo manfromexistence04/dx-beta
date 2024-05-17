@@ -114,7 +114,7 @@ export function EmojiPickerContent({
             ref={section.root}
             style={{ width: getRowWidth }}
           >
-            <div className="bg-background/90 sticky -top-px z-[1] p-1 backdrop-blur-sm">
+            <div className="sticky -top-px z-[1] bg-background/90 p-1 backdrop-blur-sm">
               {i18n.categories[categoryId]}
             </div>
             <div
@@ -150,7 +150,7 @@ export function EmojiPickerContent({
   const SearchList = useCallback(() => {
     return (
       <div data-id="search" style={{ width: getRowWidth }}>
-        <div className="bg-background/90 sticky -top-px z-[1] p-1 backdrop-blur-sm">
+        <div className="sticky -top-px z-[1] bg-background/90 p-1 backdrop-blur-sm">
           {i18n.searchResult}
         </div>
         <div className="relative flex flex-wrap">

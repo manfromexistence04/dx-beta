@@ -88,7 +88,7 @@ export default function NavSheet() {
                   <Link
                     key={project.name}
                     href={project.href}
-                    className="hover:bg-primary-foreground col-span-1 flex rounded-md shadow-sm transition-all duration-200"
+                    className="col-span-1 flex rounded-md shadow-sm transition-all duration-200 hover:bg-primary-foreground"
                   >
                     <div className="flex flex-1 items-center justify-between truncate rounded-md border">
                       <div className="flex-1 truncate px-4 py-2 text-sm">

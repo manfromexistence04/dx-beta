@@ -77,7 +77,7 @@ export default function IntroText() {
                 variant="expandIcon"
                 Icon={ArrowLeftIcon}
                 iconPlacement="left"
-                className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                className="border border-input bg-background text-accent-foreground hover:bg-accent"
               >
                 Learn more
               </Button>
@@ -99,7 +99,7 @@ export default function IntroText() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <div className="ring-primary/10 -m-2  rounded-xl p-2 ring-1 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
+              <div className="-m-2 rounded-xl  p-2 ring-1 ring-inset ring-primary/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                 <h1 className="mb-5 text-xl font-bold tracking-tight sm:text-2xl">
                   Admin Panel With High Level Customization.
                 </h1>

@@ -2,12 +2,12 @@ import { withVariants } from "@udecode/cn"
 import { cva } from "class-variance-authority"
 
 export const inputVariants = cva(
-  "file:bg-background placeholder:text-muted-foreground flex w-full rounded-md bg-transparent text-sm file:border-0 file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  "flex w-full rounded-md bg-transparent text-sm file:border-0 file:bg-background file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "border-input ring-offset-background focus-visible:ring-ring border focus-visible:ring-2 focus-visible:ring-offset-2",
+          "border border-input ring-offset-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         ghost: "border-none focus-visible:ring-transparent",
       },
       h: {

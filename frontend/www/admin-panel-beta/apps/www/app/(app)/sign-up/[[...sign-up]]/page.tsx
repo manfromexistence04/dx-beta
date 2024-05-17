@@ -128,7 +128,7 @@ export default function SignUpPage() {
                         </Button>
                       </Clerk.Connection>
                     </div>
-                    <p className="text-muted-foreground before:bg-border after:bg-border flex items-center gap-x-3 text-sm before:h-px before:flex-1 after:h-px after:flex-1">
+                    <p className="flex items-center gap-x-3 text-sm text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
                       or
                     </p>
                     <Clerk.Field name="emailAddress" className="space-y-2">
@@ -138,7 +138,7 @@ export default function SignUpPage() {
                       <Clerk.Input type="text" required asChild>
                         <Input />
                       </Clerk.Input>
-                      <Clerk.FieldError className="text-destructive block text-sm" />
+                      <Clerk.FieldError className="block text-sm text-destructive" />
                     </Clerk.Field>
                     <Clerk.Field name="password" className="space-y-2">
                       <Clerk.Label asChild>
@@ -147,7 +147,7 @@ export default function SignUpPage() {
                       <Clerk.Input type="password" required asChild>
                         <Input />
                       </Clerk.Input>
-                      <Clerk.FieldError className="text-destructive block text-sm" />
+                      <Clerk.FieldError className="block text-sm text-destructive" />
                     </Clerk.Field>
                   </CardContent>
                   <CardFooter>
@@ -188,7 +188,7 @@ export default function SignUpPage() {
                       <Clerk.Input type="text" required asChild>
                         <Input />
                       </Clerk.Input>
-                      <Clerk.FieldError className="text-destructive block text-sm" />
+                      <Clerk.FieldError className="block text-sm text-destructive" />
                     </Clerk.Field>
                   </CardContent>
                   <CardFooter>
@@ -239,7 +239,7 @@ export default function SignUpPage() {
                                   return (
                                     <div
                                       data-status={status}
-                                      className="border-input data-[status=cursor]:ring-ring data-[status=selected]:ring-ring relative flex size-9 items-center justify-center border-y border-r text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md data-[status=cursor]:ring-1 data-[status=selected]:ring-1"
+                                      className="relative flex size-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md data-[status=cursor]:ring-1 data-[status=selected]:ring-1 data-[status=cursor]:ring-ring data-[status=selected]:ring-ring"
                                     >
                                       {value}
                                     </div>
@@ -247,7 +247,7 @@ export default function SignUpPage() {
                                 }}
                               />
                             </div>
-                            <Clerk.FieldError className="text-destructive block text-center text-sm" />
+                            <Clerk.FieldError className="block text-center text-sm text-destructive" />
                           </Clerk.Field>
                           <SignUp.Action
                             asChild

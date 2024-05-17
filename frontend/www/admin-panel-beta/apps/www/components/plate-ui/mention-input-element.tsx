@@ -20,8 +20,8 @@ export const MentionInputElement = withRef<
       asChild
       data-slate-value={element.value}
       className={cn(
-        "bg-muted inline-block rounded-md px-1.5 py-0.5 align-baseline text-sm",
-        selected && focused && "ring-ring ring-2",
+        "inline-block rounded-md bg-muted px-1.5 py-0.5 align-baseline text-sm",
+        selected && focused && "ring-2 ring-ring",
         className
       )}
       onClick={getHandler(onClick, element)}

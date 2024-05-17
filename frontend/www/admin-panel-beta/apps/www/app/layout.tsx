@@ -84,7 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "bg-background min-h-screen font-sans antialiased",
+            "min-h-screen bg-background font-sans antialiased",
             fontSans.variable
           )}
         >
@@ -100,7 +100,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
             </ThemeWrapper> */}
             <div vaul-drawer-wrapper="">
-              <div className="bg-background relative flex flex-col">
+              <div className="relative flex flex-col bg-background">
                 {children}
               </div>
             </div>

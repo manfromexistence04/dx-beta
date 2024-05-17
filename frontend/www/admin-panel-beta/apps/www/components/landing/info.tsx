@@ -86,7 +86,7 @@ export default function Info() {
               >
                 <motion.h2
                   variants={FADE_UP_ANIMATION_VARIANTS}
-                  className="text-muted-foreground text-base font-semibold leading-7"
+                  className="text-base font-semibold leading-7 text-muted-foreground"
                 >
                   Streamlined Efficiency for Nurzhol Tabigat
                 </motion.h2>
@@ -113,7 +113,7 @@ export default function Info() {
                     >
                       <dt className="inline font-semibold">
                         <feature.icon
-                          className="text-muted-foreground absolute left-1 top-1 size-5"
+                          className="absolute left-1 top-1 size-5 text-muted-foreground"
                           aria-hidden="true"
                         />
                         {feature.name}

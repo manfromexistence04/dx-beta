@@ -20,7 +20,7 @@ const ResourceTableCell: FC<ResourceTableCellProps> = ({
 }) => {
   return (
     <TableCell
-      className={cn(className, "bg-background sticky left-0 z-10 border-y")}
+      className={cn(className, "sticky left-0 z-10 border-y bg-background")}
       {...props}
     >
       <div className="flex items-center space-x-4   ">

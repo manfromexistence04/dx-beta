@@ -52,7 +52,7 @@ export default function Home() {
                 <dt className="text-base font-semibold leading-7">
                   {faq.question}
                 </dt>
-                <dd className="text-muted-foreground mt-2 text-base leading-7">
+                <dd className="mt-2 text-base leading-7 text-muted-foreground">
                   {faq.answer}
                 </dd>
               </div>

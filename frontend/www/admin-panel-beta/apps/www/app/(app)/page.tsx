@@ -38,7 +38,7 @@ const CustomButton = () => {
     <Button
       ref={buttonRef}
       disableRipple
-      className="center hover:bg-primary-foreground bg-background hover:text-accent-foreground relative overflow-visible !rounded-md border"
+      className="center relative overflow-visible !rounded-md border bg-background hover:bg-primary-foreground hover:text-accent-foreground"
       size="lg"
       onPress={handleConfetti}
     >
@@ -50,7 +50,7 @@ const CustomButton = () => {
 export default function Home() {
   return (
     <>
-      <div className="bg-background min-h-screen">
+      <div className="min-h-screen bg-background">
         <main className="isolate">
           {/* Hero section */}
           <div className="relative pt-14">

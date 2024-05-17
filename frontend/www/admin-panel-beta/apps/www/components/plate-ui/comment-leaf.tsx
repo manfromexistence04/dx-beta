@@ -32,7 +32,7 @@ export function CommentLeaf({
     <PlateLeaf
       {...props}
       className={cn(
-        "border-b-primary/40 border-b-2",
+        "border-b-2 border-b-primary/40",
         state.isActive ? "bg-primary/40" : "bg-primary/20",
         className
       )}

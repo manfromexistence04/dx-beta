@@ -11,13 +11,13 @@ export default function Home() {
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col items-center gap-8 px-5 py-24">
       <div className="flex flex-col items-center gap-2">
         <h1 className="text-4xl font-bold">Shadcn Phone Input</h1>
-        <h2 className="text-muted-foreground text-center text-xl font-medium">
+        <h2 className="text-center text-xl font-medium text-muted-foreground">
           <Balancer>
             Simple and formatted phone input component built with Shadcn UI y
             libphonenumber-js
           </Balancer>
         </h2>
-        <p className="text-md text-muted-foreground my-2 text-center font-normal">
+        <p className="text-md my-2 text-center font-normal text-muted-foreground">
           <Balancer>
             *With country data and ISO codes obtained from the API of the OSS{" "}
             <Link

@@ -62,7 +62,7 @@ export function BlockToolbar({
         <Popover>
           <PopoverTrigger
             disabled={isLiftMode}
-            className="text-muted-foreground hover:text-foreground hidden disabled:opacity-50 sm:flex"
+            className="hidden text-muted-foreground hover:text-foreground disabled:opacity-50 sm:flex"
           >
             <CircleHelp className="size-3.5" />
             <span className="sr-only">Block description</span>

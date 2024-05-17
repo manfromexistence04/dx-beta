@@ -197,10 +197,10 @@ export default function CreateSpeciality() {
     toast({
       title: "Specialtie has been created",
       description: (
-        <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+        <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
           <span>You Can now update,view and delete this specialties!</span>
-          <pre className="bg-background max-h-[500px] overflow-auto">
-            <code className="text-muted-foreground bg-secondary">
+          <pre className="max-h-[500px] overflow-auto bg-background">
+            <code className="bg-secondary text-muted-foreground">
               {JSON.stringify(Create.id, null, 2)}
             </code>
           </pre>
@@ -502,7 +502,7 @@ export default function CreateSpeciality() {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -599,7 +599,7 @@ export default function CreateSpeciality() {
                 variant="expandIcon"
                 Icon={ArrowLeftIcon}
                 iconPlacement="left"
-                className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                className="border border-input bg-background text-accent-foreground hover:bg-accent"
               >
                 Back
               </AnimatedButton>
@@ -609,7 +609,7 @@ export default function CreateSpeciality() {
               variant="expandIcon"
               Icon={Projector}
               iconPlacement="left"
-              className="border-input bg-background hover:bg-accent text-accent-foreground border"
+              className="border border-input bg-background text-accent-foreground hover:bg-accent"
             >
               {inputedValues ? "Hide" : "Show"} Inputed Values
             </AnimatedButton>
@@ -1128,7 +1128,7 @@ export default function CreateSpeciality() {
               variant="expandIcon"
               Icon={ArrowLeftIcon}
               iconPlacement="left"
-              className="border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full border lg:w-auto"
+              className="!min-w-full border border-input bg-secondary text-accent-foreground hover:bg-accent lg:w-auto"
             >
               Back
             </AnimatedButton>
@@ -1138,7 +1138,7 @@ export default function CreateSpeciality() {
             variant="expandIcon"
             Icon={Projector}
             iconPlacement="left"
-            className="border-input bg-background hover:bg-accent text-accent-foreground w-full border"
+            className="w-full border border-input bg-background text-accent-foreground hover:bg-accent"
           >
             {inputedValues ? "Hide" : "Show"} Inputed Values
           </AnimatedButton>

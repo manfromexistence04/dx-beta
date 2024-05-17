@@ -111,7 +111,7 @@ export function SiteHeader() {
   const pathname = usePathname()
 
   return (
-    <header className="navbar bg-background/80 sticky top-0 z-10 flex h-[4.5rem] w-full items-center justify-center border-b backdrop-blur-2xl">
+    <header className="navbar sticky top-0 z-10 flex h-[4.5rem] w-full items-center justify-center border-b bg-background/80 backdrop-blur-2xl">
       <div
         className={cn(
           "flex h-14 w-full items-center justify-center px-10",
@@ -147,7 +147,7 @@ export function SiteHeader() {
                     <span className="sr-only">Twitter</span>
                   </div>
                 </Link>
-                
+
                 <ModeToggle />
 
                 <DropdownMenu>
@@ -338,7 +338,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Liam Johnson
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       liam@example.com
                                     </div>
                                   </TableCell>
@@ -365,7 +365,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Olivia Smith
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       olivia@example.com
                                     </div>
                                   </TableCell>
@@ -392,7 +392,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Noah Williams
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       noah@example.com
                                     </div>
                                   </TableCell>
@@ -419,7 +419,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Emma Brown
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       emma@example.com
                                     </div>
                                   </TableCell>
@@ -446,7 +446,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Liam Johnson
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       liam@example.com
                                     </div>
                                   </TableCell>
@@ -473,7 +473,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Liam Johnson
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       liam@example.com
                                     </div>
                                   </TableCell>
@@ -500,7 +500,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Olivia Smith
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       olivia@example.com
                                     </div>
                                   </TableCell>
@@ -527,7 +527,7 @@ export function SiteHeader() {
                                     <div className="font-medium">
                                       Emma Brown
                                     </div>
-                                    <div className="text-muted-foreground hidden text-sm md:inline">
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
                                       emma@example.com
                                     </div>
                                   </TableCell>

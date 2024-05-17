@@ -11,7 +11,7 @@ export default function IndexPage() {
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           Plate Playground.
         </h1>
-        <p className="text-muted-foreground max-w-[700px] text-lg">
+        <p className="max-w-[700px] text-lg text-muted-foreground">
           Plugin system & primitive component library.{" "}
           <br className="hidden sm:inline" />
           CLI for styled components. Customizable. Open Source. And Next.js 14
@@ -37,7 +37,7 @@ export default function IndexPage() {
         </Link>
       </div>
 
-      <div className="bg-background max-w-[1336px] rounded-lg border shadow">
+      <div className="max-w-[1336px] rounded-lg border bg-background shadow">
         <PlateEditor />
       </div>
     </section>

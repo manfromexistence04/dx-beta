@@ -133,7 +133,7 @@ export default function WebsiteTab() {
       title: "Home",
       value: "home",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>One</p>
           <Image
             src="/website/1.png"
@@ -149,7 +149,7 @@ export default function WebsiteTab() {
       title: "FAQ",
       value: "faq",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>Two</p>
           <Image
             src="/website/2.png"
@@ -165,7 +165,7 @@ export default function WebsiteTab() {
       title: "Career Guidence",
       value: "career-guidence",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>Three</p>
           <Image
             src="/website/03.png"
@@ -181,7 +181,7 @@ export default function WebsiteTab() {
       title: "Specialies",
       value: "specialies",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>Four</p>
           <Image
             src="/website/4.png"
@@ -197,7 +197,7 @@ export default function WebsiteTab() {
       title: "Collages",
       value: "collages",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>Five</p>
           <Image
             src="/website/5.png"
@@ -213,7 +213,7 @@ export default function WebsiteTab() {
       title: "Calculator",
       value: "calculator",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>Six</p>
           <Image
             src="/website/6.png"
@@ -229,7 +229,7 @@ export default function WebsiteTab() {
       title: "Signup",
       value: "signup",
       content: (
-        <div className="bg-primary-foreground relative size-full overflow-hidden rounded-lg border p-10 text-xl font-bold text-white md:text-4xl">
+        <div className="relative size-full overflow-hidden rounded-lg border bg-primary-foreground p-10 text-xl font-bold text-white md:text-4xl">
           <p>Seven</p>
           <Image
             src="/website/7.png"

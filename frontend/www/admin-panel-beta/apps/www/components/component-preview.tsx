@@ -47,9 +47,9 @@ export function ComponentPreview({
 
     if (!Component) {
       return (
-        <p className="text-muted-foreground text-sm">
+        <p className="text-sm text-muted-foreground">
           Component{" "}
-          <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
             {name}
           </code>{" "}
           not found in registry.
@@ -81,13 +81,13 @@ export function ComponentPreview({
           <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
             <TabsTrigger
               value="preview"
-              className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
+              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
             >
               Preview
             </TabsTrigger>
             <TabsTrigger
               value="code"
-              className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
+              className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
             >
               Code
             </TabsTrigger>
@@ -110,7 +110,7 @@ export function ComponentPreview({
               <CopyButton
                 value={codeString}
                 variant="outline"
-                className="text-foreground hover:bg-muted hover:text-foreground size-7 opacity-100 [&_svg]:size-3.5"
+                className="size-7 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:size-3.5"
               />
             </div>
           </div>
@@ -127,7 +127,7 @@ export function ComponentPreview({
             >
               <React.Suspense
                 fallback={
-                  <div className="text-muted-foreground flex items-center text-sm">
+                  <div className="flex items-center text-sm text-muted-foreground">
                     <Icons.spinner className="mr-2 size-4 animate-spin" />
                     Loading...
                   </div>

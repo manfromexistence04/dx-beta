@@ -102,7 +102,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                       className="justify-start font-normal"
                     >
                       Later today{" "}
-                      <span className="text-muted-foreground ml-auto">
+                      <span className="ml-auto text-muted-foreground">
                         {format(addHours(today, 4), "E, h:m b")}
                       </span>
                     </Button>
@@ -111,7 +111,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                       className="justify-start font-normal"
                     >
                       Tomorrow
-                      <span className="text-muted-foreground ml-auto">
+                      <span className="ml-auto text-muted-foreground">
                         {format(addDays(today, 1), "E, h:m b")}
                       </span>
                     </Button>
@@ -120,7 +120,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                       className="justify-start font-normal"
                     >
                       This weekend
-                      <span className="text-muted-foreground ml-auto">
+                      <span className="ml-auto text-muted-foreground">
                         {format(nextSaturday(today), "E, h:m b")}
                       </span>
                     </Button>
@@ -129,7 +129,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                       className="justify-start font-normal"
                     >
                       Next week
-                      <span className="text-muted-foreground ml-auto">
+                      <span className="ml-auto text-muted-foreground">
                         {format(addDays(today, 7), "E, h:m b")}
                       </span>
                     </Button>
@@ -211,7 +211,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
               </div>
             </div>
             {mail.date && (
-              <div className="text-muted-foreground ml-auto text-xs">
+              <div className="ml-auto text-xs text-muted-foreground">
                 {format(new Date(mail.date), "PPpp")}
               </div>
             )}
@@ -249,7 +249,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </div>
         </div>
       ) : (
-        <div className="text-muted-foreground p-8 text-center">
+        <div className="p-8 text-center text-muted-foreground">
           No message selected
         </div>
       )}

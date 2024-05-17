@@ -198,7 +198,7 @@ export default function Home() {
 
                 <TabsContent value="preview">
                   <Card className="bg-background">
-                    <CardContent className="bg-background text-primary mt-4 space-y-2 overflow-hidden">
+                    <CardContent className="mt-4 space-y-2 overflow-hidden bg-background text-primary">
                       {variant.preview}
                     </CardContent>
                   </Card>
@@ -206,7 +206,7 @@ export default function Home() {
                 <TabsContent value="code">
                   <Card className="bg-background">
                     <CardContent className="space-y-2">
-                      <div className="bg-primary-foreground dark:bg-primary-foreground mt-6 rounded-md p-6">
+                      <div className="mt-6 rounded-md bg-primary-foreground p-6 dark:bg-primary-foreground">
                         <ScrollArea className="h-96">
                           <pre>
                             <code className="grid gap-1 text-sm text-black dark:text-white [&_span]:h-4">

@@ -33,7 +33,7 @@ export default function AllVariants() {
       <AccordionItem value="item-1">
         <AccordionTrigger>Variant Definitions</AccordionTrigger>
         <AccordionContent>
-          <ScrollArea className="bg-primary-foreground h-96 rounded-md p-4">
+          <ScrollArea className="h-96 rounded-md bg-primary-foreground p-4">
             {/* button that is absolute in the top right corner of the scrollarea */}
             <Button
               size="icon"

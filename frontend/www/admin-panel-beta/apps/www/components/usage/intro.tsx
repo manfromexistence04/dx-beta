@@ -48,8 +48,8 @@ export default function Intro() {
           variants={FADE_DOWN_ANIMATION_VARIANTS}
           className="mt-10 flex w-full items-center justify-center gap-x-6 "
         >
-          <div className="not-prose bg-primary-foreground my-6 w-full rounded-2xl">
-            <div className="bg-primary-foreground flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-2 rounded-t-lg border px-4">
+          <div className="not-prose my-6 w-full rounded-2xl bg-primary-foreground">
+            <div className="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-2 rounded-t-lg border bg-primary-foreground px-4">
               <h3 className="mr-auto pt-3 text-xs font-semibold ">
                 Step 1: Install Framer Motion
               </h3>

@@ -19,7 +19,7 @@ export const Timeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
           <TableHead
             key={index}
             className={cn(
-              "bg-background supports-[backdrop-filter]:bg-background/60 sticky top-0 z-[1000000] min-w-56 text-center backdrop-blur lg:min-w-72"
+              "sticky top-0 z-[1000000] min-w-56 bg-background text-center backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:min-w-72"
             )}
           >
             {label}
