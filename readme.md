@@ -775,8 +775,8 @@ This document outlines the design for a Firebase Firestore database to support a
 * **Specialties:**
     * **Document ID:** Unique identifier for each specialty (e.g., "medicine", "engineering").
     * **Fields:**
-        * **name:** Name of the specialty (e.g., "Medicine", "Computer Science").
         * **subjects:** Array of subject IDs (references to the Subjects collection).
+        * **name:** Name of the specialty (e.g., "Medicine", "Computer Science").
         * **possibleScoreGeneralCompetition:** Possible score for general competition.
         * **possibleScoreRuralQuota:** Possible score for rural quota.
         * **possibleScoreOrphanQuota:** Possible score for orphan quota.

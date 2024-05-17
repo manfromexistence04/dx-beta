@@ -40,8 +40,6 @@ import {
   X,
 } from "lucide-react"
 
-// import { DndProvider } from 'react-dnd';
-// import { HTML5Backend } from 'react-dnd-html5-backend';
 import { commentsUsers, myUserId } from "@/lib/plate/comments"
 import { MENTIONABLES } from "@/lib/plate/mentionables"
 import { plugins } from "@/lib/plate/plate-plugins"
@@ -258,24 +256,6 @@ export default function CreateSpeciality() {
   const [inputedDemandForSpecialty, setInputedDemandForSpecialty] =
     React.useState("")
 
-  const [inputedName, setInputedName] = React.useState("")
-  const [inputedEmail, setInputedEmail] = React.useState("")
-  const [inputedStatus, setInputedStatus] = React.useState("")
-  const [inputedFacebook, setInputedFacebook] = React.useState("")
-  const [inputedInstragam, setInputedInstragam] = React.useState("")
-  const [inputedCost, setInputedCost] = React.useState("")
-  const [inputedWebsite, setInputedWebsite] = React.useState("")
-  const [inputedCode, setInputedCode] = React.useState("")
-  const [inputedHostel, setInputedHostel] = React.useState("")
-  const [inputedMilitary, setInputedMilitary] = React.useState("")
-  const [inputedPhoneNumber, setInputedPhoneNumber] = React.useState(phone)
-  const [inputedLogo, setInputedLogo] = React.useState("")
-  const [inputedAddress, setInputedAddress] = React.useState("")
-  const [inputedRegion, setInputedRegion] = React.useState("")
-  const [inputedDescription, setInputedDescription] = React.useState("")
-  const [inputedImages, setInputedImages] = React.useState([])
-  const [inputedImage, setInputedImage] = React.useState("")
-
   const handleRuralQuota1Change = (event: any) => {
     setInputedRuralQuota1(event.target.value)
   }
@@ -376,98 +356,6 @@ export default function CreateSpeciality() {
     setInputedValues(!inputedValues)
   }
 
-  // React.useEffect(() => {
-  //     const fetchUniversities = async () => {
-  //         //   setLoading(true);
-  //         //   const q = query(collection(db, "universities"), limit(8));
-  //         // const querySnapshot = await getDocs(collection(db, "universities"));
-  //         // const newUniversitiesDocs = querySnapshot.docs.map((doc) => ({
-  //         //     id: doc.id,
-  //         //     ...doc.data(),
-  //         // }));
-  //         // newUniversitiesDocs.map((item: any) => {
-  //         //     setUniversities(item.universitiesName)
-  //         // });
-  //         const q = query(collection(db, "universities"), limit(8));
-  //         const querySnapshot = await getDocs(q);
-  //         const newDocs = querySnapshot.docs.map((doc) => ({
-  //             id: doc.id,
-  //             ...doc.data(),
-  //         }));
-  //         setDocs(newDocs);
-  //         // Configuring Data for Update:
-  //         docs.map((item: any) => {
-  //             setUniversities(item.universitiesName);
-  //             // setInputedRuralQuota2(item.ruralQuota2);
-  //             // setInputedRuralQuota3(item.ruralQuota3);
-  //             // setInputedLevel(item.level);
-  //             // setInputedOrphanQuota2(item.orphanQuota2);
-  //             // setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
-  //             // setInputedOrphanQuota3(item.orphanQuota3);
-  //             // setInputedGeneralCompetition1(item.generalCompetition1);
-  //             // setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
-  //             // setInputedGeneralCompetition2(item.generalCompetition2);
-  //             // setInputedGeneralCompetition3(item.generalCompetition3);
-  //             // setInputedSpecialtyCode(item.specialtyCode);
-  //             // setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
-  //             // setInputedAverageSalary(item.averageSalary);
-  //             // setInputedSubjects(item.subjects);
-  //             // setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
-  //             // setInputedThreshold(item.threshold);
-  //             // setInputedSpecialtyName(item.specialtyName);
-  //             // setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
-  //             // setInputedOrphanQuota1(item.orphanQuota1);
-  //             // setInputedUniversities(item.universities);
-  //             // setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
-  //             // setInputedAvailableGrantCount(item.availableGrantCount);
-  //             // setInputedDemandForSpecialty(item.demandForSpecialty);
-
-  //         })
-  //         //   newUniversitiesDocs.map((item: any) => {
-  //         //     // setInputedAddress(item.address);
-  //         //     // setInputedCost(item.educationCost);
-  //         //     // setInputedEmail(item.email);
-  //         //     // setInputedFacebook(item.facebook);
-  //         //     // setInputedHostel(item.hostel);
-  //         //     // setInputedImages(item.images);
-  //         //     // setInputedImage(item.image);
-  //         //     // setInputedInstragam(item.instagram);
-  //         //     // setInputedMilitary(item.military);
-  //         //     // setInputedPhoneNumber(item.phoneNumber);
-  //         //     // setInputedRegion(item.region);
-  //         //     // setInputedStatus(item.status);
-  //         //     // setInputedCode(item.universityCode);
-  //         //     // setInputedDescription(item.universityDescription);
-  //         //     // setInputedName(item.universityName);
-  //         //     // setInputedWebsite(item.website);
-  //         //     // setInputedLogo(item.logo);
-  //         //   })
-
-  //         // Configuring Data for Update:
-  //         //   docs.map((item: any) => {
-  //         //     setInputedAddress(item.address);
-  //         //     setInputedCost(item.educationCost);
-  //         //     setInputedEmail(item.email);
-  //         //     setInputedFacebook(item.facebook);
-  //         //     setInputedHostel(item.hostel);
-  //         //     setInputedImages(item.images);
-  //         //     setInputedImage(item.image);
-  //         //     setInputedInstragam(item.instagram);
-  //         //     setInputedMilitary(item.military);
-  //         //     setInputedPhoneNumber(item.phoneNumber);
-  //         //     setInputedRegion(item.region);
-  //         //     setInputedStatus(item.status);
-  //         //     setInputedCode(item.universityCode);
-  //         //     setInputedDescription(item.universityDescription);
-  //         //     setInputedName(item.universityName);
-  //         //     setInputedWebsite(item.website);
-  //         //     setInputedLogo(item.logo);
-  //         //   })
-  //         //   setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-  //         //   setLoading(false);
-  //     };
-  //     fetchUniversities();
-  // }, []);
 
   useEffect(() => {
     const fetchUniversities = async () => {
@@ -826,22 +714,6 @@ export default function CreateSpeciality() {
             </div>
           </div>
         )}
-
-        {/* {docs.map((items) => (
-                    <div key={items.id}>{items.address}</div>))} */}
-
-        {/* {docs.map((items) => (
-                    <div key={items.id}>
-                        <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
-
-                            <div>{items.universityName}</div>
-
-                        </Card>
-                    </div>
-                ))}
-
- */}
-
         <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
           <h1 className="w-full text-left text-4xl font-bold">Subjects</h1>
           <TagInput
@@ -1027,10 +899,6 @@ export default function CreateSpeciality() {
               placeholder="Enter Speciality AverageSalary Info"
             />
           </div>
-          {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
-                        <Input onChange={handleSubjectsChange} type="text" placeholder="Enter Speciality Subjects Info" />
-                    </div> */}
         </div>
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
@@ -1083,10 +951,6 @@ export default function CreateSpeciality() {
               placeholder="Enter Speciality OrphanQuota1 Info"
             />
           </div>
-          {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                        <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
-                        <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter Speciality Universities Info" />
-                    </div> */}
         </div>
 
         <div className="name-logo-description-university grid w-full gap-3">
