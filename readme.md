@@ -783,6 +783,8 @@ This document outlines the design for a Firebase Firestore database to support a
         * **possibleScoreDisabilityQuota:** Possible score for disability quota.
         * **possibleScoreLargeFamilyQuota:** Possible score for large family quota.
         * **minScores:** Array of objects containing minimum scores for the last 3 years (e.g., `{ year: 2021, score: 95 }`).
+
+        
 * **Subjects:**
     * **Document ID:** Unique identifier for each subject (e.g., "biology", "physics").
     * **Fields:**

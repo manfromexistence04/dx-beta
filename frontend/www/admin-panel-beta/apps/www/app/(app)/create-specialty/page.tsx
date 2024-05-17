@@ -143,6 +143,7 @@ export default function CreateSpeciality() {
 
   const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
   const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
+  const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
   const { toast } = useToast()
   const router = useRouter()
   const buttonRef = useRef<HTMLButtonElement | null>(null)
@@ -165,31 +166,44 @@ export default function CreateSpeciality() {
       },
     })
 
+    // const [name, setName] = React.useState("")
+    // const [possibleScoreGeneralCompetition, setPossibleScoreGeneralCompetition] = React.useState("")
+    // const [possibleScoreRuralQuota, setPossibleScoreRuralQuota] = React.useState("")
+    // const [possibleScoreOrphanQuota, setPossibleScoreOrphanQuota] = React.useState("")
+    // const [possibleScoreDisabilityQuota, setPossibleScoreDisabilityQuota] = React.useState("")
+    // const [possibleScoreLargeFamilyQuota, setPossibleScoreLargeFamilyQuota] = React.useState("")
     const Create = await addDoc(collection(db, "specialties"), {
-      ruralQuota1: inputedRuralQuota1,
-      ruralQuota3: inputedRuralQuota3,
-      level: inputedLevel,
-      orphanQuota2: inputedOrphanQuota2,
-      disabilitiesQuota2: inputedDisabilitiesQuota2,
-      orphanQuota3: inputedOrphanQuota3,
-      generalCompetition1: inputedGeneralCompetition1,
-      largeFamiliesQuota2: inputedLargeFamiliesQuota2,
-      generalCompetition2: inputedGeneralCompetition2,
-      generalCompetition3: inputedGeneralCompetition3,
-      specialtyCode: inputedSpecialtyCode,
-      disabilitiesQuota1: inputedDisabilitiesQuota1,
-      averageSalary: inputedAverageSalary,
+      // ruralQuota1: inputedRuralQuota1,
+      // ruralQuota3: inputedRuralQuota3,
+      // level: inputedLevel,
+      // orphanQuota2: inputedOrphanQuota2,
+      // disabilitiesQuota2: inputedDisabilitiesQuota2,
+      // orphanQuota3: inputedOrphanQuota3,
+      // generalCompetition1: inputedGeneralCompetition1,
+      // largeFamiliesQuota2: inputedLargeFamiliesQuota2,
+      // generalCompetition2: inputedGeneralCompetition2,
+      // generalCompetition3: inputedGeneralCompetition3,
+      // specialtyCode: inputedSpecialtyCode,
+      // disabilitiesQuota1: inputedDisabilitiesQuota1,
+      // averageSalary: inputedAverageSalary,
+      // largeFamiliesQuota3: inputedLargeFamiliesQuota3,
+      // availableGrantCount: inputedAvailableGrantCount,
+      // largeFamiliesQuota1: inputedLargeFamiliesQuota1,
+      // threshold: inputedThreshold,
+      // specialtyName: inputedSpecialtyName,
+      // disabilitiesQuota3: inputedDisabilitiesQuota3,
+      // ruralQuota2: inputedRuralQuota2,
+      // orphanQuota1: inputedOrphanQuota1,
       subjects: subjectsTag.flatMap((item) => item.text),
-      largeFamiliesQuota1: inputedLargeFamiliesQuota1,
-      threshold: inputedThreshold,
-      specialtyName: inputedSpecialtyName,
-      disabilitiesQuota3: inputedDisabilitiesQuota3,
-      ruralQuota2: inputedRuralQuota2,
-      orphanQuota1: inputedOrphanQuota1,
       universities: universitiesTag.flatMap((item) => item.text),
-      largeFamiliesQuota3: inputedLargeFamiliesQuota3,
-      availableGrantCount: inputedAvailableGrantCount,
-      demandForSpecialty: inputedDemandForSpecialty,
+      minScrores: minScroresTag.flatMap((item) => item.text),
+
+      name: name,
+      possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
+      possibleScoreRuralQuota: possibleScoreRuralQuota,
+      possibleScoreOrphanQuota: possibleScoreOrphanQuota,
+      possibleScoreDisabilityQuota: possibleScoreDisabilityQuota,
+      possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota,
     })
     console.log("Document written with ID: ", Create.id)
     toast({
@@ -255,6 +269,38 @@ export default function CreateSpeciality() {
     React.useState("")
   const [inputedDemandForSpecialty, setInputedDemandForSpecialty] =
     React.useState("")
+  // New
+  const [name, setName] = React.useState("")
+  const [possibleScoreGeneralCompetition, setPossibleScoreGeneralCompetition] = React.useState("")
+  const [possibleScoreRuralQuota, setPossibleScoreRuralQuota] = React.useState("")
+  const [possibleScoreOrphanQuota, setPossibleScoreOrphanQuota] = React.useState("")
+  const [possibleScoreDisabilityQuota, setPossibleScoreDisabilityQuota] = React.useState("")
+  const [possibleScoreLargeFamilyQuota, setPossibleScoreLargeFamilyQuota] = React.useState("")
+  const handleNameChange = (event: any) => {
+    setName(event.target.value)
+  }
+  const handlePossibleScoreGeneralCompetitionChange = (event: any) => {
+    setPossibleScoreGeneralCompetition(event.target.value)
+  }
+  const handlePossibleScoreRuralQuotaChange = (event: any) => {
+    setPossibleScoreRuralQuota(event.target.value)
+  }
+  const handlePossibleScoreOrphanQuotaChange = (event: any) => {
+    setPossibleScoreOrphanQuota(event.target.value)
+  }
+  const handlePossibleScoreDisabilityQuotaChange = (event: any) => {
+    setPossibleScoreDisabilityQuota(event.target.value)
+  }
+  const handlePossibleScoreLargeFamilyQuotaChange = (event: any) => {
+    setPossibleScoreLargeFamilyQuota(event.target.value)
+  }
+
+
+
+
+
+
+
 
   const handleRuralQuota1Change = (event: any) => {
     setInputedRuralQuota1(event.target.value)
@@ -714,6 +760,7 @@ export default function CreateSpeciality() {
             </div>
           </div>
         )}
+
         <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
           <h1 className="w-full text-left text-4xl font-bold">Subjects</h1>
           <TagInput
@@ -758,33 +805,81 @@ export default function CreateSpeciality() {
           />
         </div>
 
+        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+          <h1 className="w-full text-left text-4xl font-bold">Min Scrore</h1>
+          <div className="w-full flex items-start justify-start lg:flex-row flex-col gap-1">
+            <span>Please Provide Value In This Format:</span>
+            <Badge variant="outline">year score</Badge>
+            <Badge variant="outline">2021 95</Badge>
+            <Badge variant="outline">Max 3</Badge>
+          </div>
+
+          <TagInput
+            placeholder="Enter Your Min Scrore"
+            tags={minScroresTag}
+            draggable
+            maxTags={3}
+            className="sm:min-w-[450px]"
+            setTags={(newTags) => {
+              setMinScroresTag(newTags)
+            }}
+          />
+        </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-            <h1 className="w-full text-left text-4xl font-bold">RuralQuota1</h1>
+            <h1 className="w-full text-left text-4xl font-bold">Name</h1>
             <Input
-              onChange={handleRuralQuota1Change}
+              onChange={handleNameChange}
               type="text"
-              placeholder="Enter Speciality RuralQuota1 Info"
+              placeholder="Enter Speciality Name"
             />
           </div>
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-            <h1 className="w-full text-left text-4xl font-bold">RuralQuota2</h1>
+            <h1 className="w-full text-left text-4xl font-bold">Possible Score General Competition</h1>
             <Input
-              onChange={handleRuralQuota2Change}
+              onChange={handlePossibleScoreGeneralCompetitionChange}
               type="text"
-              placeholder="Enter Speciality RuralQuota2 Info"
+              placeholder="Enter Speciality possibleScoreGeneralCompetition Info"
             />
           </div>
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-            <h1 className="w-full text-left text-4xl font-bold">RuralQuota3</h1>
+            <h1 className="w-full text-left text-4xl font-bold">Possible Score Rural Quota</h1>
             <Input
-              onChange={handleRuralQuota3Change}
+              onChange={handlePossibleScoreRuralQuotaChange}
               type="text"
-              placeholder="Enter Speciality RuralQuota3 Info"
+              placeholder="Enter Speciality PossibleScoreRuralQuota Info"
             />
           </div>
         </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
+          <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">Possible Score Orphan Quota</h1>
+            <Input
+              onChange={handlePossibleScoreOrphanQuotaChange}
+              type="text"
+              placeholder="Enter Speciality PossibleScoreOrphanQuota Info"
+            />
+          </div>
+          <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">Possible Score Disability Quota</h1>
+            <Input
+              onChange={handlePossibleScoreDisabilityQuotaChange}
+              type="text"
+              placeholder="Enter Speciality PossibleScoreDisability Quota Info"
+            />
+          </div>
+          <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">Possible Score Large Family Quota</h1>
+            <Input
+              onChange={handlePossibleScoreLargeFamilyQuotaChange}
+              type="text"
+              placeholder="Enter Speciality PossibleScoreLargeFamilyQuota Info"
+            />
+          </div>
+        </div>
+        {/* <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">Level</h1>
             <Input
@@ -814,6 +909,7 @@ export default function CreateSpeciality() {
             />
           </div>
         </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">
@@ -846,6 +942,7 @@ export default function CreateSpeciality() {
             />
           </div>
         </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">
@@ -878,6 +975,7 @@ export default function CreateSpeciality() {
             />
           </div>
         </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">
@@ -900,6 +998,7 @@ export default function CreateSpeciality() {
             />
           </div>
         </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">
@@ -930,6 +1029,7 @@ export default function CreateSpeciality() {
             />
           </div>
         </div>
+
         <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">
@@ -984,7 +1084,7 @@ export default function CreateSpeciality() {
               placeholder="Enter Speciality DemandForSpecialty Info"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="action my-3 flex w-full flex-col items-start justify-start space-y-3 lg:hidden lg:space-y-0">
           <Link href="/specialities" className="z-50 w-full">
