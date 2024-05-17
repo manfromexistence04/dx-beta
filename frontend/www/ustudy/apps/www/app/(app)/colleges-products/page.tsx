@@ -8,7 +8,6 @@ import FrameComponent1 from "@/components/spcialty-products-page/frame-component
 const SpecialtyPage: NextPage = () => {
   return (
     <div className="font-headings-desktop-poppins-16px-bold relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-[404px] pt-0 text-center text-xl leading-[normal] tracking-[normal] text-shade-white">
-      {/* <Header /> */}
       <img
         className="!m-0 h-[800px] w-full rounded-[5px] object-cover"
         loading="lazy"
@@ -27,7 +26,6 @@ const SpecialtyPage: NextPage = () => {
         </b>
       </div>
       <main className="flex max-w-full flex-col items-start justify-start space-y-2 self-stretch lg:space-y-10">
-        {/* <FrameComponent1 /> */}
         <span className="title !mx-auto mt-32 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-37xl text-transparent">
           Astana IT University
         </span>

@@ -25,7 +25,7 @@ const Component: NextPage<ComponentType> = ({
 
   return (
     <>
-      <Link href="/colleges-products">
+      <Link href="/colleges-products" className="border rounded-md">
         <div
           className="text-11xl relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left font-headings-desktop-poppins-16px-regular text-shade-white"
           style={component14Style}

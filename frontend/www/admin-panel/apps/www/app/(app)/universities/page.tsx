@@ -213,6 +213,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
 
+
+
+
+
+
 const University = () => {
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
