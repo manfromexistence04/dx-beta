@@ -147,7 +147,9 @@ export function SiteHeader() {
                     <span className="sr-only">Twitter</span>
                   </div>
                 </Link>
+                
                 <ModeToggle />
+
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="w-9 px-0">
