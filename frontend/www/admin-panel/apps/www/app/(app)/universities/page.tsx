@@ -67,9 +67,6 @@ import {
 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
-// import { DndProvider } from 'react-dnd';
-// import { HTML5Backend } from 'react-dnd-html5-backend';
 import { commentsUsers, myUserId } from "@/lib/plate/comments"
 import { MENTIONABLES } from "@/lib/plate/mentionables"
 import { plugins } from "@/lib/plate/plate-plugins"
@@ -204,7 +201,7 @@ import { useToast } from "@/registry/default/ui/use-toast"
 
 
 
-
+// Firebase Configurations
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -216,22 +213,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
 
-
-
-
-
-
 const University = () => {
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
-  // const plugin = React.useRef(
-  //   Autoplay({ delay: 2000, stopOnInteraction: true })
-  // )
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
-
   const {
     uploadImages,
     imagesUploadingProgress,
@@ -268,48 +256,8 @@ const University = () => {
         x: targetCenterX / clientWidth,
       },
     })
-    // uploadedImages.map((file: any) => {
-    //   setInputedImages(file.url);
-    //   return null;
-    // })
-    // uploadedLogo.map((file: any) => {
-    //   setInputedLogo(file.url);
-    //   return null;
-    // })
-    // const Update = await addDoc(collection(db, "universities"), {
-    //   address: inputedAddress,
-    //   educationCost: inputedCost,
-    //   email: inputedEmail,
-    //   facebook: inputedFacebook,
-    //   hostel: inputedHostel,
-    //   images: inputedImages,
-    //   instagram: inputedInstragam,
-    //   military: inputedMilitary,
-    //   phoneNumber: inputedPhoneNumber,
-    //   region: inputedRegion,
-    //   status: inputedStatus,
-    //   universityCode: inputedCode,
-    //   universityDescription: inputedDescription,
-    //   universityName: inputedName,
-    //   website: inputedWebsite,
-    //   logo: inputedLogo
-    // });
-    // console.log("Document written with ID: ", Update.id);
-    // toast({
-    //   title: 'University has been Updated Successfully.',
-    //   description: (
-    //     <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-    //       <span>You Can now view and delete this university!</span>
-    //       <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
-    //         <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code>
-    //       </pre>
-    //     </div>
-    //   ),
-    // });
-    // router.push('/portfolio')
     setSheetToggle(!sheetToggle)
   }
-
   const [inputedValues, setInputedValues] = React.useState(false)
   const [sheetToggle, setSheetToggle] = React.useState(false)
   const [createButtonDisabled, setCreateButtonDisabled] = React.useState(true)
@@ -331,22 +279,6 @@ const University = () => {
   function showPhoneNumberDetails() {
     setPhoneNumberDetails(!phoneNumberDetails)
   }
-  // let address: string = 'Bangladesh, Jhenaidah';
-  // let educationCost: string = '1 335 000 ₸';
-  // let email: string = 'rektorat@amu.kz';
-  // let facebook: string = 'https://www.facebook.com/MeduniverAstana';
-  // let hostel: string = 'есть';
-  // let image: any = ['https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319', 'https://firebasestorage.googleapis.com/v0/b/ustudy-96678.appspot.com/o/IMG_20240410_001743.jpg?alt=media&token=ef6b3928-40bd-460b-bbb8-f0445ff37319'];
-  // let instagram: string = 'https://www.instagram.com/amu_mua_official';
-  // let military: string = 'есть';
-  // let phoneNumber: string = '(+77172539424)';
-  // let region: string = 'г. Астана';
-  // let status: string = 'акционированный';
-  // let universityCode: string = '1';
-  // let universityDescription: string = 'Медицинский университет Астана является одним из самых крупных и динамично развивающихся медицинских ВУЗов нашей страны, имеет высокую репутацию в сфере высшего медицинского образования, свои традиции, как в области предоставления образовательных услуг, так и в развитии медицинской науки и клинической деятельности.';
-  // let universityName: string = 'Медицинский университет Астана';
-  // let website: string = 'https://amu.edu.kz/';
-  // let logo: string = 'https://amu.edu.kz/';
   const [inputedName, setInputedName] = React.useState("")
   const [inputedEmail, setInputedEmail] = React.useState("")
   const [inputedStatus, setInputedStatus] = React.useState("")
@@ -364,7 +296,6 @@ const University = () => {
   const [inputedDescription, setInputedDescription] = React.useState("")
   const [inputedImages, setInputedImages] = React.useState([])
   const [inputedImage, setInputedImage] = React.useState("")
-
   const handleNameChange = (event: any) => {
     setInputedName(event.target.value)
   }
@@ -406,14 +337,7 @@ const University = () => {
   const handleDescriptionChange = (event: any) => {
     setInputedDescription(event.target.value)
   }
-  // const create = (event: any) => {
-  //     // setInputedImages(event.target.value);
-  // }
   const syncImagesAndLogo = () => {
-    // uploadedImages.map((file: any) => {
-    //   setInputedImages(file.url);
-    //   return null;
-    // })
     const newArray2: any = uploadedImages.map((file) => file.url)
     setInputedImages(newArray2)
     uploadedLogo.map((file: any) => {
@@ -425,79 +349,20 @@ const University = () => {
   const handleInputedValues = () => {
     setInputedValues(!inputedValues)
   }
-  // React.useEffect(() => {
-  //   uploadedImages.map((file: any) => {
-  //     setInputedImages(file.url);
-  //     return null;
-  //   })
-  // }, [isImagesUploading]);
-
-  // Nothing :)
-  // const result = [
-  //   {
-  //     type: "p",
-  //     children: [
-  //       {
-  //         text: "Donot Ask me how harvard university is located at japan :)",
-  //         bold: true,
-  //         underline: true,
-  //         backgroundColor: "#00FFFF",
-  //       },
-  //     ],
-  //     id: "cfifa",
-  //   },
-  // ];
-
-  // const fetchDocs = async () => {
-  //   setLoading(true);
-  //   const q = query(collection(db, "universities"), limit(8));
-  //   const querySnapshot = await getDocs(q);
-  //   const newDocs = querySnapshot.docs.map((doc) => ({
-  //     id: doc.id,
-  //     ...doc.data(),
-  //   }));
-  //   setDocs(newDocs);
-  //   // Configuring Data for Update:
-  //   docs.map((item: any) => {
-  //     setInputedAddress(item.address);
-  //     setInputedCost(item.educationCost);
-  //     setInputedEmail(item.email);
-  //     setInputedFacebook(item.facebook);
-  //     setInputedHostel(item.hostel);
-  //     setInputedImages(item.images);
-  //     setInputedInstragam(item.instagram);
-  //     setInputedMilitary(item.military);
-  //     setInputedPhoneNumber(item.phoneNumber);
-  //     setInputedRegion(item.region);
-  //     setInputedStatus(item.status);
-  //     setInputedCode(item.universityCode);
-  //     setInputedDescription(item.universityDescription);
-  //     setInputedName(item.universityName);
-  //     setInputedWebsite(item.website);
-  //     setInputedLogo(item.logo);
-  //   })
-  //   setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
-  //   setLoading(false);
-  // };
-
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
-
   // This page
   React.useEffect(() => {
     if (!api) {
       return
     }
-
     setCount(api.scrollSnapList().length)
     setCurrent(api.selectedScrollSnap() + 1)
-
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
-
   useEffect(() => {
     const fetchDocs = async () => {
       setLoading(true)
@@ -707,80 +572,7 @@ const University = () => {
                             </CarouselItem>
                           ))
                         : ""}
-
-                    {/* {Array.from({ length: 5 }).map((_, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <Card>
-                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                              <AspectRatio ratio={16 / 9} className="">
-                                <Image
-                                  src={items.image || "/placeholder.svg"}
-                                  alt="Image"
-                                  fill
-                                  sizes="(min-width: 250px) 300px, 100vw"
-                                  loading="lazy"
-                                  className="rounded-md object-cover"
-                                />
-                              </AspectRatio>
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))} */}
-
-                    {/* {items.image && Array.from({ length: 5 }).map((_, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <Card>
-                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                              <AspectRatio ratio={16 / 9} className="">
-                                <Image
-                                  src={items.image || "/placeholder.svg"}
-                                  alt="Image"
-                                  fill
-                                  sizes="(min-width: 250px) 300px, 100vw"
-                                  loading="lazy"
-                                  className="rounded-md object-cover"
-                                />
-                              </AspectRatio>
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))} */}
-
-                    {/* {items.images.map((item,index) => (
-                      <span key={index} className="w-full h-full">{item.index}</span>
-                    ))} */}
-
-                    {/* {Object.keys(items.images).length === 0 ? "0" : "1"} */}
-
-                    {/* {items.images} */}
-
-                    {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
                   </CarouselContent>
-
-                  {/* {items.images === "" && <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
-                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
-                  </div>} */}
-                  {/* {[items.images] ? "0" : "1"} */}
-
-                  {/* {items.images.length > 0 ? (<div>0</div>) : "1"}  */}
-
-                  {/* {items.images ? items.images.length : "1"} */}
-
-                  {/* {items.images && items.images.length > 0 ? <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
-                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
-                  </div> : ""
-                  } */}
-
-                  {/* {items.images ? <div>{`${items.images} fdasfdsf`}</div> : <div>No imagea are provi`</div>} */}
-                  {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
                 </Carousel>
               </div>
               {items.images && items.images.length > 0 ? (
@@ -811,44 +603,8 @@ const University = () => {
                     <Separator className="h-4" orientation="vertical" />
                     <GlobeIcon className="size-4" />
                     <span>{items.region || "Nothing."}</span>
-                    {/* <span>{items.images || "No Region Provided."}</span> */}
                   </div>
                 </div>
-
-                {/* {items.universityDescription.map((item) => (
-                  <div key={item.id}>
-                    {item.children.map((child) => (
-                      <p key={child.text}>{child.text}</p>
-                    ))}
-                  </div>
-                ))} */}
-                {/* {Object.keys(items.universityDescription).map((keyOne) => {
-                  const item = items.universityDescription[keyOne];
-
-                  return (
-                    <div key={item.id}>
-                      {Object.keys(item.children).map((keyTwo) => (
-                        <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground" key={item.children[keyTwo].text}>{item.children[keyTwo].text}</p>
-                      ))}
-                    </div>
-                  )
-                })
-} */}
-
-                {/* {Object.keys(items.universityDescription).map((key:any) => {
-                  const item = items.universityDescription[key];
-
-                  return (
-                    <div key={item.id}>
-                      {item.children.map((child: { text: any }) => (
-                        <p key={child.text}>{child.text}</p>
-                      ))}
-                    </div>
-                  )
-                })
-                } */}
-
-                {/* <p className="text-overflow-clamp text-sm leading-relaxed text-muted-foreground">{JSON.stringify(items.universityDescription)}</p> */}
                 {typeof items.universityDescription === "object" ? (
                   JSON.parse(items.universityDescription).map((item: any) => (
                     <div key={item.id}>
@@ -946,57 +702,6 @@ const University = () => {
                                         )
                                       : ""}
 
-                                  {/* {Array.from({ length: 5 }).map((_, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <Card>
-                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                              <AspectRatio ratio={16 / 9} className="">
-                                <Image
-                                  src={items.image || "/placeholder.svg"}
-                                  alt="Image"
-                                  fill
-                                  sizes="(min-width: 250px) 300px, 100vw"
-                                  loading="lazy"
-                                  className="rounded-md object-cover"
-                                />
-                              </AspectRatio>
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))} */}
-
-                                  {/* {items.image && Array.from({ length: 5 }).map((_, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <Card>
-                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                              <AspectRatio ratio={16 / 9} className="">
-                                <Image
-                                  src={items.image || "/placeholder.svg"}
-                                  alt="Image"
-                                  fill
-                                  sizes="(min-width: 250px) 300px, 100vw"
-                                  loading="lazy"
-                                  className="rounded-md object-cover"
-                                />
-                              </AspectRatio>
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))} */}
-
-                                  {/* {items.images.map((item,index) => (
-                      <span key={index} className="w-full h-full">{item.index}</span>
-                    ))} */}
-
-                                  {/* {Object.keys(items.images).length === 0 ? "0" : "1"} */}
-
-                                  {/* {items.images} */}
-
-                                  {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
                                 </CarouselContent>
                                 <div className="text-muted-foreground absolute bottom-[-75px] left-1/2 mx-auto flex h-16 w-full -translate-x-1/2 items-center justify-between rounded-2xl border px-5 text-sm">
                                   <CarouselPrevious className="border-accent-foreground !relative !left-0 !top-0 -translate-y-0 border !bg-transparent text-white hover:border-white hover:text-white" />
@@ -1005,27 +710,6 @@ const University = () => {
                                   </span>
                                   <CarouselNext className="border-accent-foreground !relative !right-0 !top-0 -translate-y-0 border !bg-transparent  text-white hover:border-white hover:text-white" />
                                 </div>
-
-                                {/* {items.images === "" && <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
-                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
-                  </div>} */}
-                                {/* {[items.images] ? "0" : "1"} */}
-
-                                {/* {items.images.length > 0 ? (<div>0</div>) : "1"}  */}
-
-                                {/* {items.images ? items.images.length : "1"} */}
-
-                                {/* {items.images && items.images.length > 0 ? <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
-                    <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
-                    <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
-                    <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
-                  </div> : ""
-                  } */}
-
-                                {/* {items.images ? <div>{`${items.images} fdasfdsf`}</div> : <div>No imagea are provi`</div>} */}
-                                {/* {items.image ? <div>{""}</div> : <div className="center h-full !min-h-[100%] w-full rounded-md border">No image is provided.</div>} */}
                               </Carousel>
                             </div>
                             {items.images && items.images.length > 0 ? (
@@ -1340,18 +1024,12 @@ const University = () => {
                                         university!
                                       </span>
                                       <pre className="bg-background max-h-[500px] overflow-auto">
-                                        {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                       </pre>
                                     </div>
                                   ),
                                 })
+                                // Refresh The Page
 
-                                // setSheetToggle(true)
-                                // router.push('/specialities')
-                                // console.log("Document written with ID: ", Update.id);
-                                // const newDocs = docs.filter((item) => item.id !== items.id);
-                                // setDocs(newDocs);
-                                // fetchDocs()
                               }}
                             >
                               {createButtonDisabled && (
@@ -1880,27 +1558,7 @@ const University = () => {
                                   ) : (
                                     <ScrollArea className="pb-4">
                                       <div className="flex w-max space-x-2.5">
-                                        {/* {
-                                        items.images ? items.images.map((file: any, index: any) => {
-                                          return (
-                                            <div key={index} className="relative aspect-video w-64">
-                                              <Image
-                                                src={index}
-                                                alt={"images"}
-                                                fill
-                                                sizes="(min-width: 640px) 640px, 100vw"
-                                                loading="lazy"
-                                                className="rounded-md object-cover"
-                                              />
-                                            </div>
-                                          )
-                                        })
-                                          : <EmptyCard
-                                            title="No images uploaded"
-                                            description="Upload some images to see them here"
-                                            className="w-full"
-                                          />
-                                      } */}
+
                                         <EmptyCard
                                           title="No images uploaded"
                                           description="Upload some images to see them here"
@@ -1916,10 +1574,6 @@ const University = () => {
                           </div>
                         </div>
                         <div className="name-logo-description-university grid w-full gap-3 ">
-                          {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                            <h1 className="text-4xl font-bold w-full text-left">Image</h1>
-                            <Input onChange={handleImageChange} type="text" placeholder="Enter University Image" />
-                          </div> */}
                           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
                             <h1 className="w-full text-left text-4xl font-bold">
                               Code
@@ -2035,10 +1689,6 @@ const University = () => {
                               </Button>
                             </CollapsibleTrigger>
                           </div>
-                          {/* <div className="rounded-md border px-4 py-3 font-mono text-sm">
-                        @radix-ui/primitives
-                    </div> */}
-
                           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
                             <h1 className="w-full text-left text-4xl font-bold">
                               Logo
@@ -2051,19 +1701,6 @@ const University = () => {
                           </div>
 
                           <CollapsibleContent className="space-y-2">
-                            {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                    <h1 className="text-4xl font-bold w-full text-left">Images</h1>
-                    <TagInput
-                        placeholder="Enter Images Link"
-                        tags={inputedImages}
-                        draggable
-                        className="sm:min-w-[450px]"
-                        setTags={(newTags:any) => {
-                            setInputedImages(newTags);
-                        }}
-                    />
-                </div> */}
-
                             <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
                               <h1 className="w-full text-left text-4xl font-bold">
                                 Images
@@ -2199,16 +1836,13 @@ const University = () => {
                                       university!
                                     </span>
                                     <pre className="bg-background max-h-[500px] overflow-auto">
-                                      {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                     </pre>
                                   </div>
                                 ),
                               })
 
-                              // setSheetToggle(!sheetToggle)
-                              // setSheetToggle(true)
-                              // router.push('/specialities')
-                              // fetchDocs()
+                              // Refresh The Page
+
                             }}
                           >
                             {createButtonDisabled && (
@@ -2251,3 +1885,4 @@ const University = () => {
 }
 
 export default University
+;
