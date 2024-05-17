@@ -134,7 +134,7 @@ export default function Specialties() {
                         size="sm"
                         className="h-7 gap-1 text-sm"
                       >
-                        <ListFilter className="size-3.5" />
+                        <ListFilter className="h-3.5 w-3.5" />
                         <span className="sr-only sm:not-sr-only">Filter</span>
                       </Button>
                     </DropdownMenuTrigger>
@@ -157,7 +157,7 @@ export default function Specialties() {
                     variant="outline"
                     className="h-7 gap-1 text-sm"
                   >
-                    <File className="size-3.5" />
+                    <File className="h-3.5 w-3.5" />
                     <span className="sr-only sm:not-sr-only">Export</span>
                   </Button>
                 </div>
@@ -374,7 +374,7 @@ export default function Specialties() {
                 </div>
                 <div className="ml-auto flex items-center gap-1">
                   <Button size="sm" variant="outline" className="h-8 gap-1">
-                    <Truck className="size-3.5" />
+                    <Truck className="h-3.5 w-3.5" />
                     <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
                       Track Order
                     </span>
@@ -382,7 +382,7 @@ export default function Specialties() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button size="icon" variant="outline" className="size-8">
-                        <MoreVertical className="size-3.5" />
+                        <MoreVertical className="h-3.5 w-3.5" />
                         <span className="sr-only">More</span>
                       </Button>
                     </DropdownMenuTrigger>
@@ -493,13 +493,13 @@ export default function Specialties() {
                   <PaginationContent>
                     <PaginationItem>
                       <Button size="icon" variant="outline" className="size-6">
-                        <ChevronLeft className="size-3.5" />
+                        <ChevronLeft className="h-3.5 w-3.5" />
                         <span className="sr-only">Previous Order</span>
                       </Button>
                     </PaginationItem>
                     <PaginationItem>
                       <Button size="icon" variant="outline" className="size-6">
-                        <ChevronRight className="size-3.5" />
+                        <ChevronRight className="h-3.5 w-3.5" />
                         <span className="sr-only">Next Order</span>
                       </Button>
                     </PaginationItem>

@@ -143,7 +143,7 @@ export function SiteHeader() {
                       "w-9 px-0"
                     )}
                   >
-                    <Icons.twitter className="size-[1.2rem] fill-current" />
+                    <Icons.twitter className="h-3 w-3" />
                     <span className="sr-only">Twitter</span>
                   </div>
                 </Link>
@@ -152,7 +152,7 @@ export function SiteHeader() {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="w-9 px-0">
+                    <Button variant="ghost" className="w-9 px-0">
                       {/* <Image
                       alt="User"
                       className="aspect-square rounded-full object-cover"
@@ -160,7 +160,7 @@ export function SiteHeader() {
                       src="/Nurzhol Tabigat.jpg"
                       width="23"
                     /> */}
-                      <User className="size-[1.2rem]" />
+                      <User className="h-5 w-5" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
