@@ -143,7 +143,7 @@ export function SiteHeader() {
                       "w-9 px-0"
                     )}
                   >
-                    <Icons.twitter className="size-3 fill-current" />
+                    <Icons.twitter className="size-[1.2rem] fill-current" />
                     <span className="sr-only">Twitter</span>
                   </div>
                 </Link>
