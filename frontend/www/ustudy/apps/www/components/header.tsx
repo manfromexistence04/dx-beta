@@ -32,12 +32,12 @@ export function SelectDemo() {
       </SelectTrigger>
       <SelectContent side="left">
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
+          <SelectLabel>Languages</SelectLabel>
+          <SelectItem value="apple">Bangla</SelectItem>
+          <SelectItem value="banana">English</SelectItem>
+          <SelectItem value="blueberry">Hindi</SelectItem>
+          <SelectItem value="grapes">French</SelectItem>
+          <SelectItem value="pineapple">Spain</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
@@ -145,12 +145,12 @@ const Header: NextPage = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Languages</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
-                    <SelectItem value="banana">Banana</SelectItem>
-                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                    <SelectItem value="grapes">Grapes</SelectItem>
-                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                    {/* <SelectLabel>Languages</SelectLabel> */}
+                    <SelectItem value="apple">Bangla</SelectItem>
+                    <SelectItem value="banana">English</SelectItem>
+                    <SelectItem value="blueberry">Hindi</SelectItem>
+                    <SelectItem value="grapes">French</SelectItem>
+                    <SelectItem value="pineapple">Spain</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
