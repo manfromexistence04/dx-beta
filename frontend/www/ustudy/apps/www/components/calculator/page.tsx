@@ -104,7 +104,7 @@ type CarouselContextProps = {
   canScrollNext: boolean
 } & CarouselProps
 
-const CarouselContext = React.createContext<CarouselContextProps | null>(null)
+const CarouselContext = React.createContext<any | null>(null)
 
 function useCarousel() {
   const context = React.useContext(CarouselContext)
@@ -154,6 +154,11 @@ const Carousel = React.forwardRef<
     const scrollPrev = React.useCallback(() => {
       api?.scrollPrev()
     }, [api])
+
+    const scrollTo = React.useCallback(() => {
+      api?.scrollTo(0, true)
+    }, [api])
+
 
     const scrollNext = React.useCallback(() => {
       api?.scrollNext()
@@ -206,6 +211,7 @@ const Carousel = React.forwardRef<
           scrollNext,
           canScrollPrev,
           canScrollNext,
+          scrollTo,
         }}
       >
         <div
@@ -272,7 +278,8 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev } = useCarousel()
+
 
   return (
     <Button
@@ -282,13 +289,13 @@ const CarouselPrevious = React.forwardRef<
         orientation === "horizontal"
           ? "left-1 bottom-0 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
-        className
+        className,
+        !canScrollPrev ? "hidden" : !canScrollNext ? "hidden" : "inline-flex",
+
       )}
-      disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      {/* <ArrowLeft className="size-4" /> */}
       Back
     </Button>
   )
@@ -299,7 +306,7 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel()
+  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev,scrollTo } = useCarousel()
 
   return (
     <Button
@@ -307,17 +314,20 @@ const CarouselNext = React.forwardRef<
       className={cn(
         "relative",
         orientation === "horizontal"
-          ? "left-5 bottom-0 -translate-y-1/2"
+          ? "bottom-0 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
-        className
+        className,
+        !canScrollPrev ? "left-0" : "left-5"
       )}
-      disabled={!canScrollNext}
-      onClick={scrollNext}
+      onClick={!canScrollNext ? scrollTo : scrollNext}
       {...props}
     >
       {/* <ArrowRight className="size-4" />
       <span className="sr-only">Next slide</span> */}
-      Next
+      {/* {!canScrollNext ? "Click Back To Calculate Again" : "Next"} */}
+      {!canScrollPrev ? "Start" : !canScrollNext ? "Click Back To Calculate Again" : "Next"}
+
+      {/* Next */}
     </Button>
   )
 })
@@ -396,7 +406,26 @@ CarouselNext.displayName = "CarouselNext"
 
 const Calculator: NextPage = () => {
 
-  const [ENTPOINT, setENTPOINT] = React.useState("")
+
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+ 
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+ 
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+ 
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+ 
+  const [ENTPOINT, setENTPOINT] = React.useState(394)
+  const [quota, setQuota] = React.useState("...")
   const [selectedSpecialty, setSelectedSpecialty] = React.useState("")
   const [selectedSpecialtyQuota, setSelectedSpecialtyQuota] = React.useState("")
   const [selectedSubject, setSelectedSubject] = React.useState("")
@@ -409,11 +438,15 @@ const Calculator: NextPage = () => {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 
+  // const { orientation, scrollPrev, canScrollPrev,scrollNext, canScrollNext } = useCarousel()
+
+  const [specialtyDoc, setSpecialtyDoc] = useState<any>([])
+
   const fetchDocument = async (docId: string) => {
     const docRef = doc(db, "specialties", docId);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
-};
+  };
 
   function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3: number, userScore: number): number {
     if (startScore >= userScore) {
@@ -432,16 +465,31 @@ const Calculator: NextPage = () => {
     let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
     return chance;
   }
-  let startScore = 100; // University Theshold
-  let e1 = 95;          // 2021
-  let e2 = 93;          // 2022
-  let e3 = 97;          // 2023
-  let userScore = 394;  // Ent Scrore
-  let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-  console.log(`The chance of admission is ${admissionChance}%`);
-async function calculate(){
-  
-}
+  // let startScore = 100; // University Theshold
+  // let e1 = 95;          // 2021
+  // let e2 = 93;          // 2022
+  // let e3 = 97;          // 2023
+  // let userScore = 394;  // Ent Scrore
+  // let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+  // console.log(`The chance of admission is ${admissionChance}%`);
+
+  function handleENTChange(e: { target: { value: any } }) {
+    setENTPOINT(e.target.value);
+  }
+  function handleQuotaChange(e: any) {
+    setQuota(e);
+  }
+
+  async function calculate() {
+    const specialtyData: any = await fetchDocument(value);
+    let startScore = specialtyData.theshold || 100; // University Theshold
+    let e1 = specialtyData.minScore.map((item: any[]) => item[0]) || 95;          // 2021
+    let e2 = specialtyData.minScore.map((item: any[]) => item[1]) || 93;          // 2022
+    let e3 = specialtyData.minScore.map((item: any[]) => item[2]) || 97;          // 2023
+    let userScore = ENTPOINT || 394;
+
+    return calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+  }
 
 
 
@@ -473,7 +521,21 @@ async function calculate(){
     fetchSpecilaties()
     fetchUniversities()
     fetchSubjects()
+
+
   }, [])
+
+  useEffect(() => {
+    document.title = `Count: ${value}`;
+
+    // const fetchSpecialty = async () => {
+    //   const specialtyData: any = await fetchDocument(value);
+    //   setSpecialtyDoc(specialtyData)
+    // }
+    // fetchSpecialty();
+
+  }, [value]);
+
 
   return (
     <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
@@ -497,7 +559,7 @@ async function calculate(){
       </h1>
       <div className="z-[2] hidden h-12 w-8 rounded" />
       <div className="z-[3] hidden h-12 w-[82px] rounded" />
-      <Carousel className="w-full z-50">
+      <Carousel className="w-full z-50"  setApi={setApi}>
         <CarouselContent>
           {/* ENT */}
           <CarouselItem>
@@ -513,6 +575,7 @@ async function calculate(){
                         className="placeholder:text-muted text-black box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold [border:none] [outline:none]"
                         placeholder="100"
                         type="number"
+                        onChange={handleENTChange}
                       />
                       <img
                         className="relative size-6"
@@ -602,6 +665,30 @@ async function calculate(){
                   </div>
                 </div>
               </div>
+
+              {/* <Button
+                variant="outline"
+                className={cn(
+                  "relative",
+                  "left-1 bottom-0 -translate-y-1/2"
+                )}
+                disabled={!canScrollPrev}
+                onClick={scrollPrev}
+              >
+                Back
+              </Button>
+
+              <Button
+                className={cn(
+                  "relative",
+                  "left-5 bottom-0 -translate-y-1/2"
+                )}
+                disabled={!canScrollNext}
+                onClick={scrollNext}
+              >
+                Next
+              </Button> */}
+
             </div>
           </CarouselItem>
           {/* Subject Combination */}
@@ -612,6 +699,7 @@ async function calculate(){
                 <TagInput
                   placeholder="Enter Your Subjects"
                   tags={subjectsTag}
+                  restrictTagsToAutocompleteOptions
                   enableAutocomplete
                   maxTags={2}
                   autocompleteOptions={subjects.map((items) => ({
@@ -627,6 +715,7 @@ async function calculate(){
                   setTags={(newTags) => {
                     setSubjectsTag(newTags)
                   }}
+
                 />
               </div>
 
@@ -755,7 +844,7 @@ async function calculate(){
                         {specialties.map((framework) => (
                           <CommandItem
                             key={framework.id}
-                            value={framework.id}
+                            value={framework.specialtyName || framework.name}
                             onSelect={(currentValue) => {
                               setValue(currentValue === value ? "" : currentValue)
                               setOpen(false)
@@ -878,17 +967,17 @@ async function calculate(){
                     setSubjectsTag(newTags)
                   }}
                 /> */}
-                <Select>
+                <Select onValueChange={handleQuotaChange}>
                   <SelectTrigger className="w-[300px]">
                     <SelectValue placeholder="Select a Quota" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel className="border-b">Quota's</SelectLabel>
-                      <SelectItem value="possibleScoreRuralQuota">Rural</SelectItem>
-                      <SelectItem value="possibleScoreOrphanQuota">Orphan</SelectItem>
-                      <SelectItem value="possibleScoreDisabilityQuota">Disability</SelectItem>
-                      <SelectItem value="possibleScoreLargeFamilyQuota">LargeFamily</SelectItem>
+                      <SelectItem value="RuralQuota">Rural</SelectItem>
+                      <SelectItem value="OrphanQuota">Orphan</SelectItem>
+                      <SelectItem value="DisabilityQuota">Disability</SelectItem>
+                      <SelectItem value="LargeFamilyQuota">LargeFamily</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -974,13 +1063,31 @@ async function calculate(){
               </div>
             </div>
           </CarouselItem>
+
           <CarouselItem>
-            <div className="p-1">
-              <span>4</span>
+            <div className="p-1 flex lg:flex-row items-start justify-evenly !text-white !text-sm space-x-10 !min-w-full mt-12">
+              <div className="">
+                <span className="text-sm">ENT Scrore</span>
+                <div className="p-3 rounded-md text-center border border-white">{ENTPOINT || "135"}</div>
+              </div>
+              <div className="">
+                <span className="text-sm">Specialty</span>
+                <div className="p-3 rounded-md text-center border border-white">{value || "Design"}</div>
+              </div>
+              <div className="">
+                <span className="text-sm">Subject Combination</span>
+                <div className="p-3 rounded-md text-center border border-white">{subjectsTag.map(
+                  (obj) => `${obj.text} `
+                ) || "Creative Exam"}</div>
+              </div>
+              <div className="">
+                <span className="text-sm">Quota</span>
+                <div className="p-3 rounded-md text-center border border-white">{quota || "..."}</div>
+              </div>
             </div>
           </CarouselItem>
 
-
+          {/* specialtyDoc ? specialtyDoc.name || specialtyDoc.specialtyName */}
 
         </CarouselContent>
 
