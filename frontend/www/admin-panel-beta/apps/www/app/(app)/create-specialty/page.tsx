@@ -809,8 +809,7 @@ export default function CreateSpeciality() {
           <h1 className="w-full text-left text-4xl font-bold">Min Scrore</h1>
           <div className="w-full flex items-start justify-start lg:flex-row flex-col gap-1">
             <span>Please Provide Value In This Format:</span>
-            <Badge variant="outline">year score</Badge>
-            <Badge variant="outline">2021 95</Badge>
+            <Badge variant="outline">95</Badge>
             <Badge variant="outline">Max 3</Badge>
           </div>
 
