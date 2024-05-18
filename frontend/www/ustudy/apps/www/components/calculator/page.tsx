@@ -1,9 +1,9 @@
 "use client"
 
 /* eslint-disable tailwindcss/no-contradicting-classname */
-import { useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 import type { NextPage } from "next"
-
+import { Tag, TagInput } from "emblor"
 import {
   Accordion,
   AccordionContent,
@@ -24,14 +24,69 @@ import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
+import { initializeApp } from "firebase/app"
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  onSnapshot,
+  query,
+  startAfter,
+  updateDoc,
+} from "firebase/firestore"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/default/ui/button"
+import { Badge } from "../ui/badge"
+import { Check, ChevronsUpDown } from "lucide-react"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
+const firebaseConfig = {
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
+// Database
+const db: any = getFirestore(app)
+
+function uuid() {
+  return crypto.getRandomValues(new Uint32Array(1))[0].toString()
+}
+
 
 type CarouselProps = {
   opts?: CarouselOptions
@@ -343,6 +398,15 @@ const Calculator: NextPage = () => {
 
   const [ENTPOINT, setENTPOINT] = React.useState("")
 
+  const [specialties, setSpecialties] = useState<any[]>([])
+  const [universities, setUniversities] = useState<any[]>([])
+  const [subjects, setSubjects] = useState<any[]>([])
+  const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
+  const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
+  const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
+
+  const [open, setOpen] = React.useState(false)
+  const [value, setValue] = React.useState("")
 
   function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3: number, userScore: number): number {
     if (startScore >= userScore) {
@@ -369,6 +433,39 @@ const Calculator: NextPage = () => {
   let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
   console.log(`The chance of admission is ${admissionChance}%`);
 
+
+
+
+  useEffect(() => {
+    const fetchSpecilaties = async () => {
+      const querySnapshot = await getDocs(collection(db, "specialties"))
+      const newDocs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setSpecialties(newDocs)
+    }
+    const fetchUniversities = async () => {
+      const querySnapshot = await getDocs(collection(db, "universities"))
+      const newDocs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setUniversities(newDocs)
+    }
+    const fetchSubjects = async () => {
+      const querySnapshot = await getDocs(collection(db, "subjects"))
+      const newDocs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setSubjects(newDocs)
+    }
+    fetchSpecilaties()
+    fetchUniversities()
+    fetchSubjects()
+  }, [])
+
   return (
     <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
 
@@ -393,6 +490,7 @@ const Calculator: NextPage = () => {
       <div className="z-[3] hidden h-12 w-[82px] rounded" />
       <Carousel className="w-full z-50">
         <CarouselContent>
+          {/* ENT */}
           <CarouselItem>
             <div className="flex w-[870px] max-w-full flex-row items-start justify-start gap-[69px] font-dm-sans text-base mq1050:flex-wrap mq1050:gap-[34px] mq450:gap-[17px]">
               <div className="box-border flex min-w-[239px] max-w-full flex-[0.7745] flex-col items-start justify-start gap-[18.7px] py-0 pl-0 pr-[83px] mq1050:flex-1 mq450:box-border mq450:pr-5">
@@ -403,7 +501,7 @@ const Calculator: NextPage = () => {
                   <div className="z-[3] flex flex-row items-start justify-start self-stretch border-DEFAULT border-solid rounded-md border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
                     <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
                       <input
-                        className="placeholder:text-black text-black box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold [border:none] [outline:none]"
+                        className="placeholder:text-muted text-black box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold [border:none] [outline:none]"
                         placeholder="100"
                         type="number"
                       />
@@ -497,19 +595,376 @@ const Calculator: NextPage = () => {
               </div>
             </div>
           </CarouselItem>
-
+          {/* Subject Combination */}
           <CarouselItem>
-            <div className="p-1">
-              <span>2</span>
+            <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
+              <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
+                <h1 className="w-full text-left text-xl font-bold">Subjects Combination(Max:2)</h1>
+                <TagInput
+                  placeholder="Enter Your Subjects"
+                  tags={subjectsTag}
+                  enableAutocomplete
+                  maxTags={2}
+                  autocompleteOptions={subjects.map((items) => ({
+                    id: items.id,
+                    text:
+                      items.subjects.map(
+                        (item: any) =>
+                          item || `No Subjects Are Provided at id:${uuid()}`
+                      ) || `No Subject Provided at id:${items.id}`,
+                  }))}
+                  draggable
+                  className="sm:min-w-[450px] !bg-transparent !max-h-10"
+                  setTags={(newTags) => {
+                    setSubjectsTag(newTags)
+                  }}
+                />
+              </div>
+
+              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
+                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+              </div>
+              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
+                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
+                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[48px] leading-[130%]">
+                        B057:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            70%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B058:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[37px] leading-[16px]">
+                            65%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B059:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            62%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B017:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            73%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </CarouselItem>
-
+          {/* Specialtiy */}
           <CarouselItem>
-            <div className="p-1">
-              <span>3</span>
+            <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
+              <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
+                <h1 className="w-full text-left text-xl font-bold">Specialtiy</h1>
+                {/* <TagInput
+                  placeholder="Enter Your Subjects"
+                  tags={subjectsTag}
+                  enableAutocomplete
+                  maxTags={2}
+                  autocompleteOptions={specialties.map((items) => ({
+                    id: items.id,
+                    text: items.specialtyName || items.name || `No Subject Provided at id:${items.id}`,
+                  }))}
+                  draggable
+                  className="sm:min-w-[450px] !bg-transparent !max-h-10"
+                  setTags={(newTags) => {
+                    setSubjectsTag(newTags)
+                  }}
+                /> */}
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="w-[350px]  justify-between"
+                    >
+                      {/* {value
+                        ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
+                        : "Select Specialty..."} */}
+                      {value
+                        ? specialties.find((specialty) => specialty.id === value)?.name || specialties.find((specialty) => specialty.id === value)?.specialtyName || value
+                        : "Select specialty..."}
+                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[350px] max-h-[300px] overflow-x-hidden overflow-y-auto p-0">
+                    <Command>
+                      <CommandInput placeholder="Search Specialties..." />
+                      <CommandEmpty>No Specialty found.</CommandEmpty>
+                      <CommandGroup>
+                        {specialties.map((framework) => (
+                          <CommandItem
+                            key={framework.id}
+                            value={framework.id}
+                            onSelect={(currentValue) => {
+                              setValue(currentValue === value ? "" : currentValue)
+                              setOpen(false)
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                value === framework.id ? "opacity-100" : "opacity-0"
+                              )}
+                            />
+                            {framework.name || framework.specialtyName || framework.id}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+
+
+              </div>
+
+              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
+                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+              </div>
+              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
+                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
+                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[48px] leading-[130%]">
+                        B057:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            70%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B058:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[37px] leading-[16px]">
+                            65%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B059:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            62%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B017:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            73%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </CarouselItem>
+          {/* Quota */}
+          <CarouselItem>
+            <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
+              <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
+                <h1 className="w-full text-left text-xl font-bold">Quota</h1>
+                {/* <TagInput
+                  placeholder="Enter Your Subjects"
+                  tags={subjectsTag}
+                  enableAutocomplete
+                  maxTags={2}
+                  autocompleteOptions={specialties.map((items) => ({
+                    id: items.id,
+                    text: items.specialtyName || items.name || `No Subject Provided at id:${items.id}`,
+                  }))}
+                  draggable
+                  className="sm:min-w-[450px] !bg-transparent !max-h-10"
+                  setTags={(newTags) => {
+                    setSubjectsTag(newTags)
+                  }}
+                /> */}
+                <Select>
+                  <SelectTrigger className="w-[300px]">
+                    <SelectValue placeholder="Select a Quota" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel className="border-b">Quota's</SelectLabel>
+                      <SelectItem value="possibleScoreRuralQuota">Rural</SelectItem>
+                      <SelectItem value="possibleScoreOrphanQuota">Orphan</SelectItem>
+                      <SelectItem value="possibleScoreDisabilityQuota">Disability</SelectItem>
+                      <SelectItem value="possibleScoreLargeFamilyQuota">LargeFamily</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
 
+              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
+                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+              </div>
+              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
+                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
+                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[48px] leading-[130%]">
+                        B057:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            70%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B058:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[37px] leading-[16px]">
+                            65%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B059:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            62%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
+                      <div className="relative inline-block min-w-[49px] leading-[130%]">
+                        B017:
+                      </div>
+                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
+                        <div className="flex flex-row items-center justify-start">
+                          <div className="relative inline-block min-w-[36px] leading-[16px]">
+                            73%
+                          </div>
+                        </div>
+                        <img
+                          className="relative size-5"
+                          alt=""
+                          src="/coin-transparent.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CarouselItem>
           <CarouselItem>
             <div className="p-1">
               <span>4</span>

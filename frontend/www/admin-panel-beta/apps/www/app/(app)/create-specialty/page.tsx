@@ -138,12 +138,13 @@ export default function CreateSpeciality() {
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+
   const [universities, setUniversities] = useState<any[]>([])
   const [subjects, setSubjects] = useState<any[]>([])
-
   const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
   const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
   const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
+
   const { toast } = useToast()
   const router = useRouter()
   const buttonRef = useRef<HTMLButtonElement | null>(null)
@@ -804,6 +805,7 @@ export default function CreateSpeciality() {
             }}
           />
         </div>
+
 
         <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
           <h1 className="w-full text-left text-4xl font-bold">Min Scrore</h1>

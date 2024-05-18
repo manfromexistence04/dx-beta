@@ -23,9 +23,7 @@ async function getTasks() {
   const data = await fs.readFile(
     path.join(process.cwd(), "app/(app)/calculator/data/tasks.json")
   )
-
   const tasks = JSON.parse(data.toString())
-
   return z.array(taskSchema).parse(tasks)
 }
 
