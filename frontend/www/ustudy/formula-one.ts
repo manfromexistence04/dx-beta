@@ -3,6 +3,8 @@ function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3
       return 0;
   } else {
       let possibleScore = calculatePossibleScore(e1, e2, e3);
+      console.log(possibleScore);
+      
       let admissionChance = calculateChance(userScore, possibleScore);
       return Math.min(Math.floor(admissionChance), 100);
   }

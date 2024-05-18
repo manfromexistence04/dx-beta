@@ -39,13 +39,6 @@ const fetchDocument = async (docId: string) => {
     const docRef = doc(db, "universities", docId);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
-    // if (docSnap.exists()) {
-    //     return docSnap.data();
-    // } else {
-    //     // Handle document not found
-    //     console.error('Document not found');
-    //     return null;
-    // }
 };
 
 

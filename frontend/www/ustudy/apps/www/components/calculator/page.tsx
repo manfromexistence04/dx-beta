@@ -397,16 +397,23 @@ CarouselNext.displayName = "CarouselNext"
 const Calculator: NextPage = () => {
 
   const [ENTPOINT, setENTPOINT] = React.useState("")
-
+  const [selectedSpecialty, setSelectedSpecialty] = React.useState("")
+  const [selectedSpecialtyQuota, setSelectedSpecialtyQuota] = React.useState("")
+  const [selectedSubject, setSelectedSubject] = React.useState("")
   const [specialties, setSpecialties] = useState<any[]>([])
   const [universities, setUniversities] = useState<any[]>([])
   const [subjects, setSubjects] = useState<any[]>([])
   const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
   const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
   const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
-
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
+
+  const fetchDocument = async (docId: string) => {
+    const docRef = doc(db, "specialties", docId);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+};
 
   function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3: number, userScore: number): number {
     if (startScore >= userScore) {
@@ -432,7 +439,9 @@ const Calculator: NextPage = () => {
   let userScore = 394;  // Ent Scrore
   let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
   console.log(`The chance of admission is ${admissionChance}%`);
-
+async function calculate(){
+  
+}
 
 
 
