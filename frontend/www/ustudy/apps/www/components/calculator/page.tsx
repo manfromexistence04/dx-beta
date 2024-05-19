@@ -306,7 +306,7 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev,scrollTo } = useCarousel()
+  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev, scrollTo } = useCarousel()
 
   return (
     <Button
@@ -410,20 +410,20 @@ const Calculator: NextPage = () => {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
- 
+
   React.useEffect(() => {
     if (!api) {
       return
     }
- 
+
     setCount(api.scrollSnapList().length)
     setCurrent(api.selectedScrollSnap() + 1)
- 
+
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
- 
+
   const [ENTPOINT, setENTPOINT] = React.useState(394)
   const [quota, setQuota] = React.useState("...")
   const [selectedSpecialty, setSelectedSpecialty] = React.useState("")
@@ -537,6 +537,55 @@ const Calculator: NextPage = () => {
   }, [value]);
 
 
+
+
+
+  const [specialtyCount, setSpecialtyCount] = useState(0);
+  const [universityCount, setUniversityCount] = useState(0);
+  const [specialtiesUnderThreshold, setSpecialtiesUnderThreshold] = useState<string[]>([]);
+  const [universitiesUnderThreshold, setUniversitiesUnderThreshold] = useState<string[]>([]);
+  let lastUniversityCode = '';
+
+  useEffect(() => {
+    let tempSpecialtyCount = 0;
+    let tempUniversityCount = 0;
+
+    const tempSpecialtiesUnderThreshold = specialties.filter(specialty => specialty.threshold < 100).map(specialty => specialty.name || specialty.specailtyName);
+    const tempUniversitiesUnderThreshold = universities.filter(university => university.threshold && university.threshold < 100).map(university => university.universityName);
+
+    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold);
+    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold);
+
+
+    universities.forEach((university) => {
+      if (university.threshold && university.threshold < ENTPOINT) {
+        tempUniversityCount++;
+      } else {
+        // const specialty = specialties.find((s) => s.id === university.id);
+        // if (specialty && specialty.threshold < 100) {
+        //   tempSpecialtyCount++;
+        // }
+        specialties.forEach((university) => {
+          if (university.threshold && university.threshold < ENTPOINT) {
+            tempUniversityCount++;
+          } else { return 0 }
+        })
+
+
+      }
+
+      lastUniversityCode = university.universityCode;
+    });
+
+    setSpecialtyCount(tempSpecialtyCount);
+    setUniversityCount(tempUniversityCount);
+  }, []);
+
+
+
+
+
+
   return (
     <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
 
@@ -557,9 +606,36 @@ const Calculator: NextPage = () => {
       <h1 className="font-inherit relative z-[ 3] m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
         uSTUDY Calculator
       </h1>
+
+
+
+      <p>{`Names of specialties with threshold less than 100: ${specialtiesUnderThreshold.join(', ')}`}</p>
+      <p>{`Names of universities with threshold less than 100: ${universitiesUnderThreshold.join(', ')}`}</p>
+      <p>{`Number of specialties with threshold less than 100: ${specialtyCount}`}</p>
+      <p>{`Number of universities with threshold less than 100: ${universityCount}`}</p>
+      <p>{`Last university code: ${lastUniversityCode}`}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div className="z-[2] hidden h-12 w-8 rounded" />
       <div className="z-[3] hidden h-12 w-[82px] rounded" />
-      <Carousel className="w-full z-50"  setApi={setApi}>
+      <Carousel className="w-full z-50" setApi={setApi}>
         <CarouselContent>
           {/* ENT */}
           <CarouselItem>
