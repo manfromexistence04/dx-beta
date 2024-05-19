@@ -5,7 +5,7 @@ import { useUploadThing } from "@/lib/uploadthing"
 import { type OurFileRouter } from "@/app/api/uploadthing/core"
 
 interface UseUploadThingyProps
-  extends UseUploadthingProps<OurFileRouter, keyof OurFileRouter> {}
+  extends UseUploadthingProps<any, keyof OurFileRouter> {}
 
 export function useUploadThingy(
   endpoint: keyof OurFileRouter,

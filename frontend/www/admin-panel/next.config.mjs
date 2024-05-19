@@ -99,25 +99,25 @@
  * for Docker builds.
  */
 
-/** @type {import("next").NextConfig} */
-const config = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "utfs.io",
-      },
-      {
-        protocol: 'https',
-        hostname: 'img.clerk.com',
-        port: '',
-      },
-    ],
-    unoptimized: true,
-  },
-}
+// /** @type {import("next").NextConfig} */
+// const config = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: "https",
+//         hostname: "utfs.io",
+//       },
+//       {
+//         protocol: 'https',
+//         hostname: 'img.clerk.com',
+//         port: '',
+//       },
+//     ],
+//     unoptimized: true,
+//   },
+// }
 
-module.exports = config
+// module.exports = config
 
 // import { createContentlayerPlugin } from "next-contentlayer"
 
@@ -192,3 +192,34 @@ module.exports = config
 // })
 
 // export default withContentlayer(nextConfig)
+
+
+
+
+
+
+
+
+
+
+
+
+/** @type {import("next").NextConfig} */
+const config = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.clerk.com',
+        port: '',
+      },
+    ],
+    unoptimized: true,
+  },
+}
+
+export default config;

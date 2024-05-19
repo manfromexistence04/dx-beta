@@ -40,9 +40,7 @@ import {
   X,
 } from "lucide-react"
 
-import { commentsUsers, myUserId } from "@/lib/plate/comments"
-import { MENTIONABLES } from "@/lib/plate/mentionables"
-import { plugins } from "@/lib/plate/plate-plugins"
+
 import { useDropdownStore } from "@/lib/store/dropdown"
 import { useUniversityImages } from "@/lib/store/university-images"
 import { useUploadFile as useUploadImages } from "@/hooks/use-upload-file"
@@ -89,14 +87,14 @@ import { Code } from "@/components/code"
 import { EmptyCard } from "@/components/empty-card"
 import { FileUploader } from "@/components/file-uploader"
 import { getPhoneData, PhoneInput } from "@/components/phone-input"
-import { CommentsPopover } from "@/components/plate-ui/comments-popover"
-import { CursorOverlay } from "@/components/plate-ui/cursor-overlay"
-import { Editor } from "@/components/plate-ui/editor"
-import { FixedToolbar } from "@/components/plate-ui/fixed-toolbar"
-import { FixedToolbarButtons } from "@/components/plate-ui/fixed-toolbar-buttons"
-import { FloatingToolbar } from "@/components/plate-ui/floating-toolbar"
-import { FloatingToolbarButtons } from "@/components/plate-ui/floating-toolbar-buttons"
-import { MentionCombobox } from "@/components/plate-ui/mention-combobox"
+// import { CommentsPopover } from "@/components/plate-ui/comments-popover"
+// import { CursorOverlay } from "@/components/plate-ui/cursor-overlay"
+// import { Editor } from "@/components/plate-ui/editor"
+// import { FixedToolbar } from "@/components/plate-ui/fixed-toolbar"
+// import { FixedToolbarButtons } from "@/components/plate-ui/fixed-toolbar-buttons"
+// import { FloatingToolbar } from "@/components/plate-ui/floating-toolbar"
+// import { FloatingToolbarButtons } from "@/components/plate-ui/floating-toolbar-buttons"
+// import { MentionCombobox } from "@/components/plate-ui/mention-combobox"
 import {
   Form,
   FormControl,

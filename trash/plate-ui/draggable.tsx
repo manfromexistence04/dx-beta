@@ -8,7 +8,7 @@ import {
   useDraggable,
   useDraggableState,
 } from '@udecode/plate-dnd';
-import { DropTargetMonitor } from 'react-dnd';
+// import { DropTargetMonitor } from 'react-dnd';
 
 import { Icons } from '@/components/icons';
 

@@ -1,16 +1,16 @@
 import * as React from "react"
-import type { UploadedFile } from "@/types"
+import type { UploadedFile } from "@/types/index.ts"
 import { toast } from "sonner"
 import type { UploadFilesOptions } from "uploadthing/types"
 
-import { getErrorMessage } from "@/lib/handle-error"
-import { uploadFiles as uploadImages } from "@/lib/uploadthing"
+import { getErrorMessage } from "@/lib/handle-error.ts"
+import { uploadFiles as uploadImages } from "@/lib/uploadthing.ts"
 
-import { type OurFileRouter } from "@/app/api/uploadthing/core"
+import { type OurFileRouter } from "@/app/api/uploadthing/core.ts"
 
 interface UseUploadFileProps
   extends Pick<
-    UploadFilesOptions<OurFileRouter, keyof OurFileRouter>,
+    UploadFilesOptions<any, keyof OurFileRouter>,
     "headers" | "onUploadBegin" | "onUploadProgress" | "skipPolling"
   > {
   defaultUploadedFiles?: UploadedFile[]

@@ -35,26 +35,24 @@ import { cn } from '@udecode/cn';
 import { CommentsProvider } from '@udecode/plate-comments';
 import { Plate } from '@udecode/plate-common';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { commentsUsers, myUserId } from '@/lib/plate/comments';
-import { MENTIONABLES } from '@/lib/plate/mentionables';
-import { plugins } from '@/lib/plate/plate-plugins';
-import { CommentsPopover } from '@/components/plate-ui/comments-popover';
-import { CursorOverlay } from '@/components/plate-ui/cursor-overlay';
-import { Editor } from '@/components/plate-ui/editor';
-import { FixedToolbar } from '@/components/plate-ui/fixed-toolbar';
-import { FixedToolbarButtons } from '@/components/plate-ui/fixed-toolbar-buttons';
-import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
-import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
-import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
+// import { DndProvider } from 'react-dnd';
+// import { HTML5Backend } from 'react-dnd-html5-backend';
+
+// import { CommentsPopover } from '@/components/plate-ui/comments-popover';
+// import { CursorOverlay } from '@/components/plate-ui/cursor-overlay';
+// import { Editor } from '@/components/plate-ui/editor';
+// import { FixedToolbar } from '@/components/plate-ui/fixed-toolbar';
+// import { FixedToolbarButtons } from '@/components/plate-ui/fixed-toolbar-buttons';
+// import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
+// import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
+// import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
 import { ArrowRightIcon, ArrowLeftIcon, ChevronsUpDown, Plus, X, Projector, CloudUpload, Loader2 } from "lucide-react"
 import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
 import { useDropdownStore } from "@/lib/store/dropdown";
-import { useUploadFile as useUploadImages } from "@/hooks/use-upload-file"
-import { useUploadFile as useUploadLogo } from "@/hooks/use-upload-logo"
+// import { useUploadFile as useUploadImages } from "@/hooks/use-upload-file.mts"
+// import { useUploadFile as useUploadLogo } from "@/hooks/use-upload-logo.mts"
 import {
     Form,
     FormControl,
@@ -118,14 +116,14 @@ export default function CreateUniversity() {
 
     const [resultsTag, setResultslTag] = React.useState<Tag[]>([]);
     const [answersTag, setAnswersTag] = React.useState<Tag[]>([]);
-    const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
-        "imageUploader",
-        { defaultUploadedFiles: [] }
-    )
-    const { uploadLogo, logoUploadprogresses, isLogoUploading, uploadedLogo } = useUploadLogo(
-        "imageUploader",
-        { defaultUploadedFiles: [] }
-    )
+    // const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
+    //     "imageUploader",
+    //     { defaultUploadedFiles: [] }
+    // )
+    // const { uploadLogo, logoUploadprogresses, isLogoUploading, uploadedLogo } = useUploadLogo(
+    //     "imageUploader",
+    //     { defaultUploadedFiles: [] }
+    // )
     const { toast } = useToast();
     const router = useRouter()
     const { countryValue, stateValue, openStateDropdown, setOpenStateDropdown, setStateValue } = useDropdownStore();
@@ -275,20 +273,20 @@ export default function CreateUniversity() {
     // const create = (event: any) => {
     //     // setInputedImages(event.target.value);
     // }
-    const syncImagesAndLogo = () => {
-        // uploadedImages.map((file: any) => {
-        //     setInputedImages(file.url);
-        //     return null;
-        // })
-        const newArray2: any = uploadedImages.map((file) => file.url);
-        setInputedImages(newArray2);
+    // const syncImagesAndLogo = () => {
+    //     // uploadedImages.map((file: any) => {
+    //     //     setInputedImages(file.url);
+    //     //     return null;
+    //     // })
+    //     const newArr: { url: any; }ay2: any = uploadedImages.map((file) => file.url);
+    //     setInputedImages(newArray2);
 
-        uploadedLogo.map((file: any) => {
-            setInputedLogo(file.url);
-            return null;
-        })
-        setCreateButtonDisabled(!createButtonDisabled);
-    }
+    //     uploadedLogo.map((file: any) => {
+    //         setInputedLogo(file.url);
+    //         return null;
+    //     })
+    //     setCreateButtonDisabled(!createButtonDisabled);
+    // }
     const handleInputedValues = () => {
         setInputedValues(!inputedValues);
     }

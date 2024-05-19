@@ -10,7 +10,7 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
 import { useTheme } from "next-themes"
 import { Toaster } from "@/components/ui/toaster"
-import { TooltipProvider } from "@/components/plate-ui/tooltip"
+// import { TooltipProvider } from "@/components/plate-ui/tooltip"
 import { SiteFooter } from "@/components/footer"
 import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -65,19 +65,20 @@ export default function RootLayout({
         >
           <body className={inter.className}>
             <Nextui>
-              <TooltipProvider
+              {/* <TooltipProvider
                 disableHoverableContent
                 delayDuration={500}
                 skipDelayDuration={0}
               >
-                <SiteHeader />
+
+              </TooltipProvider> */}
+                              <SiteHeader />
                 <div className="min-h-[90vh]">{children}</div>
                 <SiteFooter />
                 <Toaster />
                 <NewYorkToaster />
                 <DefaultToaster />
                 <NewYorkSonner />
-              </TooltipProvider>
             </Nextui>
           </body>
         </ClerkProvider>
