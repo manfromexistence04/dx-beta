@@ -15,7 +15,7 @@ import Link from "next/link"
 //                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
 //                     Learn Anytime, Anywhere with uStudy
 //                   </h1>
-//                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+//                   <p className="max-w-[600px] text-gray-500 md:text-xl ">
 //                     uStudy is an online learning platform that offers interactive lessons, progress tracking, and a
 //                     vibrant community to help you achieve your educational goals.
 //                   </p>
@@ -45,7 +45,7 @@ import Link from "next/link"
 //             </div>
 //           </div>
 //         </section>
-//         <section className="bg-background w-full py-12 md:py-24 lg:py-32 dark:bg-gray-800">
+//         <section className="bg-background w-full py-12 md:py-24 lg:py-32 ">
 //           <div className="container px-4 md:px-6">
 //             <div className="flex flex-col items-center justify-center space-y-4 text-center">
 //               <div className="space-y-2">
@@ -53,7 +53,7 @@ import Link from "next/link"
 //                   Key Features
 //                 </div>
 //                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Unlock Your Potential with uStudy</h2>
-//                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+//                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
 //                   uStudy offers a comprehensive suite of features to help you succeed in your learning journey.
 //                 </p>
 //               </div>
@@ -64,7 +64,7 @@ import Link from "next/link"
 //                   <li>
 //                     <div className="grid gap-1">
 //                       <h3 className="text-xl font-bold">Interactive Lessons</h3>
-//                       <p className="text-gray-500 dark:text-gray-400">
+//                       <p className="text-gray-500 ">
 //                         Engage with multimedia-rich lessons that bring the material to life.
 //                       </p>
 //                     </div>
@@ -72,7 +72,7 @@ import Link from "next/link"
 //                   <li>
 //                     <div className="grid gap-1">
 //                       <h3 className="text-xl font-bold">Progress Tracking</h3>
-//                       <p className="text-gray-500 dark:text-gray-400">
+//                       <p className="text-gray-500 ">
 //                         Monitor your progress and identify areas for improvement.
 //                       </p>
 //                     </div>
@@ -80,7 +80,7 @@ import Link from "next/link"
 //                   <li>
 //                     <div className="grid gap-1">
 //                       <h3 className="text-xl font-bold">Community Forums</h3>
-//                       <p className="text-gray-500 dark:text-gray-400">
+//                       <p className="text-gray-500 ">
 //                         Connect with fellow learners and instructors to share insights and get support.
 //                       </p>
 //                     </div>
@@ -105,7 +105,7 @@ import Link from "next/link"
 //                   Testimonials
 //                 </div>
 //                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">What Our Students Say</h2>
-//                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+//                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
 //                   Hear from real students who have transformed their lives with uStudy.
 //                 </p>
 //               </div>
@@ -118,7 +118,7 @@ import Link from "next/link"
 //                 </blockquote>
 //                 <div>
 //                   <div className="font-semibold">Emily Wilkins</div>
-//                   <div className="text-sm text-gray-500 dark:text-gray-400">Student, uStudy</div>
+//                   <div className="text-sm text-gray-500 ">Student, uStudy</div>
 //                 </div>
 //               </div>
 //               <div className="flex flex-col justify-center space-y-4">
@@ -128,19 +128,19 @@ import Link from "next/link"
 //                 </blockquote>
 //                 <div>
 //                   <div className="font-semibold">Michael Chen</div>
-//                   <div className="text-sm text-gray-500 dark:text-gray-400">Student, uStudy</div>
+//                   <div className="text-sm text-gray-500 ">Student, uStudy</div>
 //                 </div>
 //               </div>
 //             </div>
 //           </div>
 //         </section>
-//         <section className="bg-background w-full py-12 md:py-24 lg:py-32 dark:bg-gray-800">
+//         <section className="bg-background w-full py-12 md:py-24 lg:py-32 ">
 //           <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
 //             <div className="space-y-2">
 //               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
 //                 Take the First Step Towards Your Learning Goals
 //               </h2>
-//               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+//               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
 //                 Join the uStudy community and unlock your full potential.
 //               </p>
 //             </div>
@@ -194,19 +194,19 @@ export default function Component() {
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg border bg-background px-3 py-1 text-sm dark:bg-gray-800">
+            <div className="space-y-4 bg-background">
+              <div className="inline-block rounded-lg border bg-background px-3 py-1 text-sm">
                 About Us
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Siner Teknik: Trusted Experts in Industrial Equipment
               </h2>
-              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[600px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 For over 50 years, Siner Teknik has been a leading provider of
                 industrial equipment, delivering innovative solutions and
                 unparalleled service to our clients worldwide.
               </p>
-              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[600px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Our journey began in 1970 with a vision to revolutionize the
                 industrial landscape. Since then, we have grown into a global
                 powerhouse, leveraging cutting-edge technology and a team of
@@ -224,17 +224,17 @@ export default function Component() {
           </div>
         </div>
       </section>
-      <section className="w-full bg-background py-12 dark:bg-gray-800 md:py-24 lg:py-32">
+      <section className="w-full border-y bg-background  py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm dark:bg-gray-800">
+              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm ">
                 Our Products
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Innovative Solutions for Every Industry
               </h2>
-              <p className="max-w-[900px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[900px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 At Siner Teknik, we offer a comprehensive range of industrial
                 equipment designed to meet the highest standards of quality,
                 efficiency, and reliability.
@@ -242,28 +242,28 @@ export default function Component() {
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-            <div className="flex flex-col justify-center space-y-4">
-              <GaugeIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
+            <div className="flex h-[300px] w-auto flex-col justify-center space-y-4 border px-5">
+              <GaugeIcon className="mx-auto size-12 text-gray-500" />
               <h3 className="text-xl font-bold">Machinery</h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 ">
                 Our state-of-the-art machinery is engineered to deliver
                 exceptional performance and durability, ensuring maximum
                 productivity and efficiency in your operations.
               </p>
             </div>
-            <div className="flex flex-col justify-center space-y-4">
-              <PenToolIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
+            <div className="flex h-[300px] w-auto flex-col justify-center space-y-4 border px-5">
+              <PenToolIcon className="mx-auto size-12 text-gray-500" />
               <h3 className="text-xl font-bold">Tools</h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 ">
                 Our comprehensive range of tools is designed to meet the highest
                 standards of precision and reliability, ensuring optimal results
                 in every application.
               </p>
             </div>
-            <div className="flex flex-col justify-center space-y-4">
-              <WrenchIcon className="mx-auto size-12 text-gray-500 dark:text-gray-400" />
+            <div className="flex h-[300px] w-auto flex-col justify-center space-y-4 border px-5">
+              <WrenchIcon className="mx-auto size-12 text-gray-500 " />
               <h3 className="text-xl font-bold">Spare Parts</h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 ">
                 Our extensive inventory of genuine spare parts ensures that your
                 equipment remains in top condition, minimizing downtime and
                 maximizing productivity.
@@ -283,19 +283,19 @@ export default function Component() {
               width="550"
             />
             <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm dark:bg-gray-800">
+              <div className="inline-block rounded-lg border bg-background px-3 py-1 text-sm">
                 Customer Satisfaction
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Committed to Excellence
               </h2>
-              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[600px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 At Siner Teknik, we are committed to delivering exceptional
                 customer service and support. Our team of experts is dedicated
                 to understanding your unique requirements and providing tailored
                 solutions that exceed your expectations.
               </p>
-              <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[600px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 We take pride in our ability to foster long-lasting partnerships
                 with our clients, built on trust, transparency, and a shared
                 commitment to excellence.

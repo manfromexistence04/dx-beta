@@ -1,17 +1,8 @@
-
-
 /* eslint-disable tailwindcss/no-contradicting-classname */
 // import { promises as fs } from "fs"
 import path from "path"
 import { Metadata, type NextPage } from "next"
 import Image from "next/image"
-import { z } from "zod"
-import GroupComponent from "@/components/specialty-page/group-component"
-import TableCell from "@/components/specialty-page/table-cell"
-import { columns } from "./components/columns"
-import { DataTable } from "./components/data-table"
-import { UserNav } from "./components/user-nav"
-import { taskSchema } from "./data/schema"
 import { initializeApp } from "firebase/app"
 import {
   addDoc,
@@ -27,7 +18,15 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore"
+import { z } from "zod"
 
+import GroupComponent from "@/components/specialty-page/group-component"
+import TableCell from "@/components/specialty-page/table-cell"
+
+import { columns } from "./components/columns"
+import { DataTable } from "./components/data-table"
+import { UserNav } from "./components/user-nav"
+import { taskSchema } from "./data/schema"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
@@ -39,7 +38,6 @@ const firebaseConfig = {
 }
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
-
 
 // export const metadata: Metadata = {
 //   title: "Tasks",
@@ -63,9 +61,9 @@ async function getTasks() {
     ...doc.data(),
   }))
 
-  const tasks = newDocs;
+  const tasks = newDocs
 
-  return tasks;
+  return tasks
 }
 
 async function TaskPage() {
@@ -92,7 +90,9 @@ async function TaskPage() {
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
-            <h2 className="text-blueviolet-100 text-[2.5rem] font-bold tracking-tight">Specialty</h2>
+            <h2 className="text-[2.5rem] font-bold tracking-tight text-blueviolet-100">
+              Specialty
+            </h2>
             {/* <p className="text-muted-foreground">
               Here&apos;s a list of super usefull specialties you can from Ustudy!
             </p> */}
@@ -109,7 +109,6 @@ async function TaskPage() {
 const SpecialtyPage: NextPage = () => {
   return (
     <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-[13px] pt-0 leading-[normal] tracking-[normal]">
-
       {/* <GroupComponent /> */}
 
       <div className="mx-auto w-auto lg:w-[1150px]">
@@ -121,15 +120,8 @@ const SpecialtyPage: NextPage = () => {
 
 export default SpecialtyPage
 
-
-
-
-
-
-
-
-
-      {/* <main className="flex max-w-full flex-col items-start justify-start self-stretch">
+{
+  /* <main className="flex max-w-full flex-col items-start justify-start self-stretch">
         <form className="m-0 flex max-w-full flex-col items-end justify-start self-stretch">
           <GroupComponent />
           <div className="!mx-auto !mb-32 mt-[-17px] box-border flex w-[1413px] max-w-full flex-row items-start justify-center border !p-10 px-5">
@@ -406,4 +398,5 @@ export default SpecialtyPage
             </div>
           </div>
         </form>
-      </main> */}
+      </main> */
+}

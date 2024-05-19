@@ -13,7 +13,7 @@ const FrameComponent: NextPage = () => {
                 alt=""
                 src="/circle.png"
               />
-              <div className="absolute bottom-[-457px] left-[7px] z-[1] !m-0 h-[483px] w-[3px] rounded-sm bg-gray-100" />
+              <div className="absolute bottom-[-457px] left-[-20px] z-[1] !m-0 h-[483px] w-[30px] rounded-sm bg-black" />
             </div>
             <img
               className="relative size-5"

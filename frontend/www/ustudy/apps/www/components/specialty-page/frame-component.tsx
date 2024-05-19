@@ -12,7 +12,7 @@ const FrameComponent: NextPage = () => {
               College Search
             </h1>
           </div>
-          <div className="border-dimgray rounded-21xl z-[2] box-border flex max-w-full flex-row items-start justify-start gap-[13px] self-stretch rounded-[5px] border-DEFAULT border-solid bg-black px-[13px] pb-1.5 pt-[5px]">
+          {/* <div className="border-dimgray rounded-21xl z-[2] box-border flex max-w-full flex-row items-start justify-start gap-[13px] self-stretch rounded-[5px] border-DEFAULT border-solid bg-black px-[13px] pb-1.5 pt-[5px]">
             <div className="border-dimgray rounded-21xl relative box-border hidden h-10 w-[500px] max-w-full border-DEFAULT border-solid bg-black" />
             <img
               className="relative z-[3] size-[25px] shrink-0 overflow-hidden"
@@ -24,7 +24,10 @@ const FrameComponent: NextPage = () => {
               placeholder="Search"
               type="text"
             />
-          </div>
+          </div> */}
+          <span className="w-full text-center text-sm text-primary">
+            Explore all collages we provide!
+          </span>
         </div>
         <img
           className="absolute left-0 top-0 z-[1] lg:min-h-[300px] lg:min-w-[500px]"

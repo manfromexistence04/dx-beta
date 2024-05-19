@@ -1,6 +1,9 @@
 import "@/styles/globals.css"
 import { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google"
+import Script from "next/script"
+import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -107,21 +110,33 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <Nextui>
-              <div vaul-drawer-wrapper="">
-                <div className="relative flex min-h-screen flex-col bg-background">
-                  {children}
+            <ClerkProvider
+              appearance={{
+                baseTheme: dark,
+                variables: {
+                  colorPrimary: "hsl(263.4, 70%, 50.4%)", // change this value (you can get it from you're css variables, make sure to include 'hsl' and commas)
+                },
+              }}
+            >
+              <Nextui>
+                <div vaul-drawer-wrapper="">
+                  <div className="relative flex min-h-screen flex-col bg-background">
+                    {children}
+                  </div>
                 </div>
-              </div>
-              <TailwindIndicator />
-              <ThemeSwitcher />
-              <Analytics />
-              <NewYorkToaster />
-              <DefaultToaster />
-              <NewYorkSonner />
-            </Nextui>
+                <TailwindIndicator />
+                <ThemeSwitcher />
+                <Analytics />
+                <NewYorkToaster />
+                <DefaultToaster />
+                <NewYorkSonner />
+              </Nextui>
+            </ClerkProvider>
           </ThemeProvider>
         </body>
+
+        <Script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js" />
+        <Script src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js" />
       </html>
     </>
   )

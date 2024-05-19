@@ -776,7 +776,7 @@ const University = () => {
 
                 </Carousel>
               </div>
-              {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">No image is provided.</div>}
+              {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1 min-h-[225px]">No image is provided.</div>}
 
               <div className="absolute bottom-4 left-4">
                 <Avatar>

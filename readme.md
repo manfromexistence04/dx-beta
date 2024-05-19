@@ -775,14 +775,16 @@ This document outlines the design for a Firebase Firestore database to support a
 * **Specialties:**
     * **Document ID:** Unique identifier for each specialty (e.g., "medicine", "engineering").
     * **Fields:**
-        * **name:** Name of the specialty (e.g., "Medicine", "Computer Science").
         * **subjects:** Array of subject IDs (references to the Subjects collection).
+        * **name:** Name of the specialty (e.g., "Medicine", "Computer Science").
         * **possibleScoreGeneralCompetition:** Possible score for general competition.
         * **possibleScoreRuralQuota:** Possible score for rural quota.
         * **possibleScoreOrphanQuota:** Possible score for orphan quota.
         * **possibleScoreDisabilityQuota:** Possible score for disability quota.
         * **possibleScoreLargeFamilyQuota:** Possible score for large family quota.
         * **minScores:** Array of objects containing minimum scores for the last 3 years (e.g., `{ year: 2021, score: 95 }`).
+
+        
 * **Subjects:**
     * **Document ID:** Unique identifier for each subject (e.g., "biology", "physics").
     * **Fields:**
