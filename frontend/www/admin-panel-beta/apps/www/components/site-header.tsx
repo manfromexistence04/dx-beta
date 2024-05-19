@@ -166,6 +166,7 @@ export function SiteHeader() {
                     /> */}
                       <User className="h-5 w-5" />
                     </Button>
+                    
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
@@ -230,6 +231,7 @@ export function SiteHeader() {
                     {/* <DropdownMenuSeparator />
                   <DropdownMenuItem>Logout</DropdownMenuItem> */}
                   </DropdownMenuContent>
+
                 </DropdownMenu>
               </>
             ) : (

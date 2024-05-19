@@ -11,7 +11,7 @@ import {
   UnderlineIcon,
 } from "@radix-ui/react-icons"
 import template from "lodash.template"
-import { Paintbrush } from "lucide-react"
+import { Monitor, Paintbrush } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
@@ -976,7 +976,7 @@ export function SiteFooter() {
             )}
           >
             <span className="text-md">Preferences</span>
-            {/* <div className="flex w-min flex-row items-start justify-start space-x-1 rounded-full border p-1">
+            <div className="flex w-min flex-row items-start justify-start space-x-1 rounded-full border p-1">
               <ToggleGroup type="single">
                 <ToggleGroupItem
                   onClick={() => setTheme("dark")}
@@ -1003,8 +1003,8 @@ export function SiteFooter() {
                   <Monitor className="h-4 w-4" />
                 </ToggleGroupItem>
               </ToggleGroup>
-            </div> */}
-            <ThemeCustomizer />
+            </div>
+            {/* <ThemeCustomizer /> */}
           </div>
         </div>
       </div>
