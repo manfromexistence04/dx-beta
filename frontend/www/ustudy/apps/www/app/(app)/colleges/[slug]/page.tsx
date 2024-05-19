@@ -317,7 +317,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
                                                 consideration of interests of students.
                                             </p>
                                             <p className="m-0">{`
-process at the university and assumes maximum consideration of interests,`}</p>
+                                                process at the university and assumes maximum consideration of interests,`}</p>
                                             <p className="m-0">
                                                 needs of students on the basis of studying their public
                                                 opinion.

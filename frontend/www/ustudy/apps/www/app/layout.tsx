@@ -12,7 +12,9 @@ import { ThemeSwitcher } from "@/components/theme-switcher"
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
-
+import Script from "next/script"
+import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 import { Nextui } from "./nextui"
 
 export const metadata: Metadata = {
@@ -107,21 +109,33 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <Nextui>
-              <div vaul-drawer-wrapper="">
-                <div className="relative flex min-h-screen flex-col bg-background">
-                  {children}
+            <ClerkProvider
+              appearance={{
+                baseTheme: dark,
+                variables: {
+                  colorPrimary: "hsl(263.4, 70%, 50.4%)", // change this value (you can get it from you're css variables, make sure to include 'hsl' and commas)
+                },
+              }}
+            >
+              <Nextui>
+                <div vaul-drawer-wrapper="">
+                  <div className="relative flex min-h-screen flex-col bg-background">
+                    {children}
+                  </div>
                 </div>
-              </div>
-              <TailwindIndicator />
-              <ThemeSwitcher />
-              <Analytics />
-              <NewYorkToaster />
-              <DefaultToaster />
-              <NewYorkSonner />
-            </Nextui>
+                <TailwindIndicator />
+                <ThemeSwitcher />
+                <Analytics />
+                <NewYorkToaster />
+                <DefaultToaster />
+                <NewYorkSonner />
+              </Nextui>
+            </ClerkProvider>
           </ThemeProvider>
         </body>
+
+        <Script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js" />
+        <Script src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js" />
       </html>
     </>
   )
