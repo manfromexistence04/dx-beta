@@ -10,10 +10,10 @@ import { Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 
-export const columns: any = [
+export const columns: any[] | any = [
   {
     id: "select",
-    header: ({ table }) => (
+    header: ({ table }:any) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
@@ -21,15 +21,15 @@ export const columns: any = [
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
-        className="translate-y-[2px] ml-3"
+        className="ml-3 translate-y-[2px]"
       />
     ),
-    cell: ({ row }) => (
+    cell: ({ row }:any) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="translate-y-[2px] ml-3"
+        className="ml-3 translate-y-[2px]"
       />
     ),
     enableSorting: false,
@@ -37,19 +37,23 @@ export const columns: any = [
   },
   {
     accessorKey: "id",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="Specialty Id" />
     ),
-    cell: ({ row }) => <div className="max-w-[100px] truncate font-medium">{row.getValue("id")}</div>,
+    cell: ({ row }:any) => (
+      <div className="max-w-[100px] truncate font-medium">
+        {row.getValue("id")}
+      </div>
+    ),
     enableSorting: false,
     enableHiding: false,
   },
   {
     accessorKey: "name",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.name)
 
       return (
@@ -64,10 +68,10 @@ export const columns: any = [
   },
   {
     accessorKey: "code",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="Code" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.code)
 
       return (
@@ -82,10 +86,10 @@ export const columns: any = [
   },
   {
     accessorKey: "level",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="Level" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.name)
 
       return (
@@ -100,10 +104,10 @@ export const columns: any = [
   },
   {
     accessorKey: "demand",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="Demand" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.name)
 
       return (
@@ -199,9 +203,9 @@ export const columns: any = [
   // },
   {
     id: "actions",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="Actions" />
     ),
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }:any) => <DataTableRowActions row={row} />,
   },
 ]

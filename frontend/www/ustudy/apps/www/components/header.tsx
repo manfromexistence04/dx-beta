@@ -1,22 +1,5 @@
 "use client"
 
-import { useCallback } from "react"
-import type { NextPage } from "next"
-import { ViewVerticalIcon } from "@radix-ui/react-icons"
-
-import { docsConfig } from "@/config/docs"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/registry/default/ui/select"
-// import { Button } from "@/registry/new-york/ui/button"
-import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
-import { Sheet, SheetContent, SheetTrigger } from "@/registry/new-york/ui/sheet"
 // import {
 //   OrganizationSwitcher,
 //   SignInButton,
@@ -24,7 +7,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/registry/new-york/ui/sheet"
 //   useAuth,
 //   UserButton,
 // } from "@clerk/nextjs"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
+import type { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -32,10 +16,14 @@ import {
   OrganizationSwitcher,
   SignInButton,
   SignOutButton,
-  useAuth,
   UserButton,
+  useAuth,
 } from "@clerk/nextjs"
-import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons"
+import {
+  GitHubLogoIcon,
+  TwitterLogoIcon,
+  ViewVerticalIcon,
+} from "@radix-ui/react-icons"
 import { motion } from "framer-motion"
 import {
   Bell,
@@ -59,6 +47,7 @@ import {
   Users2,
 } from "lucide-react"
 
+import { docsConfig } from "@/config/docs"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -123,9 +112,19 @@ import { MobileNav } from "@/components/mobile-nav"
 import { ModeToggle } from "@/components/mode-toggle"
 import { CardsCookieSettings } from "@/registry/default/example/cards/cookie-settings"
 import { CardsReportIssue } from "@/registry/default/example/cards/report-issue"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/default/ui/select"
 import { buttonVariants } from "@/registry/new-york/ui/button"
-
-
+// import { Button } from "@/registry/new-york/ui/button"
+import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
+import { Sheet, SheetContent, SheetTrigger } from "@/registry/new-york/ui/sheet"
 
 export function SelectDemo() {
   return (
@@ -151,7 +150,6 @@ const Header: NextPage = () => {
   const onButtonsContainerClick = useCallback(() => {
     // Please sync "Log In - Welcome" to the project
   }, [])
-
 
   const pathname = usePathname()
   const [open, setOpen] = React.useState(false)
@@ -244,7 +242,7 @@ const Header: NextPage = () => {
                 </Link>
               </nav>
             </nav>
-            <div className="flex flex-row items-center justify-center gap-[24px] text-center font-dm-sans text-base text-shade-white mt-2">
+            <div className="mt-2 flex flex-row items-center justify-center gap-[24px] text-center font-dm-sans text-base text-shade-white">
               <Select>
                 <SelectTrigger className="w-[80px] rounded-md">
                   <SelectValue placeholder="EN" />
@@ -416,10 +414,6 @@ const Header: NextPage = () => {
                 className="hidden cursor-pointer flex-row items-start justify-start lg:flex"
                 onClick={onButtonsContainerClick}
               >
-
-
-
-
                 {!sessionId ? (
                   <>
                     {/* <div className="flex flex-row items-center justify-center whitespace-nowrap rounded bg-blueviolet-200 px-[23px] py-4">
@@ -434,13 +428,10 @@ const Header: NextPage = () => {
                     </div> */}
 
                     <Link href="/signup-clerk">
-
-                      <Button className="bg-blueviolet-200" variant="outline">Sign Up/Log In</Button>
-
+                      <Button className="bg-blueviolet-200" variant="outline">
+                        Sign Up/Log In
+                      </Button>
                     </Link>
-
-
-
                   </>
                 ) : (
                   <div className="flex items-center gap-2">
@@ -496,7 +487,9 @@ const Header: NextPage = () => {
                                   </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                  <DropdownMenuLabel>Filter by</DropdownMenuLabel>
+                                  <DropdownMenuLabel>
+                                    Filter by
+                                  </DropdownMenuLabel>
                                   <DropdownMenuSeparator />
                                   <DropdownMenuCheckboxItem checked>
                                     Fulfilled
@@ -781,9 +774,6 @@ const Header: NextPage = () => {
                     />
                   </div>
                 )}
-
-
-
               </div>
             </div>
           </div>

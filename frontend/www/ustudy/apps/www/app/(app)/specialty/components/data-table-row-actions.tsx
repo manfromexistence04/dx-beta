@@ -27,7 +27,7 @@ interface DataTableRowActionsProps<TData> {
 
 export function DataTableRowActions<TData>({
   row,
-}: DataTableRowActionsProps<TData>) {
+}: DataTableRowActionsProps<any>) {
   const task = row.original
 
   return (
@@ -35,7 +35,7 @@ export function DataTableRowActions<TData>({
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="data-[state=open]:bg-muted flex size-8 p-0"
+          className="flex size-8 p-0 data-[state=open]:bg-muted"
         >
           <DotsHorizontalIcon className="size-4" />
           <span className="sr-only">Open menu</span>

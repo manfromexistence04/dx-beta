@@ -2,33 +2,13 @@
 
 /* eslint-disable tailwindcss/no-contradicting-classname */
 import { useCallback, useEffect, useState } from "react"
-import Image from "next/image"
-import { z } from "zod"
-import { columns } from "./components/columns"
-import { DataTable } from "./components/data-table"
-import { taskSchema } from "./data/schema"
-import type { NextPage } from "next"
-import { Tag, TagInput } from "emblor"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/registry/default/ui/accordion"
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/registry/default/ui/table"
 import * as React from "react"
+import type { NextPage } from "next"
+import Image from "next/image"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
+import { Tag, TagInput } from "emblor"
 import { initializeApp } from "firebase/app"
 import {
   addDoc,
@@ -44,20 +24,11 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check, ChevronsUpDown } from "lucide-react"
+import { z } from "zod"
+
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/default/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Check, ChevronsUpDown } from "lucide-react"
 import {
   Command,
   CommandEmpty,
@@ -70,6 +41,36 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/registry/default/ui/accordion"
+import { Button } from "@/registry/default/ui/button"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/registry/default/ui/table"
+
+import { columns } from "./components/columns"
+import { DataTable } from "./components/data-table"
+import { taskSchema } from "./data/schema"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -91,7 +92,6 @@ const db: any = getFirestore(app)
 function uuid() {
   return crypto.getRandomValues(new Uint32Array(1))[0].toString()
 }
-
 
 type CarouselProps = {
   opts?: CarouselOptions
@@ -163,7 +163,6 @@ const Carousel = React.forwardRef<
     const scrollTo = React.useCallback(() => {
       api?.scrollTo(0, true)
     }, [api])
-
 
     const scrollNext = React.useCallback(() => {
       api?.scrollNext()
@@ -283,8 +282,8 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev } = useCarousel()
-
+  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev } =
+    useCarousel()
 
   return (
     <Button
@@ -292,11 +291,10 @@ const CarouselPrevious = React.forwardRef<
       className={cn(
         "relative",
         orientation === "horizontal"
-          ? "left-1 bottom-0 -translate-y-1/2"
+          ? "bottom-0 left-1 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
-        !canScrollPrev ? "hidden" : !canScrollNext ? "hidden" : "inline-flex",
-
+        !canScrollPrev ? "hidden" : !canScrollNext ? "hidden" : "inline-flex"
       )}
       onClick={scrollPrev}
       {...props}
@@ -311,7 +309,14 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev, scrollTo } = useCarousel()
+  const {
+    orientation,
+    scrollNext,
+    canScrollNext,
+    scrollPrev,
+    canScrollPrev,
+    scrollTo,
+  } = useCarousel()
 
   return (
     <Button
@@ -339,22 +344,26 @@ const CarouselNext = React.forwardRef<
 CarouselNext.displayName = "CarouselNext"
 
 const fetchDocument = async (docId: string) => {
-  const docRef = doc(db, "specialties", docId);
-  const docSnap = await getDoc(docRef);
-  return docSnap;
-};
+  const docRef = doc(db, "specialties", docId)
+  const docSnap = await getDoc(docRef)
+  return docSnap
+}
 
 const Calculator: NextPage = () => {
   const [ENTPOINT, setENTPOINT] = React.useState(100)
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
-  const [specialtyCount, setSpecialtyCount] = useState(0);
-  const [universityCount, setUniversityCount] = useState(0);
-  const [specialtyTheshold, setSpecialtyTheshold] = useState("");
-  const [universityTheshold, setUniversityTheshold] = useState("");
-  const [specialtiesUnderThreshold, setSpecialtiesUnderThreshold] = useState<string[]>([]);
-  const [universitiesUnderThreshold, setUniversitiesUnderThreshold] = useState<string[]>([]);
+  const [specialtyCount, setSpecialtyCount] = useState(0)
+  const [universityCount, setUniversityCount] = useState(0)
+  const [specialtyTheshold, setSpecialtyTheshold] = useState("")
+  const [universityTheshold, setUniversityTheshold] = useState("")
+  const [specialtiesUnderThreshold, setSpecialtiesUnderThreshold] = useState<
+    string[]
+  >([])
+  const [universitiesUnderThreshold, setUniversitiesUnderThreshold] = useState<
+    string[]
+  >([])
   const [quota, setQuota] = React.useState("...")
   const [selectedSpecialty, setSelectedSpecialty] = React.useState("")
   const [selectedSpecialtyQuota, setSelectedSpecialtyQuota] = React.useState("")
@@ -384,23 +393,29 @@ const Calculator: NextPage = () => {
     })
   }, [api])
 
-
-  function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3: number, userScore: number): number {
+  function calculateAdmissionChance(
+    startScore: number,
+    e1: number,
+    e2: number,
+    e3: number,
+    userScore: number
+  ): number {
     if (startScore >= userScore) {
-      return 0;
+      return 0
     } else {
-      let possibleScore = calculatePossibleScore(e1, e2, e3);
-      let admissionChance = calculateChance(userScore, possibleScore);
-      return Math.min(Math.floor(admissionChance), 100);
+      let possibleScore = calculatePossibleScore(e1, e2, e3)
+      let admissionChance = calculateChance(userScore, possibleScore)
+      return Math.min(Math.floor(admissionChance), 100)
     }
   }
   function calculatePossibleScore(e1: number, e2: number, e3: number): number {
-    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
-    return possibleScore <= 140 ? possibleScore : 140;
+    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3
+    return possibleScore <= 140 ? possibleScore : 140
   }
   function calculateChance(userScore: number, possibleScore: number): number {
-    let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
-    return chance;
+    let chance =
+      50 + ((userScore - possibleScore) / ((140 - possibleScore) * 3)) * 100
+    return chance
   }
   // let startScore = 100; // University Theshold
   // let e1 = 95;          // 2021
@@ -411,10 +426,10 @@ const Calculator: NextPage = () => {
   // console.log(`The chance of admission is ${admissionChance}%`);
 
   function handleENTChange(e: { target: { value: any } }) {
-    setENTPOINT(e.target.value);
+    setENTPOINT(e.target.value)
   }
   function handleQuotaChange(e: any) {
-    setQuota(e);
+    setQuota(e)
   }
 
   // async function calculate() {
@@ -427,8 +442,6 @@ const Calculator: NextPage = () => {
 
   //   return calculateAdmissionChance(startScore, e1, e2, e3, userScore);
   // }
-
-
 
   useEffect(() => {
     const fetchSpecilaties = async () => {
@@ -456,8 +469,8 @@ const Calculator: NextPage = () => {
       setSubjects(newDocs)
     }
     const fetchDocs = async () => {
-      const data: any = await fetchDocument(value);
-      setSpecialtyDoc(data);
+      const data: any = await fetchDocument(value)
+      setSpecialtyDoc(data)
     }
     fetchDocs()
     fetchSpecilaties()
@@ -473,41 +486,45 @@ const Calculator: NextPage = () => {
     //   setSpecialtyDoc(specialtyData)
     // }
     // fetchSpecialty();
-    let tempSpecialtyCount = 0;
-    let tempUniversityCount = 0;
-    let tempSpecialtyTheshold = "";
-    let tempUniversityTheshold = "";
-    let tempLastUniversityCode = "";
-    let tempCalculation: any = "";
+    let tempSpecialtyCount = 0
+    let tempUniversityCount = 0
+    let tempSpecialtyTheshold = ""
+    let tempUniversityTheshold = ""
+    let tempLastUniversityCode = ""
+    let tempCalculation: any = ""
 
-    const tempSpecialtiesUnderThreshold = specialties.filter(specialty => specialty.threshold < ENTPOINT).map(specialty => specialty.name || specialty.specailtyName);
-    const tempUniversitiesUnderThreshold = universities.filter(university => university.threshold && university.threshold < ENTPOINT).map(university => university.universityName);
+    const tempSpecialtiesUnderThreshold = specialties
+      .filter((specialty) => specialty.threshold < ENTPOINT)
+      .map((specialty) => specialty.name || specialty.specailtyName)
+    const tempUniversitiesUnderThreshold = universities
+      .filter(
+        (university) => university.threshold && university.threshold < ENTPOINT
+      )
+      .map((university) => university.universityName)
 
-    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold);
-    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold);
-
+    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
+    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
 
     universities.forEach((university) => {
       if (university.threshold && university.threshold < ENTPOINT) {
-        tempUniversityCount++;
-      } else { }
-      tempUniversityTheshold = university.threshold || "";
-      tempLastUniversityCode = university.universityCode;
-    });
+        tempUniversityCount++
+      } else {
+      }
+      tempUniversityTheshold = university.threshold || ""
+      tempLastUniversityCode = university.universityCode
+    })
 
     specialties.forEach((university) => {
       if (university.threshold && university.threshold < ENTPOINT) {
-        tempSpecialtyCount++;
-      } else { }
-      tempSpecialtyTheshold = university.threshold || "";
-    });
-
-
-
+        tempSpecialtyCount++
+      } else {
+      }
+      tempSpecialtyTheshold = university.threshold || ""
+    })
 
     // Calculation
     // async function calculate() {
-    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id : 
+    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id :
     //   const specialtyData:any = await fetchDocument("phKkzVcxJBJNnpXYdTIV");
     //   let startScore:any = universityTheshold || specialtyTheshold || 100;          // University Theshold
     //   let e1 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[0]) : 95;          // 2021
@@ -518,28 +535,39 @@ const Calculator: NextPage = () => {
     //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
     // }
     // calculate();
-    let startScore: any = universityTheshold || specialtyTheshold || 100;      // University Theshold
-    let e1 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[0]) : 95;               // 2021
-    let e2 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[1]) : 93;               // 2022
-    let e3 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[2]) : 97;               // 2023
-    let userScore = ENTPOINT;  // Ent Scrore
+    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
+    let e1 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+      : 95 // 2021
+    let e2 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+      : 93 // 2022
+    let e3 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+      : 97 // 2023
+    let userScore = ENTPOINT // Ent Scrore
 
-    let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-    console.log(`The chance of admission is ${admissionChance}%`);
-    setCalculation(admissionChance);
-    setSpecialtyCount(tempSpecialtyCount);
-    setUniversityCount(tempUniversityCount);
-    setUniversityTheshold(tempUniversityTheshold);
-    setSpecialtyTheshold(tempSpecialtyTheshold);
-    setLastUniversityCode(tempLastUniversityCode);
-  }, [value]);
-
-
-
+    let admissionChance: any = calculateAdmissionChance(
+      startScore,
+      e1,
+      e2,
+      e3,
+      userScore
+    )
+    console.log(`The chance of admission is ${admissionChance}%`)
+    setCalculation(admissionChance)
+    setSpecialtyCount(tempSpecialtyCount)
+    setUniversityCount(tempUniversityCount)
+    setUniversityTheshold(tempUniversityTheshold)
+    setSpecialtyTheshold(tempSpecialtyTheshold)
+    setLastUniversityCode(tempLastUniversityCode)
+  }, [value])
 
   return (
     <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
-
       <div className="absolute inset-0 !m-0 size-full">
         <div className="absolute inset-0 size-full rounded [background:linear-gradient(-84.28deg,_)]" />
         <img
@@ -554,41 +582,27 @@ const Calculator: NextPage = () => {
         />
       </div>
 
-      <h1 className="font-inherit relative z-[ 3] m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
+      <h1 className="font-inherit z-[ 3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
         uSTUDY Calculator
       </h1>
-
-
 
       {/* <p>{`Names of specialties with threshold less than ${ENTPOINT}: ${specialtiesUnderThreshold.join(', ')}`}</p>
       <p>{`Names of universities with threshold less than ${ENTPOINT}: ${universitiesUnderThreshold.join(', ')}`}</p> */}
       {/* <p>{`Number of specialties with threshold less than ${ENTPOINT}: ${specialtyCount}`}</p> */}
-      <p>{`Number of universities with threshold less than ${ENTPOINT}: ${universityCount || specialtyCount}`}</p>
-      <p>{`Theherhold ${ENTPOINT}: ${universityTheshold || specialtyTheshold}`}</p>
+      <p>{`Number of universities with threshold less than ${ENTPOINT}: ${
+        universityCount || specialtyCount
+      }`}</p>
+      <p>{`Theherhold ${ENTPOINT}: ${
+        universityTheshold || specialtyTheshold
+      }`}</p>
       <p>{`Last university code: ${lastUniversityCode}`}</p>
       <p>{`Calculation: ${calculation}%`}</p>
 
-
-
-
       {specialtyDoc ? <p>{specialtyDoc.id}</p> : <p>No SpcialtyDoc Found</p>}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <div className="z-[2] hidden h-12 w-8 rounded" />
       <div className="z-[3] hidden h-12 w-[82px] rounded" />
-      <Carousel className="w-full z-50" setApi={setApi}>
+      <Carousel className="z-50 w-full" setApi={setApi}>
         <CarouselContent>
           {/* ENT */}
           <CarouselItem>
@@ -598,10 +612,10 @@ const Calculator: NextPage = () => {
                   <div className="relative z-[3] inline-block w-[246.5px] leading-[21px] ">
                     Enter amount of score
                   </div>
-                  <div className="z-[3] flex flex-row items-start justify-start self-stretch border-DEFAULT border-solid rounded-md border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+                  <div className="z-[3] flex flex-row items-start justify-start self-stretch rounded-md border-DEFAULT border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
                     <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
                       <input
-                        className="placeholder:text-muted text-black box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold [border:none] [outline:none]"
+                        className="box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none] placeholder:text-muted"
                         placeholder="100"
                         type="number"
                         onChange={handleENTChange}
@@ -614,7 +628,9 @@ const Calculator: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <span className="text-muted-foreground">Please Provide Your ENT POINT</span>
+                <span className="text-muted-foreground">
+                  Please Provide Your ENT POINT
+                </span>
               </div>
               <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
                 <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
@@ -717,14 +733,15 @@ const Calculator: NextPage = () => {
               >
                 Next
               </Button> */}
-
             </div>
           </CarouselItem>
           {/* Subject Combination */}
           <CarouselItem>
-            <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
-              <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
-                <h1 className="w-full text-left text-xl font-bold">Subjects Combination(Max:2)</h1>
+            <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
+              <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
+                <h1 className="w-full text-left text-xl font-bold">
+                  Subjects Combination(Max:2)
+                </h1>
                 <TagInput
                   placeholder="Enter Your Subjects"
                   tags={subjectsTag}
@@ -740,11 +757,10 @@ const Calculator: NextPage = () => {
                       ) || `No Subject Provided at id:${items.id}`,
                   }))}
                   draggable
-                  className="sm:min-w-[450px] !bg-transparent !max-h-10"
+                  className="!max-h-10 !bg-transparent sm:min-w-[450px]"
                   setTags={(newTags) => {
                     setSubjectsTag(newTags)
                   }}
-
                 />
               </div>
 
@@ -830,9 +846,11 @@ const Calculator: NextPage = () => {
           </CarouselItem>
           {/* Specialtiy */}
           <CarouselItem>
-            <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
-              <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
-                <h1 className="w-full text-left text-xl font-bold">Specialtiy</h1>
+            <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
+              <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
+                <h1 className="w-full text-left text-xl font-bold">
+                  Specialtiy
+                </h1>
                 {/* <TagInput
                   placeholder="Enter Your Subjects"
                   tags={subjectsTag}
@@ -860,12 +878,18 @@ const Calculator: NextPage = () => {
                         ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
                         : "Select Specialty..."} */}
                       {value
-                        ? specialties.find((specialty) => specialty.name === value)?.name || specialties.find((specialty) => specialty.id === value)?.specialtyName || value
+                        ? specialties.find(
+                            (specialty) => specialty.name === value
+                          )?.name ||
+                          specialties.find(
+                            (specialty) => specialty.id === value
+                          )?.specialtyName ||
+                          value
                         : "Select specialty..."}
-                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-[350px] max-h-[300px] overflow-x-hidden overflow-y-auto p-0">
+                  <PopoverContent className="max-h-[300px] w-[350px] overflow-y-auto overflow-x-hidden p-0">
                     <Command>
                       <CommandInput placeholder="Search Specialties..." />
                       <CommandEmpty>No Specialty found.</CommandEmpty>
@@ -875,25 +899,29 @@ const Calculator: NextPage = () => {
                             key={framework.id}
                             value={framework.id}
                             onSelect={(currentValue) => {
-                              setValue(currentValue === value ? "" : currentValue)
+                              setValue(
+                                currentValue === value ? "" : currentValue
+                              )
                               setOpen(false)
                             }}
                           >
                             <Check
                               className={cn(
-                                "mr-2 h-4 w-4",
-                                value === framework.id ? "opacity-100" : "opacity-0"
+                                "mr-2 size-4",
+                                value === framework.id
+                                  ? "opacity-100"
+                                  : "opacity-0"
                               )}
                             />
-                            {framework.name || framework.specialtyName || framework.id}
+                            {framework.name ||
+                              framework.specialtyName ||
+                              framework.id}
                           </CommandItem>
                         ))}
                       </CommandGroup>
                     </Command>
                   </PopoverContent>
                 </Popover>
-
-
               </div>
 
               <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
@@ -978,8 +1006,8 @@ const Calculator: NextPage = () => {
           </CarouselItem>
           {/* Quota */}
           <CarouselItem>
-            <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
-              <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
+            <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
+              <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
                 <h1 className="w-full text-left text-xl font-bold">Quota</h1>
                 {/* <TagInput
                   placeholder="Enter Your Subjects"
@@ -1005,8 +1033,12 @@ const Calculator: NextPage = () => {
                       <SelectLabel className="border-b">Quota's</SelectLabel>
                       <SelectItem value="RuralQuota">Rural</SelectItem>
                       <SelectItem value="OrphanQuota">Orphan</SelectItem>
-                      <SelectItem value="DisabilityQuota">Disability</SelectItem>
-                      <SelectItem value="LargeFamilyQuota">LargeFamily</SelectItem>
+                      <SelectItem value="DisabilityQuota">
+                        Disability
+                      </SelectItem>
+                      <SelectItem value="LargeFamilyQuota">
+                        LargeFamily
+                      </SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -1094,35 +1126,39 @@ const Calculator: NextPage = () => {
           </CarouselItem>
 
           <CarouselItem>
-            <div className="p-1 flex lg:flex-row items-start justify-evenly !text-white !text-sm space-x-10 !min-w-full mt-12">
+            <div className="mt-12 flex !min-w-full items-start justify-evenly space-x-10 p-1 !text-sm !text-white lg:flex-row">
               <div className="">
                 <span className="text-sm">ENT Scrore</span>
-                <div className="p-3 rounded-md text-center border border-white">{ENTPOINT || "135"}</div>
+                <div className="rounded-md border border-white p-3 text-center">
+                  {ENTPOINT || "135"}
+                </div>
               </div>
               <div className="">
                 <span className="text-sm">Specialty</span>
-                <div className="p-3 rounded-md text-center border border-white">{value || "Design"}</div>
+                <div className="rounded-md border border-white p-3 text-center">
+                  {value || "Design"}
+                </div>
               </div>
               <div className="">
                 <span className="text-sm">Subject Combination</span>
-                <div className="p-3 rounded-md text-center border border-white">{subjectsTag.map(
-                  (obj) => `${obj.text} `
-                ) || "Creative Exam"}</div>
+                <div className="rounded-md border border-white p-3 text-center">
+                  {subjectsTag.map((obj) => `${obj.text} `) || "Creative Exam"}
+                </div>
               </div>
               <div className="">
                 <span className="text-sm">Quota</span>
-                <div className="p-3 rounded-md text-center border border-white">{quota || "..."}</div>
+                <div className="rounded-md border border-white p-3 text-center">
+                  {quota || "..."}
+                </div>
               </div>
             </div>
           </CarouselItem>
 
           {/* specialtyDoc ? specialtyDoc.name || specialtyDoc.specialtyName */}
-
         </CarouselContent>
 
         <CarouselPrevious />
         <CarouselNext />
-
       </Carousel>
       <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-0 size-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
     </div>
@@ -1174,9 +1210,6 @@ const FrameComponent: NextPage = () => {
 }
 // export default FrameComponent
 
-
-
-
 // Simulate a database read for tasks.
 async function getTasks() {
   const data: any = []
@@ -1208,9 +1241,7 @@ async function TaskPage() {
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              Your Chances!
-            </h2>
+            <h2 className="text-2xl font-bold tracking-tight">Your Chances!</h2>
             <p className="text-muted-foreground">
               Here is your calculations history!
             </p>
@@ -1233,12 +1264,16 @@ const CalculatorPage: NextPage = () => {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
-  const [specialtyCount, setSpecialtyCount] = useState(0);
-  const [universityCount, setUniversityCount] = useState(0);
-  const [specialtyTheshold, setSpecialtyTheshold] = useState("");
-  const [universityTheshold, setUniversityTheshold] = useState("");
-  const [specialtiesUnderThreshold, setSpecialtiesUnderThreshold] = useState<string[]>([]);
-  const [universitiesUnderThreshold, setUniversitiesUnderThreshold] = useState<string[]>([]);
+  const [specialtyCount, setSpecialtyCount] = useState(0)
+  const [universityCount, setUniversityCount] = useState(0)
+  const [specialtyTheshold, setSpecialtyTheshold] = useState("")
+  const [universityTheshold, setUniversityTheshold] = useState("")
+  const [specialtiesUnderThreshold, setSpecialtiesUnderThreshold] = useState<
+    string[]
+  >([])
+  const [universitiesUnderThreshold, setUniversitiesUnderThreshold] = useState<
+    string[]
+  >([])
   const [quota, setQuota] = React.useState("...")
   const [selectedSpecialty, setSelectedSpecialty] = React.useState("")
   const [selectedSpecialtyQuota, setSelectedSpecialtyQuota] = React.useState("")
@@ -1269,23 +1304,29 @@ const CalculatorPage: NextPage = () => {
     })
   }, [api])
 
-
-  function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3: number, userScore: number): number {
+  function calculateAdmissionChance(
+    startScore: number,
+    e1: number,
+    e2: number,
+    e3: number,
+    userScore: number
+  ): number {
     if (startScore >= userScore) {
-      return 0;
+      return 0
     } else {
-      let possibleScore = calculatePossibleScore(e1, e2, e3);
-      let admissionChance = calculateChance(userScore, possibleScore);
-      return Math.min(Math.floor(admissionChance), 100);
+      let possibleScore = calculatePossibleScore(e1, e2, e3)
+      let admissionChance = calculateChance(userScore, possibleScore)
+      return Math.min(Math.floor(admissionChance), 100)
     }
   }
   function calculatePossibleScore(e1: number, e2: number, e3: number): number {
-    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
-    return possibleScore <= 140 ? possibleScore : 140;
+    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3
+    return possibleScore <= 140 ? possibleScore : 140
   }
   function calculateChance(userScore: number, possibleScore: number): number {
-    let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
-    return chance;
+    let chance =
+      50 + ((userScore - possibleScore) / ((140 - possibleScore) * 3)) * 100
+    return chance
   }
   // let startScore = 100; // University Theshold
   // let e1 = 95;          // 2021
@@ -1296,10 +1337,10 @@ const CalculatorPage: NextPage = () => {
   // console.log(`The chance of admission is ${admissionChance}%`);
 
   function handleENTChange(e: { target: { value: any } }) {
-    setENTPOINT(e.target.value);
+    setENTPOINT(e.target.value)
   }
   function handleQuotaChange(e: any) {
-    setQuota(e);
+    setQuota(e)
   }
 
   // async function calculate() {
@@ -1312,8 +1353,6 @@ const CalculatorPage: NextPage = () => {
 
   //   return calculateAdmissionChance(startScore, e1, e2, e3, userScore);
   // }
-
-
 
   useEffect(() => {
     const fetchSpecilaties = async () => {
@@ -1341,10 +1380,9 @@ const CalculatorPage: NextPage = () => {
       setSubjects(newDocs)
     }
     const fetchDocs = async () => {
-      const data: any = await fetchDocument(value);
-      setSpecialtyDoc(data);
+      const data: any = await fetchDocument(value)
+      setSpecialtyDoc(data)
     }
-
 
     // setTasks([
     //   {
@@ -1355,7 +1393,6 @@ const CalculatorPage: NextPage = () => {
     //     priority: `100%`
     //   }
     // ])
-
 
     fetchDocs()
     fetchSpecilaties()
@@ -1371,41 +1408,45 @@ const CalculatorPage: NextPage = () => {
     //   setSpecialtyDoc(specialtyData)
     // }
     // fetchSpecialty();
-    let tempSpecialtyCount = 0;
-    let tempUniversityCount = 0;
-    let tempSpecialtyTheshold = "";
-    let tempUniversityTheshold = "";
-    let tempLastUniversityCode = "";
-    let tempCalculation: any = "";
+    let tempSpecialtyCount = 0
+    let tempUniversityCount = 0
+    let tempSpecialtyTheshold = ""
+    let tempUniversityTheshold = ""
+    let tempLastUniversityCode = ""
+    let tempCalculation: any = ""
 
-    const tempSpecialtiesUnderThreshold = specialties.filter(specialty => specialty.threshold < ENTPOINT).map(specialty => specialty.name || specialty.specailtyName);
-    const tempUniversitiesUnderThreshold = universities.filter(university => university.threshold && university.threshold < ENTPOINT).map(university => university.universityName);
+    const tempSpecialtiesUnderThreshold = specialties
+      .filter((specialty) => specialty.threshold < ENTPOINT)
+      .map((specialty) => specialty.name || specialty.specailtyName)
+    const tempUniversitiesUnderThreshold = universities
+      .filter(
+        (university) => university.threshold && university.threshold < ENTPOINT
+      )
+      .map((university) => university.universityName)
 
-    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold);
-    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold);
-
+    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
+    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
 
     universities.forEach((university) => {
       if (university.threshold && university.threshold < ENTPOINT) {
-        tempUniversityCount++;
-      } else { }
-      tempUniversityTheshold = university.threshold || "";
-      tempLastUniversityCode = university.universityCode;
-    });
+        tempUniversityCount++
+      } else {
+      }
+      tempUniversityTheshold = university.threshold || ""
+      tempLastUniversityCode = university.universityCode
+    })
 
     specialties.forEach((university) => {
       if (university.threshold && university.threshold < ENTPOINT) {
-        tempSpecialtyCount++;
-      } else { }
-      tempSpecialtyTheshold = university.threshold || "";
-    });
-
-
-
+        tempSpecialtyCount++
+      } else {
+      }
+      tempSpecialtyTheshold = university.threshold || ""
+    })
 
     // Calculation
     // async function calculate() {
-    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id : 
+    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id :
     //   const specialtyData:any = await fetchDocument("phKkzVcxJBJNnpXYdTIV");
     //   let startScore:any = universityTheshold || specialtyTheshold || 100;          // University Theshold
     //   let e1 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[0]) : 95;          // 2021
@@ -1416,20 +1457,35 @@ const CalculatorPage: NextPage = () => {
     //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
     // }
     // calculate();
-    let startScore: any = universityTheshold || specialtyTheshold || 100;      // University Theshold
-    let e1 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[0]) : 95;               // 2021
-    let e2 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[1]) : 93;               // 2022
-    let e3 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[2]) : 97;               // 2023
-    let userScore = ENTPOINT;  // Ent Scrore
+    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
+    let e1 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+      : 95 // 2021
+    let e2 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+      : 93 // 2022
+    let e3 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+      : 97 // 2023
+    let userScore = ENTPOINT // Ent Scrore
 
-    let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-    console.log(`The chance of admission is ${admissionChance}%`);
-    setCalculation(admissionChance);
-    setSpecialtyCount(tempSpecialtyCount);
-    setUniversityCount(tempUniversityCount);
-    setUniversityTheshold(tempUniversityTheshold);
-    setSpecialtyTheshold(tempSpecialtyTheshold);
-    setLastUniversityCode(tempLastUniversityCode);
+    let admissionChance: any = calculateAdmissionChance(
+      startScore,
+      e1,
+      e2,
+      e3,
+      userScore
+    )
+    console.log(`The chance of admission is ${admissionChance}%`)
+    setCalculation(admissionChance)
+    setSpecialtyCount(tempSpecialtyCount)
+    setUniversityCount(tempUniversityCount)
+    setUniversityTheshold(tempUniversityTheshold)
+    setSpecialtyTheshold(tempSpecialtyTheshold)
+    setLastUniversityCode(tempLastUniversityCode)
     // setResultSubjects(subjectsTag.map(
     //   (obj) => obj.text
     // )))
@@ -1456,35 +1512,46 @@ const CalculatorPage: NextPage = () => {
     //     priority: `${admissionChance}%`
     //   }
     // ])
-
-
-  }, [value]);
-
+  }, [value])
 
   const handleClick = () => {
-    let startScore: any = universityTheshold || specialtyTheshold || 100;      // University Theshold
-    let e1 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[0]) : 95;               // 2021
-    let e2 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[1]) : 93;               // 2022
-    let e3 = specialtyDoc ? specialtyDoc.minscrore && specialtyDoc.minscrore.map((item: any) => item[2]) : 97;               // 2023
-    let userScore = ENTPOINT;  // Ent Scrore
+    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
+    let e1 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+      : 95 // 2021
+    let e2 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+      : 93 // 2022
+    let e3 = specialtyDoc
+      ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+      : 97 // 2023
+    let userScore = ENTPOINT // Ent Scrore
 
-    let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-    setTasks(prevTasks => [
+    let admissionChance: any = calculateAdmissionChance(
+      startScore,
+      e1,
+      e2,
+      e3,
+      userScore
+    )
+    setTasks((prevTasks) => [
       ...prevTasks,
       {
         id: lastUniversityCode || "BD75",
         title: "universities are hoping to see you there!",
-        status: `${subjectsTag.map(
-          (obj) => `${obj.text || "Information & Communication Technology"} `
-        ) || "Creative Exam"}`,
+        status: `${
+          subjectsTag.map(
+            (obj) => `${obj.text || "Information & Communication Technology"} `
+          ) || "Creative Exam"
+        }`,
         label: universityCount || specialtyCount,
-        priority: `${admissionChance}%`
-      }
-    ]);
-  };
-
-
-
+        priority: `${admissionChance}%`,
+      },
+    ])
+  }
 
   return (
     <div className="calculator">
@@ -1524,7 +1591,6 @@ const CalculatorPage: NextPage = () => {
         <div className="faq-content mt-10 flex flex-col space-y-5">
           {/* <Calculator /> */}
           <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
-
             <div className="absolute inset-0 !m-0 size-full">
               <div className="absolute inset-0 size-full rounded [background:linear-gradient(-84.28deg,_)]" />
               <img
@@ -1539,11 +1605,9 @@ const CalculatorPage: NextPage = () => {
               />
             </div>
 
-            <h1 className="font-inherit relative z-[ 3] m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
+            <h1 className="font-inherit z-[ 3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
             </h1>
-
-
 
             {/* <p>{`Names of specialties with threshold less than ${ENTPOINT}: ${specialtiesUnderThreshold.join(', ')}`}</p>
 <p>{`Names of universities with threshold less than ${ENTPOINT}: ${universitiesUnderThreshold.join(', ')}`}</p> */}
@@ -1558,22 +1622,9 @@ const CalculatorPage: NextPage = () => {
 
             {specialtyDoc ? <p>{specialtyDoc.id}</p> : <p>No SpcialtyDoc Found</p>} */}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div className="z-[2] hidden h-12 w-8 rounded" />
             <div className="z-[3] hidden h-12 w-[82px] rounded" />
-            <Carousel className="w-full z-50" setApi={setApi}>
+            <Carousel className="z-50 w-full" setApi={setApi}>
               <CarouselContent>
                 {/* ENT */}
                 <CarouselItem>
@@ -1583,10 +1634,10 @@ const CalculatorPage: NextPage = () => {
                         <div className="relative z-[3] inline-block w-[246.5px] leading-[21px] ">
                           Enter amount of score
                         </div>
-                        <div className="z-[3] flex flex-row items-start justify-start self-stretch border-DEFAULT border-solid rounded-md border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+                        <div className="z-[3] flex flex-row items-start justify-start self-stretch rounded-md border-DEFAULT border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
                           <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
                             <input
-                              className="placeholder:text-muted text-black box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold [border:none] [outline:none]"
+                              className="box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none] placeholder:text-muted"
                               placeholder="100"
                               type="number"
                               onChange={handleENTChange}
@@ -1599,7 +1650,9 @@ const CalculatorPage: NextPage = () => {
                           </div>
                         </div>
                       </div>
-                      <span className="text-muted-foreground">Please Provide Your ENT POINT</span>
+                      <span className="text-muted-foreground">
+                        Please Provide Your ENT POINT
+                      </span>
                     </div>
                     <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
                       <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
@@ -1702,14 +1755,15 @@ const CalculatorPage: NextPage = () => {
         >
           Next
         </Button> */}
-
                   </div>
                 </CarouselItem>
                 {/* Subject Combination */}
                 <CarouselItem>
-                  <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
-                    <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
-                      <h1 className="w-full text-left text-xl font-bold">Subjects Combination(Max:2)</h1>
+                  <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
+                    <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
+                      <h1 className="w-full text-left text-xl font-bold">
+                        Subjects Combination(Max:2)
+                      </h1>
                       <TagInput
                         placeholder="Enter Your Subjects"
                         tags={subjectsTag}
@@ -1721,15 +1775,15 @@ const CalculatorPage: NextPage = () => {
                           text:
                             items.subjects.map(
                               (item: any) =>
-                                item || `No Subjects Are Provided at id:${uuid()}`
+                                item ||
+                                `No Subjects Are Provided at id:${uuid()}`
                             ) || `No Subject Provided at id:${items.id}`,
                         }))}
                         draggable
-                        className="sm:min-w-[450px] !bg-transparent !max-h-10"
+                        className="!max-h-10 !bg-transparent sm:min-w-[450px]"
                         setTags={(newTags) => {
                           setSubjectsTag(newTags)
                         }}
-
                       />
                     </div>
 
@@ -1815,9 +1869,11 @@ const CalculatorPage: NextPage = () => {
                 </CarouselItem>
                 {/* Specialtiy */}
                 <CarouselItem>
-                  <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
-                    <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
-                      <h1 className="w-full text-left text-xl font-bold">Specialtiy</h1>
+                  <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
+                    <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
+                      <h1 className="w-full text-left text-xl font-bold">
+                        Specialtiy
+                      </h1>
                       {/* <TagInput
             placeholder="Enter Your Subjects"
             tags={subjectsTag}
@@ -1845,12 +1901,18 @@ const CalculatorPage: NextPage = () => {
                   ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
                   : "Select Specialty..."} */}
                             {value
-                              ? specialties.find((specialty) => specialty.name === value)?.name || specialties.find((specialty) => specialty.id === value)?.specialtyName || value
+                              ? specialties.find(
+                                  (specialty) => specialty.name === value
+                                )?.name ||
+                                specialties.find(
+                                  (specialty) => specialty.id === value
+                                )?.specialtyName ||
+                                value
                               : "Select specialty..."}
-                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[350px] max-h-[300px] overflow-x-hidden overflow-y-auto p-0">
+                        <PopoverContent className="max-h-[300px] w-[350px] overflow-y-auto overflow-x-hidden p-0">
                           <Command>
                             <CommandInput placeholder="Search Specialties..." />
                             <CommandEmpty>No Specialty found.</CommandEmpty>
@@ -1860,25 +1922,29 @@ const CalculatorPage: NextPage = () => {
                                   key={framework.id}
                                   value={framework.id}
                                   onSelect={(currentValue) => {
-                                    setValue(currentValue === value ? "" : currentValue)
+                                    setValue(
+                                      currentValue === value ? "" : currentValue
+                                    )
                                     setOpen(false)
                                   }}
                                 >
                                   <Check
                                     className={cn(
-                                      "mr-2 h-4 w-4",
-                                      value === framework.id ? "opacity-100" : "opacity-0"
+                                      "mr-2 size-4",
+                                      value === framework.id
+                                        ? "opacity-100"
+                                        : "opacity-0"
                                     )}
                                   />
-                                  {framework.name || framework.specialtyName || framework.id}
+                                  {framework.name ||
+                                    framework.specialtyName ||
+                                    framework.id}
                                 </CommandItem>
                               ))}
                             </CommandGroup>
                           </Command>
                         </PopoverContent>
                       </Popover>
-
-
                     </div>
 
                     <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
@@ -1963,9 +2029,11 @@ const CalculatorPage: NextPage = () => {
                 </CarouselItem>
                 {/* Quota */}
                 <CarouselItem>
-                  <div className="flex w-full flex-row items-start justify-start mb-10 mt-3 max-w-[800px] gap-10">
-                    <div className="flex w-full flex-col items-start justify-start space-y-3 rounded-md !bg-transparent h-[196px] overflow-x-hidden overflow-y-auto">
-                      <h1 className="w-full text-left text-xl font-bold">Quota</h1>
+                  <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
+                    <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
+                      <h1 className="w-full text-left text-xl font-bold">
+                        Quota
+                      </h1>
                       {/* <TagInput
             placeholder="Enter Your Subjects"
             tags={subjectsTag}
@@ -1987,11 +2055,17 @@ const CalculatorPage: NextPage = () => {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            <SelectLabel className="border-b">Quota's</SelectLabel>
+                            <SelectLabel className="border-b">
+                              Quota's
+                            </SelectLabel>
                             <SelectItem value="RuralQuota">Rural</SelectItem>
                             <SelectItem value="OrphanQuota">Orphan</SelectItem>
-                            <SelectItem value="DisabilityQuota">Disability</SelectItem>
-                            <SelectItem value="LargeFamilyQuota">LargeFamily</SelectItem>
+                            <SelectItem value="DisabilityQuota">
+                              Disability
+                            </SelectItem>
+                            <SelectItem value="LargeFamilyQuota">
+                              LargeFamily
+                            </SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -2079,49 +2153,64 @@ const CalculatorPage: NextPage = () => {
                 </CarouselItem>
 
                 <CarouselItem>
-                  <div className="p-1 flex lg:flex-row items-start justify-evenly !text-white !text-sm space-x-10 !min-w-full mt-12">
+                  <div className="mt-12 flex !min-w-full items-start justify-evenly space-x-10 p-1 !text-sm !text-white lg:flex-row">
                     <div className="">
                       <span className="text-sm">ENT Scrore</span>
-                      <div className="p-3 rounded-md text-center border border-white">{ENTPOINT || "135"}</div>
+                      <div className="rounded-md border border-white p-3 text-center">
+                        {ENTPOINT || "135"}
+                      </div>
                     </div>
                     <div className="">
                       <span className="text-sm">Specialty</span>
-                      <div className="p-3 rounded-md text-center border border-white">{value || "Design"}</div>
+                      <div className="rounded-md border border-white p-3 text-center">
+                        {value || "Design"}
+                      </div>
                     </div>
                     <div className="">
                       <span className="text-sm">Subject Combination</span>
-                      <div className="p-3 rounded-md text-center border border-white">{subjectsTag.map(
-                        (obj) => `${obj.text || "Information & Communication Technology"} `
-                      ) || "Creative Exam"}</div>
+                      <div className="rounded-md border border-white p-3 text-center">
+                        {subjectsTag.map(
+                          (obj) =>
+                            `${
+                              obj.text ||
+                              "Information & Communication Technology"
+                            } `
+                        ) || "Creative Exam"}
+                      </div>
                     </div>
                     <div className="">
                       <span className="text-sm">Quota</span>
-                      <div className="p-3 rounded-md text-center border border-white">{quota || "..."}</div>
+                      <div className="rounded-md border border-white p-3 text-center">
+                        {quota || "..."}
+                      </div>
                     </div>
                   </div>
                 </CarouselItem>
 
                 {/* specialtyDoc ? specialtyDoc.name || specialtyDoc.specialtyName */}
-
               </CarouselContent>
 
               <CarouselPrevious />
               <CarouselNext />
 
-              {current == 5 ? <Button
-                variant="outline"
-                className={cn(
-                  "relative",
-                  "left-10 bottom-0 -translate-y-1/2"
-                )}
-                onClick={handleClick}
-              >Calculate</Button> : ""}
-
+              {current == 5 ? (
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "relative",
+                    "bottom-0 left-10 -translate-y-1/2"
+                  )}
+                  onClick={handleClick}
+                >
+                  Calculate
+                </Button>
+              ) : (
+                ""
+              )}
 
               {/* <div className="py-2 text-center text-sm text-muted-foreground">
                 Slide {current} of {count}
               </div> */}
-
             </Carousel>
             <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-0 size-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
           </div>
@@ -2130,7 +2219,6 @@ const CalculatorPage: NextPage = () => {
         </div> */}
         </div>
       </section>
-
 
       <div className="mx-auto max-w-[1250px]">
         {/* <TaskPage /> */}
@@ -2173,4 +2261,4 @@ const CalculatorPage: NextPage = () => {
   )
 }
 
-export default CalculatorPage;
+export default CalculatorPage

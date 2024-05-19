@@ -1,8 +1,8 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import type { NextPage } from "next"
-import { Filter, Heart } from "lucide-react"
-import FrameComponent from "@/components/specialty-page/frame-component"
+import Link from "next/link"
 import { initializeApp } from "firebase/app"
 import {
   addDoc,
@@ -18,11 +18,12 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore"
-import { useEffect, useState } from "react"
-import { Skeleton } from "@/components/ui/skeleton"
-import { useToast } from "@/registry/default/ui/use-toast"
-import Link from "next/link"
+import { Filter, Heart } from "lucide-react"
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Skeleton } from "@/components/ui/skeleton"
+import FrameComponent from "@/components/specialty-page/frame-component"
+import { useToast } from "@/registry/default/ui/use-toast"
 
 // Firebase Configurations
 const firebaseConfig = {
@@ -36,9 +37,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
 
-
 const SpecialtyPage: NextPage = () => {
-
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
@@ -72,7 +71,7 @@ const SpecialtyPage: NextPage = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -178,15 +177,16 @@ const SpecialtyPage: NextPage = () => {
                 </button>
                 <div className="admin-panel-lists w-full">
                   {docs.map((items) => (
-                    <Link key={items.id} href={`/colleges/${items.id}`} className="border rounded-md">
-                      <div
-                        className="text-11xl relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left font-headings-desktop-poppins-16px-regular text-shade-white"
-                      >
+                    <Link
+                      key={items.id}
+                      href={`/colleges/${items.id}`}
+                      className="rounded-md border"
+                    >
+                      <div className="text-11xl relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left font-headings-desktop-poppins-16px-regular text-shade-white">
                         <div className="absolute inset-x-0 bottom-0 !m-0 h-[364.7px] w-full rounded [background:linear-gradient(#000,_#000),_#d9d9d9]" />
                         <div className="relative flex max-w-full flex-row items-start justify-start self-stretch">
-                          {items.images && items.images.length > 0
-                            ? items.images.map((index: any) => (
-
+                          {items.images && items.images.length > 0 ? (
+                            items.images.map((index: any) => (
                               <div key={index}>
                                 <img
                                   className="rounded-t-8xs relative z-[1] h-[263.5px] !min-w-[500px] flex-1 overflow-hidden rounded-b-none object-cover "
@@ -194,14 +194,16 @@ const SpecialtyPage: NextPage = () => {
                                   src={index}
                                 />
                               </div>
-
                             ))
-                            : items.image
-                              ? <img
-                                className="rounded-t-8xs relative z-[1] h-[263.5px] max-w-full flex-1 overflow-hidden rounded-b-none object-cover"
-                                alt="Image"
-                                src={items.image}
-                              /> : ""}
+                          ) : items.image ? (
+                            <img
+                              className="rounded-t-8xs relative z-[1] h-[263.5px] max-w-full flex-1 overflow-hidden rounded-b-none object-cover"
+                              alt="Image"
+                              src={items.image}
+                            />
+                          ) : (
+                            ""
+                          )}
 
                           {items.images && items.images.length > 0 ? (
                             ""
@@ -214,30 +216,34 @@ const SpecialtyPage: NextPage = () => {
                               src="/rectangle14230.png"
                             />
                           )}
-                          {items.logo ? <Avatar className="absolute bottom-[-9.2px] left-[29px] z-[2]">
-                            <AvatarImage src={items.logo} alt="@Ustudy" />
-                            <AvatarFallback>UY</AvatarFallback>
-                          </Avatar> : <img
-                            className="absolute bottom-[-9.2px] left-[29px] z-[2] !m-0 min-h-[104.2px] min-w-[126.9px] object-cover h-auto w-auto"
-                            loading="lazy"
-                            alt=""
-                            src={"/rectangle14231.png"}
-                          />}
-
+                          {items.logo ? (
+                            <Avatar className="absolute bottom-[-9.2px] left-[29px] z-[2]">
+                              <AvatarImage src={items.logo} alt="@Ustudy" />
+                              <AvatarFallback>UY</AvatarFallback>
+                            </Avatar>
+                          ) : (
+                            <img
+                              className="absolute bottom-[-9.2px] left-[29px] z-[2] !m-0 size-auto min-h-[104.2px] min-w-[126.9px] object-cover"
+                              loading="lazy"
+                              alt=""
+                              src={"/rectangle14231.png"}
+                            />
+                          )}
                         </div>
                         <div className="box-border flex w-[461.6px] max-w-full flex-row items-start justify-start px-[29px] py-0">
                           <div className="flex max-w-full flex-1 flex-row items-end justify-between gap-[20px] mq450:flex-wrap">
                             <div className="flex w-[235.4px] flex-col items-start justify-start gap-[19.5px]">
-                              <h2 className="text-sm w-[125px] truncate  z-[1]">
-                                {items.universityName ||
-                                  "Astana It"}
+                              <h2 className="z-[1] w-[125px] truncate  text-sm">
+                                {items.universityName || "Astana It"}
                               </h2>
                               <div className="font-nunito-sans box-border flex w-[108.6px] flex-row items-start justify-start py-0 pl-[4.6px] pr-[5px] text-xs">
-                                <div className="relative z-[1] flex-1 shrink-0">{items.universityCode || "503"}</div>
+                                <div className="relative z-[1] flex-1 shrink-0">
+                                  {items.universityCode || "503"}
+                                </div>
                               </div>
                             </div>
                             <div className="flex flex-col items-start justify-end px-0 pb-[12.3px] pt-0">
-                              <Heart className="size-7  z-[1]" />
+                              <Heart className="z-[1]  size-7" />
                             </div>
                           </div>
                         </div>

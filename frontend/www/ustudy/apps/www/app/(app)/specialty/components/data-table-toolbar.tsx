@@ -44,7 +44,7 @@ export function DataTableToolbar<TData>({
             options={priorities}
           />
         )}
-                {table.getColumn("level") && (
+        {table.getColumn("level") && (
           <DataTableFacetedFilter
             column={table.getColumn("level")}
             title="Phd"

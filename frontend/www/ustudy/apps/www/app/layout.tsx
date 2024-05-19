@@ -1,6 +1,9 @@
 import "@/styles/globals.css"
 import { Metadata, Viewport } from "next"
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google"
+import Script from "next/script"
+import { ClerkProvider } from "@clerk/nextjs"
+import { dark } from "@clerk/themes"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -12,9 +15,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher"
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
 import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
-import Script from "next/script"
-import { ClerkProvider } from "@clerk/nextjs"
-import { dark } from "@clerk/themes"
+
 import { Nextui } from "./nextui"
 
 export const metadata: Metadata = {

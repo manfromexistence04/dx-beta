@@ -1,20 +1,11 @@
 "use client"
 
 /* eslint-disable tailwindcss/no-contradicting-classname */
-
-import type { NextPage } from "next"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/registry/default/ui/accordion"
-
 import React, { ReactNode, useEffect, useRef, useState } from "react"
+import type { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
-
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph"
 import { cva, type VariantProps } from "class-variance-authority"
 import Autoplay from "embla-carousel-autoplay"
@@ -161,6 +152,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Button as AnimatedButton } from "@/components/button"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/registry/default/ui/accordion"
 import {
   Form,
   FormControl,
@@ -487,7 +484,7 @@ const Question = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -588,7 +585,7 @@ const Question = () => {
         <div className="admin-panel-lists place-content-center">
           {docs.map((items) => (
             <div key={items.id}>
-              <Card className="hover-glow-border bg-primary-foreground relative w-full">
+              <Card className="hover-glow-border relative w-full bg-primary-foreground">
                 <CardHeader>
                   <CardTitle>{items.mainQuestion}</CardTitle>
                 </CardHeader>
@@ -706,7 +703,7 @@ const Question = () => {
                                       variant="expandIcon"
                                       Icon={ArrowLeftIcon}
                                       iconPlacement="left"
-                                      className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                                      className="border border-input bg-background text-accent-foreground hover:bg-accent"
                                     >
                                       Back
                                     </AnimatedButton>
@@ -716,7 +713,7 @@ const Question = () => {
                                     variant="expandIcon"
                                     Icon={Projector}
                                     iconPlacement="left"
-                                    className="border-input bg-background hover:bg-accent text-accent-foreground border"
+                                    className="border border-input bg-background text-accent-foreground hover:bg-accent"
                                   >
                                     {inputedValues ? "Hide" : "Show"} Inputed
                                     Values
@@ -776,12 +773,12 @@ const Question = () => {
                                         title:
                                           "University has been Updated Successfully.",
                                         description: (
-                                          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+                                          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                             <span>
                                               You Can now view and delete this
                                               university!
                                             </span>
-                                            <pre className="bg-background max-h-[500px] overflow-auto">
+                                            <pre className="max-h-[500px] overflow-auto bg-background">
                                               {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                             </pre>
                                           </div>
@@ -835,7 +832,7 @@ const Question = () => {
                               )}
 
                               <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                                <h1 className="w-full text-left text-4xl font-bold">
+                                <h1 className="text-4xl w-full text-left font-bold">
                                   Answers
                                 </h1>
                                 <TagInput
@@ -848,7 +845,7 @@ const Question = () => {
                                 />
                               </div>
                               <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                                <h1 className="w-full text-left text-4xl font-bold">
+                                <h1 className="text-4xl w-full text-left font-bold">
                                   Results
                                 </h1>
                                 <TagInput
@@ -861,7 +858,7 @@ const Question = () => {
                                 />
                               </div>
                               <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                                <h1 className="w-full text-left text-4xl font-bold">
+                                <h1 className="text-4xl w-full text-left font-bold">
                                   MainQuestion
                                 </h1>
                                 <Input
@@ -877,7 +874,7 @@ const Question = () => {
                                     variant="expandIcon"
                                     Icon={ArrowLeftIcon}
                                     iconPlacement="left"
-                                    className="border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full border lg:w-auto"
+                                    className="!min-w-full border border-input bg-secondary text-accent-foreground hover:bg-accent lg:w-auto"
                                   >
                                     Back
                                   </AnimatedButton>
@@ -887,7 +884,7 @@ const Question = () => {
                                   variant="expandIcon"
                                   Icon={Projector}
                                   iconPlacement="left"
-                                  className="border-input bg-background hover:bg-accent text-accent-foreground w-full border"
+                                  className="w-full border border-input bg-background text-accent-foreground hover:bg-accent"
                                 >
                                   {inputedValues ? "Hide" : "Show"} Inputed
                                   Values
@@ -942,12 +939,12 @@ const Question = () => {
                                       title:
                                         "University has been Updated Successfully.",
                                       description: (
-                                        <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+                                        <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                           <span>
                                             You Can now view and delete this
                                             question!
                                           </span>
-                                          <pre className="bg-background max-h-[500px] overflow-auto">
+                                          <pre className="max-h-[500px] overflow-auto bg-background">
                                             {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                           </pre>
                                         </div>
@@ -1012,10 +1009,6 @@ const Question = () => {
     </div>
   )
 }
-
-
-
-
 
 const FrameComponent: NextPage = () => {
   const [inputedMainQuestion, setInputedMainQuestion] = React.useState("")
@@ -1300,7 +1293,7 @@ const FrameComponent: NextPage = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
+          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -1440,52 +1433,51 @@ const FrameComponent: NextPage = () => {
           className="mx-auto w-[90%] space-y-5 lg:w-[700px]"
         >
           {docs.map((items) => (
-                      <AccordionItem key={items.id} value={items.id}>
-                      <AccordionTrigger>
-                      {items.mainQuestion ||
-                                "No Main Questing is Provided."}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                                          <div className="grid gap-4">
-                    {items.answers.length > 0 ? (
-                      <div className="space-y-3">
-                        {items.answers.map((index: any) => {
-                          return (
-                            <div
-                              key={index}
-                              className="flex items-center justify-between rounded-lg border p-3"
-                            >
-                              <div>
-                                <p className="text-sm text-muted-foreground">
-                                  {index}
-                                </p>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Button size="icon" variant="ghost">
-                                  <CheckIcon className="size-5" />
-                                </Button>
-                              </div>
+            <AccordionItem key={items.id} value={items.id}>
+              <AccordionTrigger>
+                {items.mainQuestion || "No Main Questing is Provided."}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid gap-4">
+                  {items.answers.length > 0 ? (
+                    <div className="space-y-3">
+                      {items.answers.map((index: any) => {
+                        return (
+                          <div
+                            key={index}
+                            className="flex items-center justify-between rounded-lg border p-3"
+                          >
+                            <div>
+                              <p className="text-sm text-muted-foreground">
+                                {index}
+                              </p>
                             </div>
-                          )
-                        })}
+                            <div className="flex items-center gap-2">
+                              <Button size="icon" variant="ghost">
+                                <CheckIcon className="size-5" />
+                              </Button>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between rounded-lg border p-3">
+                      <div>
+                        <p className="text-sm text-muted-foreground">
+                          No Answers are provided.
+                        </p>
                       </div>
-                    ) : (
-                      <div className="flex items-center justify-between rounded-lg border p-3">
-                        <div>
-                          <p className="text-sm text-muted-foreground">
-                            No Answers are provided.
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Button size="icon" variant="ghost">
-                            <CheckIcon className="size-5" />
-                          </Button>
-                        </div>
+                      <div className="flex items-center gap-2">
+                        <Button size="icon" variant="ghost">
+                          <CheckIcon className="size-5" />
+                        </Button>
                       </div>
-                    )}
-                  </div>
-                      </AccordionContent>
-                    </AccordionItem>
+                    </div>
+                  )}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           ))}
           {/* <AccordionItem value="item-1">
             <AccordionTrigger>
@@ -1553,7 +1545,6 @@ const FrameComponent: NextPage = () => {
             </AccordionContent>
           </AccordionItem> */}
         </Accordion>
-
       </div>
     </section>
   )

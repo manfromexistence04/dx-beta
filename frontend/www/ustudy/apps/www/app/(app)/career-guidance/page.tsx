@@ -94,7 +94,7 @@ export default function Component() {
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
-                  <CardContent className="space-y-2 pt-5 px-5">
+                  <CardContent className="space-y-2 px-5 pt-5">
                     <h3 className="text-lg font-semibold">
                       Senior Frontend Engineer
                     </h3>
@@ -107,7 +107,7 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2 pt-5 px-5">
+                  <CardContent className="space-y-2 px-5 pt-5">
                     <h3 className="text-lg font-semibold">Product Designer</h3>
                     <p className="text-gray-500 ">
                       Join our design team and help shape the user experience of
@@ -118,7 +118,7 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2 pt-5 px-5">
+                  <CardContent className="space-y-2 px-5 pt-5">
                     <h3 className="text-lg font-semibold">
                       Digital Marketing Specialist
                     </h3>
@@ -131,7 +131,7 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2 pt-5 px-5">
+                  <CardContent className="space-y-2 px-5 pt-5">
                     <h3 className="text-lg font-semibold">
                       Sales Representative
                     </h3>
@@ -144,7 +144,7 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2 pt-5 px-5">
+                  <CardContent className="space-y-2 px-5 pt-5">
                     <h3 className="text-lg font-semibold">Financial Analyst</h3>
                     <p className="text-gray-500 ">
                       Analyze financial data and provide insights to help our
@@ -155,7 +155,7 @@ export default function Component() {
                   </CardContent>
                 </Card>
                 <Card>
-                  <CardContent className="space-y-2 pt-5 px-5">
+                  <CardContent className="space-y-2 px-5 pt-5">
                     <h3 className="text-lg font-semibold">Content Writer</h3>
                     <p className="text-gray-500 ">
                       Craft engaging and informative content to support our

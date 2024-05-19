@@ -25,7 +25,7 @@ const FrameComponent: NextPage = () => {
               type="text"
             />
           </div> */}
-          <span className="text-sm text-primary w-full text-center">
+          <span className="w-full text-center text-sm text-primary">
             Explore all collages we provide!
           </span>
         </div>

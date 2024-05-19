@@ -224,7 +224,7 @@ export default function Component() {
           </div>
         </div>
       </section>
-      <section className="w-full bg-background py-12  md:py-24 lg:py-32 border-y">
+      <section className="w-full border-y bg-background  py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -242,7 +242,7 @@ export default function Component() {
             </div>
           </div>
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-            <div className="flex flex-col justify-center space-y-4 border h-[300px] w-auto px-5">
+            <div className="flex h-[300px] w-auto flex-col justify-center space-y-4 border px-5">
               <GaugeIcon className="mx-auto size-12 text-gray-500" />
               <h3 className="text-xl font-bold">Machinery</h3>
               <p className="text-gray-500 ">
@@ -251,7 +251,7 @@ export default function Component() {
                 productivity and efficiency in your operations.
               </p>
             </div>
-            <div className="flex flex-col justify-center space-y-4 border h-[300px] w-auto px-5">
+            <div className="flex h-[300px] w-auto flex-col justify-center space-y-4 border px-5">
               <PenToolIcon className="mx-auto size-12 text-gray-500" />
               <h3 className="text-xl font-bold">Tools</h3>
               <p className="text-gray-500 ">
@@ -260,7 +260,7 @@ export default function Component() {
                 in every application.
               </p>
             </div>
-            <div className="flex flex-col justify-center space-y-4 border h-[300px] w-auto px-5">
+            <div className="flex h-[300px] w-auto flex-col justify-center space-y-4 border px-5">
               <WrenchIcon className="mx-auto size-12 text-gray-500 " />
               <h3 className="text-xl font-bold">Spare Parts</h3>
               <p className="text-gray-500 ">
@@ -283,7 +283,7 @@ export default function Component() {
               width="550"
             />
             <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm border">
+              <div className="inline-block rounded-lg border bg-background px-3 py-1 text-sm">
                 Customer Satisfaction
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
