@@ -242,7 +242,7 @@ const Header: NextPage = () => {
                 </Link>
               </nav>
             </nav>
-            <div className="mt-2 flex flex-row items-center justify-center gap-[24px] text-center font-dm-sans text-base text-shade-white">
+            <div className="mt-2 flex flex-row items-center justify-center text-center font-dm-sans text-base text-shade-white gap-2">
               <Select>
                 <SelectTrigger className="w-[80px] rounded-md">
                   <SelectValue placeholder="EN" />
@@ -457,11 +457,11 @@ const Header: NextPage = () => {
                     <Popover>
                       <PopoverTrigger asChild>
                         {/* <Button variant="outline">Open popover</Button> */}
-                        <div className="rounded-full border p-2">
+                        <div className="rounded-full border p-2.5">
                           <Bell className="size-4" />
                         </div>
                       </PopoverTrigger>
-                      <PopoverContent className="w-[425px] p-3">
+                      <PopoverContent className="w-[425px] p-3 max-h-[500px] overflow-x-hidden overflow-y-auto mr-12">
                         {/* <CardsReportIssue />
                     <CardsCookieSettings /> */}
                         {/* <Notifications /> */}
@@ -478,9 +478,9 @@ const Header: NextPage = () => {
                                   <Button
                                     variant="outline"
                                     size="sm"
-                                    className="h-7 gap-1 text-sm"
+                                    className="gap-1 text-sm p-3"
                                   >
-                                    <Settings className="size-3.5" />
+                                    <Settings className="size-4" />
                                     <span className="sr-only sm:not-sr-only">
                                       Settings
                                     </span>
