@@ -4,7 +4,7 @@ import "./globals.css"
 
 // import "../../style/globals.css"
 
-import { Inter } from "next/font/google"
+// import { Inter } from "next/font/google"
 import Script from "next/script"
 import { ClerkProvider } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
@@ -20,7 +20,7 @@ import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
 
 import { Nextui } from "./nextui"
 
-const inter = Inter({ subsets: ["latin"] })
+// const inter = Inter({ subsets: ["latin"] })
 
 // const title =
 //   "Admin Panel";
@@ -63,7 +63,7 @@ export default function RootLayout({
             },
           }}
         >
-          <body className={inter.className}>
+          <body className="">
             <Nextui>
               {/* <TooltipProvider
                 disableHoverableContent

@@ -1,10 +1,11 @@
+import { type NextRequest } from "next/server"
 import { createUploadthing, type FileRouter } from "uploadthing/next"
 import { UploadThingError } from "uploadthing/server"
 
 const f = createUploadthing()
 
 // Fake auth function
-async function auth(req: any) {
+async function auth(req: NextRequest) {
   await new Promise((resolve) => setTimeout(resolve, 100))
   return { id: "fakeId" }
 }
