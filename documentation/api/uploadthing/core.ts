@@ -1,19 +1,17 @@
-import { type NextRequest } from "next/server"
 import { createUploadthing, type FileRouter } from "uploadthing/next"
 import { UploadThingError } from "uploadthing/server"
-
-import { useUniversityImages } from "@/lib/store/university-images"
 
 const f = createUploadthing()
 
 // Fake auth function
-async function auth(req: NextRequest) {
+async function auth(req: any) {
   await new Promise((resolve) => setTimeout(resolve, 100))
   return { id: "fakeId" }
 }
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
+
   // const { Image } = useUniversityImages();
 
   // Define as many FileRoutes as you like, each with a unique routeSlug
