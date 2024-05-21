@@ -133,15 +133,43 @@ interface UploadedFilesCardProps {
 }
 
 export default function CreateSpeciality() {
+
+  // New
+  const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
+  const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
+  const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
+  const [name, setName] = React.useState("")
+  const [possibleScoreGeneralCompetition, setPossibleScoreGeneralCompetition] = React.useState("")
+  const [possibleScoreRuralQuota, setPossibleScoreRuralQuota] = React.useState("")
+  const [possibleScoreOrphanQuota, setPossibleScoreOrphanQuota] = React.useState("")
+  const [possibleScoreDisabilityQuota, setPossibleScoreDisabilityQuota] = React.useState("")
+  const [possibleScoreLargeFamilyQuota, setPossibleScoreLargeFamilyQuota] = React.useState("")
+  const handleNameChange = (event: any) => {
+    setName(event.target.value)
+  }
+  const handlePossibleScoreGeneralCompetitionChange = (event: any) => {
+    setPossibleScoreGeneralCompetition(event.target.value)
+  }
+  const handlePossibleScoreRuralQuotaChange = (event: any) => {
+    setPossibleScoreRuralQuota(event.target.value)
+  }
+  const handlePossibleScoreOrphanQuotaChange = (event: any) => {
+    setPossibleScoreOrphanQuota(event.target.value)
+  }
+  const handlePossibleScoreDisabilityQuotaChange = (event: any) => {
+    setPossibleScoreDisabilityQuota(event.target.value)
+  }
+  const handlePossibleScoreLargeFamilyQuotaChange = (event: any) => {
+    setPossibleScoreLargeFamilyQuota(event.target.value)
+  }
+
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
 
   const [universities, setUniversities] = useState<any[]>([])
   const [subjects, setSubjects] = useState<any[]>([])
-  const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
-  const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
-  const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
+
 
   const { toast } = useToast()
   const router = useRouter()
@@ -268,31 +296,7 @@ export default function CreateSpeciality() {
     React.useState("")
   const [inputedDemandForSpecialty, setInputedDemandForSpecialty] =
     React.useState("")
-  // New
-  const [name, setName] = React.useState("")
-  const [possibleScoreGeneralCompetition, setPossibleScoreGeneralCompetition] = React.useState("")
-  const [possibleScoreRuralQuota, setPossibleScoreRuralQuota] = React.useState("")
-  const [possibleScoreOrphanQuota, setPossibleScoreOrphanQuota] = React.useState("")
-  const [possibleScoreDisabilityQuota, setPossibleScoreDisabilityQuota] = React.useState("")
-  const [possibleScoreLargeFamilyQuota, setPossibleScoreLargeFamilyQuota] = React.useState("")
-  const handleNameChange = (event: any) => {
-    setName(event.target.value)
-  }
-  const handlePossibleScoreGeneralCompetitionChange = (event: any) => {
-    setPossibleScoreGeneralCompetition(event.target.value)
-  }
-  const handlePossibleScoreRuralQuotaChange = (event: any) => {
-    setPossibleScoreRuralQuota(event.target.value)
-  }
-  const handlePossibleScoreOrphanQuotaChange = (event: any) => {
-    setPossibleScoreOrphanQuota(event.target.value)
-  }
-  const handlePossibleScoreDisabilityQuotaChange = (event: any) => {
-    setPossibleScoreDisabilityQuota(event.target.value)
-  }
-  const handlePossibleScoreLargeFamilyQuotaChange = (event: any) => {
-    setPossibleScoreLargeFamilyQuota(event.target.value)
-  }
+
 
 
 
@@ -557,13 +561,13 @@ export default function CreateSpeciality() {
         {/* {JSON.stringify(universities,null,2)} */}
         {inputedValues && (
           // <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
-            // <div className="flex gap-2">
-            //   <p>RuralQuota1: </p>
-            //   <span className="font-semibold">
-            //     {inputedRuralQuota1 || "No RuralQuota1 is Provided."}
-            //   </span>
-            // </div>
-            // <Separator />
+          // <div className="flex gap-2">
+          //   <p>RuralQuota1: </p>
+          //   <span className="font-semibold">
+          //     {inputedRuralQuota1 || "No RuralQuota1 is Provided."}
+          //   </span>
+          // </div>
+          // <Separator />
 
           //   <div className="flex gap-2">
           //     <p>RuralQuota2: </p>
@@ -762,7 +766,7 @@ export default function CreateSpeciality() {
           // subjects: subjectsTag.flatMap((item) => item.text),
           // universities: universitiesTag.flatMap((item) => item.text),
           // minScrores: minScroresTag.flatMap((item) => item.text),
-    
+
 
           <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
             <div className="flex gap-2">
