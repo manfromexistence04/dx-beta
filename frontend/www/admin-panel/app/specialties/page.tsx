@@ -765,8 +765,8 @@ const Specialty = () => {
                             */}
                             <CardContent className="grid gap-4">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">LargeFamilyQuota:</span>
-                                    <span className="font-medium">{items.possibleScoreLargeFamilyQuota || "No LargeFamilyQuota Provided."}</span>
+                                    <span className="text-gray-500 dark:text-gray-400">Code:</span>
+                                    <span className="font-medium">{items.specialtyCode || "No Code Provided."}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-500 dark:text-gray-400">GeneralCompetition:</span>
@@ -978,6 +978,13 @@ const Specialty = () => {
                                                 </div>
                                                 <Separator />
                                                 <div className="flex gap-2">
+                                                    <p>Code: </p>
+                                                    <span className="font-semibold">
+                                                        {items.specialtyCode || "No Code is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
                                                     <p>GeneralCompetition: </p>
                                                     <span className="font-semibold">
                                                         {items.possibleScoreGeneralCompetition || "No GeneralCompetition is Provided."}
@@ -1067,7 +1074,7 @@ const Specialty = () => {
 
                                                                     const updateRef = doc(db, "specialties", items.id);
                                                                     const Update: any = await updateDoc(updateRef, {
-                                                                        // ruralQuota1: inputedRuralQuota1 || items.ruralQuota1,
+                                                                        // ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
                                                                         // ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
                                                                         // level: inputedLevel || items.level,
                                                                         // orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
@@ -1091,17 +1098,18 @@ const Specialty = () => {
                                                                         // largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                         // availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                         // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-                                                                        subjects: subjectsTag.flatMap((item) => item.text),
-                                                                        universities: universitiesTag.flatMap((item) => item.text),
-                                                                        minScrores: minScroresTag.flatMap((item) => item.text),
-
-                                                                        name: name,
-                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
-                                                                        possibleScoreRuralQuota: possibleScoreRuralQuota,
-                                                                        possibleScoreOrphanQuota: possibleScoreOrphanQuota,
-                                                                        possibleScoreDisabilityQuota: possibleScoreDisabilityQuota,
-                                                                        possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota,
-
+                                                                        subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
+                                                                        universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
+                                                                        minScrores: minScroresTag.flatMap((item) => item.text) || items.minScroresTag,
+    
+                                                                        name: name || items.name,
+                                                                        specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                        possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
+                                                                        possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
+                                                                        possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
+                                                                        possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota || items.possibleScoreLargeFamilyQuota,
+    
                                                                     })
 
 
@@ -1316,6 +1324,14 @@ const Specialty = () => {
                                                                 </span>
                                                             </div>
                                                             <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>Code: </p>
+                                                                <span className="font-semibold">
+                                                                    {inputedSpecialtyCode || "No Code is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+
                                                             <div className="flex gap-2">
                                                                 <p>GeneralCompetition: </p>
                                                                 <span className="font-semibold">
@@ -1598,6 +1614,16 @@ const Specialty = () => {
                                                             />
                                                         </div>
                                                         <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">
+                                                                SpecialtyCode
+                                                            </h1>
+                                                            <Input
+                                                                onChange={handleSpecialtyCodeChange}
+                                                                type="text"
+                                                                placeholder="Enter SpecialtyCode Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
                                                             <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
                                                             <Input
                                                                 onChange={handlePossibleScoreGeneralCompetitionChange}
@@ -1701,16 +1727,17 @@ const Specialty = () => {
                                                                     // largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                     // availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                     // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-                                                                    subjects: subjectsTag.flatMap((item) => item.text),
-                                                                    universities: universitiesTag.flatMap((item) => item.text),
-                                                                    minScrores: minScroresTag.flatMap((item) => item.text),
+                                                                    subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
+                                                                    universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
+                                                                    minScrores: minScroresTag.flatMap((item) => item.text) || items.minScroresTag,
 
-                                                                    name: name,
-                                                                    possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
-                                                                    possibleScoreRuralQuota: possibleScoreRuralQuota,
-                                                                    possibleScoreOrphanQuota: possibleScoreOrphanQuota,
-                                                                    possibleScoreDisabilityQuota: possibleScoreDisabilityQuota,
-                                                                    possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota,
+                                                                    name: name || items.name,
+                                                                    specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                    possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                    possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
+                                                                    possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
+                                                                    possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
+                                                                    possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota || items.possibleScoreLargeFamilyQuota,
 
                                                                 })
 

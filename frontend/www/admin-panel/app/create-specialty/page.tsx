@@ -210,7 +210,6 @@ export default function CreateSpeciality() {
       // largeFamiliesQuota2: inputedLargeFamiliesQuota2,
       // generalCompetition2: inputedGeneralCompetition2,
       // generalCompetition3: inputedGeneralCompetition3,
-      // specialtyCode: inputedSpecialtyCode,
       // disabilitiesQuota1: inputedDisabilitiesQuota1,
       // averageSalary: inputedAverageSalary,
       // largeFamiliesQuota3: inputedLargeFamiliesQuota3,
@@ -226,6 +225,7 @@ export default function CreateSpeciality() {
       minScrores: minScroresTag.flatMap((item) => item.text),
 
       name: name,
+      specialtyCode: inputedSpecialtyCode,
       possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
       possibleScoreRuralQuota: possibleScoreRuralQuota,
       possibleScoreOrphanQuota: possibleScoreOrphanQuota,
@@ -655,12 +655,12 @@ export default function CreateSpeciality() {
           //   </div>
           //   <Separator />
 
-          //   <div className="flex gap-2">
-          //     <p>SpecialtyCode: </p>
-          //     <span className="font-semibold">
-          //       {inputedSpecialtyCode || "No SpecialtyCode is Provided."}
-          //     </span>
-          //   </div>
+          // <div className="flex gap-2">
+          //   <p>SpecialtyCode: </p>
+          //   <span className="font-semibold">
+          //     {inputedSpecialtyCode || "No SpecialtyCode is Provided."}
+          //   </span>
+          // </div>
 
           //   <Separator />
 
@@ -802,6 +802,13 @@ export default function CreateSpeciality() {
             </div>
             <Separator />
             <div className="flex gap-2">
+              <p>SpecialtyCode: </p>
+              <span className="font-semibold">
+                {inputedSpecialtyCode || "No SpecialtyCode is Provided."}
+              </span>
+            </div>
+            <Separator />
+            <div className="flex gap-2">
               <p>GeneralCompetition: </p>
               <span className="font-semibold">
                 {possibleScoreGeneralCompetition || "No GeneralCompetition is Provided."}
@@ -911,6 +918,16 @@ export default function CreateSpeciality() {
               onChange={handleNameChange}
               type="text"
               placeholder="Enter Speciality Name"
+            />
+          </div>
+          <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">
+              SpecialtyCode
+            </h1>
+            <Input
+              onChange={handleSpecialtyCodeChange}
+              type="text"
+              placeholder="Enter SpecialtyCode Info"
             />
           </div>
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
