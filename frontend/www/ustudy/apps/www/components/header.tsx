@@ -429,7 +429,7 @@ const Header: NextPage = () => {
                       </Link>
                     </div> */}
 
-                    <Link href="/signup-clerk">
+                    <Link href="/signup">
                       <Button className="bg-blueviolet-200" variant="outline">
                         Sign Up/Log In
                       </Button>
