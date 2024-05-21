@@ -726,7 +726,7 @@ const Specialty = () => {
 
                         <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
                             <CardHeader>
-                                <CardTitle>{items.specialtyName || "No Specialty Name Provided."}</CardTitle>
+                                <CardTitle>{items.specialtyName || items.name || "No Specialty Name Provided."}</CardTitle>
                                 <CardDescription>{items.level}</CardDescription>
                             </CardHeader>
                             <CardContent className="grid gap-4">
