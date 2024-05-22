@@ -746,31 +746,22 @@ const Specialty = () => {
                     <Button size="sm">Add New Specialty</Button>
                 </Link>
             </div>
-            <div className="admin-panel-lists place-content-center">
+            <div className="admin-panel-lists">
                 {docs.map((items) => (
                     <div key={items.id}>
                         <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
                             <CardHeader>
-                                <CardTitle>{items.specialtyName || items.name || "No Specialty Name Provided."}</CardTitle>
-                                <CardDescription>{items.level}</CardDescription>
+                                <CardTitle className="w-[250px] truncate">{items.specialtyName || items.name || "No Specialty Name Provided."}</CardTitle>
+                                <CardDescription className="w-[350px] truncate">{items.possibleScoreGeneralCompetition}</CardDescription>
                             </CardHeader>
-
-                            {/* 
-                            
-                                  possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
-      possibleScoreRuralQuota: possibleScoreRuralQuota,
-      possibleScoreOrphanQuota: possibleScoreOrphanQuota,
-      possibleScoreDisabilityQuota: possibleScoreDisabilityQuota,
-      possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota,
-                            */}
                             <CardContent className="grid gap-4">
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-500 dark:text-gray-400">Code:</span>
                                     <span className="font-medium">{items.specialtyCode || "No Code Provided."}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">GeneralCompetition:</span>
-                                    <span className="font-medium">{items.possibleScoreGeneralCompetition || "No GeneralCompetition Provided."}</span>
+                                    <span className="text-gray-500 dark:text-gray-400">RuralQuota:</span>
+                                    <span className="font-medium">{items.possibleScoreRuralQuota || "No RuralQuota Provided."}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-500 dark:text-gray-400">OrphanQuota:</span>
@@ -787,185 +778,26 @@ const Specialty = () => {
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
-
-                                        {/* <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
-                                            <div className="flex gap-2">
-                                                <p>RuralQuota1: </p>
-                                                <span className="font-semibold">{items.ruralQuota1 || "No RuralQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>RuralQuota2: </p>
-                                                <span className="font-semibold">{items.ruralQuota2 || "No RuralQuota2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>RuralQuota3: </p>
-                                                <span className="font-semibold">{items.ruralQuota3 || "No RuralQuota3 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>Level: </p>
-                                                <span className="font-semibold">{items.level || "No Level is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>OrphanQuota2: </p>
-                                                <span className="font-semibold">{items.orphanQuota2 || "No OrphanQuota2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DisabilitiesQuota2: </p>
-                                                <span className="font-semibold">{items.disabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
-                                            </div>
-
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>OrphanQuota3: </p>
-                                                <span className="font-semibold">{items.orphanQuota3 || "No OrphanQuota3 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>GeneralCompetition1: </p>
-                                                <span className="font-semibold">{items.generalCompetition1 || "No GeneralCompetition1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>LargeFamiliesQuota2: </p>
-                                                <span className="font-semibold">{items.largeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-
-
-                                            <div className="flex gap-2">
-                                                <p>GeneralCompetition2: </p>
-                                                <span className="font-semibold">{items.generalCompetition2 || "No GeneralCompetition2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>GeneralCompetition3: </p>
-                                                <span className="font-semibold">{items.generalCompetition3 || "No GeneralCompetition3 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>SpecialtyCode: </p>
-                                                <span className="font-semibold">{items.specialtyCode || "No SpecialtyCode is Provided."}</span>
-                                            </div>
-
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DisabilitiesQuota1: </p>
-                                                <span className="font-semibold">{items.disabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>AverageSalary: </p>
-                                                <span className="font-semibold">{items.averageSalary || "No AverageSalary is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>Subjects: </p>
-                                                <span className="font-semibold">{JSON.stringify(items.subjects,null,2) || "No Subjects is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>LargeFamiliesQuota1: </p>
-                                                <span className="font-semibold">{items.largeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>SpecialtyName: </p>
-                                                <span className="font-semibold">{items.specialtyName || "No SpecialtyName is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DisabilitiesQuota3: </p>
-                                                <span className="font-semibold">{items.disabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
-                                            </div>
-
-                                            <Separator />
-
-
-
-
-                                            <div className="flex gap-2">
-                                                <p>OrphanQuota1: </p>
-                                                <span className="font-semibold">{items.orphanQuota1 || "No OrphanQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>Universities: </p>
-                                                <span className="font-semibold">{JSON.stringify(items.universities,null,2) || "No Universities is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>LargeFamiliesQuota3: </p>
-                                                <span className="font-semibold">{items.largeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
-                                            </div>
-
-
-
-
-                                            <Separator />
-
-
-
-
-                                            <div className="flex gap-2">
-                                                <p>AvailableGrantCount: </p>
-                                                <span className="font-semibold">{items.availableGrantCount || "No AvailableGrantCount is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DemandForSpecialty: </p>
-                                                <span className="font-semibold">{items.demandForSpecialty || "No DemandForSpecialty is Provided."}</span>
-                                            </div>
-                                        </div> */}
-                                        <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
-                                            {/* <div className="flex gap-2">
-                                                <p>RuralQuota1: </p>
-                                                <span className="font-semibold">{items.ruralQuota1 || "No RuralQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator /> */}
-                                            <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
+                                        <div className="w-full flex flex-col gap-2 items-center justify-center p-3 text-sm">
+                                            <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                 <div className="flex gap-2">
                                                     <p>Subjects: </p>
                                                     <span className="font-semibold">
-                                                        {JSON.stringify(items.subjectsTag, null, 2) || "No Subjects is Provided."}
+                                                        {JSON.stringify(items.subjects, null, 2) || "No Subjects is Provided."}
                                                     </span>
                                                 </div>
                                                 <Separator />
                                                 <div className="flex gap-2">
                                                     <p>Universities: </p>
                                                     <span className="font-semibold">
-                                                        {JSON.stringify(items.universitiesTag, null, 2) || "No Universities is Provided."}
+                                                        {JSON.stringify(items.universities, null, 2) || "No Universities is Provided."}
                                                     </span>
                                                 </div>
                                                 <Separator />
                                                 <div className="flex gap-2">
                                                     <p>MinScrores: </p>
                                                     <span className="font-semibold">
-                                                        {JSON.stringify(items.minScroresTag, null, 2) || "No MinScrores is Provided."}
+                                                        {JSON.stringify(items.minScrores, null, 2) || "No MinScrores is Provided."}
                                                     </span>
                                                 </div>
                                                 <Separator />
@@ -1136,184 +968,28 @@ const Specialty = () => {
                                                     </div>
 
 
-                                                    {/* {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
-                                                        <div className="flex gap-2">
-                                                            <p>RuralQuota1: </p>
-                                                            <span className="font-semibold">{inputedRuralQuota1 || "No RuralQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>RuralQuota2: </p>
-                                                            <span className="font-semibold">{inputedRuralQuota2 || "No RuralQuota2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>RuralQuota3: </p>
-                                                            <span className="font-semibold">{inputedRuralQuota3 || "No RuralQuota3 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>Level: </p>
-                                                            <span className="font-semibold">{inputedLevel || "No Level is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>OrphanQuota2: </p>
-                                                            <span className="font-semibold">{inputedOrphanQuota2 || "No OrphanQuota2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DisabilitiesQuota2: </p>
-                                                            <span className="font-semibold">{inputedDisabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>OrphanQuota3: </p>
-                                                            <span className="font-semibold">{inputedOrphanQuota3 || "No OrphanQuota3 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>GeneralCompetition1: </p>
-                                                            <span className="font-semibold">{inputedGeneralCompetition1 || "No GeneralCompetition1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>LargeFamiliesQuota2: </p>
-                                                            <span className="font-semibold">{inputedLargeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>GeneralCompetition2: </p>
-                                                            <span className="font-semibold">{inputedGeneralCompetition2 || "No GeneralCompetition2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>GeneralCompetition3: </p>
-                                                            <span className="font-semibold">{inputedGeneralCompetition3 || "No GeneralCompetition3 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>SpecialtyCode: </p>
-                                                            <span className="font-semibold">{inputedSpecialtyCode || "No SpecialtyCode is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DisabilitiesQuota1: </p>
-                                                            <span className="font-semibold">{inputedDisabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>AverageSalary: </p>
-                                                            <span className="font-semibold">{inputedAverageSalary || "No AverageSalary is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>Subjects: </p>
-                                                            <span className="font-semibold">{subjectsTag.flatMap(item => item.text) || "No Subjects is Provided."}</span>
-                                                        </div>
-
-
-                                                        <Separator />
-
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>LargeFamiliesQuota1: </p>
-                                                            <span className="font-semibold">{inputedLargeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>SpecialtyName: </p>
-                                                            <span className="font-semibold">{inputedSpecialtyName || "No SpecialtyName is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DisabilitiesQuota3: </p>
-                                                            <span className="font-semibold">{inputedDisabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-
-
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>OrphanQuota1: </p>
-                                                            <span className="font-semibold">{inputedOrphanQuota1 || "No OrphanQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>Universities: </p>
-                                                            <span className="font-semibold">{universitiesTag.flatMap(item => item.text) || "No Universities is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>LargeFamiliesQuota3: </p>
-                                                            <span className="font-semibold">{inputedLargeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
-                                                        </div>
-
-
-
-
-                                                        <Separator />
-
-
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>AvailableGrantCount: </p>
-                                                            <span className="font-semibold">{inputedAvailableGrantCount || "No AvailableGrantCount is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DemandForSpecialty: </p>
-                                                            <span className="font-semibold">{inputedDemandForSpecialty || "No DemandForSpecialty is Provided."}</span>
-                                                        </div>
-                                                    </div>} */}
+                                                  
 
                                                     {inputedValues && (
                                                         <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                             <div className="flex gap-2">
                                                                 <p>Subjects: </p>
                                                                 <span className="font-semibold">
-                                                                    {subjectsTag.flatMap((item) => item.text) || "No Subjects is Provided."}
+                                                                    {subjectsTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>Universities: </p>
                                                                 <span className="font-semibold">
-                                                                    {universitiesTag.flatMap((item) => item.text) || "No Universities is Provided."}
+                                                                    {universitiesTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} ` ) || "No Universities is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>MinScrores: </p>
                                                                 <span className="font-semibold">
-                                                                    {minScroresTag.flatMap((item) => item.text) || "No MinScrores is Provided."}
+                                                                    {minScroresTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No MinScrores is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />

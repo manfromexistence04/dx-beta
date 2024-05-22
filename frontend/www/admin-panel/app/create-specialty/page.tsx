@@ -772,21 +772,21 @@ export default function CreateSpeciality() {
             <div className="flex gap-2">
               <p>Subjects: </p>
               <span className="font-semibold">
-                {subjectsTag.flatMap((item) => item.text) || "No Subjects is Provided."}
+                {subjectsTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No Subjects is Provided."}
               </span>
             </div>
             <Separator />
             <div className="flex gap-2">
               <p>Universities: </p>
               <span className="font-semibold">
-                {universitiesTag.flatMap((item) => item.text) || "No Universities is Provided."}
+                {universitiesTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No Universities is Provided."}
               </span>
             </div>
             <Separator />
             <div className="flex gap-2">
               <p>MinScrores: </p>
               <span className="font-semibold">
-                {minScroresTag.flatMap((item) => item.text) || "No MinScrores is Provided."}
+                {minScroresTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No MinScrores is Provided."}
               </span>
             </div>
             <Separator />
