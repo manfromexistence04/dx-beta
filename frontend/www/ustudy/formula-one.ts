@@ -3,7 +3,7 @@ function calculateAdmissionChance(startScore: number, e1: number, e2: number, e3
       return 0;
   } else {
       let possibleScore = calculatePossibleScore(e1, e2, e3);
-      console.log(possibleScore);
+      // console.log(possibleScore);
       
       let admissionChance = calculateChance(userScore, possibleScore);
       return Math.min(Math.floor(admissionChance), 100);
@@ -21,10 +21,10 @@ function calculateChance(userScore: number, possibleScore: number): number {
 }
 
 let startScore = 100; // University Theshold
-let e1 = 95;          // 2021
-let e2 = 93;          // 2022
-let e3 = 97;          // 2023
-let userScore = 394;  // Ent Scrore
+let e1 = 100;          // 2021
+let e2 = 100;          // 2022
+let e3 = 100;          // 2023
+let userScore = 101;  // Ent Scrore
 
 let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
 
