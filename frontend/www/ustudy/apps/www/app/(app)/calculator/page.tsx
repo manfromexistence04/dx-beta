@@ -535,7 +535,7 @@ const Calculator: NextPage = () => {
     //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
     // }
     // calculate();
-    let startScore: any = specialty || 100 // University Theshold
+    let startScore: any = 100 // University Theshold
     let e1 = specialtyDoc
       ? specialtyDoc.minscrore &&
       specialtyDoc.minscrore.map((item: any) => item[0])
@@ -902,7 +902,7 @@ const Calculator: NextPage = () => {
                                 "mr-2 size-4",
                                 value === framework.name
                                   ? "opacity-100"
-                                  : value === framework.name ? "opacity-100" : "opacity-0"
+                                  : value === framework.id ? "opacity-100" : "opacity-0"
                               )}
                             />
                             {framework.name ||
