@@ -535,18 +535,18 @@ const Calculator: NextPage = () => {
     //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
     // }
     // calculate();
-    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
+    let startScore: any = specialty || 100 // University Theshold
     let e1 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
+      specialtyDoc.minscrore.map((item: any) => item[0])
       : 95 // 2021
     let e2 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
+      specialtyDoc.minscrore.map((item: any) => item[1])
       : 93 // 2022
     let e3 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
+      specialtyDoc.minscrore.map((item: any) => item[2])
       : 97 // 2023
     let userScore = ENTPOINT // Ent Scrore
 
@@ -589,12 +589,10 @@ const Calculator: NextPage = () => {
       {/* <p>{`Names of specialties with threshold less than ${ENTPOINT}: ${specialtiesUnderThreshold.join(', ')}`}</p>
       <p>{`Names of universities with threshold less than ${ENTPOINT}: ${universitiesUnderThreshold.join(', ')}`}</p> */}
       {/* <p>{`Number of specialties with threshold less than ${ENTPOINT}: ${specialtyCount}`}</p> */}
-      <p>{`Number of universities with threshold less than ${ENTPOINT}: ${
-        universityCount || specialtyCount
-      }`}</p>
-      <p>{`Theherhold ${ENTPOINT}: ${
-        universityTheshold || specialtyTheshold
-      }`}</p>
+      <p>{`Number of universities with threshold less than ${ENTPOINT}: ${universityCount || specialtyCount
+        }`}</p>
+      <p>{`Theherhold ${ENTPOINT}: ${universityTheshold || specialtyTheshold
+        }`}</p>
       <p>{`Last university code: ${lastUniversityCode}`}</p>
       <p>{`Calculation: ${calculation}%`}</p>
 
@@ -753,8 +751,8 @@ const Calculator: NextPage = () => {
                     text:
                       items.subjects.map(
                         (item: any) =>
-                          item || `No Subjects Are Provided at id:${uuid()}`
-                      ) || `No Subject Provided at id:${items.id}`,
+                          item || ""
+                      ) || "",
                   }))}
                   draggable
                   className="!max-h-10 !bg-transparent sm:min-w-[450px]"
@@ -878,13 +876,7 @@ const Calculator: NextPage = () => {
                         ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
                         : "Select Specialty..."} */}
                       {value
-                        ? specialties.find(
-                            (specialty) => specialty.name === value
-                          )?.name ||
-                          specialties.find(
-                            (specialty) => specialty.id === value
-                          )?.specialtyName ||
-                          value
+                        ? value
                         : "Select specialty..."}
                       <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                     </Button>
@@ -897,7 +889,7 @@ const Calculator: NextPage = () => {
                         {specialties.map((framework) => (
                           <CommandItem
                             key={framework.id}
-                            value={framework.id}
+                            value={framework.name || framework.id}
                             onSelect={(currentValue) => {
                               setValue(
                                 currentValue === value ? "" : currentValue
@@ -908,13 +900,12 @@ const Calculator: NextPage = () => {
                             <Check
                               className={cn(
                                 "mr-2 size-4",
-                                value === framework.id
+                                value === framework.name
                                   ? "opacity-100"
-                                  : "opacity-0"
+                                  : value === framework.name ? "opacity-100" : "opacity-0"
                               )}
                             />
                             {framework.name ||
-                              framework.specialtyName ||
                               framework.id}
                           </CommandItem>
                         ))}
@@ -1460,15 +1451,15 @@ const CalculatorPage: NextPage = () => {
     let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
     let e1 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
+      specialtyDoc.minscrore.map((item: any) => item[0])
       : 95 // 2021
     let e2 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
+      specialtyDoc.minscrore.map((item: any) => item[1])
       : 93 // 2022
     let e3 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
+      specialtyDoc.minscrore.map((item: any) => item[2])
       : 97 // 2023
     let userScore = ENTPOINT // Ent Scrore
 
@@ -1518,15 +1509,15 @@ const CalculatorPage: NextPage = () => {
     let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
     let e1 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
+      specialtyDoc.minscrore.map((item: any) => item[0])
       : 95 // 2021
     let e2 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
+      specialtyDoc.minscrore.map((item: any) => item[1])
       : 93 // 2022
     let e3 = specialtyDoc
       ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
+      specialtyDoc.minscrore.map((item: any) => item[2])
       : 97 // 2023
     let userScore = ENTPOINT // Ent Scrore
 
@@ -1542,11 +1533,10 @@ const CalculatorPage: NextPage = () => {
       {
         id: lastUniversityCode || "BD75",
         title: "universities are hoping to see you there!",
-        status: `${
-          subjectsTag.map(
-            (obj) => `${obj.text || "Information & Communication Technology"} `
-          ) || "Creative Exam"
-        }`,
+        status: `${subjectsTag.map(
+          (obj) => `${obj.text || "Information & Communication Technology"} `
+        ) || "Creative Exam"
+          }`,
         label: universityCount || specialtyCount,
         priority: `${admissionChance}%`,
       },
@@ -1772,12 +1762,7 @@ const CalculatorPage: NextPage = () => {
                         maxTags={2}
                         autocompleteOptions={subjects.map((items) => ({
                           id: items.id,
-                          text:
-                            items.subjects.map(
-                              (item: any) =>
-                                item ||
-                                `No Subjects Are Provided at id:${uuid()}`
-                            ) || `No Subject Provided at id:${items.id}`,
+                          text: items.subjects.filter((item: string) => item !== ""),
                         }))}
                         draggable
                         className="!max-h-10 !bg-transparent sm:min-w-[450px]"
@@ -1901,13 +1886,7 @@ const CalculatorPage: NextPage = () => {
                   ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
                   : "Select Specialty..."} */}
                             {value
-                              ? specialties.find(
-                                  (specialty) => specialty.name === value
-                                )?.name ||
-                                specialties.find(
-                                  (specialty) => specialty.id === value
-                                )?.specialtyName ||
-                                value
+                              ? value
                               : "Select specialty..."}
                             <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                           </Button>
@@ -1920,7 +1899,7 @@ const CalculatorPage: NextPage = () => {
                               {specialties.map((framework) => (
                                 <CommandItem
                                   key={framework.id}
-                                  value={framework.id}
+                                  value={framework.name || framework.id}
                                   onSelect={(currentValue) => {
                                     setValue(
                                       currentValue === value ? "" : currentValue
@@ -1931,13 +1910,12 @@ const CalculatorPage: NextPage = () => {
                                   <Check
                                     className={cn(
                                       "mr-2 size-4",
-                                      value === framework.id
+                                      value === framework.name
                                         ? "opacity-100"
-                                        : "opacity-0"
+                                        : value === framework.id ? "opacity-100" : "opacity-0"
                                     )}
                                   />
                                   {framework.name ||
-                                    framework.specialtyName ||
                                     framework.id}
                                 </CommandItem>
                               ))}
@@ -2055,17 +2033,23 @@ const CalculatorPage: NextPage = () => {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            <SelectLabel className="border-b">
-                              Quota's
-                            </SelectLabel>
-                            <SelectItem value="RuralQuota">Rural</SelectItem>
-                            <SelectItem value="OrphanQuota">Orphan</SelectItem>
-                            <SelectItem value="DisabilityQuota">
-                              Disability
-                            </SelectItem>
-                            <SelectItem value="LargeFamilyQuota">
-                              LargeFamily
-                            </SelectItem>
+
+                            {/* 
+                            
+                                  specialtyCode: inputedSpecialtyCode,
+      possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
+      possibleScoreRuralQuota: possibleScoreRuralQuota,
+      possibleScoreOrphanQuota: possibleScoreOrphanQuota,
+      possibleScoreDisabilityQuota: possibleScoreDisabilityQuota,
+      possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota,
+    })
+                            */}
+                            <SelectLabel className="border-b">Quota's</SelectLabel>
+                            <SelectItem value="possibleScoreGeneralCompetition">GeneralCompetetion</SelectItem>
+                            <SelectItem value="possibleScoreRuralQuota">Rural</SelectItem>
+                            <SelectItem value="possibleScoreOrphanQuota">Orphan</SelectItem>
+                            <SelectItem value="possibleScoreDisabilityQuota">Disability</SelectItem>
+                            <SelectItem value="possibleScoreLargeFamilyQuota">LargeFamily</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -2171,10 +2155,7 @@ const CalculatorPage: NextPage = () => {
                       <div className="rounded-md border border-white p-3 text-center">
                         {subjectsTag.map(
                           (obj) =>
-                            `${
-                              obj.text ||
-                              "Information & Communication Technology"
-                            } `
+                            `-|| ${obj.text} ||-`
                         ) || "Creative Exam"}
                       </div>
                     </div>
