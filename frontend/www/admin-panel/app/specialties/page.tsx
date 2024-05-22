@@ -199,12 +199,38 @@ function uuid() {
 
 const Specialty = () => {
 
-
+    const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
+    const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
+    const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
+    const [name, setName] = React.useState("")
+    const [possibleScoreGeneralCompetition, setPossibleScoreGeneralCompetition] = React.useState("")
+    const [possibleScoreRuralQuota, setPossibleScoreRuralQuota] = React.useState("")
+    const [possibleScoreOrphanQuota, setPossibleScoreOrphanQuota] = React.useState("")
+    const [possibleScoreDisabilityQuota, setPossibleScoreDisabilityQuota] = React.useState("")
+    const [possibleScoreLargeFamilyQuota, setPossibleScoreLargeFamilyQuota] = React.useState("")
+    const handleNameChange = (event: any) => {
+        setName(event.target.value)
+    }
+    const handlePossibleScoreGeneralCompetitionChange = (event: any) => {
+        setPossibleScoreGeneralCompetition(event.target.value)
+    }
+    const handlePossibleScoreRuralQuotaChange = (event: any) => {
+        setPossibleScoreRuralQuota(event.target.value)
+    }
+    const handlePossibleScoreOrphanQuotaChange = (event: any) => {
+        setPossibleScoreOrphanQuota(event.target.value)
+    }
+    const handlePossibleScoreDisabilityQuotaChange = (event: any) => {
+        setPossibleScoreDisabilityQuota(event.target.value)
+    }
+    const handlePossibleScoreLargeFamilyQuotaChange = (event: any) => {
+        setPossibleScoreLargeFamilyQuota(event.target.value)
+    }
     const [universities, setUniversities] = useState<any[]>([]);
     const [subjects, setSubjects] = useState<any[]>([]);
 
-    const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
-    const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
+    // const [subjectsTag, setSubjectsTag] = React.useState<Tag[]>([]);
+    // const [universitiesTag, setUniversitiesTag] = React.useState<Tag[]>([]);
 
     const [docs, setDocs] = useState<any[]>([]);
     const [lastDoc, setLastDoc] = useState<any>(null);
@@ -412,9 +438,9 @@ const Specialty = () => {
     }
 
 
-    const handleNameChange = (event: any) => {
-        setInputedName(event.target.value);
-    }
+    // const handleNameChange = (event: any) => {
+    //     setInputedName(event.target.value);
+    // }
     const handleEmailChange = (event: any) => {
         setInputedEmail(event.target.value);
     }
@@ -720,27 +746,26 @@ const Specialty = () => {
                     <Button size="sm">Add New Specialty</Button>
                 </Link>
             </div>
-            <div className="admin-panel-lists place-content-center">
+            <div className="admin-panel-lists">
                 {docs.map((items) => (
                     <div key={items.id}>
-
                         <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
                             <CardHeader>
-                                <CardTitle>{items.specialtyName || "No Specialty Name Provided."}</CardTitle>
-                                <CardDescription>{items.level}</CardDescription>
+                                <CardTitle className="w-[250px] truncate">{items.specialtyName || items.name || "No Specialty Name Provided."}</CardTitle>
+                                <CardDescription className="w-[350px] truncate">{items.possibleScoreGeneralCompetition}</CardDescription>
                             </CardHeader>
                             <CardContent className="grid gap-4">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">Demand:</span>
-                                    <span className="font-medium">{items.demandForSpecialty || "No Demand Provided."}</span>
+                                    <span className="text-gray-500 dark:text-gray-400">Code:</span>
+                                    <span className="font-medium">{items.specialtyCode || "No Code Provided."}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">Average Salary:</span>
-                                    <span className="font-medium">{items.averageSalary || "No Average Salary Provided."}</span>
+                                    <span className="text-gray-500 dark:text-gray-400">RuralQuota:</span>
+                                    <span className="font-medium">{items.possibleScoreRuralQuota || "No RuralQuota Provided."}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">Specialty Code:</span>
-                                    <span className="font-medium">{items.specialtyCode || "No Specialty Code Provided."}</span>
+                                    <span className="text-gray-500 dark:text-gray-400">OrphanQuota:</span>
+                                    <span className="font-medium">{items.possibleScoreOrphanQuota || "No OrphanQuota Provided."}</span>
                                 </div>
                             </CardContent>
                             <CardFooter className="flex justify-between">
@@ -748,179 +773,87 @@ const Specialty = () => {
 
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button size="sm" variant="outline">
+                                        <Button variant="outline">
                                             View
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
+                                        <div className="w-full flex flex-col gap-2 items-center justify-center p-3 text-sm">
+                                            <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
+                                                <div className="flex gap-2">
+                                                    <p>Subjects: </p>
+                                                    <span className="font-semibold">
+                                                        {JSON.stringify(items.subjects, null, 2) || "No Subjects is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>Universities: </p>
+                                                    <span className="font-semibold">
+                                                        {JSON.stringify(items.universities, null, 2) || "No Universities is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>MinScrores: </p>
+                                                    <span className="font-semibold">
+                                                        {JSON.stringify(items.minScrores, null, 2) || "No MinScrores is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
 
-                                        <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3 overflow-hidden">
-                                            <div className="flex gap-2">
-                                                <p>RuralQuota1: </p>
-                                                <span className="font-semibold">{items.ruralQuota1 || "No RuralQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>RuralQuota2: </p>
-                                                <span className="font-semibold">{items.ruralQuota2 || "No RuralQuota2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>RuralQuota3: </p>
-                                                <span className="font-semibold">{items.ruralQuota3 || "No RuralQuota3 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>Level: </p>
-                                                <span className="font-semibold">{items.level || "No Level is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>OrphanQuota2: </p>
-                                                <span className="font-semibold">{items.orphanQuota2 || "No OrphanQuota2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DisabilitiesQuota2: </p>
-                                                <span className="font-semibold">{items.disabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
-                                            </div>
-
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>OrphanQuota3: </p>
-                                                <span className="font-semibold">{items.orphanQuota3 || "No OrphanQuota3 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>GeneralCompetition1: </p>
-                                                <span className="font-semibold">{items.generalCompetition1 || "No GeneralCompetition1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>LargeFamiliesQuota2: </p>
-                                                <span className="font-semibold">{items.largeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-
-
-                                            <div className="flex gap-2">
-                                                <p>GeneralCompetition2: </p>
-                                                <span className="font-semibold">{items.generalCompetition2 || "No GeneralCompetition2 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>GeneralCompetition3: </p>
-                                                <span className="font-semibold">{items.generalCompetition3 || "No GeneralCompetition3 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>SpecialtyCode: </p>
-                                                <span className="font-semibold">{items.specialtyCode || "No SpecialtyCode is Provided."}</span>
-                                            </div>
-
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DisabilitiesQuota1: </p>
-                                                <span className="font-semibold">{items.disabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>AverageSalary: </p>
-                                                <span className="font-semibold">{items.averageSalary || "No AverageSalary is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>Subjects: </p>
-                                                <span className="font-semibold">{JSON.stringify(items.subjects,null,2) || "No Subjects is Provided."}</span>
-                                            </div>
-
-
-
-
-
-                                            {/* const [inputedLargeFamiliesQuota1, setInputedLargeFamiliesQuota1] = React.useState("114");
-const [inputedThreshold, setInputedThreshold] = React.useState("80");
-const [inputedSpecialtyName, setInputedSpecialtyName] = React.useState("Подготовка учителей физической культуры");
-const [inputedDisabilitiesQuota3, setInputedDisabilitiesQuota3] = React.useState("97");
-const [inputedOrphanQuota1, setInputedOrphanQuota1] = React.useState("84");
-const [inputedUniversities, setInputedUniversities] = React.useState("astana");
-const [inputedLargeFamiliesQuota3, setInputedLargeFamiliesQuota3] = React.useState("107");
-const [inputedAvailableGrantCount, setInputedAvailableGrantCount] = React.useState("547");
-const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState("high"); */}
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>LargeFamiliesQuota1: </p>
-                                                <span className="font-semibold">{items.largeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>SpecialtyName: </p>
-                                                <span className="font-semibold">{items.specialtyName || "No SpecialtyName is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DisabilitiesQuota3: </p>
-                                                <span className="font-semibold">{items.disabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
-                                            </div>
-
-                                            <Separator />
-
-
-
-
-                                            <div className="flex gap-2">
-                                                <p>OrphanQuota1: </p>
-                                                <span className="font-semibold">{items.orphanQuota1 || "No OrphanQuota1 is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>Universities: </p>
-                                                <span className="font-semibold">{JSON.stringify(items.universities,null,2) || "No Universities is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>LargeFamiliesQuota3: </p>
-                                                <span className="font-semibold">{items.largeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
-                                            </div>
-
-
-
-
-                                            <Separator />
-
-
-
-
-                                            <div className="flex gap-2">
-                                                <p>AvailableGrantCount: </p>
-                                                <span className="font-semibold">{items.availableGrantCount || "No AvailableGrantCount is Provided."}</span>
-                                            </div>
-                                            <Separator />
-
-                                            <div className="flex gap-2">
-                                                <p>DemandForSpecialty: </p>
-                                                <span className="font-semibold">{items.demandForSpecialty || "No DemandForSpecialty is Provided."}</span>
+                                                <div className="flex gap-2">
+                                                    <p>Name: </p>
+                                                    <span className="font-semibold">
+                                                        {items.name || "No Name is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>Code: </p>
+                                                    <span className="font-semibold">
+                                                        {items.specialtyCode || "No Code is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>GeneralCompetition: </p>
+                                                    <span className="font-semibold">
+                                                        {items.possibleScoreGeneralCompetition || "No GeneralCompetition is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>possibleScoreRuralQuota: </p>
+                                                    <span className="font-semibold">
+                                                        {items.possibleScoreRuralQuota || "No possibleScoreRuralQuota is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>OrphanQuota: </p>
+                                                    <span className="font-semibold">
+                                                        {items.possibleScoreOrphanQuota || "No OrphanQuota is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>DisabilityQuota: </p>
+                                                    <span className="font-semibold">
+                                                        {items.possibleScoreDisabilityQuota || "No DisabilityQuota is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>LargeFamilyQuota: </p>
+                                                    <span className="font-semibold">
+                                                        {items.possibleScoreLargeFamilyQuota || "No LargeFamilyQuota is Provided."}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
+
+
                                     </DialogContent>
                                 </Dialog>
 
@@ -973,32 +906,42 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
 
                                                                     const updateRef = doc(db, "specialties", items.id);
                                                                     const Update: any = await updateDoc(updateRef, {
-                                                                        ruralQuota1: inputedRuralQuota1 || items.ruralQuota1,
-                                                                        ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
-                                                                        level: inputedLevel || items.level,
-                                                                        orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
-                                                                        disabilitiesQuota2: inputedDisabilitiesQuota2 || items.disabilitiesQuota2,
-                                                                        orphanQuota3: inputedOrphanQuota3 || items.orphanQuota3,
-                                                                        generalCompetition1: inputedGeneralCompetition1 || items.generalCompetition1,
-                                                                        largeFamiliesQuota2: inputedLargeFamiliesQuota2 || items.largeFamiliesQuota2,
-                                                                        generalCompetition2: inputedGeneralCompetition2 || items.generalCompetition2,
-                                                                        generalCompetition3: inputedGeneralCompetition3 || items.generalCompetition3,
+                                                                        // ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
+                                                                        // ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
+                                                                        // level: inputedLevel || items.level,
+                                                                        // orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
+                                                                        // disabilitiesQuota2: inputedDisabilitiesQuota2 || items.disabilitiesQuota2,
+                                                                        // orphanQuota3: inputedOrphanQuota3 || items.orphanQuota3,
+                                                                        // generalCompetition1: inputedGeneralCompetition1 || items.generalCompetition1,
+                                                                        // largeFamiliesQuota2: inputedLargeFamiliesQuota2 || items.largeFamiliesQuota2,
+                                                                        // generalCompetition2: inputedGeneralCompetition2 || items.generalCompetition2,
+                                                                        // generalCompetition3: inputedGeneralCompetition3 || items.generalCompetition3,
+                                                                        // specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                        // disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
+                                                                        // averageSalary: inputedAverageSalary || items.averageSalary,
+                                                                        // subjects: subjectsTag.flatMap(item => item.text) || items.subjects,
+                                                                        // largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
+                                                                        // threshold: inputedThreshold || items.threshold,
+                                                                        // specialtyName: inputedSpecialtyName || items.specialtyName,
+                                                                        // disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
+                                                                        // ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
+                                                                        // orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
+                                                                        // universities: universitiesTag.flatMap(item => item.text) || items.universities,
+                                                                        // largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
+                                                                        // availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
+                                                                        // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
+                                                                        subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
+                                                                        universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
+                                                                        minScrores: minScroresTag.flatMap((item) => item.text) || items.minScroresTag,
+    
+                                                                        name: name || items.name,
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
-                                                                        disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
-                                                                        averageSalary: inputedAverageSalary || items.averageSalary,
-                                                                        subjects: subjectsTag.flatMap(item => item.text) || items.subjects,
-                                                                        largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
-                                                                        threshold: inputedThreshold || items.threshold,
-                                                                        specialtyName: inputedSpecialtyName || items.specialtyName,
-                                                                        disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
-                                                                        ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
-                                                                        orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
-                                                                        universities: universitiesTag.flatMap(item => item.text) || items.universities,
-                                                                        largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
-                                                                        availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
-                                                                        demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-
-
+                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                        possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
+                                                                        possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
+                                                                        possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
+                                                                        possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota || items.possibleScoreLargeFamilyQuota,
+    
                                                                     })
 
 
@@ -1025,164 +968,83 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                     </div>
 
 
-                                                    {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
-                                                        <div className="flex gap-2">
-                                                            <p>RuralQuota1: </p>
-                                                            <span className="font-semibold">{inputedRuralQuota1 || "No RuralQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
+                                                  
 
-                                                        <div className="flex gap-2">
-                                                            <p>RuralQuota2: </p>
-                                                            <span className="font-semibold">{inputedRuralQuota2 || "No RuralQuota2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
+                                                    {inputedValues && (
+                                                        <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
+                                                            <div className="flex gap-2">
+                                                                <p>Subjects: </p>
+                                                                <span className="font-semibold">
+                                                                    {subjectsTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>Universities: </p>
+                                                                <span className="font-semibold">
+                                                                    {universitiesTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} ` ) || "No Universities is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>MinScrores: </p>
+                                                                <span className="font-semibold">
+                                                                    {minScroresTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No MinScrores is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>Name: </p>
+                                                                <span className="font-semibold">
+                                                                    {name || "No Name is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>Code: </p>
+                                                                <span className="font-semibold">
+                                                                    {inputedSpecialtyCode || "No Code is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
 
-                                                        <div className="flex gap-2">
-                                                            <p>RuralQuota3: </p>
-                                                            <span className="font-semibold">{inputedRuralQuota3 || "No RuralQuota3 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>Level: </p>
-                                                            <span className="font-semibold">{inputedLevel || "No Level is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>OrphanQuota2: </p>
-                                                            <span className="font-semibold">{inputedOrphanQuota2 || "No OrphanQuota2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DisabilitiesQuota2: </p>
-                                                            <span className="font-semibold">{inputedDisabilitiesQuota2 || "No DisabilitiesQuota2 is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>OrphanQuota3: </p>
-                                                            <span className="font-semibold">{inputedOrphanQuota3 || "No OrphanQuota3 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>GeneralCompetition1: </p>
-                                                            <span className="font-semibold">{inputedGeneralCompetition1 || "No GeneralCompetition1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>LargeFamiliesQuota2: </p>
-                                                            <span className="font-semibold">{inputedLargeFamiliesQuota2 || "No LargeFamiliesQuota2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>GeneralCompetition2: </p>
-                                                            <span className="font-semibold">{inputedGeneralCompetition2 || "No GeneralCompetition2 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>GeneralCompetition3: </p>
-                                                            <span className="font-semibold">{inputedGeneralCompetition3 || "No GeneralCompetition3 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>SpecialtyCode: </p>
-                                                            <span className="font-semibold">{inputedSpecialtyCode || "No SpecialtyCode is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DisabilitiesQuota1: </p>
-                                                            <span className="font-semibold">{inputedDisabilitiesQuota1 || "No DisabilitiesQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>AverageSalary: </p>
-                                                            <span className="font-semibold">{inputedAverageSalary || "No AverageSalary is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>Subjects: </p>
-                                                            <span className="font-semibold">{subjectsTag.flatMap(item => item.text) || "No Subjects is Provided."}</span>
+                                                            <div className="flex gap-2">
+                                                                <p>GeneralCompetition: </p>
+                                                                <span className="font-semibold">
+                                                                    {possibleScoreGeneralCompetition || "No GeneralCompetition is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>possibleScoreRuralQuota: </p>
+                                                                <span className="font-semibold">
+                                                                    {possibleScoreRuralQuota || "No possibleScoreRuralQuota is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>OrphanQuota: </p>
+                                                                <span className="font-semibold">
+                                                                    {possibleScoreOrphanQuota || "No OrphanQuota is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>DisabilityQuota: </p>
+                                                                <span className="font-semibold">
+                                                                    {possibleScoreDisabilityQuota || "No DisabilityQuota is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>LargeFamilyQuota: </p>
+                                                                <span className="font-semibold">
+                                                                    {possibleScoreLargeFamilyQuota || "No LargeFamilyQuota is Provided."}
+                                                                </span>
+                                                            </div>
                                                         </div>
 
-
-                                                        <Separator />
-
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>LargeFamiliesQuota1: </p>
-                                                            <span className="font-semibold">{inputedLargeFamiliesQuota1 || "No LargeFamiliesQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>SpecialtyName: </p>
-                                                            <span className="font-semibold">{inputedSpecialtyName || "No SpecialtyName is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DisabilitiesQuota3: </p>
-                                                            <span className="font-semibold">{inputedDisabilitiesQuota3 || "No DisabilitiesQuota3 is Provided."}</span>
-                                                        </div>
-
-                                                        <Separator />
-
-
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>OrphanQuota1: </p>
-                                                            <span className="font-semibold">{inputedOrphanQuota1 || "No OrphanQuota1 is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>Universities: </p>
-                                                            <span className="font-semibold">{universitiesTag.flatMap(item => item.text) || "No Universities is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>LargeFamiliesQuota3: </p>
-                                                            <span className="font-semibold">{inputedLargeFamiliesQuota3 || "No LargeFamiliesQuota3 is Provided."}</span>
-                                                        </div>
-
-
-
-
-                                                        <Separator />
-
-
-
-
-                                                        <div className="flex gap-2">
-                                                            <p>AvailableGrantCount: </p>
-                                                            <span className="font-semibold">{inputedAvailableGrantCount || "No AvailableGrantCount is Provided."}</span>
-                                                        </div>
-                                                        <Separator />
-
-                                                        <div className="flex gap-2">
-                                                            <p>DemandForSpecialty: </p>
-                                                            <span className="font-semibold">{inputedDemandForSpecialty || "No DemandForSpecialty is Provided."}</span>
-                                                        </div>
-                                                    </div>}
-
+                                                    )}
 
                                                     {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                         <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
@@ -1206,7 +1068,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             }}
                                                         />
                                                     </div> */}
-                                                    <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
+                                                    {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                                                         <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
                                                         <TagInput
                                                             placeholder="Enter Your Subjects"
@@ -1310,10 +1172,6 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             <h1 className="text-4xl font-bold w-full text-left">AverageSalary</h1>
                                                             <Input onChange={handleAverageSalaryChange} type="text" placeholder="Enter Speciality AverageSalary Info" />
                                                         </div>
-                                                        {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                                                            <h1 className="text-4xl font-bold w-full text-left">Subjects</h1>
-                                                            <Input onChange={handleSubjectsChange} type="text" placeholder="Enter Speciality Subjects Info" />
-                                                        </div> */}
                                                     </div>
                                                     <div className="name-logo-description-university w-full grid gap-3">
                                                         <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -1338,10 +1196,6 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             <h1 className="text-4xl font-bold w-full text-left">OrphanQuota1</h1>
                                                             <Input onChange={handleOrphanQuota1Change} type="text" placeholder="Enter Speciality OrphanQuota1 Info" />
                                                         </div>
-                                                        {/* <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                                                            <h1 className="text-4xl font-bold w-full text-left">Universities</h1>
-                                                            <Input onChange={handleUniversitiesChange} type="text" placeholder="Enter Speciality Universities Info" />
-                                                        </div> */}
                                                     </div>
 
                                                     <div className="name-logo-description-university w-full grid gap-3">
@@ -1357,11 +1211,138 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                             <h1 className="text-4xl font-bold w-full text-left">DemandForSpecialty</h1>
                                                             <Input onChange={handleDemandForSpecialtyChange} type="text" placeholder="Enter Speciality DemandForSpecialty Info" />
                                                         </div>
+                                                    </div> */}
+
+
+
+                                                    <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                        <h1 className="w-full text-left text-4xl font-bold">Subjects</h1>
+                                                        <TagInput
+                                                            placeholder="Enter Your Subjects"
+                                                            tags={subjectsTag}
+                                                            enableAutocomplete
+                                                            restrictTagsToAutocompleteOptions
+                                                            autocompleteOptions={subjects.map((items) => ({
+                                                                id: items.id,
+                                                                text:
+                                                                    items.subjects.map(
+                                                                        (item: any) =>
+                                                                            item || `No Subjects Are Provided at id:${uuid()}`
+                                                                    ) || `No Subject Provided at id:${items.id}`,
+                                                            }))}
+                                                            draggable
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setSubjectsTag(newTags)
+                                                            }}
+                                                        />
+                                                    </div>
+
+                                                    <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                        <h1 className="w-full text-left text-4xl font-bold">Universities</h1>
+                                                        <TagInput
+                                                            placeholder="Enter Your Universities"
+                                                            tags={universitiesTag}
+                                                            enableAutocomplete
+                                                            restrictTagsToAutocompleteOptions
+                                                            autocompleteOptions={universities.map((items) => ({
+                                                                id: items.id,
+                                                                text:
+                                                                    items.universityName ||
+                                                                    `Not Universities Are Provided at id:${items.id}`,
+                                                            }))}
+                                                            draggable
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setUniversitiesTag(newTags)
+                                                            }}
+                                                        />
                                                     </div>
 
 
+                                                    <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                        <h1 className="w-full text-left text-4xl font-bold">Min Scrore</h1>
+                                                        <div className="w-full flex items-start justify-start lg:flex-row flex-col gap-1">
+                                                            <span>Please Provide Value In This Format:</span>
+                                                            <Badge variant="outline">95</Badge>
+                                                            <Badge variant="outline">Max 3</Badge>
+                                                        </div>
 
+                                                        <TagInput
+                                                            placeholder="Enter Your Min Scrore"
+                                                            tags={minScroresTag}
+                                                            draggable
+                                                            maxTags={3}
+                                                            className="sm:min-w-[450px]"
+                                                            setTags={(newTags) => {
+                                                                setMinScroresTag(newTags)
+                                                            }}
+                                                        />
+                                                    </div>
 
+                                                    <div className="name-logo-description-university grid w-full gap-3">
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Name</h1>
+                                                            <Input
+                                                                onChange={handleNameChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality Name"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">
+                                                                SpecialtyCode
+                                                            </h1>
+                                                            <Input
+                                                                onChange={handleSpecialtyCodeChange}
+                                                                type="text"
+                                                                placeholder="Enter SpecialtyCode Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreGeneralCompetitionChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality possibleScoreGeneralCompetition Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Rural Quota</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreRuralQuotaChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality PossibleScoreRuralQuota Info"
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="name-logo-description-university grid w-full gap-3">
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Orphan Quota</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreOrphanQuotaChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality PossibleScoreOrphanQuota Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Disability Quota</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreDisabilityQuotaChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality PossibleScoreDisability Quota Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Large Family Quota</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreLargeFamilyQuotaChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality PossibleScoreLargeFamilyQuota Info"
+                                                            />
+                                                        </div>
+                                                    </div>
 
 
                                                     <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
@@ -1398,31 +1379,41 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                                                 });
                                                                 const updateRef = doc(db, "specialties", items.id);
                                                                 const Update: any = await updateDoc(updateRef, {
-                                                                    ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
-                                                                    ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
-                                                                    level: inputedLevel || items.level,
-                                                                    orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
-                                                                    disabilitiesQuota2: inputedDisabilitiesQuota2 || items.disabilitiesQuota2,
-                                                                    orphanQuota3: inputedOrphanQuota3 || items.orphanQuota3,
-                                                                    generalCompetition1: inputedGeneralCompetition1 || items.generalCompetition1,
-                                                                    largeFamiliesQuota2: inputedLargeFamiliesQuota2 || items.largeFamiliesQuota2,
-                                                                    generalCompetition2: inputedGeneralCompetition2 || items.generalCompetition2,
-                                                                    generalCompetition3: inputedGeneralCompetition3 || items.generalCompetition3,
-                                                                    specialtyCode: inputedSpecialtyCode || items.specialtyCode,
-                                                                    disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
-                                                                    averageSalary: inputedAverageSalary || items.averageSalary,
-                                                                    subjects: subjectsTag.flatMap(item => item.text) || items.subjects,
-                                                                    largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
-                                                                    threshold: inputedThreshold || items.threshold,
-                                                                    specialtyName: inputedSpecialtyName || items.specialtyName,
-                                                                    disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
-                                                                    ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
-                                                                    orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
-                                                                    universities: universitiesTag.flatMap(item => item.text) || items.universities,
-                                                                    largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
-                                                                    availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
-                                                                    demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
+                                                                    // ruralQuota1: inputedRuralQuota1 || items.ruralQuotai1,
+                                                                    // ruralQuota3: inputedRuralQuota3 || items.ruralQuota3,
+                                                                    // level: inputedLevel || items.level,
+                                                                    // orphanQuota2: inputedOrphanQuota2 || items.orphanQuota2,
+                                                                    // disabilitiesQuota2: inputedDisabilitiesQuota2 || items.disabilitiesQuota2,
+                                                                    // orphanQuota3: inputedOrphanQuota3 || items.orphanQuota3,
+                                                                    // generalCompetition1: inputedGeneralCompetition1 || items.generalCompetition1,
+                                                                    // largeFamiliesQuota2: inputedLargeFamiliesQuota2 || items.largeFamiliesQuota2,
+                                                                    // generalCompetition2: inputedGeneralCompetition2 || items.generalCompetition2,
+                                                                    // generalCompetition3: inputedGeneralCompetition3 || items.generalCompetition3,
+                                                                    // specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                    // disabilitiesQuota1: inputedDisabilitiesQuota1 || items.disabilitiesQuota1,
+                                                                    // averageSalary: inputedAverageSalary || items.averageSalary,
+                                                                    // subjects: subjectsTag.flatMap(item => item.text) || items.subjects,
+                                                                    // largeFamiliesQuota1: inputedLargeFamiliesQuota1 || items.largeFamiliesQuota1,
+                                                                    // threshold: inputedThreshold || items.threshold,
+                                                                    // specialtyName: inputedSpecialtyName || items.specialtyName,
+                                                                    // disabilitiesQuota3: inputedDisabilitiesQuota3 || items.disabilitiesQuota3,
+                                                                    // ruralQuota2: inputedRuralQuota2 || items.ruralQuota2,
+                                                                    // orphanQuota1: inputedOrphanQuota1 || items.orphanQuota1,
+                                                                    // universities: universitiesTag.flatMap(item => item.text) || items.universities,
+                                                                    // largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
+                                                                    // availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
+                                                                    // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
+                                                                    subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
+                                                                    universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
+                                                                    minScrores: minScroresTag.flatMap((item) => item.text) || items.minScroresTag,
 
+                                                                    name: name || items.name,
+                                                                    specialtyCode: inputedSpecialtyCode || items.specialtyCode,
+                                                                    possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                    possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
+                                                                    possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
+                                                                    possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
+                                                                    possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota || items.possibleScoreLargeFamilyQuota,
 
                                                                 })
 
@@ -1462,7 +1453,7 @@ const [inputedDemandForSpecialty, setInputedDemandForSpecialty] = React.useState
                                         await deleteDoc(doc(db, "specialties", items.id));
                                         const newDocs = docs.filter((item) => item.id !== items.id);
                                         setDocs(newDocs);
-                                    }} className="bg-red-500 text-white hover:bg-red-600" size="sm" variant="destructive">
+                                    }} className="bg-red-500 text-white hover:bg-red-600" variant="destructive">
                                         Delete
                                     </Button>
                                 </div>

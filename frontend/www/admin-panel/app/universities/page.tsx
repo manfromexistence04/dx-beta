@@ -854,9 +854,9 @@ const University = () => {
                     <ScrollArea className="w-full rounded-md border !max-h-[80vh] !p-0">
                       <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden">
 
-                        <div className="w-full min-h-[350px] h-auto rounded-md mb-20">
+                        <div className="w-full min-h-max h-auto rounded-md mb-1">
                           <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
-                            <div className="w-full flex flex-col items-center justify-center relative min-h-auto">
+                            <div className="w-full flex flex-col items-center justify-center relative min-h-[350px]">
                               <Carousel
                                 plugins={[plugin.current]}
                                 setApi={setApi}
@@ -971,11 +971,11 @@ const University = () => {
 
 
                                 </CarouselContent>
-                                <div className="absolute bottom-[-75px] left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-full h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
+                                {/* <div className="absolute bottom-[-75px] left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-full h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
                                   <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
                                   <span className="flex-1 text-center text-white hover:accent-foreground">Slide {current} of {count}</span>
                                   <CarouselNext className="!relative !top-0 !right-0 -translate-y-0 !bg-transparent border text-white  hover:text-white border-accent-foreground hover:border-white" />
-                                </div>
+                                </div> */}
 
                                 {/* {items.images === "" && <div className="glass absolute bottom-1 left-1/2 transform -translate-x-1/2 text-sm text-muted-foreground w-[95%] h-16 px-5 flex justify-between items-center rounded-2xl mx-auto border">
                     <CarouselPrevious className="!relative !top-0 !left-0 -translate-y-0 !bg-transparent border text-white hover:text-white border-accent-foreground hover:border-white" />
@@ -1000,7 +1000,7 @@ const University = () => {
 
                               </Carousel>
                             </div>
-                            {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1">No image is provided.</div>}
+                            {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1 h-[350px] absolute top-0 left-0 w-full">No image is provided.</div>}
 
                             <div className="absolute bottom-4 left-4">
                               <Avatar>

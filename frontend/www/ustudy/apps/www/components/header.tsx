@@ -29,10 +29,12 @@ import {
   Bell,
   ChevronLeft,
   ChevronRight,
+  CircleOff,
   Copy,
   CreditCard,
   File,
   Home,
+  Inbox,
   LineChart,
   ListFilter,
   MoreVertical,
@@ -242,7 +244,7 @@ const Header: NextPage = () => {
                 </Link>
               </nav>
             </nav>
-            <div className="mt-2 flex flex-row items-center justify-center gap-[24px] text-center font-dm-sans text-base text-shade-white">
+            <div className="mt-2 flex flex-row items-center justify-center text-center font-dm-sans text-base text-shade-white gap-2">
               <Select>
                 <SelectTrigger className="w-[80px] rounded-md">
                   <SelectValue placeholder="EN" />
@@ -427,7 +429,7 @@ const Header: NextPage = () => {
                       </Link>
                     </div> */}
 
-                    <Link href="/signup-clerk">
+                    <Link href="/signup">
                       <Button className="bg-blueviolet-200" variant="outline">
                         Sign Up/Log In
                       </Button>
@@ -457,20 +459,73 @@ const Header: NextPage = () => {
                     <Popover>
                       <PopoverTrigger asChild>
                         {/* <Button variant="outline">Open popover</Button> */}
-                        <div className="rounded-full border p-2">
+                        <div className="rounded-full border p-2.5">
                           <Bell className="size-4" />
                         </div>
                       </PopoverTrigger>
-                      <PopoverContent className="w-[425px] p-3">
+                      <PopoverContent className="w-[425px] max-h-[500px] mr-20 !p-5">
                         {/* <CardsReportIssue />
                     <CardsCookieSettings /> */}
                         {/* <Notifications /> */}
-                        <Tabs defaultValue="week">
+
+
+
+
+
+                        {/* <ScrollArea className="h-[500px] w-full !p-5">
+                          <Tabs className="w-full h-full" defaultValue="week">
+                            <div className="flex items-center">
+                              <TabsList>
+                                <TabsTrigger value="week">All</TabsTrigger>
+                                <TabsTrigger value="month">Archive</TabsTrigger>
+                                <TabsTrigger value="year">Comments</TabsTrigger>
+                              </TabsList>
+                              <div className="ml-auto flex items-center gap-2">
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="gap-1 text-sm p-3"
+                                    >
+                                      <Settings className="size-4" />
+                                      <span className="sr-only sm:not-sr-only">
+                                        Settings
+                                      </span>
+                                    </Button>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>
+                                      Filter by
+                                    </DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuCheckboxItem checked>
+                                      Fulfilled
+                                    </DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem>
+                                      Declined
+                                    </DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem>
+                                      Refunded
+                                    </DropdownMenuCheckboxItem>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
+                              </div>
+                            </div>
+                            <TabsContent value="week" className="!border-none !p-0 !h-[500px] !w-full flex items-center justify-center bg-red-500">
+                              <div className="bg-secondary flex items-center justify-center p-10 rounded-full">
+                                <Inbox />
+                              </div>
+                            </TabsContent>
+                          </Tabs>
+                        </ScrollArea> */}
+
+                        <Tabs defaultValue="all">
                           <div className="flex items-center">
                             <TabsList>
-                              <TabsTrigger value="week">All</TabsTrigger>
-                              <TabsTrigger value="month">Archive</TabsTrigger>
-                              <TabsTrigger value="year">Comments</TabsTrigger>
+                              <TabsTrigger value="all">All</TabsTrigger>
+                              <TabsTrigger value="archive">Archive</TabsTrigger>
+                              <TabsTrigger value="comments">Comments</TabsTrigger>
                             </TabsList>
                             <div className="ml-auto flex items-center gap-2">
                               <DropdownMenu>
@@ -478,9 +533,9 @@ const Header: NextPage = () => {
                                   <Button
                                     variant="outline"
                                     size="sm"
-                                    className="h-7 gap-1 text-sm"
+                                    className="gap-1 text-sm p-3"
                                   >
-                                    <Settings className="size-3.5" />
+                                    <Settings className="size-4" />
                                     <span className="sr-only sm:not-sr-only">
                                       Settings
                                     </span>
@@ -502,266 +557,55 @@ const Header: NextPage = () => {
                                   </DropdownMenuCheckboxItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
-                              {/* <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-7 gap-1 text-sm"
-                          >
-                            <File className="h-3.5 w-3.5" />
-                            <span className="sr-only sm:not-sr-only">Export</span>
-                          </Button> */}
                             </div>
                           </div>
-                          <TabsContent value="week">
-                            <Card x-chunk="dashboard-05-chunk-3">
-                              <CardHeader className="px-7">
-                                <CardTitle>Orders</CardTitle>
-                                <CardDescription>
-                                  Recent orders from your store.
-                                </CardDescription>
-                              </CardHeader>
-                              <CardContent>
-                                <Table>
-                                  <TableHeader>
-                                    <TableRow>
-                                      <TableHead>Customer</TableHead>
-                                      <TableHead className="hidden sm:table-cell">
-                                        Type
-                                      </TableHead>
-                                      <TableHead className="hidden sm:table-cell">
-                                        Status
-                                      </TableHead>
-                                      <TableHead className="hidden md:table-cell">
-                                        Date
-                                      </TableHead>
-                                      <TableHead className="text-right">
-                                        Amount
-                                      </TableHead>
-                                    </TableRow>
-                                  </TableHeader>
-                                  <TableBody>
-                                    <TableRow className="bg-accent">
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Liam Johnson
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          liam@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Sale
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="secondary"
-                                        >
-                                          Fulfilled
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-23
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $250.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Olivia Smith
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          olivia@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Refund
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="outline"
-                                        >
-                                          Declined
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-24
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $150.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Noah Williams
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          noah@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Subscription
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="secondary"
-                                        >
-                                          Fulfilled
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-25
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $350.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Emma Brown
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          emma@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Sale
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="secondary"
-                                        >
-                                          Fulfilled
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-26
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $450.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Liam Johnson
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          liam@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Sale
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="secondary"
-                                        >
-                                          Fulfilled
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-23
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $250.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Liam Johnson
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          liam@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Sale
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="secondary"
-                                        >
-                                          Fulfilled
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-23
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $250.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Olivia Smith
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          olivia@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Refund
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="outline"
-                                        >
-                                          Declined
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-24
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $150.00
-                                      </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                      <TableCell>
-                                        <div className="font-medium">
-                                          Emma Brown
-                                        </div>
-                                        <div className="hidden text-sm text-muted-foreground md:inline">
-                                          emma@example.com
-                                        </div>
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        Sale
-                                      </TableCell>
-                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                          className="text-xs"
-                                          variant="secondary"
-                                        >
-                                          Fulfilled
-                                        </Badge>
-                                      </TableCell>
-                                      <TableCell className="hidden md:table-cell">
-                                        2023-06-26
-                                      </TableCell>
-                                      <TableCell className="text-right">
-                                        $450.00
-                                      </TableCell>
-                                    </TableRow>
-                                  </TableBody>
-                                </Table>
-                              </CardContent>
-                            </Card>
+                          {/* 
+                          <TabsContent value="all" className="!border-none !p-0 !w-full flex items-center justify-center ">
+                            <div className="bg-secondary flex items-center justify-center p-10 rounded-full">
+                              <Inbox />
+                            </div>
+                            <span>Nothing to show at All</span>
+                          </TabsContent> */}
+                          <TabsContent value="all" className="!border-none !p-0 !w-full flex items-center justify-center flex-col gap-3">
+                            <div className="w-full h-[400px] flex items-center justify-center flex-col gap-3">
+                              <div className="bg-secondary flex items-center justify-center h-24 w-24 rounded-full ">
+                                <Inbox />
+                              </div>
+                              <span>Nothing to show at All</span>
+                            </div>
+
                           </TabsContent>
+                          <TabsContent value="archive" className="!border-none !p-0 !w-full flex items-center justify-center flex-col gap-3">
+                            <div className="w-full h-[400px] flex items-center justify-center flex-col gap-3">
+                              <div className="bg-secondary flex items-center justify-center h-24 w-24 rounded-full ">
+                                <Inbox />
+                              </div>
+                              <span>Nothing to show at Archive</span>
+                            </div>
+                          </TabsContent>
+                          <TabsContent value="comments" className="!border-none !p-0 !w-full flex items-center justify-center flex-col gap-3">
+                            <div className="w-full h-[400px] flex items-center justify-center flex-col gap-3">
+                              <div className="bg-secondary flex items-center justify-center h-24 w-24 rounded-full ">
+                                <Inbox />
+                              </div>
+                              <span>Nothing to show at Comments</span>
+                            </div>
+                          </TabsContent>
+                          {/* <TabsContent value="archive" className="!border-none !p-0 h-[400px] !w-full flex items-center justify-center flex-col gap-3">
+                              <div className="bg-secondary flex items-center justify-center p-10 rounded-full">
+                                <Inbox />
+                              </div>
+                              <span>Nothing to show at Archive</span>
+                            </TabsContent>
+                            <TabsContent value="comments" className="!border-none !p-0 h-[400px] !w-full flex items-center justify-center flex-col gap-3">
+                              <div className="bg-secondary flex items-center justify-center p-10 rounded-full">
+                                <Inbox />
+                              </div>
+                              <span>Nothing to show at Comments</span>
+                            </TabsContent> */}
+
                         </Tabs>
+
                       </PopoverContent>
                     </Popover>
 
