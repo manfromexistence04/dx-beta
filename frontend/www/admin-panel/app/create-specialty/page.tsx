@@ -222,7 +222,7 @@ export default function CreateSpeciality() {
       // orphanQuota1: inputedOrphanQuota1,
       subjects: subjectsTag.flatMap((item) => item.text),
       universities: universitiesTag.flatMap((item) => item.text),
-      minScrores: minScroresTag.flatMap((item) => item.text),
+      minScrores: minScroresTag.map((item) => item.text),
 
       name: name,
       specialtyCode: inputedSpecialtyCode,
@@ -771,21 +771,21 @@ export default function CreateSpeciality() {
           <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
             <div className="flex gap-2">
               <p>Subjects: </p>
-              <span className="font-semibold">
+              <span className="font-semibold w-[250px] truncate">
                 {subjectsTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No Subjects is Provided."}
               </span>
             </div>
             <Separator />
             <div className="flex gap-2">
               <p>Universities: </p>
-              <span className="font-semibold">
+              <span className="font-semibold w-[250px] truncate">
                 {universitiesTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No Universities is Provided."}
               </span>
             </div>
             <Separator />
             <div className="flex gap-2">
               <p>MinScrores: </p>
-              <span className="font-semibold">
+              <span className="font-semibold w-[250px] truncate">
                 {minScroresTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No MinScrores is Provided."}
               </span>
             </div>
@@ -934,7 +934,7 @@ export default function CreateSpeciality() {
             <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
             <Input
               onChange={handlePossibleScoreGeneralCompetitionChange}
-              type="text"
+              type="number"
               placeholder="Enter Speciality possibleScoreGeneralCompetition Info"
             />
           </div>
@@ -942,7 +942,7 @@ export default function CreateSpeciality() {
             <h1 className="w-full text-left text-4xl font-bold">Rural Quota</h1>
             <Input
               onChange={handlePossibleScoreRuralQuotaChange}
-              type="text"
+              type="number"
               placeholder="Enter Speciality PossibleScoreRuralQuota Info"
             />
           </div>
@@ -953,7 +953,7 @@ export default function CreateSpeciality() {
             <h1 className="w-full text-left text-4xl font-bold">Orphan Quota</h1>
             <Input
               onChange={handlePossibleScoreOrphanQuotaChange}
-              type="text"
+              type="number"
               placeholder="Enter Speciality PossibleScoreOrphanQuota Info"
             />
           </div>
@@ -961,7 +961,7 @@ export default function CreateSpeciality() {
             <h1 className="w-full text-left text-4xl font-bold">Disability Quota</h1>
             <Input
               onChange={handlePossibleScoreDisabilityQuotaChange}
-              type="text"
+              type="number"
               placeholder="Enter Speciality PossibleScoreDisability Quota Info"
             />
           </div>
@@ -969,7 +969,7 @@ export default function CreateSpeciality() {
             <h1 className="w-full text-left text-4xl font-bold">Large Family Quota</h1>
             <Input
               onChange={handlePossibleScoreLargeFamilyQuotaChange}
-              type="text"
+              type="number"
               placeholder="Enter Speciality PossibleScoreLargeFamilyQuota Info"
             />
           </div>

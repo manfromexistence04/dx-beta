@@ -670,7 +670,7 @@ const Question = () => {
             <Button size="sm">Add New Question</Button>
           </Link>
         </div>
-        <div className="admin-panel-lists place-content-center">
+        <div className="admin-panel-lists">
           {docs.map((items) => (
             <div key={items.id}>
 

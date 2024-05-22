@@ -589,6 +589,9 @@ const Specialty = () => {
             setDocs(newDocs);
             // Configuring Data for Update:
             docs.map((item: any) => {
+                setSubjectsTag(item.subjects);
+                setMinScroresTag(item.minScrores);
+                setUniversitiesTag(item.universities);
                 setInputedRuralQuota1(item.ruralQuota1);
                 setInputedRuralQuota2(item.ruralQuota2);
                 setInputedRuralQuota3(item.ruralQuota3);
@@ -752,12 +755,12 @@ const Specialty = () => {
                         <Card className="hover-glow-border w-full relative hover:bg-primary-foreground">
                             <CardHeader>
                                 <CardTitle className="w-[250px] truncate">{items.specialtyName || items.name || "No Specialty Name Provided."}</CardTitle>
-                                <CardDescription className="w-[350px] truncate">{items.possibleScoreGeneralCompetition}</CardDescription>
+                                <CardDescription className="w-[300px] truncate">{items.specialtyCode}</CardDescription>
                             </CardHeader>
                             <CardContent className="grid gap-4">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">Code:</span>
-                                    <span className="font-medium">{items.specialtyCode || "No Code Provided."}</span>
+                                    <span className="text-gray-500 dark:text-gray-400 ">GeneralCompetition:</span>
+                                    <span className="font-medium">{items.possibleScoreGeneralCompetition || "No GeneralCompetition Provided."}</span>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-500 dark:text-gray-400">RuralQuota:</span>
@@ -782,21 +785,21 @@ const Specialty = () => {
                                             <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                 <div className="flex gap-2">
                                                     <p>Subjects: </p>
-                                                    <span className="font-semibold">
+                                                    <span className="font-semibold w-[250px] truncate">
                                                         {JSON.stringify(items.subjects, null, 2) || "No Subjects is Provided."}
                                                     </span>
                                                 </div>
                                                 <Separator />
                                                 <div className="flex gap-2">
                                                     <p>Universities: </p>
-                                                    <span className="font-semibold">
+                                                    <span className="font-semibold w-[250px] truncate">
                                                         {JSON.stringify(items.universities, null, 2) || "No Universities is Provided."}
                                                     </span>
                                                 </div>
                                                 <Separator />
                                                 <div className="flex gap-2">
                                                     <p>MinScrores: </p>
-                                                    <span className="font-semibold">
+                                                    <span className="font-semibold w-[250px] truncate">
                                                         {JSON.stringify(items.minScrores, null, 2) || "No MinScrores is Provided."}
                                                     </span>
                                                 </div>
@@ -932,8 +935,8 @@ const Specialty = () => {
                                                                         // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
                                                                         subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
                                                                         universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
-                                                                        minScrores: minScroresTag.flatMap((item) => item.text) || items.minScroresTag,
-    
+                                                                        minScrores: minScroresTag.map(obj => obj.text) || items.minScroresTag,
+
                                                                         name: name || items.name,
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                         possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
@@ -941,7 +944,7 @@ const Specialty = () => {
                                                                         possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
                                                                         possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
                                                                         possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota || items.possibleScoreLargeFamilyQuota,
-    
+
                                                                     })
 
 
@@ -968,28 +971,28 @@ const Specialty = () => {
                                                     </div>
 
 
-                                                  
+
 
                                                     {inputedValues && (
                                                         <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                             <div className="flex gap-2">
                                                                 <p>Subjects: </p>
-                                                                <span className="font-semibold">
+                                                                <span className="font-semibold  w-[250px] truncate">
                                                                     {subjectsTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>Universities: </p>
-                                                                <span className="font-semibold">
-                                                                    {universitiesTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} ` ) || "No Universities is Provided."}
+                                                                <span className="font-semibold w-[250px] truncate">
+                                                                    {universitiesTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>MinScrores: </p>
-                                                                <span className="font-semibold">
-                                                                    {minScroresTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No MinScrores is Provided."}
+                                                                <span className="font-semibold w-[250px] truncate">
+                                                                    {minScroresTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
@@ -1303,7 +1306,7 @@ const Specialty = () => {
                                                             <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
                                                             <Input
                                                                 onChange={handlePossibleScoreGeneralCompetitionChange}
-                                                                type="text"
+                                                                type="number"
                                                                 placeholder="Enter Speciality possibleScoreGeneralCompetition Info"
                                                             />
                                                         </div>
@@ -1311,7 +1314,7 @@ const Specialty = () => {
                                                             <h1 className="w-full text-left text-4xl font-bold">Rural Quota</h1>
                                                             <Input
                                                                 onChange={handlePossibleScoreRuralQuotaChange}
-                                                                type="text"
+                                                                type="number"
                                                                 placeholder="Enter Speciality PossibleScoreRuralQuota Info"
                                                             />
                                                         </div>
@@ -1322,7 +1325,7 @@ const Specialty = () => {
                                                             <h1 className="w-full text-left text-4xl font-bold">Orphan Quota</h1>
                                                             <Input
                                                                 onChange={handlePossibleScoreOrphanQuotaChange}
-                                                                type="text"
+                                                                type="number"
                                                                 placeholder="Enter Speciality PossibleScoreOrphanQuota Info"
                                                             />
                                                         </div>
@@ -1330,7 +1333,7 @@ const Specialty = () => {
                                                             <h1 className="w-full text-left text-4xl font-bold">Disability Quota</h1>
                                                             <Input
                                                                 onChange={handlePossibleScoreDisabilityQuotaChange}
-                                                                type="text"
+                                                                type="number"
                                                                 placeholder="Enter Speciality PossibleScoreDisability Quota Info"
                                                             />
                                                         </div>
@@ -1338,7 +1341,7 @@ const Specialty = () => {
                                                             <h1 className="w-full text-left text-4xl font-bold">Large Family Quota</h1>
                                                             <Input
                                                                 onChange={handlePossibleScoreLargeFamilyQuotaChange}
-                                                                type="text"
+                                                                type="number"
                                                                 placeholder="Enter Speciality PossibleScoreLargeFamilyQuota Info"
                                                             />
                                                         </div>
@@ -1405,7 +1408,7 @@ const Specialty = () => {
                                                                     // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
                                                                     subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
                                                                     universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
-                                                                    minScrores: minScroresTag.flatMap((item) => item.text) || items.minScroresTag,
+                                                                    minScrores: minScroresTag.map(obj => obj.text) || items.minScroresTag,
 
                                                                     name: name || items.name,
                                                                     specialtyCode: inputedSpecialtyCode || items.specialtyCode,
