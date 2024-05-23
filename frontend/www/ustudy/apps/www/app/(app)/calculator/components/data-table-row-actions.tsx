@@ -45,7 +45,7 @@ export function DataTableRowActions<TData>({
       <DropdownMenuContent align="start" className="w-[250px]">
 
         <DropdownMenuLabel>Universities</DropdownMenuLabel>
-        {row.original.universities && row.original.universities.map((items: any) => <DropdownMenuItem className="w-[150px] truncate">{items}</DropdownMenuItem>)}
+        {row.original.universities && row.original.universities.map((items: any) => <DropdownMenuItem key={items} className="w-[150px] truncate">{items}</DropdownMenuItem>)}
 
         {/* 
       <DropdownMenuItem>View</DropdownMenuItem>
