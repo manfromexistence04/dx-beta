@@ -9,6 +9,7 @@ import { labels, priorities, statuses } from "../data/data"
 import { Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { CircleSlash } from "lucide-react"
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -95,7 +96,7 @@ export const columns: ColumnDef<any>[] = [
     },
   },
   {
-    accessorKey: "universities",
+    accessorKey: "priority",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Admission Chance" />
     ),
@@ -105,7 +106,7 @@ export const columns: ColumnDef<any>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("universities")}
+            {row.getValue("priority") || <CircleSlash />}
           </span>
         </div>
       )
