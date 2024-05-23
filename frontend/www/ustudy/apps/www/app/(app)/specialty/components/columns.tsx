@@ -9,6 +9,7 @@ import { labels, priorities, statuses } from "../data/data"
 import { Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { CircleSlash } from "lucide-react"
 
 export const columns: any[] | any = [
   {
@@ -42,7 +43,7 @@ export const columns: any[] | any = [
     ),
     cell: ({ row }:any) => (
       <div className="max-w-[100px] truncate font-medium">
-        {row.getValue("id")}
+        {row.getValue("id") || <CircleSlash />}
       </div>
     ),
     enableSorting: false,
@@ -60,7 +61,7 @@ export const columns: any[] | any = [
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[100px] truncate font-medium">
-            {row.getValue("name")}
+            {row.getValue("name") || <CircleSlash />}
           </span>
         </div>
       )
@@ -78,16 +79,16 @@ export const columns: any[] | any = [
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[50px] truncate font-medium">
-            {row.getValue("code")}
+            {row.getValue("code") || <CircleSlash />}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "level",
+    accessorKey: "ruralQuota",
     header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Level" />
+      <DataTableColumnHeader column={column} title="Rural Quota" />
     ),
     cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.name)
@@ -96,16 +97,17 @@ export const columns: any[] | any = [
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[50px] truncate font-medium">
-            {row.getValue("level")}
+            {row.getValue("ruralQuota") || <CircleSlash />}
           </span>
         </div>
       )
     },
   },
+
   {
-    accessorKey: "demand",
+    accessorKey: "generalQuota",
     header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Demand" />
+      <DataTableColumnHeader column={column} title="General Quota" />
     ),
     cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.name)
@@ -114,7 +116,7 @@ export const columns: any[] | any = [
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[50px] truncate font-medium">
-            {row.getValue("demand")}
+            {row.getValue("generalQuota") || <CircleSlash />}
           </span>
         </div>
       )

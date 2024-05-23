@@ -20,14 +20,15 @@ import {
 
 import { labels } from "../data/data"
 import { taskSchema } from "../data/schema"
+import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
 
 export function DataTableRowActions<TData>({
-  row,
-}: DataTableRowActionsProps<TData>) {
+  row
+}: any) {
   const task = taskSchema.parse(row.original)
 
   return (
@@ -41,13 +42,18 @@ export function DataTableRowActions<TData>({
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
+      <DropdownMenuContent align="start" className="w-[250px]">
+
+        <DropdownMenuLabel>Universities</DropdownMenuLabel>
+        {row.original.universities && row.original.universities.map((items: any) => <DropdownMenuItem className="w-[150px] truncate">{items}</DropdownMenuItem>)}
+
+        {/* 
+      <DropdownMenuItem>View</DropdownMenuItem>
+        <DropdownMenuItem disabled={true}>Edit</DropdownMenuItem>
+        <DropdownMenuItem disabled={true}>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger disabled={true}>Labels</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             <DropdownMenuRadioGroup value={task.label}>
               {labels.map((label) => (
@@ -59,10 +65,10 @@ export function DataTableRowActions<TData>({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem disabled={true}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   )

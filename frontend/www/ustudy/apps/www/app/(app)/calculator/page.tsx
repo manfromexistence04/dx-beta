@@ -829,8 +829,9 @@ const CalculatorPage: NextPage = () => {
             (obj) => `${obj.text || "Information & Communication Technology"}`
           ) || "Creative Exam"
             }`,
-          label: universityCount,
+          label: data.universities && data.universities.length,
           priority: `${admissionChance}%`,
+          universities: data.universities ? data.universities : "No universities are provided.",
         },
       ])
     }
