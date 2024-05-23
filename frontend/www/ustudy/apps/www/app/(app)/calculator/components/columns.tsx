@@ -95,7 +95,7 @@ export const columns: ColumnDef<any>[] = [
     },
   },
   {
-    accessorKey: "priority",
+    accessorKey: "universities",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Admission Chance" />
     ),
@@ -105,7 +105,7 @@ export const columns: ColumnDef<any>[] = [
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("priority")}
+            {row.getValue("universities")}
           </span>
         </div>
       )

@@ -26,7 +26,7 @@ import {
 } from "firebase/firestore"
 import { ArrowLeft, ArrowRight, Check, ChevronsUpDown } from "lucide-react"
 import { z } from "zod"
-
+import { useToast } from "@/registry/default/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -343,920 +343,44 @@ const CarouselNext = React.forwardRef<
 })
 CarouselNext.displayName = "CarouselNext"
 
-const fetchDocument = async (docId: string) => {
+const fetchDocument = async (docId: any) => {
   const docRef = doc(db, "specialties", docId)
   const docSnap = await getDoc(docRef)
-  return docSnap
-}
-
-const Calculator: NextPage = () => {
-  const [ENTPOINT, setENTPOINT] = React.useState(100)
-  const [api, setApi] = React.useState<CarouselApi>()
-  const [current, setCurrent] = React.useState(0)
-  const [count, setCount] = React.useState(0)
-  const [specialtyCount, setSpecialtyCount] = useState(0)
-  const [universityCount, setUniversityCount] = useState(0)
-  const [specialtyTheshold, setSpecialtyTheshold] = useState("")
-  const [universityTheshold, setUniversityTheshold] = useState("")
-  const [specialtiesUnderThreshold, setSpecialtiesUnderThreshold] = useState<
-    string[]
-  >([])
-  const [universitiesUnderThreshold, setUniversitiesUnderThreshold] = useState<
-    string[]
-  >([])
-  const [quota, setQuota] = React.useState("...")
-  const [selectedSpecialty, setSelectedSpecialty] = React.useState("")
-  const [selectedSpecialtyQuota, setSelectedSpecialtyQuota] = React.useState("")
-  const [selectedSubject, setSelectedSubject] = React.useState("")
-  const [specialties, setSpecialties] = useState<any[]>([])
-  const [universities, setUniversities] = useState<any[]>([])
-  const [subjects, setSubjects] = useState<any[]>([])
-  const [subjectsTag, setSubjectsTag] = React.useState<any[]>([])
-  const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
-  const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("2G4ao9MQlkfRGhytZUzP")
-  const [lastUniversityCode, setLastUniversityCode] = React.useState("")
-  const [calculation, setCalculation] = React.useState("")
-  const [specialtyDoc, setSpecialtyDoc] = useState<any>([])
-
-  React.useEffect(() => {
-    if (!api) {
-      return
-    }
-
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1)
-    })
-  }, [api])
-
-  function calculateAdmissionChance(
-    startScore: number,
-    e1: number,
-    e2: number,
-    e3: number,
-    userScore: number
-  ): number {
-    if (startScore >= userScore) {
-      return 0
-    } else {
-      let possibleScore = calculatePossibleScore(e1, e2, e3)
-      let admissionChance = calculateChance(userScore, possibleScore)
-      return Math.min(Math.floor(admissionChance), 100)
-    }
-  }
-  function calculatePossibleScore(e1: number, e2: number, e3: number): number {
-    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3
-    return possibleScore <= 140 ? possibleScore : 140
-  }
-  function calculateChance(userScore: number, possibleScore: number): number {
-    let chance =
-      50 + ((userScore - possibleScore) / ((140 - possibleScore) * 3)) * 100
-    return chance
-  }
-  // let startScore = 100; // University Theshold
-  // let e1 = 95;          // 2021
-  // let e2 = 93;          // 2022
-  // let e3 = 97;          // 2023
-  // let userScore = 394;  // Ent Scrore
-  // let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-  // console.log(`The chance of admission is ${admissionChance}%`);
-
-  function handleENTChange(e: { target: { value: any } }) {
-    setENTPOINT(e.target.value)
-  }
-  function handleQuotaChange(e: any) {
-    setQuota(e)
-  }
-
-  // async function calculate() {
-  //   const specialtyData: any = await fetchDocument(value);
-  //   let startScore:any = universityTheshold || specialtyTheshold || 100;          // University Theshold
-  //   let e1 = specialtyData.minScore.map((item: any[]) => item[0]) || 95;          // 2021
-  //   let e2 = specialtyData.minScore.map((item: any[]) => item[1]) || 93;          // 2022
-  //   let e3 = specialtyData.minScore.map((item: any[]) => item[2]) || 97;          // 2023
-  //   let userScore = ENTPOINT || 394;
-
-  //   return calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-  // }
-
-  useEffect(() => {
-    const fetchSpecilaties = async () => {
-      const querySnapshot = await getDocs(collection(db, "specialties"))
-      const newDocs = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setSpecialties(newDocs)
-    }
-    const fetchUniversities = async () => {
-      const querySnapshot = await getDocs(collection(db, "universities"))
-      const newDocs = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setUniversities(newDocs)
-    }
-    const fetchSubjects = async () => {
-      const querySnapshot = await getDocs(collection(db, "subjects"))
-      const newDocs = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setSubjects(newDocs)
-    }
-    const fetchDocs = async () => {
-      const data: any = await fetchDocument(value)
-      setSpecialtyDoc(data)
-    }
-    fetchDocs()
-    fetchSpecilaties()
-    fetchUniversities()
-    fetchSubjects()
-  }, [])
-
-  useEffect(() => {
-    // document.title = `Count: ${value}`;
-
-    // const fetchSpecialty = async () => {
-    //   const specialtyData: any = await fetchDocument(value);
-    //   setSpecialtyDoc(specialtyData)
-    // }
-    // fetchSpecialty();
-    let tempSpecialtyCount = 0
-    let tempUniversityCount = 0
-    let tempSpecialtyTheshold = ""
-    let tempUniversityTheshold = ""
-    let tempLastUniversityCode = ""
-    let tempCalculation: any = ""
-
-    const tempSpecialtiesUnderThreshold = specialties
-      .filter((specialty) => specialty.threshold < ENTPOINT)
-      .map((specialty) => specialty.name || specialty.specailtyName)
-    const tempUniversitiesUnderThreshold = universities
-      .filter(
-        (university) => university.threshold && university.threshold < ENTPOINT
-      )
-      .map((university) => university.universityName)
-
-    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
-    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
-
-    universities.forEach((university) => {
-      if (university.threshold && university.threshold < ENTPOINT) {
-        tempUniversityCount++
-      } else {
-      }
-      tempUniversityTheshold = university.threshold || ""
-      tempLastUniversityCode = university.universityCode
-    })
-
-    specialties.forEach((university) => {
-      if (university.threshold && university.threshold < ENTPOINT) {
-        tempSpecialtyCount++
-      } else {
-      }
-      tempSpecialtyTheshold = university.threshold || ""
-    })
-
-    // Calculation
-    // async function calculate() {
-    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id :
-    //   const specialtyData:any = await fetchDocument("phKkzVcxJBJNnpXYdTIV");
-    //   let startScore:any = universityTheshold || specialtyTheshold || 100;          // University Theshold
-    //   let e1 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[0]) : 95;          // 2021
-    //   let e2 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[1]) : 95;          // 2022
-    //   let e3 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[2]) : 95;          // 2023
-    //   let userScore = ENTPOINT || 394;
-
-    //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-    // }
-    // calculate();
-    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
-    let e1 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-      : 95 // 2021
-    let e2 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-      : 93 // 2022
-    let e3 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-      : 97 // 2023
-    let userScore = ENTPOINT // Ent Scrore
-
-    let admissionChance: any = calculateAdmissionChance(
-      startScore,
-      e1,
-      e2,
-      e3,
-      userScore
-    )
-    console.log(`The chance of admission is ${admissionChance}%`)
-    setCalculation(admissionChance)
-    setSpecialtyCount(tempSpecialtyCount)
-    setUniversityCount(tempUniversityCount)
-    setUniversityTheshold(tempUniversityTheshold)
-    setSpecialtyTheshold(tempSpecialtyTheshold)
-    setLastUniversityCode(tempLastUniversityCode)
-  }, [value])
-
-  return (
-    <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
-      <div className="absolute inset-0 !m-0 size-full">
-        <div className="absolute inset-0 size-full rounded [background:linear-gradient(-84.28deg,_)]" />
-        <img
-          className="absolute inset-0 z-[1] size-full max-h-full max-w-full overflow-hidden"
-          alt=""
-          src="/mask-group-2.png"
-        />
-        <img
-          className="absolute inset-0 z-[2] size-full max-h-full max-w-full overflow-hidden"
-          alt=""
-          src="/mask-group-3.png"
-        />
-      </div>
-
-      <h1 className="font-inherit z-[ 3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
-        uSTUDY Calculator
-      </h1>
-
-      {/* <p>{`Names of specialties with threshold less than ${ENTPOINT}: ${specialtiesUnderThreshold.join(', ')}`}</p>
-      <p>{`Names of universities with threshold less than ${ENTPOINT}: ${universitiesUnderThreshold.join(', ')}`}</p> */}
-      {/* <p>{`Number of specialties with threshold less than ${ENTPOINT}: ${specialtyCount}`}</p> */}
-      <p>{`Number of universities with threshold less than ${ENTPOINT}: ${
-        universityCount || specialtyCount
-      }`}</p>
-      <p>{`Theherhold ${ENTPOINT}: ${
-        universityTheshold || specialtyTheshold
-      }`}</p>
-      <p>{`Last university code: ${lastUniversityCode}`}</p>
-      <p>{`Calculation: ${calculation}%`}</p>
-
-      {specialtyDoc ? <p>{specialtyDoc.id}</p> : <p>No SpcialtyDoc Found</p>}
-
-      <div className="z-[2] hidden h-12 w-8 rounded" />
-      <div className="z-[3] hidden h-12 w-[82px] rounded" />
-      <Carousel className="z-50 w-full" setApi={setApi}>
-        <CarouselContent>
-          {/* ENT */}
-          <CarouselItem>
-            <div className="flex w-[870px] max-w-full flex-row items-start justify-start gap-[69px] font-dm-sans text-base mq1050:flex-wrap mq1050:gap-[34px] mq450:gap-[17px]">
-              <div className="box-border flex min-w-[239px] max-w-full flex-[0.7745] flex-col items-start justify-start gap-[18.7px] py-0 pl-0 pr-[83px] mq1050:flex-1 mq450:box-border mq450:pr-5">
-                <div className="flex flex-col items-start justify-start gap-[8px] self-stretch px-0 pb-[5.3px] pt-0">
-                  <div className="relative z-[3] inline-block w-[246.5px] leading-[21px] ">
-                    Enter amount of score
-                  </div>
-                  <div className="z-[3] flex flex-row items-start justify-start self-stretch rounded-md border-DEFAULT border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
-                    <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
-                      <input
-                        className="box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none] placeholder:text-muted"
-                        placeholder="100"
-                        type="number"
-                        onChange={handleENTChange}
-                      />
-                      <img
-                        className="relative size-6"
-                        alt=""
-                        src="/coin-colorfull.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <span className="text-muted-foreground">
-                  Please Provide Your ENT POINT
-                </span>
-              </div>
-              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-              </div>
-              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[48px] leading-[130%]">
-                        B057:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            70%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B058:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[37px] leading-[16px]">
-                            65%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B059:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            62%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B017:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            73%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* <Button
-                variant="outline"
-                className={cn(
-                  "relative",
-                  "left-1 bottom-0 -translate-y-1/2"
-                )}
-                disabled={!canScrollPrev}
-                onClick={scrollPrev}
-              >
-                Back
-              </Button>
-
-              <Button
-                className={cn(
-                  "relative",
-                  "left-5 bottom-0 -translate-y-1/2"
-                )}
-                disabled={!canScrollNext}
-                onClick={scrollNext}
-              >
-                Next
-              </Button> */}
-            </div>
-          </CarouselItem>
-          {/* Subject Combination */}
-          <CarouselItem>
-            <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
-              <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
-                <h1 className="w-full text-left text-xl font-bold">
-                  Subjects Combination(Max:2)
-                </h1>
-                <TagInput
-                  placeholder="Enter Your Subjects"
-                  tags={subjectsTag}
-                  restrictTagsToAutocompleteOptions
-                  enableAutocomplete
-                  maxTags={2}
-                  autocompleteOptions={subjects.map((items) => ({
-                    id: items.id,
-                    text:
-                      items.subjects.map(
-                        (item: any) =>
-                          item || `No Subjects Are Provided at id:${uuid()}`
-                      ) || `No Subject Provided at id:${items.id}`,
-                  }))}
-                  draggable
-                  className="!max-h-10 !bg-transparent sm:min-w-[450px]"
-                  setTags={(newTags) => {
-                    setSubjectsTag(newTags)
-                  }}
-                />
-              </div>
-
-              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-              </div>
-              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[48px] leading-[130%]">
-                        B057:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            70%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B058:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[37px] leading-[16px]">
-                            65%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B059:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            62%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B017:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            73%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-          {/* Specialtiy */}
-          <CarouselItem>
-            <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
-              <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
-                <h1 className="w-full text-left text-xl font-bold">
-                  Specialtiy
-                </h1>
-                {/* <TagInput
-                  placeholder="Enter Your Subjects"
-                  tags={subjectsTag}
-                  enableAutocomplete
-                  maxTags={2}
-                  autocompleteOptions={specialties.map((items) => ({
-                    id: items.id,
-                    text: items.specialtyName || items.name || `No Subject Provided at id:${items.id}`,
-                  }))}
-                  draggable
-                  className="sm:min-w-[450px] !bg-transparent !max-h-10"
-                  setTags={(newTags) => {
-                    setSubjectsTag(newTags)
-                  }}
-                /> */}
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      aria-expanded={open}
-                      className="w-[350px]  justify-between"
-                    >
-                      {/* {value
-                        ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
-                        : "Select Specialty..."} */}
-                      {value
-                        ? specialties.find(
-                            (specialty) => specialty.name === value
-                          )?.name ||
-                          specialties.find(
-                            (specialty) => specialty.id === value
-                          )?.specialtyName ||
-                          value
-                        : "Select specialty..."}
-                      <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="max-h-[300px] w-[350px] overflow-y-auto overflow-x-hidden p-0">
-                    <Command>
-                      <CommandInput placeholder="Search Specialties..." />
-                      <CommandEmpty>No Specialty found.</CommandEmpty>
-                      <CommandGroup>
-                        {specialties.map((framework) => (
-                          <CommandItem
-                            key={framework.id}
-                            value={framework.id}
-                            onSelect={(currentValue) => {
-                              setValue(
-                                currentValue === value ? "" : currentValue
-                              )
-                              setOpen(false)
-                            }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-2 size-4",
-                                value === framework.id
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {framework.name ||
-                              framework.specialtyName ||
-                              framework.id}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-              </div>
-
-              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-              </div>
-              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[48px] leading-[130%]">
-                        B057:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            70%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B058:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[37px] leading-[16px]">
-                            65%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B059:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            62%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B017:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            73%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-          {/* Quota */}
-          <CarouselItem>
-            <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
-              <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
-                <h1 className="w-full text-left text-xl font-bold">Quota</h1>
-                {/* <TagInput
-                  placeholder="Enter Your Subjects"
-                  tags={subjectsTag}
-                  enableAutocomplete
-                  maxTags={2}
-                  autocompleteOptions={specialties.map((items) => ({
-                    id: items.id,
-                    text: items.specialtyName || items.name || `No Subject Provided at id:${items.id}`,
-                  }))}
-                  draggable
-                  className="sm:min-w-[450px] !bg-transparent !max-h-10"
-                  setTags={(newTags) => {
-                    setSubjectsTag(newTags)
-                  }}
-                /> */}
-                <Select onValueChange={handleQuotaChange}>
-                  <SelectTrigger className="w-[300px]">
-                    <SelectValue placeholder="Select a Quota" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel className="border-b">Quota's</SelectLabel>
-                      <SelectItem value="RuralQuota">Rural</SelectItem>
-                      <SelectItem value="OrphanQuota">Orphan</SelectItem>
-                      <SelectItem value="DisabilityQuota">
-                        Disability
-                      </SelectItem>
-                      <SelectItem value="LargeFamilyQuota">
-                        LargeFamily
-                      </SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-              </div>
-              <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                  <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                    <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[48px] leading-[130%]">
-                        B057:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            70%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B058:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[37px] leading-[16px]">
-                            65%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B059:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            62%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                      <div className="relative inline-block min-w-[49px] leading-[130%]">
-                        B017:
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                        <div className="flex flex-row items-center justify-start">
-                          <div className="relative inline-block min-w-[36px] leading-[16px]">
-                            73%
-                          </div>
-                        </div>
-                        <img
-                          className="relative size-5"
-                          alt=""
-                          src="/coin-transparent.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-
-          <CarouselItem>
-            <div className="mt-12 flex !min-w-full items-start justify-evenly space-x-10 p-1 !text-sm !text-white lg:flex-row">
-              <div className="">
-                <span className="text-sm">ENT Scrore</span>
-                <div className="rounded-md border border-white p-3 text-center">
-                  {ENTPOINT || "135"}
-                </div>
-              </div>
-              <div className="">
-                <span className="text-sm">Specialty</span>
-                <div className="rounded-md border border-white p-3 text-center">
-                  {value || "Design"}
-                </div>
-              </div>
-              <div className="">
-                <span className="text-sm">Subject Combination</span>
-                <div className="rounded-md border border-white p-3 text-center">
-                  {subjectsTag.map((obj) => `${obj.text} `) || "Creative Exam"}
-                </div>
-              </div>
-              <div className="">
-                <span className="text-sm">Quota</span>
-                <div className="rounded-md border border-white p-3 text-center">
-                  {quota || "..."}
-                </div>
-              </div>
-            </div>
-          </CarouselItem>
-
-          {/* specialtyDoc ? specialtyDoc.name || specialtyDoc.specialtyName */}
-        </CarouselContent>
-
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-      <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-0 size-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
-    </div>
-  )
-}
-
-const FrameComponent: NextPage = () => {
-  return (
-    <section className="min-h-min">
-      <div className="relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px] mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5">
-        <div className="relative z-0 hidden h-[248px] w-[1440px] max-w-full [background:linear-gradient(180deg,_)]" />
-        <div className="flex w-full flex-col items-center justify-center">
-          <h1 className="title !m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
-            Calculate Your Future
-          </h1>
-          <span className="text-sm text-primary">
-            Make your dream come by calcuting your victory.
-          </span>
-        </div>
-        <img
-          className="absolute left-0 top-0 z-[1] lg:min-h-[300px] lg:min-w-[500px]"
-          alt=""
-          src="/left-shadow.png"
-        />
-        <img
-          className="absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2 lg:min-h-[300px] lg:min-w-[500px]"
-          alt=""
-          src="/center-shadow.png"
-        />
-        <img
-          className="absolute right-0 top-0 z-[1] lg:min-h-[300px] lg:min-w-[500px]"
-          alt=""
-          src="/right-shadow.png"
-        />
-        <img
-          className="absolute left-1/3 top-0 z-[1] mx-auto size-[90%] -translate-x-1/2 object-contain lg:min-h-[300px] lg:min-w-[500px]"
-          alt=""
-          src="/looper-bg.png"
-        />
-      </div>
-      <div className="faq-content mt-10 flex flex-col space-y-5">
-        <Calculator />
-        {/* <div className="mx-auto !mb-32 rounded-md border p-5 lg:w-[1200px]">
-          <TableDemo />
-        </div> */}
-      </div>
-    </section>
-  )
-}
-// export default FrameComponent
-
-// Simulate a database read for tasks.
-async function getTasks() {
-  const data: any = []
-  // const tasks = JSON.parse(data.toString())
-  return z.array(taskSchema).parse(data)
-}
-
-async function TaskPage() {
-  const tasks = await getTasks()
-
-  return (
-    <div>
-      <div className="md:hidden">
-        <Image
-          src="/examples/tasks-light.png"
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/tasks-dark.png"
-          width={1280}
-          height={998}
-          alt="Playground"
-          className="hidden dark:block"
-        />
-      </div>
-      <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-        <div className="flex items-center justify-between space-y-2">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Your Chances!</h2>
-            <p className="text-muted-foreground">
-              Here is your calculations history!
-            </p>
-          </div>
-          {/* <div className="flex items-center space-x-2">
-            <UserNav />
-          </div> */}
-        </div>
-        <DataTable data={tasks} columns={columns} />
-      </div>
-    </div>
-  )
+  return docSnap.data()
 }
 
 const CalculatorPage: NextPage = () => {
+  const { toast } = useToast()
+  const [userScore, setUserScore] = useState<number>(101); // Initial userScore
+  const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+    if (startScore >= userScore) {
+      return 0;
+    } else {
+      let possibleScore = calculatePossibleScore(e1, e2, e3);
+      let admissionChance = calculateChance(userScore, possibleScore);
+      return Math.min(Math.floor(admissionChance), 100);
+    }
+  }
+
+  const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+    return possibleScore <= 140 ? possibleScore : 140;
+  }
+
+  const calculateChance = (userScore: number, possibleScore: number): number => {
+    let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    return chance;
+  }
+
+  // const calculateChance = (userScore: number, possibleScore: number): number => {
+  //   if (140 - possibleScore === 0) {
+  //     return 100; // or whatever value makes sense in this case
+  //   }
+  //   let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+  //   return chance;
+  // }
+
+
   // const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev, scrollTo } = useCarousel()
   // const tasks = [];
   const [tasks, setTasks] = useState<any[]>([])
@@ -1285,7 +409,8 @@ const CalculatorPage: NextPage = () => {
   const [universitiesTag, setUniversitiesTag] = React.useState<any[]>([])
   const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("2G4ao9MQlkfRGhytZUzP")
+  const [value, setValue] = React.useState("")
+  const [specialityIdentifier, setSpecialityIdentifier] = React.useState(specialties[0] ? specialties[0].id : "5ttgK6fPoGe90dIei3Oy")
   const [resultSubjects, setResultSubjects] = React.useState([])
   const [lastUniversityCode, setLastUniversityCode] = React.useState("")
   const [calculation, setCalculation] = React.useState("")
@@ -1304,30 +429,30 @@ const CalculatorPage: NextPage = () => {
     })
   }, [api])
 
-  function calculateAdmissionChance(
-    startScore: number,
-    e1: number,
-    e2: number,
-    e3: number,
-    userScore: number
-  ): number {
-    if (startScore >= userScore) {
-      return 0
-    } else {
-      let possibleScore = calculatePossibleScore(e1, e2, e3)
-      let admissionChance = calculateChance(userScore, possibleScore)
-      return Math.min(Math.floor(admissionChance), 100)
-    }
-  }
-  function calculatePossibleScore(e1: number, e2: number, e3: number): number {
-    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3
-    return possibleScore <= 140 ? possibleScore : 140
-  }
-  function calculateChance(userScore: number, possibleScore: number): number {
-    let chance =
-      50 + ((userScore - possibleScore) / ((140 - possibleScore) * 3)) * 100
-    return chance
-  }
+  // function calculateAdmissionChance(
+  //   startScore: number,
+  //   e1: number,
+  //   e2: number,
+  //   e3: number,
+  //   userScore: number
+  // ): number {
+  //   if (startScore >= userScore) {
+  //     return 0
+  //   } else {
+  //     let possibleScore = calculatePossibleScore(e1, e2, e3)
+  //     let admissionChance = calculateChance(userScore, possibleScore)
+  //     return Math.min(Math.floor(admissionChance), 100)
+  //   }
+  // }
+  // function calculatePossibleScore(e1: number, e2: number, e3: number): number {
+  //   let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3
+  //   return possibleScore <= 140 ? possibleScore : 140
+  // }
+  // function calculateChance(userScore: number, possibleScore: number): number {
+  //   let chance =
+  //     50 + ((userScore - possibleScore) / ((140 - possibleScore) * 3)) * 100
+  //   return chance
+  // }
   // let startScore = 100; // University Theshold
   // let e1 = 95;          // 2021
   // let e2 = 93;          // 2022
@@ -1338,21 +463,235 @@ const CalculatorPage: NextPage = () => {
 
   function handleENTChange(e: { target: { value: any } }) {
     setENTPOINT(e.target.value)
+    setUserScore(e.target.value)
   }
   function handleQuotaChange(e: any) {
     setQuota(e)
+    if (e === "GeneralCompetition") {
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreGeneralCompetition
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreGeneralCompetition
+         < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreGeneralCompetition
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+      setCalculation(admissionChance);
+      // console.log(`possibleScoreGeneralCompetition is selected and admission chance is ${admissionChance}`)
+
+    } else if (e === "RuralQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreRuralQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreRuralQuota
+       < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreRuralQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+      setCalculation(admissionChance);
+      // console.log("possibleScoreRuralQuota is selected")
+    } else if (e === "DisabilityQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreDisabilityQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreDisabilityQuota
+          < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreDisabilityQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+      setCalculation(admissionChance);
+      // console.log("possibleScoreDisabilityQuota is selected")
+    } else if (e === "LargeFamilyQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreLargeFamilyQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc
+          ? specialtyDoc.possibleScoreLargeFamilyQuota
+          : 100 < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreLargeFamilyQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+      setCalculation(admissionChance);
+      // console.log("possibleScoreLargeFamilyQuota is selected")
+    } else if (e === "OrphanQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreOrphanQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc
+          ? specialtyDoc.possibleScoreOrphanQuota
+          : 100 < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreOrphanQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+      let userScore = ENTPOINT // Ent Scrore
+      let admissionChance: any = calculateAdmissionChance(
+        startScore,
+        e1,
+        e2,
+        e3,
+        userScore
+      )
+      setCalculation(admissionChance);
+      // console.log("possibleScoreOrphanQuota is selected")
+    }
   }
-
-  // async function calculate() {
-  //   const specialtyData: any = await fetchDocument(value);
-  //   let startScore:any = universityTheshold || specialtyTheshold || 100;          // University Theshold
-  //   let e1 = specialtyData.minScore.map((item: any[]) => item[0]) || 95;          // 2021
-  //   let e2 = specialtyData.minScore.map((item: any[]) => item[1]) || 93;          // 2022
-  //   let e3 = specialtyData.minScore.map((item: any[]) => item[2]) || 97;          // 2023
-  //   let userScore = ENTPOINT || 394;
-
-  //   return calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-  // }
 
   useEffect(() => {
     const fetchSpecilaties = async () => {
@@ -1380,19 +719,9 @@ const CalculatorPage: NextPage = () => {
       setSubjects(newDocs)
     }
     const fetchDocs = async () => {
-      const data: any = await fetchDocument(value)
+      const data: any = await fetchDocument(specialityIdentifier)
       setSpecialtyDoc(data)
     }
-
-    // setTasks([
-    //   {
-    //     id: "BD75",
-    //     title: "universities are hoping to see you there!",
-    //     status: "Information & Communication Technology",
-    //     label: "9",
-    //     priority: `100%`
-    //   }
-    // ])
 
     fetchDocs()
     fetchSpecilaties()
@@ -1401,48 +730,41 @@ const CalculatorPage: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    // document.title = `Count: ${value}`;
+    // let tempSpecialtyCount = 0
+    // let tempUniversityCount = 0
+    // let tempSpecialtyTheshold = ""
+    // let tempUniversityTheshold = ""
+    // let tempLastUniversityCode = ""
+    // let tempCalculation: any = ""
 
-    // const fetchSpecialty = async () => {
-    //   const specialtyData: any = await fetchDocument(value);
-    //   setSpecialtyDoc(specialtyData)
-    // }
-    // fetchSpecialty();
-    let tempSpecialtyCount = 0
-    let tempUniversityCount = 0
-    let tempSpecialtyTheshold = ""
-    let tempUniversityTheshold = ""
-    let tempLastUniversityCode = ""
-    let tempCalculation: any = ""
+    // const tempSpecialtiesUnderThreshold = specialties
+    //   .filter((specialty) => specialty.threshold < ENTPOINT)
+    //   .map((specialty) => specialty.name || specialty.specailtyName)
+    // const tempUniversitiesUnderThreshold = universities
+    //   .filter(
+    //     (university) => university.threshold && university.threshold < ENTPOINT
+    //   )
+    //   .map((university) => university.universityName)
 
-    const tempSpecialtiesUnderThreshold = specialties
-      .filter((specialty) => specialty.threshold < ENTPOINT)
-      .map((specialty) => specialty.name || specialty.specailtyName)
-    const tempUniversitiesUnderThreshold = universities
-      .filter(
-        (university) => university.threshold && university.threshold < ENTPOINT
-      )
-      .map((university) => university.universityName)
+    // setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
+    // setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
 
-    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
-    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
+    // universities.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempUniversityCount++
+    //   } else {
+    //   }
+    //   tempUniversityTheshold = university.threshold || ""
+    //   tempLastUniversityCode = university.universityCode
+    // })
 
-    universities.forEach((university) => {
-      if (university.threshold && university.threshold < ENTPOINT) {
-        tempUniversityCount++
-      } else {
-      }
-      tempUniversityTheshold = university.threshold || ""
-      tempLastUniversityCode = university.universityCode
-    })
-
-    specialties.forEach((university) => {
-      if (university.threshold && university.threshold < ENTPOINT) {
-        tempSpecialtyCount++
-      } else {
-      }
-      tempSpecialtyTheshold = university.threshold || ""
-    })
+    // specialties.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempSpecialtyCount++
+    //   } else {
+    //   }
+    //   tempSpecialtyTheshold = university.threshold || ""
+    // })
 
     // Calculation
     // async function calculate() {
@@ -1457,35 +779,14 @@ const CalculatorPage: NextPage = () => {
     //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
     // }
     // calculate();
-    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
-    let e1 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-      : 95 // 2021
-    let e2 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-      : 93 // 2022
-    let e3 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-      : 97 // 2023
-    let userScore = ENTPOINT // Ent Scrore
 
-    let admissionChance: any = calculateAdmissionChance(
-      startScore,
-      e1,
-      e2,
-      e3,
-      userScore
-    )
-    console.log(`The chance of admission is ${admissionChance}%`)
-    setCalculation(admissionChance)
-    setSpecialtyCount(tempSpecialtyCount)
-    setUniversityCount(tempUniversityCount)
-    setUniversityTheshold(tempUniversityTheshold)
-    setSpecialtyTheshold(tempSpecialtyTheshold)
-    setLastUniversityCode(tempLastUniversityCode)
+    // console.log(`The chance of admission is ${admissionChance}%`)
+    // setCalculation(admissionChance)
+    // setSpecialtyCount(tempSpecialtyCount)
+    // setUniversityCount(tempUniversityCount)
+    // setUniversityTheshold(tempUniversityTheshold)
+    // setSpecialtyTheshold(tempSpecialtyTheshold)
+    // setLastUniversityCode(tempLastUniversityCode)
     // setResultSubjects(subjectsTag.map(
     //   (obj) => obj.text
     // )))
@@ -1515,43 +816,56 @@ const CalculatorPage: NextPage = () => {
   }, [value])
 
   const handleClick = () => {
-    let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
-    let e1 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-      : 95 // 2021
-    let e2 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-      : 93 // 2022
-    let e3 = specialtyDoc
-      ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-      : 97 // 2023
-    let userScore = ENTPOINT // Ent Scrore
 
-    let admissionChance: any = calculateAdmissionChance(
-      startScore,
-      e1,
-      e2,
-      e3,
-      userScore
-    )
-    setTasks((prevTasks) => [
-      ...prevTasks,
-      {
-        id: lastUniversityCode || "BD75",
-        title: "universities are hoping to see you there!",
-        status: `${
-          subjectsTag.map(
-            (obj) => `${obj.text || "Information & Communication Technology"} `
+    const fetchDocs = async () => {
+      const data: any = await fetchDocument(specialityIdentifier)
+      setSpecialtyDoc(data)
+      setTasks((prevTasks) => [
+        ...prevTasks,
+        {
+          id: data.specialtyCode ? data.specialtyCode : "BD76",
+          title: "universities are hoping to see you there!",
+          status: `${subjectsTag.map(
+            (obj) => `${obj.text || "Information & Communication Technology"}`
           ) || "Creative Exam"
-        }`,
-        label: universityCount || specialtyCount,
-        priority: `${admissionChance}%`,
-      },
-    ])
+            }`,
+          label: data.universities && data.universities.length,
+          priority: `${admissionChance}%`,
+          universities: data.universities ? data.universities : "No universities are provided.",
+        },
+      ])
+    }
+    fetchDocs();
+    toast({
+      title: "Calculation is done successfully!",
+      description: (
+        <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+          <span>Please check the table below to see the calculation results.</span>
+          {/* <pre className="max-h-[500px] overflow-auto bg-background">
+            <code className="bg-secondary text-muted-foreground">
+              {JSON.stringify(Create.id, null, 2)}
+            </code>
+          </pre> */}
+        </div>
+      ),
+    })
+
+    // setSpecialtyCount(tempSpecialtyCount)
+    // setUniversityCount(tempUniversityCount)
+    // setUniversityTheshold(tempUniversityTheshold)
+    // setSpecialtyTheshold(tempSpecialtyTheshold)
+    // setLastUniversityCode(tempLastUniversityCode)
   }
+
+
+  let startScore = 100; // University Theshold
+  let e1 = 100;          // 2021
+  let e2 = 100;          // 2022
+  let e3 = 100;          // 2023
+  let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+
+  // console.log(JSON.stringify(specialtyDoc, null, 2))
 
   return (
     <div className="calculator">
@@ -1605,8 +919,19 @@ const CalculatorPage: NextPage = () => {
               />
             </div>
 
-            <h1 className="font-inherit z-[ 3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
+            <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
+              {universityCount}
+              {/* <input
+                type="number"
+                value={userScore}
+                onChange={(e: any) => setUserScore(e.target.value)}
+                placeholder="Enter your score"
+                className="z-[100000000000000000000]"
+              />
+              <p className="z-[1000000000000000000]">The chance of admission is {admissionChance}%</p> */}
+              {/* {specialtyDoc ? <p>{specialtyDoc.specialtyCode}</p> : <p>No SpcialtyDoc Found</p>} */}
+              {/* {specialties[0] && <p>{specialties[0].id}</p>} */}
             </h1>
 
             {/* <p>{`Names of specialties with threshold less than ${ENTPOINT}: ${specialtiesUnderThreshold.join(', ')}`}</p>
@@ -1772,12 +1097,7 @@ const CalculatorPage: NextPage = () => {
                         maxTags={2}
                         autocompleteOptions={subjects.map((items) => ({
                           id: items.id,
-                          text:
-                            items.subjects.map(
-                              (item: any) =>
-                                item ||
-                                `No Subjects Are Provided at id:${uuid()}`
-                            ) || `No Subject Provided at id:${items.id}`,
+                          text: items.subjects.filter((item: string) => item !== ""),
                         }))}
                         draggable
                         className="!max-h-10 !bg-transparent sm:min-w-[450px]"
@@ -1900,15 +1220,12 @@ const CalculatorPage: NextPage = () => {
                             {/* {value
                   ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
                   : "Select Specialty..."} */}
-                            {value
-                              ? specialties.find(
-                                  (specialty) => specialty.name === value
-                                )?.name ||
-                                specialties.find(
-                                  (specialty) => specialty.id === value
-                                )?.specialtyName ||
-                                value
-                              : "Select specialty..."}
+                            <span className="w-[200px] truncate text-start">
+                              {value
+                                ? value
+                                : "Select specialty..."}
+                            </span>
+
                             <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
@@ -1920,8 +1237,9 @@ const CalculatorPage: NextPage = () => {
                               {specialties.map((framework) => (
                                 <CommandItem
                                   key={framework.id}
-                                  value={framework.id}
+                                  value={framework.name || framework.id}
                                   onSelect={(currentValue) => {
+                                    setSpecialityIdentifier(framework.id)
                                     setValue(
                                       currentValue === value ? "" : currentValue
                                     )
@@ -1931,13 +1249,12 @@ const CalculatorPage: NextPage = () => {
                                   <Check
                                     className={cn(
                                       "mr-2 size-4",
-                                      value === framework.id
+                                      value === framework.name
                                         ? "opacity-100"
-                                        : "opacity-0"
+                                        : value === framework.id ? "opacity-100" : "opacity-0"
                                     )}
                                   />
                                   {framework.name ||
-                                    framework.specialtyName ||
                                     framework.id}
                                 </CommandItem>
                               ))}
@@ -2034,38 +1351,28 @@ const CalculatorPage: NextPage = () => {
                       <h1 className="w-full text-left text-xl font-bold">
                         Quota
                       </h1>
-                      {/* <TagInput
-            placeholder="Enter Your Subjects"
-            tags={subjectsTag}
-            enableAutocomplete
-            maxTags={2}
-            autocompleteOptions={specialties.map((items) => ({
-              id: items.id,
-              text: items.specialtyName || items.name || `No Subject Provided at id:${items.id}`,
-            }))}
-            draggable
-            className="sm:min-w-[450px] !bg-transparent !max-h-10"
-            setTags={(newTags) => {
-              setSubjectsTag(newTags)
-            }}
-          /> */}
                       <Select onValueChange={handleQuotaChange}>
                         <SelectTrigger className="w-[300px]">
                           <SelectValue placeholder="Select a Quota" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            <SelectLabel className="border-b">
-                              Quota's
-                            </SelectLabel>
+                            {/* 
+                            
+                                  specialtyCode: inputedSpecialtyCode,
+      possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
+      possibleScoreRuralQuota: possibleScoreRuralQuota,
+      possibleScoreOrphanQuota: possibleScoreOrphanQuota,
+      possibleScoreDisabilityQuota: possibleScoreDisabilityQuota,
+      possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota,
+    })
+                            */}
+                            <SelectLabel className="border-b">Quota's</SelectLabel>
+                            <SelectItem value="GeneralCompetition">GeneralCompetetion</SelectItem>
                             <SelectItem value="RuralQuota">Rural</SelectItem>
                             <SelectItem value="OrphanQuota">Orphan</SelectItem>
-                            <SelectItem value="DisabilityQuota">
-                              Disability
-                            </SelectItem>
-                            <SelectItem value="LargeFamilyQuota">
-                              LargeFamily
-                            </SelectItem>
+                            <SelectItem value="DisabilityQuota">Disability</SelectItem>
+                            <SelectItem value="LargeFamilyQuota">LargeFamily</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -2162,19 +1469,16 @@ const CalculatorPage: NextPage = () => {
                     </div>
                     <div className="">
                       <span className="text-sm">Specialty</span>
-                      <div className="rounded-md border border-white p-3 text-center">
+                      <div className="rounded-md border border-white p-3 text-center w-[250px] truncate">
                         {value || "Design"}
                       </div>
                     </div>
                     <div className="">
                       <span className="text-sm">Subject Combination</span>
-                      <div className="rounded-md border border-white p-3 text-center">
+                      <div className="rounded-md border border-white p-3 text-center w-[250px] truncate">
                         {subjectsTag.map(
                           (obj) =>
-                            `${
-                              obj.text ||
-                              "Information & Communication Technology"
-                            } `
+                            `  ${obj.text}  `
                         ) || "Creative Exam"}
                       </div>
                     </div>

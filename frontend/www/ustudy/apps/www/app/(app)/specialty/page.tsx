@@ -56,8 +56,8 @@ async function getTasks() {
     id: doc.id,
     name: doc.data().specialtyName,
     code: doc.data().specialtyCode,
-    level: doc.data().level,
-    demand: doc.data().demandForSpecialty,
+    generalQuota: doc.data().possibleScoreGeneralCompetition,
+    ruralQuota: doc.data().possibleScoreRuralQuota,
     ...doc.data(),
   }))
 
