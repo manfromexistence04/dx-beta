@@ -42,10 +42,11 @@ export function DataTableRowActions<TData>({
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-[250px]">
-
-        <DropdownMenuLabel>Universities</DropdownMenuLabel>
-        {row.original.universities && row.original.universities.map((items: any) => <DropdownMenuItem key={items} className="w-[150px] truncate">{items}</DropdownMenuItem>)}
+      <DropdownMenuContent align="start" className="w-[500px]">
+        <DropdownMenuItem>Universities</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        {/* <DropdownMenuLabel>Universities</DropdownMenuLabel> */}
+        {row.original.universities && row.original.universities.map((items: any) => <DropdownMenuItem key={items} className="w-full truncate">{items}</DropdownMenuItem>)}
 
         {/* 
       <DropdownMenuItem>View</DropdownMenuItem>
