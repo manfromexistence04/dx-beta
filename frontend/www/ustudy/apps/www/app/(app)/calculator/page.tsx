@@ -410,7 +410,7 @@ const CalculatorPage: NextPage = () => {
   const [minScroresTag, setMinScroresTag] = React.useState<any[]>([])
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
-  const [specialityIdentifier, setSpecialityIdentifier] = React.useState("TILYUxDgqHFNWRreJoNn")
+  const [specialityIdentifier, setSpecialityIdentifier] = React.useState(specialties[0] ? specialties[0].id : "5ttgK6fPoGe90dIei3Oy")
   const [resultSubjects, setResultSubjects] = React.useState([])
   const [lastUniversityCode, setLastUniversityCode] = React.useState("")
   const [calculation, setCalculation] = React.useState("")
@@ -468,6 +468,28 @@ const CalculatorPage: NextPage = () => {
   function handleQuotaChange(e: any) {
     setQuota(e)
     if (e === "GeneralCompetition") {
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreGeneralCompetition
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreGeneralCompetition
+         < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
       let startScore: any = specialtyDoc
         ? specialtyDoc.possibleScoreGeneralCompetition
         : 100 // University Theshold
@@ -484,38 +506,34 @@ const CalculatorPage: NextPage = () => {
         specialtyDoc.minscrore.map((item: any) => item[2])
         : 100 // 2023
       let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-
-      // let userScore = ENTPOINT // Ent Scrore
-      // let admissionChance: any = calculateAdmissionChance(
-      //   startScore,
-      //   e1,
-      //   e2,
-      //   e3,
-      //   userScore
-      // )
       setCalculation(admissionChance);
-      console.log(`possibleScoreGeneralCompetition is selected and admission chance is ${admissionChance}`)
-    } else if (e === "ScoreRuralQuota") {
-      let startScore: any = specialtyDoc
-        ? specialtyDoc.possibleScoreRuralQuota
-        : 100 // University Theshold
-      let e1 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-        : 100 // 2021
-      let e2 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-        : 100 // 2022
-      let e3 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-        : 100 // 2023
-      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+      // console.log(`possibleScoreGeneralCompetition is selected and admission chance is ${admissionChance}`)
 
-      setCalculation(admissionChance);
-      console.log("possibleScoreRuralQuota is selected")
     } else if (e === "RuralQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreRuralQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreRuralQuota
+       < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+
       let startScore: any = specialtyDoc
         ? specialtyDoc.possibleScoreRuralQuota
         : 100 // University Theshold
@@ -534,8 +552,31 @@ const CalculatorPage: NextPage = () => {
       let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
 
       setCalculation(admissionChance);
-      console.log("possibleScoreRuralQuota is selected")
+      // console.log("possibleScoreRuralQuota is selected")
     } else if (e === "DisabilityQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreDisabilityQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreDisabilityQuota
+          < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
       let startScore: any = specialtyDoc
         ? specialtyDoc.possibleScoreDisabilityQuota
         : 100 // University Theshold
@@ -554,8 +595,32 @@ const CalculatorPage: NextPage = () => {
       let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
 
       setCalculation(admissionChance);
-      console.log("possibleScoreDisabilityQuota is selected")
+      // console.log("possibleScoreDisabilityQuota is selected")
     } else if (e === "LargeFamilyQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreLargeFamilyQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc
+          ? specialtyDoc.possibleScoreLargeFamilyQuota
+          : 100 < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
       let startScore: any = specialtyDoc
         ? specialtyDoc.possibleScoreLargeFamilyQuota
         : 100 // University Theshold
@@ -574,8 +639,32 @@ const CalculatorPage: NextPage = () => {
       let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
 
       setCalculation(admissionChance);
-      console.log("possibleScoreLargeFamilyQuota is selected")
+      // console.log("possibleScoreLargeFamilyQuota is selected")
     } else if (e === "OrphanQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreOrphanQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc
+          ? specialtyDoc.possibleScoreOrphanQuota
+          : 100 < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
       let startScore: any = specialtyDoc
         ? specialtyDoc.possibleScoreOrphanQuota
         : 100 // University Theshold
@@ -600,7 +689,7 @@ const CalculatorPage: NextPage = () => {
         userScore
       )
       setCalculation(admissionChance);
-      console.log("possibleScoreOrphanQuota is selected")
+      // console.log("possibleScoreOrphanQuota is selected")
     }
   }
 
@@ -641,41 +730,41 @@ const CalculatorPage: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    let tempSpecialtyCount = 0
-    let tempUniversityCount = 0
-    let tempSpecialtyTheshold = ""
-    let tempUniversityTheshold = ""
-    let tempLastUniversityCode = ""
-    let tempCalculation: any = ""
+    // let tempSpecialtyCount = 0
+    // let tempUniversityCount = 0
+    // let tempSpecialtyTheshold = ""
+    // let tempUniversityTheshold = ""
+    // let tempLastUniversityCode = ""
+    // let tempCalculation: any = ""
 
-    const tempSpecialtiesUnderThreshold = specialties
-      .filter((specialty) => specialty.threshold < ENTPOINT)
-      .map((specialty) => specialty.name || specialty.specailtyName)
-    const tempUniversitiesUnderThreshold = universities
-      .filter(
-        (university) => university.threshold && university.threshold < ENTPOINT
-      )
-      .map((university) => university.universityName)
+    // const tempSpecialtiesUnderThreshold = specialties
+    //   .filter((specialty) => specialty.threshold < ENTPOINT)
+    //   .map((specialty) => specialty.name || specialty.specailtyName)
+    // const tempUniversitiesUnderThreshold = universities
+    //   .filter(
+    //     (university) => university.threshold && university.threshold < ENTPOINT
+    //   )
+    //   .map((university) => university.universityName)
 
-    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
-    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
+    // setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
+    // setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
 
-    universities.forEach((university) => {
-      if (university.threshold && university.threshold < ENTPOINT) {
-        tempUniversityCount++
-      } else {
-      }
-      tempUniversityTheshold = university.threshold || ""
-      tempLastUniversityCode = university.universityCode
-    })
+    // universities.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempUniversityCount++
+    //   } else {
+    //   }
+    //   tempUniversityTheshold = university.threshold || ""
+    //   tempLastUniversityCode = university.universityCode
+    // })
 
-    specialties.forEach((university) => {
-      if (university.threshold && university.threshold < ENTPOINT) {
-        tempSpecialtyCount++
-      } else {
-      }
-      tempSpecialtyTheshold = university.threshold || ""
-    })
+    // specialties.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempSpecialtyCount++
+    //   } else {
+    //   }
+    //   tempSpecialtyTheshold = university.threshold || ""
+    // })
 
     // Calculation
     // async function calculate() {
@@ -693,11 +782,11 @@ const CalculatorPage: NextPage = () => {
 
     // console.log(`The chance of admission is ${admissionChance}%`)
     // setCalculation(admissionChance)
-    setSpecialtyCount(tempSpecialtyCount)
-    setUniversityCount(tempUniversityCount)
-    setUniversityTheshold(tempUniversityTheshold)
-    setSpecialtyTheshold(tempSpecialtyTheshold)
-    setLastUniversityCode(tempLastUniversityCode)
+    // setSpecialtyCount(tempSpecialtyCount)
+    // setUniversityCount(tempUniversityCount)
+    // setUniversityTheshold(tempUniversityTheshold)
+    // setSpecialtyTheshold(tempSpecialtyTheshold)
+    // setLastUniversityCode(tempLastUniversityCode)
     // setResultSubjects(subjectsTag.map(
     //   (obj) => obj.text
     // )))
@@ -727,106 +816,25 @@ const CalculatorPage: NextPage = () => {
   }, [value])
 
   const handleClick = () => {
-    // let startScore: any = universityTheshold || specialtyTheshold || 100 // University Theshold
-    // let e1 = specialtyDoc
-    //   ? specialtyDoc.minscrore &&
-    //   specialtyDoc.minscrore.map((item: any) => item[0])
-    //   : 95 // 2021
-    // let e2 = specialtyDoc
-    //   ? specialtyDoc.minscrore &&
-    //   specialtyDoc.minscrore.map((item: any) => item[1])
-    //   : 93 // 2022
-    // let e3 = specialtyDoc
-    //   ? specialtyDoc.minscrore &&
-    //   specialtyDoc.minscrore.map((item: any) => item[2])
-    //   : 97 // 2023
-    // let userScore = ENTPOINT // Ent Scrore
 
-    // let admissionChance: any = calculateAdmissionChance(
-    //   startScore,
-    //   e1,
-    //   e2,
-    //   e3,
-    //   userScore
-    // )
-    // const fetchDocs = async () => {
-    //   const data: any = await fetchDocument(value)
-    //   setSpecialtyDoc(data)
-    //   setTasks((prevTasks) => [
-    //     ...prevTasks,
-    //     {
-    //       id: data.specialtyCode || "BD74",
-    //       title: "universities are hoping to see you there!",
-    //       status: `${subjectsTag.map(
-    //         (obj) => `${obj.text || "Information & Communication Technology"}`
-    //       ) || "Creative Exam"
-    //         }`,
-    //       label: universityCount || specialtyCount,
-    //       priority: `${calculation || admissionChance}%`,
-    //     },
-    //   ])
-    // }
-
-    // fetchDocs()
-
-    let tempSpecialtyCount = 0
-    let tempUniversityCount = 0
-    let tempSpecialtyTheshold = ""
-    let tempUniversityTheshold = ""
-    let tempLastUniversityCode = ""
-    let tempCalculation: any = ""
-
-    const tempSpecialtiesUnderThreshold = specialties
-      .filter((specialty) => specialty.threshold < userScore)
-      .map((specialty) => specialty.name || specialty.specailtyName)
-    const tempUniversitiesUnderThreshold = universities
-      .filter(
-        (university) => university.threshold && university.threshold < userScore
-      )
-      .map((university) => university.universityName)
-
-    setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
-    setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
-
-    universities.forEach((university) => {
-
-      if (university.threshold && university.threshold < userScore) {
-        tempUniversityCount++
-      } else {
-      tempUniversityCount++
-
-      }
-      tempUniversityTheshold = university.threshold || ""
-      tempLastUniversityCode = university.universityCode
-    })
-
-    specialties.forEach((university) => {
-
-      if (university.possibleScoreGeneralCompetition && university.possibleScoreGeneralCompetition < userScore) {
-        tempSpecialtyCount++
-      } else {
-        tempSpecialtyCount++
-      }
-      tempSpecialtyTheshold = university.threshold || ""
-    })
-
-
-
-    setTasks((prevTasks) => [
-      ...prevTasks,
-      {
-        id: specialtyDoc.specialtyCode || "BD74",
-        title: "universities are hoping to see you there!",
-        status: `${subjectsTag.map(
-          (obj) => `${obj.text || "Information & Communication Technology"}`
-        ) || "Creative Exam"
-          }`,
-        label: tempUniversityCount || tempSpecialtyCount,
-        priority: `${admissionChance}%`,
-      },
-    ])
-
-
+    const fetchDocs = async () => {
+      const data: any = await fetchDocument(specialityIdentifier)
+      setSpecialtyDoc(data)
+      setTasks((prevTasks) => [
+        ...prevTasks,
+        {
+          id: data.specialtyCode ? data.specialtyCode : "BD76",
+          title: "universities are hoping to see you there!",
+          status: `${subjectsTag.map(
+            (obj) => `${obj.text || "Information & Communication Technology"}`
+          ) || "Creative Exam"
+            }`,
+          label: universityCount,
+          priority: `${admissionChance}%`,
+        },
+      ])
+    }
+    fetchDocs();
     toast({
       title: "Calculation is done successfully!",
       description: (
@@ -840,6 +848,12 @@ const CalculatorPage: NextPage = () => {
         </div>
       ),
     })
+
+    // setSpecialtyCount(tempSpecialtyCount)
+    // setUniversityCount(tempUniversityCount)
+    // setUniversityTheshold(tempUniversityTheshold)
+    // setSpecialtyTheshold(tempSpecialtyTheshold)
+    // setLastUniversityCode(tempLastUniversityCode)
   }
 
 
@@ -906,6 +920,7 @@ const CalculatorPage: NextPage = () => {
 
             <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
+              {universityCount}
               {/* <input
                 type="number"
                 value={userScore}
@@ -1204,9 +1219,12 @@ const CalculatorPage: NextPage = () => {
                             {/* {value
                   ? specialties.find((framework) => framework.specialtyName || framework.name === value)?.specialtyName
                   : "Select Specialty..."} */}
-                            {value
-                              ? specialties.map((specialty) => value === specialty.id ? specialty.name : value)
-                              : "Select specialty..."}
+                            <span className="w-[200px] truncate text-start">
+                              {value
+                                ? value
+                                : "Select specialty..."}
+                            </span>
+
                             <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
@@ -1450,13 +1468,13 @@ const CalculatorPage: NextPage = () => {
                     </div>
                     <div className="">
                       <span className="text-sm">Specialty</span>
-                      <div className="rounded-md border border-white p-3 text-center">
+                      <div className="rounded-md border border-white p-3 text-center w-[250px] truncate">
                         {value || "Design"}
                       </div>
                     </div>
                     <div className="">
                       <span className="text-sm">Subject Combination</span>
-                      <div className="rounded-md border border-white p-3 text-center">
+                      <div className="rounded-md border border-white p-3 text-center w-[250px] truncate">
                         {subjectsTag.map(
                           (obj) =>
                             `  ${obj.text}  `
