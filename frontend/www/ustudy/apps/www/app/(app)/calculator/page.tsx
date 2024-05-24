@@ -353,24 +353,55 @@ const CalculatorPage: NextPage = () => {
   const { toast } = useToast()
   const [userScore, setUserScore] = useState<number>(101); // Initial userScore
   const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
-    if (startScore >= userScore) {
-      return 0;
-    } else {
-      let possibleScore = calculatePossibleScore(e1, e2, e3);
-      let admissionChance = calculateChance(userScore, possibleScore);
-      return Math.min(Math.floor(admissionChance), 100);
-    }
+    // if (startScore >= userScore) {
+    //   return 0;
+    // } else {
+    //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   return Math.min(Math.floor(admissionChance), 100);
+    // }
+    let possibleScore = calculatePossibleScore(e1, e2, e3);
+    let admissionChance = calculateChance(userScore, possibleScore);
+    return Math.min(Math.floor(admissionChance), 100);
   }
-
+  
   const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
     let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
     return possibleScore <= 140 ? possibleScore : 140;
   }
-
+  
   const calculateChance = (userScore: number, possibleScore: number): number => {
-    let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    let chance;
+    // if (userScore < 50) {
+    //   chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+    // } else {
+      
+    //   chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+    //   // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    // }
+    chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
     return chance;
   }
+  
+  // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+  //   if (startScore >= userScore) {
+  //     return 0;
+  //   } else {
+  //     let possibleScore = calculatePossibleScore(e1, e2, e3);
+  //     let admissionChance = calculateChance(userScore, possibleScore);
+  //     return Math.min(Math.floor(admissionChance), 100);
+  //   }
+  // }
+
+  // const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+  //   let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+  //   return possibleScore <= 140 ? possibleScore : 140;
+  // }
+
+  // const calculateChance = (userScore: number, possibleScore: number): number => {
+  //   let chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+  //   return chance;
+  // }
 
   // const calculateChance = (userScore: number, possibleScore: number): number => {
   //   if (140 - possibleScore === 0) {
@@ -921,7 +952,7 @@ const CalculatorPage: NextPage = () => {
 
             <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
-              {universityCount}
+              {/* {universityCount} */}
               {/* <input
                 type="number"
                 value={userScore}

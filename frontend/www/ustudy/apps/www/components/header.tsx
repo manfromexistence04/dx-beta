@@ -232,6 +232,17 @@ const Header: NextPage = () => {
                   Career guidance
                 </Link>
                 <Link
+                  href="/support"
+                  className={cn(
+                    "relative inline-block min-w-[31px] shrink-0 transition-colors hover:text-foreground/80",
+                    pathname === "/support"
+                      ? "text-[#804DFE]"
+                      : "text-foreground/60"
+                  )}
+                >
+                  Support
+                </Link>
+                <Link
                   href="/faq"
                   className={cn(
                     "relative inline-block min-w-[31px] shrink-0 transition-colors hover:text-foreground/80",
@@ -242,6 +253,7 @@ const Header: NextPage = () => {
                 >
                   FAQ
                 </Link>
+
               </nav>
             </nav>
             <div className="mt-2 flex flex-row items-center justify-center text-center font-dm-sans text-base text-shade-white gap-2">
