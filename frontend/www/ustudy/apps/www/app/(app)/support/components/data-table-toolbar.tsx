@@ -23,14 +23,14 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Filter specialties..."
+          placeholder="Filter supports..."
           value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("id")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn("level") && (
+        {/* {table.getColumn("level") && (
           <DataTableFacetedFilter
             column={table.getColumn("level")}
             title="Bachlor"
@@ -60,7 +60,7 @@ export function DataTableToolbar<TData>({
             Reset
             <Cross2Icon className="ml-2 size-4" />
           </Button>
-        )}
+        )} */}
       </div>
       <DataTableViewOptions table={table} />
     </div>

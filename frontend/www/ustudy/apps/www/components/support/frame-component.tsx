@@ -1081,66 +1081,70 @@ const FormSchema = z.object({
   // }),
 })
 
-export function TextareaForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  })
+// export function TextareaForm() {
+//   const form = useForm<z.infer<typeof FormSchema>>({
+//     resolver: zodResolver(FormSchema),
+//   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-  }
+//   function onSubmit(data: z.infer<typeof FormSchema>) {
+//     toast({
+//       title: "You submitted the following values:",
+//       description: (
+//         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+//           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+//         </pre>
+//       ),
+//     })
+//   }
 
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full lg:max-w-[500px] mx-auto space-y-6">
-        <FormField
-          control={form.control}
-          name="bio"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Comments</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Write your comment here."
-                  className="resize-none"
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>
-                You can <span>any</span> comments under 200 characters and we will try to give you the answers.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
-  )
-}
+//   return (
+//     <Form {...form}>
+//       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full lg:max-w-[500px] mx-auto space-y-6">
+//         <FormField
+//           control={form.control}
+//           name="comment"
+//           render={({ field }) => (
+//             <FormItem>
+//               <FormLabel>Comments</FormLabel>
+//               <FormControl>
+//                 <Textarea
+//                   placeholder="Write your comment here."
+//                   className="resize-none"
+//                   {...field}
+//                 />
+//               </FormControl>
+//               <FormDescription>
+//                 You can <span>any</span> comments under 200 characters and we will try to give you the answers.
+//               </FormDescription>
+//               <FormMessage />
+//             </FormItem>
+//           )}
+//         />
+//         <Button type="submit">Submit</Button>
+//       </form>
+//     </Form>
+//   )
+// }
+
 
 
 const FrameComponent: NextPage = () => {
 
+  const [comment, setComment] = useState("");
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  function handleCommentChange(e: { target: { value: React.SetStateAction<string> } }) {
+    setComment(e.target.value)
+  }
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+
+    const Create = await addDoc(collection(db, "support"), {
+      comment: data.comment || "",
+    });
     toast({
-      title: "Your Comment Added Successfull!",
-      // description: (
-      //   <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-      //     <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-      //   </pre>
-      // ),
+      title: "Your Comment Added Successfully!",
     })
   }
 
@@ -1448,7 +1452,7 @@ const FrameComponent: NextPage = () => {
       <main className="h-auto w-full px-[5%] py-5">
         <div className="flex items-center justify-between">
           <span className="font-display text-center text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
-            Questions
+            Support
           </span>
         </div>
         <div className="admin-panel-lists-loading place-content-center">
@@ -1681,7 +1685,7 @@ const FrameComponent: NextPage = () => {
 
         {/* <TextareaForm /> */}
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full lg:max-w-[1000px] mx-auto space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full lg:max-w-[1100px] mx-auto space-y-6">
             <FormField
               control={form.control}
               name="comment"

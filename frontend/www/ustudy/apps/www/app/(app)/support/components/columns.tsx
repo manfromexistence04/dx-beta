@@ -39,29 +39,29 @@ export const columns: any[] | any = [
   {
     accessorKey: "id",
     header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Specialty Id" />
+      <DataTableColumnHeader column={column} title="Row Count" />
     ),
     cell: ({ row }:any) => (
       <div className="max-w-[100px] truncate font-medium">
-        {row.getValue("id") || <CircleSlash />}
+        {row.id || <CircleSlash />}
       </div>
     ),
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "name",
+    accessorKey: "comment",
     header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Name" />
+      <DataTableColumnHeader column={column} title="Comment" />
     ),
     cell: ({ row }:any) => {
-      const label = labels.find((label) => label.value === row.original.name)
+      const label = labels.find((label) => label.value === row.original.comment)
 
       return (
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[100px] truncate font-medium">
-            {row.getValue("name") || <CircleSlash />}
+          <span className="max-w-[800px] truncate font-medium">
+            {row.getValue("comment") || <CircleSlash />}
           </span>
         </div>
       )

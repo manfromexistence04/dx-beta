@@ -44,14 +44,15 @@ async function getTasks() {
     //   path.join(process.cwd(), "app/(app)/calculator/data/tasks.json")
     // )
   
-    const q = query(collection(db, "specialties"), limit(8))
+    const q = query(collection(db, "support"))
     const querySnapshot = await getDocs(q)
     const newDocs = querySnapshot.docs.map((doc) => ({
       id: doc.id,
-      name: doc.data().specialtyName,
-      code: doc.data().specialtyCode,
-      generalQuota: doc.data().possibleScoreGeneralCompetition,
-      ruralQuota: doc.data().possibleScoreRuralQuota,
+      comment: doc.data().comment,
+      // name: doc.data().specialtyName,
+      // code: doc.data().specialtyCode,
+      // generalQuota: doc.data().possibleScoreGeneralCompetition,
+      // ruralQuota: doc.data().possibleScoreRuralQuota,
       ...doc.data(),
     }))
   
@@ -84,9 +85,9 @@ async function getTasks() {
         <div className="hidden h-full flex-1 flex-col space-y-8 p-8 pt-0 md:flex">
           <div className="flex items-center justify-between space-y-2">
             <div>
-              {/* <h2 className="text-[2.5rem] font-bold tracking-tight text-blueviolet-100">
-                Specialty
-              </h2> */}
+              <h2 className="text-[3rem] font-bold tracking-tight bg-gradient-to-r from-yellow-600 to-pink-600 bg-clip-text text-transparent">
+                History of supports we provided.
+              </h2>
               {/* <p className="text-muted-foreground">
                 Here&apos;s a list of super usefull specialties you can from Ustudy!
               </p> */}

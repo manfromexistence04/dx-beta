@@ -147,13 +147,19 @@ export function DataTableRowActions<TData>({
             <div className="w-full flex flex-col gap-2 row.original-center justify-center p-3 text-sm">
               <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                 <div className="flex gap-2">
-                  <p>Subjects: </p>
+                  <p>Id: </p>
                   <span className="font-semibold w-[250px] truncate">
-                    {JSON.stringify(row.original.subjects, null, 2) || "No Subjects is Provided."}
+                    {row.original.id || "No Id is Provided."}
                   </span>
                 </div>
                 <Separator />
                 <div className="flex gap-2">
+                  <p>Comment: </p>
+                  <span className="font-semibold w-[250px] truncate">
+                    {row.original.comment || "No Comment is Provided."}
+                  </span>
+                </div>
+                {/* <div className="flex gap-2">
                   <p>Universities: </p>
                   <span className="font-semibold w-[250px] truncate">
                     {JSON.stringify(row.original.universities, null, 2) || "No Universities is Provided."}
@@ -215,7 +221,7 @@ export function DataTableRowActions<TData>({
                   <span className="font-semibold">
                     {row.original.possibleScoreLargeFamilyQuota || "No LargeFamilyQuota is Provided."}
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </DropdownMenuSubContent>

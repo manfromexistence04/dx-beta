@@ -506,7 +506,7 @@ const Question = () => {
       <main className="h-auto w-full px-[5%] py-5">
         <div className="mb-6 flex items-center justify-between">
           <span className="font-display text-center text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
-            Questions
+            FAQ
           </span>
         </div>
         <div className="admin-panel-lists-loading place-content-center">
