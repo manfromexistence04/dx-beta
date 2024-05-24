@@ -1437,7 +1437,7 @@ const FrameComponent: NextPage = () => {
               <AccordionTrigger>
                 {items.mainQuestion || "No Main Questing is Provided."}
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="!border-none">
                 <div className="grid gap-4">
                   {items.answers.length > 0 ? (
                     <div className="space-y-3">
@@ -1479,7 +1479,7 @@ const FrameComponent: NextPage = () => {
               </AccordionContent>
             </AccordionItem>
           ))}
-          {/* <AccordionItem value="item-1">
+          <AccordionItem value="item-1">
             <AccordionTrigger>
               What is uSTAKING Referral Program?
             </AccordionTrigger>
@@ -1490,8 +1490,8 @@ const FrameComponent: NextPage = () => {
               levels deep after the referral partner has staked the amount of
               tokens.
             </AccordionContent>
-          </AccordionItem> */}
-          {/* <AccordionItem value="item-2">
+          </AccordionItem>
+          <AccordionItem value="item-2">
             <AccordionTrigger>
               How can I participate in the Referral Program?
             </AccordionTrigger>
@@ -1499,8 +1499,8 @@ const FrameComponent: NextPage = () => {
               Yes. It comes with default styles that matches the other
               components&apos; aesthetic.
             </AccordionContent>
-          </AccordionItem> */}
-          {/* <AccordionItem value="item-3">
+          </AccordionItem>
+          <AccordionItem value="item-3">
             <AccordionTrigger>
               Where can I check my bonus balance?
             </AccordionTrigger>
@@ -1543,7 +1543,7 @@ const FrameComponent: NextPage = () => {
               Yes. It&apos;s animated by default, but you can disable it if you
               prefer.
             </AccordionContent>
-          </AccordionItem> */}
+          </AccordionItem>
         </Accordion>
       </div>
     </section>
