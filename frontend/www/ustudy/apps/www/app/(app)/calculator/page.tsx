@@ -350,39 +350,34 @@ const fetchDocument = async (docId: any) => {
 }
 
 const CalculatorPage: NextPage = () => {
+
+  const [ENTSCRORE, setENTSCRORE] = useState(0);
   const { toast } = useToast()
   const [userScore, setUserScore] = useState<number>(101); // Initial userScore
-  const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
-    // if (startScore >= userScore) {
-    //   return 0;
-    // } else {
-    //   let possibleScore = calculatePossibleScore(e1, e2, e3);
-    //   let admissionChance = calculateChance(userScore, possibleScore);
-    //   return Math.min(Math.floor(admissionChance), 100);
-    // }
-    let possibleScore = calculatePossibleScore(e1, e2, e3);
-    let admissionChance = calculateChance(userScore, possibleScore);
-    return Math.min(Math.floor(admissionChance), 100);
-  }
   
-  const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
-    let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
-    return possibleScore <= 140 ? possibleScore : 140;
-  }
-  
-  const calculateChance = (userScore: number, possibleScore: number): number => {
-    let chance;
-    // if (userScore < 50) {
-    //   chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
-    // } else {
-      
-    //   chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
-    //   // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
-    // }
-    chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
-    return chance;
-  }
-  
+  // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+  //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+  //   let admissionChance = calculateChance(userScore, possibleScore);
+  //   return Math.min(Math.floor(admissionChance), 100);
+  //   setENTSCRORE(possibleScore);
+  // }
+
+  // const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+  //   let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+  //   return possibleScore <= 140 ? possibleScore : 140;
+  // }
+
+  // const calculateChance = (userScore: number, possibleScore: number): number => {
+  //   let chance;
+  //   if (userScore < 50) {
+  //     chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+  //   } else {
+
+  //     chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+  //   }
+  //   return chance;
+  // }
+
   // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
   //   if (startScore >= userScore) {
   //     return 0;
@@ -492,237 +487,6 @@ const CalculatorPage: NextPage = () => {
   // let admissionChance = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
   // console.log(`The chance of admission is ${admissionChance}%`);
 
-  function handleENTChange(e: { target: { value: any } }) {
-    setENTPOINT(e.target.value)
-    setUserScore(e.target.value)
-  }
-  function handleQuotaChange(e: any) {
-    setQuota(e)
-    if (e === "GeneralCompetition") {
-      let tempSpecialtyCount = 0
-      let tempUniversityCount = 0
-
-      universities.forEach((university) => {
-        if (specialtyDoc.possibleScoreGeneralCompetition
-          < ENTPOINT) {
-          tempUniversityCount++
-        } else {
-        }
-      })
-
-      specialties.forEach((university) => {
-        if (specialtyDoc.possibleScoreGeneralCompetition
-         < ENTPOINT) {
-          tempSpecialtyCount++
-        } else {
-        }
-      })
-
-      setUniversityCount(tempUniversityCount)
-      setSpecialtyCount(tempSpecialtyCount)
-
-      let startScore: any = specialtyDoc
-        ? specialtyDoc.possibleScoreGeneralCompetition
-        : 100 // University Theshold
-      let e1 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-        : 100 // 2021
-      let e2 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-        : 100 // 2022
-      let e3 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-        : 100 // 2023
-      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-      setCalculation(admissionChance);
-      // console.log(`possibleScoreGeneralCompetition is selected and admission chance is ${admissionChance}`)
-
-    } else if (e === "RuralQuota") {
-
-      let tempSpecialtyCount = 0
-      let tempUniversityCount = 0
-
-      universities.forEach((university) => {
-        if (specialtyDoc.possibleScoreRuralQuota
-          < ENTPOINT) {
-          tempUniversityCount++
-        } else {
-        }
-      })
-
-      specialties.forEach((university) => {
-        if (specialtyDoc.possibleScoreRuralQuota
-       < ENTPOINT) {
-          tempSpecialtyCount++
-        } else {
-        }
-      })
-
-      setUniversityCount(tempUniversityCount)
-      setSpecialtyCount(tempSpecialtyCount)
-
-
-      let startScore: any = specialtyDoc
-        ? specialtyDoc.possibleScoreRuralQuota
-        : 100 // University Theshold
-      let e1 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-        : 100 // 2021
-      let e2 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-        : 100 // 2022
-      let e3 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-        : 100 // 2023
-      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-
-      setCalculation(admissionChance);
-      // console.log("possibleScoreRuralQuota is selected")
-    } else if (e === "DisabilityQuota") {
-
-      let tempSpecialtyCount = 0
-      let tempUniversityCount = 0
-
-      universities.forEach((university) => {
-        if (specialtyDoc.possibleScoreDisabilityQuota
-          < ENTPOINT) {
-          tempUniversityCount++
-        } else {
-        }
-      })
-
-      specialties.forEach((university) => {
-        if (specialtyDoc.possibleScoreDisabilityQuota
-          < ENTPOINT) {
-          tempSpecialtyCount++
-        } else {
-        }
-      })
-
-      setUniversityCount(tempUniversityCount)
-      setSpecialtyCount(tempSpecialtyCount)
-
-      let startScore: any = specialtyDoc
-        ? specialtyDoc.possibleScoreDisabilityQuota
-        : 100 // University Theshold
-      let e1 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-        : 100 // 2021
-      let e2 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-        : 100 // 2022
-      let e3 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-        : 100 // 2023
-      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-
-      setCalculation(admissionChance);
-      // console.log("possibleScoreDisabilityQuota is selected")
-    } else if (e === "LargeFamilyQuota") {
-
-      let tempSpecialtyCount = 0
-      let tempUniversityCount = 0
-
-      universities.forEach((university) => {
-        if (specialtyDoc.possibleScoreLargeFamilyQuota
-          < ENTPOINT) {
-          tempUniversityCount++
-        } else {
-        }
-      })
-
-      specialties.forEach((university) => {
-        if (specialtyDoc
-          ? specialtyDoc.possibleScoreLargeFamilyQuota
-          : 100 < ENTPOINT) {
-          tempSpecialtyCount++
-        } else {
-        }
-      })
-
-      setUniversityCount(tempUniversityCount)
-      setSpecialtyCount(tempSpecialtyCount)
-
-      let startScore: any = specialtyDoc
-        ? specialtyDoc.possibleScoreLargeFamilyQuota
-        : 100 // University Theshold
-      let e1 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-        : 100 // 2021
-      let e2 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-        : 100 // 2022
-      let e3 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-        : 100 // 2023
-      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
-
-      setCalculation(admissionChance);
-      // console.log("possibleScoreLargeFamilyQuota is selected")
-    } else if (e === "OrphanQuota") {
-
-      let tempSpecialtyCount = 0
-      let tempUniversityCount = 0
-
-      universities.forEach((university) => {
-        if (specialtyDoc.possibleScoreOrphanQuota
-          < ENTPOINT) {
-          tempUniversityCount++
-        } else {
-        }
-      })
-
-      specialties.forEach((university) => {
-        if (specialtyDoc
-          ? specialtyDoc.possibleScoreOrphanQuota
-          : 100 < ENTPOINT) {
-          tempSpecialtyCount++
-        } else {
-        }
-      })
-
-      setUniversityCount(tempUniversityCount)
-      setSpecialtyCount(tempSpecialtyCount)
-
-      let startScore: any = specialtyDoc
-        ? specialtyDoc.possibleScoreOrphanQuota
-        : 100 // University Theshold
-      let e1 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[0])
-        : 100 // 2021
-      let e2 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[1])
-        : 100 // 2022
-      let e3 = specialtyDoc
-        ? specialtyDoc.minscrore &&
-        specialtyDoc.minscrore.map((item: any) => item[2])
-        : 100 // 2023
-      let userScore = ENTPOINT // Ent Scrore
-      let admissionChance: any = calculateAdmissionChance(
-        startScore,
-        e1,
-        e2,
-        e3,
-        userScore
-      )
-      setCalculation(admissionChance);
-      // console.log("possibleScoreOrphanQuota is selected")
-    }
-  }
 
   useEffect(() => {
     const fetchSpecilaties = async () => {
@@ -844,7 +608,402 @@ const CalculatorPage: NextPage = () => {
     //     priority: `${admissionChance}%`
     //   }
     // ])
+    // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+    //   // if (startScore >= userScore) {
+    //   //   return 0;
+    //   // } else {
+    //   //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   //   return Math.min(Math.floor(admissionChance), 100);
+    //   // }
+    //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   return Math.min(Math.floor(admissionChance), 100);
+    //   setENTSCRORE(possibleScore);
+    // }
+  
+    // const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+    //   let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+    //   return possibleScore <= 140 ? possibleScore : 140;
+    // }
+  
+    // const calculateChance = (userScore: number, possibleScore: number): number => {
+    //   let chance;
+    //   if (userScore < 50) {
+    //     chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+    //   } else {
+  
+    //     chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+    //     // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    //   }
+    //   // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    //   return chance;
+    // }
+
+    // let possibleScore = calculatePossibleScore(e1, e2, e3);
+    // let admissionChance = calculateChance(userScore, possibleScore);
+    // return Math.min(Math.floor(admissionChance), 100);
+    // setENTSCRORE(possibleScore);
+    
+    // calculateAdmissionChance();
   }, [value])
+
+
+  function handleENTChange(e: { target: { value: any } }) {
+    setENTPOINT(e.target.value)
+    setUserScore(e.target.value)
+  }
+  function handleQuotaChange(e: any) {
+    setQuota(e)
+    if (e === "GeneralCompetition") {
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreGeneralCompetition
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreGeneralCompetition
+          < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreGeneralCompetition
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+        const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+          let possibleScore = calculatePossibleScore(e1, e2, e3);
+          let admissionChance = calculateChance(userScore, possibleScore);
+          return Math.min(Math.floor(admissionChance), 100);
+          setENTSCRORE(possibleScore);
+        }
+      
+        const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+          let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+          return possibleScore <= 140 ? possibleScore : 140;
+        }
+      
+        const calculateChance = (userScore: number, possibleScore: number): number => {
+          let chance;
+          if (userScore < 50) {
+            chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+          } else {
+      
+            chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+          }
+          return chance;
+        }
+
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+            setCalculation(admissionChance);
+            setENTSCRORE(calculatePossibleScore(e1, e2, e3))
+      // console.log(`possibleScoreGeneralCompetition is selected and admission chance is ${admissionChance}`)
+
+    } else if (e === "RuralQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreRuralQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreRuralQuota
+          < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreRuralQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+
+        const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+          let possibleScore = calculatePossibleScore(e1, e2, e3);
+          let admissionChance = calculateChance(userScore, possibleScore);
+          return Math.min(Math.floor(admissionChance), 100);
+          setENTSCRORE(possibleScore);
+        }
+      
+        const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+          let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+          return possibleScore <= 140 ? possibleScore : 140;
+        }
+      
+        const calculateChance = (userScore: number, possibleScore: number): number => {
+          let chance;
+          if (userScore < 50) {
+            chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+          } else {
+      
+            chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+          }
+          return chance;
+        }
+
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+            setCalculation(admissionChance);
+      setENTSCRORE(calculatePossibleScore(e1, e2, e3))
+      // console.log("possibleScoreRuralQuota is selected")
+    } else if (e === "DisabilityQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreDisabilityQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc.possibleScoreDisabilityQuota
+          < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreDisabilityQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+
+
+        const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+          let possibleScore = calculatePossibleScore(e1, e2, e3);
+          let admissionChance = calculateChance(userScore, possibleScore);
+          return Math.min(Math.floor(admissionChance), 100);
+          setENTSCRORE(possibleScore);
+        }
+      
+        const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+          let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+          return possibleScore <= 140 ? possibleScore : 140;
+        }
+      
+        const calculateChance = (userScore: number, possibleScore: number): number => {
+          let chance;
+          if (userScore < 50) {
+            chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+          } else {
+      
+            chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+          }
+          return chance;
+        }
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+            setCalculation(admissionChance);
+      setENTSCRORE(calculatePossibleScore(e1, e2, e3))
+      // console.log("possibleScoreDisabilityQuota is selected")
+    } else if (e === "LargeFamilyQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreLargeFamilyQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc
+          ? specialtyDoc.possibleScoreLargeFamilyQuota
+          : 100 < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreLargeFamilyQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+
+
+        const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+          let possibleScore = calculatePossibleScore(e1, e2, e3);
+          let admissionChance = calculateChance(userScore, possibleScore);
+          return Math.min(Math.floor(admissionChance), 100);
+          setENTSCRORE(possibleScore);
+        }
+      
+        const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+          let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+          return possibleScore <= 140 ? possibleScore : 140;
+        }
+      
+        const calculateChance = (userScore: number, possibleScore: number): number => {
+          let chance;
+          if (userScore < 50) {
+            chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+          } else {
+      
+            chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+          }
+          return chance;
+        }
+      let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+
+            setCalculation(admissionChance);
+      setENTSCRORE(calculatePossibleScore(e1, e2, e3))
+      // console.log("possibleScoreLargeFamilyQuota is selected")
+    } else if (e === "OrphanQuota") {
+
+      let tempSpecialtyCount = 0
+      let tempUniversityCount = 0
+
+      universities.forEach((university) => {
+        if (specialtyDoc.possibleScoreOrphanQuota
+          < ENTPOINT) {
+          tempUniversityCount++
+        } else {
+        }
+      })
+
+      specialties.forEach((university) => {
+        if (specialtyDoc
+          ? specialtyDoc.possibleScoreOrphanQuota
+          : 100 < ENTPOINT) {
+          tempSpecialtyCount++
+        } else {
+        }
+      })
+
+      setUniversityCount(tempUniversityCount)
+      setSpecialtyCount(tempSpecialtyCount)
+
+      let startScore: any = specialtyDoc
+        ? specialtyDoc.possibleScoreOrphanQuota
+        : 100 // University Theshold
+      let e1 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[0])
+        : 100 // 2021
+      let e2 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[1])
+        : 100 // 2022
+      let e3 = specialtyDoc
+        ? specialtyDoc.minscrore &&
+        specialtyDoc.minscrore.map((item: any) => item[2])
+        : 100 // 2023
+      let userScore = ENTPOINT // Ent Scrore
+
+
+      const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+        let possibleScore = calculatePossibleScore(e1, e2, e3);
+        let admissionChance = calculateChance(userScore, possibleScore);
+        return Math.min(Math.floor(admissionChance), 100);
+        setENTSCRORE(possibleScore);
+      }
+    
+      const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+        let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+        return possibleScore <= 140 ? possibleScore : 140;
+      }
+    
+      const calculateChance = (userScore: number, possibleScore: number): number => {
+        let chance;
+        if (userScore < 50) {
+          chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+        } else {
+    
+          chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+        }
+        return chance;
+      }
+      let admissionChance: any = calculateAdmissionChance(
+        startScore,
+        e1,
+        e2,
+        e3,
+        userScore
+      )
+            setCalculation(admissionChance);
+      setENTSCRORE(calculatePossibleScore(e1, e2, e3))
+      // console.log("possibleScoreOrphanQuota is selected")
+    }
+  }
 
   const handleClick = () => {
 
@@ -861,7 +1020,7 @@ const CalculatorPage: NextPage = () => {
           ) || "Creative Exam"
             }`,
           label: data.universities && data.universities.length,
-          priority: `${admissionChance}%`,
+          priority: `${calculation ||  67.67}%`,
           universities: data.universities ? data.universities : "No universities are provided.",
         },
       ])
@@ -889,11 +1048,11 @@ const CalculatorPage: NextPage = () => {
   }
 
 
-  let startScore = 100; // University Theshold
-  let e1 = 100;          // 2021
-  let e2 = 100;          // 2022
-  let e3 = 100;          // 2023
-  let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+  // let startScore = 100; // University Theshold
+  // let e1 = 100;          // 2021
+  // let e2 = 100;          // 2022
+  // let e3 = 100;          // 2023
+  // let admissionChance: any = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
 
 
   // console.log(JSON.stringify(specialtyDoc, null, 2))
@@ -1266,6 +1425,8 @@ const CalculatorPage: NextPage = () => {
                             <CommandEmpty>No Specialty found.</CommandEmpty>
                             <CommandGroup>
                               {specialties.map((framework) => (
+
+                                framework.subjects && framework.subjects ? (
                                 <CommandItem
                                   key={framework.id}
                                   value={framework.name || framework.id}
@@ -1287,8 +1448,10 @@ const CalculatorPage: NextPage = () => {
                                   />
                                   {framework.name ||
                                     framework.id}
-                                </CommandItem>
+                                </CommandItem>) : "Nothing"
                               ))}
+
+
                             </CommandGroup>
                           </Command>
                         </PopoverContent>

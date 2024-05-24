@@ -190,7 +190,7 @@ export function DataTableRowActions<TData>({
                 </div>
                 <Separator />
                 <div className="flex gap-2">
-                  <p>possibleScoreRuralQuota: </p>
+                  <p>RuralQuota: </p>
                   <span className="font-semibold">
                     {row.original.possibleScoreRuralQuota || "No possibleScoreRuralQuota is Provided."}
                   </span>

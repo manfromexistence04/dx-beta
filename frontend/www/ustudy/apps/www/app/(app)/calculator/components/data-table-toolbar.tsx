@@ -30,7 +30,7 @@ export function DataTableToolbar<TData>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn("status") && (
+        {/* {table.getColumn("status") && (
           <DataTableFacetedFilter
             column={table.getColumn("status")}
             title="Status"
@@ -53,7 +53,7 @@ export function DataTableToolbar<TData>({
             Reset
             <Cross2Icon className="ml-2 size-4" />
           </Button>
-        )}
+        )} */}
       </div>
       <DataTableViewOptions table={table} />
     </div>
