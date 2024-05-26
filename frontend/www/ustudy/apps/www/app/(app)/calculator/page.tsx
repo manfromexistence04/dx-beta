@@ -359,15 +359,7 @@ const CalculatorPage: NextPage = () => {
   const [PossibleScore, setPossibleScore] = useState<number>(0);
   const [Result, setResult] = useState<string>('');
 
-  const calculateScore = () => {
-      let result: number;
-      if (UserPoint >= 50) {
-          result = 50 + ((UserPoint - PossibleScore) + (140 - PossibleScore)) / 3;
-      } else {
-          result = 50 + ((UserPoint - 50) + (140 - 50)) / 3;
-      }
-      setResult(result.toFixed(2));
-  }
+
   // const calculateAdmissionChance = () => {
 
   //   let possibleScore = calculatePossibleScore(e1, e2, e3);
@@ -1059,41 +1051,52 @@ const CalculatorPage: NextPage = () => {
 
   function handleQuotaChange(quota: any) {
     setQuota(quota);
-    // switch (quota) {
-    //   case "GeneralCompetition":
-    //     startScore = specialtyDoc?.possibleScoreGeneralCompetition || 0;
-    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-    //     break;
-    //   case "RuralQuota":
-    //     startScore = specialtyDoc?.possibleScoreRuralQuota || 0;
-    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-    //     break;
-    //   case "DisabilityQuota":
-    //     startScore = specialtyDoc?.possibleScoreDisabilityQuota || 0;
-    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-    //     break;
-    //   case "LargeFamilyQuota":
-    //     startScore = specialtyDoc?.possibleScoreLargeFamilyQuota || 0;
-    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-    //     break;
-    //   case "OrphanQuota":
-    //     startScore = specialtyDoc?.possibleScoreOrphanQuota || 0;
-    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-    //     break;
-    //   default:
-    //     console.error("Invalid quota selected:", quota);
-    //     break;
-    // }
+    switch (quota) {
+      case "GeneralCompetition":
+
+        startScore = specialtyDoc?.possibleScoreGeneralCompetition || 0;
+        setPossibleScore(specialtyDoc?.possibleScoreGeneralCompetition || 0)
+
+        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+        break;
+      case "RuralQuota":
+        startScore = specialtyDoc?.possibleScoreRuralQuota || 0;
+        setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreRuralQuota && specialtyDoc.possibleScoreRuralQuota || 0)
+
+        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+        break;
+      case "DisabilityQuota":
+        startScore = specialtyDoc?.possibleScoreDisabilityQuota || 0;
+        setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreDisabilityQuota && specialtyDoc.possibleScoreDisabilityQuota || 0)
+
+        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+        break;
+      case "LargeFamilyQuota":
+        startScore = specialtyDoc?.possibleScoreLargeFamilyQuota || 0;
+        setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreLargeFamilyQuota && specialtyDoc.possibleScoreLargeFamilyQuota || 0)
+
+        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+        break;
+      case "OrphanQuota":
+        startScore = specialtyDoc?.possibleScoreOrphanQuota || 0;
+        setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreOrphanQuota && specialtyDoc.possibleScoreOrphanQuota || 0)
+
+        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+        break;
+      default:
+        console.error("Invalid quota selected:", quota);
+        break;
+    }
     // const calculateAdmissionChance = () => {
     //   let possibleScore = calculatePossibleScore(e1, e2, e3);
     //   let admissionChance = calculateChance(userScore, possibleScore);
@@ -1230,7 +1233,18 @@ const CalculatorPage: NextPage = () => {
     // setCalculation(calculateChance(userScore, possibleScore));
   }
 
+  const calculateScore = () => {
+    let result: number;
+    if (ENTPOINT >= 50) {
+      result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
+    } else {
+      result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
+    }
+    setResult(result.toFixed(2));
 
+  }
+
+  // calculateScore();
 
   // let startScore = 100; // University Theshold
   // let e1 = 100;          // 2021
@@ -1316,10 +1330,22 @@ const CalculatorPage: NextPage = () => {
   // setCalculation(calculateChance(userScore, possibleScore));
 
   const handleClick = () => {
-
+// calculateScore();
     const fetchDocs = async () => {
       const data: any = await fetchDocument(specialityIdentifier)
       setSpecialtyDoc(data)
+      // let calculatedValue = (ENTPOINT >= 50 ? 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3 : 50 + ((ENTPOINT - 50) + (140 - 50)) / 3);
+      // calculatedValue = calculatedValue > 100 ? 100 : calculatedValue;
+      let result: any,calculatedValue: any;
+      if (ENTPOINT >= 50) {
+        result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
+      } else {
+        result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
+      }
+      setResult(result.toFixed(2));
+      calculatedValue = result.toFixed(0) > 100 ? 100 : result.toFixed(2);
+
+      
       setTasks((prevTasks) => [
         ...prevTasks,
         {
@@ -1330,7 +1356,11 @@ const CalculatorPage: NextPage = () => {
           ) || "Creative Exam"
             }`,
           label: data.universities && data.universities.length,
-          priority: `${calculation}%`,
+          // priority: `${calculatedValue.toFixed(2)}%`,
+          
+          // priority: `${(ENTPOINT >= 50 ? 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3 : 50 + ((ENTPOINT - 50) + (140 - 50)) / 3).toFixed(2)}%`,
+          priority: `${calculatedValue}%`,
+          // priority: `${ENTPOINT >= 50 ? 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3 : 50 + ((ENTPOINT - 50) + (140 - 50)) / 3}%`,
           universities: data.universities ? data.universities : "No universities are provided.",
         },
       ])
@@ -1407,6 +1437,8 @@ const CalculatorPage: NextPage = () => {
 
             <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
+              {/* {JSON.stringify(specialtyDoc)} */}
+              {specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition}
               {/* {calculateAdmissionChance()} */}
               {/* {specialties && specialties.map((specialties) =>
                 <p key={specialties.id}>
