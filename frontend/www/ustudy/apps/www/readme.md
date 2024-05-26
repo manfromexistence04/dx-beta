@@ -2368,3 +2368,131 @@ async function TaskPage() {
   )
 }
 ```
+
+
+
+
+```
+    // let tempSpecialtyCount = 0
+    // let tempUniversityCount = 0
+    // let tempSpecialtyTheshold = ""
+    // let tempUniversityTheshold = ""
+    // let tempLastUniversityCode = ""
+    // let tempCalculation: any = ""
+
+    // const tempSpecialtiesUnderThreshold = specialties
+    //   .filter((specialty) => specialty.threshold < ENTPOINT)
+    //   .map((specialty) => specialty.name || specialty.specailtyName)
+    // const tempUniversitiesUnderThreshold = universities
+    //   .filter(
+    //     (university) => university.threshold && university.threshold < ENTPOINT
+    //   )
+    //   .map((university) => university.universityName)
+
+    // setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
+    // setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
+
+    // universities.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempUniversityCount++
+    //   } else {
+    //   }
+    //   tempUniversityTheshold = university.threshold || ""
+    //   tempLastUniversityCode = university.universityCode
+    // })
+
+    // specialties.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempSpecialtyCount++
+    //   } else {
+    //   }
+    //   tempSpecialtyTheshold = university.threshold || ""
+    // })
+
+    // Calculation
+    // async function calculate() {
+    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id :
+    //   const specialtyData:any = await fetchDocument("phKkzVcxJBJNnpXYdTIV");
+    //   let startScore:any = universityTheshold || specialtyTheshold || 0;          // University Theshold
+    //   let e1 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[0]) : 95;          // 2021
+    //   let e2 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[1]) : 95;          // 2022
+    //   let e3 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[2]) : 95;          // 2023
+    //   let userScore = ENTPOINT || 394;
+
+    //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+    // }
+    // calculate();
+
+    // console.log(`The chance of admission is ${admissionChance}%`)
+    // setCalculation(admissionChance)
+    // setSpecialtyCount(tempSpecialtyCount)
+    // setUniversityCount(tempUniversityCount)
+    // setUniversityTheshold(tempUniversityTheshold)
+    // setSpecialtyTheshold(tempSpecialtyTheshold)
+    // setLastUniversityCode(tempLastUniversityCode)
+    // setResultSubjects(subjectsTag.map(
+    //   (obj) => obj.text
+    // )))
+    // <p>{`Number of universities with threshold less than ${ENTPOINT}: ${universityCount || specialtyCount}`}</p>
+    // <p>{`Theherhold ${ENTPOINT}: ${universityTheshold || specialtyTheshold}`}</p>
+    // <p>{`Last university code: ${lastUniversityCode}`}</p>
+    // <p>{`Calculation: ${calculation}%`}</p>
+    // {specialtyDoc ? <p>{specialtyDoc.id}</p> : <p>No SpcialtyDoc Found</p>}
+    // setTasks([
+    //   {
+    //     id: lastUniversityCode,
+    //     title: "universities are hoping to see you there!",
+    //     status: "Information & Communication Technology",
+    //     label: universityCount || specialtyCount,
+    //     priority: `${admissionChance}%`
+    //   }
+    // ])
+    // setTasks([
+    //   {
+    //     id: `${lastUniversityCode || "BD75"}`,
+    //     title: "universities are hoping to see you there!",
+    //     status: `${"Information & Communication Technology"}`,
+    //     label: `${universityCount || specialtyCount}`,
+    //     priority: `${admissionChance}%`
+    //   }
+    // ])
+    // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+    //   // if (startScore >= userScore) {
+    //   //   return 0;
+    //   // } else {
+    //   //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   //   return Math.min(Math.floor(admissionChance), 100);
+    //   // }
+    //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   return Math.min(Math.floor(admissionChance), 100);
+    //   setENTSCRORE(possibleScore);
+    // }
+
+    // const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+    //   let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+    //   return possibleScore <= 140 ? possibleScore : 140;
+    // }
+
+    // const calculateChance = (userScore: number, possibleScore: number): number => {
+    //   let chance;
+    //   if (userScore < 50) {
+    //     chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+    //   } else {
+
+    //     chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+    //     // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    //   }
+    //   // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    //   return chance;
+    // }
+
+    // let possibleScore = calculatePossibleScore(e1, e2, e3);
+    // let admissionChance = calculateChance(userScore, possibleScore);
+    // return Math.min(Math.floor(admissionChance), 100);
+    // setENTSCRORE(possibleScore);
+
+    // calculateAdmissionChance();
+    // console.log(subjectsTag); 
+```

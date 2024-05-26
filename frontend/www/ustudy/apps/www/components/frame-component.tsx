@@ -138,27 +138,27 @@ const Footer: NextPage = () => {
               Calculator
             </span>
           </Link>
-          <Link href="/calculator">
+          <Link href="/about">
             <span className="flex size-full items-center justify-center text-xs font-medium hover:underline ">
               About
             </span>
           </Link>
-          <Link href="/calculator">
+          <Link href="/faq">
             <span className="flex size-full items-center justify-center text-xs font-medium hover:underline ">
               FAQ
             </span>
           </Link>
-          <Link href="/calculator">
+          <Link href="/colleges">
             <span className="flex size-full items-center justify-center text-xs font-medium hover:underline ">
               Colleges
             </span>
           </Link>
-          <Link href="/calculator">
+          <Link href="/specialty">
             <span className="flex size-full items-center justify-center text-xs font-medium hover:underline ">
               Specialty
             </span>
           </Link>
-          <Link href="/calculator">
+          <Link href="/career-guidance">
             <span className="flex size-full items-center justify-center text-xs font-medium hover:underline ">
               Career Guidence
             </span>
