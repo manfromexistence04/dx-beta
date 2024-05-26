@@ -29,7 +29,17 @@ export function MainNav() {
           )}
         >
           Home
+          
         </Link> */}
+                <Link
+          href="/home"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/home" ? "text-foreground" : "text-foreground/60"
+          )}
+        >
+          Home
+        </Link>
         <Link
           href="/universities"
           className={cn(
@@ -56,6 +66,15 @@ export function MainNav() {
           )}
         >
           Questions
+        </Link>
+        <Link
+          href="/profile"
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname === "/profile" ? "text-foreground" : "text-foreground/60"
+          )}
+        >
+          Profile
         </Link>
         {/* <Link
           href="/settings"

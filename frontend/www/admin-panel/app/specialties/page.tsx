@@ -1228,7 +1228,7 @@ const Specialty = () => {
                                                             autocompleteOptions={subjects.map((items) => ({
                                                                 id: items.id,
                                                                 text:
-                                                                    items.subjects && items.subjects.lenght > 0 && items.subjects.map(
+                                                                    items.subjects && items.subjects.map(
                                                                         (item: any) =>
                                                                             item || `No Subjects Are Provided at id:${uuid()}`
                                                                     ) || `No Subject Provided at id:${items.id}`,

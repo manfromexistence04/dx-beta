@@ -50,7 +50,7 @@ async function getTasks() {
   //   path.join(process.cwd(), "app/(app)/calculator/data/tasks.json")
   // )
 
-  const q = query(collection(db, "specialties"), limit(8))
+  const q = query(collection(db, "specialties"))
   const querySnapshot = await getDocs(q)
   const newDocs = querySnapshot.docs.map((doc) => ({
     id: doc.id,
