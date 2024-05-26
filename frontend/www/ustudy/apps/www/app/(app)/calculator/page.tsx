@@ -355,29 +355,42 @@ const CalculatorPage: NextPage = () => {
   const [ENTSCRORE, setENTSCRORE] = useState(0);
   const { toast } = useToast()
   const [userScore, setUserScore] = useState<number>(101); // Initial userScore
-  const calculateAdmissionChance = () => {
+  const [UserPoint, setUserPoint] = useState<number>(0);
+  const [PossibleScore, setPossibleScore] = useState<number>(0);
+  const [Result, setResult] = useState<string>('');
 
-    let possibleScore = calculatePossibleScore(e1, e2, e3);
-    let admissionChance = calculateChance(userScore, possibleScore);
-    return Math.min(Math.floor(admissionChance), 100);
-    alert(`possibleScore${possibleScore} & admissionChance${admissionChance}`)
-
-    // setENTPOINT(possibleScore);
-    // setCalculation(admissionChance);
-  };
-
-  const calculatePossibleScore = (e1: number, e2: number, e3: number) => {
-    return Math.min(e1 + e2 - e1 + e3 - e2 * 2 * 3, 140);
-  };
-
-  const calculateChance: any = (userScore: number, possibleScore: number) => {
-    let chance;
-    if (userScore < 50) {
-      chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
-    } else {
-      chance = 50 + ((userScore - possibleScore) + (140 - possibleScore))
-    }
+  const calculateScore = () => {
+      let result: number;
+      if (UserPoint >= 50) {
+          result = 50 + ((UserPoint - PossibleScore) + (140 - PossibleScore)) / 3;
+      } else {
+          result = 50 + ((UserPoint - 50) + (140 - 50)) / 3;
+      }
+      setResult(result.toFixed(2));
   }
+  // const calculateAdmissionChance = () => {
+
+  //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+  //   let admissionChance = calculateChance(userScore, possibleScore);
+  //   return Math.min(Math.floor(admissionChance), 100);
+  //   alert(`possibleScore${possibleScore} & admissionChance${admissionChance}`)
+
+  //   // setENTPOINT(possibleScore);
+  //   // setCalculation(admissionChance);
+  // };
+
+  // const calculatePossibleScore = (e1: number, e2: number, e3: number) => {
+  //   return Math.min(e1 + e2 - e1 + e3 - e2 * 2 * 3, 140);
+  // };
+
+  // const calculateChance: any = (userScore: number, possibleScore: number) => {
+  //   let chance;
+  //   if (userScore < 50) {
+  //     chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+  //   } else {
+  //     chance = 50 + ((userScore - possibleScore) + (140 - possibleScore))
+  //   }
+  // }
 
   // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
   //   let possibleScore = calculatePossibleScore(e1, e2, e3);
@@ -1046,76 +1059,76 @@ const CalculatorPage: NextPage = () => {
 
   function handleQuotaChange(quota: any) {
     setQuota(quota);
-    switch (quota) {
-      case "GeneralCompetition":
-        startScore = specialtyDoc?.possibleScoreGeneralCompetition || 0;
-        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-        break;
-      case "RuralQuota":
-        startScore = specialtyDoc?.possibleScoreRuralQuota || 0;
-        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-        break;
-      case "DisabilityQuota":
-        startScore = specialtyDoc?.possibleScoreDisabilityQuota || 0;
-        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-        break;
-      case "LargeFamilyQuota":
-        startScore = specialtyDoc?.possibleScoreLargeFamilyQuota || 0;
-        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-        break;
-      case "OrphanQuota":
-        startScore = specialtyDoc?.possibleScoreOrphanQuota || 0;
-        e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
-        e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
-        e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
-        break;
-      default:
-        console.error("Invalid quota selected:", quota);
-        break;
-    }
-    const calculateAdmissionChance = () => {
-      let possibleScore = calculatePossibleScore(e1, e2, e3);
-      let admissionChance = calculateChance(userScore, possibleScore);
-      admissionChance = Math.min(Math.floor(admissionChance), 100);
+    // switch (quota) {
+    //   case "GeneralCompetition":
+    //     startScore = specialtyDoc?.possibleScoreGeneralCompetition || 0;
+    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+    //     break;
+    //   case "RuralQuota":
+    //     startScore = specialtyDoc?.possibleScoreRuralQuota || 0;
+    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+    //     break;
+    //   case "DisabilityQuota":
+    //     startScore = specialtyDoc?.possibleScoreDisabilityQuota || 0;
+    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+    //     break;
+    //   case "LargeFamilyQuota":
+    //     startScore = specialtyDoc?.possibleScoreLargeFamilyQuota || 0;
+    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+    //     break;
+    //   case "OrphanQuota":
+    //     startScore = specialtyDoc?.possibleScoreOrphanQuota || 0;
+    //     e1 = specialtyDoc?.minscrore?.map((item: any[]) => item[0]) || 0;
+    //     e2 = specialtyDoc?.minscrore?.map((item: any[]) => item[1]) || 0;
+    //     e3 = specialtyDoc?.minscrore?.map((item: any[]) => item[2]) || 0;
+    //     break;
+    //   default:
+    //     console.error("Invalid quota selected:", quota);
+    //     break;
+    // }
+    // const calculateAdmissionChance = () => {
+    //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   admissionChance = Math.min(Math.floor(admissionChance), 100);
 
-      // Update the state here
-      setENTPOINT(possibleScore);
-      setCalculation(admissionChance);
+    //   // Update the state here
+    //   setENTPOINT(possibleScore);
+    //   setCalculation(admissionChance);
 
-      // alert(`possibleScore${possibleScore} & admissionChance${admissionChance}`)
-    };
+    //   // alert(`possibleScore${possibleScore} & admissionChance${admissionChance}`)
+    // };
 
-    const calculatePossibleScore = (e1: number, e2: number, e3: number) => {
-      return Math.min(e1 + e2 - e1 + e3 - e2 * 2 * 3, 140);
-    };
+    // const calculatePossibleScore = (e1: number, e2: number, e3: number) => {
+    //   return Math.min(e1 + e2 - e1 + e3 - e2 * 2 * 3, 140);
+    // };
 
-    const calculateChance: any = (userScore: number, possibleScore: number) => {
-      let chance;
-      if (userScore < 50) {
-        chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
-      } else {
-        chance = 50 + ((userScore - possibleScore) + (140 - possibleScore))
-      }
-      return chance;
-    }
+    // const calculateChance: any = (userScore: number, possibleScore: number) => {
+    //   let chance;
+    //   if (userScore < 50) {
+    //     chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+    //   } else {
+    //     chance = 50 + ((userScore - possibleScore) + (140 - possibleScore))
+    //   }
+    //   return chance;
+    // }
 
-    possibleScore = calculatePossibleScore(e1=0, e2=0, e3=0);
-    admissionChance = calculateChance(userScore, possibleScore);
-    admissionChance = Math.min(Math.floor(admissionChance), 100);
+    // possibleScore = calculatePossibleScore(e1=0, e2=0, e3=0);
+    // admissionChance = calculateChance(userScore, possibleScore);
+    // admissionChance = Math.min(Math.floor(admissionChance), 100);
 
-    // Update the state here
-    // setENTPOINT(possibleScore);
-    setCalculation(admissionChance);
+    // // Update the state here
+    // // setENTPOINT(possibleScore);
+    // setCalculation(admissionChance);
 
-    alert(`possibleScore${possibleScore} & admissionChance${admissionChance}`)
+    // alert(`possibleScore${possibleScore} & admissionChance${admissionChance}`)
 
     // calculateAdmissionChance();
 
