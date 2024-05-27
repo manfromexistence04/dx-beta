@@ -149,21 +149,21 @@ export function DataTableRowActions<TData>({
                 <div className="flex gap-2">
                   <p>Subjects: </p>
                   <span className="font-semibold w-[250px] truncate">
-                    {JSON.stringify(row.original.subjects, null, 2) || "No Subjects is Provided."}
+                    {row.original.subjects || "No Subjects is Provided."}
                   </span>
                 </div>
                 <Separator />
                 <div className="flex gap-2">
                   <p>Universities: </p>
                   <span className="font-semibold w-[250px] truncate">
-                    {JSON.stringify(row.original.universities, null, 2) || "No Universities is Provided."}
+                    {row.original.universities || "No Universities is Provided."}
                   </span>
                 </div>
                 <Separator />
                 <div className="flex gap-2">
                   <p>MinScrores: </p>
                   <span className="font-semibold w-[250px] truncate">
-                    {JSON.stringify(row.original.minScrores, null, 2) || "No MinScrores is Provided."}
+                    {row.original.minScrores || "No MinScrores is Provided."}
                   </span>
                 </div>
                 <Separator />

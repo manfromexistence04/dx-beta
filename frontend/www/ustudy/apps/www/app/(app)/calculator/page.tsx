@@ -1233,16 +1233,16 @@ const CalculatorPage: NextPage = () => {
     // setCalculation(calculateChance(userScore, possibleScore));
   }
 
-  const calculateScore = () => {
-    let result: number;
-    if (ENTPOINT >= 50) {
-      result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
-    } else {
-      result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
-    }
-    setResult(result.toFixed(2));
+  // const calculateScore = () => {
+  //   let result: number;
+  //   if (ENTPOINT >= 50) {
+  //     result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
+  //   } else {
+  //     result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
+  //   }
+  //   setResult(result.toFixed(2));
 
-  }
+  // }
 
   // calculateScore();
 
