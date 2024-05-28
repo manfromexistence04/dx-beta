@@ -24,15 +24,19 @@ import { useToast } from "@/registry/default/ui/use-toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogDescription,
+//   DialogFooter,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogTrigger,
+// } from "@/components/ui/dialo"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { set } from 'date-fns';
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -45,9 +49,130 @@ const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
 const auth = getAuth(app);
 
+const Dialog = DialogPrimitive.Root
+
+const DialogTrigger = DialogPrimitive.Trigger
+
+const DialogPortal = DialogPrimitive.Portal
+
+const DialogClose = DialogPrimitive.Close
+
+const DialogOverlay = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      "blur fixed inset-0 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+  />
+))
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+        <X className="size-4" />
+        <span className="sr-only">Close</span>
+      </DialogPrimitive.Close>
+    </DialogPrimitive.Content>
+  </DialogPortal>
+))
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+const DialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-1.5 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+DialogHeader.displayName = "DialogHeader"
+
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+DialogFooter.displayName = "DialogFooter"
+
+const DialogTitle = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Title
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-none tracking-tight",
+      className
+    )}
+    {...props}
+  />
+))
+DialogTitle.displayName = DialogPrimitive.Title.displayName
+
+const DialogDescription = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+}
+
 export const MyAuthComponent = () => {
   const { toast } = useToast()
+  const [userDetailsDialog, setUserDetailsDialog] = useState(false);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [userId, setUserid] = useState<any>("");
+  const [surname, setSurname] = useState("");
+  const [untScore, setUntScore] = useState<any>(0);
+  const [region, setRegion] = useState("");
   const [password, setPassword] = useState("");
 
   const EnhancedErrors = (input: any): string | null => {
@@ -80,27 +205,77 @@ export const MyAuthComponent = () => {
     }
   };
 
+  // const handleSignUp = async () => {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then(async (userCredential) => {
+  //       // Signed up 
+  //       const user = userCredential.user;
+  //       const Create = await addDoc(collection(db, "users"), {
+  //         accountType: "Client",
+  //         email: email,
+  //         name: name,
+  //         region: region,
+  //         surname: surname,
+  //         untScore: untScore,
+  //         userId: user.uid
+  //       });
+  //       toast({
+  //         title: "User signed up successfully!",
+  //         description: `Continue Using Ustudy ${name}`,
+  //       })
+
+  //     })
+  //     .catch((error) => {
+  //       toast({
+  //         title: "Uh oh! Something went wrong with your SignUp.",
+  //         description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+  //           <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+  //           <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+  //         </div>),
+  //       })
+  //     })
+  // };
   const handleSignUp = async () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        const Create = addDoc(collection(db, "users"), {
-          accountType: "Client",
-          email: email,
-          name: "Sumon",
-          region: "Bangladesh",
-          surname: "Mahatab",
-          untScore: 130,
-          userId: user.uid
-        });
-        toast({
-          title: "User signed up successfully!",
-          description: `Continue Using Ustudy ${user.uid}`,
-        })
+        setUserid(user)
+        console.log("Signup");
+        setUserDetailsDialog(true)
+        // try {
+        //   // const Create = await addDoc(collection(db, "users"), {
+        //   //   accountType: "Client",
+        //   //   email: email,
+        //   //   name: name,
+        //   //   region: region,
+        //   //   surname: surname,
+        //   //   untScore: untScore,
+        //   //   userId: user.uid
+        //   // });
+        //   console.log("Document written with ID: ", userId.uid);
 
+        //   // toast({
+        //   //   title: "User signed up successfully!",
+        //   //   description: `Continue Using Ustudy ${userId.uid}`,
+        //   // })
+        // } catch (error: any) {
+        //   setUserid("Error")
+        //   toast({
+        //     title: "Uh oh! Something went wrong with your SignUp.",
+        //     description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+        //       <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+        //       <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+        //     </div>),
+        //   })
+        // }
       })
       .catch((error) => {
+        setUserDetailsDialog(false)
+
+        setUserid("Error");
+        console.log("Error");
+
         toast({
           title: "Uh oh! Something went wrong with your SignUp.",
           description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
@@ -110,6 +285,27 @@ export const MyAuthComponent = () => {
         })
       })
   };
+  const userDetails = async () => {
+    const Create = await addDoc(collection(db, "users"), {
+      accountType: "Client",
+      email: email,
+      name: name,
+      region: region,
+      surname: surname,
+      untScore: untScore,
+      userId: userId.uid
+    });
+
+    console.log("Document written with ID: ", Create.id);
+
+    toast({
+      title: "User signed up successfully!",
+      description: `Continue Using Ustudy ${userId.uid}`,
+    })
+    setUserDetailsDialog(false);
+  };
+
+
 
   const handleSignIn = async () => {
     signInWithEmailAndPassword(auth, email, password)
@@ -139,44 +335,11 @@ export const MyAuthComponent = () => {
       <input className='bg-primary-foreground' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input className='bg-primary-foreground' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       {/* <button onClick={handleSignUp}>Sign Up</button> */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Sign Up</Button>
+      <Dialog open={userDetailsDialog}>
+        <DialogTrigger>
+          <Button onClick={handleSignUp} variant="outline">Sign Up</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
-          {/* <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              className="col-span-3"
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter> */}
-
-
           <div className="mx-auto max-w-md space-y-6">
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-bold">User Information</h1>
@@ -186,22 +349,22 @@ export const MyAuthComponent = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="John" required />
+                  <Input id="name" placeholder="John" required onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="surname">Surname</Label>
-                  <Input id="surname" placeholder="Doe" required />
+                  <Input id="surname" placeholder="Doe" required onChange={(e) => setSurname(e.target.value)} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="region">Region</Label>
-                <Input id="region" placeholder="New York" required />
+                <Input id="region" placeholder="New York" required onChange={(e) => setRegion(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="unt-score">UntScore</Label>
-                <Input id="unt-score" placeholder="85" required type="number" />
+                <Input id="unt-score" placeholder="85" required type="number" onChange={(e) => setUntScore(e.target.value)} />
               </div>
-              <Button className="w-full" type="submit">
+              <Button onClick={userDetails} className="w-full">
                 Submit
               </Button>
             </form>
