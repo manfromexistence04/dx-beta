@@ -1485,7 +1485,7 @@ const CalculatorPage: NextPage = () => {
             <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
               {/* {JSON.stringify(specialtyDoc)} */}
-              {specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition}
+              {/* {specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition} */}
               {/* {calculateAdmissionChance()} */}
               {/* {specialties && specialties.map((specialties) =>
                 <p key={specialties.id}>
