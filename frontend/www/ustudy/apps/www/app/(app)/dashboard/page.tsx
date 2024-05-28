@@ -8,11 +8,11 @@ import { Footer } from "../components/footer";
 import { DASHBOARD_CARDS } from "../consts/cards";
 
 export default async function DashboardPage() {
-  const { userId } = auth().protect();
+  // const { userId } = auth().protect();
 
-  const user = await clerkClient.users.getUser(userId);
+  // const user = await clerkClient.users.getUser(userId);
 
-  if (!user) return null;
+  // if (!user) return null;
 
   return (
     <>

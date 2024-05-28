@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useAuth } from "@clerk/nextjs";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -204,12 +204,34 @@ export const MyAuthComponent = () => {
         setUserid(user)
         console.log("Signup");
         setUserDetailsDialog(true)
+        if (auth.currentUser) {
+          // auth.currentUser.sendEmailVerification()
+          //   .then(() => {
+          //     // Email sent successfully
+          //     console.log('Email verification sent!');
+          //   })
+          //   .catch((error:any) => {
+          //     // Error sending email
+          //     console.error('Error sending email:', error);
+          //   });
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              // Email verification sent!
+              // ...
+              console.log('Email verification link sent!');
+            });
+        } else {
+          // No user is signed in
+          console.error('No user is signed in.');
+        }
+
       })
       .catch((error) => {
         setUserDetailsDialog(false)
 
         setUserid("Error");
         console.log("Error");
+
 
         toast({
           title: "Uh oh! Something went wrong with your SignUp.",
@@ -218,6 +240,7 @@ export const MyAuthComponent = () => {
             <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
           </div>),
         })
+
       })
   };
   const userDetails = async () => {

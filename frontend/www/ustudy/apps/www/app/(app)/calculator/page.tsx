@@ -1343,7 +1343,7 @@ const CalculatorPage: NextPage = () => {
         result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
       }
       setResult(result.toFixed(2));
-      calculatedValue = result.toFixed(0) > 100 ? 100 : result.toFixed(2);
+      calculatedValue = result.toFixed(2);
 
       
       setTasks((prevTasks) => [

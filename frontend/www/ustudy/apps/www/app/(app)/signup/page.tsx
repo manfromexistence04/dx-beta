@@ -7,7 +7,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Input as NextuiInput } from "@nextui-org/react"
 import { Eye, EyeOff } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import FrameComponent from "@/components/signup/frame-component"
 import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
@@ -15,7 +14,6 @@ import { Button, buttonVariants } from "@/registry/default/ui/button"
 import { Checkbox } from "@/registry/default/ui/checkbox"
 import { Input } from "@/registry/default/ui/input"
 import { Label } from "@/registry/default/ui/label"
-
 import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
@@ -41,6 +39,7 @@ import { useToast } from "@/registry/default/ui/use-toast"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 import { set } from 'date-fns';
+import { useRouter } from 'next/navigation'
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -179,14 +178,17 @@ export {
 const Signup: NextPage = () => {
 
   const { toast } = useToast()
+  const router = useRouter()
   const [userDetailsDialog, setUserDetailsDialog] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [userId, setUserid] = useState<any>("");
   const [surname, setSurname] = useState("");
   const [untScore, setUntScore] = useState<any>(0);
   const [region, setRegion] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const EnhancedErrors = (input: any): string | null => {
     switch (input) {
@@ -217,7 +219,9 @@ const Signup: NextPage = () => {
       default: return "Try again later or contact support.";
     }
   };
-  const handleSignUp = async () => {
+  const handleSignUp = async (event: { preventDefault: () => void }) => {
+    event.preventDefault(); 
+    confirmPassword === password ?
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up 
@@ -225,6 +229,7 @@ const Signup: NextPage = () => {
         setUserid(user)
         console.log("Signup");
         setUserDetailsDialog(true)
+        
       })
       .catch((error) => {
         setUserDetailsDialog(false)
@@ -239,13 +244,19 @@ const Signup: NextPage = () => {
             <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
           </div>),
         })
+      }) : toast({
+        title: "Password and Confirm Password donot match!",
+        description: `Please match them Password${password} & Confirm Passwrod:${confirmPassword}`,
       })
+
   };
-  const userDetails = async () => {
+  const userDetails = async (event: { preventDefault: () => void }) => {
+    event.preventDefault(); 
     const Create = await addDoc(collection(db, "users"), {
       accountType: "Client",
       email: email,
       name: name,
+      userName: userName,
       region: region,
       surname: surname,
       untScore: untScore,
@@ -259,6 +270,8 @@ const Signup: NextPage = () => {
       description: `Continue Using Ustudy ${userId.uid}`,
     })
     setUserDetailsDialog(false);
+    router.push('/login')
+
   };
 
 
@@ -293,7 +306,7 @@ const Signup: NextPage = () => {
     setIsVisibleConfirmPassword(!isVisibleConfirmPassword)
 
   return (
-    <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-start lg:items-center lg:justify-start lg:justify-center">
+    <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-center lg:justify-center">
       <div className="relative mt-10 flex size-full h-auto items-center justify-center lg:m-0 lg:w-3/5 lg:rounded-sm">
         <AspectRatio ratio={16 / 9}>
           <Image
@@ -312,65 +325,81 @@ const Signup: NextPage = () => {
           <div className="grid min-w-full gap-2 text-left">
             <h1 className="text-37xl font-bold">Signup</h1>
             <p className="text-balance text-muted-foreground">
-              Please enter your details
+              Please enter your details.
             </p>
           </div>
           <div className="grid gap-4">
-            <div className="grid w-full gap-2">
+            {/* <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
                 Name
               </Label>
-              {/* <NextuiInput
-                type="text"
-                variant="bordered"
-                placeholder="manfromexitence"
-                errorMessage="Please enter a valid name"
-                className="w-full rounded-md !border text-muted-foreground"
-              /> */}
-              <Input id="name" placeholder="John" required onChange={(e) => setName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
-            </div>
+              <Input id="name" placeholder="ManFromExsitence" required onChange={(e) => setName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
+            </div> */}
             <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
                 Username
               </Label>
-              <NextuiInput
+              {/* <NextuiInput
                 type="text"
                 variant="bordered"
                 defaultValue="manfromexitence"
                 errorMessage="Please enter a valid name"
                 className="w-full rounded-md !border text-muted-foreground"
-              />
+              /> */}
+              <Input value={userName} id="userName" placeholder="manfromexistence" required onChange={(e) => setUserName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
+
             </div>
 
             <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
                 Email
               </Label>
-              <NextuiInput
+              {/* <NextuiInput
                 type="email"
                 variant="bordered"
-                defaultValue="ajju40959@gmail.com"
+                aria-placeholder="ajju40959@gmail.com"
+                placeholder="ajju40959@gmail.com"
                 isInvalid={true}
                 errorMessage="Please enter a valid email"
-                className="w-full rounded-md !border text-muted-foreground"
+                className="w-full rounded-md !border"
               />
+               <NextuiInput type="email" placeholder="Enter your email" /> */}
+              <Input value={email} id="email" type="email" placeholder="ajju40959@gmail.com" required onChange={(e) => setEmail(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
+
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
                 <Label className="text-[#804DFE]" htmlFor="password">
                   Password
                 </Label>
-                {/* <Link
-                  href="/forgot-password"
-                  className="ml-auto inline-block text-sm underline"
-                >
-                  Forgot your password?
-                </Link> */}
               </div>
-              <NextuiInput
+              <div className="w-full relative">
+                <Input
+                  required
+                  value={password}
+                  type={isVisiblePassword ? "text" : "password"}
+                  id="password"
+                  placeholder="YourPassword123"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full rounded-md !border text-muted-foreground"
+                />
+                <div
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-3.5 top-1/2 translate-y-[-50%]"
+                >
+                  {isVisiblePassword ? (
+                    <Eye className="hover:text-[#804DFE]" />
+                  ) : (
+                    <EyeOff className="hover:text-[#804DFE]" />
+                  )}
+                </div>
+              </div>
+
+
+              {/* <NextuiInput
+                required
                 variant="bordered"
                 placeholder="Enter your password"
-                defaultValue="Enter your password"
                 endContent={
                   <button
                     className="focus:outline-none"
@@ -386,7 +415,7 @@ const Signup: NextPage = () => {
                 }
                 type={isVisiblePassword ? "text" : "password"}
                 className="w-full rounded-md !border text-muted-foreground"
-              />
+              /> */}
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
@@ -394,8 +423,8 @@ const Signup: NextPage = () => {
                   Confirm Password
                 </Label>
               </div>
-              <NextuiInput
-                defaultValue="Enter your confirm password"
+              {/* <NextuiInput
+                required
                 variant="bordered"
                 placeholder="Enter your password"
                 endContent={
@@ -413,10 +442,33 @@ const Signup: NextPage = () => {
                 }
                 type={isVisibleConfirmPassword ? "text" : "password"}
                 className="w-full rounded-md !border text-muted-foreground"
-              />
+              /> */}
+              <div className="w-full relative">
+                <Input
+                  required
+                  value={confirmPassword}
+                  type={isVisibleConfirmPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="YourPassword123"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className={cn("w-full rounded-md !border text-muted-foreground",
+                    confirmPassword === password ? "text-green-400" : "text-pink-500"
+                  )}
+                />
+                <div
+                  onClick={toggleConfirmPasswordVisibility}
+                  className="absolute right-3.5 top-1/2 translate-y-[-50%]"
+                >
+                  {isVisibleConfirmPassword ? (
+                    <Eye className="hover:text-[#804DFE]" />
+                  ) : (
+                    <EyeOff className="hover:text-[#804DFE]" />
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="flex w-full items-center space-x-2">
-              <Checkbox id="terms" />
+            <div className="flex w-full items-center space-x-3.5 my-1">
+              <Checkbox required id="terms" />
               <label
                 htmlFor="terms"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -424,17 +476,59 @@ const Signup: NextPage = () => {
                 I agree to the term of services and privacy statement
               </label>
             </div>
-            <Button
-              type="submit"
+            {/* <Button
+onClick={handleSignUp}
               className="w-full bg-[#804DFE] text-white hover:bg-secondary"
             >
               Signup
-            </Button>
+            </Button> */}
+            <Dialog open={userDetailsDialog}>
+              <DialogTrigger>
+                {/* <Button onClick={handleSignUp} variant="outline">Sign Up</Button> */}
+                <Button
+                  onClick={handleSignUp}
+                  className="w-full bg-[#804DFE] text-white hover:bg-secondary"
+                >
+                  Signup
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <div className="mx-auto max-w-md space-y-6">
+                  <div className="space-y-2 text-center">
+                    <h1 className="text-3xl font-bold">User Information</h1>
+                    <p className="text-gray-500 dark:text-gray-400">Please fill out the form below.</p>
+                  </div>
+                  <form className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input value={name} id="name" placeholder="John" required onChange={(e) => setName(e.target.value)} />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="surname">Surname</Label>
+                        <Input value={surname} id="surname" placeholder="Doe" required onChange={(e) => setSurname(e.target.value)} />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="region">Region</Label>
+                      <Input value={region} id="region" placeholder="New York" required onChange={(e) => setRegion(e.target.value)} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="unt-score">UntScore</Label>
+                      <Input value={untScore} id="unt-score" placeholder="85" required type="number" onChange={(e) => setUntScore(e.target.value)} />
+                    </div>
+                    <Button onClick={userDetails} className="w-full">
+                      Submit
+                    </Button>
+                  </form>
+                </div>
+              </DialogContent>
+            </Dialog>
             {/* <Button variant="outline" className="w-full">
               Login with Google
             </Button> */}
           </div>
-          <div className="mt-4 min-w-full space-x-1 text-center text-sm">
+          <div className="min-w-full space-x-2.5 text-center text-sm !mb-7">
             <span>Already have an account?</span>
             <Link
               href="login"
