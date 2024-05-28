@@ -2,7 +2,6 @@
 
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 /* eslint-disable tailwindcss/no-contradicting-classname */
-import React from "react"
 import type { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -18,8 +17,273 @@ import { Input } from "@/registry/default/ui/input"
 import { Label } from "@/registry/default/ui/label"
 
 import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
+import React, { useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import { useAuth } from "@clerk/nextjs";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  onSnapshot,
+  query,
+  startAfter,
+  updateDoc,
+} from "firebase/firestore"
+import { initializeApp } from "firebase/app"
+import { useToast } from "@/registry/default/ui/use-toast"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { set } from 'date-fns';
+const firebaseConfig = {
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+}
+
+const app = initializeApp(firebaseConfig)
+const db: any = getFirestore(app)
+const auth = getAuth(app);
+
+const Dialog = DialogPrimitive.Root
+
+const DialogTrigger = DialogPrimitive.Trigger
+
+const DialogPortal = DialogPrimitive.Portal
+
+const DialogClose = DialogPrimitive.Close
+
+const DialogOverlay = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      "blur fixed inset-0 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+  />
+))
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+        <X className="size-4" />
+        <span className="sr-only">Close</span>
+      </DialogPrimitive.Close>
+    </DialogPrimitive.Content>
+  </DialogPortal>
+))
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+const DialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-1.5 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+DialogHeader.displayName = "DialogHeader"
+
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+DialogFooter.displayName = "DialogFooter"
+
+const DialogTitle = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Title
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-none tracking-tight",
+      className
+    )}
+    {...props}
+  />
+))
+DialogTitle.displayName = DialogPrimitive.Title.displayName
+
+const DialogDescription = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+}
+
+
+
+
+
+
+
 
 const Signup: NextPage = () => {
+
+  const { toast } = useToast()
+  const [userDetailsDialog, setUserDetailsDialog] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [userId, setUserid] = useState<any>("");
+  const [surname, setSurname] = useState("");
+  const [untScore, setUntScore] = useState<any>(0);
+  const [region, setRegion] = useState("");
+  const [password, setPassword] = useState("");
+
+  const EnhancedErrors = (input: any): string | null => {
+    switch (input) {
+      case "auth/email-already-in-use": return "Email in use.";
+      case "auth/invalid-email": return "Invalid email.";
+      case "auth/operation-not-allowed": return "Operation not allowed.";
+      case "auth/weak-password": return "Weak password.";
+      case "auth/user-disabled": return "User disabled.";
+      case "auth/user-not-found": return "User not found.";
+      case "auth/wrong-password": return "Wrong password.";
+      case "auth/too-many-requests": return "Too many requests.";
+      case "auth/network-request-failed": return "Network error.";
+      default: return "Signup error.";
+    }
+  };
+
+  const SuggestSolutions = (input: any): string | null => {
+    switch (input) {
+      case "auth/email-already-in-use": return "Try logging in or use a different email.";
+      case "auth/invalid-email": return "Check format.";
+      case "auth/operation-not-allowed": return "Contact support.";
+      case "auth/weak-password": return "Choose a stronger one.";
+      case "auth/user-disabled": return "Contact support.";
+      case "auth/user-not-found": return "Check email or create new account.";
+      case "auth/wrong-password": return "Try again.";
+      case "auth/too-many-requests": return "Wait and try again.";
+      case "auth/network-request-failed": return "Check internet connection.";
+      default: return "Try again later or contact support.";
+    }
+  };
+  const handleSignUp = async () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        setUserid(user)
+        console.log("Signup");
+        setUserDetailsDialog(true)
+      })
+      .catch((error) => {
+        setUserDetailsDialog(false)
+
+        setUserid("Error");
+        console.log("Error");
+
+        toast({
+          title: "Uh oh! Something went wrong with your SignUp.",
+          description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+            <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+            <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+          </div>),
+        })
+      })
+  };
+  const userDetails = async () => {
+    const Create = await addDoc(collection(db, "users"), {
+      accountType: "Client",
+      email: email,
+      name: name,
+      region: region,
+      surname: surname,
+      untScore: untScore,
+      userId: userId.uid
+    });
+
+    console.log("Document written with ID: ", Create.id);
+
+    toast({
+      title: "User signed up successfully!",
+      description: `Continue Using Ustudy ${userId.uid}`,
+    })
+    setUserDetailsDialog(false);
+  };
+
+
+
+  const handleSignIn = async () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        toast({
+          title: "User signed in successfully!",
+          description: `Continue Using Ustudy ${user.uid}`,
+        })
+      })
+      .catch((error) => {
+        toast({
+          title: "Uh oh! Something went wrong with your SignIn.",
+          description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+            <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+            <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+          </div>),
+        })
+      });
+
+  };
   const [isVisiblePassword, setIsVisiblePassword] = React.useState(true)
   const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
     React.useState(true)
@@ -54,6 +318,19 @@ const Signup: NextPage = () => {
           <div className="grid gap-4">
             <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
+                Name
+              </Label>
+              {/* <NextuiInput
+                type="text"
+                variant="bordered"
+                placeholder="manfromexitence"
+                errorMessage="Please enter a valid name"
+                className="w-full rounded-md !border text-muted-foreground"
+              /> */}
+              <Input id="name" placeholder="John" required onChange={(e) => setName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
+            </div>
+            <div className="grid w-full gap-2">
+              <Label className="text-[#804DFE]" htmlFor="email">
                 Username
               </Label>
               <NextuiInput
@@ -64,6 +341,7 @@ const Signup: NextPage = () => {
                 className="w-full rounded-md !border text-muted-foreground"
               />
             </div>
+
             <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
                 Email

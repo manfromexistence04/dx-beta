@@ -24,15 +24,6 @@ import { useToast } from "@/registry/default/ui/use-toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogDescription,
-//   DialogFooter,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-// } from "@/components/ui/dialo"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -45,6 +36,7 @@ const firebaseConfig = {
   messagingSenderId: "581632635532",
   appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
 }
+
 const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
 const auth = getAuth(app);
@@ -204,37 +196,6 @@ export const MyAuthComponent = () => {
       default: return "Try again later or contact support.";
     }
   };
-
-  // const handleSignUp = async () => {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then(async (userCredential) => {
-  //       // Signed up 
-  //       const user = userCredential.user;
-  //       const Create = await addDoc(collection(db, "users"), {
-  //         accountType: "Client",
-  //         email: email,
-  //         name: name,
-  //         region: region,
-  //         surname: surname,
-  //         untScore: untScore,
-  //         userId: user.uid
-  //       });
-  //       toast({
-  //         title: "User signed up successfully!",
-  //         description: `Continue Using Ustudy ${name}`,
-  //       })
-
-  //     })
-  //     .catch((error) => {
-  //       toast({
-  //         title: "Uh oh! Something went wrong with your SignUp.",
-  //         description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
-  //           <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
-  //           <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
-  //         </div>),
-  //       })
-  //     })
-  // };
   const handleSignUp = async () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -243,32 +204,6 @@ export const MyAuthComponent = () => {
         setUserid(user)
         console.log("Signup");
         setUserDetailsDialog(true)
-        // try {
-        //   // const Create = await addDoc(collection(db, "users"), {
-        //   //   accountType: "Client",
-        //   //   email: email,
-        //   //   name: name,
-        //   //   region: region,
-        //   //   surname: surname,
-        //   //   untScore: untScore,
-        //   //   userId: user.uid
-        //   // });
-        //   console.log("Document written with ID: ", userId.uid);
-
-        //   // toast({
-        //   //   title: "User signed up successfully!",
-        //   //   description: `Continue Using Ustudy ${userId.uid}`,
-        //   // })
-        // } catch (error: any) {
-        //   setUserid("Error")
-        //   toast({
-        //     title: "Uh oh! Something went wrong with your SignUp.",
-        //     description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
-        //       <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
-        //       <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
-        //     </div>),
-        //   })
-        // }
       })
       .catch((error) => {
         setUserDetailsDialog(false)
