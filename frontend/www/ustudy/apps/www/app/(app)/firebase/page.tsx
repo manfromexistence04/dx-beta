@@ -143,20 +143,20 @@ const DialogDescription = React.forwardRef<
 ))
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 
-export {
-  Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogClose,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-}
+// export {
+//   Dialog,
+//   DialogPortal,
+//   DialogOverlay,
+//   DialogClose,
+//   DialogTrigger,
+//   DialogContent,
+//   DialogHeader,
+//   DialogFooter,
+//   DialogTitle,
+//   DialogDescription,
+// }
 
-export const MyAuthComponent = () => {
+const MyAuthComponent = () => {
   const { toast } = useToast()
   const [userDetailsDialog, setUserDetailsDialog] = useState(false);
   const [email, setEmail] = useState("");

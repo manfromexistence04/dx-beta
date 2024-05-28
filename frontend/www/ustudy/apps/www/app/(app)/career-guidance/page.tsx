@@ -755,7 +755,7 @@ console.log(FormSchema);
  */
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 
-export function QuizResult() {
+function QuizResult() {
   return (
     <Card className="w-full max-w-md bg-[#804DFE] text-white mx-auto mt-32">
       <CardHeader className="border-b border-white border-opacity-25 p-4">
