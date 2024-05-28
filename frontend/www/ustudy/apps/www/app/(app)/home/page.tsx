@@ -3,6 +3,7 @@
  * @see https://v0.dev/t/QivqNTqjXb4
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { JSX, SVGProps } from "react"
 
@@ -18,12 +19,13 @@ export default function Component() {
             <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
               Discover the best solutions for your needs and take the first step towards a better future.
             </p>
-            <Link
+            {/* <Link
               className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
               href="#"
             >
               Get Started
-            </Link>
+            </Link> */}
+            <Button>Get Started</Button>
           </div>
           <img
             alt="Hero"
@@ -40,9 +42,9 @@ export default function Component() {
             className="group grid h-auto w-full items-start justify-start gap-3 rounded-lg border p-6 transition-colors hover:bg-background focus:bg-background dark:bg-gray-950 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
             href="#"
           >
-            <HandHelpingIcon className="h-8 w-8 text-white group-hover:text-gray-900 dark:text-gray-50 dark:group-hover:text-gray-50" />
+            <HandHelpingIcon className="h-8 w-8 text-white group-hover:text-[#804dfe] dark:text-gray-50 dark:group-hover:text-gray-50" />
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-50">Support</h3>
+              <h3 className="text-lg font-semibold group-hover:text-[#804dfe] dark:group-hover:text-gray-50">Support</h3>
               <p className="text-gray-500 line-clamp-2 dark:text-gray-400">
                 Get the help you need from our dedicated support team.
               </p>
@@ -52,9 +54,9 @@ export default function Component() {
             className="group grid h-auto w-full items-start justify-start gap-3 rounded-lg border p-6 transition-colors hover:bg-background focus:bg-background dark:bg-gray-950 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
             href="#"
           >
-            <InfoIcon className="h-8 w-8 text-white group-hover:text-gray-900 dark:text-gray-50 dark:group-hover:text-gray-50" />
+            <InfoIcon className="h-8 w-8 text-white group-hover:text-[#804dfe] dark:text-gray-50 dark:group-hover:text-gray-50" />
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-50">FAQ</h3>
+              <h3 className="text-lg font-semibold group-hover:text-[#804dfe] dark:group-hover:text-gray-50">FAQ</h3>
               <p className="text-gray-500 line-clamp-2 dark:text-gray-400">
                 Find answers to your questions in our comprehensive FAQ.
               </p>
@@ -64,9 +66,9 @@ export default function Component() {
             className="group grid h-auto w-full items-start justify-start gap-3 rounded-lg border p-6 transition-colors hover:bg-background focus:bg-background dark:bg-gray-950 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
             href="#"
           >
-            <FocusIcon className="h-8 w-8 text-white group-hover:text-gray-900 dark:text-gray-50 dark:group-hover:text-gray-50" />
+            <FocusIcon className="h-8 w-8 text-white group-hover:text-[#804dfe] dark:text-gray-50 dark:group-hover:text-gray-50" />
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-50">
+              <h3 className="text-lg font-semibold group-hover:text-[#804dfe] dark:group-hover:text-gray-50">
                 Specialties
               </h3>
               <p className="text-gray-500 line-clamp-2 dark:text-gray-400">
@@ -78,9 +80,9 @@ export default function Component() {
             className="group grid h-auto w-full items-start justify-start gap-3 rounded-lg border p-6 transition-colors hover:bg-background focus:bg-background dark:bg-gray-950 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
             href="#"
           >
-            <TestTubeIcon className="h-8 w-8 text-white group-hover:text-gray-900 dark:text-gray-50 dark:group-hover:text-gray-50" />
+            <TestTubeIcon className="h-8 w-8 text-white group-hover:text-[#804dfe] dark:text-gray-50 dark:group-hover:text-gray-50" />
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold group-hover:text-gray-900 dark:group-hover:text-gray-50">
+              <h3 className="text-lg font-semibold group-hover:text-[#804dfe] dark:group-hover:text-gray-50">
                 Career Test
               </h3>
               <p className="text-gray-500 line-clamp-2 dark:text-gray-400">

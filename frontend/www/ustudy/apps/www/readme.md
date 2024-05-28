@@ -3262,3 +3262,21 @@ function XIcon(props) {
   )
 }
 ```
+
+
+
+
+```
+Result: Close types: intellectual and office.
+The opposite type is social.
+
+
+Proclivities:emitted by a smart contract. Maximum emission: 2 billion U
+
+1.25% (25 m) of the token emission will be allocated to create liquidity on the exchange
+
+The initial price after the token listing on
+      the exchange 0.10 USD
+
+According to the schedule, in the first few years the token will reach x100; x500 or more
+```
