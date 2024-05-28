@@ -483,37 +483,7 @@ export {
   DialogDescription,
 }
 
-
-// /* eslint-disable react/no-unescaped-entities */
-// "use client"
-
-// /* eslint-disable tailwindcss/migration-from-tailwind-2 */
-// /* eslint-disable tailwindcss/no-contradicting-classname */
-// import React from "react"
-// import type { NextPage } from "next"
-// import Image from "next/image"
-// import Link from "next/link"
-// import { Input as NextuiInput } from "@nextui-org/react"
-// import { Eye, EyeOff } from "lucide-react"
-
-// import { cn } from "@/lib/utils"
-// import FrameComponent from "@/components/signup/frame-component"
-// import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
-// import { Button, buttonVariants } from "@/registry/default/ui/button"
-// import { Checkbox } from "@/registry/default/ui/checkbox"
-// import { Input } from "@/registry/default/ui/input"
-// import { Label } from "@/registry/default/ui/label"
-
-// import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
-
 const ForgotPassword: NextPage = () => {
-  // const [isVisiblePassword, setIsVisiblePassword] = React.useState(true)
-  // const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
-  //   React.useState(true)
-  // const togglePasswordVisibility = () =>
-  //   setIsVisiblePassword(!isVisiblePassword)
-  // const toggleConfirmPasswordVisibility = () =>
-  //   setIsVisibleConfirmPassword(!isVisibleConfirmPassword)
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState<any>(0)
   const [count, setCount] = React.useState<any>(0)
@@ -763,15 +733,7 @@ const ForgotPassword: NextPage = () => {
                 </p>
               </div>
               <div className="flex w-full items-center justify-center">
-                {/* <Button
-                  variant={"outline"}
-                  type="submit"
-                  className="mx-auto w-64"
-                  onClick={scrollNext}
-                >
-                  Reset Password
-                </Button> */}
-                                <Link href="/login">
+                <Link href="/login">
                   <Button
                     variant={"outline"}
                     type="submit"
