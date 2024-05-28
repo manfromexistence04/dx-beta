@@ -470,18 +470,18 @@ const DialogDescription = React.forwardRef<
 ))
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 
-export {
-  Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogClose,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-}
+// export {
+//   Dialog,
+//   DialogPortal,
+//   DialogOverlay,
+//   DialogClose,
+//   DialogTrigger,
+//   DialogContent,
+//   DialogHeader,
+//   DialogFooter,
+//   DialogTitle,
+//   DialogDescription,
+// }
 
 const ForgotPassword: NextPage = () => {
   const [api, setApi] = React.useState<CarouselApi>()
