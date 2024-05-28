@@ -667,16 +667,17 @@ const ForgotPassword: NextPage = () => {
     router.push('/calculator')
 
   };
-  const handleForgotPassword = async (e: any) => {
+
+
+  const handleEmailDetail = async (e: any) => {
     e.preventDefault();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        // Password reset email sent!
-        // ..
         toast({
           title: "We have sent you a Email!",
           description: `Continue Using Ustudy ${email}`,
         })
+        scrollNext();
       })
       .catch((error) => {
         toast({
@@ -702,7 +703,7 @@ const ForgotPassword: NextPage = () => {
 
 
   return (
-    <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-start lg:items-center lg:justify-start lg:justify-center">
+    <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-center lg:justify-center">
       <div className="relative mt-10 flex size-full h-auto items-center justify-center lg:m-0 lg:w-3/5 lg:rounded-sm">
         <AspectRatio ratio={16 / 9}>
           <Image
@@ -717,542 +718,8 @@ const ForgotPassword: NextPage = () => {
         </div>
       </div>
 
-      <Carousel className="z-50 flex h-auto w-full items-center justify-center lg:m-0 lg:h-full lg:flex-1" setApi={setApi}>
+      <Carousel className="flex h-auto w-2/5 items-center justify-center lg:m-0 lg:h-full " setApi={setApi}>
         <CarouselContent>
-          {/* ENT */}
-          {/* <CarouselItem>
-                  <div className="flex w-[870px] max-w-full flex-row items-start justify-start gap-[69px] font-dm-sans text-base mq1050:flex-wrap mq1050:gap-[34px] mq450:gap-[17px]">
-                    <div className="box-border flex min-w-[239px] max-w-full flex-[0.7745] flex-col items-start justify-start gap-[18.7px] py-0 pl-0 pr-[83px] mq1050:flex-1 mq450:box-border mq450:pr-5">
-                      <div className="flex flex-col items-start justify-start gap-[8px] self-stretch px-0 pb-[5.3px] pt-0">
-                        <div className="relative z-[3] inline-block w-[246.5px] leading-[21px] ">
-                          Enter amount of score
-                        </div>
-                        <div className="z-[3] flex flex-row items-start justify-start self-stretch rounded-md border-DEFAULT border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
-                          <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
-                            <input
-                              className="box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none] placeholder:text-muted"
-                              placeholder="100"
-                              type="number"
-                              onChange={handleENTChange}
-                            />
-                            <img
-                              className="relative size-6"
-                              alt=""
-                              src="/coin-colorfull.png"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <span className="text-muted-foreground">
-                        Please Provide Your ENT POINT
-                      </span>
-                    </div>
-                    <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-                    </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                        <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                          <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[48px] leading-[130%]">
-                              B057:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  70%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B058:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[37px] leading-[16px]">
-                                  65%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B059:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  62%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B017:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  73%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem> */}
-          {/* Subject Combination */}
-          {/* <CarouselItem>
-                  <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
-                    <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
-                      <h1 className="w-full text-left text-xl font-bold">
-                        Subjects Combination(Max 2)
-                      </h1>
-                      <TagInput
-                        placeholder="Enter Your Subjects"
-                        tags={subjectsTag}
-                        restrictTagsToAutocompleteOptions
-                        enableAutocomplete
-                        maxTags={2}
-                        autocompleteOptions={subjects.map((items) => ({
-                          id: items.id,
-                          text: items.subjects.filter((item: string) => item !== ""),
-                        }))}
-                        draggable
-                        className="!max-h-10 !bg-transparent sm:min-w-[450px]"
-                        setTags={(newTags) => {
-                          setSubjectsTag(newTags)
-                        }}
-                      />
-                    </div>
-
-                    <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-                    </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                        <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                          <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[48px] leading-[130%]">
-                              B057:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  70%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B058:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[37px] leading-[16px]">
-                                  65%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B059:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  62%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B017:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  73%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem> */}
-
-          {/* Specialtiy */}
-          {/* <CarouselItem>
-                  <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
-                    <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
-                      <h1 className="w-full text-left text-xl font-bold">
-                        Specialtiy
-                      </h1>
-                      <Popover open={open} onOpenChange={setOpen}>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            role="combobox"
-                            aria-expanded={open}
-                            className="w-[350px]  justify-between"
-                          >
-                            <span className="w-[200px] truncate text-start">
-                              {value
-                                ? value
-                                : "Select specialty..."}
-                            </span>
-
-                            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="max-h-[300px] w-[350px] overflow-y-auto overflow-x-hidden p-0">
-                          <Command>
-                            <CommandInput placeholder="Search Specialties..." />
-                            <CommandGroup>
-                              {specialties.map((framework) => {
-                                const isSubjectMatch = subjectsTag.some((tag) =>
-                                  tag.text.some((text: string) => framework.subjects.includes(text))
-                                );
-                                return isSubjectMatch ? (
-                                  <CommandItem
-                                    key={framework.id}
-                                    value={framework.name || framework.id}
-                                    onSelect={(currentValue) => {
-                                      setSpecialityIdentifier(framework.id);
-                                      setValue(currentValue === value ? "" : currentValue);
-                                      setOpen(false);
-                                    }}
-                                  >
-                                    <Check
-                                      className={cn(
-                                        "mr-2 size-4",
-                                        value === framework.name
-                                          ? "opacity-100"
-                                          : value === framework.id ? "opacity-100" : "opacity-0"
-                                      )}
-                                    />
-                                    {framework.name || framework.id}
-                                  </CommandItem>
-                                ) : null;
-                              })}
-                              {specialties.map((framework) => {
-                                return showAllSpecialty && subjectsTag.length > 0 && (<CommandItem
-                                  key={framework.id}
-                                  value={framework.name || framework.id}
-                                  onSelect={(currentValue) => {
-                                    setSpecialityIdentifier(framework.id)
-                                    setValue(
-                                      currentValue === value ? "" : currentValue
-                                    )
-                                    setOpen(false)
-                                  }}
-                                >
-                                  <Check
-                                    className={cn(
-                                      "mr-2 size-4",
-                                      value === framework.name
-                                        ? "opacity-100"
-                                        : value === framework.id ? "opacity-100" : "opacity-0"
-                                    )}
-                                  />
-                                  {framework.name ||
-                                    framework.id}
-                                </CommandItem>);
-                              })}
-                              {specialties.map((framework) => {
-                                return stillShowAllSpecialty && (<CommandItem
-                                  key={framework.id}
-                                  value={framework.name || framework.id}
-                                  onSelect={(currentValue) => {
-                                    setSpecialityIdentifier(framework.id)
-                                    setValue(
-                                      currentValue === value ? "" : currentValue
-                                    )
-                                    setOpen(false)
-                                  }}
-                                >
-                                  <Check
-                                    className={cn(
-                                      "mr-2 size-4",
-                                      value === framework.name
-                                        ? "opacity-100"
-                                        : value === framework.id ? "opacity-100" : "opacity-0"
-                                    )}
-                                  />
-                                  {framework.name ||
-                                    framework.id}
-                                </CommandItem>);
-                              })}
-
-                              {!specialties.some((framework) =>
-                                subjectsTag.some((tag) =>
-                                  tag.text.some((text: string) => framework.subjects.includes(text))
-                                )
-                              ) && !showAllSpecialty && subjectsTag.length > 0 && (
-                                  <div className="w-full flex items-center justify-center flex-col">
-                                    <span className="text-sm w-full text-center">No Specialty found by subjects combination you provided.</span>
-                                    <Button className="my-3 mx-auto" onClick={() => setShowAllSpecialty(!showAllSpecialty)}>
-                                      Choose from all specialties
-                                    </Button>
-                                  </div>
-
-                                )}
-
-                              {subjectsTag.length === 0 && (
-                                <div className={cn("w-full flex items-center justify-center flex-col p-5 space-y-2",
-                                  stillShowAllSpecialty && "border-t mt-3"
-                                )}>
-                                  <span className="text-sm w-full text-center">You did't choose any subjects!</span>
-                                  <Button className="mx-auto" onClick={() => setStillShowAllSpecialty(!stillShowAllSpecialty)}>
-                                    {stillShowAllSpecialty ? "Close" : "Still view"} all specialties
-                                  </Button>
-                                </div>
-
-                              )}
-
-
-                            </CommandGroup>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-
-                    <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-                    </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                        <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                          <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[48px] leading-[130%]">
-                              B057:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  70%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B058:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[37px] leading-[16px]">
-                                  65%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B059:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  62%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B017:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  73%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem> */}
-          {/* Quota */}
-          {/* <CarouselItem>
-                  <div className="mb-10 mt-3 flex w-full max-w-[800px] flex-row items-start justify-start gap-10">
-                    <div className="flex h-[196px] w-full flex-col items-start justify-start space-y-3 overflow-y-auto overflow-x-hidden rounded-md !bg-transparent">
-                      <h1 className="w-full text-left text-xl font-bold">
-                        Quota
-                      </h1>
-                      <Select onValueChange={handleQuotaChange}>
-                        <SelectTrigger className="w-[300px]">
-                          <SelectValue placeholder="Select a Quota" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel className="border-b">Quota's</SelectLabel>
-                            <SelectItem value="GeneralCompetition">GeneralCompetetion</SelectItem>
-                            <SelectItem value="RuralQuota">Rural</SelectItem>
-                            <SelectItem value="OrphanQuota">Orphan</SelectItem>
-                            <SelectItem value="DisabilityQuota">Disability</SelectItem>
-                            <SelectItem value="LargeFamilyQuota">LargeFamily</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
-                    </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
-                        <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
-                          <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[48px] leading-[130%]">
-                              B057:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  70%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B058:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[7px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[37px] leading-[16px]">
-                                  65%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B059:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  62%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="z-[3] flex flex-row items-center justify-between gap-[20px] self-stretch">
-                            <div className="relative inline-block min-w-[49px] leading-[130%]">
-                              B017:
-                            </div>
-                            <div className="flex flex-row items-center justify-start gap-[8px] text-center">
-                              <div className="flex flex-row items-center justify-start">
-                                <div className="relative inline-block min-w-[36px] leading-[16px]">
-                                  73%
-                                </div>
-                              </div>
-                              <img
-                                className="relative size-5"
-                                alt=""
-                                src="/coin-transparent.png"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem> */}
 
           <CarouselItem>
             <div className="mx-auto grid w-4/5  min-w-[300px] max-w-[550px] ">
@@ -1274,93 +741,148 @@ const ForgotPassword: NextPage = () => {
                 <Button
                   type="submit"
                   className="w-full bg-[#804DFE] text-white hover:bg-secondary"
-                  onClick={scrollNext}
+                  onClick={handleEmailDetail}
                 >
-                  Confirm1
+                  Confirm
                 </Button>
               </div>
             </div>
           </CarouselItem>
+
           <CarouselItem>
-            <div className="mx-auto grid w-4/5 lg:min-w-full max-w-full gap-5">
+            <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
+              <h1 className="text-center text-26xl font-bold">Check you Inbox!</h1>
+              <div className="my-10 grid min-w-full gap-2 text-center">
+                <h1 className="flex flex-col items-center justify-center font-bold">
+                  We’ve sent recover password link to
+                  {/* <span className="text-[#804DFE]">*****zov01@gmail.com</span> */}
+                  <span className="text-[#804DFE]">{email}</span>
+                </h1>
+                <p className="text-balance text-muted-foreground">
+                  Check your email to recover the password
+                </p>
+              </div>
+              <div className="flex w-full items-center justify-center">
+                {/* <Button
+                  variant={"outline"}
+                  type="submit"
+                  className="mx-auto w-64"
+                  onClick={scrollNext}
+                >
+                  Reset Password
+                </Button> */}
+                                <Link href="/login">
+                  <Button
+                    variant={"outline"}
+                    type="submit"
+                    className="mx-auto w-64"
+                  >
+                    Login with new Password
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </CarouselItem>
+
+          <CarouselItem>
+            <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
               <div className="grid min-w-full gap-2 text-left">
-                <h1 className="text-26xl font-bold">Forgot Your Password?</h1>
-                <h1 className="text-26xl font-bold">No problem.</h1>
+                <h1 className="text-37xl font-bold">Recover password</h1>
                 <p className="text-balance text-muted-foreground">
                   Please enter your details
                 </p>
               </div>
               <div className="grid gap-4">
-                <div className="grid w-full gap-2">
-                  <Label className="text-[#804DFE]" htmlFor="email">
-                    Email
-                  </Label>
-                  <Input value={email} id="email" type="email" placeholder="ajju40959@gmail.com" required onChange={(e) => setEmail(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
-
+                <div className="grid gap-2">
+                  <div className="flex items-center">
+                    <Label className="text-[#804DFE]" htmlFor="password">
+                      Password
+                    </Label>
+                  </div>
+                  <div className="w-full relative">
+                    <Input
+                      required
+                      value={password}
+                      type={isVisiblePassword ? "text" : "password"}
+                      id="password"
+                      placeholder="YourPassword123"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full rounded-md !border text-muted-foreground"
+                    />
+                    <div
+                      onClick={togglePasswordVisibility}
+                      className="absolute right-3.5 top-1/2 translate-y-[-50%]"
+                    >
+                      {isVisiblePassword ? (
+                        <Eye className="hover:text-[#804DFE]" />
+                      ) : (
+                        <EyeOff className="hover:text-[#804DFE]" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="grid gap-2">
+                  <div className="flex items-center">
+                    <Label className="text-[#804DFE]" htmlFor="password">
+                      Confirm Password
+                    </Label>
+                  </div>
+                  <div className="w-full relative">
+                    <Input
+                      required
+                      value={confirmPassword}
+                      type={isVisibleConfirmPassword ? "text" : "password"}
+                      id="password"
+                      placeholder="YourPassword123"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className={cn("w-full rounded-md !border text-muted-foreground",
+                        confirmPassword === password ? "text-green-400" : "text-pink-500"
+                      )}
+                    />
+                    <div
+                      onClick={toggleConfirmPasswordVisibility}
+                      className="absolute right-3.5 top-1/2 translate-y-[-50%]"
+                    >
+                      {isVisibleConfirmPassword ? (
+                        <Eye className="hover:text-[#804DFE]" />
+                      ) : (
+                        <EyeOff className="hover:text-[#804DFE]" />
+                      )}
+                    </div>
+                  </div>
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-[#804DFE] text-white hover:bg-secondary"
+                  className="w-full bg-[#804DFE] !py-6 text-white hover:bg-secondary"
                   onClick={scrollNext}
                 >
-                  Confirm2
+                  Done
                 </Button>
               </div>
+
             </div>
           </CarouselItem>
 
-          {/* specialtyDoc ? specialtyDoc.name || specialtyDoc.specialtyName */}
-        </CarouselContent>
-
-        {/* <CarouselPrevious />
-        <CarouselNext /> */}
-
-        {current == 5 ? (
-          <Button
-            variant="outline"
-            className={cn(
-              "relative",
-              "bottom-0 left-10 -translate-y-1/2"
-            )}
-          // onClick={handleClick}
-          >
-            Calculate
-          </Button>
-        ) : (
-          ""
-        )}
-
-        {/* <div className="py-2 text-center text-sm text-muted-foreground">
-                Slide {current} of {count}
-              </div> */}
-      </Carousel>
-
-      {/* <div className="flex h-auto w-full items-center justify-center lg:m-0 lg:h-full lg:flex-1">
-        <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
-          <div className="grid min-w-full gap-2 text-left">
-            <h1 className="text-26xl font-bold">Forgot Your Password?</h1>
-            <h1 className="text-26xl font-bold">No problem.</h1>
-            <p className="text-balance text-muted-foreground">
-              Please enter your details
-            </p>
-          </div>
-          <div className="grid gap-4">
-            <div className="grid w-full gap-2">
-              <Label className="text-[#804DFE]" htmlFor="email">
-                Email
-              </Label>
-              <Input value={email} id="email" type="email" placeholder="ajju40959@gmail.com" required onChange={(e) => setEmail(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
-
+          <CarouselItem>
+            <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
+              <h1 className="text-center text-26xl font-bold">
+                Congratulations, you’ve changed the password
+              </h1>
+              <div className="mt-3 flex w-full items-center justify-center">
+                <Link href="/login">
+                  <Button
+                    variant={"outline"}
+                    type="submit"
+                    className="mx-auto w-64"
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <Button
-              type="submit"
-              className="w-full bg-[#804DFE] text-white hover:bg-secondary"
-            >
-              Confirm
-            </Button>
-          </div>
-        </div>
-      </div> */}
+          </CarouselItem>
+        </CarouselContent>
+      </Carousel>
     </div>
   )
 }

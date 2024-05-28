@@ -273,7 +273,7 @@ const Login: NextPage = () => {
 
 
 
-  const handleSignIn = async (e:any) => {
+  const handleSignIn = async (e: any) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -283,6 +283,7 @@ const Login: NextPage = () => {
           title: "User signed in successfully!",
           description: `Continue Using Ustudy ${user.uid}`,
         })
+        router.push('/calculator')
       })
       .catch((error) => {
         toast({
@@ -293,7 +294,6 @@ const Login: NextPage = () => {
           </div>),
         })
       });
-      router.push('/calculator')
 
   };
   const [isVisiblePassword, setIsVisiblePassword] = React.useState(true)
@@ -329,29 +329,10 @@ const Login: NextPage = () => {
             </p>
           </div>
           <div className="grid gap-4">
-            {/* <div className="grid w-full gap-2">
-              <Label className="text-[#804DFE]" htmlFor="email">Username</Label>
-              <NextuiInput
-                type="text"
-                variant="bordered"
-                defaultValue="manfromexitence"
-                errorMessage="Please enter a valid name"
-                className="text-muted-foreground w-full rounded-md !border"
-              />
-            </div> */}
             <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
                 Email or Username
               </Label>
-              {/* <NextuiInput
-                type="email"
-                variant="bordered"
-                defaultValue="ajju40959@gmail.com"
-                isInvalid={true}
-                errorMessage="Please enter a valid email"
-                className=
-                "w-full rounded-md !border text-muted-foreground"
-              /> */}
               <Input value={email} id="email" type="email" placeholder="ajju40959@gmail.com" required onChange={(e) => setEmail(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
 
             </div>
@@ -382,26 +363,6 @@ const Login: NextPage = () => {
                   )}
                 </div>
               </div>
-              {/* <NextuiInput
-                variant="bordered"
-                placeholder="Enter your password"
-                defaultValue="Enter your password"
-                endContent={
-                  <button
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                  >
-                    {isVisiblePassword ? (
-                      <Eye className="text-default-400 text-2xl pointer-events-none" />
-                    ) : (
-                      <EyeOff className="text-default-400 text-2xl pointer-events-none" />
-                    )}
-                  </button>
-                }
-                type={isVisiblePassword ? "text" : "password"}
-                className="w-full rounded-md !border text-muted-foreground"
-              /> */}
             </div>
             <Link
               href="/forgot-password"
@@ -409,39 +370,8 @@ const Login: NextPage = () => {
             >
               Forgot your password?
             </Link>
-            {/* <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label className="text-[#804DFE]" htmlFor="password">Confirm Password</Label>
-              </div>
-              <NextuiInput
-                defaultValue="Enter your confirm password"
-                variant="bordered"
-                placeholder="Enter your password"
-                endContent={
-                  <button className="focus:outline-none" type="button" onClick={toggleConfirmPasswordVisibility}>
-                    {isVisibleConfirmPassword ? (
-                      <Eye className="text-default-400 pointer-events-none text-2xl" />
-                    ) : (
-                      <EyeOff className="text-default-400 pointer-events-none text-2xl" />
-                    )}
-                  </button>
-                }
-                type={isVisibleConfirmPassword ? "text" : "password"}
-                className="text-muted-foreground w-full rounded-md !border"
-
-              />
-            </div> */}
-            {/* <div className="flex w-full items-center space-x-2">
-              <Checkbox id="terms" />
-              <label
-                htmlFor="terms"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                I agree to the term of services and privacy statement
-              </label>
-            </div> */}
             <Button
-            onClick={handleSignIn}
+              onClick={handleSignIn}
               className="w-full bg-[#804DFE] text-white hover:bg-secondary"
             >
               Login
@@ -462,40 +392,4 @@ const Login: NextPage = () => {
   )
 }
 
-export default Login
-
-// "use client"
-
-// /* eslint-disable tailwindcss/no-contradicting-classname */
-// import type { NextPage } from "next"
-
-// // import Header from "../components/header";
-// import FrameComponent from "@/components/login/frame-component"
-
-// // import Footer from "../components/footer";
-
-// const LogInWelcome: NextPage = () => {
-//   return (
-//     <div className="relative box-border flex h-[1109px] w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-[235px] pt-0 leading-[normal] tracking-[normal] mq1225:h-auto">
-//       {/* <Header /> */}
-//       <main className="flex max-w-full shrink-0 flex-row items-end justify-start self-stretch text-center font-headings-desktop-poppins-16px-regular text-13xl text-shade-white [debug_commit:1de1738] [row-gap:20px] mq1225:flex-wrap">
-//         <div className="flex min-h-[785px] min-w-[532px] max-w-full flex-1 flex-row items-end justify-start bg-[url('/frame-2@3x.png')] bg-cover bg-top bg-no-repeat mq1225:min-h-[auto] mq750:min-w-full">
-//           <img
-//             className="relative hidden max-h-full w-[818px] max-w-full object-cover"
-//             alt=""
-//             src="/rectangle-12911.png"
-//           />
-//           <div className="z-[1] box-border flex max-w-full flex-1 flex-row items-start justify-start bg-gray-500 px-[294px] py-[87px] [backdrop-filter:blur(33px)] mq1050:box-border mq1050:px-[147px] mq450:box-border mq450:px-5">
-//             <h1 className="font-inherit relative m-0 text-inherit font-semibold mq750:text-7xl mq450:text-lgi">
-//               uStudy for all
-//             </h1>
-//           </div>
-//         </div>
-//         <FrameComponent />
-//       </main>
-//       {/* <Footer /> */}
-//     </div>
-//   )
-// }
-
-// export default LogInWelcome
+export default Login;

@@ -329,23 +329,10 @@ const Signup: NextPage = () => {
             </p>
           </div>
           <div className="grid gap-4">
-            {/* <div className="grid w-full gap-2">
-              <Label className="text-[#804DFE]" htmlFor="email">
-                Name
-              </Label>
-              <Input id="name" placeholder="ManFromExsitence" required onChange={(e) => setName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
-            </div> */}
             <div className="grid w-full gap-2">
               <Label className="text-[#804DFE]" htmlFor="email">
                 Username
               </Label>
-              {/* <NextuiInput
-                type="text"
-                variant="bordered"
-                defaultValue="manfromexitence"
-                errorMessage="Please enter a valid name"
-                className="w-full rounded-md !border text-muted-foreground"
-              /> */}
               <Input value={userName} id="userName" placeholder="manfromexistence" required onChange={(e) => setUserName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
 
             </div>
@@ -354,16 +341,6 @@ const Signup: NextPage = () => {
               <Label className="text-[#804DFE]" htmlFor="email">
                 Email
               </Label>
-              {/* <NextuiInput
-                type="email"
-                variant="bordered"
-                aria-placeholder="ajju40959@gmail.com"
-                placeholder="ajju40959@gmail.com"
-                isInvalid={true}
-                errorMessage="Please enter a valid email"
-                className="w-full rounded-md !border"
-              />
-               <NextuiInput type="email" placeholder="Enter your email" /> */}
               <Input value={email} id="email" type="email" placeholder="ajju40959@gmail.com" required onChange={(e) => setEmail(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
 
             </div>
@@ -394,28 +371,6 @@ const Signup: NextPage = () => {
                   )}
                 </div>
               </div>
-
-
-              {/* <NextuiInput
-                required
-                variant="bordered"
-                placeholder="Enter your password"
-                endContent={
-                  <button
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                  >
-                    {isVisiblePassword ? (
-                      <Eye className="text-default-400 text-2xl pointer-events-none" />
-                    ) : (
-                      <EyeOff className="text-default-400 text-2xl pointer-events-none" />
-                    )}
-                  </button>
-                }
-                type={isVisiblePassword ? "text" : "password"}
-                className="w-full rounded-md !border text-muted-foreground"
-              /> */}
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
@@ -423,26 +378,6 @@ const Signup: NextPage = () => {
                   Confirm Password
                 </Label>
               </div>
-              {/* <NextuiInput
-                required
-                variant="bordered"
-                placeholder="Enter your password"
-                endContent={
-                  <button
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={toggleConfirmPasswordVisibility}
-                  >
-                    {isVisibleConfirmPassword ? (
-                      <Eye className="text-default-400 text-2xl pointer-events-none" />
-                    ) : (
-                      <EyeOff className="text-default-400 text-2xl pointer-events-none" />
-                    )}
-                  </button>
-                }
-                type={isVisibleConfirmPassword ? "text" : "password"}
-                className="w-full rounded-md !border text-muted-foreground"
-              /> */}
               <div className="w-full relative">
                 <Input
                   required
@@ -476,15 +411,9 @@ const Signup: NextPage = () => {
                 I agree to the term of services and privacy statement
               </label>
             </div>
-            {/* <Button
-onClick={handleSignUp}
-              className="w-full bg-[#804DFE] text-white hover:bg-secondary"
-            >
-              Signup
-            </Button> */}
+
             <Dialog open={userDetailsDialog}>
               <DialogTrigger>
-                {/* <Button onClick={handleSignUp} variant="outline">Sign Up</Button> */}
                 <Button
                   onClick={handleSignUp}
                   className="w-full bg-[#804DFE] text-white hover:bg-secondary"
@@ -524,9 +453,6 @@ onClick={handleSignUp}
                 </div>
               </DialogContent>
             </Dialog>
-            {/* <Button variant="outline" className="w-full">
-              Login with Google
-            </Button> */}
           </div>
           <div className="min-w-full space-x-2.5 text-center text-sm !mb-7">
             <span>Already have an account?</span>
