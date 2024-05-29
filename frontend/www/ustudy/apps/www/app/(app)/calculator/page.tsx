@@ -1,6 +1,16 @@
 "use client"
 
 /* eslint-disable tailwindcss/no-contradicting-classname */
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { useCallback, useEffect, useState } from "react"
 import * as React from "react"
 import type { NextPage } from "next"
@@ -1429,10 +1439,8 @@ const CalculatorPage: NextPage = () => {
     // setLastUniversityCode(tempLastUniversityCode)
   }
 
-
   return (
     <div className="calculator">
-      {/* <FrameComponent /> */}
       <section className="min-h-min">
         <div className="relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px] mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5">
           <div className="relative z-0 hidden h-[248px] w-[1440px] max-w-full [background:linear-gradient(180deg,_)]" />
@@ -1484,6 +1492,8 @@ const CalculatorPage: NextPage = () => {
 
             <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
               uSTUDY Calculator
+              {quota}
+              {specialtyDoc && specialtyDoc.name || "No specialtyDoc"}
               {/* {JSON.stringify(specialtyDoc)} */}
               {/* {specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition} */}
               {/* {calculateAdmissionChance()} */}
@@ -1771,6 +1781,7 @@ const CalculatorPage: NextPage = () => {
                           <Command>
                             <CommandInput placeholder="Search Specialties..." />
                             <CommandGroup>
+                              {/* 
                               {specialties.map((framework) => {
                                 const isSubjectMatch = subjectsTag.some((tag) =>
                                   tag.text.some((text: string) => framework.subjects.includes(text))
@@ -1796,7 +1807,36 @@ const CalculatorPage: NextPage = () => {
                                     {framework.name || framework.id}
                                   </CommandItem>
                                 ) : null;
+                              })} */}
+                              {specialties.map((framework) => {
+                                const matchedSubjects = subjectsTag.filter((tag) =>
+                                  tag.text.some((text: string) => framework.subjects.includes(text))
+                                );
+                                const isSubjectMatch = matchedSubjects.length >= 2;
+                                return isSubjectMatch ? (
+                                  <CommandItem
+                                    key={framework.id}
+                                    value={framework.name || framework.id}
+                                    onSelect={(currentValue) => {
+                                      setSpecialityIdentifier(framework.id);
+                                      setValue(currentValue === value ? "" : currentValue);
+                                      setOpen(false);
+                                    }}
+                                  >
+                                    <Check
+                                      className={cn(
+                                        "mr-2 size-4",
+                                        value === framework.name
+                                          ? "opacity-100"
+                                          : value === framework.id ? "opacity-100" : "opacity-0"
+                                      )}
+                                    />
+                                    {framework.name || framework.id}
+                                  </CommandItem>
+                                ) : null;
                               })}
+
+
                               {specialties.map((framework) => {
                                 return showAllSpecialty && subjectsTag.length > 0 && (<CommandItem
                                   key={framework.id}
@@ -1846,8 +1886,8 @@ const CalculatorPage: NextPage = () => {
                                 </CommandItem>);
                               })}
 
-                              {!specialties.some((framework) =>
-                                subjectsTag.some((tag) =>
+                              {/* {!specialties.some((framework) =>
+                                subjectsTag.filter((tag) =>
                                   tag.text.some((text: string) => framework.subjects.includes(text))
                                 )
                               ) && !showAllSpecialty && subjectsTag.length > 0 && (
@@ -1858,6 +1898,19 @@ const CalculatorPage: NextPage = () => {
                                     </Button>
                                   </div>
 
+                                )} */}
+                              {!specialties.some((framework) => {
+                                const matchedSubjects = subjectsTag.filter((tag) =>
+                                  tag.text.some((text: string) => framework.subjects.includes(text))
+                                );
+                                return matchedSubjects.length >= 2;
+                              }) && !showAllSpecialty && subjectsTag.length > 0 && (
+                                  <div className="w-full flex items-center justify-center flex-col">
+                                    <span className="text-sm w-full text-center">No Specialty found by subjects combination you provided.</span>
+                                    <Button className="my-3 mx-auto" onClick={() => setShowAllSpecialty(!showAllSpecialty)}>
+                                      Choose from all specialties
+                                    </Button>
+                                  </div>
                                 )}
 
                               {subjectsTag.length === 0 && (
@@ -2116,8 +2169,6 @@ const CalculatorPage: NextPage = () => {
                     </div>
                   </div>
                 </CarouselItem>
-
-                {/* specialtyDoc ? specialtyDoc.name || specialtyDoc.specialtyName */}
               </CarouselContent>
 
               <CarouselPrevious />
