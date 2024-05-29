@@ -1419,7 +1419,6 @@ const CalculatorPage: NextPage = () => {
   // setCalculation(calculateChance(userScore, possibleScore));
 
   const handleClick = () => {
-    let result: any, calculatedValue: any;
 
     switch (PossibleScore) {
       case 0:
@@ -1439,7 +1438,7 @@ const CalculatorPage: NextPage = () => {
         // }
         // setResult(result.toFixed(2));
         // calculatedValue = result.toFixed(2);
-    
+
         // setTasks((prevTasks) => [
         //   ...prevTasks,
         //   {
@@ -1459,14 +1458,16 @@ const CalculatorPage: NextPage = () => {
       //   setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreRuralQuota && specialtyDoc.possibleScoreRuralQuota || 0)
       //   break;
       default:
+        let result: any, calculatedValue: any;
+
         if (ENTPOINT >= 50) {
-          result = 50 + ((ENTPOINT - PossibleScore || specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition) + (140 - PossibleScore || specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition)) / 3;
+          result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
         } else {
           result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
         }
         setResult(result.toFixed(2));
-        calculatedValue = result.toFixed(2);
-    
+        calculatedValue = result.toFixed(0) > 100 ? 100 : result.toFixed(2);
+
         setTasks((prevTasks) => [
           ...prevTasks,
           {
@@ -1481,7 +1482,6 @@ const CalculatorPage: NextPage = () => {
             universities: specialtyDoc.universities ? specialtyDoc.universities : "No universities are provided.",
           },
         ])
-        break;
         toast({
           title: "Calculation is done successfully!",
           description: (
@@ -1490,6 +1490,8 @@ const CalculatorPage: NextPage = () => {
             </div>
           ),
         })
+        break;
+
     }
 
     // let result: any, calculatedValue: any;
@@ -1611,8 +1613,8 @@ const CalculatorPage: NextPage = () => {
                         setPossibleScore(specialtyDoc && specialtyDoc.possibleGeneralQuota && specialtyDoc.possibleGeneralQuota || 0)
                         break;
                     } */}
-              <p>{PossibleScore}</p>
-              {quota}
+              {/* <p>{PossibleScore}</p>
+              {quota} */}
               {/* {specialtyDoc && specialtyDoc.name || "No specialtyDoc"} */}
               {/* {JSON.stringify(specialtyDoc)} */}
               {/* {specialtyDoc && specialtyDoc.possibleScoreGeneralCompetition && specialtyDoc.possibleScoreGeneralCompetition} */}
