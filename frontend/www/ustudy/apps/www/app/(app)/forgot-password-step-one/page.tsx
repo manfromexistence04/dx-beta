@@ -47,7 +47,6 @@ const ForgotPasswordStepOne: NextPage = () => {
       <div className="flex h-auto w-full items-center justify-center lg:m-0 lg:h-full lg:flex-1">
         <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
           <h1 className="text-center text-26xl font-bold">Check you Inbox!</h1>
-
           <div className="my-10 grid min-w-full gap-2 text-center">
             <h1 className="flex flex-col items-center justify-center font-bold">
               We’ve sent recover password link to
@@ -58,106 +57,16 @@ const ForgotPasswordStepOne: NextPage = () => {
             </p>
           </div>
           <div className="flex w-full items-center justify-center">
-            {/* <div className="grid w-full gap-2">
-              <Label className="text-[#804DFE]" htmlFor="email">Username</Label>
-              <NextuiInput
-                type="text"
-                variant="bordered"
-                defaultValue="manfromexitence"
-                errorMessage="Please enter a valid name"
-                className="text-muted-foreground w-full rounded-md !border"
-              />
-            </div> */}
-            {/* <div className="grid w-full gap-2">
-              <Label className="text-[#804DFE]" htmlFor="email">Email</Label>
-              <NextuiInput
-                type="email"
-                variant="bordered"
-                defaultValue="ajju40959@gmail.com"
-                isInvalid={true}
-                errorMessage="Please enter a valid email"
-                className="text-muted-foreground w-full rounded-md !border"
-              />
-            </div> */}
-            {/* <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label className="text-[#804DFE]" htmlFor="password">Password</Label>
-
-              </div>
-              <NextuiInput
-                variant="bordered"
-                placeholder="Enter your password"
-                defaultValue="Enter your password"
-
-                endContent={
-                  <button className="focus:outline-none" type="button" onClick={togglePasswordVisibility}>
-                    {isVisiblePassword ? (
-                      <Eye className="text-default-400 pointer-events-none text-2xl" />
-                    ) : (
-                      <EyeOff className="text-default-400 pointer-events-none text-2xl" />
-                    )}
-                  </button>
-                }
-                type={isVisiblePassword ? "text" : "password"}
-                className="text-muted-foreground w-full rounded-md !border"
-
-              />
-            </div> */}
-            {/* <Link
-                  href="/forgot-password"
-                  className="flex w-full items-end justify-end text-sm underline"
-                >
-                  Forgot your password?
-                </Link> */}
-            {/* <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label className="text-[#804DFE]" htmlFor="password">Confirm Password</Label>
-              </div>
-              <NextuiInput
-                defaultValue="Enter your confirm password"
-                variant="bordered"
-                placeholder="Enter your password"
-                endContent={
-                  <button className="focus:outline-none" type="button" onClick={toggleConfirmPasswordVisibility}>
-                    {isVisibleConfirmPassword ? (
-                      <Eye className="text-default-400 pointer-events-none text-2xl" />
-                    ) : (
-                      <EyeOff className="text-default-400 pointer-events-none text-2xl" />
-                    )}
-                  </button>
-                }
-                type={isVisibleConfirmPassword ? "text" : "password"}
-                className="text-muted-foreground w-full rounded-md !border"
-
-              />
-            </div> */}
-            {/* <div className="flex w-full items-center space-x-2">
-              <Checkbox id="terms" />
-              <label
-                htmlFor="terms"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                I agree to the term of services and privacy statement
-              </label>
-            </div> */}
             <Link href="/forgot-password-step-two">
               <Button
                 variant={"outline"}
                 type="submit"
-                className="mx-auto w-64 w-full"
+                className="mx-auto w-64"
               >
                 Go to Login page
               </Button>
             </Link>
           </div>
-          {/* <div className="mt-4 min-w-full space-x-1 text-center text-sm">
-            <span>
-              Don't have an account?
-            </span>
-            <Link href="login" className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text font-bold text-transparent">
-              Signup
-            </Link>
-          </div> */}
         </div>
       </div>
     </div>

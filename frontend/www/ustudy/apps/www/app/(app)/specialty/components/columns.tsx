@@ -42,7 +42,7 @@ export const columns: any[] | any = [
       <DataTableColumnHeader column={column} title="Specialty Id" />
     ),
     cell: ({ row }:any) => (
-      <div className="max-w-[100px] truncate font-medium">
+      <div className="truncate font-medium select-all">
         {row.getValue("id") || <CircleSlash />}
       </div>
     ),

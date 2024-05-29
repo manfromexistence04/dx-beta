@@ -1,175 +1,1224 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/MWA9gHGNga7
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+"use client"
 
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
+/* eslint-disable tailwindcss/no-contradicting-classname */
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { toast } from "@/registry/default/ui/use-toast"
+import type { NextPage } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import { Input as NextuiInput } from "@nextui-org/react"
+import { Eye, EyeOff } from "lucide-react"
+import { cn } from "@/lib/utils"
+import FrameComponent from "@/components/signup/frame-component"
+import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
+import { buttonVariants } from "@/registry/default/ui/button"
+import { Checkbox } from "@/registry/default/ui/checkbox"
+import { Input } from "@/registry/default/ui/input"
+import { Label } from "@/registry/default/ui/label"
+import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
+import React, { useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import { useAuth } from "@clerk/nextjs";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  onSnapshot,
+  query,
+  startAfter,
+  updateDoc,
+} from "firebase/firestore"
+import { initializeApp } from "firebase/app"
+import { useToast } from "@/registry/default/ui/use-toast"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { set } from 'date-fns';
+import { useRouter } from 'next/navigation'
+const firebaseConfig = {
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+}
+
+const app = initializeApp(firebaseConfig)
+const db: any = getFirestore(app)
+const auth = getAuth(app);
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/registry/default//ui/accordion"
-import { Button } from "@/registry/default//ui/button"
-import { Card, CardContent } from "@/registry/default//ui/card"
-import { Checkbox } from "@/registry/default//ui/checkbox"
-import { Input } from "@/registry/default//ui/input"
-import { Label } from "@/registry/default//ui/label"
+} from "@/registry/default/ui/accordion"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/registry/default/ui/table"
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react"
 
-export default function Component() {
+type CarouselApi = UseEmblaCarouselType[1]
+type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
+type CarouselOptions = UseCarouselParameters[0]
+type CarouselPlugin = UseCarouselParameters[1]
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+//   authDomain: "ustudy-96678.firebaseapp.com",
+//   projectId: "ustudy-96678",
+//   storageBucket: "ustudy-96678.appspot.com",
+//   messagingSenderId: "581632635532",
+//   appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+// }
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig)
+// // Database
+// const db: any = getFirestore(app)
+
+function uuid() {
+  return crypto.getRandomValues(new Uint32Array(1))[0].toString()
+}
+
+type CarouselProps = {
+  opts?: CarouselOptions
+  plugins?: CarouselPlugin
+  orientation?: "horizontal" | "vertical"
+  setApi?: (api: CarouselApi) => void
+}
+
+type CarouselContextProps = {
+  carouselRef: ReturnType<typeof useEmblaCarousel>[0]
+  api: ReturnType<typeof useEmblaCarousel>[1]
+  scrollPrev: () => void
+  scrollNext: () => void
+  canScrollPrev: boolean
+  canScrollNext: boolean
+} & CarouselProps
+
+const CarouselContext = React.createContext<any | null>(null)
+
+function useCarousel() {
+  const context = React.useContext(CarouselContext)
+
+  if (!context) {
+    throw new Error("useCarousel must be used within a <Carousel />")
+  }
+
+  return context
+}
+
+const Carousel = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & CarouselProps
+>(
+  (
+    {
+      orientation = "horizontal",
+      opts,
+      setApi,
+      plugins,
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const [carouselRef, api] = useEmblaCarousel(
+      {
+        ...opts,
+        axis: orientation === "horizontal" ? "x" : "y",
+      },
+      plugins
+    )
+    const [canScrollPrev, setCanScrollPrev] = React.useState(false)
+    const [canScrollNext, setCanScrollNext] = React.useState(false)
+
+    const onSelect = React.useCallback((api: CarouselApi) => {
+      if (!api) {
+        return
+      }
+
+      setCanScrollPrev(api.canScrollPrev())
+      setCanScrollNext(api.canScrollNext())
+    }, [])
+
+    const scrollPrev = React.useCallback(() => {
+      api?.scrollPrev()
+    }, [api])
+
+    const scrollTo = React.useCallback(() => {
+      api?.scrollTo(0, true)
+    }, [api])
+
+    const scrollNext = React.useCallback(() => {
+      api?.scrollNext()
+    }, [api])
+
+    const handleKeyDown = React.useCallback(
+      (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault()
+          scrollPrev()
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault()
+          scrollNext()
+        }
+      },
+      [scrollPrev, scrollNext]
+    )
+
+    React.useEffect(() => {
+      if (!api || !setApi) {
+        return
+      }
+
+      setApi(api)
+    }, [api, setApi])
+
+    React.useEffect(() => {
+      if (!api) {
+        return
+      }
+
+      onSelect(api)
+      api.on("reInit", onSelect)
+      api.on("select", onSelect)
+
+      return () => {
+        api?.off("select", onSelect)
+      }
+    }, [api, onSelect])
+
+    return (
+      <CarouselContext.Provider
+        value={{
+          carouselRef,
+          api: api,
+          opts,
+          orientation:
+            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+          scrollPrev,
+          scrollNext,
+          canScrollPrev,
+          canScrollNext,
+          scrollTo,
+        }}
+      >
+        <div
+          ref={ref}
+          onKeyDownCapture={handleKeyDown}
+          className={cn("relative", className)}
+          role="region"
+          aria-roledescription="carousel"
+          {...props}
+        >
+          {children}
+        </div>
+      </CarouselContext.Provider>
+    )
+  }
+)
+Carousel.displayName = "Carousel"
+
+const CarouselContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const { carouselRef, orientation } = useCarousel()
+
   return (
-    <>
-      <section className="w-full bg-background py-12 md:py-24 lg:py-32">
-        <div className="container grid items-center gap-8 px-4 md:px-6 lg:grid-cols-2">
-          <div className="space-y-4">
-            <h1 className="sm:text-4xl text-3xl font-bold tracking-tighter md:text-5xl">
-              Find Your Dream Job
-            </h1>
-            <p className="max-w-[600px] text-gray-500  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Discover the perfect job opportunity that aligns with your skills
-              and passions. Browse our extensive listings and apply today.
+    <div ref={carouselRef} className="overflow-hidden">
+      <div
+        ref={ref}
+        className={cn(
+          "flex",
+          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          className
+        )}
+        {...props}
+      />
+    </div>
+  )
+})
+CarouselContent.displayName = "CarouselContent"
+
+const CarouselItem = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => {
+  const { orientation } = useCarousel()
+
+  return (
+    <div
+      ref={ref}
+      role="group"
+      aria-roledescription="slide"
+      className={cn(
+        "min-w-0 shrink-0 grow-0 basis-full",
+        orientation === "horizontal" ? "pl-4" : "pt-4",
+        className
+      )}
+      {...props}
+    />
+  )
+})
+CarouselItem.displayName = "CarouselItem"
+
+const CarouselPrevious = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  const { orientation, scrollNext, canScrollNext, scrollPrev, canScrollPrev } =
+    useCarousel()
+
+  return (
+    <Button
+      variant="outline"
+      className={cn(
+        "relative",
+        orientation === "horizontal"
+          ? "bottom-0 left-1 -translate-y-1/2"
+          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+        className,
+        !canScrollPrev ? "hidden" : !canScrollNext ? "hidden" : "inline-flex"
+      )}
+      onClick={scrollPrev}
+      {...props}
+    >
+      Back
+    </Button>
+  )
+})
+CarouselPrevious.displayName = "CarouselPrevious"
+
+const CarouselNext = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  const {
+    orientation,
+    scrollNext,
+    canScrollNext,
+    scrollPrev,
+    canScrollPrev,
+    scrollTo,
+  } = useCarousel()
+
+  return (
+    <Button
+      variant={variant}
+      className={cn(
+        "relative",
+        orientation === "horizontal"
+          ? "bottom-0 -translate-y-1/2"
+          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+        className,
+        !canScrollPrev ? "left-0" : "left-5"
+      )}
+      onClick={!canScrollNext ? scrollTo : scrollNext}
+      {...props}
+    >
+      {/* <ArrowRight className="size-4" />
+      <span className="sr-only">Next slide</span> */}
+      {/* {!canScrollNext ? "Click Back To Calculate Again" : "Next"} */}
+      {!canScrollPrev ? "Start" : !canScrollNext ? "Calculate Again" : "Next"}
+
+      {/* Next */}
+    </Button>
+  )
+})
+CarouselNext.displayName = "CarouselNext"
+
+
+
+const Dialog = DialogPrimitive.Root
+
+const DialogTrigger = DialogPrimitive.Trigger
+
+const DialogPortal = DialogPrimitive.Portal
+
+const DialogClose = DialogPrimitive.Close
+
+const DialogOverlay = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      "blur fixed inset-0 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+  />
+))
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DialogPortal>
+    <DialogOverlay />
+    <DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+        <X className="size-4" />
+        <span className="sr-only">Close</span>
+      </DialogPrimitive.Close>
+    </DialogPrimitive.Content>
+  </DialogPortal>
+))
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+const DialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-1.5 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+DialogHeader.displayName = "DialogHeader"
+
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+DialogFooter.displayName = "DialogFooter"
+
+const DialogTitle = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Title
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-none tracking-tight",
+      className
+    )}
+    {...props}
+  />
+))
+DialogTitle.displayName = DialogPrimitive.Title.displayName
+
+const DialogDescription = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+// export {
+//   Dialog,
+//   DialogPortal,
+//   DialogOverlay,
+//   DialogClose,
+//   DialogTrigger,
+//   DialogContent,
+//   DialogHeader,
+//   DialogFooter,
+//   DialogTitle,
+//   DialogDescription,
+// }
+
+
+
+
+
+
+
+
+
+type QuestionOption = {
+  a: string;
+  b: string;
+};
+
+type Question = {
+  [key: string]: string;
+} & QuestionOption;
+
+type QuestionsArray = Question[];
+
+
+let questions: QuestionsArray = [
+  {
+    "quiz1": "In a social gathering, do you feel more energized by interacting with a large group of people or by\r\n having one-on-one conversations?",
+    a: "Large group interactions",
+    b: "One-on-one conversations",
+  }, {
+    "quiz2": "How do you typically recharge after a busy day?",
+    a: "Spending time with friends or engaging in social activities",
+    b: "Having some alone time to relax and unwind",
+  }, {
+    "quiz3": "When facing a challenge, do you prefer brainstorming ideas with others or working through it\r\n independently?",
+    a: "Brainstorming with others",
+    b: "Working through it independently",
+  }, {
+    "quiz4": "In your free time, do you find yourself seeking out social events and gatherings or enjoying quieter\r\n activities at home?",
+    a: "Social events and gatherings",
+    b: "Quieter activities at home",
+  }, {
+    "quiz5": "How do you feel about small talk?",
+    a: "Enjoy it and find it easy to engage in",
+    b: "Find it somewhat awkward or draining",
+  }, {
+    "quiz6": "When making decisions, do you rely more on your own instincts and feelings or seek input from\r\n others?",
+    a: "Rely on own instincts and feelings",
+    b: "Seek input from others",
+  }, {
+    "quiz7": "How do you handle new and unfamiliar situations?",
+    a: "Embrace them with enthusiasm",
+    b: "Approach them with caution",
+  }, {
+    "quiz8": "In a work or team setting, do you prefer open office spaces and collaboration or individual\r\n workspaces?",
+    a: "Open office spaces and collaboration",
+    b: "Individual workspaces",
+  }, {
+    "quiz9": "How do you typically respond to being the focal point in a group setting?",
+    a: "Embrace it and feel at ease",
+    b: "Prefer to avoid being the center of attention",
+  }, {
+    "quiz10": "When planning a weekend, do you lean towards social plans with friends or quiet time for\r\n yourself?",
+    a: "Social plans with friends",
+    b: "Quiet time for yourself",
+  }, {
+    "quiz11": "When meeting new people, are you more likely to initiate conversations and introductions or wait for\r\n others to approach you?",
+    a: "Initiate conversations and introductions",
+    b: "Wait for others to approach you",
+  }, {
+    "quiz12": "When faced with a problem, do you prefer to rely on concrete facts and details or explore\r\n possibilities and potential meanings?",
+    a: "Rely on concrete facts and details",
+    b: "Explore possibilities and potential meanings",
+  }, {
+    "quiz13": "How do you approach new information or learning?",
+    a: "Prefer practical, hands-on experiences",
+    b: "Enjoy exploring theories and concepts",
+  }, {
+    "quiz14": "In a conversation, are you more focused on the present and current details or on future possibilities\r\n and patterns?",
+    a: "Present and current details",
+    b: "Future possibilities and patterns",
+  }, {
+    "quiz15": "When planning a trip, do you prefer to have a detailed itinerary and clear schedule or leave room for\r\n spontaneous experiences and changes?",
+    a: "Detailed itinerary and clear schedule",
+    b: "Leave room for spontaneous experiences and changes",
+  }, {
+    "quiz16": "How do you make decisions?",
+    a: "Based on practical considerations and real-world implications",
+    b: "Consider potential outcomes and future possibilities",
+  }, {
+    "quiz17": "When working on a project, do you tend to focus on the specific tasks at hand or the overall vision\r\n and goals?",
+    a: "Specific tasks at hand",
+    b: "Overall vision and goals",
+  }, {
+    "quiz18": "In a group discussion, do you prefer to stick to the facts and details or contribute ideas and\r\n theories?",
+    a: "Stick to facts and details",
+    b: "Contribute ideas and theories",
+  }, {
+    "quiz19": "How do you handle unexpected changes or disruptions to your plans?",
+    a: "Prefer stability and may find changes challenging",
+    b: "Adapt well to changes and enjoy the flexibility",
+  }, {
+    "quiz20": "When recalling a past event, do you focus more on the specific details and occurrences or the overall\r\n impressions and meanings?",
+    a: "Specific details and occurrences",
+    b: "Overall impressions and meanings",
+  }, {
+    "quiz21": "When reading a book or watching a movie, do you pay close attention to the plot and events or look\r\n for deeper meanings and symbolism?",
+    a: "Plot and events",
+    b: "Deeper meanings and symbolism",
+  }, {
+    "quiz22": "How do you prefer to receive information?",
+    a: "Clear and straightforward explanations",
+    b: "Rich with possibilities and potential connections",
+  }, {
+    "quiz23": "When faced with a decision, do you rely more on your past experiences and proven methods or seek out\r\n innovative and creative solutions?",
+    a: "Past experiences and proven methods",
+    b: "Innovative and creative solutions",
+  }, {
+    "quiz24": "In a brainstorming session, do you tend to come up with practical, actionable ideas or imaginative,\r\n out-of-the-box concepts?",
+    a: "Practical, actionable ideas",
+    b: "Imaginative, out-of-the-box concepts",
+  }, {
+    "quiz25": "How do you approach problem-solving?",
+    a: "Step-by-step and methodical approach",
+    b: "Approaching with creativity and openness",
+  }, {
+    "quiz26": "When making decisions, do you prioritize logical analysis and objective criteria or consider the\r\n impact on people and relationships?",
+    a: "Logical analysis and objective criteria",
+    b: "Consider the impact on people and relationships",
+  }, {
+    "quiz27": "How do you handle criticism or feedback?",
+    a: "Focus on the facts and seek constructive solutions",
+    b: "Consider the emotional aspects and how it affects relationships",
+  }, {
+    "quiz28": "When faced with a problem, do you rely more on your head and reason or your heart and\r\n empathy?",
+    a: "Head and reason",
+    b: "Heart and empathy",
+  }, {
+    "quiz29": "How do you prioritize tasks and responsibilities?",
+    a: "Based on logical importance and efficiency",
+    b: "Considering the values and impact on people",
+  }, {
+    "quiz30": "In a group decision-making process, do you tend to advocate for the most logical and rational choice\r\n or the one that aligns with personal values and harmony?",
+    a: "Logical and rational choice",
+    b: "Aligns with personal values and harmony",
+  }, {
+    "quiz31": "When giving feedback, do you focus on providing objective analysis or consider the individual's\r\n feelings and emotional response?",
+    a: "Objective analysis",
+    b: "Consider the individual's feelings and emotional response",
+  }, {
+    "quiz32": "How do you express your opinions in a debate or discussion?",
+    a: "Emphasize facts, evidence, and logical reasoning",
+    b: "Consider personal values, emotions, and the impact on people",
+  }, {
+    "quiz33": "When solving a problem, do you prioritize efficiency and effectiveness, even if it means being blunt,\r\n or do you consider the feelings of those involved?",
+    a: "Prioritize efficiency and effectiveness",
+    b: "Consider the feelings of those involved",
+  }, {
+    "quiz34": "In a work environment, do you value objective performance metrics and results or prioritize a\r\n positive and supportive team culture?",
+    a: "Objective performance metrics and results",
+    b: "Positive and supportive team culture",
+  }, {
+    "quiz35": "How do you approach conflict resolution?",
+    a: "Focus on finding logical solutions and compromises",
+    b: "Consider the emotional needs and harmony of individuals involved",
+  }, {
+    "quiz36": "When planning an event or project, do you prioritize the logical steps and timeline or consider the\r\n emotional atmosphere and team dynamics?",
+    a: "Logical steps and timeline",
+    b: "Emotional atmosphere and team dynamics",
+  }, {
+    "quiz37": "How do you cope with stress or pressure?",
+    a: "Analyze the situation logically and strategize a plan",
+    b: "Seek emotional support and consider the impact on relationships",
+  }, {
+    "quiz38": "When making decisions, what holds more weight for you?",
+    a: "Objective data and analysis",
+    b: "Personal values and the impact on people",
+  }, {
+    "quiz39": "When providing feedback, do you prioritize offering constructive criticism and improvement\r\n suggestions or highlighting positive aspects and encouraging the individual?",
+    a: "Constructive criticism and improvement suggestions",
+    b: "Highlighting positive aspects and encouraging the individual",
+  }, {
+    "quiz40": "How do you feel about making plans and sticking to a schedule?",
+    a: "Enjoy making plans and prefer a structured schedule",
+    b: "Prefer flexibility and spontaneity, dislike strict schedules",
+  }, {
+    "quiz41": "When starting a project, do you prefer to have a detailed plan in place or do you like to explore\r\n possibilities and figure it out as you go?",
+    a: "Prefer to have a detailed plan",
+    b: "Like to explore possibilities and figure it out as you go",
+  }, {
+    "quiz42": "How do you approach deadlines?",
+    a: "Work diligently to meet deadlines well in advance",
+    b: "Tend to work better under pressure and close to the deadline",
+  }, {
+    "quiz43": "In a work setting, do you prefer a clear and organized workspace or are you comfortable with a more\r\n flexible and adaptable environment?",
+    a: "Prefer a clear and organized workspace",
+    b: "Comfortable with a more flexible and adaptable environment",
+  }, {
+    "quiz44": "When packing for a trip, do you plan and make a checklist in advance or pack on the fly, throwing in\r\n what feels right at the moment?",
+    a: "Plan and make a checklist in advance",
+    b: "Pack on the fly, throwing in what feels right",
+  }, {
+    "quiz45": "What do you do when your plans suddenly change?",
+    a: "Dislike unexpected changes and prefer to stick to the original plan",
+    b: "Adapt well to unexpected changes and enjoy the flexibility",
+  }, {
+    "quiz46": "When faced with a new opportunity, do you prefer to consider the advantages and disadvantages prior\r\n to making a decision or go with the flow and see where it takes you ?",
+    a: "Consider the advantages and disadvantages prior to deciding",
+    b: "Go with the flow and see where it takes you",
+  }, {
+    "quiz47": "How do you approach work tasks?",
+    a: "Like to have a set plan and follow it step by step",
+    b: "Enjoy being flexible and adapting as the situation evolves",
+  }, {
+    "quiz48": "When organizing your day, do you prefer to have a to-do list with specific tasks and deadlines or\r\n keep it open-ended and see where the day takes you?",
+    a: "To-do list with specific tasks and deadlines",
+    b: "Keep it open-ended and see where the day takes you",
+  }, {
+    "quiz49": "How do you feel about routine and predictability?",
+    a: "Prefer routine and find comfort in predictability",
+    b: "Dislike routine and enjoy spontaneity",
+  }, {
+    "quiz50": "In a decision-making process, do you like to reach a conclusion and move on or prefer to keep options\r\n open and gather more information?",
+    a: "Like to reach a conclusion and move on",
+    b: "Prefer to keep options open and gather more information",
+  }
+]
+
+
+// let FormSchema = z.object({});
+
+// for (let i = 0; i < questions.length; i++) {
+//   FormSchema = FormSchema.extend({
+//     [`quiz${i + 1}`]: z.enum(["a", "b"], {
+//       required_error: "You need to select an answer.",
+//     }),
+//   });
+// }
+
+// console.log(FormSchema);
+type QuizFormFields = {
+  [key: string]: "a" | "b";
+};
+
+let FormSchema = z.object({});
+
+for (let i = 0; i < questions.length; i++) {
+  FormSchema = FormSchema.extend({
+    [`quiz${i + 1}`]: z.enum(["a", "b"], {
+      required_error: "You need to select an answer.",
+    }),
+  });
+}
+
+console.log(FormSchema);
+
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/20K9R12fsjL
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
+
+function QuizResult() {
+  return (
+    <Card className="w-full max-w-md bg-[#804DFE] text-white mx-auto mt-32">
+      <CardHeader className="border-b border-white border-opacity-25 p-4">
+        <div className="flex items-center space-x-2">
+          <JapaneseYenIcon className="h-6 w-6" />
+          <CardTitle>Result</CardTitle>
+        </div>
+      </CardHeader>
+      <CardContent className="p-4">
+        <p>Close types: intellectual and office.</p>
+        <p>The opposite type is social.</p>
+        <div className="mt-4">
+          <CardTitle>Proclivities</CardTitle>
+          <ul className="list-disc pl-5">
+            <li>emitted by a smart contract. Maximum emission: 2 billion U</li>
+            <li>1.25% (25 m) of the token emission will be allocated to create liquidity on the exchange</li>
+            <li>The initial price after the token listing on the exchange 0.10 USD</li>
+            <li>According to the schedule, in the first few years the token will reach x100; x500 or more</li>
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function JapaneseYenIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 9.5V21m0-11.5L6 3m6 6.5L18 3" />
+      <path d="M6 15h12" />
+      <path d="M6 11h12" />
+    </svg>
+  )
+}
+
+
+export default function RadioGroupForm() {
+  // const form = useForm<z.infer<typeof FormSchema>>({
+  //   resolver: zodResolver(FormSchema),
+  // })
+  const form = useForm<QuizFormFields>({
+    resolver: zodResolver(FormSchema),
+  });
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    // e.preventDefault();
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4 max-h-[500px] overflow-x-hidden overflow-y-auto">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
+    scrollNext();
+
+  }
+
+
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState<any>(0)
+  const [count, setCount] = React.useState<any>(0)
+  const { toast } = useToast()
+  const router = useRouter()
+  const [userDetailsDialog, setUserDetailsDialog] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userId, setUserid] = useState<any>("");
+  const [surname, setSurname] = useState("");
+  const [untScore, setUntScore] = useState<any>(0);
+  const [region, setRegion] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  const scrollPrev = React.useCallback(() => {
+    api?.scrollPrev()
+  }, [api])
+
+  const scrollTo = React.useCallback(() => {
+    api?.scrollTo(0, true)
+  }, [api])
+
+  const scrollNext = React.useCallback(() => {
+    api?.scrollNext()
+  }, [api])
+
+  const EnhancedErrors = (input: any): string | null => {
+    switch (input) {
+      case "auth/email-already-in-use": return "Email in use.";
+      case "auth/invalid-email": return "Invalid email.";
+      case "auth/operation-not-allowed": return "Operation not allowed.";
+      case "auth/weak-password": return "Weak password.";
+      case "auth/user-disabled": return "User disabled.";
+      case "auth/user-not-found": return "User not found.";
+      case "auth/wrong-password": return "Wrong password.";
+      case "auth/too-many-requests": return "Too many requests.";
+      case "auth/network-request-failed": return "Network error.";
+      default: return "Signup error.";
+    }
+  };
+
+  const SuggestSolutions = (input: any): string | null => {
+    switch (input) {
+      case "auth/email-already-in-use": return "Try logging in or use a different email.";
+      case "auth/invalid-email": return "Check format.";
+      case "auth/operation-not-allowed": return "Contact support.";
+      case "auth/weak-password": return "Choose a stronger one.";
+      case "auth/user-disabled": return "Contact support.";
+      case "auth/user-not-found": return "Check email or create new account.";
+      case "auth/wrong-password": return "Try again.";
+      case "auth/too-many-requests": return "Wait and try again.";
+      case "auth/network-request-failed": return "Check internet connection.";
+      default: return "Try again later or contact support.";
+    }
+  };
+  const handleSignUp = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    confirmPassword === password ?
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          setUserid(user)
+          console.log("Signup");
+          setUserDetailsDialog(true)
+
+        })
+        .catch((error) => {
+          setUserDetailsDialog(false)
+
+          setUserid("Error");
+          console.log("Error");
+
+          toast({
+            title: "Uh oh! Something went wrong with your SignUp.",
+            description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+              <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+              <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+            </div>),
+          })
+        }) : toast({
+          title: "Password and Confirm Password donot match!",
+          description: `Please match them Password${password} & Confirm Passwrod:${confirmPassword}`,
+        })
+
+  };
+  const userDetails = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    const Create = await addDoc(collection(db, "users"), {
+      accountType: "Client",
+      email: email,
+      name: name,
+      userName: userName,
+      region: region,
+      surname: surname,
+      untScore: untScore,
+      userId: userId.uid
+    });
+
+    console.log("Document written with ID: ", Create.id);
+
+    toast({
+      title: "User signed up successfully!",
+      description: `Continue Using Ustudy ${userId.uid}`,
+    })
+    setUserDetailsDialog(false);
+    router.push('/login')
+
+  };
+
+
+
+  const handleSignIn = async (e: any) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        toast({
+          title: "User signed in successfully!",
+          description: `Continue Using Ustudy ${user.uid}`,
+        })
+      })
+      .catch((error) => {
+        toast({
+          title: "Uh oh! Something went wrong with your SignIn.",
+          description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+            <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+            <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+          </div>),
+        })
+      });
+    router.push('/calculator')
+
+  };
+
+
+  const handleEmailDetail = async (e: any) => {
+    e.preventDefault();
+
+    scrollNext();
+
+    // sendPasswordResetEmail(auth, email)
+    //   .then(() => {
+    //     toast({
+    //       title: "We have sent you a Email!",
+    //       description: `Continue Using Ustudy ${email}`,
+    //     })
+    //     scrollNext();
+    //   })
+    //   .catch((error) => {
+    //     toast({
+    //       title: "Uh oh! Something went wrong with your SignIn.",
+    //       description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+    //         <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
+    //         <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
+    //       </div>),
+    //     })
+    //     // ..
+    //   });
+    // router.push('/forgot-password-step-one')
+
+  };
+  const [isVisiblePassword, setIsVisiblePassword] = React.useState(true)
+  const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
+    React.useState(true)
+  const togglePasswordVisibility = () =>
+    setIsVisiblePassword(!isVisiblePassword)
+  const toggleConfirmPasswordVisibility = () =>
+    setIsVisibleConfirmPassword(!isVisibleConfirmPassword)
+
+
+  return (
+    <Carousel className="w-screen h-full" setApi={setApi}>
+      <CarouselContent>
+        <CarouselItem>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex items-center justify-center flex-col space-y-5 z-50 p-10">
+              <h1 className="title !m-0 bg-gradient-to-r from-rose-500 to-orange-500 bg-clip-text text-transparent">Career & Guidence</h1>
+              <div className="admin-panel-lists w-[50%] mx-auto">
+                {questions.map((question, index) => (
+                  <FormField
+                    key={index}
+                    control={form.control}
+                    name={`quiz${index + 1}`}
+                    render={({ field }) => (
+                      <FormItem className="w-full relative hover:bg-primary-foreground min-h-[165px] h-full flex flex-col space-y-3 p-5 rounded-md border">
+                        <div className="text-[1rem] font-bold flex flex-row items-center justify-start space-x-1.5 !p-0">
+                          <span className="center bg-primary-foreground rounded-full min-h-[35px] min-w-[35px] border">{index + 1}</span>
+                          <span className="text-start text-xs">{question[`quiz${index + 1}`]}</span>
+                        </div>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex flex-col space-y-1 px-2"
+                          >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="a" />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                {question.a}
+                              </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="b" />
+                              </FormControl>
+                              <FormLabel className="font-normal">{question.b}</FormLabel>
+                            </FormItem>
+                          </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </div>
+                  
+              <Button type="submit" className="w-[50%] mx-auto">Submit</Button>
+            </form>
+          </Form>
+          {/* <div className="mx-auto grid w-4/5  min-w-[300px] max-w-[550px] ">
+          <div className="grid min-w-full gap-2 text-left">
+            <h1 className="text-26xl font-bold">Forgot Your Password?</h1>
+            <h1 className="text-26xl font-bold">No problem.</h1>
+            <p className="text-balance text-muted-foreground">
+              Please enter your details
             </p>
-            <div className="flex w-full max-w-md items-center space-x-2">
-              <Input
-                className="flex-1"
-                placeholder="Search jobs..."
-                type="search"
-              />
-              <Button>Search</Button>
-            </div>
           </div>
-          <img
-            alt="Hero"
-            className="mx-auto aspect-[4/3] overflow-hidden rounded-xl object-cover"
-            height="400"
-            src="/placeholder.svg"
-            width="550"
-          />
-        </div>
-      </section>
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-[240px_1fr]">
-          <div className="flex flex-col items-start gap-4">
-            <Accordion className="w-full" collapsible type="single">
-              <AccordionItem value="category">
-                <AccordionTrigger className="text-base font-semibold">
-                  Category
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="grid gap-2">
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="category-engineering" />
-                      Engineering{"\n                                  "}
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="category-design" />
-                      Design{"\n                                  "}
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="category-marketing" />
-                      Marketing{"\n                                  "}
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="category-sales" />
-                      Sales{"\n                                  "}
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="category-finance" />
-                      Finance{"\n                                  "}
-                    </Label>
+          <div className="grid gap-4">
+            <div className="grid w-full gap-2">
+              <Label className="text-[#804DFE]" htmlFor="email">
+                Email
+              </Label>
+              <Input value={email} id="email" type="email" placeholder="ajju40959@gmail.com" required onChange={(e) => setEmail(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
+
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-[#804DFE] text-white hover:bg-secondary"
+              onClick={handleEmailDetail}
+            >
+              Confirm
+            </Button>
+          </div>
+        </div> */}
+        </CarouselItem>
+
+        <CarouselItem>
+          {/* <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
+            <h1 className="text-center text-26xl font-bold">Check you Inbox!</h1>
+            <div className="my-10 grid min-w-full gap-2 text-center">
+              <h1 className="flex flex-col items-center justify-center font-bold">
+                We’ve sent recover password link to
+                <span className="text-[#804DFE]">{email}</span>
+              </h1>
+              <p className="text-balance text-muted-foreground">
+                Check your email to recover the password
+              </p>
+            </div>
+            <div className="flex w-full items-center justify-center">
+              <Link href="/login">
+                <Button
+                  variant={"outline"}
+                  type="submit"
+                  className="mx-auto w-64"
+                >
+                  Login with new Password
+                </Button>
+              </Link>
+            </div>
+          </div> */}
+          <QuizResult />
+        </CarouselItem>
+
+        {/* <CarouselItem>
+          <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
+            <div className="grid min-w-full gap-2 text-left">
+              <h1 className="text-37xl font-bold">Recover password</h1>
+              <p className="text-balance text-muted-foreground">
+                Please enter your details
+              </p>
+            </div>
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label className="text-[#804DFE]" htmlFor="password">
+                    Password
+                  </Label>
+                </div>
+                <div className="w-full relative">
+                  <Input
+                    required
+                    value={password}
+                    type={isVisiblePassword ? "text" : "password"}
+                    id="password"
+                    placeholder="YourPassword123"
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full rounded-md !border text-muted-foreground"
+                  />
+                  <div
+                    onClick={togglePasswordVisibility}
+                    className="absolute right-3.5 top-1/2 translate-y-[-50%]"
+                  >
+                    {isVisiblePassword ? (
+                      <Eye className="hover:text-[#804DFE]" />
+                    ) : (
+                      <EyeOff className="hover:text-[#804DFE]" />
+                    )}
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label className="text-[#804DFE]" htmlFor="password">
+                    Confirm Password
+                  </Label>
+                </div>
+                <div className="w-full relative">
+                  <Input
+                    required
+                    value={confirmPassword}
+                    type={isVisibleConfirmPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="YourPassword123"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className={cn("w-full rounded-md !border text-muted-foreground",
+                      confirmPassword === password ? "text-green-400" : "text-pink-500"
+                    )}
+                  />
+                  <div
+                    onClick={toggleConfirmPasswordVisibility}
+                    className="absolute right-3.5 top-1/2 translate-y-[-50%]"
+                  >
+                    {isVisibleConfirmPassword ? (
+                      <Eye className="hover:text-[#804DFE]" />
+                    ) : (
+                      <EyeOff className="hover:text-[#804DFE]" />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className="w-full bg-[#804DFE] !py-6 text-white hover:bg-secondary"
+                onClick={scrollNext}
+              >
+                Done
+              </Button>
+            </div>
+
           </div>
-          <div className="grid gap-6 md:gap-8">
-            <div className="grid gap-4 md:gap-6">
-              <div className="grid gap-1">
-                <h2 className="text-2xl font-bold tracking-tight">
-                  Explore Job Opportunities
-                </h2>
-                <p className="text-gray-500 ">
-                  Browse our curated list of open positions.
-                </p>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                <Card>
-                  <CardContent className="space-y-2 px-5 pt-5">
-                    <h3 className="text-lg font-semibold">
-                      Senior Frontend Engineer
-                    </h3>
-                    <p className="text-gray-500 ">
-                      Lead the development of our cutting-edge web application.
-                      Collaborate with a talented team of engineers and
-                      designers.
-                    </p>
-                    <Button size="sm">Apply Now</Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="space-y-2 px-5 pt-5">
-                    <h3 className="text-lg font-semibold">Product Designer</h3>
-                    <p className="text-gray-500 ">
-                      Join our design team and help shape the user experience of
-                      our innovative products. Bring your creativity and
-                      attention to detail.
-                    </p>
-                    <Button size="sm">Apply Now</Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="space-y-2 px-5 pt-5">
-                    <h3 className="text-lg font-semibold">
-                      Digital Marketing Specialist
-                    </h3>
-                    <p className="text-gray-500 ">
-                      Develop and execute effective digital marketing campaigns
-                      to drive growth and engagement for our brand. Leverage
-                      data-driven insights.
-                    </p>
-                    <Button size="sm">Apply Now</Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="space-y-2 px-5 pt-5">
-                    <h3 className="text-lg font-semibold">
-                      Sales Representative
-                    </h3>
-                    <p className="text-gray-500 ">
-                      Join our sales team and help businesses discover our
-                      innovative solutions. Excellent communication and
-                      negotiation skills required.
-                    </p>
-                    <Button size="sm">Apply Now</Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="space-y-2 px-5 pt-5">
-                    <h3 className="text-lg font-semibold">Financial Analyst</h3>
-                    <p className="text-gray-500 ">
-                      Analyze financial data and provide insights to help our
-                      company make informed decisions. Strong analytical and
-                      problem-solving skills needed.
-                    </p>
-                    <Button size="sm">Apply Now</Button>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="space-y-2 px-5 pt-5">
-                    <h3 className="text-lg font-semibold">Content Writer</h3>
-                    <p className="text-gray-500 ">
-                      Craft engaging and informative content to support our
-                      marketing initiatives. Excellent writing and research
-                      skills required.
-                    </p>
-                    <Button size="sm">Apply Now</Button>
-                  </CardContent>
-                </Card>
-              </div>
+        </CarouselItem>
+
+        <CarouselItem>
+          <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
+            <h1 className="text-center text-26xl font-bold">
+              Congratulations, you’ve changed the password
+            </h1>
+            <div className="mt-3 flex w-full items-center justify-center">
+              <Link href="/login">
+                <Button
+                  variant={"outline"}
+                  type="submit"
+                  className="mx-auto w-64"
+                >
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
-    </>
+        </CarouselItem> */}
+
+      </CarouselContent>
+    </Carousel>
   )
 }

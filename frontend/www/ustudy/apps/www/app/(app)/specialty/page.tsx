@@ -19,15 +19,12 @@ import {
   updateDoc,
 } from "firebase/firestore"
 import { z } from "zod"
-
 import GroupComponent from "@/components/specialty-page/group-component"
 import TableCell from "@/components/specialty-page/table-cell"
-
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
 import { UserNav } from "./components/user-nav"
 import { taskSchema } from "./data/schema"
-
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -50,7 +47,7 @@ async function getTasks() {
   //   path.join(process.cwd(), "app/(app)/calculator/data/tasks.json")
   // )
 
-  const q = query(collection(db, "specialties"), limit(8))
+  const q = query(collection(db, "specialties"))
   const querySnapshot = await getDocs(q)
   const newDocs = querySnapshot.docs.map((doc) => ({
     id: doc.id,

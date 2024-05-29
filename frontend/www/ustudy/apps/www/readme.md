@@ -2368,3 +2368,915 @@ async function TaskPage() {
   )
 }
 ```
+
+
+
+
+```
+    // let tempSpecialtyCount = 0
+    // let tempUniversityCount = 0
+    // let tempSpecialtyTheshold = ""
+    // let tempUniversityTheshold = ""
+    // let tempLastUniversityCode = ""
+    // let tempCalculation: any = ""
+
+    // const tempSpecialtiesUnderThreshold = specialties
+    //   .filter((specialty) => specialty.threshold < ENTPOINT)
+    //   .map((specialty) => specialty.name || specialty.specailtyName)
+    // const tempUniversitiesUnderThreshold = universities
+    //   .filter(
+    //     (university) => university.threshold && university.threshold < ENTPOINT
+    //   )
+    //   .map((university) => university.universityName)
+
+    // setSpecialtiesUnderThreshold(tempSpecialtiesUnderThreshold)
+    // setUniversitiesUnderThreshold(tempUniversitiesUnderThreshold)
+
+    // universities.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempUniversityCount++
+    //   } else {
+    //   }
+    //   tempUniversityTheshold = university.threshold || ""
+    //   tempLastUniversityCode = university.universityCode
+    // })
+
+    // specialties.forEach((university) => {
+    //   if (university.threshold && university.threshold < ENTPOINT) {
+    //     tempSpecialtyCount++
+    //   } else {
+    //   }
+    //   tempSpecialtyTheshold = university.threshold || ""
+    // })
+
+    // Calculation
+    // async function calculate() {
+    //   // specialties ? specialties.find((specialty) => specialty.neme || specialty.specialtyName === value)?.id :
+    //   const specialtyData:any = await fetchDocument("phKkzVcxJBJNnpXYdTIV");
+    //   let startScore:any = universityTheshold || specialtyTheshold || 0;          // University Theshold
+    //   let e1 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[0]) : 95;          // 2021
+    //   let e2 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[1]) : 95;          // 2022
+    //   let e3 = specialtyData ? specialtyData.minScore.map((item: any[]) => item[2]) : 95;          // 2023
+    //   let userScore = ENTPOINT || 394;
+
+    //   tempCalculation = calculateAdmissionChance(startScore, e1, e2, e3, userScore);
+    // }
+    // calculate();
+
+    // console.log(`The chance of admission is ${admissionChance}%`)
+    // setCalculation(admissionChance)
+    // setSpecialtyCount(tempSpecialtyCount)
+    // setUniversityCount(tempUniversityCount)
+    // setUniversityTheshold(tempUniversityTheshold)
+    // setSpecialtyTheshold(tempSpecialtyTheshold)
+    // setLastUniversityCode(tempLastUniversityCode)
+    // setResultSubjects(subjectsTag.map(
+    //   (obj) => obj.text
+    // )))
+    // <p>{`Number of universities with threshold less than ${ENTPOINT}: ${universityCount || specialtyCount}`}</p>
+    // <p>{`Theherhold ${ENTPOINT}: ${universityTheshold || specialtyTheshold}`}</p>
+    // <p>{`Last university code: ${lastUniversityCode}`}</p>
+    // <p>{`Calculation: ${calculation}%`}</p>
+    // {specialtyDoc ? <p>{specialtyDoc.id}</p> : <p>No SpcialtyDoc Found</p>}
+    // setTasks([
+    //   {
+    //     id: lastUniversityCode,
+    //     title: "universities are hoping to see you there!",
+    //     status: "Information & Communication Technology",
+    //     label: universityCount || specialtyCount,
+    //     priority: `${admissionChance}%`
+    //   }
+    // ])
+    // setTasks([
+    //   {
+    //     id: `${lastUniversityCode || "BD75"}`,
+    //     title: "universities are hoping to see you there!",
+    //     status: `${"Information & Communication Technology"}`,
+    //     label: `${universityCount || specialtyCount}`,
+    //     priority: `${admissionChance}%`
+    //   }
+    // ])
+    // const calculateAdmissionChance = (startScore: number, e1: number, e2: number, e3: number, userScore: number): number => {
+    //   // if (startScore >= userScore) {
+    //   //   return 0;
+    //   // } else {
+    //   //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   //   return Math.min(Math.floor(admissionChance), 100);
+    //   // }
+    //   let possibleScore = calculatePossibleScore(e1, e2, e3);
+    //   let admissionChance = calculateChance(userScore, possibleScore);
+    //   return Math.min(Math.floor(admissionChance), 100);
+    //   setENTSCRORE(possibleScore);
+    // }
+
+    // const calculatePossibleScore = (e1: number, e2: number, e3: number): number => {
+    //   let possibleScore = e1 + e2 - e1 + e3 - e2 * 2 * 3;
+    //   return possibleScore <= 140 ? possibleScore : 140;
+    // }
+
+    // const calculateChance = (userScore: number, possibleScore: number): number => {
+    //   let chance;
+    //   if (userScore < 50) {
+    //     chance = 50 + ((userScore - 50) + (140 - 50)) / 3;
+    //   } else {
+
+    //     chance = 50 + ((userScore - possibleScore) + (140 - possibleScore)) / 3;
+    //     // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    //   }
+    //   // chance = 50 + (userScore - possibleScore) / ((140 - possibleScore) * 3) * 100;
+    //   return chance;
+    // }
+
+    // let possibleScore = calculatePossibleScore(e1, e2, e3);
+    // let admissionChance = calculateChance(userScore, possibleScore);
+    // return Math.min(Math.floor(admissionChance), 100);
+    // setENTSCRORE(possibleScore);
+
+    // calculateAdmissionChance();
+    // console.log(subjectsTag); 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/zn70RklOFdD
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { CardDescription, CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
+import { ResponsiveLine } from "@nivo/line"
+
+export default function Component() {
+  return (
+    <div className="flex flex-col w-full min-h-screen">
+      <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
+        <Link className="flex items-center gap-2 text-lg font-semibold sm:text-base mr-4" href="#">
+          <FrameIcon className="w-6 h-6" />
+          <span className="sr-only">Acme Inc</span>
+        </Link>
+        <nav className="hidden font-medium sm:flex flex-row items-center gap-5 text-sm lg:gap-6">
+          <Link className="text-gray-500 dark:text-gray-400" href="#">
+            Projects
+          </Link>
+          <Link className="text-gray-500 dark:text-gray-400" href="#">
+            Deployments
+          </Link>
+          <Link className="font-bold" href="#">
+            Analytics
+          </Link>
+          <Link className="text-gray-500 dark:text-gray-400" href="#">
+            Logs
+          </Link>
+          <Link className="text-gray-500 dark:text-gray-400" href="#">
+            Settings
+          </Link>
+        </nav>
+        <div className="flex items-center w-full gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <Button className="rounded-full ml-auto" size="icon" variant="ghost">
+            <img
+              alt="Avatar"
+              className="rounded-full border"
+              height="32"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "32/32",
+                objectFit: "cover",
+              }}
+              width="32"
+            />
+            <span className="sr-only">Toggle user menu</span>
+          </Button>
+        </div>
+      </header>
+      <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] bg-gray-100/40 flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10 dark:bg-gray-800/40">
+        <div className="max-w-6xl w-full mx-auto grid gap-2">
+          <h1 className="font-semibold text-3xl">Dashboard</h1>
+          <div className="flex items-center text-sm gap-2">
+            <a className="font-medium" href="#" target="_blank">
+              example.com
+            </a>
+            <Separator className="h-5" orientation="vertical" />
+            <div className="text-gray-500 flex items-center gap-2 dark:text-gray-400">
+              <span className="inline-block w-2 h-2 bg-[#09CE6B] rounded-full animate-ping duration-[5000]" />
+              32 users online
+            </div>
+          </div>
+        </div>
+        <div className="grid gap-6 max-w-6xl w-full mx-auto">
+          <div className="grid md:grid-cols-4 gap-6">
+            <Card className="p-0 overflow-hidden">
+              <CardHeader>
+                <CardDescription className="text-sm font-medium">Total Visits</CardDescription>
+                <CardTitle className="text-2xl">2,389,098</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FilledtimeseriesChart className="aspect-[9/4]" />
+              </CardContent>
+            </Card>
+            <Card className="p-0 overflow-hidden">
+              <CardHeader>
+                <CardDescription className="text-sm font-medium">Total Downloads</CardDescription>
+                <CardTitle className="text-2xl">1,234,567</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FilledtimeseriesChart className="aspect-[9/4]" />
+              </CardContent>
+            </Card>
+            <Card className="p-0 overflow-hidden">
+              <CardHeader>
+                <CardDescription className="text-sm font-medium">Posts</CardDescription>
+                <CardTitle className="text-2xl">45,678</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FilledtimeseriesChart className="aspect-[9/4]" />
+              </CardContent>
+            </Card>
+            <Card className="p-0 overflow-hidden">
+              <CardHeader>
+                <CardDescription className="text-sm font-medium">Shares</CardDescription>
+                <CardTitle className="text-2xl">12,345</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FilledtimeseriesChart className="aspect-[9/4]" />
+              </CardContent>
+            </Card>
+          </div>
+          <div className="grid gap-6">
+            <Card className="relative overflow-hidden">
+              <CardHeader className="flex flex-row items-center border-b">
+                <CardTitle>Visits Trend</CardTitle>
+                <CardDescription className="ml-auto">Last 30 days</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FilledtimeseriesChart className="aspect-[9/4]" />
+              </CardContent>
+            </Card>
+            <Card className="relative overflow-hidden">
+              <CardHeader className="flex flex-row items-center border-b">
+                <CardTitle>Downloads Trend</CardTitle>
+                <CardDescription className="ml-auto">Last 30 days</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <FilledtimeseriesChart className="aspect-[9/4]" />
+              </CardContent>
+            </Card>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="relative overflow-hidden">
+                <CardHeader className="flex flex-row items-center border-b">
+                  <CardTitle>Top Posts</CardTitle>
+                  <CardDescription className="ml-auto">Last 30 days</CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-4 text-sm p-6">
+                  <div className="flex items-center">
+                    <div>How to build a React app</div>
+                    <div className="font-semibold ml-auto">5.4K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Mastering CSS Grid</div>
+                    <div className="font-semibold ml-auto">2.2K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Deploying to Vercel</div>
+                    <div className="font-semibold ml-auto">2K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Optimizing Next.js apps</div>
+                    <div className="font-semibold ml-auto">1.1K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Intro to TypeScript</div>
+                    <div className="font-semibold ml-auto">1K</div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="relative overflow-hidden">
+                <CardHeader className="flex flex-row items-center border-b">
+                  <CardTitle>Top Shares</CardTitle>
+                  <CardDescription className="ml-auto">Last 30 days</CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-4 text-sm p-6">
+                  <div className="flex items-center">
+                    <div>How to build a React app</div>
+                    <div className="font-semibold ml-auto">3K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Mastering CSS Grid</div>
+                    <div className="font-semibold ml-auto">1.2K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Deploying to Vercel</div>
+                    <div className="font-semibold ml-auto">1.1K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Optimizing Next.js apps</div>
+                    <div className="font-semibold ml-auto">1K</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div>Intro to TypeScript</div>
+                    <div className="font-semibold ml-auto">1K</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+function FilledtimeseriesChart(props) {
+  return (
+    <div {...props}>
+      <ResponsiveLine
+        data={[
+          {
+            id: "Desktop",
+            data: [
+              { x: "Jan", y: 43 },
+              { x: "Feb", y: 137 },
+              { x: "Mar", y: 61 },
+              { x: "Apr", y: 145 },
+              { x: "May", y: 26 },
+              { x: "Jun", y: 154 },
+            ],
+          },
+          {
+            id: "Mobile",
+            data: [
+              { x: "Jan", y: 60 },
+              { x: "Feb", y: 48 },
+              { x: "Mar", y: 177 },
+              { x: "Apr", y: 78 },
+              { x: "May", y: 96 },
+              { x: "Jun", y: 204 },
+            ],
+          },
+        ]}
+        margin={{ top: 10, right: 10, bottom: 40, left: 40 }}
+        xScale={{
+          type: "point",
+        }}
+        yScale={{
+          type: "linear",
+          min: 0,
+          max: "auto",
+        }}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 16,
+        }}
+        axisLeft={{
+          tickSize: 0,
+          tickValues: 5,
+          tickPadding: 16,
+        }}
+        colors={["#2563eb", "#e11d48"]}
+        pointSize={6}
+        useMesh={true}
+        curve="monotoneX"
+        enableArea={true}
+        gridYValues={6}
+        defs={[
+          {
+            id: "line-chart-gradient",
+            type: "linearGradient",
+            colors: [
+              { offset: 0, color: "inherit" },
+              { offset: 200, color: "inherit", opacity: 0 },
+            ],
+          },
+        ]}
+        fill={[{ match: "*", id: "line-chart-gradient" }]}
+        theme={{
+          tooltip: {
+            chip: {
+              borderRadius: "9999px",
+            },
+            container: {
+              fontSize: "12px",
+              textTransform: "capitalize",
+              borderRadius: "6px",
+            },
+          },
+          grid: {
+            line: {
+              stroke: "#f3f4f6",
+            },
+          },
+        }}
+        role="application"
+      />
+    </div>
+  )
+}
+
+
+function FrameIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="22" x2="2" y1="6" y2="6" />
+      <line x1="22" x2="2" y1="18" y2="18" />
+      <line x1="6" x2="6" y1="2" y2="22" />
+      <line x1="18" x2="18" y1="2" y2="22" />
+    </svg>
+  )
+}
+
+```
+
+
+
+```
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/84Jkat9lPpw
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { CollapsibleTrigger, CollapsibleContent, Collapsible } from "@/components/ui/collapsible"
+import { Input } from "@/components/ui/input"
+import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
+
+export default function Component() {
+  return (
+    <div className="flex h-screen w-full overflow-hidden">
+      <div className="hidden w-64 shrink-0 border-r bg-gray-100 dark:border-gray-800 dark:bg-gray-950 lg:block">
+        <div className="flex h-16 items-center justify-between px-4">
+          <Link className="flex items-center gap-2 font-semibold" href="#">
+            <MountainIcon className="h-6 w-6" />
+            <span>Acme Inc</span>
+          </Link>
+          <Button size="icon" variant="ghost">
+            <XIcon className="h-5 w-5" />
+          </Button>
+        </div>
+        <Collapsible className="space-y-2 px-4 py-6">
+          <Collapsible>
+            <CollapsibleTrigger className="flex items-center justify-between text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+              <div className="flex items-center gap-2">
+                <FolderIcon className="h-4 w-4" />
+                <span>Products</span>
+              </div>
+              <ChevronDownIcon className="h-4 w-4 transition-transform" />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="pl-6 space-y-1">
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Shoes</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Shirts</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Pants</span>
+              </Link>
+            </CollapsibleContent>
+          </Collapsible>
+          <Collapsible>
+            <CollapsibleTrigger className="flex items-center justify-between text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+              <div className="flex items-center gap-2">
+                <FolderIcon className="h-4 w-4" />
+                <span>Accessories</span>
+              </div>
+              <ChevronDownIcon className="h-4 w-4 transition-transform" />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="pl-6 space-y-1">
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Bags</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Hats</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Sunglasses</span>
+              </Link>
+            </CollapsibleContent>
+          </Collapsible>
+          <Collapsible>
+            <CollapsibleTrigger className="flex items-center justify-between text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+              <div className="flex items-center gap-2">
+                <FolderIcon className="h-4 w-4" />
+                <span>Sale</span>
+              </div>
+              <ChevronDownIcon className="h-4 w-4 transition-transform" />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="pl-6 space-y-1">
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Clearance</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Outlet</span>
+              </Link>
+              <Link
+                className="flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="#"
+              >
+                <FileIcon className="h-4 w-4" />
+                <span>Deals</span>
+              </Link>
+            </CollapsibleContent>
+          </Collapsible>
+        </Collapsible>
+      </div>
+      <div className="flex-1 overflow-auto">
+        <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-white px-4 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+          <Button className="lg:hidden" size="icon" variant="ghost">
+            <MenuIcon className="h-6 w-6" />
+          </Button>
+          <div className="flex items-center gap-4">
+            <Input className="max-w-xs" placeholder="Search products..." type="search" />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="icon" variant="ghost">
+                  <UserIcon className="h-6 w-6" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Orders</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+        <main className="p-4 md:p-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+              <Link className="absolute inset-0 z-10" href="#">
+                <span className="sr-only">View</span>
+              </Link>
+              <img
+                alt="Product 1"
+                className="object-cover w-full h-64"
+                height={400}
+                src="/placeholder.svg"
+                style={{
+                  aspectRatio: "500/400",
+                  objectFit: "cover",
+                }}
+                width={500}
+              />
+              <div className="bg-white p-4 dark:bg-gray-950">
+                <h3 className="font-bold text-xl">Classic Leather Shoes</h3>
+                <p className="text-sm text-gray-500">Elegant and comfortable</p>
+                <h4 className="font-semibold text-lg md:text-xl">$59.99</h4>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+              <Link className="absolute inset-0 z-10" href="#">
+                <span className="sr-only">View</span>
+              </Link>
+              <img
+                alt="Product 2"
+                className="object-cover w-full h-64"
+                height={400}
+                src="/placeholder.svg"
+                style={{
+                  aspectRatio: "500/400",
+                  objectFit: "cover",
+                }}
+                width={500}
+              />
+              <div className="bg-white p-4 dark:bg-gray-950">
+                <h3 className="font-bold text-xl">Designer Handbag</h3>
+                <p className="text-sm text-gray-500">Fashion statement</p>
+                <h4 className="font-semibold text-lg md:text-xl">$89.99</h4>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+              <Link className="absolute inset-0 z-10" href="#">
+                <span className="sr-only">View</span>
+              </Link>
+              <img
+                alt="Product 3"
+                className="object-cover w-full h-64"
+                height={400}
+                src="/placeholder.svg"
+                style={{
+                  aspectRatio: "500/400",
+                  objectFit: "cover",
+                }}
+                width={500}
+              />
+              <div className="bg-white p-4 dark:bg-gray-950">
+                <h3 className="font-bold text-xl">Wireless Earbuds</h3>
+                <p className="text-sm text-gray-500">Crystal clear audio</p>
+                <h4 className="font-semibold text-lg md:text-xl">$69.99</h4>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+              <Link className="absolute inset-0 z-10" href="#">
+                <span className="sr-only">View</span>
+              </Link>
+              <img
+                alt="Product 4"
+                className="object-cover w-full h-64"
+                height={400}
+                src="/placeholder.svg"
+                style={{
+                  aspectRatio: "500/400",
+                  objectFit: "cover",
+                }}
+                width={500}
+              />
+              <div className="bg-white p-4 dark:bg-gray-950">
+                <h3 className="font-bold text-xl">Vintage Pocket Watch</h3>
+                <p className="text-sm text-gray-500">Antique charm</p>
+                <h4 className="font-semibold text-lg md:text-xl">$79.99</h4>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+              <Link className="absolute inset-0 z-10" href="#">
+                <span className="sr-only">View</span>
+              </Link>
+              <img
+                alt="Product 5"
+                className="object-cover w-full h-64"
+                height={400}
+                src="/placeholder.svg"
+                style={{
+                  aspectRatio: "500/400",
+                  objectFit: "cover",
+                }}
+                width={500}
+              />
+              <div className="bg-white p-4 dark:bg-gray-950">
+                <h3 className="font-bold text-xl">Leather Backpack</h3>
+                <p className="text-sm text-gray-500">Durable and stylish</p>
+                <h4 className="font-semibold text-lg md:text-xl">$99.99</h4>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2">
+              <Link className="absolute inset-0 z-10" href="#">
+                <span className="sr-only">View</span>
+              </Link>
+              <img
+                alt="Product 6"
+                className="object-cover w-full h-64"
+                height={400}
+                src="/placeholder.svg"
+                style={{
+                  aspectRatio: "500/400",
+                  objectFit: "cover",
+                }}
+                width={500}
+              />
+              <div className="bg-white p-4 dark:bg-gray-950">
+                <h3 className="font-bold text-xl">Smartwatch</h3>
+                <p className="text-sm text-gray-500">Fitness tracking</p>
+                <h4 className="font-semibold text-lg md:text-xl">$149.99</h4>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  )
+}
+
+function ChevronDownIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
+
+
+function FileIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    </svg>
+  )
+}
+
+
+function FolderIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+    </svg>
+  )
+}
+
+
+function MenuIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  )
+}
+
+
+function MountainIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+    </svg>
+  )
+}
+
+
+function UserIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  )
+}
+
+
+function XIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  )
+}
+```
+
+
+
+
+```
+Result: Close types: intellectual and office.
+The opposite type is social.
+
+
+Proclivities:emitted by a smart contract. Maximum emission: 2 billion U
+
+1.25% (25 m) of the token emission will be allocated to create liquidity on the exchange
+
+The initial price after the token listing on
+      the exchange 0.10 USD
+
+According to the schedule, in the first few years the token will reach x100; x500 or more
+```
