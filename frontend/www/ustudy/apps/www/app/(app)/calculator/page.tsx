@@ -1458,15 +1458,21 @@ const CalculatorPage: NextPage = () => {
       //   setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreRuralQuota && specialtyDoc.possibleScoreRuralQuota || 0)
       //   break;
       default:
-        let result: any, calculatedValue: any;
+        let result: any;
 
         if (ENTPOINT >= 50) {
           result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
         } else {
           result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
         }
-        setResult(result.toFixed(2));
-        calculatedValue = result.toFixed(0) > 100 ? 100 : result.toFixed(2);
+        // setResult(result.toFixed(2));
+        // calculatedValue = result.toFixed(2) > 100 ? 100 : result.toFixed(2);
+        let calculatedValue = Math.floor(result);
+        if (calculatedValue >= 100) {
+          calculatedValue = 100;
+        }else{
+          calculatedValue = result.toFixed(2);
+        }
 
         setTasks((prevTasks) => [
           ...prevTasks,
