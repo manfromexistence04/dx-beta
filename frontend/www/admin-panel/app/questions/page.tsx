@@ -826,6 +826,7 @@ const Question = () => {
                                         ),
                                       });
 
+                                      location.reload();
 
                                       // setSheetToggle(!sheetToggle)
                                       // router.push('/specialities')
@@ -944,6 +945,7 @@ const Question = () => {
                                         </div>
                                       ),
                                     });
+                                    location.reload();
 
                                     // router.push('/specialities')
                                     // setSheetToggle(true)

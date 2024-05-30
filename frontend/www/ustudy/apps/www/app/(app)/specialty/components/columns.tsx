@@ -86,9 +86,9 @@ export const columns: any[] | any = [
     },
   },
   {
-    accessorKey: "ruralQuota",
+    accessorKey: "level",
     header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Rural Quota" />
+      <DataTableColumnHeader column={column} title="Level" />
     ),
     cell: ({ row }:any) => {
       const label = labels.find((label) => label.value === row.original.name)
@@ -96,8 +96,8 @@ export const columns: any[] | any = [
       return (
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[50px] truncate font-medium">
-            {row.getValue("ruralQuota") || <CircleSlash />}
+          <span className="max-w-[100px] truncate font-medium">
+            {row.getValue("level") || <CircleSlash />}
           </span>
         </div>
       )

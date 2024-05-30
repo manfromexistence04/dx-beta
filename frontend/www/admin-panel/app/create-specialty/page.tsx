@@ -1,12 +1,12 @@
 "use client"
 
+/* eslint-enable react/no-unescaped-entities */
 import React, { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
 import type { UploadedFile } from "@/types"
 import { Button as NextuiButton } from "@nextui-org/react"
-// import db from "@/firebase";
 import { ImageIcon } from "@radix-ui/react-icons"
 import { cn } from "@udecode/cn"
 import { CommentsProvider } from "@udecode/plate-comments"
@@ -225,6 +225,7 @@ export default function CreateSpeciality() {
       minScrores: minScroresTag.map((item) => item.text),
 
       name: name,
+      level: inputedLevel,
       specialtyCode: inputedSpecialtyCode,
       possibleScoreGeneralCompetition: possibleScoreGeneralCompetition,
       possibleScoreRuralQuota: possibleScoreRuralQuota,
@@ -461,7 +462,7 @@ export default function CreateSpeciality() {
       <main className="h-auto w-full px-[5%] py-5">
         <div className="mb-6 flex items-center justify-between">
           <span className="font-display text-center text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">
-            Universities
+            Specialty
           </span>
         </div>
         <div className="admin-panel-lists-loading place-content-center">
@@ -771,22 +772,58 @@ export default function CreateSpeciality() {
           <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
             <div className="flex gap-2">
               <p>Subjects: </p>
-              <span className="font-semibold w-[250px] truncate">
-                {subjectsTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No Subjects is Provided."}
+              <span className="font-semibold w-[250px] truncate space-x-1">
+                {
+                  subjectsTag.length > 0 ?
+                    subjectsTag.flatMap((item: any) => (
+                      <Badge
+                        className={cn(
+                          "w-fit text-center",
+                          "bg-green-500 text-green-50"
+                        )}
+                      >
+                        {item.text}
+                      </Badge>
+                    )) : "No Subjects is Provided."
+                }
               </span>
             </div>
             <Separator />
             <div className="flex gap-2">
               <p>Universities: </p>
-              <span className="font-semibold w-[250px] truncate">
-                {universitiesTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No Universities is Provided."}
+              <span className="font-semibold w-[250px] truncate space-x-1">
+                {
+                  universitiesTag.length > 0 ?
+                    universitiesTag.flatMap((item: any) => (
+                      <Badge
+                        className={cn(
+                          "w-fit text-center",
+                          "bg-green-500 text-green-50"
+                        )}
+                      >
+                        {item.text}
+                      </Badge>
+                    )) : "No Universities is Provided."
+                }
               </span>
             </div>
             <Separator />
             <div className="flex gap-2">
               <p>MinScrores: </p>
-              <span className="font-semibold w-[250px] truncate">
-                {minScroresTag.flatMap((item) => ` ${JSON.stringify(item.text, null, 2)} `) || "No MinScrores is Provided."}
+              <span className="font-semibold w-[250px] truncate space-x-1">
+                {
+                  minScroresTag.length > 0 ?
+                    minScroresTag.flatMap((item: any) => (
+                      <Badge
+                        className={cn(
+                          "w-fit text-center",
+                          "bg-green-500 text-green-50"
+                        )}
+                      >
+                        {item.text}
+                      </Badge>
+                    )) : "No MinScrores is Provided."
+                }
               </span>
             </div>
             <Separator />
@@ -798,6 +835,13 @@ export default function CreateSpeciality() {
               <p>Name: </p>
               <span className="font-semibold">
                 {name || "No Name is Provided."}
+              </span>
+            </div>
+            <Separator />
+            <div className="flex gap-2">
+              <p>Level: </p>
+              <span className="font-semibold">
+                {inputedLevel || "No Level is Provided."}
               </span>
             </div>
             <Separator />
@@ -856,7 +900,7 @@ export default function CreateSpeciality() {
             autocompleteOptions={subjects.map((items) => ({
               id: items.id,
               text:
-              items.subjects && items.subjects.map(
+                items.subjects && items.subjects.map(
                   (item: any) =>
                     item || `No Subjects Are Provided at id:${uuid()}`
                 ) || `No Subject Provided at id:${items.id}`,
@@ -920,6 +964,8 @@ export default function CreateSpeciality() {
               placeholder="Enter Speciality Name"
             />
           </div>
+
+
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">
               SpecialtyCode
@@ -930,6 +976,121 @@ export default function CreateSpeciality() {
               placeholder="Enter SpecialtyCode Info"
             />
           </div>
+          <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">
+              Level
+            </h1>
+            <Select onValueChange={(e) => setInputedLevel(e)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a Level" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel className="border-b">Level's</SelectLabel>
+                  <SelectItem value="Bachelor">Bachelor</SelectItem>
+                  <SelectItem value="Master">Master</SelectItem>
+                  <SelectItem value="PhD">PhD</SelectItem>
+                  <SelectItem value="Associate">Associate</SelectItem>
+                  <SelectItem value="Diploma">Diploma</SelectItem>
+                  <SelectItem value="Certificate">Certificate</SelectItem>
+                  <SelectItem value="Doctorate">Doctorate</SelectItem>
+                  <SelectItem value="Postgraduate">Postgraduate</SelectItem>
+                  <SelectItem value="Undergraduate">Undergraduate</SelectItem>
+                  <SelectItem value="Professional">Professional</SelectItem>
+                  <SelectItem value="Advanced Diploma">Advanced Diploma</SelectItem>
+                  <SelectItem value="Foundation Degree">Foundation Degree</SelectItem>
+                  <SelectItem value="Graduate Certificate">Graduate Certificate</SelectItem>
+                  <SelectItem value="Graduate Diploma">Graduate Diploma</SelectItem>
+                  <SelectItem value="Honours Degree">Honours Degree</SelectItem>
+                  <SelectItem value="Postgraduate Certificate">Postgraduate Certificate</SelectItem>
+                  <SelectItem value="Postgraduate Diploma">Postgraduate Diploma</SelectItem>
+                  <SelectItem value="Professional Doctorate">Professional Doctorate</SelectItem>
+                  <SelectItem value="Research Master">Research Master</SelectItem>
+                  <SelectItem value="Specialist Degree">Specialist Degree</SelectItem>
+                  <SelectItem value="Higher National Diploma">Higher National Diploma</SelectItem>
+                  <SelectItem value="Integrated Master's Degree">Integrated Master's Degree</SelectItem>
+                  <SelectItem value="Intermediate">Intermediate</SelectItem>
+                  <SelectItem value="Juris Doctor">Juris Doctor</SelectItem>
+                  <SelectItem value="Magister">Magister</SelectItem>
+                  <SelectItem value="Master of Philosophy">Master of Philosophy</SelectItem>
+                  <SelectItem value="Master of Research">Master of Research</SelectItem>
+                  <SelectItem value="Master of Studies">Master of Studies</SelectItem>
+                  <SelectItem value="Post-Master's Certificate">Post-Master's Certificate</SelectItem>
+                  <SelectItem value="Postbaccalaureate Certificate">Postbaccalaureate Certificate</SelectItem>
+                  <SelectItem value="Higher National Diploma">Higher National Diploma</SelectItem>
+                  <SelectItem value="Integrated Master's Degree">Integrated Master's Degree</SelectItem>
+                  <SelectItem value="Intermediate">Intermediate</SelectItem>
+                  <SelectItem value="Juris Doctor">Juris Doctor</SelectItem>
+                  <SelectItem value="Magister">Magister</SelectItem>
+                  <SelectItem value="Master of Philosophy">Master of Philosophy</SelectItem>
+                  <SelectItem value="Master of Research">Master of Research</SelectItem>
+                  <SelectItem value="Master of Studies">Master of Studies</SelectItem>
+                  <SelectItem value="Post-Master's Certificate">Post-Master's Certificate</SelectItem>
+                  <SelectItem value="Postbaccalaureate Certificate">Postbaccalaureate Certificate</SelectItem>
+                  <SelectItem value="Bachelor of Arts">Bachelor of Arts</SelectItem>
+                  <SelectItem value="Bachelor of Science">Bachelor of Science</SelectItem>
+                  <SelectItem value="Master of Arts">Master of Arts</SelectItem>
+                  <SelectItem value="Master of Science">Master of Science</SelectItem>
+                  <SelectItem value="Master of Business Administration">Master of Business Administration</SelectItem>
+                  <SelectItem value="Doctor of Philosophy">Doctor of Philosophy</SelectItem>
+                  <SelectItem value="Bachelor of Engineering">Bachelor of Engineering</SelectItem>
+                  <SelectItem value="Master of Engineering">Master of Engineering</SelectItem>
+                  <SelectItem value="Bachelor of Medicine">Bachelor of Medicine</SelectItem>
+                  <SelectItem value="Master of Computer Applications">Master of Computer Applications</SelectItem>
+                  <SelectItem value="Bachelor of Commerce">Bachelor of Commerce</SelectItem>
+                  <SelectItem value="Bachelor of Laws">Bachelor of Laws</SelectItem>
+                  <SelectItem value="Bachelor of Education">Bachelor of Education</SelectItem>
+                  <SelectItem value="Master of Laws">Master of Laws</SelectItem>
+                  <SelectItem value="Master of Education">Master of Education</SelectItem>
+                  <SelectItem value="Doctor of Medicine">Doctor of Medicine</SelectItem>
+                  <SelectItem value="Bachelor of Technology">Bachelor of Technology</SelectItem>
+                  <SelectItem value="Master of Technology">Master of Technology</SelectItem>
+                  <SelectItem value="Bachelor of Fine Arts">Bachelor of Fine Arts</SelectItem>
+                  <SelectItem value="Master of Fine Arts">Master of Fine Arts</SelectItem>
+                  <SelectItem value="Bachelor of Business Administration">Bachelor of Business Administration</SelectItem>
+                  <SelectItem value="Master of Business Administration">Master of Business Administration</SelectItem>
+                  <SelectItem value="Bachelor of Social Work">Bachelor of Social Work</SelectItem>
+                  <SelectItem value="Master of Social Work">Master of Social Work</SelectItem>
+                  <SelectItem value="Bachelor of Architecture">Bachelor of Architecture</SelectItem>
+                  <SelectItem value="Master of Architecture">Master of Architecture</SelectItem>
+                  <SelectItem value="Bachelor of Design">Bachelor of Design</SelectItem>
+                  <SelectItem value="Master of Design">Master of Design</SelectItem>
+                  <SelectItem value="Bachelor of Music">Bachelor of Music</SelectItem>
+                  <SelectItem value="Master of Music">Master of Music</SelectItem>
+                  <SelectItem value="Bachelor of Science in Nursing">Bachelor of Science in Nursing</SelectItem>
+                  <SelectItem value="Master of Science in Nursing">Master of Science in Nursing</SelectItem>
+                  <SelectItem value="Bachelor of Pharmacy">Bachelor of Pharmacy</SelectItem>
+                  <SelectItem value="Master of Pharmacy">Master of Pharmacy</SelectItem>
+                  <SelectItem value="Bachelor of Veterinary Science">Bachelor of Veterinary Science</SelectItem>
+                  <SelectItem value="Master of Veterinary Science">Master of Veterinary Science</SelectItem>
+                  <SelectItem value="Bachelor of Dental Surgery">Bachelor of Dental Surgery</SelectItem>
+                  <SelectItem value="Master of Dental Surgery">Master of Dental Surgery</SelectItem>
+                  <SelectItem value="Bachelor of Physical Education">Bachelor of Physical Education</SelectItem>
+                  <SelectItem value="Master of Physical Education">Master of Physical Education</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+
+          {/* <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
+            <Input
+              onChange={handlePossibleScoreGeneralCompetitionChange}
+              type="number"
+              placeholder="Enter Speciality possibleScoreGeneralCompetition Info"
+            />
+          </div>
+          <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+            <h1 className="w-full text-left text-4xl font-bold">Rural Quota</h1>
+            <Input
+              onChange={handlePossibleScoreRuralQuotaChange}
+              type="number"
+              placeholder="Enter Speciality PossibleScoreRuralQuota Info"
+            />
+          </div> */}
+        </div>
+        <div className="name-logo-description-university grid w-full gap-3">
           <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
             <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
             <Input

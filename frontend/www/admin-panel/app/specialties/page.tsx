@@ -1,5 +1,6 @@
 "use client"
 
+/* eslint-enable react/no-unescaped-entities */
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect, useRef } from "react";
@@ -588,36 +589,48 @@ const Specialty = () => {
             }));
             setDocs(newDocs);
             // Configuring Data for Update:
-            docs.map((item: any) => {
-                setSubjectsTag(item.subjects);
-                setMinScroresTag(item.minScrores);
-                setUniversitiesTag(item.universities);
-                setInputedRuralQuota1(item.ruralQuota1);
-                setInputedRuralQuota2(item.ruralQuota2);
-                setInputedRuralQuota3(item.ruralQuota3);
-                setInputedLevel(item.level);
-                setInputedOrphanQuota2(item.orphanQuota2);
-                setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
-                setInputedOrphanQuota3(item.orphanQuota3);
-                setInputedGeneralCompetition1(item.generalCompetition1);
-                setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
-                setInputedGeneralCompetition2(item.generalCompetition2);
-                setInputedGeneralCompetition3(item.generalCompetition3);
-                setInputedSpecialtyCode(item.specialtyCode);
-                setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
-                setInputedAverageSalary(item.averageSalary);
-                setInputedSubjects(item.subjects);
-                setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
-                setInputedThreshold(item.threshold);
-                setInputedSpecialtyName(item.specialtyName);
-                setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
-                setInputedOrphanQuota1(item.orphanQuota1);
-                setInputedUniversities(item.universities);
-                setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
-                setInputedAvailableGrantCount(item.availableGrantCount);
-                setInputedDemandForSpecialty(item.demandForSpecialty);
+            // docs.map((item: any) => {
+            //     setSubjectsTag(item.subjects.map((items:any) => ({
+            //         id: item.id,
+            //         text:
+            //             items || `No Subjects Provided at id:${item.id}`,
+            //     })));
+            //     setMinScroresTag(item.minScrores.map((items:any) => ({
+            //         id: item.id,
+            //         text:
+            //             items || `No MinScrores Provided at id:${item.id}`,
+            //     })));
+            //     setUniversitiesTag(item.universities.map((items:any) => ({
+            //         id: item.id,
+            //         text:
+            //             items || `No Universities Provided at id:${item.id}`,
+            //     })));
+            //     // setInputedRuralQuota1(item.ruralQuota1);
+            //     // setInputedRuralQuota2(item.ruralQuota2);
+            //     // setInputedRuralQuota3(item.ruralQuota3);
+            //     // // setInputedLevel(item.level);
+            //     // setInputedOrphanQuota2(item.orphanQuota2);
+            //     // setInputedDisabilitiesQuota2(item.disabilitiesQuota2);
+            //     // setInputedOrphanQuota3(item.orphanQuota3);
+            //     // setInputedGeneralCompetition1(item.generalCompetition1);
+            //     // setInputedLargeFamiliesQuota2(item.largeFamiliesQuota2);
+            //     // setInputedGeneralCompetition2(item.generalCompetition2);
+            //     // setInputedGeneralCompetition3(item.generalCompetition3);
+            //     // setInputedSpecialtyCode(item.specialtyCode);
+            //     // setInputedDisabilitiesQuota1(item.disabilitiesQuota1);
+            //     // setInputedAverageSalary(item.averageSalary);
+            //     // setInputedSubjects(item.subjects);
+            //     // setInputedLargeFamiliesQuota1(item.largeFamiliesQuota1);
+            //     // setInputedThreshold(item.threshold);
+            //     // setInputedSpecialtyName(item.specialtyName);
+            //     // setInputedDisabilitiesQuota3(item.disabilitiesQuota3);
+            //     // setInputedOrphanQuota1(item.orphanQuota1);
+            //     // setInputedUniversities(item.universities);
+            //     // setInputedLargeFamiliesQuota3(item.largeFamiliesQuota3);
+            //     // setInputedAvailableGrantCount(item.availableGrantCount);
+            //     // setInputedDemandForSpecialty(item.demandForSpecialty);
 
-            })
+            // })
             setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
             setLoading(false);
         };
@@ -759,6 +772,10 @@ const Specialty = () => {
                             </CardHeader>
                             <CardContent className="grid gap-4">
                                 <div className="flex items-center justify-between">
+                                    <span className="text-gray-500 dark:text-gray-400">Level:</span>
+                                    <span className="font-medium">{items.level || "No Level Provided."}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
                                     <span className="text-gray-500 dark:text-gray-400 ">GeneralCompetition:</span>
                                     <span className="font-medium">{items.possibleScoreGeneralCompetition || "No GeneralCompetition Provided."}</span>
                                 </div>
@@ -766,10 +783,7 @@ const Specialty = () => {
                                     <span className="text-gray-500 dark:text-gray-400">RuralQuota:</span>
                                     <span className="font-medium">{items.possibleScoreRuralQuota || "No RuralQuota Provided."}</span>
                                 </div>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-500 dark:text-gray-400">OrphanQuota:</span>
-                                    <span className="font-medium">{items.possibleScoreOrphanQuota || "No OrphanQuota Provided."}</span>
-                                </div>
+
                             </CardContent>
                             <CardFooter className="flex justify-between">
 
@@ -784,6 +798,66 @@ const Specialty = () => {
                                         <div className="w-full flex flex-col gap-2 items-center justify-center p-3 text-sm">
                                             <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                 <div className="flex gap-2">
+                                                    <p>Subjects: </p>
+                                                    <span className="font-semibold w-[250px] truncate space-x-1">
+                                                        {
+                                                            items.subjects.length > 0 ?
+                                                                items.subjects.map((item: any) => (
+                                                                    <Badge
+                                                                    key={item}
+                                                                        className={cn(
+                                                                            "w-fit text-center",
+                                                                            "bg-green-500 text-green-50"
+                                                                        )}
+                                                                    >
+                                                                        {item}
+                                                                    </Badge>
+                                                                )) : "No Subjects is Provided."
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>Universities: </p>
+                                                    <span className="font-semibold w-[250px] truncate space-x-1">
+                                                        {
+                                                            items.universities.length > 0 ?
+                                                                items.universities.flatMap((item: any) => (
+                                                                    <Badge
+                                                                    key={item}
+                                                                        className={cn(
+                                                                            "w-fit text-center",
+                                                                            "bg-green-500 text-green-50"
+                                                                        )}
+                                                                    >
+                                                                        {item}
+                                                                    </Badge>
+                                                                )) : "No Universities is Provided."
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>MinScrores: </p>
+                                                    <span className="font-semibold w-[250px] truncate space-x-1">
+                                                        {
+                                                            items.minScrores.length > 0 ?
+                                                                items.minScrores.flatMap((item: any) => (
+                                                                    <Badge
+                                                                    key={item}
+                                                                        className={cn(
+                                                                            "w-fit text-center",
+                                                                            "bg-green-500 text-green-50"
+                                                                        )}
+                                                                    >
+                                                                        {item}
+                                                                    </Badge>
+                                                                )) : "No MinScrores is Provided."
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                {/* <div className="flex gap-2">
                                                     <p>Subjects: </p>
                                                     <span className="font-semibold w-[250px] truncate">
                                                         {JSON.stringify(items.subjects, null, 2) || "No Subjects is Provided."}
@@ -803,12 +877,19 @@ const Specialty = () => {
                                                         {JSON.stringify(items.minScrores, null, 2) || "No MinScrores is Provided."}
                                                     </span>
                                                 </div>
-                                                <Separator />
+                                                <Separator /> */}
 
                                                 <div className="flex gap-2">
                                                     <p>Name: </p>
                                                     <span className="font-semibold">
                                                         {items.name || "No Name is Provided."}
+                                                    </span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex gap-2">
+                                                    <p>Level: </p>
+                                                    <span className="font-semibold">
+                                                        {items.level || "No Level is Provided."}
                                                     </span>
                                                 </div>
                                                 <Separator />
@@ -938,6 +1019,7 @@ const Specialty = () => {
                                                                         minScrores: minScroresTag.map(obj => obj.text) || items.minScroresTag,
 
                                                                         name: name || items.name,
+                                                                        level: inputedLevel || items.level,
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                         possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
                                                                         possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
@@ -963,6 +1045,8 @@ const Specialty = () => {
                                                                         ),
                                                                     });
 
+                                                                    location.reload();
+
                                                                 }}
                                                             >
                                                                 Update
@@ -978,28 +1062,93 @@ const Specialty = () => {
                                                             <div className="flex gap-2">
                                                                 <p>Subjects: </p>
                                                                 <span className="font-semibold  w-[250px] truncate">
-                                                                    {subjectsTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
+                                                                    {subjectsTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "") || "No Subjects is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>Universities: </p>
                                                                 <span className="font-semibold w-[250px] truncate">
-                                                                    {universitiesTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
+                                                                    {universitiesTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "") || "No Universities is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>MinScrores: </p>
                                                                 <span className="font-semibold w-[250px] truncate">
-                                                                    {minScroresTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "No Subjects is Provided.") || "No Subjects is Provided."}
+                                                                    {minScroresTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "") || "No MinScrores is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            {/* <div className="flex gap-2">
+                                                                <p>Subjects: </p>
+                                                                <span className="font-semibold w-[250px] truncate space-x-1">
+                                                                    {
+                                                                        subjectsTag.length > 0 ?
+                                                                            subjectsTag.flatMap((item: any) => (
+                                                                                <Badge
+                                                                                    className={cn(
+                                                                                        "w-fit text-center",
+                                                                                        "bg-green-500 text-green-50"
+                                                                                    )}
+                                                                                >
+                                                                                    {item}
+                                                                                </Badge>
+                                                                            )) : "No Subjects is Provided."
+                                                                    }
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
+                                                                <p>Universities: </p>
+                                                                <span className="font-semibold w-[250px] truncate space-x-1">
+                                                                    {
+                                                                        universitiesTag.length > 0 ?
+                                                                            universitiesTag.flatMap((item: any) => (
+                                                                                <Badge
+                                                                                    className={cn(
+                                                                                        "w-fit text-center",
+                                                                                        "bg-green-500 text-green-50"
+                                                                                    )}
+                                                                                >
+                                                                                    {item}
+                                                                                </Badge>
+                                                                            )) : "No Universities is Provided."
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>MinScrores: </p>
+                                                                <span className="font-semibold w-[250px] truncate space-x-1">
+                                                                    {
+                                                                        minScroresTag.length > 0 ?
+                                                                            minScroresTag.flatMap((item: any) => (
+                                                                                <Badge
+                                                                                    className={cn(
+                                                                                        "w-fit text-center",
+                                                                                        "bg-green-500 text-green-50"
+                                                                                    )}
+                                                                                >
+                                                                                    {item}
+                                                                                </Badge>
+                                                                            )) : "No MinScrores is Provided."
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            <Separator /> */}
+
+                                                            <div className="flex gap-2">
                                                                 <p>Name: </p>
                                                                 <span className="font-semibold">
                                                                     {name || "No Name is Provided."}
+                                                                </span>
+                                                            </div>
+                                                            <Separator />
+                                                            <div className="flex gap-2">
+                                                                <p>Level: </p>
+                                                                <span className="font-semibold">
+                                                                    {inputedLevel || "No Level is Provided."}
                                                                 </span>
                                                             </div>
                                                             <Separator />
@@ -1282,7 +1431,7 @@ const Specialty = () => {
                                                             }}
                                                         />
                                                     </div>
-
+                                                    {/* 
                                                     <div className="name-logo-description-university grid w-full gap-3">
                                                         <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
                                                             <h1 className="w-full text-left text-4xl font-bold">Name</h1>
@@ -1318,8 +1467,142 @@ const Specialty = () => {
                                                                 placeholder="Enter Speciality PossibleScoreRuralQuota Info"
                                                             />
                                                         </div>
-                                                    </div>
+                                                    </div> */}
+                                                    <div className="name-logo-description-university grid w-full gap-3">
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Name</h1>
+                                                            <Input
+                                                                onChange={handleNameChange}
+                                                                type="text"
+                                                                placeholder="Enter Speciality Name"
+                                                            />
+                                                        </div>
 
+
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">
+                                                                SpecialtyCode
+                                                            </h1>
+                                                            <Input
+                                                                onChange={handleSpecialtyCodeChange}
+                                                                type="text"
+                                                                placeholder="Enter SpecialtyCode Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">
+                                                                Level
+                                                            </h1>
+                                                            <Select onValueChange={(e) => setInputedLevel(e)}>
+                                                                <SelectTrigger className="w-full">
+                                                                    <SelectValue placeholder="Select a Level" />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectGroup>
+                                                                        <SelectLabel className="border-b">Level's</SelectLabel>
+                                                                        <SelectItem value="Bachelor">Bachelor</SelectItem>
+                                                                        <SelectItem value="Master">Master</SelectItem>
+                                                                        <SelectItem value="PhD">PhD</SelectItem>
+                                                                        <SelectItem value="Associate">Associate</SelectItem>
+                                                                        <SelectItem value="Diploma">Diploma</SelectItem>
+                                                                        <SelectItem value="Certificate">Certificate</SelectItem>
+                                                                        <SelectItem value="Doctorate">Doctorate</SelectItem>
+                                                                        <SelectItem value="Postgraduate">Postgraduate</SelectItem>
+                                                                        <SelectItem value="Undergraduate">Undergraduate</SelectItem>
+                                                                        <SelectItem value="Professional">Professional</SelectItem>
+                                                                        <SelectItem value="Advanced Diploma">Advanced Diploma</SelectItem>
+                                                                        <SelectItem value="Foundation Degree">Foundation Degree</SelectItem>
+                                                                        <SelectItem value="Graduate Certificate">Graduate Certificate</SelectItem>
+                                                                        <SelectItem value="Graduate Diploma">Graduate Diploma</SelectItem>
+                                                                        <SelectItem value="Honours Degree">Honours Degree</SelectItem>
+                                                                        <SelectItem value="Postgraduate Certificate">Postgraduate Certificate</SelectItem>
+                                                                        <SelectItem value="Postgraduate Diploma">Postgraduate Diploma</SelectItem>
+                                                                        <SelectItem value="Professional Doctorate">Professional Doctorate</SelectItem>
+                                                                        <SelectItem value="Research Master">Research Master</SelectItem>
+                                                                        <SelectItem value="Specialist Degree">Specialist Degree</SelectItem>
+                                                                        <SelectItem value="Higher National Diploma">Higher National Diploma</SelectItem>
+                                                                        <SelectItem value="Integrated Master's Degree">Integrated Master's Degree</SelectItem>
+                                                                        <SelectItem value="Intermediate">Intermediate</SelectItem>
+                                                                        <SelectItem value="Juris Doctor">Juris Doctor</SelectItem>
+                                                                        <SelectItem value="Magister">Magister</SelectItem>
+                                                                        <SelectItem value="Master of Philosophy">Master of Philosophy</SelectItem>
+                                                                        <SelectItem value="Master of Research">Master of Research</SelectItem>
+                                                                        <SelectItem value="Master of Studies">Master of Studies</SelectItem>
+                                                                        <SelectItem value="Post-Master's Certificate">Post-Master's Certificate</SelectItem>
+                                                                        <SelectItem value="Postbaccalaureate Certificate">Postbaccalaureate Certificate</SelectItem>
+                                                                        <SelectItem value="Higher National Diploma">Higher National Diploma</SelectItem>
+                                                                        <SelectItem value="Integrated Master's Degree">Integrated Master's Degree</SelectItem>
+                                                                        <SelectItem value="Intermediate">Intermediate</SelectItem>
+                                                                        <SelectItem value="Juris Doctor">Juris Doctor</SelectItem>
+                                                                        <SelectItem value="Magister">Magister</SelectItem>
+                                                                        <SelectItem value="Master of Philosophy">Master of Philosophy</SelectItem>
+                                                                        <SelectItem value="Master of Research">Master of Research</SelectItem>
+                                                                        <SelectItem value="Master of Studies">Master of Studies</SelectItem>
+                                                                        <SelectItem value="Post-Master's Certificate">Post-Master's Certificate</SelectItem>
+                                                                        <SelectItem value="Postbaccalaureate Certificate">Postbaccalaureate Certificate</SelectItem>
+                                                                        <SelectItem value="Bachelor of Arts">Bachelor of Arts</SelectItem>
+                                                                        <SelectItem value="Bachelor of Science">Bachelor of Science</SelectItem>
+                                                                        <SelectItem value="Master of Arts">Master of Arts</SelectItem>
+                                                                        <SelectItem value="Master of Science">Master of Science</SelectItem>
+                                                                        <SelectItem value="Master of Business Administration">Master of Business Administration</SelectItem>
+                                                                        <SelectItem value="Doctor of Philosophy">Doctor of Philosophy</SelectItem>
+                                                                        <SelectItem value="Bachelor of Engineering">Bachelor of Engineering</SelectItem>
+                                                                        <SelectItem value="Master of Engineering">Master of Engineering</SelectItem>
+                                                                        <SelectItem value="Bachelor of Medicine">Bachelor of Medicine</SelectItem>
+                                                                        <SelectItem value="Master of Computer Applications">Master of Computer Applications</SelectItem>
+                                                                        <SelectItem value="Bachelor of Commerce">Bachelor of Commerce</SelectItem>
+                                                                        <SelectItem value="Bachelor of Laws">Bachelor of Laws</SelectItem>
+                                                                        <SelectItem value="Bachelor of Education">Bachelor of Education</SelectItem>
+                                                                        <SelectItem value="Master of Laws">Master of Laws</SelectItem>
+                                                                        <SelectItem value="Master of Education">Master of Education</SelectItem>
+                                                                        <SelectItem value="Doctor of Medicine">Doctor of Medicine</SelectItem>
+                                                                        <SelectItem value="Bachelor of Technology">Bachelor of Technology</SelectItem>
+                                                                        <SelectItem value="Master of Technology">Master of Technology</SelectItem>
+                                                                        <SelectItem value="Bachelor of Fine Arts">Bachelor of Fine Arts</SelectItem>
+                                                                        <SelectItem value="Master of Fine Arts">Master of Fine Arts</SelectItem>
+                                                                        <SelectItem value="Bachelor of Business Administration">Bachelor of Business Administration</SelectItem>
+                                                                        <SelectItem value="Master of Business Administration">Master of Business Administration</SelectItem>
+                                                                        <SelectItem value="Bachelor of Social Work">Bachelor of Social Work</SelectItem>
+                                                                        <SelectItem value="Master of Social Work">Master of Social Work</SelectItem>
+                                                                        <SelectItem value="Bachelor of Architecture">Bachelor of Architecture</SelectItem>
+                                                                        <SelectItem value="Master of Architecture">Master of Architecture</SelectItem>
+                                                                        <SelectItem value="Bachelor of Design">Bachelor of Design</SelectItem>
+                                                                        <SelectItem value="Master of Design">Master of Design</SelectItem>
+                                                                        <SelectItem value="Bachelor of Music">Bachelor of Music</SelectItem>
+                                                                        <SelectItem value="Master of Music">Master of Music</SelectItem>
+                                                                        <SelectItem value="Bachelor of Science in Nursing">Bachelor of Science in Nursing</SelectItem>
+                                                                        <SelectItem value="Master of Science in Nursing">Master of Science in Nursing</SelectItem>
+                                                                        <SelectItem value="Bachelor of Pharmacy">Bachelor of Pharmacy</SelectItem>
+                                                                        <SelectItem value="Master of Pharmacy">Master of Pharmacy</SelectItem>
+                                                                        <SelectItem value="Bachelor of Veterinary Science">Bachelor of Veterinary Science</SelectItem>
+                                                                        <SelectItem value="Master of Veterinary Science">Master of Veterinary Science</SelectItem>
+                                                                        <SelectItem value="Bachelor of Dental Surgery">Bachelor of Dental Surgery</SelectItem>
+                                                                        <SelectItem value="Master of Dental Surgery">Master of Dental Surgery</SelectItem>
+                                                                        <SelectItem value="Bachelor of Physical Education">Bachelor of Physical Education</SelectItem>
+                                                                        <SelectItem value="Master of Physical Education">Master of Physical Education</SelectItem>
+                                                                    </SelectGroup>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="name-logo-description-university grid w-full gap-3">
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">General Competition</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreGeneralCompetitionChange}
+                                                                type="number"
+                                                                placeholder="Enter Speciality possibleScoreGeneralCompetition Info"
+                                                            />
+                                                        </div>
+                                                        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                                                            <h1 className="w-full text-left text-4xl font-bold">Rural Quota</h1>
+                                                            <Input
+                                                                onChange={handlePossibleScoreRuralQuotaChange}
+                                                                type="number"
+                                                                placeholder="Enter Speciality PossibleScoreRuralQuota Info"
+                                                            />
+                                                        </div>
+                                                    </div>
                                                     <div className="name-logo-description-university grid w-full gap-3">
                                                         <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
                                                             <h1 className="w-full text-left text-4xl font-bold">Orphan Quota</h1>
@@ -1411,6 +1694,7 @@ const Specialty = () => {
                                                                     minScrores: minScroresTag.map(obj => obj.text) || items.minScroresTag,
 
                                                                     name: name || items.name,
+                                                                    level: inputedLevel || items.level,
                                                                     specialtyCode: inputedSpecialtyCode || items.specialtyCode,
                                                                     possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
                                                                     possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
@@ -1439,6 +1723,8 @@ const Specialty = () => {
                                                                 // setSheetToggle(!sheetToggle)
                                                                 // router.push('/university')
                                                                 // fetchDocs()
+                                                                location.reload();
+
                                                             }}
                                                         >
                                                             {/* {

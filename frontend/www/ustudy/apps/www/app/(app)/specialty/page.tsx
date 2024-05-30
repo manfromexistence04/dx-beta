@@ -51,10 +51,10 @@ async function getTasks() {
   const querySnapshot = await getDocs(q)
   const newDocs = querySnapshot.docs.map((doc) => ({
     id: doc.id,
-    name: doc.data().specialtyName,
+    name: doc.data().name,
     code: doc.data().specialtyCode,
     generalQuota: doc.data().possibleScoreGeneralCompetition,
-    ruralQuota: doc.data().possibleScoreRuralQuota,
+    level: doc.data().level,
     ...doc.data(),
   }))
 
