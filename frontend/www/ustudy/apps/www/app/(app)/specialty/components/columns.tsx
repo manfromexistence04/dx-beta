@@ -106,10 +106,10 @@ export const columns: any[] | any = [
   // },
   {
     accessorKey: "level",
-    header: ({ column }) => (
+    header: ({ column }:any) => (
       <DataTableColumnHeader column={column} title="level" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }:any) => {
       // const status = statuses.find(
       //   (status) => status.value === row.getValue("level")
       // )
@@ -138,7 +138,7 @@ export const columns: any[] | any = [
         </div>
       )
     },
-    filterFn: (row, id, value) => {
+    filterFn: (row:any, id:any, value:any) => {
       return value.includes(row.getValue(id))
     },
   },
