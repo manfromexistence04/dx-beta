@@ -37,19 +37,19 @@ export const columns: any[] | any = [
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: "id",
-    header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Specialty Id" />
-    ),
-    cell: ({ row }:any) => (
-      <div className="select-all truncate font-medium">
-        {row.getValue("id") || <CircleSlash />}
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // {
+  //   accessorKey: "id",
+  //   header: ({ column }:any) => (
+  //     <DataTableColumnHeader column={column} title="Specialty Id" />
+  //   ),
+  //   cell: ({ row }:any) => (
+  //     <div className="select-all truncate font-medium">
+  //       {row.id || <CircleSlash />}
+  //     </div>
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
   {
     accessorKey: "name",
     header: ({ column }:any) => (
