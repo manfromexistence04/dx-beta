@@ -21,7 +21,7 @@ export function MainNav() {
         </span>
       </Link>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
-      {/* <Link
+        {/* <Link
           href="/home"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -31,7 +31,7 @@ export function MainNav() {
           Home
           
         </Link> */}
-                {/* <Link
+        <Link
           href="/home"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -39,7 +39,7 @@ export function MainNav() {
           )}
         >
           Home
-        </Link> */}
+        </Link>
         <Link
           href="/universities"
           className={cn(
@@ -67,7 +67,7 @@ export function MainNav() {
         >
           Questions
         </Link>
-        {/* <Link
+        <Link
           href="/profile"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -75,7 +75,7 @@ export function MainNav() {
           )}
         >
           Profile
-        </Link> */}
+        </Link>
         {/* <Link
           href="/settings"
           className={cn(

@@ -7,7 +7,7 @@ import { Button } from "@/registry/new-york/ui/button"
 import { Input } from "@/registry/new-york/ui/input"
 import { DataTableViewOptions } from "@/app/(app)/examples/tasks/components/data-table-view-options"
 
-import { priorities, statuses } from "../data/data"
+import { Bachelor, Master,PhD, statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 
 interface DataTableToolbarProps<TData> {
@@ -33,22 +33,22 @@ export function DataTableToolbar<TData>({
         {table.getColumn("level") && (
           <DataTableFacetedFilter
             column={table.getColumn("level")}
-            title="Bachlor"
-            options={statuses}
+            title="Bachelor"
+            options={Bachelor}
           />
         )}
         {table.getColumn("level") && (
           <DataTableFacetedFilter
             column={table.getColumn("level")}
             title="Master"
-            options={priorities}
+            options={Master}
           />
         )}
         {table.getColumn("level") && (
           <DataTableFacetedFilter
             column={table.getColumn("level")}
             title="Phd"
-            options={priorities}
+            options={PhD}
           />
         )}
         {isFiltered && (

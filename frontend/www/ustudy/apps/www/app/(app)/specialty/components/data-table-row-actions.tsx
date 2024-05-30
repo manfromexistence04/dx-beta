@@ -183,6 +183,13 @@ export function DataTableRowActions<TData>({
                 </div>
                 <Separator />
                 <div className="flex gap-2">
+                  <p>Level: </p>
+                  <span className="font-semibold">
+                    {row.original.level || "No Name is Provided."}
+                  </span>
+                </div>
+                <Separator />
+                <div className="flex gap-2">
                   <p>Code: </p>
                   <span className="font-semibold">
                     {row.original.specialtyCode || "No Code is Provided."}
