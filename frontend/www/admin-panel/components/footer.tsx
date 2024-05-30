@@ -34,7 +34,7 @@ export function SiteFooter() {
             </div>
 
             <div className="text-start text-[0.8rem]">
-              @Nurzhol Tabigat 2024 All rights reserved.
+              @Ustudy 2024 All rights reserved.
             </div>
           </div>
 

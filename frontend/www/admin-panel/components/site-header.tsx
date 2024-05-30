@@ -157,7 +157,7 @@ export function SiteHeader() {
                       alt="User"
                       className="aspect-square rounded-full object-cover"
                       height="23"
-                      src="/Nurzhol Tabigat.jpg"
+                      src="/Ustudy.jpg"
                       width="23"
                     /> */}
                       <User className="h-5 w-5" />
