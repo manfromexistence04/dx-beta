@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -29,7 +31,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -75,10 +76,96 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import type { NextPage } from "next"
+import { Input as NextuiInput } from "@nextui-org/react"
+import { Eye, EyeOff } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
+import { Button, buttonVariants } from "@/registry/default/ui/button"
+import { Checkbox } from "@/registry/default/ui/checkbox"
+import { Label } from "@/registry/default/ui/label"
+import React, { useEffect, useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import { useAuth } from "@clerk/nextjs";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  onSnapshot,
+  query,
+  startAfter,
+  updateDoc,
+} from "firebase/firestore"
+import { initializeApp } from "firebase/app"
+import { useToast } from "@/registry/default/ui/use-toast"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { set } from 'date-fns';
+import { useRouter } from 'next/navigation'
+const firebaseConfig = {
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+}
 
-export default function Specialties() {
+const app = initializeApp(firebaseConfig)
+const db: any = getFirestore(app)
+const auth = getAuth(app);
+
+
+export default function HomePage() {
+
+  const { toast } = useToast()
+  const router = useRouter()
+  const [userDetailsDialog, setUserDetailsDialog] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userId, setUserid] = useState<any>("");
+  const [surname, setSurname] = useState("");
+  const [untScore, setUntScore] = useState<any>(0);
+  const [docs, setDocs] = useState<any>([]);
+  const [region, setRegion] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    const fetchDocs = async () => {
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+      const newDocs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setDocs(newDocs);
+    };
+    fetchDocs();
+  }, []);
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      {
+        docs && docs.map((user: any) => {
+          if (user.userId) {
+            return auth && auth.currentUser && auth.currentUser.uid === user.userId && <Button key={user.uid}>{`User ${user.name}`}</Button>
+          }
+
+          if (user.adminId) {
+            return auth && auth.currentUser && auth.currentUser.uid === user.adminId && <Button key={user.uid}>{`Admin ${user.name}`}</Button>
+          }
+
+        })
+      }
       <div className="flex flex-col sm:gap-4 sm:py-4">
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
           <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
@@ -87,7 +174,7 @@ export default function Specialties() {
                 className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
               >
                 <CardHeader className="pb-3">
-                  <CardTitle>Your Orders</CardTitle>
+                  <CardTitle>{auth && auth.currentUser && auth.currentUser.email || "No Admin"}</CardTitle>
                   <CardDescription className="max-w-lg text-balance leading-relaxed">
                     Introducing Our Dynamic Orders Dashboard for Seamless
                     Management and Insightful Analysis.
