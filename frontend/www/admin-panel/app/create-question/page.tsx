@@ -37,7 +37,6 @@ import { Plate } from '@udecode/plate-common';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
 // import { DndProvider } from 'react-dnd';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
-
 // import { CommentsPopover } from '@/components/plate-ui/comments-popover';
 // import { CursorOverlay } from '@/components/plate-ui/cursor-overlay';
 // import { Editor } from '@/components/plate-ui/editor';
@@ -112,7 +111,7 @@ interface UploadedFilesCardProps {
     uploadedFiles: UploadedFile[]
 }
 
-export default function CreateUniversity() {
+export default function CreateQuestion() {
 
     const [resultsTag, setResultslTag] = React.useState<Tag[]>([]);
     const [answersTag, setAnswersTag] = React.useState<Tag[]>([]);
@@ -330,12 +329,12 @@ export default function CreateUniversity() {
                     <Separator />
                     <div className="flex gap-2 p-3">
                         <p>Answers: </p>
-                        <span className="font-semibold">{JSON.stringify(answersTag,null,2) || "No Answers is Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Answers is Provided."}</span>
                     </div>
                     <Separator />
                     <div className="flex gap-2 p-3">
                         <p>Results: </p>
-                        <span className="font-semibold">{JSON.stringify(resultsTag,null,2) || "No Results is Provided."}</span>
+                        <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Results is Provided."}</span>
                     </div>
                 </div>}
 
@@ -384,12 +383,8 @@ export default function CreateUniversity() {
                     </AnimatedButton> */}
                     <AnimatedButton
                         className="!py-0 w-full"
-                        disabled={createButtonDisabled}
-                    // onClick={handleConfetti}
+                        onClick={handleConfetti}
                     >
-                        {/* {
-                            createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        } */}
                         Create
                     </AnimatedButton>
                 </div>
