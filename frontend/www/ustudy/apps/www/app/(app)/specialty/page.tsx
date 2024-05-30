@@ -87,7 +87,7 @@ async function TaskPage() {
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
-            <h2 className="text-[2.5rem] font-bold tracking-tight text-blueviolet-100">
+            <h2 className="text-blueviolet-100 text-[2.5rem] font-bold tracking-tight">
               Specialty
             </h2>
             {/* <p className="text-muted-foreground">
@@ -105,7 +105,7 @@ async function TaskPage() {
 }
 const SpecialtyPage: NextPage = () => {
   return (
-    <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-[13px] pt-0 leading-[normal] tracking-[normal]">
+    <div className="relative box-border flex min-h-screen w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-[13px] pt-0 leading-[normal] tracking-[normal]">
       {/* <GroupComponent /> */}
 
       <div className="mx-auto w-auto lg:w-[1150px]">

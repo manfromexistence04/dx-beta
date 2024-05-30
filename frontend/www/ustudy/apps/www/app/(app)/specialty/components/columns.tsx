@@ -10,6 +10,7 @@ import { Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { CircleSlash } from "lucide-react"
+import { CheckCircledIcon } from "@radix-ui/react-icons"
 
 export const columns: any[] | any = [
   {
@@ -42,7 +43,7 @@ export const columns: any[] | any = [
       <DataTableColumnHeader column={column} title="Specialty Id" />
     ),
     cell: ({ row }:any) => (
-      <div className="truncate font-medium select-all">
+      <div className="select-all truncate font-medium">
         {row.getValue("id") || <CircleSlash />}
       </div>
     ),
@@ -85,25 +86,62 @@ export const columns: any[] | any = [
       )
     },
   },
+  // {
+  //   accessorKey: "level",
+  //   header: ({ column }:any) => (
+  //     <DataTableColumnHeader column={column} title="Level" />
+  //   ),
+  //   cell: ({ row }:any) => {
+  //     const label = labels.find((label) => label.value === row.original.name)
+
+  //     return (
+  //       <div className="flex space-x-2">
+  //         {label && <Badge variant="outline">{label.label}</Badge>}
+  //         <span className="max-w-[100px] truncate font-medium">
+  //           {row.getValue("level") || <CircleSlash />}
+  //         </span>
+  //       </div>
+  //     )
+  //   },
+  // },
   {
     accessorKey: "level",
-    header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Level" />
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="level" />
     ),
-    cell: ({ row }:any) => {
-      const label = labels.find((label) => label.value === row.original.name)
+    cell: ({ row }) => {
+      // const status = statuses.find(
+      //   (status) => status.value === row.getValue("level")
+      // )
+      // const status = statuses.find(
+      //   (status) => status.value === row.getValue("level")
+      // )
+      // const status = statuses.map(
+      //   (status) => status.value === row.getValue("level")
+      // )
+
+      // if (!status) {
+      //   return null
+      // }
 
       return (
-        <div className="flex space-x-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[100px] truncate font-medium">
-            {row.getValue("level") || <CircleSlash />}
-          </span>
+        // <div className="flex w-[100px] items-center">
+        //   {status.icon && (
+        //     <status.icon className="mr-2 size-4 text-muted-foreground" />
+        //   )}
+        //   <span>{status.label}</span>
+        // </div>
+        <div className="flex w-[100px] items-center">
+            <CheckCircledIcon className="text-muted-foreground mr-2 size-4" />
+          
+          <span>{row.getValue("level")}</span>
         </div>
       )
     },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
   },
-
   {
     accessorKey: "generalQuota",
     header: ({ column }:any) => (

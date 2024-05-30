@@ -1,6 +1,6 @@
 "use client"
 
-/* eslint-enable react/no-unescaped-entities */
+/* eslint-disable react/no-unescaped-entities */
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect, useRef } from "react";
