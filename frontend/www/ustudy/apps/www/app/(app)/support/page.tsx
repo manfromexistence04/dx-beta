@@ -85,7 +85,7 @@ async function getTasks() {
         <div className="hidden h-full flex-1 flex-col space-y-8 p-8 pt-0 md:flex">
           <div className="flex items-center justify-between space-y-2">
             <div>
-              <h2 className="text-[3rem] font-bold tracking-tight bg-gradient-to-r from-yellow-600 to-pink-600 bg-clip-text text-transparent">
+              <h2 className="bg-gradient-to-r from-yellow-600 to-pink-600 bg-clip-text text-[3rem] font-bold tracking-tight text-transparent">
                 History of supports we provided.
               </h2>
               {/* <p className="text-muted-foreground">
@@ -107,7 +107,7 @@ const SupportPage: NextPage = () => {
 
 
   return (
-    <div className="pb-32 relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pt-0 leading-[normal] tracking-[normal]">
+    <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-32 pt-0 leading-[normal] tracking-[normal]">
       <FrameComponent />
       
       <div className="mx-auto w-auto lg:w-[1150px]">

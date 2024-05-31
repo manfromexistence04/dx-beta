@@ -226,7 +226,6 @@ const Support = () => {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
-
   const { uploadImages, imagesUploadingProgress, uploadedImages, isImagesUploading } = useUploadImages(
     "imageUploader",
     { defaultUploadedFiles: [] }
@@ -257,7 +256,6 @@ const Support = () => {
         x: targetCenterX / clientWidth,
       },
     });
-    // setSheetToggle(!sheetToggle)
   };
   const [inputedValues, setInputedValues] = React.useState(false);
   const [sheetToggle, setSheetToggle] = React.useState(false);
@@ -280,6 +278,7 @@ const Support = () => {
   function showPhoneNumberDetails() {
     setPhoneNumberDetails(!phoneNumberDetails);
   }
+
   const [inputedRuralQuota1, setInputedRuralQuota1] = React.useState("");
   const [inputedRuralQuota2, setInputedRuralQuota2] = React.useState("");
   const [inputedRuralQuota3, setInputedRuralQuota3] = React.useState("");
@@ -401,7 +400,7 @@ const Support = () => {
   const handleDemandForSpecialtyChange = (event: any) => {
     setInputedDemandForSpecialty(event.target.value);
   }
-
+  
   const [loadingMore, setLoadingMore] = React.useState(false)
   const [inputedName, setInputedName] = React.useState("")
   const [inputedEmail, setInputedEmail] = React.useState("")
@@ -615,15 +614,16 @@ const Support = () => {
 
               <Card className="hover-glow-border w-full relative bg-primary-foreground">
                 <CardHeader>
-                  <CardTitle>{items.mainQuestion}</CardTitle>
+                  <CardTitle>{items.comment}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4">
 
+
                     {
-                      items.answers.length > 0 ? (<div className="space-y-3">
+                      items.mentions?.length > 0 ? (<div className="space-y-3">
                         {
-                          items.answers.map((index: any) => {
+                          items.mentions.map((index: any) => {
                             return (
                               <div key={index} className="flex items-center justify-between rounded-lg border p-3">
                                 <div>
@@ -659,9 +659,9 @@ const Support = () => {
 
 
                   {
-                    items.results.length > 0 ? (<div className="flex items-center gap-2 w-full">
+                    items.topics?.length > 0 ? (<div className="flex items-center gap-2 w-full">
                       {
-                        items.results.map((index: any) => {
+                        items.topics.map((index: any) => {
                           return (
                             <Badge key={index} variant="outline" className="text-xs text-center">{index}</Badge>
                           )
@@ -685,34 +685,12 @@ const Support = () => {
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Answers: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {items.answers.length > 0 ? items.answers.flatMap((item: any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item}
-                              </Badge>) : "No Answers is provided"
-                              }
-                            </span>
+                            <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Results: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {items.results.length > 0 ? items.results.flatMap((item:any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item}
-                              </Badge>) : "No Results is provided"
-                              }
-                            </span>
+                            <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Main Questing is Provided."}</span>
                           </div>
                         </div>
                       </DialogContent>
@@ -766,9 +744,9 @@ const Support = () => {
 
                                       const updateRef = doc(db, "questions", items.id);
                                       const Update: any = await updateDoc(updateRef, {
-                                        mainQuestion: inputedMainQuestion || items.mainQuestion,
-                                        answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
-                                        results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
+                                        mainQuestion: inputedMainQuestion,
+                                        answers: answersTag.map(obj => obj.text),
+                                        results: resultsTag.map(obj => obj.text)
                                       })
 
 
@@ -779,7 +757,7 @@ const Support = () => {
                                         title: 'University has been Updated Successfully.',
                                         description: (
                                           <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                                            <span>You Can now view and delete this questions!</span>
+                                            <span>You Can now view and delete this university!</span>
                                             <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
                                               {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                             </pre>
@@ -816,37 +794,6 @@ const Support = () => {
                                 </div>
                                 <Separator />
                                 <div className="flex gap-2 p-3">
-                            <p>Answers: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {answersTag.length > 0 ? answersTag.flatMap((item: any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item.text}
-                              </Badge>) : "No Answers is provided"
-                              }
-                            </span>
-                          </div>
-                          <Separator />
-                          <div className="flex gap-2 p-3">
-                            <p>Results: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {resultsTag.length > 0 ? resultsTag.flatMap((item:any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item.text}
-                              </Badge>) : "No Results is provided"
-                              }
-                            </span>
-                          </div>
-                                {/* <div className="flex gap-2 p-3">
                                   <p>Answers: </p>
                                   <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Answers is Provided."}</span>
                                 </div>
@@ -854,7 +801,7 @@ const Support = () => {
                                 <div className="flex gap-2 p-3">
                                   <p>Results: </p>
                                   <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Results is Provided."}</span>
-                                </div> */}
+                                </div>
                               </div>}
 
                               <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -920,9 +867,9 @@ const Support = () => {
                                     });
                                     const updateRef = doc(db, "questions", items.id);
                                     const Update: any = await updateDoc(updateRef, {
-                                      mainQuestion: inputedMainQuestion || items.mainQuestion,
-                                      answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
-                                      results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
+                                      mainQuestion: inputedMainQuestion,
+                                      answers: answersTag.map(obj => obj.text),
+                                      results: resultsTag.map(obj => obj.text)
                                     })
 
 

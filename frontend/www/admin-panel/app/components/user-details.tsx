@@ -1,5 +1,7 @@
 "use client";
 
+// import RainbowText from 'react-rainbow-text';
+import RainbowText from "rainbow-text-react";
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -210,10 +212,9 @@ export function UserDetails() {
   return (
 
     <div>
-      {
-        docs && docs.map((user: any) => {
-          if (user.userId) {
-            return auth && auth.currentUser && auth.currentUser.uid === user.userId && <div key={user.uid} className="rounded-lg relative w-[750px] flex items-center justify-start">
+      {docs && docs.map((user: any) => {
+        if (user.accountType === "Client") {
+          return auth && auth.currentUser && auth.currentUser.uid === user.userId && <div key={user.uid} className="rounded-lg relative w-[750px] flex items-center justify-start">
             <div className="p-8 rounded-xl bg-background shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5 max-w-[25rem]">
               <div className="flex flex-col items-center gap-2 mb-6">
                 <div className="w-full relative flex justify-center">
@@ -248,7 +249,7 @@ export function UserDetails() {
                   <div className="h-4" />
                 )}
               </div>
-      
+
               <div className="px-2.5 bg-[#171720] rounded-lg divide-y divide-border">
                 <Row desc="Email" value={user.name}>
                   <PointerC label="user.name" />
@@ -268,7 +269,7 @@ export function UserDetails() {
                 <Row desc="Status" value={user.status}>
                   <PointerC label="session.status" />
                 </Row>
-                <Row
+                {/* <Row
                   desc="Last active"
                   value={formatDateWithNumbers(user.lastActiveAt)}
                 >
@@ -279,7 +280,7 @@ export function UserDetails() {
                   value={formatDateWithNumbers(user.expireAt)}
                 >
                   <PointerC label="session.expireAt" />
-                </Row>
+                </Row> */}
               </div>
               {/* {organization ? (
                 <>
@@ -307,10 +308,9 @@ export function UserDetails() {
               ) : null} */}
             </div>
           </div>
-          }
-
-          if (user.adminId) {
-            return auth && auth.currentUser && auth.currentUser.uid === user.adminId && <div key={user.uid} className="rounded-lg relative w-[750px] flex items-center justify-start">
+        }
+        if (user.accountType === "Admin") {
+          return auth && auth.currentUser && auth.currentUser.uid === user.userId && <div key={user.uid} className="rounded-lg relative w-[750px] flex items-center justify-start">
             <div className="p-8 rounded-xl bg-background shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5 max-w-[25rem]">
               <div className="flex flex-col items-center gap-2 mb-6">
                 <div className="w-full relative flex justify-center">
@@ -345,7 +345,7 @@ export function UserDetails() {
                   <div className="h-4" />
                 )}
               </div>
-      
+
               <div className="px-2.5 bg-[#171720] rounded-lg divide-y divide-border">
                 <Row desc="Email" value={user.name}>
                   <PointerC label="user.name" />
@@ -393,10 +393,25 @@ export function UserDetails() {
               ) : null} */}
             </div>
           </div>
-          }
+        }
+      })}
+      <div className="min-h-[500px] w-full flex items-center justify-center flex-col gap-5">
+        {/* <RainbowText lightness={0.5} saturation={1}>
+          Please Login to see your profile details!
+        </RainbowText> */}
+        {/* <RainbowText>
+            Please Login to see your profile details!
+    </RainbowText> */}
+        {/* <span className="text-5xl font-bold bg-gradient-to-r from-yellow-600 to-pink-600 bg-clip-text text-transparent h-[3rem] bg-red-500">Please Login to see your profile details!</span> */}
+        {/* <div className="rainbow-text-container border">
+          <span className="rainbow-text">Swag</span>
+        </div> */}
 
-        })
-      }
+        <span className="rainbow-text">Please Login to see your profile details!</span>
+        <Link href="/login" className="">
+          <Button>Login</Button>
+        </Link>
+      </div>
     </div>
 
 

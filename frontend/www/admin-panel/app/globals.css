@@ -113,25 +113,7 @@
 }
 
 @layer utilities {
-  .parallax {
-    overflow: hidden;
-    letter-spacing: -2px;
-    line-height: 0.9;
-    margin: 0;
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: nowrap;
-  }
 
-  .parallax .scroller {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 100px;
-    display: flex;
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: nowrap;
-  }
 
   .parallax span {
     display: block;
@@ -601,7 +583,85 @@ button[data-localization-key='userProfile.start.dangerSection.deleteAccountButto
   @apply text-foreground hover:bg-secondary;
 }
 
-button .cl-button:hover,button .cl-button {
+button .cl-button:hover,
+button .cl-button {
   background: transparent !important;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.rainbow-text {
+  font-size: 3.5em;
+  font-family: 'Pacifico', sans-serif !important;
+  position: relative;
+  color: black;
+  background: white;
+  mix-blend-mode: multiply;
+  overflow: hidden;
+
+  text-shadow: 0 2px 4px rgb(255, 255, 255);
+  padding: 2px 4px 6px;
+  margin: -2px -4px -6px;
+}
+
+.rainbow-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -100%;
+  background: white repeating-linear-gradient(90deg, #14ffe9 0%, #ffc800 16.66666%, #ff00e0 33.33333%, #14ffe9 50.0%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: move 1s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+@supports not (mix-blend-mode: multiply) {
+  .rainbow-text {
+    -webkit-text-fill-color: transparent;
+    background-clip: text !important;
+    background: white repeating-linear-gradient(90deg, #14ffe9, #ffc800, #ff00e0, #14ffe9);
+    text-shadow: none;
+  }
+
+  .rainbow-text::before {
+    content: none;
+  }
+}
+
+/* 
+.rainbow-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  background: white url(http://api.thumbr.it/whitenoise-300x300.png?background=eeeeeeff&noise=000000&density=15&opacity=10) center;
+} */
+
+/* body{
+  font-size: 6em;
+  font-family: 'Pacifico', sans-serif;
+  margin: 0;
+  overflow: hidden;
+} */

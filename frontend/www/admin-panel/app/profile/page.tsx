@@ -10,7 +10,7 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <main className="max-w-[75rem] w-full mx-auto border bg-[#000000] background my-24 rounded-md p-24">
+      <main className="max-w-[75rem] w-full mx-auto border bg-background my-24 rounded-md p-24">
         <div className="w-full h-auto flex items-center justify-center">
             <UserDetails />
           {/* <div className="pt-[3.5rem]">

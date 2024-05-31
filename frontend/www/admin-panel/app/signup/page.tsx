@@ -321,7 +321,7 @@ const Signup: NextPage = () => {
       adminName: userName,
       region: region,
       surname: surname,
-      adminId: userId.uid
+      userId: userId.uid
     });
 
     console.log("Document written with ID: ", Create.id);

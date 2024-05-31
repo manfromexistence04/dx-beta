@@ -294,19 +294,19 @@ const Login: NextPage = () => {
 
 
         docs.map((users: any) => {
-          if (users.userId) {
+          if (users.acccountType === "Client") {
             user.uid === users.userId && toast({
               title: "This is a user account!",
               description: `Please be carefull to the database. Any suspicius activity will lead to Account Ban.Signed User ${users.name}`,
             })
           }
 
-          if (users.adminId) {
-            user.uid === users.adminId && toast({
+          if (users.accountType === "Admin") {
+            user.uid === users.userId && toast({
               title: "Admin signed in successfully!",
               description: `Continue Using Ustudy ${users.name}`,
             })
-            router.push('/home')
+            router.push('/universities')
           }
 
         })
