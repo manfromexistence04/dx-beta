@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
+
   :root {
+    --theme: 0 0% 98%;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -37,6 +41,7 @@
   }
 
   .dark {
+    --theme: 0, 0%, 0%;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
 
