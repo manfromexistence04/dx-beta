@@ -1021,7 +1021,7 @@ const Specialty = () => {
                                                                         name: name || items.name,
                                                                         level: inputedLevel || items.level,
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
-                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.possibleScoreGeneralCompetition,
                                                                         possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
                                                                         possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
                                                                         possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
