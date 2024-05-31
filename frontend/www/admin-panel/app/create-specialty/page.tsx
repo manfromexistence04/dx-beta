@@ -185,9 +185,9 @@ export default function CreateSpeciality() {
     const targetCenterX = targetX + targetWidth / 2
     const confetti = (await import("canvas-confetti")).default
     confetti({
-      zIndex: 999,
+      zIndex: 9999,
       particleCount: 100,
-      spread: 70,
+      spread: 100,
       origin: {
         y: targetY / clientHeight,
         x: targetCenterX / clientWidth,
@@ -1364,7 +1364,7 @@ export default function CreateSpeciality() {
             {inputedValues ? "Hide" : "Show"} Inputed Values
           </AnimatedButton>
 
-          <AnimatedButton className="w-full !py-0" onClick={handleConfetti}>
+          <AnimatedButton ref={buttonRef} className="!relative w-full !py-0" onClick={handleConfetti}>
             Create
           </AnimatedButton>
         </div>

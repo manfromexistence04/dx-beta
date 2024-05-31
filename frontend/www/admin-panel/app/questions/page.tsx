@@ -746,12 +746,34 @@ const Question = () => {
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Answers: </p>
-                            <span className="font-semibold">{JSON.stringify(items.answers, null, 2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                              {items.answers.length > 0 ? items.answers.flatMap((item: any) => <Badge
+                                key={item}
+                                className={cn(
+                                  "w-fit text-center mx-1.5",
+                                  "bg-green-500 text-green-50"
+                                )}
+                              >
+                                {item}
+                              </Badge>) : "No Answers is provided"
+                              }
+                            </span>
                           </div>
                           <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Results: </p>
-                            <span className="font-semibold">{JSON.stringify(items.results, null, 2) || "No Main Questing is Provided."}</span>
+                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                              {items.results.length > 0 ? items.results.flatMap((item:any) => <Badge
+                                key={item}
+                                className={cn(
+                                  "w-fit text-center mx-1.5",
+                                  "bg-green-500 text-green-50"
+                                )}
+                              >
+                                {item}
+                              </Badge>) : "No Results is provided"
+                              }
+                            </span>
                           </div>
                         </div>
                       </DialogContent>
@@ -805,9 +827,9 @@ const Question = () => {
 
                                       const updateRef = doc(db, "questions", items.id);
                                       const Update: any = await updateDoc(updateRef, {
-                                        mainQuestion: inputedMainQuestion,
-                                        answers: answersTag.map(obj => obj.text),
-                                        results: resultsTag.map(obj => obj.text)
+                                        mainQuestion: inputedMainQuestion || items.mainQuestion,
+                                        answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
+                                        results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
                                       })
 
 
@@ -818,7 +840,7 @@ const Question = () => {
                                         title: 'University has been Updated Successfully.',
                                         description: (
                                           <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                                            <span>You Can now view and delete this university!</span>
+                                            <span>You Can now view and delete this questions!</span>
                                             <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
                                               {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                             </pre>
@@ -855,6 +877,37 @@ const Question = () => {
                                 </div>
                                 <Separator />
                                 <div className="flex gap-2 p-3">
+                            <p>Answers: </p>
+                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                              {answersTag.length > 0 ? answersTag.flatMap((item: any) => <Badge
+                                key={item}
+                                className={cn(
+                                  "w-fit text-center mx-1.5",
+                                  "bg-green-500 text-green-50"
+                                )}
+                              >
+                                {item.text}
+                              </Badge>) : "No Answers is provided"
+                              }
+                            </span>
+                          </div>
+                          <Separator />
+                          <div className="flex gap-2 p-3">
+                            <p>Results: </p>
+                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                              {resultsTag.length > 0 ? resultsTag.flatMap((item:any) => <Badge
+                                key={item}
+                                className={cn(
+                                  "w-fit text-center mx-1.5",
+                                  "bg-green-500 text-green-50"
+                                )}
+                              >
+                                {item.text}
+                              </Badge>) : "No Results is provided"
+                              }
+                            </span>
+                          </div>
+                                {/* <div className="flex gap-2 p-3">
                                   <p>Answers: </p>
                                   <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Answers is Provided."}</span>
                                 </div>
@@ -862,7 +915,7 @@ const Question = () => {
                                 <div className="flex gap-2 p-3">
                                   <p>Results: </p>
                                   <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Results is Provided."}</span>
-                                </div>
+                                </div> */}
                               </div>}
 
                               <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
@@ -928,9 +981,9 @@ const Question = () => {
                                     });
                                     const updateRef = doc(db, "questions", items.id);
                                     const Update: any = await updateDoc(updateRef, {
-                                      mainQuestion: inputedMainQuestion,
-                                      answers: answersTag.map(obj => obj.text),
-                                      results: resultsTag.map(obj => obj.text)
+                                      mainQuestion: inputedMainQuestion || items.mainQuestion,
+                                      answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
+                                      results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
                                     })
 
 
