@@ -76,7 +76,7 @@ export function MainNav() {
         >
           Supports
         </Link>
-        <Link
+        {/* <Link
           href="/profile"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -84,7 +84,7 @@ export function MainNav() {
           )}
         >
           Profile
-        </Link>
+        </Link> */}
         {/* <Link
           href="/profile"
           className={cn(

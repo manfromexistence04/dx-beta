@@ -615,15 +615,15 @@ const Support = () => {
 
               <Card className="hover-glow-border w-full relative bg-primary-foreground">
                 <CardHeader>
-                  <CardTitle>{items.mainQuestion}</CardTitle>
+                  <CardTitle>{items.name || "No name is provided"}</CardTitle>
+                  <CardDescription>{items.comment || "No name is provided"}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4">
-
-                    {
-                      items.answers.length > 0 ? (<div className="space-y-3">
+                    {/* {
+                      items.topics.length > 0 ? (<div className="space-y-3">
                         {
-                          items.answers.map((index: any) => {
+                          items.topics.slice(0, 2).flatMap((index: any) => {
                             return (
                               <div key={index} className="flex items-center justify-between rounded-lg border p-3">
                                 <div>
@@ -643,7 +643,40 @@ const Support = () => {
                       </div>) : (<div className="flex items-center justify-between rounded-lg border p-3">
                         <div>
                           <p className="text-sm text-gray-500 dark:text-gray-400">
-                            No Answers are provided.
+                            No Topics are provided.
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button size="icon" variant="ghost">
+                            <CheckIcon className="h-5 w-5" />
+                          </Button>
+                        </div>
+                      </div>)
+                    } */}
+                    {
+                      items.topics.length > 0 ? (<div className="space-y-3">
+                        {
+                          items.topics.slice(0, 2).flatMap((index: any) => {
+                            return (
+                              <div key={index} className="flex items-center justify-between rounded-lg border p-3">
+                                <div>
+                                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    {index}
+                                  </p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Button size="icon" variant="ghost">
+                                    <CheckIcon className="h-5 w-5" />
+                                  </Button>
+                                </div>
+                              </div>
+                            )
+                          })
+                        }
+                      </div>) : (<div className="flex items-center justify-between rounded-lg border p-3">
+                        <div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            No Topics are provided.
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
@@ -658,7 +691,7 @@ const Support = () => {
                 <CardFooter className="flex flex-col justify-start items-start gap-2">
 
 
-                  {
+                  {/* {
                     items.results.length > 0 ? (<div className="flex items-center gap-2 w-full">
                       {
                         items.results.map((index: any) => {
@@ -670,7 +703,7 @@ const Support = () => {
                     </div>) : (<div className="flex items-center gap-2 w-full">
                       <Badge variant="outline">Nothing</Badge>
                     </div>)
-                  }
+                  } */}
                   <div className="flex gap-2 w-full justify-between mt-3">
                     <Dialog>
                       <DialogTrigger asChild>
@@ -678,15 +711,42 @@ const Support = () => {
                       </DialogTrigger>
                       <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
                         <div className="w-full flex flex-col gap-2 border rounded-lg p-3 text-sm overflow-hidden">
-                          <div className="flex gap-2 p-3">
-                            <p>MainQuestion: </p>
-                            <span className="font-semibold">{items.mainQuestion || "No Main Questing is Provided."}</span>
+                          <div className="flex gap-2">
+                            <p>Name: </p>
+                            <span className="font-semibold">{items.name || "No Main Questing is Provided."}</span>
                           </div>
                           <Separator />
+
+                          <div className="flex gap-2">
+                            <p>Comment: </p>
+                            <span className="h-max w-full max-w-[500px] overflow-y-auto overflow-x-hidden font-semibold">
+                              {items.comment || "No Comment is Provided."}
+                            </span>
+                          </div>
+                          <Separator />
+                          <div className="flex gap-2">
+                            <p>Topics: </p>
+                            <span className="h-max w-full max-w-[500px] overflow-y-auto overflow-x-hidden font-semibold ">
+                              {items.topics.length > 0 ?
+                                items.topics.flatMap((item: any) =>
+                                  <Badge
+                                    key={item}
+                                    className={cn(
+                                      "m-1.5 w-fit text-center",
+                                      "bg-green-500 text-green-50"
+                                    )}
+                                  >
+                                    {item}
+                                  </Badge>
+                                )
+                                : null}
+                            </span>
+                          </div>
+                          {/* <Separator />
                           <div className="flex gap-2 p-3">
                             <p>Answers: </p>
                             <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {items.answers.length > 0 ? items.answers.flatMap((item: any) => <Badge
+                              {items.topics.length > 0 ? items.topics.flatMap((item: any) => <Badge
                                 key={item}
                                 className={cn(
                                   "w-fit text-center mx-1.5",
@@ -698,8 +758,8 @@ const Support = () => {
                               }
                             </span>
                           </div>
-                          <Separator />
-                          <div className="flex gap-2 p-3">
+                          <Separator /> */}
+                          {/* <div className="flex gap-2 p-3">
                             <p>Results: </p>
                             <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
                               {items.results.length > 0 ? items.results.flatMap((item:any) => <Badge
@@ -713,7 +773,7 @@ const Support = () => {
                               </Badge>) : "No Results is provided"
                               }
                             </span>
-                          </div>
+                          </div> */}
                         </div>
                       </DialogContent>
                     </Dialog>
@@ -816,36 +876,36 @@ const Support = () => {
                                 </div>
                                 <Separator />
                                 <div className="flex gap-2 p-3">
-                            <p>Answers: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {answersTag.length > 0 ? answersTag.flatMap((item: any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item.text}
-                              </Badge>) : "No Answers is provided"
-                              }
-                            </span>
-                          </div>
-                          <Separator />
-                          <div className="flex gap-2 p-3">
-                            <p>Results: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {resultsTag.length > 0 ? resultsTag.flatMap((item:any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item.text}
-                              </Badge>) : "No Results is provided"
-                              }
-                            </span>
-                          </div>
+                                  <p>Answers: </p>
+                                  <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                                    {answersTag.length > 0 ? answersTag.flatMap((item: any) => <Badge
+                                      key={item}
+                                      className={cn(
+                                        "w-fit text-center mx-1.5",
+                                        "bg-green-500 text-green-50"
+                                      )}
+                                    >
+                                      {item.text}
+                                    </Badge>) : "No Answers is provided"
+                                    }
+                                  </span>
+                                </div>
+                                <Separator />
+                                <div className="flex gap-2 p-3">
+                                  <p>Results: </p>
+                                  <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                                    {resultsTag.length > 0 ? resultsTag.flatMap((item: any) => <Badge
+                                      key={item}
+                                      className={cn(
+                                        "w-fit text-center mx-1.5",
+                                        "bg-green-500 text-green-50"
+                                      )}
+                                    >
+                                      {item.text}
+                                    </Badge>) : "No Results is provided"
+                                    }
+                                  </span>
+                                </div>
                                 {/* <div className="flex gap-2 p-3">
                                   <p>Answers: </p>
                                   <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Answers is Provided."}</span>
