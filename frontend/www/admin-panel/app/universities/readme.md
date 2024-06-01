@@ -517,7 +517,7 @@ const University = () => {
                         <div className="h-full">
                           <Card>
                             <CardContent className="flex items-center justify-center h-full w-full text-center !p-0">
-                              <AspectRatio ratio={16 / 9} className="h-[300px] ">
+                              <AspectRatio ratio={16 / 9} className="h-[250px] ">
                                 <Image
                                   src={index || "/placeholder.svg"}
                                   alt="Images"
@@ -539,7 +539,7 @@ const University = () => {
                         <div className="h-full">
                           <Card>
                             <CardContent className="flex items-center justify-center h-full w-full text-center !p-0">
-                              <AspectRatio ratio={16 / 9} className="h-[300px] ">
+                              <AspectRatio ratio={16 / 9} className="h-[250px] ">
                                 <Image
                                   src={items.image || "/placeholder.svg"}
                                   alt="Image"
@@ -798,11 +798,12 @@ const University = () => {
                             </div>
 
                             <div className="w-full h-full flex items-end justify-end space-x-3">
-                              {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
+                              <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                 Sync Uploaded Files
-                              </AnimatedButton> */}
+                              </AnimatedButton>
                               <Button
                                 className="!py-0"
+                                disabled={createButtonDisabled}
                                 onClick={async () => {
                                   const { clientWidth, clientHeight } = document.documentElement;
                                   const boundingBox = buttonRef.current?.getBoundingClientRect?.();
@@ -872,16 +873,22 @@ const University = () => {
                                   });
 
                                   location.reload();
+                                  // setSheetToggle(true)
+                                  // router.push('/specialities')
+                                  // console.log("Document written with ID: ", Update.id);
+                                  // const newDocs = docs.filter((item) => item.id !== items.id);
+                                  // setDocs(newDocs);
+                                  // fetchDocs()
                                 }}
                               >
-                                {/* {
+                                {
                                   createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                } */}
+                                }
                                 Update
                               </Button>
                             </div>
                           </div>
-                          {inputedValues && <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden border">
+                          {inputedValues && <div className="div">
                             <div className="flex gap-2">
                               <p>Name: </p>
                               <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
@@ -945,11 +952,11 @@ const University = () => {
                               <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
                             </div>
                             <Separator />
-                            {/* <div className="flex gap-2">
+                            <div className="flex gap-2">
                               <p>Images: </p>
                               <span className="font-semibold">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
                             </div>
-                            <Separator /> */}
+                            <Separator />
                             <div className="flex gap-2">
                               <p>Image: </p>
                               <span className="font-semibold">{inputedImage || "No Image is Provided."}</span>
@@ -1367,7 +1374,7 @@ const University = () => {
                             <Input onChange={handleLogoChange} type="text" placeholder="Enter Logo Link" />
                           </div>
                           <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                            <h1 className="text-4xl font-bold w-full text-left">Image</h1>
+                            <h1 className="text-4xl font-bold w-full text-left">Images</h1>
                             <Input onChange={handleImageChange} type="text" placeholder="Enter Images Link" />
                           </div>
 
@@ -1433,11 +1440,12 @@ const University = () => {
                             <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
                               {inputedValues ? "Hide" : "Show"} Inputed Values
                             </AnimatedButton>
-                            {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
+                            <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
                               Sync Uploaded Files
-                            </AnimatedButton> */}
+                            </AnimatedButton>
                             <AnimatedButton
                               className="!py-0 w-full"
+                              disabled={createButtonDisabled}
                               onClick={async () => {
                                 const { clientWidth, clientHeight } = document.documentElement;
                                 const boundingBox = buttonRef.current?.getBoundingClientRect?.();
@@ -1509,11 +1517,15 @@ const University = () => {
                                 });
 
                                 location.reload();
+                                // setSheetToggle(!sheetToggle)
+                                // setSheetToggle(true)
+                                // router.push('/specialities')
+                                // fetchDocs()
                               }}
                             >
-                              {/* {
+                              {
                                 createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                              } */}
+                              }
                               Update
                             </AnimatedButton>
 
@@ -1546,58 +1558,3 @@ const University = () => {
   );
 };
 export default University;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

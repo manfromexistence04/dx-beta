@@ -16,6 +16,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Database
 const db: any = getFirestore(app);
+const auth = getAuth(app);
+
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -192,6 +194,7 @@ import { useUniversityImages } from "@/lib/store/university-images"
 import { Label } from "@/components/ui/label"
 import { redirect } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import { getAuth } from "firebase/auth";
 
 
 function CheckIcon(props: any) {
@@ -214,6 +217,9 @@ function CheckIcon(props: any) {
 }
 
 const Support = () => {
+  const [users, setUsers] = useState<any>([]);
+  const [comment, setComment] = React.useState("");
+  const [topicsTag, setTopicsTag] = React.useState<Tag[]>([]);
   const [inputedMainQuestion, setInputedMainQuestion] = React.useState("")
   const [resultsTag, setResultslTag] = React.useState<any[]>([]);
   const [answersTag, setAnswersTag] = React.useState<any[]>([]);
@@ -480,16 +486,31 @@ const Support = () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
+
+
   useEffect(() => {
     const fetchDocs = async () => {
       setLoading(true);
       const q = query(collection(db, "supports"), limit(8));
       const querySnapshot = await getDocs(q);
-      const newDocs = querySnapshot.docs.map((doc) => ({
+      const newDocs:any = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      }));
+      }
+    ));
       setDocs(newDocs);
+      // setTopicsTag(newDocs.map((doc:any) => doc.topics.map((items:any) => ({
+      //   id: items,
+      //   text:
+      //     items ||
+      //     `No Topics Are Provided at ${items}`,
+      // }))))
+      // setTopicsTag(newDocs.map((doc: any) => doc.topics.map((items: any) => ({
+      //   id: items,
+      //   text: items || `Not Universities Are Provided at id:${items}`,
+      // }))))
+      
+      // setComment(newDocs.map((item:any) => item.comment))
       // Configuring Data for Update:
       docs.map((item: any) => {
         setInputedMainQuestion(item.mainQuestion);
@@ -532,6 +553,28 @@ const Support = () => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    const fetchDocs = async () => {
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+      const newDocs: any = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setUsers(newDocs);
+    };
+
+    // for (let doc of docs) {
+    //   setTopicsTag([
+    //     ...doc.topics.map((items: any) => ({
+    //       id: items,
+    //       text: items || `No Supports Are Provided at ${items}`,
+    //     })),
+    //   ]);
+    // }
+
+    fetchDocs();
+  }, []);
 
   if (loading) {
     return <main className="w-full py-5 px-[5%] h-auto">
@@ -601,18 +644,17 @@ const Support = () => {
 
   return (
 
-    <div>
-      <main className="w-full py-5 px-[5%] h-auto pb-7 min-h-[90vh]">
+    <>
+      {auth.currentUser ? <main className="w-full py-5 px-[5%] h-auto pb-7 min-h-[90vh]">
         <div className="flex items-center justify-between mb-6">
           <span className="text-center font-display text-lg font-bold tracking-[-0.02em] drop-shadow-sm md:text-3xl md:leading-[5rem]">Supports</span>
-          <Link href="/create-question">
+          <Link href="/create-support">
             <Button size="sm">Add New Support</Button>
           </Link>
         </div>
         <div className="admin-panel-lists">
           {docs.map((items) => (
             <div key={items.id}>
-
               <Card className="hover-glow-border w-full relative bg-primary-foreground">
                 <CardHeader>
                   <CardTitle>{items.name || "No name is provided"}</CardTitle>
@@ -620,48 +662,37 @@ const Support = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4">
-                    {/* {
-                      items.topics.length > 0 ? (<div className="space-y-3">
-                        {
-                          items.topics.slice(0, 2).flatMap((index: any) => {
-                            return (
-                              <div key={index} className="flex items-center justify-between rounded-lg border p-3">
-                                <div>
-                                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    {index}
-                                  </p>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Button size="icon" variant="ghost">
-                                    <CheckIcon className="h-5 w-5" />
-                                  </Button>
-                                </div>
-                              </div>
-                            )
-                          })
-                        }
-                      </div>) : (<div className="flex items-center justify-between rounded-lg border p-3">
-                        <div>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            No Topics are provided.
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Button size="icon" variant="ghost">
-                            <CheckIcon className="h-5 w-5" />
-                          </Button>
-                        </div>
-                      </div>)
-                    } */}
                     {
-                      items.topics.length > 0 ? (<div className="space-y-3">
-                        {
-                          items.topics.slice(0, 2).flatMap((index: any) => {
-                            return (
-                              <div key={index} className="flex items-center justify-between rounded-lg border p-3">
+                      // setTopicsTag(items.topics.map((items:any) => ({
+                      //   id: items,
+                      //   text:
+                      //     items ||
+                      //     `Not Universities Are Provided at id:${items}`,
+                      // })));
+
+                      items.topics.length > 0 ? (
+                        <div className="space-y-3">
+                          {
+                            items.topics.slice(0, 2).flatMap((index: any) => {
+                              return (
+                                <div key={index} className="flex items-center justify-between rounded-lg border p-3">
+                                  <div>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                      {index}
+                                    </p>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <Button size="icon" variant="ghost">
+                                      <CheckIcon className="h-5 w-5" />
+                                    </Button>
+                                  </div>
+                                </div>
+                              )
+                            }).concat(items.topics.length > 2 ? [
+                              <div key="more" className="flex items-center justify-between rounded-lg border p-3">
                                 <div>
                                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    {index}
+                                    more...
                                   </p>
                                 </div>
                                 <div className="flex items-center gap-2">
@@ -670,40 +701,28 @@ const Support = () => {
                                   </Button>
                                 </div>
                               </div>
-                            )
-                          })
-                        }
-                      </div>) : (<div className="flex items-center justify-between rounded-lg border p-3">
-                        <div>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            No Topics are provided.
-                          </p>
+                            ] : [])
+                          }
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Button size="icon" variant="ghost">
-                            <CheckIcon className="h-5 w-5" />
-                          </Button>
+                      ) : (
+                        <div className="flex items-center justify-between rounded-lg border p-3">
+                          <div>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                              No Topics are provided.
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Button size="icon" variant="ghost">
+                              <CheckIcon className="h-5 w-5" />
+                            </Button>
+                          </div>
                         </div>
-                      </div>)
+                      )
                     }
+
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col justify-start items-start gap-2">
-
-
-                  {/* {
-                    items.results.length > 0 ? (<div className="flex items-center gap-2 w-full">
-                      {
-                        items.results.map((index: any) => {
-                          return (
-                            <Badge key={index} variant="outline" className="text-xs text-center">{index}</Badge>
-                          )
-                        })
-                      }
-                    </div>) : (<div className="flex items-center gap-2 w-full">
-                      <Badge variant="outline">Nothing</Badge>
-                    </div>)
-                  } */}
                   <div className="flex gap-2 w-full justify-between mt-3">
                     <Dialog>
                       <DialogTrigger asChild>
@@ -742,38 +761,6 @@ const Support = () => {
                                 : null}
                             </span>
                           </div>
-                          {/* <Separator />
-                          <div className="flex gap-2 p-3">
-                            <p>Answers: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {items.topics.length > 0 ? items.topics.flatMap((item: any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item}
-                              </Badge>) : "No Answers is provided"
-                              }
-                            </span>
-                          </div>
-                          <Separator /> */}
-                          {/* <div className="flex gap-2 p-3">
-                            <p>Results: </p>
-                            <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
-                              {items.results.length > 0 ? items.results.flatMap((item:any) => <Badge
-                                key={item}
-                                className={cn(
-                                  "w-fit text-center mx-1.5",
-                                  "bg-green-500 text-green-50"
-                                )}
-                              >
-                                {item}
-                              </Badge>) : "No Results is provided"
-                              }
-                            </span>
-                          </div> */}
                         </div>
                       </DialogContent>
                     </Dialog>
@@ -788,7 +775,7 @@ const Support = () => {
                             <div className="create-university min-h-[100vh] lg:flex lg:flex-col space-y-3 p-10 pt-3 !min-w-full lg:!min-w-[1500px]">
                               <div className="action w-full my-3 hidden lg:flex items-center justify-between ">
                                 <div className="w-full h-full flex items-start justify-start space-x-3">
-                                  <Link href="/questions" className="z-50">
+                                  <Link href="/supports" className="z-50">
                                     <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
                                       Back
                                     </AnimatedButton>
@@ -799,12 +786,8 @@ const Support = () => {
                                 </div>
 
                                 <div className="w-full h-full flex items-end justify-end space-x-3">
-                                  {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border border-input bg-background hover:bg-accent text-accent-foreground">
-                                                                Sync Uploaded Files
-                                                            </AnimatedButton> */}
                                   <Button
                                     className="!py-0"
-                                    // disabled={createButtonDisabled}
                                     onClick={async () => {
                                       const { clientWidth, clientHeight } = document.documentElement;
                                       const boundingBox = buttonRef.current?.getBoundingClientRect?.();
@@ -824,11 +807,16 @@ const Support = () => {
                                       });
 
 
-                                      const updateRef = doc(db, "questions", items.id);
+                                      const updateRef = doc(db, "supports", items.id);
                                       const Update: any = await updateDoc(updateRef, {
-                                        mainQuestion: inputedMainQuestion || items.mainQuestion,
-                                        answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
-                                        results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
+                                        // mainQuestion: inputedMainQuestion || items.mainQuestion,
+                                        // answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
+                                        // results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
+
+                                        comment: comment || items.comment,
+                                        topics: topicsTag.length > 0 ? topicsTag.map(obj => obj.text) : items.topicsTag,
+                                        // name: user ? user.name : items.name,
+                                        // userId: auth.currentUser ? auth.currentUser.uid : items.userId,
                                       })
 
 
@@ -836,32 +824,19 @@ const Support = () => {
 
 
                                       toast({
-                                        title: 'University has been Updated Successfully.',
+                                        title: 'Support has been Updated Successfully.',
                                         description: (
                                           <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
-                                            <span>You Can now view and delete this questions!</span>
+                                            <span>You Can now view and delete this supports!</span>
                                             <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
-                                              {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                             </pre>
                                           </div>
                                         ),
                                       });
 
                                       location.reload();
-
-                                      // setSheetToggle(!sheetToggle)
-                                      // router.push('/specialities')
-                                      // setSheetToggle(true)
-
-                                      // console.log("Document written with ID: ", Update.id);
-                                      // const newDocs = docs.filter((item) => item.id !== items.id);
-                                      // setDocs(newDocs);
-                                      // fetchDocs()
                                     }}
                                   >
-                                    {/* {
-                                                                    createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                                                } */}
                                     Update
                                   </Button>
                                 </div>
@@ -871,6 +846,31 @@ const Support = () => {
 
                               {inputedValues && <div className="min-w-full w-max flex flex-col gap-2 border rounded-lg p-3 text-sm !mb-3">
                                 <div className="flex gap-2 p-3">
+                                  <p>Topics: </p>
+                                  <span className="h-max w-full max-w-[500px] overflow-y-auto overflow-x-hidden font-semibold ">
+                                    {topicsTag.length > 0 ?
+                                      topicsTag.flatMap((item: any) =>
+                                        <Badge
+                                          key={item}
+                                          className={cn(
+                                            "mx-1 w-fit",
+                                            "bg-green-500 text-green-50"
+                                          )}
+                                        >
+                                          {item.text}
+                                        </Badge>
+                                      )
+                                      : "No Topics are provided"}
+                                  </span>
+                                </div>
+
+                                <Separator />
+
+                                <div className="flex gap-2 p-3">
+                                  <p>Comment: </p>
+                                  <span className="font-semibold w-[300px] truncate">{comment || "No Comment is Provided."}</span>
+                                </div>
+                                {/* <div className="flex gap-2 p-3">
                                   <p>MainQestion: </p>
                                   <span className="font-semibold">{inputedMainQuestion || "No MainQestion is Provided."}</span>
                                 </div>
@@ -905,49 +905,44 @@ const Support = () => {
                                     </Badge>) : "No Results is provided"
                                     }
                                   </span>
-                                </div>
-                                {/* <div className="flex gap-2 p-3">
-                                  <p>Answers: </p>
-                                  <span className="font-semibold">{JSON.stringify(answersTag, null, 2) || "No Answers is Provided."}</span>
-                                </div>
-                                <Separator />
-                                <div className="flex gap-2 p-3">
-                                  <p>Results: </p>
-                                  <span className="font-semibold">{JSON.stringify(resultsTag, null, 2) || "No Results is Provided."}</span>
                                 </div> */}
                               </div>}
 
                               <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                                <h1 className="text-4xl font-bold w-full text-left">Answers</h1>
+                                <h1 className="text-4xl font-bold w-full text-left">Topics</h1>
                                 <TagInput
-                                  placeholder="Enter Your Results"
-                                  tags={answersTag}
+                                  placeholder="Enter Your Topics"
+                                  // tags={items.topics.map((item:any) => [{id:item,text:item}])}
+                                  // tags={items.topics.map((items:any) => ({
+                                  //   id: items,
+                                  //   text:
+                                  //     items ||
+                                  //     `Not Universities Are Provided at id:${items}`,
+                                  // }))}
+                                  tags={topicsTag}
+                                  // tags={[
+                                  //   { id: "fdsdsf", text: 'Sports' },
+                                  //   { id: "fsdfdsf", text: 'Travel' },
+                                  //   { id: "fdsfdsfsdf", text: 'Programming' },
+                                  // ]}
                                   className="sm:min-w-[450px]"
                                   setTags={(newTags) => {
-                                    setAnswersTag(newTags);
+                                    setTopicsTag(newTags);
                                   }}
                                 />
                               </div>
                               <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                                <h1 className="text-4xl font-bold w-full text-left">Results</h1>
-                                <TagInput
-                                  placeholder="Enter Your Results"
-                                  tags={resultsTag}
-                                  className="sm:min-w-[450px]"
-                                  setTags={(newTags) => {
-                                    setResultslTag(newTags);
-                                  }}
+                                <h1 className="text-4xl font-bold w-full text-left">Comment</h1>
+                                <Textarea
+                                  placeholder="Write your comment here."
+                                  className="resize-none"
+                                  rows={15}
+                                  value={comment}
+                                  onChange={(e: any) => { e.preventDefault(); setComment(e.target.value) }}
                                 />
                               </div>
-                              <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
-                                <h1 className="text-4xl font-bold w-full text-left">MainQuestion</h1>
-                                <Input onChange={handleMainQuestion} type="text" placeholder="Enter MainQuestion" />
-                              </div>
-
-
-
                               <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
-                                <Link href="/questions" className="z-50 w-full">
+                                <Link href="/supports" className="z-50 w-full">
                                   <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
                                     Back
                                   </AnimatedButton>
@@ -955,12 +950,8 @@ const Support = () => {
                                 <AnimatedButton onClick={handleInputedValues} variant="expandIcon" Icon={Projector} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
                                   {inputedValues ? "Hide" : "Show"} Inputed Values
                                 </AnimatedButton>
-                                {/* <AnimatedButton onClick={syncImagesAndLogo} variant="expandIcon" Icon={CloudUpload} iconPlacement="left" className="border w-full border-input bg-background hover:bg-accent text-accent-foreground">
-                                                            Sync Uploaded Files
-                                                        </AnimatedButton> */}
                                 <AnimatedButton
                                   className="!py-0 w-full"
-                                  // disabled={createButtonDisabled}
                                   onClick={async () => {
                                     const { clientWidth, clientHeight } = document.documentElement;
                                     const boundingBox = buttonRef.current?.getBoundingClientRect?.();
@@ -978,38 +969,29 @@ const Support = () => {
                                         x: targetCenterX / clientWidth,
                                       },
                                     });
-                                    const updateRef = doc(db, "questions", items.id);
+                                    const updateRef = doc(db, "supports", items.id);
                                     const Update: any = await updateDoc(updateRef, {
-                                      mainQuestion: inputedMainQuestion || items.mainQuestion,
-                                      answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
-                                      results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
+                                      // mainQuestion: inputedMainQuestion || items.mainQuestion,
+                                      // answers: answersTag.length > 0 ? answersTag.map(obj => obj.text) : items.answers,
+                                      // results: resultsTag.length > 0 ? resultsTag.map(obj => obj.text) : items.results
+                                      comment: comment || items.comment,
+                                      topics: topicsTag.length > 0 ? topicsTag.map(obj => obj.text) : items.topicsTag,
                                     })
 
 
                                     toast({
-                                      title: 'University has been Updated Successfully.',
+                                      title: 'Support has been Updated Successfully.',
                                       description: (
                                         <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                           <span>You Can now view and delete this question!</span>
                                           <pre className="max-h-[500px] overflow-x-auto overflow-y-auto bg-background">
-                                            {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                           </pre>
                                         </div>
                                       ),
                                     });
                                     location.reload();
-
-                                    // router.push('/specialities')
-                                    // setSheetToggle(true)
-
-                                    // setSheetToggle(!sheetToggle)
-                                    // router.push('/university')
-                                    // fetchDocs()
                                   }}
                                 >
-                                  {/* {
-                                                                createButtonDisabled && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                                            } */}
                                   Update
                                 </AnimatedButton>
 
@@ -1019,7 +1001,7 @@ const Support = () => {
                         </SheetContent>
                       </Sheet>
                       <Button onClick={async () => {
-                        await deleteDoc(doc(db, "questions", items.id));
+                        await deleteDoc(doc(db, "supports", items.id));
                         const newDocs = docs.filter((item) => item.id !== items.id);
                         setDocs(newDocs);
                       }} className="bg-red-500 text-white hover:bg-red-600" variant="destructive">
@@ -1029,12 +1011,6 @@ const Support = () => {
                   </div>
                 </CardFooter>
               </Card>
-              {/* {Object.keys(items).map((key) => (
-              <li key={key}>
-                <strong>{key}:</strong> {items[key]}
-              </li>
-            ))} */}
-
             </div>
           ))}
         </div>
@@ -1045,9 +1021,17 @@ const Support = () => {
           }
           Load More
         </Button>
-      </main>
+      </main> : <div className="center min-h-[100vh]">
+        <div className="min-h-[500px] w-full flex items-center justify-center flex-col gap-5 dark:bg-yellow-500 rounded-md max-w-[1000px] border">
+          <span className="rainbow-text font-bold text-center">Please Login to manage Supports!</span>
+          <Link href="/login" className="">
+            <Button>Login</Button>
+          </Link>
+        </div>
+      </div>
+      }
 
-    </div>
+    </>
 
   );
 };

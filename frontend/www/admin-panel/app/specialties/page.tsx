@@ -1036,7 +1036,7 @@ const Specialty = () => {
 
 
                                                                     toast({
-                                                                        title: 'University has been Updated Successfully.',
+                                                                        title: 'Specialty has been Updated Successfully.',
                                                                         description: (
                                                                             <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                                                                 <span>You Can now view and delete this specialty!</span>
@@ -1738,7 +1738,7 @@ const Specialty = () => {
 
 
                                                                 toast({
-                                                                    title: 'University has been Updated Successfully.',
+                                                                    title: 'Specialty has been Updated Successfully.',
                                                                     description: (
                                                                         <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                                                             <span>You Can now view and delete this university!</span>
