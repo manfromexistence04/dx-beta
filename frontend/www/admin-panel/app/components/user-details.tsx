@@ -310,18 +310,18 @@ export function UserDetails() {
           </div>
         }
         if (user.accountType === "Admin") {
-          return auth && auth.currentUser && auth.currentUser.uid === user.userId && <div key={user.uid} className="rounded-lg relative w-[750px] flex items-center justify-start">
-            <div className="p-8 rounded-xl bg-background shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5 max-w-[25rem]">
+          return auth && auth.currentUser && auth.currentUser.uid === user.userId && <div key={user.uid} className="rounded-lg relative w-[750px] flex items-center justify-center">
+            {/* <div className="p-8 rounded-xl bg-background shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5">
               <div className="flex flex-col items-center gap-2 mb-6">
                 <div className="w-full relative flex justify-center">
-                  <img src={user.imageUrl} className="size-20 rounded-full" />
-                  <div className="absolute w-fit flex items-center gap-5 top-1/2 -translate-x-2.5 -translate-y-1/2 left-full">
+                  <div className="mesh-avater h-[150px] w-[150px] rounded-full border"></div>
+                  <div className="absolute w-max flex items-center gap-5 top-1/2 -translate-x-2.5 -translate-y-1/2 left-full">
                     <div className="relative">
                       <div className="h-px bg-[#BFBFC4] w-[6.5rem]" />
                       <div className="size-1 bg-[#BFBFC4] rotate-45 absolute right-0 top-1/2 -translate-y-1/2" />
                     </div>
-                    <div className="font-mono text-xs bg-primary-foreground px-1.5 py-1 rounded-md text-white">
-                      user.imageUrl
+                    <div className="font-mono text-xs bg-primary-foreground px-1.5 py-1 rounded-md text-white w-max">
+                      Your Avatar
                     </div>
                   </div>
                 </div>
@@ -367,31 +367,11 @@ export function UserDetails() {
                 </Row>
 
               </div>
-              {/* {organization ? (
-                <>
-                  <h2 className="mt-6 mb-4 text-[0.9375rem] font-semibold">
-                    Organization detail
-                  </h2>
-                  <div className="px-2.5 bg-[#FAFAFB] rounded-lg divide-y divide-[#EEEEF0]">
-                    <Row desc="Organization ID" value={organization.id}>
-                      <PointerC label="organization.id" />
-                    </Row>
-                    <Row desc="Name" value={organization.name}>
-                      <PointerC label="organization.name" />
-                    </Row>
-                    <Row desc="Members" value={String(organization.membersCount)}>
-                      <PointerC label="organization.membersCount" />
-                    </Row>
-                    <Row
-                      desc="Pending invitations"
-                      value={String(organization.pendingInvitationsCount)}
-                    >
-                      <PointerC label="organization.pendingInvitationsCount" />
-                    </Row>
-                  </div>
-                </>
-              ) : null} */}
-            </div>
+            </div> */}
+
+            <div className="mesh-avater h-[150px] w-[150px] rounded-full border"></div>
+
+
           </div>
         }
       })}
