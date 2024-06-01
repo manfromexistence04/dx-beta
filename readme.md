@@ -829,3 +829,59 @@ This document outlines the design for a Firebase Firestore database to support a
 
 
  -->
+
+
+
+
+ ```
+.rainbow-text{
+	position: relative;
+	
+	background: black;
+  overflow: hidden;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  padding: 2px 4px 6px;
+  margin: -2px -4px -6px;
+}
+.rainbow-text::before{
+	content: "";
+	position: absolute;
+	top:0;right:0;bottom:0;left:-100%;
+	background: red repeating-linear-gradient(90deg, #14ffe9 0%, #ffc800 16.66666%, #ff00e0 33.33333%, #14ffe9 50.0%);
+	pointer-events: none;
+  animation: move 1s linear infinite;
+  mix-blend-mode: color;
+}
+
+@keyframes move{
+  0%{transform: translateX(0);}
+  100%{transform: translateX(50%);}
+}
+
+@supports not (mix-blend-mode: multiply) {
+	.rainbow-text{
+	-webkit-text-fill-color: transparent;
+	background-clip: text !important;
+	background: red repeating-linear-gradient(90deg, #14ffe9, #ffc800, #ff00e0, #14ffe9);
+    text-shadow: none;
+	}
+	.rainbow-text::before{ content: none; }
+}
+
+
+.container{
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: black url(http://api.thumbr.it/whitenoise-300x300.png?background=eeeeeeff&noise=000000&density=15&opacity=10) center;
+}
+body{
+  font-size: 6em;
+  font-family: 'Pacifico', sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+```
+```
