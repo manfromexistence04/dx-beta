@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 interface Card {
   title: string;
   description: string;
