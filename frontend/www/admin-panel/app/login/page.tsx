@@ -335,7 +335,6 @@ const Login: NextPage = () => {
 
   return (
     <div className="flex h-auto w-full items-center justify-center min-h-[100vh]">
-
       <div className="flex h-auto hover-glow-border relative hover:bg-primary-foreground w-auto items-center justify-center lg:m-0 lg:h-full lg:w-[500px] rounded-md border px-5 pt-10 pb-7">
         <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
           <div className="grid min-w-full gap-2 text-center">
@@ -396,7 +395,7 @@ const Login: NextPage = () => {
           <div className="mt-4 min-w-full space-x-1 text-center text-sm">
             <span>Don't have an account?</span>
             <Link
-              href="login"
+              href="/signup"
               className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text font-bold text-transparent"
             >
               Signup

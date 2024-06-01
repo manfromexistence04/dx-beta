@@ -398,17 +398,6 @@ export function UserDetails() {
 
 
       {auth.currentUser ? null : <div className="min-h-[500px] w-full flex items-center justify-center flex-col gap-5 dark:bg-yellow-500 rounded-md">
-        {/* <RainbowText lightness={0.5} saturation={1}>
-          Please Login to see your profile details!
-        </RainbowText> */}
-        {/* <RainbowText>
-            Please Login to see your profile details!
-    </RainbowText> */}
-        {/* <span className="text-5xl font-bold bg-gradient-to-r from-yellow-600 to-pink-600 bg-clip-text text-transparent h-[3rem] bg-red-500">Please Login to see your profile details!</span> */}
-        {/* <div className="rainbow-text-container border">
-          <span className="rainbow-text">Swag</span>
-        </div> */}
-
         <span className="rainbow-text font-bold text-center">Please Login to see your profile details!</span>
         <Link href="/login" className="">
           <Button>Login</Button>

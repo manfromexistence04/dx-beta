@@ -454,7 +454,7 @@ const Signup: NextPage = () => {
         const user = userCredential.user;
         toast({
           title: "User signed in successfully!",
-          description: `Continue Using Ustudy ${user.uid}`,
+          description: `Continue Using Ustudy ${user.email}`,
         })
       })
       .catch((error) => {
@@ -491,7 +491,7 @@ const Signup: NextPage = () => {
               <Label className="text-[#804DFE]" htmlFor="email">
                 Admin Name
               </Label>
-              <Input value={userName} id="userName" placeholder="manfromexistence" required onChange={(e) => setUserName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
+              <Input type="text" value={userName} id="userName" placeholder="manfromexistence" required onChange={(e) => setUserName(e.target.value)} className="w-full rounded-md !border text-muted-foreground" />
 
             </div>
 

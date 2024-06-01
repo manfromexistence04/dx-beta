@@ -1,20 +1,15 @@
 "use client"
 
-/* eslint-disable tailwindcss/migration-from-tailwind-2 */
-/* eslint-disable tailwindcss/no-contradicting-classname */
 import type { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Input as NextuiInput } from "@nextui-org/react"
 import { Eye, EyeOff } from "lucide-react"
 import { cn } from "@/lib/utils"
-import FrameComponent from "@/components/signup/frame-component"
-import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
 import { buttonVariants } from "@/registry/default/ui/button"
 import { Checkbox } from "@/registry/default/ui/checkbox"
 import { Input } from "@/registry/default/ui/input"
 import { Label } from "@/registry/default/ui/label"
-import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -94,6 +89,7 @@ import {
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
+import { AspectRatio } from "@/registry/default/ui/aspect-ratio"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -673,8 +669,8 @@ const ForgotPassword: NextPage = () => {
 
 
   return (
-    <div className="flex h-auto w-full flex-col-reverse items-start justify-start space-y-10 lg:mb-0 lg:h-[69vh] lg:flex-row lg:items-center lg:justify-center">
-      <div className="relative mt-10 flex size-full h-auto items-center justify-center lg:m-0 lg:w-3/5 lg:rounded-sm">
+    <div className="flex h-auto w-full items-center justify-center min-h-[100vh]">
+      {/* <div className="relative mt-10 flex size-full h-auto items-center justify-center lg:m-0 lg:w-3/5 lg:rounded-sm">
         <AspectRatio ratio={16 / 9}>
           <Image
             src="/rectangle-12911.png"
@@ -686,16 +682,16 @@ const ForgotPassword: NextPage = () => {
         <div className="absolute bottom-0 left-0 flex h-[30%] max-h-[150px] w-full items-center justify-center bg-purple-800 bg-opacity-0 bg-clip-padding text-3xl font-bold backdrop-blur-3xl">
           Ustudy For All
         </div>
-      </div>
+      </div> */}
 
-      <Carousel className="flex h-auto w-2/5 items-center justify-center lg:m-0 lg:h-full " setApi={setApi}>
+      <Carousel className="flex h-auto hover-glow-border relative hover:bg-primary-foreground w-auto items-center justify-center lg:m-0 lg:h-full lg:w-[500px] rounded-md border px-5 pt-10 pb-7" setApi={setApi}>
         <CarouselContent>
 
           <CarouselItem>
             <div className="mx-auto grid w-4/5  min-w-[300px] max-w-[550px] ">
-              <div className="grid min-w-full gap-2 text-left">
-                <h1 className="text-26xl font-bold">Forgot Your Password?</h1>
-                <h1 className="text-26xl font-bold">No problem.</h1>
+              <div className="grid min-w-full gap-2 text-center">
+                <h1 className="text-4xl font-bold">Forgot Your Password?</h1>
+                <h1 className="text-1.5xl font-bold">No problem.</h1>
                 <p className="text-balance text-muted-foreground">
                   Please enter your details
                 </p>
@@ -721,7 +717,7 @@ const ForgotPassword: NextPage = () => {
 
           <CarouselItem>
             <div className="mx-auto grid w-4/5 min-w-[300px] max-w-[550px] gap-5">
-              <h1 className="text-center text-26xl font-bold">Check you Inbox!</h1>
+              <h1 className="text-center text-4xl font-bold">Check you Inbox!</h1>
               <div className="my-10 grid min-w-full gap-2 text-center">
                 <h1 className="flex flex-col items-center justify-center font-bold">
                   We’ve sent recover password link to
