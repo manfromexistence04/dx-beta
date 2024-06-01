@@ -484,7 +484,7 @@ const Question = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -585,7 +585,7 @@ const Question = () => {
         <div className="admin-panel-lists place-content-center">
           {docs.map((items) => (
             <div key={items.id}>
-              <Card className="hover-glow-border relative w-full bg-primary-foreground">
+              <Card className="hover-glow-border bg-primary-foreground relative w-full">
                 <CardHeader>
                   <CardTitle>{items.mainQuestion}</CardTitle>
                 </CardHeader>
@@ -703,7 +703,7 @@ const Question = () => {
                                       variant="expandIcon"
                                       Icon={ArrowLeftIcon}
                                       iconPlacement="left"
-                                      className="border border-input bg-background text-accent-foreground hover:bg-accent"
+                                      className="border-input bg-background text-accent-foreground hover:bg-accent border"
                                     >
                                       Back
                                     </AnimatedButton>
@@ -713,7 +713,7 @@ const Question = () => {
                                     variant="expandIcon"
                                     Icon={Projector}
                                     iconPlacement="left"
-                                    className="border border-input bg-background text-accent-foreground hover:bg-accent"
+                                    className="border-input bg-background text-accent-foreground hover:bg-accent border"
                                   >
                                     {inputedValues ? "Hide" : "Show"} Inputed
                                     Values
@@ -773,12 +773,12 @@ const Question = () => {
                                         title:
                                           "University has been Updated Successfully.",
                                         description: (
-                                          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                                          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
                                             <span>
                                               You Can now view and delete this
                                               university!
                                             </span>
-                                            <pre className="max-h-[500px] overflow-auto bg-background">
+                                            <pre className="bg-background max-h-[500px] overflow-auto">
                                               {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                             </pre>
                                           </div>
@@ -832,7 +832,7 @@ const Question = () => {
                               )}
 
                               <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                                <h1 className="text-4xl w-full text-left font-bold">
+                                <h1 className="w-full text-left text-4xl font-bold">
                                   Answers
                                 </h1>
                                 <TagInput
@@ -845,7 +845,7 @@ const Question = () => {
                                 />
                               </div>
                               <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                                <h1 className="text-4xl w-full text-left font-bold">
+                                <h1 className="w-full text-left text-4xl font-bold">
                                   Results
                                 </h1>
                                 <TagInput
@@ -858,7 +858,7 @@ const Question = () => {
                                 />
                               </div>
                               <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                                <h1 className="text-4xl w-full text-left font-bold">
+                                <h1 className="w-full text-left text-4xl font-bold">
                                   MainQuestion
                                 </h1>
                                 <Input
@@ -874,7 +874,7 @@ const Question = () => {
                                     variant="expandIcon"
                                     Icon={ArrowLeftIcon}
                                     iconPlacement="left"
-                                    className="!min-w-full border border-input bg-secondary text-accent-foreground hover:bg-accent lg:w-auto"
+                                    className="border-input bg-secondary text-accent-foreground hover:bg-accent !min-w-full border lg:w-auto"
                                   >
                                     Back
                                   </AnimatedButton>
@@ -884,7 +884,7 @@ const Question = () => {
                                   variant="expandIcon"
                                   Icon={Projector}
                                   iconPlacement="left"
-                                  className="w-full border border-input bg-background text-accent-foreground hover:bg-accent"
+                                  className="border-input bg-background text-accent-foreground hover:bg-accent w-full border"
                                 >
                                   {inputedValues ? "Hide" : "Show"} Inputed
                                   Values
@@ -939,12 +939,12 @@ const Question = () => {
                                       title:
                                         "University has been Updated Successfully.",
                                       description: (
-                                        <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+                                        <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
                                           <span>
                                             You Can now view and delete this
                                             question!
                                           </span>
-                                          <pre className="max-h-[500px] overflow-auto bg-background">
+                                          <pre className="bg-background max-h-[500px] overflow-auto">
                                             {/* <code className="text-muted-foreground bg-secondary">{JSON.stringify(Update.id, null, 2)}</code> */}
                                           </pre>
                                         </div>
@@ -1009,6 +1009,54 @@ const Question = () => {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1342,7 +1390,7 @@ const FrameComponent: NextPage = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -1431,13 +1479,13 @@ const FrameComponent: NextPage = () => {
 
   return (
     <section className="min-h-screen w-full">
-      <div className="relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px] mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5">
+      <div className="mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5 relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px]">
         <div className="relative z-0 hidden h-[248px] w-[1440px] max-w-full [background:linear-gradient(180deg,_)]" />
         <div className="flex w-full flex-col items-center justify-center">
           <h1 className="title !m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
             Support
           </h1>
-          <span className="text-sm text-primary">
+          <span className="text-primary text-sm">
             We will be there to help 27/7.
           </span>
         </div>
@@ -1476,6 +1524,18 @@ const FrameComponent: NextPage = () => {
 
           {/* <div className="p-10 border rounded-[5px]">General</div> */}
         </div>
+
+        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
+                    <h1 className="w-full text-left text-4xl font-bold">Answers</h1>
+                    <TagInput
+                        placeholder="Enter Your Results"
+                        tags={answersTag}
+                        className="sm:min-w-[450px]"
+                        setTags={(newTags) => {
+                            setAnswersTag(newTags);
+                        }}
+                    />
+                </div>
         {/* <Accordion
           type="single"
           collapsible
@@ -1597,7 +1657,7 @@ const FrameComponent: NextPage = () => {
 
         {/* <TextareaForm /> */}
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full lg:max-w-[1100px] mx-auto space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto w-full space-y-6 lg:max-w-[1100px]">
             <FormField
               control={form.control}
               name="comment"
