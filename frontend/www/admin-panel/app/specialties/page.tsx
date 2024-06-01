@@ -265,9 +265,9 @@ const Specialty = () => {
         const targetCenterX = targetX + targetWidth / 2;
         const confetti = (await import("canvas-confetti")).default;
         confetti({
-            zIndex: 999,
+            zIndex: 9999,
             particleCount: 100,
-            spread: 70,
+            spread: 100,
             origin: {
                 y: targetY / clientHeight,
                 x: targetCenterX / clientWidth,
@@ -790,7 +790,7 @@ const Specialty = () => {
 
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button variant="outline">
+                                        <Button className="!relative" ref={buttonRef} onClick={handleConfetti} variant="outline">
                                             View
                                         </Button>
                                     </DialogTrigger>
@@ -799,12 +799,12 @@ const Specialty = () => {
                                             <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                 <div className="flex gap-2">
                                                     <p>Subjects: </p>
-                                                    <span className="font-semibold w-[250px] truncate space-x-1">
+                                                    <span className="font-semibold w-full overflow-y-hidden overflow-x-auto truncate space-x-1">
                                                         {
                                                             items.subjects.length > 0 ?
                                                                 items.subjects.map((item: any) => (
                                                                     <Badge
-                                                                    key={item}
+                                                                        key={item}
                                                                         className={cn(
                                                                             "w-fit text-center",
                                                                             "bg-green-500 text-green-50"
@@ -819,12 +819,12 @@ const Specialty = () => {
                                                 <Separator />
                                                 <div className="flex gap-2">
                                                     <p>Universities: </p>
-                                                    <span className="font-semibold w-[250px] truncate space-x-1">
+                                                    <span className="font-semibold w-full overflow-y-hidden overflow-x-auto truncate space-x-1">
                                                         {
                                                             items.universities.length > 0 ?
                                                                 items.universities.flatMap((item: any) => (
                                                                     <Badge
-                                                                    key={item}
+                                                                        key={item}
                                                                         className={cn(
                                                                             "w-fit text-center",
                                                                             "bg-green-500 text-green-50"
@@ -839,12 +839,12 @@ const Specialty = () => {
                                                 <Separator />
                                                 <div className="flex gap-2">
                                                     <p>MinScrores: </p>
-                                                    <span className="font-semibold w-[250px] truncate space-x-1">
+                                                    <span className="font-semibold w-full overflow-y-hidden overflow-x-auto truncate space-x-1">
                                                         {
                                                             items.minScrores.length > 0 ?
                                                                 items.minScrores.flatMap((item: any) => (
                                                                     <Badge
-                                                                    key={item}
+                                                                        key={item}
                                                                         className={cn(
                                                                             "w-fit text-center",
                                                                             "bg-green-500 text-green-50"
@@ -945,7 +945,7 @@ const Specialty = () => {
                                 <div className="flex gap-2">
                                     <Sheet>
                                         <SheetTrigger asChild>
-                                            <Button onClick={handleConfetti} variant="default">Update</Button>
+                                            <Button className="!relative" ref={buttonRef} onClick={handleConfetti} variant="default">Update</Button>
                                         </SheetTrigger>
                                         <SheetContent side={"bottom"} className="h-[90vh] !max-w-[1600px] mx-auto rounded-xl">
                                             <ScrollArea className="h-full w-full rounded-md border">
@@ -969,6 +969,8 @@ const Specialty = () => {
                                                             <Button
                                                                 className="!py-0"
                                                                 // disabled={createButtonDisabled}
+                                                                ref={buttonRef}
+
                                                                 onClick={async () => {
                                                                     const { clientWidth, clientHeight } = document.documentElement;
                                                                     const boundingBox = buttonRef.current?.getBoundingClientRect?.();
@@ -1014,14 +1016,14 @@ const Specialty = () => {
                                                                         // largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                         // availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                         // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-                                                                        subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
-                                                                        universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
-                                                                        minScrores: minScroresTag.map(obj => obj.text) || items.minScroresTag,
+                                                                        subjects: subjectsTag.length > 0 ? subjectsTag.flatMap((item) => item.text) : items.subjects,
+                                                                        universities: universitiesTag.length > 0 ? universitiesTag.flatMap((item) => item.text) : items.universities,
+                                                                        minScrores: minScroresTag.length > 0 ? minScroresTag.map((item) => item.text) : items.minScrores,
 
                                                                         name: name || items.name,
                                                                         level: inputedLevel || items.level,
                                                                         specialtyCode: inputedSpecialtyCode || items.specialtyCode,
-                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                        possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.possibleScoreGeneralCompetition,
                                                                         possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
                                                                         possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
                                                                         possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
@@ -1034,7 +1036,7 @@ const Specialty = () => {
 
 
                                                                     toast({
-                                                                        title: 'University has been Updated Successfully.',
+                                                                        title: 'Specialty has been Updated Successfully.',
                                                                         description: (
                                                                             <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                                                                 <span>You Can now view and delete this specialty!</span>
@@ -1045,6 +1047,8 @@ const Specialty = () => {
                                                                         ),
                                                                     });
 
+                                                                    // const newDocs = docs.filter((item) => item.id !== items.id);
+                                                                    // setDocs(newDocs);
                                                                     location.reload();
 
                                                                 }}
@@ -1061,22 +1065,49 @@ const Specialty = () => {
                                                         <div className="!mb-3 flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                                                             <div className="flex gap-2">
                                                                 <p>Subjects: </p>
-                                                                <span className="font-semibold  w-[250px] truncate">
-                                                                    {subjectsTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "") || "No Subjects is Provided."}
+                                                                <span className="font-semibold w-full overflow-y-hidden overflow-x-auto  truncate">
+                                                                    {subjectsTag.length > 0 ? subjectsTag.flatMap((item) => <Badge
+                                                                        key={item}
+                                                                        className={cn(
+                                                                            "w-fit text-center mx-1.5",
+                                                                            "bg-green-500 text-green-50"
+                                                                        )}
+                                                                    >
+                                                                        {item.text}
+                                                                    </Badge>) : "No Subjects is provided"
+                                                                    }
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>Universities: </p>
-                                                                <span className="font-semibold w-[250px] truncate">
-                                                                    {universitiesTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "") || "No Universities is Provided."}
+                                                                <span className="font-semibold w-full overflow-y-hidden overflow-x-autotruncate">
+                                                                    {universitiesTag.length > 0 ? universitiesTag.flatMap((item) => <Badge
+                                                                        key={item}
+                                                                        className={cn(
+                                                                            "w-fit text-center mx-1.5",
+                                                                            "bg-green-500 text-green-50"
+                                                                        )}
+                                                                    >
+                                                                        {item.text}
+                                                                    </Badge>) : "No Universities is provided"
+                                                                    }
                                                                 </span>
                                                             </div>
                                                             <Separator />
                                                             <div className="flex gap-2">
                                                                 <p>MinScrores: </p>
-                                                                <span className="font-semibold w-[250px] truncate">
-                                                                    {minScroresTag.flatMap((item) => item.text ? ` ${JSON.stringify(item.text, null, 2)} ` : "") || "No MinScrores is Provided."}
+                                                                <span className="font-semibold w-full overflow-y-hidden overflow-x-auto truncate">
+                                                                    {minScroresTag.length > 0 ? minScroresTag.flatMap((item) => <Badge
+                                                                        key={item}
+                                                                        className={cn(
+                                                                            "w-fit text-center mx-1.5",
+                                                                            "bg-green-500 text-green-50"
+                                                                        )}
+                                                                    >
+                                                                        {item.text}
+                                                                    </Badge>) : "No MinScrores is provided"
+                                                                    }
                                                                 </span>
                                                             </div>
                                                             <Separator />
@@ -1645,7 +1676,7 @@ const Specialty = () => {
                                                         </AnimatedButton> */}
                                                         <AnimatedButton
                                                             className="!py-0 w-full"
-                                                            // disabled={createButtonDisabled}
+                                                            ref={buttonRef}
                                                             onClick={async () => {
                                                                 const { clientWidth, clientHeight } = document.documentElement;
                                                                 const boundingBox = buttonRef.current?.getBoundingClientRect?.();
@@ -1689,24 +1720,25 @@ const Specialty = () => {
                                                                     // largeFamiliesQuota3: inputedLargeFamiliesQuota3 || items.largeFamiliesQuota3,
                                                                     // availableGrantCount: inputedAvailableGrantCount || items.availableGrantCount,
                                                                     // demandForSpecialty: inputedDemandForSpecialty || items.demandForSpecialty
-                                                                    subjects: subjectsTag.flatMap((item) => item.text) || items.subjectsTag,
-                                                                    universities: universitiesTag.flatMap((item) => item.text) || items.universitiesTag,
-                                                                    minScrores: minScroresTag.map(obj => obj.text) || items.minScroresTag,
+                                                                    subjects: subjectsTag.length > 0 ? subjectsTag.flatMap((item) => item.text) : items.subjects,
+                                                                    universities: universitiesTag.length > 0 ? universitiesTag.flatMap((item) => item.text) : items.universities,
+                                                                    minScrores: minScroresTag.length > 0 ? minScroresTag.map((item) => item.text) : items.minScrores,
 
                                                                     name: name || items.name,
                                                                     level: inputedLevel || items.level,
                                                                     specialtyCode: inputedSpecialtyCode || items.specialtyCode,
-                                                                    possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.name,
+                                                                    possibleScoreGeneralCompetition: possibleScoreGeneralCompetition || items.possibleScoreGeneralCompetition,
                                                                     possibleScoreRuralQuota: possibleScoreRuralQuota || items.possibleScoreRuralQuota,
                                                                     possibleScoreOrphanQuota: possibleScoreOrphanQuota || items.possibleScoreOrphanQuota,
                                                                     possibleScoreDisabilityQuota: possibleScoreDisabilityQuota || items.possibleScoreDisabilityQuota,
                                                                     possibleScoreLargeFamilyQuota: possibleScoreLargeFamilyQuota || items.possibleScoreLargeFamilyQuota,
 
+
                                                                 })
 
 
                                                                 toast({
-                                                                    title: 'University has been Updated Successfully.',
+                                                                    title: 'Specialty has been Updated Successfully.',
                                                                     description: (
                                                                         <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
                                                                             <span>You Can now view and delete this university!</span>
@@ -1723,6 +1755,8 @@ const Specialty = () => {
                                                                 // setSheetToggle(!sheetToggle)
                                                                 // router.push('/university')
                                                                 // fetchDocs()
+                                                                // const newDocs = docs.filter((item) => item.id !== items.id);
+                                                                // setDocs(newDocs);
                                                                 location.reload();
 
                                                             }}
@@ -1738,11 +1772,14 @@ const Specialty = () => {
                                             </ScrollArea>
                                         </SheetContent>
                                     </Sheet>
-                                    <Button onClick={async () => {
+                                    <Button ref={buttonRef} onClick={async () => {
+
                                         await deleteDoc(doc(db, "specialties", items.id));
                                         const newDocs = docs.filter((item) => item.id !== items.id);
                                         setDocs(newDocs);
-                                    }} className="bg-red-500 text-white hover:bg-red-600" variant="destructive">
+                                        handleConfetti();
+
+                                    }} className="bg-red-500 text-white hover:bg-red-600 !relative" variant="destructive">
                                         Delete
                                     </Button>
                                 </div>

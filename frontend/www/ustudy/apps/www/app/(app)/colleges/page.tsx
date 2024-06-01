@@ -18,12 +18,13 @@ import {
   startAfter,
   updateDoc,
 } from "firebase/firestore"
-import { Filter, Heart } from "lucide-react"
+import { ArrowUpRight, Filter, Heart, HeartOff } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Skeleton } from "@/components/ui/skeleton"
 import FrameComponent from "@/components/specialty-page/frame-component"
 import { useToast } from "@/registry/default/ui/use-toast"
+import { Toggle } from "@/components/ui/toggle"
 
 // Firebase Configurations
 const firebaseConfig = {
@@ -38,10 +39,11 @@ const app = initializeApp(firebaseConfig)
 const db: any = getFirestore(app)
 
 const SpecialtyPage: NextPage = () => {
-  const [docs, setDocs] = useState<any[]>([])
-  const [lastDoc, setLastDoc] = useState<any>(null)
-  const [loading, setLoading] = useState(false)
-  const { toast } = useToast()
+  const [docs, setDocs] = useState<any[]>([]);
+  const [lastDoc, setLastDoc] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchDocs = async () => {
@@ -71,7 +73,7 @@ const SpecialtyPage: NextPage = () => {
       toast({
         title: "There is no more data in the database.",
         description: (
-          <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+          <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
             <span>Please add more data to load more!</span>
           </div>
         ),
@@ -161,14 +163,14 @@ const SpecialtyPage: NextPage = () => {
   return (
     <div className="relative box-border flex w-full flex-col items-start justify-start overflow-hidden bg-black px-0 pb-3.5 pt-0 leading-[normal] tracking-[normal]">
       <FrameComponent />
-      <section className="font-headings-desktop-poppins-16px-bold !mx-auto box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px]">
-        <div className="flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px] mq1050:gap-[40px] mq750:gap-[20px]">
+      <section className="font-headings-desktop-poppins-16px-bold text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px] !mx-auto box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl">
+        <div className="mq1050:gap-[40px] mq750:gap-[20px] flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px]">
           <div className="box-border flex max-w-full flex-row items-start justify-end self-stretch py-0 pl-0 pr-0.5">
-            <div className="flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px] mq1050:gap-[38px] mq750:gap-[19px]">
-              <div className="flex min-w-[314px] max-w-full flex-1 flex-col items-start justify-start gap-[41px] mq750:gap-[20px]">
+            <div className="mq1050:gap-[38px] mq750:gap-[19px] flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px]">
+              <div className="mq750:gap-[20px] flex min-w-[314px] max-w-full flex-1 flex-col items-start justify-start gap-[41px]">
                 <button className="border-dimgray rounded-21xl box-border flex w-[122px] cursor-pointer flex-row items-start justify-start gap-[9px] rounded-[5px] border border-DEFAULT border-solid bg-black px-[18px] py-1.5">
                   <div className="border-dimgray rounded-21xl relative box-border hidden h-[35px] w-[122px] border-DEFAULT border-solid bg-black" />
-                  <Filter className="size-3 text-primary" />
+                  <Filter className="text-primary size-3" />
                   <div className="flex flex-col items-start justify-start px-0 pb-0 pt-px">
                     <div className="font-headings-desktop-poppins-16px-bold text-dimgray relative z-[1] inline-block min-w-[39px] text-left text-xs font-medium">
                       Filters
@@ -177,12 +179,11 @@ const SpecialtyPage: NextPage = () => {
                 </button>
                 <div className="admin-panel-lists w-full">
                   {docs.map((items) => (
-                    <Link
+                    <div
                       key={items.id}
-                      href={`/colleges/${items.id}`}
                       className="rounded-md border"
                     >
-                      <div className="text-11xl relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left font-headings-desktop-poppins-16px-regular text-shade-white">
+                      <div className="text-11xl font-headings-desktop-poppins-16px-regular text-shade-white relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left">
                         <div className="absolute inset-x-0 bottom-0 !m-0 h-[364.7px] w-full rounded [background:linear-gradient(#000,_#000),_#d9d9d9]" />
                         <div className="relative flex max-w-full flex-row items-start justify-start self-stretch">
                           {items.images && items.images.length > 0 ? (
@@ -230,25 +231,40 @@ const SpecialtyPage: NextPage = () => {
                             />
                           )}
                         </div>
+
+
+
                         <div className="box-border flex w-[461.6px] max-w-full flex-row items-start justify-start px-[29px] py-0">
-                          <div className="flex max-w-full flex-1 flex-row items-end justify-between gap-[20px] mq450:flex-wrap">
-                            <div className="flex w-[235.4px] flex-col items-start justify-start gap-[19.5px]">
-                              <h2 className="z-[1] w-[125px] truncate  text-sm">
-                                {items.universityName || "Astana It"}
-                              </h2>
-                              <div className="font-nunito-sans box-border flex w-[108.6px] flex-row items-start justify-start py-0 pl-[4.6px] pr-[5px] text-xs">
-                                <div className="relative z-[1] flex-1 shrink-0">
-                                  {items.universityCode || "503"}
+                          <div className="mq450:flex-wrap flex max-w-full flex-1 flex-row items-end justify-between gap-[20px]">
+
+                            <Link href={`/colleges/${items.id}`}>
+                              <div className="flex w-[235.4px] flex-col items-start justify-start gap-[19.5px]">
+                                <h2 className="z-[1] w-[125px] truncate  text-sm">
+                                  {items.universityName || "Astana It"}
+                                </h2>
+                                <div className="font-nunito-sans box-border flex w-[108.6px] flex-row items-start justify-start py-0 pl-[4.6px] pr-[5px] text-xs">
+                                  <div className="relative z-[1] flex-1 shrink-0">
+                                    {items.universityCode || "503"}
+                                  </div>
                                 </div>
                               </div>
+                            </Link>
+
+                            <div className="absolute bottom-[20px] right-[25px] z-10 flex w-fit items-end justify-end gap-5 rounded-md">
+                              {/* <Toggle onPressedChange={(e:any) => setFavorite(e.target.value)} className="border bg-red-500 !p-3" aria-label="Toggle bold">
+                                { favorite ? <HeartOff className="size-7" /> : <Heart className="size-7" />}
+                              </Toggle> */}
+                              <Link className="rounded-md border p-3" href={`/colleges/${items.id}`}>
+                                <ArrowUpRight className="size-7" />
+                              </Link>
                             </div>
-                            <div className="flex flex-col items-start justify-end px-0 pb-[12.3px] pt-0">
-                              <Heart className="z-[1]  size-7" />
-                            </div>
+
+
+
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>

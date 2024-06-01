@@ -146,13 +146,13 @@ export function DataTableRowActions<TData>({
             </DropdownMenuRadioGroup> */}
             <div className="w-full flex flex-col gap-2 row.original-center justify-center p-3 text-sm">
               <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
-                <div className="flex gap-2">
+                {/* <div className="flex gap-2">
                   <p>Id: </p>
                   <span className="font-semibold w-[250px] truncate">
                     {row.original.id || "No Id is Provided."}
                   </span>
                 </div>
-                <Separator />
+                <Separator /> */}
                 <div className="flex gap-2">
                   <p>Subjects: </p>
                   <span className="font-semibold w-[250px] truncate">

@@ -1425,9 +1425,9 @@ const CalculatorPage: NextPage = () => {
         toast({
           title: "Sorry, there was a problem doing this calulation!",
           description: (
-            <div className="mt-2 w-[340px] flex items-start justify-start space-y-3 h-[150px] flex-col">
-              <span className="rounded-md bg-primary-foreground p-4">{`There is no data provided in ${quota} Quota.`}</span>
-              <span className="rounded-md bg-primary-foreground p-4">Please contact Ustudy Support or Developers for this problem.</span>
+            <div className="mt-2 flex h-[150px] w-[340px] flex-col items-start justify-start space-y-3">
+              <span className="bg-primary-foreground rounded-md p-4">{`There is no data provided in ${quota} Quota.`}</span>
+              <span className="bg-primary-foreground rounded-md p-4">Please contact Ustudy Support or Developers for this problem.</span>
             </div>
           ),
         })
@@ -1458,15 +1458,21 @@ const CalculatorPage: NextPage = () => {
       //   setPossibleScore(specialtyDoc && specialtyDoc.possibleScoreRuralQuota && specialtyDoc.possibleScoreRuralQuota || 0)
       //   break;
       default:
-        let result: any, calculatedValue: any;
+        let result: any;
 
         if (ENTPOINT >= 50) {
           result = 50 + ((ENTPOINT - PossibleScore) + (140 - PossibleScore)) / 3;
         } else {
           result = 50 + ((ENTPOINT - 50) + (140 - 50)) / 3;
         }
-        setResult(result.toFixed(2));
-        calculatedValue = result.toFixed(0) > 100 ? 100 : result.toFixed(2);
+        // setResult(result.toFixed(2));
+        // calculatedValue = result.toFixed(2) > 100 ? 100 : result.toFixed(2);
+        let calculatedValue = Math.floor(result);
+        if (calculatedValue >= 100) {
+          calculatedValue = 100;
+        }else{
+          calculatedValue = result.toFixed(2);
+        }
 
         setTasks((prevTasks) => [
           ...prevTasks,
@@ -1485,7 +1491,7 @@ const CalculatorPage: NextPage = () => {
         toast({
           title: "Calculation is done successfully!",
           description: (
-            <div className="mt-2 w-[340px] rounded-md bg-primary-foreground p-4">
+            <div className="bg-primary-foreground mt-2 w-[340px] rounded-md p-4">
               <span>Please check the table below to see the calculation results.</span>
             </div>
           ),
@@ -1533,13 +1539,13 @@ const CalculatorPage: NextPage = () => {
   return (
     <div className="calculator">
       <section className="min-h-min">
-        <div className="relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px] mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5">
+        <div className="mq750:box-border mq750:pb-[55px] mq750:pl-[235px] mq750:pt-8 mq450:box-border mq450:pl-5 relative !m-0 box-border flex h-[244px] !w-full max-w-full flex-1 flex-row items-center justify-center gap-[20px] overflow-hidden bg-gray-200 !p-0 pb-[85px] pl-[470px] pr-0 pt-[50px]">
           <div className="relative z-0 hidden h-[248px] w-[1440px] max-w-full [background:linear-gradient(180deg,_)]" />
           <div className="flex w-full flex-col items-center justify-center">
             <h1 className="title !m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
               Calculate Your Future
             </h1>
-            <span className="text-sm text-primary">
+            <span className="text-primary text-sm">
               Make your dream come by calcuting your victory.
             </span>
           </div>
@@ -1566,7 +1572,7 @@ const CalculatorPage: NextPage = () => {
         </div>
         <div className="faq-content mt-10 flex flex-col space-y-5">
           {/* <Calculator /> */}
-          <div className="relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px]">
+          <div className="font-headings-desktop-poppins-16px-regular text-21xl text-shade-white mq1050:box-border mq1050:px-6 mq750:gap-[24px] mq450:box-border mq450:pb-[23px] mq450:pt-[21px] relative z-[1] mx-auto box-border flex w-[1200px] max-w-[90%] flex-col items-start justify-start gap-[48px] rounded-md bg-[#804DFE] px-12 pt-8 text-left">
             <div className="absolute inset-0 !m-0 size-full">
               <div className="absolute inset-0 size-full rounded [background:linear-gradient(-84.28deg,_)]" />
               <img
@@ -1581,7 +1587,7 @@ const CalculatorPage: NextPage = () => {
               />
             </div>
 
-            <h1 className="font-inherit z-[3] relative m-0 inline-block w-[577px] max-w-full text-inherit font-bold leading-[32px] mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px]">
+            <h1 className="font-inherit mq750:text-13xl mq750:leading-[26px] mq450:text-5xl mq450:leading-[19px] relative z-[3] m-0 inline-block w-[577px] max-w-full font-bold leading-[32px] text-inherit">
               uSTUDY Calculator
               {/* 
                                           <SelectLabel className="border-b">Quota's</SelectLabel>
@@ -1663,16 +1669,16 @@ const CalculatorPage: NextPage = () => {
               <CarouselContent>
                 {/* ENT */}
                 <CarouselItem>
-                  <div className="flex w-[870px] max-w-full flex-row items-start justify-start gap-[69px] font-dm-sans text-base mq1050:flex-wrap mq1050:gap-[34px] mq450:gap-[17px]">
-                    <div className="box-border flex min-w-[239px] max-w-full flex-[0.7745] flex-col items-start justify-start gap-[18.7px] py-0 pl-0 pr-[83px] mq1050:flex-1 mq450:box-border mq450:pr-5">
+                  <div className="font-dm-sans mq1050:flex-wrap mq1050:gap-[34px] mq450:gap-[17px] flex w-[870px] max-w-full flex-row items-start justify-start gap-[69px] text-base">
+                    <div className="mq1050:flex-1 mq450:box-border mq450:pr-5 box-border flex min-w-[239px] max-w-full flex-[0.7745] flex-col items-start justify-start gap-[18.7px] py-0 pl-0 pr-[83px]">
                       <div className="flex flex-col items-start justify-start gap-[8px] self-stretch px-0 pb-[5.3px] pt-0">
                         <div className="relative z-[3] inline-block w-[246.5px] leading-[21px] ">
                           Enter amount of score
                         </div>
-                        <div className="z-[3] flex flex-row items-start justify-start self-stretch rounded-md border-DEFAULT border-solid border-shade-white bg-shade-white px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
+                        <div className="border-shade-white bg-shade-white z-[3] flex flex-row items-start justify-start self-stretch rounded-md border-DEFAULT border-solid px-[13px] pb-2 pt-3 shadow-[2px_2px_2px_rgba(0,_0,_0,_0.25)_inset]">
                           <div className="flex flex-1 flex-row items-start justify-between gap-[20px]">
                             <input
-                              className="box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 font-dm-sans text-base font-bold text-black [border:none] [outline:none] placeholder:text-muted"
+                              className="font-dm-sans placeholder:text-muted box-border flex h-5 w-full flex-col items-start justify-start bg-transparent px-0 pb-0 pt-1 text-base font-bold text-black [border:none] [outline:none]"
                               placeholder="100"
                               type="number"
                               onChange={handleENTChange}
@@ -1690,10 +1696,10 @@ const CalculatorPage: NextPage = () => {
                       </span>
                     </div>
                     <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+                      <div className="bg-plum relative z-[3] w-0.5 flex-1" />
                     </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                    <div className="mq1050:flex-1 box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg">
+                      <div className="mq450:gap-[34px] flex flex-col items-start justify-start gap-[68px] self-stretch">
                         <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
                           <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
                             <div className="relative inline-block min-w-[48px] leading-[130%]">
@@ -1795,10 +1801,10 @@ const CalculatorPage: NextPage = () => {
                     </div>
 
                     <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+                      <div className="bg-plum relative z-[3] w-0.5 flex-1" />
                     </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                    <div className="mq1050:flex-1 box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg">
+                      <div className="mq450:gap-[34px] flex flex-col items-start justify-start gap-[68px] self-stretch">
                         <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
                           <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
                             <div className="relative inline-block min-w-[48px] leading-[130%]">
@@ -2027,19 +2033,19 @@ const CalculatorPage: NextPage = () => {
                                 );
                                 return matchedSubjects.length >= 2;
                               }) && !showAllSpecialty && subjectsTag.length > 0 && (
-                                  <div className="w-full flex items-center justify-center flex-col">
-                                    <span className="text-sm w-full text-center">No Specialty found by subjects combination you provided.</span>
-                                    <Button className="my-3 mx-auto" onClick={() => setShowAllSpecialty(!showAllSpecialty)}>
+                                  <div className="flex w-full flex-col items-center justify-center">
+                                    <span className="w-full text-center text-sm">No Specialty found by subjects combination you provided.</span>
+                                    <Button className="mx-auto my-3" onClick={() => setShowAllSpecialty(!showAllSpecialty)}>
                                       Choose from all specialties
                                     </Button>
                                   </div>
                                 )}
 
                               {subjectsTag.length === 0 && (
-                                <div className={cn("w-full flex items-center justify-center flex-col p-5 space-y-2",
-                                  stillShowAllSpecialty && "border-t mt-3"
+                                <div className={cn("flex w-full flex-col items-center justify-center space-y-2 p-5",
+                                  stillShowAllSpecialty && "mt-3 border-t"
                                 )}>
-                                  <span className="text-sm w-full text-center">You did't choose any subjects!</span>
+                                  <span className="w-full text-center text-sm">You did't choose any subjects!</span>
                                   <Button className="mx-auto" onClick={() => setStillShowAllSpecialty(!stillShowAllSpecialty)}>
                                     {stillShowAllSpecialty ? "Close" : "Still view"} all specialties
                                   </Button>
@@ -2055,10 +2061,10 @@ const CalculatorPage: NextPage = () => {
                     </div>
 
                     <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+                      <div className="bg-plum relative z-[3] w-0.5 flex-1" />
                     </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                    <div className="mq1050:flex-1 box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg">
+                      <div className="mq450:gap-[34px] flex flex-col items-start justify-start gap-[68px] self-stretch">
                         <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
                           <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
                             <div className="relative inline-block min-w-[48px] leading-[130%]">
@@ -2180,10 +2186,10 @@ const CalculatorPage: NextPage = () => {
                     </div>
 
                     <div className="box-border flex h-[196px] flex-col items-start justify-start px-0 pb-0 pt-3">
-                      <div className="relative z-[3] w-0.5 flex-1 bg-plum" />
+                      <div className="bg-plum relative z-[3] w-0.5 flex-1" />
                     </div>
-                    <div className="box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg mq1050:flex-1">
-                      <div className="flex flex-col items-start justify-start gap-[68px] self-stretch mq450:gap-[34px]">
+                    <div className="mq1050:flex-1 box-border flex min-w-[235px] max-w-full flex-1 flex-col items-start justify-start px-0 pb-0 pt-1 text-lg">
+                      <div className="mq450:gap-[34px] flex flex-col items-start justify-start gap-[68px] self-stretch">
                         <div className="flex w-[158px] flex-col items-start justify-start gap-[12px]">
                           <div className="z-[4] flex flex-row items-center justify-between gap-[20px] self-stretch">
                             <div className="relative inline-block min-w-[48px] leading-[130%]">
@@ -2270,13 +2276,13 @@ const CalculatorPage: NextPage = () => {
                     </div>
                     <div className="">
                       <span className="text-sm">Specialty</span>
-                      <div className="rounded-md border border-white p-3 text-center w-[250px] truncate">
+                      <div className="w-[250px] truncate rounded-md border border-white p-3 text-center">
                         {value || "Design"}
                       </div>
                     </div>
                     <div className="">
                       <span className="text-sm">Subject Combination</span>
-                      <div className="rounded-md border border-white p-3 text-center w-[250px] truncate">
+                      <div className="w-[250px] truncate rounded-md border border-white p-3 text-center">
                         {subjectsTag.map(
                           (obj) =>
                             `  ${obj.text}  `
@@ -2315,7 +2321,7 @@ const CalculatorPage: NextPage = () => {
                 Slide {current} of {count}
               </div> */}
             </Carousel>
-            <div className="absolute bottom-[-158.8px] right-[-285px] z-[5] !m-0 size-[300px] rounded-[50%] bg-blueviolet-200 [filter:blur(400px)]" />
+            <div className="bg-blueviolet-200 absolute bottom-[-158.8px] right-[-285px] z-[5] !m-0 size-[300px] rounded-[50%] [filter:blur(400px)]" />
           </div>
           {/* <div className="mx-auto !mb-32 rounded-md border p-5 lg:w-[1200px]">
           <TableDemo />

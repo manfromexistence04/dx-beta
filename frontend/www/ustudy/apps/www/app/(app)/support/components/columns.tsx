@@ -1,20 +1,70 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-
 import { Badge } from "@/registry/new-york/ui/badge"
 import { Checkbox } from "@/registry/new-york/ui/checkbox"
-
 import { labels, priorities, statuses } from "../data/data"
 import { Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { CircleSlash } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { initializeApp } from "firebase/app"
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  onSnapshot,
+  query,
+  startAfter,
+  updateDoc,
+} from "firebase/firestore"
+import { z } from "zod"
+import GroupComponent from "@/components/specialty-page/group-component"
+import TableCell from "@/components/specialty-page/table-cell"
+const firebaseConfig = {
+  apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+  authDomain: "ustudy-96678.firebaseapp.com",
+  projectId: "ustudy-96678",
+  storageBucket: "ustudy-96678.appspot.com",
+  messagingSenderId: "581632635532",
+  appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+}
+const app = initializeApp(firebaseConfig)
+const db: any = getFirestore(app)
+
+
+// const q = query(collection(db, "supports"));
+// const querySnapshot = await getDocs(q);
+// const users: any = querySnapshot.docs.map((doc) => ({
+//   id: doc.id,
+//   ...doc.data(),
+// }));
+
+const fetchCollection = async (collectionName: string) => {
+  try {
+    const collectionRef = collection(db, collectionName);
+    const querySnapshot = await getDocs(collectionRef);
+    const documents = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return documents;
+  } catch (error) {
+    console.error("Error fetching collection:", error);
+    throw error;
+  }
+};
 
 export const columns: any[] | any = [
   {
     id: "select",
-    header: ({ table }:any) => (
+    header: ({ table }: any) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
@@ -25,7 +75,7 @@ export const columns: any[] | any = [
         className="ml-3 translate-y-[2px]"
       />
     ),
-    cell: ({ row }:any) => (
+    cell: ({ row }: any) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -38,11 +88,11 @@ export const columns: any[] | any = [
   },
   {
     accessorKey: "id",
-    header: ({ column }:any) => (
-      <DataTableColumnHeader column={column} title="Row Count" />
+    header: ({ column }: any) => (
+      <DataTableColumnHeader column={column} title="Count" />
     ),
-    cell: ({ row }:any) => (
-      <div className="max-w-[100px] truncate font-medium">
+    cell: ({ row }: any) => (
+      <div className="max-w-[50px] truncate font-medium">
         {row.id || <CircleSlash />}
       </div>
     ),
@@ -50,18 +100,67 @@ export const columns: any[] | any = [
     enableHiding: false,
   },
   {
+    accessorKey: "userName",
+    header: ({ column }: any) => (
+      <DataTableColumnHeader column={column} title="Name" />
+    ),
+    cell: ({ row }: any) => {
+      const label = labels.find((label) => label.value === row.original.userName)
+
+      return (
+        <div className="flex space-x-2">
+          {label && <Badge variant="outline">{label.label}</Badge>}
+          <span className="max-w-[300px] truncate font-medium">
+            {row.getValue("userName") || <CircleSlash />}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: "comment",
-    header: ({ column }:any) => (
+    header: ({ column }: any) => (
       <DataTableColumnHeader column={column} title="Comment" />
     ),
-    cell: ({ row }:any) => {
+    cell: ({ row }: any) => {
       const label = labels.find((label) => label.value === row.original.comment)
 
       return (
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[800px] truncate font-medium">
+          <span className="max-w-[300px] truncate font-medium">
             {row.getValue("comment") || <CircleSlash />}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "topics",
+    header: ({ column }: any) => (
+      <DataTableColumnHeader column={column} title="Topics" />
+    ),
+    cell: ({ row }: any) => {
+      const label = labels.find((label) => label.value === row.original.comment)
+
+      return (
+        <div className="flex space-x-2">
+          {label && <Badge variant="outline">{label.label}</Badge>}
+          <span className="max-w-300px overflow-x-auto overflow-y-hidden font-medium">
+            {row.original.topics.length > 0 ?
+              row.original.topics.slice(0, 2).flatMap((item: any, index: number) =>
+                <Badge
+                  key={index}
+                  className={cn(
+                    "mx-1.5 w-fit text-center",
+                    "bg-green-500 text-green-50"
+                  )}
+                >
+                  {item}
+                </Badge>
+              ).concat(row.original.topics.length > 2 ? [<Badge key="more" className={cn("mx-1.5 w-fit text-center", "bg-green-500 text-green-50")}>more...</Badge>] : [])
+              : <CircleSlash />}
+
           </span>
         </div>
       )
@@ -205,9 +304,9 @@ export const columns: any[] | any = [
   // },
   {
     id: "actions",
-    header: ({ column }:any) => (
+    header: ({ column }: any) => (
       <DataTableColumnHeader column={column} title="Actions" />
     ),
-    cell: ({ row }:any) => <DataTableRowActions row={row} />,
+    cell: ({ row }: any) => <DataTableRowActions row={row} />,
   },
 ]

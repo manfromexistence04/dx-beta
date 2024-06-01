@@ -5,53 +5,97 @@ import Features from "@/components/landing/features";
 import Blockquote from "@/components/landing/blockquote";
 import Info from "@/components/landing/info";
 import WebsiteTab from "@/components/tab";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@nextui-org/react";
+import date from 'date-and-time';
+import { useEditableProps } from "@udecode/plate-common";
 
-
-const CustomButton = () => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-  const handleConfetti = async () => {
-    const { clientWidth, clientHeight } = document.documentElement;
-    const boundingBox = buttonRef.current?.getBoundingClientRect?.();
-
-    const targetY = boundingBox?.y ?? 0;
-    const targetX = boundingBox?.x ?? 0;
-    const targetWidth = boundingBox?.width ?? 0;
-
-    const targetCenterX = targetX + targetWidth / 2;
-    const confetti = (await import("canvas-confetti")).default;
-
-    confetti({
-      zIndex: 999,
-      particleCount: 100,
-      spread: 70,
-      origin: {
-        y: targetY / clientHeight,
-        x: targetCenterX / clientWidth,
-      },
-    });
-  };
-
-  return (
-    <Button
-      ref={buttonRef}
-      disableRipple
-      className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
-      size="lg"
-      onPress={handleConfetti}
-    >
-      Press me
-    </Button>
-  );
-};
-
+// const now = new Date();
 
 export default function Home() {
+
+  // const [time, setTime] = useState("");
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  // function timePassed(date1: Date, date2: Date): string {
+  //   const diffInSeconds = Math.abs(date2.getTime() - date1.getTime()) / 1000;
+  //   const units = [
+  //     { name: 'second', limit: 60, in_seconds: 1 },
+  //     { name: 'minute', limit: 3600, in_seconds: 60 },
+  //     { name: 'hour', limit: 86400, in_seconds: 3600 },
+  //     { name: 'day', limit: 604800, in_seconds: 86400 },
+  //     { name: 'week', limit: 2629743, in_seconds: 604800 },
+  //     { name: 'month', limit: 31556926, in_seconds: 2629743 },
+  //     { name: 'year', limit: Infinity, in_seconds: 31556926 }
+  //   ];
+  //   let diff = diffInSeconds;
+  //   for (let i=0; i<units.length; i++) {
+  //     if (diff < units[i].limit) {
+  //       const val = Math.floor(diff / units[i].in_seconds);
+  //       return `${val} ${units[i].name}${val > 1 ? 's' : ''} ago`;
+  //     }
+  //     diff = diffInSeconds / units[i].limit;
+  //   }
+  //   return 'just now';
+  // }
+
+  // const date1 = new Date('2024/05/31 10:44:33');
+  // const date2 = new Date('2024/05/30 10:44:33');
+
+  function humanReadableTimeDifference(date1: string | number | Date, date2: string | number | Date) {
+    // Parse the dates
+    let d1: any = new Date(date1);
+    let d2: any = new Date(date2);
+
+    // Calculate the difference in milliseconds
+    let diff = Math.abs(d2 - d1);
+
+    // Calculate time difference in various units
+    let seconds = Math.floor(diff / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
+    let years = Math.floor(days / 365);
+
+    // Construct the human-readable time difference string
+    let result = "";
+    if (years > 0) result += years + " year(s) ";
+    days %= 365;
+    if (days > 0) result += days + " day(s) ";
+    hours %= 24;
+    if (hours > 0) result += hours + " hour(s) ";
+    minutes %= 60;
+    if (minutes > 0) result += minutes + " minute(s) ";
+    seconds %= 60;
+    if (seconds > 0) result += seconds + " second(s)";
+
+    return result;
+  }
+
+
+  let date1 = "2024/05/31 11:54:25";
+  let date2 = "2024/06/01 12:00:00";
+
+
   return (
     <>
       <div className="min-h-screen bg-background">
+
+        {/* <div className="h-max border w-max flex items-start justify-start flex-col gap-3 p-10">
+          <span className="select-all">{date.format(now, 'YYYY/MM/DD HH:mm:ss')}</span>
+          <span className="select-all">{humanReadableTimeDifference(date1, date.format(now, 'YYYY/MM/DD HH:mm:ss'))}</span>
+        </div> */}
+
         <main className="isolate">
           {/* Hero section */}
           <div className="relative pt-14">
@@ -134,3 +178,45 @@ export default function Home() {
 
   );
 }
+
+
+
+
+// const CustomButton = () => {
+//   const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+//   const handleConfetti = async () => {
+//     const { clientWidth, clientHeight } = document.documentElement;
+//     const boundingBox = buttonRef.current?.getBoundingClientRect?.();
+
+//     const targetY = boundingBox?.y ?? 0;
+//     const targetX = boundingBox?.x ?? 0;
+//     const targetWidth = boundingBox?.width ?? 0;
+
+//     const targetCenterX = targetX + targetWidth / 2;
+//     const confetti = (await import("canvas-confetti")).default;
+
+//     confetti({
+//       zIndex: 999,
+//       particleCount: 100,
+//       spread: 70,
+//       origin: {
+//         y: targetY / clientHeight,
+//         x: targetCenterX / clientWidth,
+//       },
+//     });
+//   };
+
+//   return (
+//     <Button
+//       ref={buttonRef}
+//       disableRipple
+//       className="center relative overflow-visible border !rounded-md hover:bg-primary-foreground bg-background hover:text-accent-foreground"
+//       size="lg"
+//       onPress={handleConfetti}
+//     >
+//       Press me
+//     </Button>
+//   );
+// };
+

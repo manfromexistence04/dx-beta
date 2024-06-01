@@ -15,7 +15,7 @@ const ExcalidrawWrapper: React.FC = () => {
           <WelcomeScreen.Center>
             <WelcomeScreen.Center.Logo>
               <Icons.logo className="h-6 w-6" />
-              <span>Admin Panle For Nurzhol Tabigat, minialgo.kz</span>
+              <span>Admin Panle For Ustudy, minialgo.kz</span>
 
             </WelcomeScreen.Center.Logo>
 
