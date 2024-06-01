@@ -22,6 +22,8 @@ import { labels } from "../data/data"
 import { taskSchema } from "../data/schema"
 import { Separator } from "@radix-ui/react-context-menu"
 import { Dialog, DialogTrigger, DialogContent } from "@radix-ui/react-dialog"
+import { Badge } from "@/registry/default/ui/badge"
+import { cn } from "@/lib/utils"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -37,7 +39,7 @@ export function DataTableRowActions<TData>({
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="flex size-8 p-0 data-[state=open]:bg-muted"
+          className="data-[state=open]:bg-muted flex size-8 p-0"
         >
           <DotsHorizontalIcon className="size-4" />
           <span className="sr-only">Open menu</span>
@@ -144,19 +146,38 @@ export function DataTableRowActions<TData>({
                 </DropdownMenuRadioItem>
               ))}
             </DropdownMenuRadioGroup> */}
-            <div className="w-full flex flex-col gap-2 row.original-center justify-center p-3 text-sm">
+            <div className="row.original-center flex w-full flex-col justify-center gap-2 p-3 text-sm">
               <div className="flex w-max min-w-full flex-col gap-2 rounded-lg border p-3 text-sm">
                 <div className="flex gap-2">
-                  <p>Id: </p>
-                  <span className="font-semibold w-[250px] truncate">
-                    {row.original.id || "No Id is Provided."}
+                  <p>Name: </p>
+                  <span className="w-[250px] truncate font-semibold">
+                    {row.getValue('userName') || "No Id is Provided."}
                   </span>
                 </div>
                 <Separator />
                 <div className="flex gap-2">
                   <p>Comment: </p>
-                  <span className="font-semibold w-[250px] truncate">
+                  <span className="h-max w-full max-w-[500px] overflow-y-auto overflow-x-hidden font-semibold">
                     {row.original.comment || "No Comment is Provided."}
+                  </span>
+                </div>
+                <Separator />
+                <div className="flex gap-2">
+                  <p>Topics: </p>
+                  <span className="h-max w-full max-w-[500px] overflow-y-auto overflow-x-hidden font-semibold ">
+                    {row.original.topics.length > 0 ?
+                      row.original.topics.flatMap((item: any) =>
+                        <Badge
+                          key={item}
+                          className={cn(
+                            "m-1.5 w-fit text-center",
+                            "bg-green-500 text-green-50"
+                          )}
+                        >
+                          {item}
+                        </Badge>
+                      )
+                      : null}
                   </span>
                 </div>
                 {/* <div className="flex gap-2">

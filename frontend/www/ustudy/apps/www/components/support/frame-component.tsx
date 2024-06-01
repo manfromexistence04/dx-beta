@@ -59,6 +59,7 @@ import {
   ShoppingCart,
   Users2,
   X,
+  Send,
 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -205,6 +206,8 @@ const Question = () => {
   const [inputedMainQuestion, setInputedMainQuestion] = React.useState("")
   const [resultsTag, setResultslTag] = React.useState<any[]>([])
   const [answersTag, setAnswersTag] = React.useState<any[]>([])
+
+  const [topicsTag, setTopicsTag] = React.useState<any[]>([])
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
@@ -1079,7 +1082,42 @@ const Question = () => {
 
 
 import { zodResolver } from "@hookform/resolvers/zod"
+// import { user } from "@nextui-org/react"
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+// import {
+//   addDoc,
+//   collection,
+//   deleteDoc,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   getFirestore,
+//   limit,
+//   onSnapshot,
+//   query,
+//   startAfter,
+//   updateDoc,
+// } from "firebase/firestore"
+// import { initializeApp } from "firebase/app"
+// import { useToast } from "@/registry/default/ui/use-toast"
+// import * as DialogPrimitive from "@radix-ui/react-dialog"
+// import { X } from "lucide-react"
+// import { set } from 'date-fns';
+// import { useRouter } from 'next/navigation'
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
+//   authDomain: "ustudy-96678.firebaseapp.com",
+//   projectId: "ustudy-96678",
+//   storageBucket: "ustudy-96678.appspot.com",
+//   messagingSenderId: "581632635532",
+//   appId: "1:581632635532:web:51ccda7d7adce6689a81a9",
+// }
+
+// const app = initializeApp(firebaseConfig)
+// const db: any = getFirestore(app)
+const auth = getAuth(app);
 const FormSchema = z.object({
+  topics: z.any(),
   comment: z
     .string()
     .min(10, {
@@ -1089,8 +1127,9 @@ const FormSchema = z.object({
 
 
 const FrameComponent: NextPage = () => {
-
+  // const { setValue } = form;fdfdfdfd
   const [comment, setComment] = useState("");
+  const [users, setUsers] = useState<any>([]);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
@@ -1100,17 +1139,25 @@ const FrameComponent: NextPage = () => {
   }
   async function onSubmit(data: z.infer<typeof FormSchema>) {
 
-    const Create = await addDoc(collection(db, "support"), {
+    const user = users.find((user:any) => user.userId === auth.currentUser?.uid);
+
+    const Create = await addDoc(collection(db, "supports"), {
+      topics: topicsTag.map((topic: any) => topic.text) || "",
       comment: data.comment || "",
+      name: user ? user.name : "Lovely User",
+      userId: auth.currentUser ? auth.currentUser.uid : "",
     });
     toast({
-      title: "Your Comment Added Successfully!",
+      title: "Your Content Added Successfully for Support!",
+      description: `Thanks for contacing us. We wil give help you shortly ${user ? user.name : "Lovely User"}`
     })
   }
 
   const [inputedMainQuestion, setInputedMainQuestion] = React.useState("")
   const [resultsTag, setResultslTag] = React.useState<any[]>([])
   const [answersTag, setAnswersTag] = React.useState<any[]>([])
+  const [topicsTag, setTopicsTag] = React.useState<any[]>([])
+
   const [docs, setDocs] = useState<any[]>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
@@ -1381,6 +1428,19 @@ const FrameComponent: NextPage = () => {
     fetchDocs()
   }, [])
 
+  useEffect(() => {
+    const fetchDocs = async () => {
+      const q = query(collection(db, "users"));
+      const querySnapshot = await getDocs(q);
+      const newDocs: any = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setUsers(newDocs);
+    };
+    fetchDocs();
+  }, []);
+
   const loadMore = async () => {
     setLoading(true)
 
@@ -1525,139 +1585,95 @@ const FrameComponent: NextPage = () => {
           {/* <div className="p-10 border rounded-[5px]">General</div> */}
         </div>
 
-        <div className="hover-glow-border flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10">
-                    <h1 className="w-full text-left text-4xl font-bold">Answers</h1>
-                    <TagInput
-                        placeholder="Enter Your Results"
-                        tags={answersTag}
-                        className="sm:min-w-[450px]"
-                        setTags={(newTags) => {
-                            setAnswersTag(newTags);
-                        }}
-                    />
-                </div>
-        {/* <Accordion
-          type="single"
-          collapsible
-          className="mx-auto w-[90%] space-y-5 lg:w-[700px]"
-        >
-          {docs.map((items) => (
-            <AccordionItem key={items.id} value={items.id}>
-              <AccordionTrigger>
-                {items.mainQuestion || "No Main Questing is Provided."}
-              </AccordionTrigger>
-              <AccordionContent className="!border-none">
-                <div className="grid gap-4">
-                  {items.answers.length > 0 ? (
-                    <div className="space-y-3">
-                      {items.answers.map((index: any) => {
-                        return (
-                          <div
-                            key={index}
-                            className="flex items-center justify-between rounded-lg border p-3"
-                          >
-                            <div>
-                              <p className="text-sm text-muted-foreground">
-                                {index}
-                              </p>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Button size="icon" variant="ghost">
-                                <CheckIcon className="size-5" />
-                              </Button>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-between rounded-lg border p-3">
-                      <div>
-                        <p className="text-sm text-muted-foreground">
-                          No Answers are provided.
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Button size="icon" variant="ghost">
-                          <CheckIcon className="size-5" />
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-          <AccordionItem value="item-1">
-            <AccordionTrigger>
-              What is uSTAKING Referral Program?
-            </AccordionTrigger>
-            <AccordionContent>
-              uSTAKING has a smart referral system to reward the activity of
-              system participants. A referral reward program is integrated into
-              the uSTAKING Ecosystem. It allows receiving rewards from ten
-              levels deep after the referral partner has staked the amount of
-              tokens.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>
-              How can I participate in the Referral Program?
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. It comes with default styles that matches the other
-              components&apos; aesthetic.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger>
-              Where can I check my bonus balance?
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
+        {/* <div className="hover-glow-border mx-auto flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10 lg:max-w-[1100px]">
+          <h1 className="w-full text-left text-4xl font-bold">Answers</h1>
+          <TagInput
+            placeholder="Enter Your Results"
+            tags={answersTag}
+            className="sm:min-w-[450px]"
+            setTags={(newTags) => {
+              setAnswersTag(newTags);
+            }}
+          />
+        </div> */}
+        {/* <div className="hover-glow-border mx-auto flex h-auto w-full flex-col items-center justify-center space-y-3 rounded-md border p-10 lg:max-w-[1100px]">
+          <h1 className="w-full text-left text-4xl font-bold">Answers</h1>
+          <TagInput
+            placeholder="Enter Your Results"
+            tags={answersTag}
+            className="sm:min-w-[450px]"
+            setTags={(newTags) => {
+              setAnswersTag(newTags);
+            }}
+          />
+        </div> */}
 
-          <AccordionItem value="item-4">
-            <AccordionTrigger>
-              How much can I get through uSTAKING Referral Program?
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-5">
-            <AccordionTrigger>
-              In what type of currency can I be rewarded?
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-6">
-            <AccordionTrigger>How can I withdraw my reward?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-7">
-            <AccordionTrigger>
-              Which reward I can get on every level?
-            </AccordionTrigger>
-            <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion> */}
-
-        {/* <TextareaForm /> */}
-        <Form {...form}>
+        {auth.currentUser ? <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto w-full space-y-6 lg:max-w-[1100px]">
+            <FormField
+              control={form.control}
+              name="topics"
+              // render={({ field }) => (
+              //   <FormItem>
+              //     <FormLabel>Topics</FormLabel>
+              //     <FormControl>
+              //       <TagInput
+              //         placeholder="Enter Your Topics"
+              //         tags={answersTag}
+              //         className="bg-background sm:min-w-[450px] "
+              //         setTags={(newTags) => {
+              //           setTopicsTag(newTags);
+              //         }}
+              //         {...field}
+              //       />
+              //     </FormControl>
+              //     <FormDescription>
+              //       You can <span>add</span> as many topics as you want.
+              //     </FormDescription>
+              //     <FormMessage />
+              //   </FormItem>
+              // )}
+              // render={() => (
+              //   <FormItem>
+              //     <FormLabel>Topics</FormLabel>
+              //     <FormControl>
+              //       <TagInput
+              //         placeholder="Enter Your Topics"
+              //         tags={answersTag}
+              //         className="bg-background sm:min-w-[450px] "
+              //         setTags={(newTags) => {
+              //           setTopicsTag(newTags);
+              //         }}
+              //       />
+              //     </FormControl>
+              //     <FormDescription>
+              //       You can <span>add</span> as many topics as you want.
+              //     </FormDescription>
+              //     <FormMessage />
+              //   </FormItem>
+              // )}
+              render={({ field }) => (
+                <FormItem className="flex flex-col items-start">
+                  <FormLabel className="text-left">Topics</FormLabel>
+                  <FormControl className="w-full">
+                    <TagInput
+                      {...field}
+                      placeholder="Enter Your Topics"
+                      tags={topicsTag}
+                      className="sm:min-w-[450px] bg-background "
+                      setTags={(newTags) => {
+                        setTopicsTag(newTags);
+                        // setValue('topics', newTags as [Tag, ...Tag[]]);
+                      }}
+                    />
+                  </FormControl>
+                  <FormDescription className="text-left">
+                    These are the topics that you&apos;re interested in.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="comment"
@@ -1673,15 +1689,26 @@ const FrameComponent: NextPage = () => {
                     />
                   </FormControl>
                   <FormDescription>
-                    You can <span>any</span> comments under 200 characters and we will try to give you the answers.
+                    You can <span>any</span> comments under 200 characters.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit">
+              <Send className="mr-2 size-4" />
+              Submit</Button>
           </form>
-        </Form>
+        </Form> : <div className="flex min-h-[500px] w-full flex-col items-center justify-center gap-5 rounded-md dark:bg-yellow-500">
+          <span className="rainbow-text text-center text-[2.5rem] font-bold">Please Login to get supports!</span>
+          <Link href="/login" className="">
+            <Button>Login</Button>
+          </Link>
+        </div>}
+
+
+
+
       </div>
     </section>
   )
