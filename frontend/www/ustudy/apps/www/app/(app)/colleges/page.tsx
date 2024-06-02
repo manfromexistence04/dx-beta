@@ -165,7 +165,7 @@ const SpecialtyPage: NextPage = () => {
       <FrameComponent />
       <section className="font-headings-desktop-poppins-16px-bold text-blueviolet-200 mq1050:box-border mq1050:pb-10 mq750:box-border mq750:pb-[26px] !mx-auto box-border flex w-[1398px] max-w-full flex-row items-start justify-center px-5 pb-[62px] pt-0 text-center text-xl">
         <div className="mq1050:gap-[40px] mq750:gap-[20px] flex w-[1042px] max-w-full flex-col items-end justify-start gap-[81px]">
-          <div className="box-border flex max-w-full flex-row items-start justify-end self-stretch py-0 pl-0 pr-0.5">
+          <div className="box-border flex max-w-full flex-row items-start justify-end self-stretch py-0 pl-0">
             <div className="mq1050:gap-[38px] mq750:gap-[19px] flex max-w-full flex-1 flex-row flex-wrap items-end justify-start gap-[77px]">
               <div className="mq750:gap-[20px] flex min-w-[314px] max-w-full flex-1 flex-col items-start justify-start gap-[41px]">
                 <button className="border-dimgray rounded-21xl box-border flex w-[122px] cursor-pointer flex-row items-start justify-start gap-[9px] rounded-[5px] border border-DEFAULT border-solid bg-black px-[18px] py-1.5">
@@ -181,16 +181,16 @@ const SpecialtyPage: NextPage = () => {
                   {docs.map((items) => (
                     <div
                       key={items.id}
-                      className="rounded-md border"
+                      className="z-10 overflow-hidden rounded-md border !p-0 transition-all hover:scale-105"
                     >
-                      <div className="text-11xl font-headings-desktop-poppins-16px-regular text-shade-white relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pr-px pt-0 text-left">
-                        <div className="absolute inset-x-0 bottom-0 !m-0 h-[364.7px] w-full rounded [background:linear-gradient(#000,_#000),_#d9d9d9]" />
-                        <div className="relative flex max-w-full flex-row items-start justify-start self-stretch">
+                      <div className="text-11xl font-headings-desktop-poppins-16px-regular text-shade-white relative box-border flex max-w-full flex-1 flex-col items-start justify-start gap-[24.6px] pb-[24.4px] pl-0 pt-0 text-left">
+                        {/* <div className="absolute inset-x-0 bottom-0 !m-0 h-[364.7px] w-full rounded [background:linear-gradient(#000,_#000),_#d9d9d9]" /> */}
+                        <div className="relative z-10 flex max-w-full flex-row items-start justify-start self-stretch">
                           {items.images && items.images.length > 0 ? (
                             items.images.map((index: any) => (
                               <div key={index}>
                                 <img
-                                  className="rounded-t-8xs relative z-[1] h-[263.5px] !min-w-[500px] flex-1 overflow-hidden rounded-b-none object-cover "
+                                  className="relative h-[263.5px] !min-w-[500px] flex-1 overflow-hidden rounded-b-none rounded-t-md object-cover "
                                   alt="Images"
                                   src={index}
                                 />
@@ -198,7 +198,7 @@ const SpecialtyPage: NextPage = () => {
                             ))
                           ) : items.image ? (
                             <img
-                              className="rounded-t-8xs relative z-[1] h-[263.5px] max-w-full flex-1 overflow-hidden rounded-b-none object-cover"
+                              className="relative h-[263.5px] max-w-full flex-1 overflow-hidden rounded-b-none rounded-t-md object-cover"
                               alt="Image"
                               src={items.image}
                             />
@@ -217,7 +217,7 @@ const SpecialtyPage: NextPage = () => {
                               src="/rectangle14230.png"
                             />
                           )}
-                          {items.logo ? (
+                          {/* {items.logo ? (
                             <Avatar className="absolute bottom-[-9.2px] left-[29px] z-[2]">
                               <AvatarImage src={items.logo} alt="@Ustudy" />
                               <AvatarFallback>UY</AvatarFallback>
@@ -229,7 +229,11 @@ const SpecialtyPage: NextPage = () => {
                               alt=""
                               src={"/rectangle14231.png"}
                             />
-                          )}
+                          )} */}
+                          <Avatar className="absolute bottom-[-9.2px] left-[29px] z-[2]">
+                            <AvatarImage src={items.logo} alt="@Ustudy" />
+                            <AvatarFallback>UY</AvatarFallback>
+                          </Avatar>
                         </div>
 
 
@@ -238,14 +242,18 @@ const SpecialtyPage: NextPage = () => {
                           <div className="mq450:flex-wrap flex max-w-full flex-1 flex-row items-end justify-between gap-[20px]">
 
                             <Link href={`/colleges/${items.id}`}>
-                              <div className="flex w-[235.4px] flex-col items-start justify-start gap-[19.5px]">
-                                <h2 className="z-[1] w-[125px] truncate  text-sm">
+                              <div className="flex w-full flex-col items-start justify-start gap-1">
+                                <h2 className="z-[1] w-[125px] truncate text-sm">
                                   {items.universityName || "Astana It"}
                                 </h2>
-                                <div className="font-nunito-sans box-border flex w-[108.6px] flex-row items-start justify-start py-0 pl-[4.6px] pr-[5px] text-xs">
-                                  <div className="relative z-[1] flex-1 shrink-0">
-                                    {items.universityCode || "503"}
+
+                                <div className="font-nunito-sans z-10 box-border flex w-full flex-row items-start justify-start py-0 pb-5 text-xs">
+                                  <div className="text-overflow-clamp text-muted-foreground relative z-[1] flex-1 shrink-0 text-sm leading-relaxed">
+                                    {items.universityDescription || "No Description"}
                                   </div>
+                                </div>
+                                <div className="font-nunito-sans z-10 box-border flex size-10 flex-row items-center justify-center rounded-full border py-0 text-xs">
+                                    {items.universityCode || "503"}
                                 </div>
                               </div>
                             </Link>
