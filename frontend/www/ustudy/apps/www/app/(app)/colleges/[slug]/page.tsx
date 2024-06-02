@@ -170,10 +170,15 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
           {docs.images && docs.images.length > 0 ? (
             docs.images.map((index: any) => (
               <div key={index} className="relative z-20 w-full">
-                <Avatar className="absolute bottom-0 left-0 z-50 !m-0 size-[200px] rounded-full object-cover">
-                  <AvatarImage src={docs.logo} alt="@Ustudy" />
-                  <AvatarFallback>UY</AvatarFallback>
-                </Avatar>
+
+
+                <div className="bg-primary-foreground absolute bottom-0 left-0 z-50 rounded-full border border-red-500 !p-10">
+                  <Avatar className="z-40 !m-10 size-[200px] !border-none object-cover">
+                    <AvatarImage src={docs.logo} alt="@Ustudy" />
+                    <AvatarFallback>UY</AvatarFallback>
+                  </Avatar>
+                </div>
+
                 <img
                   className="!m-0 h-[800px] !min-w-full rounded-[5px] object-cover"
                   alt="Images"
@@ -184,10 +189,16 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
             ))
           ) : docs.image ? (
             <div className="relative z-20 w-full">
-              <Avatar className="absolute -bottom-[100px] left-[10%] z-50 !m-0 size-[200px] rounded-full border object-cover">
+              {/* <Avatar className="absolute -bottom-[100px] left-[10%] z-50 !m-0 size-[200px] rounded-full border object-cover">
                 <AvatarImage src={docs.logo} alt="@Ustudy" />
                 <AvatarFallback>UY</AvatarFallback>
-              </Avatar>
+              </Avatar> */}
+              <div className="bg-background absolute -bottom-[125px] left-[10%] z-50 size-auto rounded-full border border-green-500">
+                <Avatar className="z-40 !m-[50px] size-[150px] !border-none object-cover">
+                  <AvatarImage src={docs.logo} alt="@Ustudy" />
+                  <AvatarFallback>UY</AvatarFallback>
+                </Avatar>
+              </div>
               <img
                 className="!m-0 h-[800px] w-full rounded-[5px] object-cover"
                 alt="Image"
@@ -372,7 +383,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
               </div>
             </section> */}
 
-            <div className="mx-auto flex w-full max-w-[90%] flex-col gap-2 rounded-lg border p-3 text-sm lg:w-[1500px]">           
+            <div className="mx-auto flex w-full max-w-[90%] flex-col gap-2 rounded-lg border p-3 text-sm lg:w-[1500px]">
               <div className="flex items-center justify-start gap-2">
                 <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
                   <University className="size-5 !p-0" />

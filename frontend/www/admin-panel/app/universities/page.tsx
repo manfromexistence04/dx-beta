@@ -500,7 +500,7 @@ const UniversityPage = () => {
         </Link>
       </div>
       <div className="admin-panel-lists place-content-center">
-        {docs.map((items:any) => (
+        {docs.map((items: any) => (
           <div key={items.id}>
             <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
               <div className="w-full flex flex-col items-center justify-center relative min-h-auto">
@@ -598,8 +598,8 @@ const UniversityPage = () => {
                     <DialogTrigger asChild>
                       <Button variant="outline">View</Button>
                     </DialogTrigger>
-                    <DialogContent className="w-[90%] lg:min-w-[1300px]">
-                      <ScrollArea className="w-full rounded-md border !max-h-[80vh] !p-0">
+                    <DialogContent className="lg:min-w-[650px]">
+                      <ScrollArea className="w-full rounded-md border !max-h-[70vh] !p-0">
                         {/* <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm">
                           <div className="flex gap-2">
                             <p>Name: </p>
@@ -703,146 +703,162 @@ const UniversityPage = () => {
                             </Badge>
                           </div>
                         </div> */}
-                                    <div className="mx-auto flex w-full max-w-[90%] flex-col gap-2 rounded-lg border p-3 text-sm lg:w-[1500px]">           
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <University className="size-5 !p-0" />
-                </div>
-                <p className="flex flex-row text-center">University: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.universityName || "No Name is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Mail className="size-5 !p-0" />
-                </div>
-                <p>Email: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.email || "No Email is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Facebook className="size-5 !p-0" />
-                </div>
-                <p>Facebook: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Instagram className="size-5 !p-0" />
-                </div>
-                <p>Instagram: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <CircleDollarSign className="size-5 !p-0" />
-                </div>
-                <p>Education Cost: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Chrome className="size-5 !p-0" />
-                </div>
-                <p>Website: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.website || "No Website Link is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Code className="size-5 !p-0" />
-                </div>
-                <p>University Code: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.universityCode || "No University Code is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Phone className="size-5 !p-0" />
-                </div>
-                <p>Phone Number: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.phoneNumber || "No Phone Number is Provided."}</span>
-              </div>
-              {/* <Separator />
+                        <div className="flex w-full flex-col gap-2 rounded-lg p-3 text-sm">
                           <div className="flex items-center justify-start gap-2">
-                            <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <University className="size-5 !p-0" />
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <University className="h-5 w-5 !p-0" />
+                            </div>
+                            <p className="flex flex-row text-center">University: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.universityName || "No Name is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Mail className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Email: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.email || "No Email is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Facebook className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Facebook: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Instagram className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Instagram: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <CircleDollarSign className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Education Cost: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Chrome className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Website: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.website || "No Website Link is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Code className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>University Code: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Code className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>University Image: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.image || "No University Code is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Code className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>University Logo: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.logo || "No University Code is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Phone className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Phone Number: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.phoneNumber || "No Phone Number is Provided."}</span>
+                          </div>
+                          {/* <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                  <University className="h-5 w-5 !p-0" />
                 </div>                <p>Logo: </p>
                             <span className="w-auto text-start font-semibold select-all">{items.logo || "No Logo is Provided."}</span>
                           </div> */}
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Earth className="size-5 !p-0" />
-                </div>
-                <p>Address: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.address || "No Address is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <MapPinned className="size-5 !p-0" />
-                </div>
-                <p>Region: </p>
-                <span className="w-auto select-all text-start font-semibold">{items.region || "No Region is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2 py-3">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <MessageCircleDashed className="size-5 !p-0" />
-                </div>
-                <span className="max-w-[90%] select-all text-start font-semibold">Description: {items.universityDescription || "No Description is Provided."}</span>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Hotel className="size-5 !p-0" />
-                </div>
-                <p>Hostel: </p>
-                <Badge
-                  className={cn(
-                    "w-fit text-center",
-                    items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                  )}
-                >
-                  {items.hostel || "No Hostel Information Provided."}
-                </Badge>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <PocketKnife className="size-5 !p-0" />
-                </div>
-                <p>Military: </p>
-                <Badge
-                  className={cn(
-                    "w-fit",
-                    items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                  )}
-                >
-                  {items.military || 'No Military Status Provided.'}
-                </Badge>
-              </div>
-              <Separator />
-              <div className="flex items-center justify-start gap-2">
-                <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
-                  <Flame className="size-5 !p-0" />
-                </div>
-                <p>Status: </p>
-                <Badge
-                  className={cn(
-                    "w-fit",
-                    items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
-                  )}
-                >
-                  {items.status || "No Status Provided."}
-                </Badge>
-              </div>
-            </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Earth className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Address: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.address || "No Address is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <MapPinned className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Region: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.region || "No Region is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2 py-3">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <MessageCircleDashed className="h-5 w-5 !p-0" />
+                            </div>
+                            <span className="max-w-[90%] select-all text-start font-semibold">Description: {items.universityDescription || "No Description is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Hotel className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Hostel: </p>
+                            <Badge
+                              className={cn(
+                                "w-fit text-center",
+                                items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                              )}
+                            >
+                              {items.hostel || "No Hostel Information Provided."}
+                            </Badge>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <PocketKnife className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Military: </p>
+                            <Badge
+                              className={cn(
+                                "w-fit",
+                                items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                              )}
+                            >
+                              {items.military || 'No Military Status Provided.'}
+                            </Badge>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Flame className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Status: </p>
+                            <Badge
+                              className={cn(
+                                "w-fit",
+                                items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                              )}
+                            >
+                              {items.status || "No Status Provided."}
+                            </Badge>
+                          </div>
+                        </div>
                       </ ScrollArea>
                     </DialogContent>
                   </Dialog>
