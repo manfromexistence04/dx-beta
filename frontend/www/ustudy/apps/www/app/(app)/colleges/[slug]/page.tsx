@@ -184,7 +184,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
             ))
           ) : docs.image ? (
             <div className="relative z-20 w-full">
-              <Avatar className="absolute -bottom-[100px] left-[10%] z-50 !m-0 size-[200px] rounded-full object-cover">
+              <Avatar className="absolute -bottom-[100px] left-[10%] z-50 !m-0 size-[200px] rounded-full border object-cover">
                 <AvatarImage src={docs.logo} alt="@Ustudy" />
                 <AvatarFallback>UY</AvatarFallback>
               </Avatar>
@@ -372,75 +372,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
               </div>
             </section> */}
 
-            <div className="mx-auto flex w-full max-w-[90%] flex-col gap-2 rounded-lg border p-3 text-sm lg:w-[1500px]">
-              {/* <div className="w-full min-h-max h-auto rounded-md mb-1">
-                            <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
-                              <div className="w-full flex flex-col items-center justify-center relative min-h-[350px]">
-                                <Carousel
-                                  plugins={[plugin.current]}
-                                  setApi={setApi}
-                                  className="w-full !min-h-min"
-                                  onMouseEnter={plugin.current.stop}
-                                  onMouseLeave={plugin.current.reset}
-                                >
-                                  <CarouselContent>
-
-                                    {docs.images && docs.images.length > 0 ? docs.images.map((index: any) => (
-
-                                      <CarouselItem key={index}>
-                                        <div className="p-1">
-                                          <Card>
-                                            <CardContent className="">
-                                              <AspectRatio ratio={16 / 9} className="w-auto pr-3 text-start">
-                                                <Image
-                                                  src={index || "/placeholder.svg"}
-                                                  alt="Images"
-                                                  fill
-                                                  sizes="(min-width: 250px) 300px, 100vw"
-                                                  loading="lazy"
-                                                  className="rounded-md object-cover"
-                                                />
-                                              </AspectRatio>
-                                            </CardContent>
-                                          </Card>
-                                        </div>
-                                      </CarouselItem>
-
-
-
-                                    )) : docs.image ? Array.from({ length: 5 }).map((_, index) => (
-                                      <CarouselItem key={index}>
-                                        <div className="p-1">
-                                          <Card>
-                                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                                              <AspectRatio ratio={16 / 9} className="">
-                                                <Image
-                                                  src={docs.image || "/placeholder.svg"}
-                                                  alt="Image"
-                                                  fill
-                                                  sizes="(min-width: 250px) 300px, 100vw"
-                                                  loading="lazy"
-                                                  className="rounded-md object-cover"
-                                                />
-                                              </AspectRatio>
-                                            </CardContent>
-                                          </Card>
-                                        </div>
-                                      </CarouselItem>
-                                    )) : ""}
-                                  </CarouselContent>
-                                </Carousel>
-                              </div>
-                              {docs.images && docs.images.length > 0 ? "" : docs.image ? "" : <div className="center rounded-md border flex-1 h-[350px] absolute top-0 left-0 w-full">No image is provided.</div>}
-                              <div className="absolute bottom-4 left-4">
-                                <Avatar>
-                                  <AvatarImage src={docs.logo} alt="@Ustudy" />
-                                  <AvatarFallback>UY</AvatarFallback>
-                                </Avatar>
-                              </div>
-                            </Card>
-                          </div> */}
-              {/* <Separator /> */}
+            <div className="mx-auto flex w-full max-w-[90%] flex-col gap-2 rounded-lg border p-3 text-sm lg:w-[1500px]">           
               <div className="flex items-center justify-start gap-2">
                 <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
                   <University className="size-5 !p-0" />
@@ -580,6 +512,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
                 </Badge>
               </div>
             </div>
+
           </main>
           <div className="relative z-[4] hidden h-[512px] w-[41px] bg-black" />
         </div>

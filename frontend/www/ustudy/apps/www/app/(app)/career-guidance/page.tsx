@@ -29,7 +29,7 @@ import { Checkbox } from "@/registry/default/ui/checkbox"
 import { Input } from "@/registry/default/ui/input"
 import { Label } from "@/registry/default/ui/label"
 import { UserAuthForm } from "../examples/authentication/components/user-auth-form"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useAuth } from "@clerk/nextjs";
@@ -396,7 +396,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "blur fixed inset-0 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 blur",
       className
     )}
     {...props}
@@ -413,13 +413,13 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg",
         className
       )}
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+      <DialogPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
         <X className="size-4" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
@@ -477,7 +477,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-muted-foreground text-sm", className)}
     {...props}
   />
 ))
@@ -736,17 +736,17 @@ type QuizFormFields = {
   [key: string]: "a" | "b";
 };
 
-let FormSchema = z.object({});
+// let FormSchema = z.object({});
 
-for (let i = 0; i < questions.length; i++) {
-  FormSchema = FormSchema.extend({
-    [`quiz${i + 1}`]: z.enum(["a", "b"], {
-      required_error: "You need to select an answer.",
-    }),
-  });
-}
+// for (let i = 0; i < questions.length; i++) {
+//   FormSchema = FormSchema.extend({
+//     [`quiz${i + 1}`]: z.enum(["a", "b"], {
+//       required_error: "You need to select an answer.",
+//     }),
+//   });
+// }
 
-console.log(FormSchema);
+// console.log(FormSchema);
 
 /**
  * v0 by Vercel.
@@ -757,10 +757,10 @@ import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 
 function QuizResult() {
   return (
-    <Card className="w-full max-w-md bg-[#804DFE] text-white mx-auto mt-32">
+    <Card className="mx-auto mt-32 w-full max-w-md bg-[#804DFE] text-white">
       <CardHeader className="border-b border-white border-opacity-25 p-4">
         <div className="flex items-center space-x-2">
-          <JapaneseYenIcon className="h-6 w-6" />
+          <JapaneseYenIcon className="size-6" />
           <CardTitle>Result</CardTitle>
         </div>
       </CardHeader>
@@ -807,16 +807,26 @@ export default function RadioGroupForm() {
   // const form = useForm<z.infer<typeof FormSchema>>({
   //   resolver: zodResolver(FormSchema),
   // })
+  const [docs, setDocs] = React.useState<any>([])
+
+  let FormSchema = z.object({});
+
+  for (let i = 0; i < docs?.length; i++) {
+    FormSchema = FormSchema.extend({
+      [`quiz${i + 1}`]: z.any(),
+    });
+  }
   const form = useForm<QuizFormFields>({
     resolver: zodResolver(FormSchema),
   });
   function onSubmit(data: z.infer<typeof FormSchema>) {
     // e.preventDefault();
     toast({
-      title: "You submitted the following values:",
+      title: "Thank you, for taking quiz.",
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4 max-h-[500px] overflow-x-hidden overflow-y-auto">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        <pre className="mt-2 max-h-[500px] w-[340px] overflow-y-auto overflow-x-hidden rounded-md bg-slate-950 p-4">
+          {/* <code className="text-white">{JSON.stringify(data, null, 2)}</code> */}
+          The Reults will appear shortly.
         </pre>
       ),
     })
@@ -918,7 +928,7 @@ export default function RadioGroupForm() {
 
           toast({
             title: "Uh oh! Something went wrong with your SignUp.",
-            description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+            description: (<div className='bg-primary-foreground mt-1 flex flex-col items-start justify-start space-y-1.5 rounded-md p-3 text-xs'>
               <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
               <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
             </div>),
@@ -969,7 +979,7 @@ export default function RadioGroupForm() {
       .catch((error) => {
         toast({
           title: "Uh oh! Something went wrong with your SignIn.",
-          description: (<div className='flex items-start justify-start bg-primary-foreground rounded-md text-xs flex-col space-y-1.5 p-3 mt-1'>
+          description: (<div className='bg-primary-foreground mt-1 flex flex-col items-start justify-start space-y-1.5 rounded-md p-3 text-xs'>
             <span className="text-muted-foreground">{`Error: ${EnhancedErrors(error.code)}`}</span>
             <span className="text-muted-foreground">{`Possible Solution: ${SuggestSolutions(error.code)}`}</span>
           </div>),
@@ -1014,25 +1024,45 @@ export default function RadioGroupForm() {
   const toggleConfirmPasswordVisibility = () =>
     setIsVisibleConfirmPassword(!isVisibleConfirmPassword)
 
+  useEffect(() => {
+    const fetchDocs = async () => {
+      const q = query(collection(db, "questions"))
+      const querySnapshot = await getDocs(q)
+      const newDocs: any = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setDocs(newDocs)
+      // Configuring Data for Update:
+      // docs.map((item: any) => {
+      //   setInputedMainQuestion(item.mainQuestion)
+      //   setAnswersTag(item.answers)
+      //   setResultslTag(item.results)
+      // })
+      // setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1])
+      // setLoading(false)
+    }
+    fetchDocs()
+  }, [])
 
   return (
-    <Carousel className="w-screen h-full" setApi={setApi}>
+    <Carousel className="h-full w-screen" setApi={setApi}>
       <CarouselContent>
         <CarouselItem>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex items-center justify-center flex-col space-y-5 z-50 p-10">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="z-50 flex w-full flex-col items-center justify-center space-y-5 p-10">
               <h1 className="title !m-0 bg-gradient-to-r from-rose-500 to-orange-500 bg-clip-text text-transparent">Career & Guidence</h1>
-              <div className="admin-panel-lists w-[50%] mx-auto">
-                {questions.map((question, index) => (
+              <div className="admin-panel-lists mx-auto w-[50%]">
+                {docs && docs.map((question: any, index: any) => (
                   <FormField
                     key={index}
                     control={form.control}
                     name={`quiz${index + 1}`}
                     render={({ field }) => (
-                      <FormItem className="w-full relative hover:bg-primary-foreground min-h-[165px] h-full flex flex-col space-y-3 p-5 rounded-md border">
-                        <div className="text-[1rem] font-bold flex flex-row items-center justify-start space-x-1.5 !p-0">
-                          <span className="center bg-primary-foreground rounded-full min-h-[35px] min-w-[35px] border">{index + 1}</span>
-                          <span className="text-start text-xs">{question[`quiz${index + 1}`]}</span>
+                      <FormItem className="hover:bg-primary-foreground relative flex size-full min-h-[165px] flex-col space-y-3 rounded-md border p-5">
+                        <div className="flex flex-row items-center justify-start space-x-1.5 !p-0 text-[1rem] font-bold">
+                          <span className="center bg-primary-foreground min-h-[35px] min-w-[35px] rounded-full border">{index + 1}</span>
+                          <span className="text-start text-xs">{question.mainQuestion}</span>
                         </div>
                         <FormControl>
                           <RadioGroup
@@ -1040,20 +1070,24 @@ export default function RadioGroupForm() {
                             defaultValue={field.value}
                             className="flex flex-col space-y-1 px-2"
                           >
-                            <FormItem className="flex items-center space-x-3 space-y-0">
+
+
+                            {question.answers?.map((a: any) => <FormItem key={a} className="flex items-center space-x-3 space-y-0">
                               <FormControl>
-                                <RadioGroupItem value="a" />
+                                <RadioGroupItem value={a} />
                               </FormControl>
                               <FormLabel className="font-normal">
-                                {question.a}
+                                {a}
                               </FormLabel>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-3 space-y-0">
+                            </FormItem>)}
+
+
+                            {/* <FormItem className="flex items-center space-x-3 space-y-0">
                               <FormControl>
                                 <RadioGroupItem value="b" />
                               </FormControl>
                               <FormLabel className="font-normal">{question.b}</FormLabel>
-                            </FormItem>
+                            </FormItem> */}
                           </RadioGroup>
                         </FormControl>
                         <FormMessage />
@@ -1062,8 +1096,8 @@ export default function RadioGroupForm() {
                   />
                 ))}
               </div>
-                  
-              <Button type="submit" className="w-[50%] mx-auto">Submit</Button>
+
+              <Button type="submit" className="mx-auto w-[50%]">Submit</Button>
             </form>
           </Form>
           {/* <div className="mx-auto grid w-4/5  min-w-[300px] max-w-[550px] ">
@@ -1117,7 +1151,31 @@ export default function RadioGroupForm() {
               </Link>
             </div>
           </div> */}
-          <QuizResult />
+          {/* <QuizResult /> */}
+          <Card className="mx-auto my-32 w-full max-w-md bg-[#804DFE] text-white">
+            <CardHeader className="border-b border-white border-opacity-25 p-4">
+              <div className="flex items-center space-x-2">
+                <JapaneseYenIcon className="size-6" />
+                <CardTitle>Result</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4">
+
+              {docs && docs.map((item: any) => item.results.map((result: any) => <div className="my-3 w-fit rounded-md bg-green-400 p-1.5 text-center text-xs text-white" key={result}>{result}</div>))}
+
+              <p>Close types: intellectual and office.</p>
+              <p>The opposite type is social.</p>
+              <div className="mt-4">
+                <CardTitle>Proclivities</CardTitle>
+                <ul className="list-disc pl-5">
+                  <li>emitted by a smart contract. Maximum emission: 2 billion U</li>
+                  <li>1.25% (25 m) of the token emission will be allocated to create liquidity on the exchange</li>
+                  <li>The initial price after the token listing on the exchange 0.10 USD</li>
+                  <li>According to the schedule, in the first few years the token will reach x100; x500 or more</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
         </CarouselItem>
 
         {/* <CarouselItem>

@@ -1432,7 +1432,7 @@ const FrameComponent: NextPage = () => {
           collapsible
           className="mx-auto w-[90%] space-y-5 lg:w-[700px]"
         >
-          {docs.map((items) => (
+          {/* {docs.map((items) => (
             <AccordionItem key={items.id} value={items.id}>
               <AccordionTrigger>
                 {items.mainQuestion || "No Main Questing is Provided."}
@@ -1478,7 +1478,7 @@ const FrameComponent: NextPage = () => {
                 </div>
               </AccordionContent>
             </AccordionItem>
-          ))}
+          ))} */}
           <AccordionItem value="item-1">
             <AccordionTrigger>
               What is uSTAKING Referral Program?
