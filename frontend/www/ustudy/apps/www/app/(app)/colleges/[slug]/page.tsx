@@ -51,7 +51,7 @@ const fetchDocument = async (docId: string) => {
 }
 
 const Collages: any = ({ params }: { params: { slug: string } }) => {
-  const [tabsValue, setTabsValue] = useState<any>("account")
+  const [tabsValue, setTabsValue] = useState<any>("overview")
   const [docs, setDocs] = useState<any>([])
   const [lastDoc, setLastDoc] = useState<any>(null)
   const [loading, setLoading] = useState(false)
@@ -262,7 +262,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
 
 
 
-            <section className="text-lightsteelblue font-headings-desktop-poppins-16px-bold !mx-auto box-border flex w-[1245px] max-w-full flex-row items-start justify-center px-5 py-0 text-left text-5xl">
+            {/* <section className="text-lightsteelblue font-headings-desktop-poppins-16px-bold !mx-auto box-border flex w-[1245px] max-w-full flex-row items-start justify-center px-5 py-0 text-left text-5xl">
               <div className="flex w-[1061px] max-w-full flex-row items-start justify-start gap-[16.6px]">
                 <div className="flex flex-col items-start justify-start px-0 pb-0 pt-1.5">
                   <div className="flex flex-col items-start justify-start gap-[54px]">
@@ -387,7 +387,7 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
 
             {/* <div className="mx-auto flex w-full max-w-[90%] flex-col gap-2 rounded-lg border p-3 text-sm lg:w-[1500px]">
               <div className="flex items-center justify-start gap-2">
@@ -524,97 +524,312 @@ const Collages: any = ({ params }: { params: { slug: string } }) => {
             </div> */}
 
 
-            <Tabs defaultValue={tabsValue} onValueChange={(e:string) => setTabsValue(e)} className="mx-auto !flex w-full !flex-row border p-5 lg:w-[1300px] rounded-md">
-              <TabsList className="!flex !min-h-[500px] !flex-col !rounded-none !py-10">
-                <TabsTrigger className={cn("bg-green-400", tabsValue === "account" ? "!bg-pink-500" : "!bg-blue-500")} value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
+            <Tabs defaultValue={tabsValue} onValueChange={(e: string) => setTabsValue(e)} className="mx-auto !flex w-full !flex-row rounded-md p-5 lg:w-[1200px]">
 
-
-                {/* <section className="text-lightsteelblue font-headings-desktop-poppins-16px-bold !mx-auto box-border flex w-[1245px] max-w-full flex-row items-start justify-center px-5 py-0 text-left text-5xl">
-              <div className="flex w-[1061px] max-w-full flex-row items-start justify-start gap-[16.6px]">
-                <div className="flex flex-col items-start justify-start px-0 pb-0 pt-1.5">
-                  <div className="flex flex-col items-start justify-start gap-[54px]">
-                    <div className="relative flex flex-row items-start justify-start">
-                      <img
-                        className="relative size-5"
-                        loading="lazy"
-                        alt=""
-                        src="/circle.png"
-                      />
-                      <div className="absolute bottom-[-457px] left-[-20px] z-[1] !m-0 h-[483px] w-[30px] rounded-sm bg-black" />
-                    </div>
+              <TabsList className="!flex !min-h-[500px] !min-w-max !flex-col !items-start !justify-start gap-8 !rounded-none bg-black pr-4">
+                <TabsTrigger className={cn("!relative space-x-3", tabsValue === "overview" ? "!bg-black" : "")} value="overview">
+                  <div className="center relative h-[30px] w-auto">
                     <img
                       className="relative size-5"
                       loading="lazy"
-                      alt=""
+                      alt="Circle"
                       src="/circle.png"
                     />
-                    <img
-                      className="relative size-5"
-                      loading="lazy"
-                      alt=""
-                      src="/circle.png"
-                    />
-                    <img
-                      className="relative size-5"
-                      loading="lazy"
-                      alt=""
-                      src="/circle.png"
-                    />
-                    <img
-                      className="relative size-5"
-                      loading="lazy"
-                      alt=""
-                      src="/circle.png"
-                    />
-                    <img
-                      className="relative size-5"
-                      loading="lazy"
-                      alt=""
-                      src="/circle.png"
-                    />
-                    <img
-                      className="relative size-5"
-                      loading="lazy"
-                      alt=""
-                      src="/circle.png"
-                    />
+                    <div className="absolute left-0 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-black" />
                   </div>
-                </div>
-                <div className="flex max-w-[calc(100%_-_37px)] flex-1 flex-row items-start justify-start gap-[22.4px]">
-                  <div className="mq750:hidden flex flex-col items-start justify-start gap-[44.2px]">
-                    <a
-                      className="!m-0 bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent"
-                      href="https://www.appily.com/colleges/ucla"
-                      target="_blank"
-                    >
-                      Overview
-                    </a>
-                    <a
-                      className="mq450:text-lgi mq450:leading-[24px] relative inline-block min-w-[90px] !bg-clip-text font-bold leading-[125%] tracking-wider text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#9da5c3,_#9da5c3),_#fff] [text-decoration:none]"
-                      href="https://www.appily.com/colleges/ucla/admissions"
-                      target="_blank"
-                    >{`Tuition `}</a>
-                    <b className="mq450:text-lgi mq450:leading-[24px] relative inline-block min-w-[119px] !bg-clip-text leading-[125%] tracking-wider text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#9da5c3,_#9da5c3),_#fff]">
-                      Contacts
-                    </b>
-                    <b className="mq450:text-lgi mq450:leading-[24px] relative inline-block min-w-[87px] !bg-clip-text leading-[125%] tracking-wider text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#9da5c3,_#9da5c3),_#fff]">
-                      Majors
-                    </b>
-                    <b className="mq450:text-lgi mq450:leading-[24px] relative !bg-clip-text leading-[125%] tracking-wider text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#9da5c3,_#9da5c3),_#fff]">{`Campus Life `}</b>
-                    <b className="mq450:text-lgi mq450:leading-[24px] relative !bg-clip-text leading-[125%] tracking-wider text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#9da5c3,_#9da5c3),_#fff]">
-                      Academics
-                    </b>
-                    <b className="mq450:text-lgi mq450:leading-[24px] relative inline-block min-w-[104px] !bg-clip-text leading-[125%] tracking-wider text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] [background:linear-gradient(#9da5c3,_#9da5c3),_#fff]">
-                      Reviews
-                    </b>
+                  <span className={cn("text-muted-foreground relative text-[1.5rem] font-bold", tabsValue === "overview" && "bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text  text-transparent")}>
+                    Overview
+                    {tabsValue === "overview" && <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />}
+                  </span>
+                </TabsTrigger>
+                <TabsTrigger className={cn("!relative space-x-3", tabsValue === "contacts" ? "!bg-black" : "")} value="contacts">
+                  <div className="center relative h-[30px] w-auto">
+                    <img
+                      className="relative size-5"
+                      loading="lazy"
+                      alt="Circle"
+                      src="/circle.png"
+                    />
+                    <div className="absolute left-0 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-black" />
                   </div>
-                </div>
-              </div>
-            </section> */}
+                  <span className={cn("text-muted-foreground relative text-[1.5rem] font-bold", tabsValue === "contacts" && "bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text  text-transparent")}>
+                    Contacts
+                    {tabsValue === "contacts" && <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />}
+                  </span>
+                  {/* <span className="relative bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-[1.5rem] font-bold text-transparent hover:underline">
+                    Contacts
+                    <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />
+                  </span> */}
+                </TabsTrigger>
+                <TabsTrigger className={cn("!relative space-x-3", tabsValue === "majors" ? "!bg-black" : "")} value="majors">
+                  <div className="center relative h-[30px] w-auto">
+                    <img
+                      className="relative size-5"
+                      loading="lazy"
+                      alt="Circle"
+                      src="/circle.png"
+                    />
+                    <div className="absolute left-0 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-black" />
+                  </div>
+                  <span className={cn("text-muted-foreground relative text-[1.5rem] font-bold", tabsValue === "majors" && "bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text  text-transparent")}>
+                    Majors
+                    {tabsValue === "majors" && <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />}
+                  </span>
+                  {/* <span className="relative bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-[1.5rem] font-bold text-transparent hover:underline">
+                    Majors
+                    <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />
+                  </span> */}
+                </TabsTrigger>
+                <TabsTrigger className={cn("!relative space-x-3", tabsValue === "academics" ? "!bg-black" : "")} value="academics">
+                  <div className="center relative h-[30px] w-auto">
+                    <img
+                      className="relative size-5"
+                      loading="lazy"
+                      alt="Circle"
+                      src="/circle.png"
+                    />
+                    <div className="absolute left-0 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-black" />
+                  </div>
+                  <span className={cn("text-muted-foreground relative text-[1.5rem] font-bold", tabsValue === "academics" && "bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text  text-transparent")}>
+                    Academics
+                    {tabsValue === "academics" && <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />}
+                  </span>
+                  {/* <span className="relative bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-[1.5rem] font-bold text-transparent hover:underline">
+                    Academics
+                    <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />
+                  </span> */}
+                </TabsTrigger>
+                <TabsTrigger className={cn("!relative space-x-3", tabsValue === "reviews" ? "!bg-black" : "")} value="reviews">
+                  <div className="center relative h-[30px] w-auto">
+                    <img
+                      className="relative size-5"
+                      loading="lazy"
+                      alt="Circle"
+                      src="/circle.png"
+                    />
+                    <div className="absolute left-0 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-black" />
+                  </div>
+                  <span className={cn("text-muted-foreground relative text-[1.5rem] font-bold", tabsValue === "reviews" && "bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text  text-transparent")}>
+                    Reviews
+                    {tabsValue === "reviews" && <div className="absolute -bottom-1 right-0 h-[3px] w-full bg-gradient-to-r  from-fuchsia-600 to-pink-600" />}
+                  </span>
+                </TabsTrigger>
               </TabsList>
-              <TabsContent value="account">gfdgfdgfdsg</TabsContent>
-              <TabsContent value="password">Change your password here.</TabsContent>
+              <TabsContent value="overview" className="*:text-start *:font-mono *:leading-relaxed *:tracking-wide">
+                <div className="mb-16 flex max-w-full flex-row items-start justify-start self-stretch py-0 pl-0.5 pr-1.5">
+                  <div className="mq450:text-lgi relative inline-block max-w-full flex-1">
+                    <p className="m-0">
+                      ({docs.universityName}) University has an active student
+                      self-government,
+                    </p>
+                    <p className="m-0">
+                      which is an element of the general system of
+                      management of educational process in the university
+                      and implies maximum consideration of interests of
+                      students.
+                    </p>
+                    <p className="m-0">{`process at the university and assumes maximum consideration of interests,`}</p>
+                    <p className="m-0">
+                      needs of students on the basis of studying their
+                      public opinion.
+                    </p>
+                  </div>
+                </div>
+                <div className="text-whitesmoke font-poppins text-13xl flex flex-col items-start justify-start gap-[7px] self-stretch">
+                  <b className="mq1050:text-7xl mq450:text-lgi relative self-stretch">
+                    {/* Entire Ecosystem */}
+                    Description
+                  </b>
+                  {/* <p className="w-fit text-green-400">{docs.universityName}</p> */}
+                  <div className="font-dm-sans-desktop-24px-regular text-lightsteelblue mq450:text-lgi relative self-stretch text-5xl">
+                    {/* <p className="m-0">
+                      ({docs.universityName}) University has an active student
+                      self-government,
+                    </p>
+                    <p className="m-0">
+                      which is an element of the general system of
+                      management of educational process in the university
+                      and implies maximum consideration of interests of
+                      students.
+                    </p>
+                    <p className="m-0">{`process at the university and assumes maximum consideration of interests,`}</p> */}
+                    <p className="m-0">{docs.universityDescription}</p>
+                  </div>
+                </div>
+                {/* <div className="font-dm-sans-desktop-24px-regular mq1050:gap-[31px] mq750:max-w-full mq450:gap-[15px] flex max-w-[calc(100%_-_182px)] flex-1 flex-col items-start justify-start gap-[62px]">
+                    <div className="box-border flex max-w-full flex-row items-start justify-start self-stretch py-0 pl-0.5 pr-1.5">
+                      <div className="mq450:text-lgi relative inline-block max-w-full flex-1">
+                        <p className="m-0">
+                          {docs.universityName} University has an active student
+                          self-government,
+                        </p>
+                        <p className="m-0">
+                          which is an element of the general system of
+                          management of educational process in the university
+                          and implies maximum consideration of interests of
+                          students.
+                        </p>
+                        <p className="m-0">{`
+                                                process at the university and assumes maximum consideration of interests,`}</p>
+                        <p className="m-0">
+                          needs of students on the basis of studying their
+                          public opinion.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-whitesmoke font-poppins text-13xl flex flex-col items-start justify-start gap-[7px] self-stretch">
+                      <b className="mq1050:text-7xl mq450:text-lgi relative self-stretch">
+                        Entire Ecosystem
+                      </b>
+                      <div className="font-dm-sans-desktop-24px-regular text-lightsteelblue mq450:text-lgi relative self-stretch text-5xl">
+                        <p className="m-0">
+                          {docs.universityName} University has an active student
+                          self-government,
+                        </p>
+                        <p className="m-0">
+                          which is an element of the general system of
+                          management of educational process in the university
+                          and implies maximum consideration of interests of
+                          students.
+                        </p>
+                        <p className="m-0">{`process at the university and assumes maximum consideration of interests,`}</p>
+                        <p className="m-0">
+                          needs of students on the basis of studying their
+                          public opinion.
+                        </p>
+                      </div>
+                    </div>
+                  </div> */}
+              </TabsContent>
+              <TabsContent value="contacts" className="w-full *:text-start *:font-mono *:leading-relaxed *:tracking-wide">
+                <div className="flex w-full flex-col gap-2 rounded-lg border p-3 text-sm">
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Mail className="size-5 !p-0" />
+                    </div>
+                    <p>Email: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.email || "No Email is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Facebook className="size-5 !p-0" />
+                    </div>
+                    <p>Facebook: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.facebook || "No Facebook Link is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Instagram className="size-5 !p-0" />
+                    </div>
+                    <p>Instagram: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.instragam || "No Instagram Link is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Chrome className="size-5 !p-0" />
+                    </div>
+                    <p>Website: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.website || "No Website Link is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Phone className="size-5 !p-0" />
+                    </div>
+                    <p>Phone Number: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.phoneNumber || "No Phone Number is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Earth className="size-5 !p-0" />
+                    </div>
+                    <p>Address: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.address || "No Address is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <MapPinned className="size-5 !p-0" />
+                    </div>
+                    <p>Region: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.region || "No Region is Provided."}</span>
+                  </div>
+                 
+                </div>
+              </TabsContent>
+              <TabsContent value="majors" className="w-full *:text-start *:font-mono *:leading-relaxed *:tracking-wide">majors</TabsContent>
+              <TabsContent value="academics" className="w-full *:text-start *:font-mono *:leading-relaxed *:tracking-wide">
+                <div className="flex w-full flex-col gap-2 rounded-lg border p-3 text-sm">
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <CircleDollarSign className="size-5 !p-0" />
+                    </div>
+                    <p>Education Cost: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.educationCost || "No Education Cost is Provided."}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Code className="size-5 !p-0" />
+                    </div>
+                    <p>University Code: </p>
+                    <span className="w-auto select-all text-start font-semibold">{docs.universityCode || "No University Code is Provided."}</span>
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="reviews" className="w-full *:text-start *:font-mono *:leading-relaxed *:tracking-wide">
+              <div className="flex w-full flex-col gap-2 rounded-lg border p-3 text-sm">
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Hotel className="size-5 !p-0" />
+                    </div>
+                    <p>Hostel: </p>
+                    <Badge
+                      className={cn(
+                        "w-fit text-center",
+                        docs.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {docs.hostel || "No Hostel Information Provided."}
+                    </Badge>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <PocketKnife className="size-5 !p-0" />
+                    </div>
+                    <p>Military: </p>
+                    <Badge
+                      className={cn(
+                        "w-fit",
+                        docs.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {docs.military || 'No Military Status Provided.'}
+                    </Badge>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-start gap-2">
+                    <div className="bg-primary-foreground flex size-[45px] items-center justify-center rounded-full p-1 pb-2">
+                      <Flame className="size-5 !p-0" />
+                    </div>
+                    <p>Status: </p>
+                    <Badge
+                      className={cn(
+                        "w-fit",
+                        docs.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {docs.status || "No Status Provided."}
+                    </Badge>
+                  </div>
+                </div>
+                {/* There is no reviews currently availabel for this university. So, till then stay tuned! */}
+                </TabsContent>
             </Tabs>
 
 
