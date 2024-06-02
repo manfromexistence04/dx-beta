@@ -596,10 +596,10 @@ const University = () => {
                     <DialogTrigger asChild>
                       <Button variant="outline">View</Button>
                     </DialogTrigger>
-                    <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
+                    <DialogContent className="w-[90%] lg:min-w-[1300px]">
                       <ScrollArea className="w-full rounded-md border !max-h-[80vh] !p-0">
-                        <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden">
-                          <div className="w-full min-h-max h-auto rounded-md mb-1">
+                        <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm">
+                          {/* <div className="w-full min-h-max h-auto rounded-md mb-1">
                             <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
                               <div className="w-full flex flex-col items-center justify-center relative min-h-[350px]">
                                 <Carousel
@@ -616,8 +616,8 @@ const University = () => {
                                       <CarouselItem key={index}>
                                         <div className="p-1">
                                           <Card>
-                                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                                              <AspectRatio ratio={16 / 9} className="">
+                                            <CardContent className="">
+                                              <AspectRatio ratio={16 / 9} className="w-auto pr-3 text-start">
                                                 <Image
                                                   src={index || "/placeholder.svg"}
                                                   alt="Images"
@@ -665,76 +665,76 @@ const University = () => {
                                 </Avatar>
                               </div>
                             </Card>
-                          </div>
-                          <Separator />
+                          </div> */}
+                          {/* <Separator /> */}
                           <div className="flex gap-2">
                             <p>Name: </p>
-                            <span className="font-semibold">{items.universityName || "No Name is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.universityName || "No Name is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Email: </p>
-                            <span className="font-semibold">{items.email || "No Email is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.email || "No Email is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Facebook: </p>
-                            <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.facebook || "No Facebook Link is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Instagram: </p>
-                            <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.instragam || "No Instagram Link is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Education Cost: </p>
-                            <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.educationCost || "No Education Cost is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Website: </p>
-                            <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.website || "No Website Link is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>University Code: </p>
-                            <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.universityCode || "No University Code is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Phone Number: </p>
-                            <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.phoneNumbe || "No Phone Number is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Logo: </p>
-                            <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.logo || "No Logo is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Address: </p>
-                            <span className="font-semibold">{items.address || "No Address is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.address || "No Address is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Region: </p>
-                            <span className="font-semibold">{items.region || "No Region is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.region || "No Region is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Description: </p>
-                            <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.universityDescription || "No Description is Provided."}</span>
                           </div>
                           <Separator />
-                          <div className="flex gap-2">
+                          {/* <div className="flex gap-2">
                             <p>Images: </p>
-                            <span className="font-semibold">{JSON.stringify(items.images, null, 2) || "No Images are Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{JSON.stringify(items.images, null, 2) || "No Images are Provided."}</span>
                           </div>
-                          <Separator />
+                          <Separator /> */}
                           <div className="flex gap-2">
                             <p>Image: </p>
-                            <span className="font-semibold">{items.image || "No Image is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.image || "No Image is Provided."}</span>
                           </div>
                           <Separator />
 
@@ -823,14 +823,13 @@ const University = () => {
 
 
                                   const updateRef = doc(db, "universities", items.id);
-                                  items.logo ? await updateDoc(updateRef, {
+                                  const Update = await updateDoc(updateRef, {
                                     address: stateValue || items.address,
                                     educationCost: inputedCost || items.educationCost,
                                     email: inputedEmail || items.email,
                                     facebook: inputedFacebook || items.facebook,
                                     hostel: inputedHostel || items.hostel,
                                     image: inputedImage || items.image,
-                                    images: inputedImages || items.images,
                                     instagram: inputedInstragam || items.instagram,
                                     military: inputedMilitary || items.military,
                                     phoneNumber: inputedPhoneNumber || items.phoneNumber,
@@ -841,24 +840,44 @@ const University = () => {
                                     universityName: inputedName || items.universityName,
                                     website: inputedWebsite || items.website,
                                     logo: inputedLogo || items.logo
-                                  }) : await updateDoc(updateRef, {
-                                    address: stateValue || items.address,
-                                    educationCost: inputedCost || items.educationCost,
-                                    email: inputedEmail || items.email,
-                                    facebook: inputedFacebook || items.facebook,
-                                    hostel: inputedHostel || items.hostel,
-                                    image: inputedImage || items.image,
-                                    images: inputedImages || items.images,
-                                    instagram: inputedInstragam || items.instagram,
-                                    military: inputedMilitary || items.military,
-                                    phoneNumber: inputedPhoneNumber || items.phoneNumber,
-                                    region: countryValue || items.region,
-                                    status: inputedStatus || items.status,
-                                    universityCode: inputedCode || items.universityCode,
-                                    universityDescription: inputedDescription || items.universityDescription,
-                                    universityName: inputedName || items.universityName,
-                                    website: inputedWebsite || items.website,
-                                  });
+                                  })
+
+                                  // items.logo ? await updateDoc(updateRef, {
+                                  //   address: stateValue || items.address,
+                                  //   educationCost: inputedCost || items.educationCost,
+                                  //   email: inputedEmail || items.email,
+                                  //   facebook: inputedFacebook || items.facebook,
+                                  //   hostel: inputedHostel || items.hostel,
+                                  //   image: inputedImage || items.image,
+                                  //   images: inputedImages || items.images,
+                                  //   instagram: inputedInstragam || items.instagram,
+                                  //   military: inputedMilitary || items.military,
+                                  //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                  //   region: countryValue || items.region,
+                                  //   status: inputedStatus || items.status,
+                                  //   universityCode: inputedCode || items.universityCode,
+                                  //   universityDescription: inputedDescription || items.universityDescription,
+                                  //   universityName: inputedName || items.universityName,
+                                  //   website: inputedWebsite || items.website,
+                                  //   logo: inputedLogo || items.logo
+                                  // }) : await updateDoc(updateRef, {
+                                  //   address: stateValue || items.address,
+                                  //   educationCost: inputedCost || items.educationCost,
+                                  //   email: inputedEmail || items.email,
+                                  //   facebook: inputedFacebook || items.facebook,
+                                  //   hostel: inputedHostel || items.hostel,
+                                  //   image: inputedImage || items.image,
+                                  //   images: inputedImages || items.images,
+                                  //   instagram: inputedInstragam || items.instagram,
+                                  //   military: inputedMilitary || items.military,
+                                  //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                  //   region: countryValue || items.region,
+                                  //   status: inputedStatus || items.status,
+                                  //   universityCode: inputedCode || items.universityCode,
+                                  //   universityDescription: inputedDescription || items.universityDescription,
+                                  //   universityName: inputedName || items.universityName,
+                                  //   website: inputedWebsite || items.website,
+                                  // });
 
                                   toast({
                                     title: 'University has been Updated Successfully.',
@@ -884,75 +903,75 @@ const University = () => {
                           {inputedValues && <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden border">
                             <div className="flex gap-2">
                               <p>Name: </p>
-                              <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedName || "No Name is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Email: </p>
-                              <span className="font-semibold">{inputedEmail || "No Email is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedEmail || "No Email is Provided."}</span>
                             </div>
 
                             <Separator />
                             <div className="flex gap-2">
                               <p>Facebook: </p>
-                              <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedFacebook || "No Facebook Link is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Instagram: </p>
-                              <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedInstragam || "No Instagram Link is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Education Cost: </p>
-                              <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedCost || "No Education Cost is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Website: </p>
-                              <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedWebsite || "No Website Link is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>University Code: </p>
-                              <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedCode || "No University Code is Provided."}</span>
                             </div>
                             <Separator />
 
 
                             <div className="flex gap-2">
                               <p>Phone Number: </p>
-                              <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{phone || "No Phone Number is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Logo: </p>
-                              <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedLogo || "No Logo is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Address: </p>
-                              <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{stateValue || "No Address is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Region: </p>
-                              <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{countryValue || "No Region is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Description: </p>
-                              <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedDescription || "No Description is Provided."}</span>
                             </div>
                             <Separator />
                             {/* <div className="flex gap-2">
                               <p>Images: </p>
-                              <span className="font-semibold">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
                             </div>
                             <Separator /> */}
                             <div className="flex gap-2">
                               <p>Image: </p>
-                              <span className="font-semibold">{inputedImage || "No Image is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedImage || "No Image is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
@@ -1142,43 +1161,43 @@ const University = () => {
                           {phoneNumberDetails && <div className="min-w-[99%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
                             <div className="flex gap-2">
                               <p>Phone number: </p>
-                              <span className="font-semibold">{phoneData.phoneNumber || "-"}</span>
+                              <span className="font-semibold w-auto text-start">{phoneData.phoneNumber || "-"}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Country code: </p>
-                              <span className="font-semibold">{phoneData.countryCode || "-"}</span>
+                              <span className="font-semibold w-auto text-start">{phoneData.countryCode || "-"}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Country calling code: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.countryCallingCode || "-"}
                               </span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>National number: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.nationalNumber || "-"}
                               </span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>International number: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.internationalNumber || "-"}
                               </span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>URI: </p>
-                              <span className="font-semibold">{phoneData.uri || "-"}</span>
+                              <span className="font-semibold w-auto text-start">{phoneData.uri || "-"}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p className="flex-shrink-0">Possible countries: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.possibleCountries || "-"}
                               </span>
                             </div>
@@ -1368,7 +1387,7 @@ const University = () => {
                           </div>
                           <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                             <h1 className="text-4xl font-bold w-full text-left">Image</h1>
-                            <Input onChange={handleImageChange} type="text" placeholder="Enter Images Link" />
+                            <Input onChange={handleImageChange} type="text" placeholder="Enter Image Link" />
                           </div>
 
                           {/* <Collapsible
@@ -1377,7 +1396,7 @@ const University = () => {
                             className="w-full space-y-2"
                           >
                             <div className="flex items-center justify-between space-x-4 px-4">
-                              <h4 className="text-sm font-semibold">
+                              <h4 className="text-sm font-semibold w-auto text-start">
                                 Add Files Link
                               </h4>
                               <CollapsibleTrigger asChild>
@@ -1426,7 +1445,7 @@ const University = () => {
 
                           <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
                             <Link href="/universities" className="z-50 w-full">
-                              <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
+                              <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto pr-3 text-start">
                                 Back
                               </AnimatedButton>
                             </Link>
@@ -1458,15 +1477,13 @@ const University = () => {
 
 
                                 const updateRef = doc(db, "universities", items.id);
-
-                                items.logo ? await updateDoc(updateRef, {
+                                const Update = await updateDoc(updateRef, {
                                   address: stateValue || items.address,
                                   educationCost: inputedCost || items.educationCost,
                                   email: inputedEmail || items.email,
                                   facebook: inputedFacebook || items.facebook,
                                   hostel: inputedHostel || items.hostel,
                                   image: inputedImage || items.image,
-                                  images: inputedImages || items.images,
                                   instagram: inputedInstragam || items.instagram,
                                   military: inputedMilitary || items.military,
                                   phoneNumber: inputedPhoneNumber || items.phoneNumber,
@@ -1477,24 +1494,44 @@ const University = () => {
                                   universityName: inputedName || items.universityName,
                                   website: inputedWebsite || items.website,
                                   logo: inputedLogo || items.logo
-                                }) : await updateDoc(updateRef, {
-                                  address: stateValue || items.address,
-                                  educationCost: inputedCost || items.educationCost,
-                                  email: inputedEmail || items.email,
-                                  facebook: inputedFacebook || items.facebook,
-                                  hostel: inputedHostel || items.hostel,
-                                  image: inputedImage || items.image,
-                                  images: inputedImages || items.images,
-                                  instagram: inputedInstragam || items.instagram,
-                                  military: inputedMilitary || items.military,
-                                  phoneNumber: inputedPhoneNumber || items.phoneNumber,
-                                  region: countryValue || items.region,
-                                  status: inputedStatus || items.status,
-                                  universityCode: inputedCode || items.universityCode,
-                                  universityDescription: inputedDescription || items.universityDescription,
-                                  universityName: inputedName || items.universityName,
-                                  website: inputedWebsite || items.website,
-                                });
+                                })
+
+                                // items.logo ? await updateDoc(updateRef, {
+                                //   address: stateValue || items.address,
+                                //   educationCost: inputedCost || items.educationCost,
+                                //   email: inputedEmail || items.email,
+                                //   facebook: inputedFacebook || items.facebook,
+                                //   hostel: inputedHostel || items.hostel,
+                                //   image: inputedImage || items.image,
+                                //   images: inputedImages || items.images,
+                                //   instagram: inputedInstragam || items.instagram,
+                                //   military: inputedMilitary || items.military,
+                                //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                //   region: countryValue || items.region,
+                                //   status: inputedStatus || items.status,
+                                //   universityCode: inputedCode || items.universityCode,
+                                //   universityDescription: inputedDescription || items.universityDescription,
+                                //   universityName: inputedName || items.universityName,
+                                //   website: inputedWebsite || items.website,
+                                //   logo: inputedLogo || items.logo
+                                // }) : await updateDoc(updateRef, {
+                                //   address: stateValue || items.address,
+                                //   educationCost: inputedCost || items.educationCost,
+                                //   email: inputedEmail || items.email,
+                                //   facebook: inputedFacebook || items.facebook,
+                                //   hostel: inputedHostel || items.hostel,
+                                //   image: inputedImage || items.image,
+                                //   images: inputedImages || items.images,
+                                //   instagram: inputedInstragam || items.instagram,
+                                //   military: inputedMilitary || items.military,
+                                //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                //   region: countryValue || items.region,
+                                //   status: inputedStatus || items.status,
+                                //   universityCode: inputedCode || items.universityCode,
+                                //   universityDescription: inputedDescription || items.universityDescription,
+                                //   universityName: inputedName || items.universityName,
+                                //   website: inputedWebsite || items.website,
+                                // });
 
                                 toast({
                                   title: 'University has been Updated Successfully.',
