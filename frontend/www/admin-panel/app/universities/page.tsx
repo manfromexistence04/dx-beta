@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, getFirestore, doc, getDoc, startAfter } from "firebase/firestore";
 import { useEffect, useRef } from "react";
 import { limit, query, onSnapshot } from "firebase/firestore";
+import { Chrome, CircleDollarSign, Code, Earth, Facebook, Flame, Hotel, Instagram, Mail, MapPinned, MessageCircleDashed, Phone, PocketKnife, University } from "lucide-react"
+
 const firebaseConfig = {
   apiKey: "AIzaSyAj8jpnqU9Xo1YXVFJh-wCdulweO5z--H8",
   authDomain: "ustudy-96678.firebaseapp.com",
@@ -154,7 +156,7 @@ import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
 // import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
 // import { MentionCombobox } from '@/components/plate-ui/mention-combobox';
 import { ArrowRightIcon, ArrowLeftIcon, ChevronsUpDown, Plus, X, Projector, CloudUpload, Loader2 } from "lucide-react"
-import { Code } from "@/components/code";
+// import { Code } from "@/components/code";
 import { PhoneInput, getPhoneData } from "@/components/phone-input";
 import { Badge } from "@/components/ui/badge";
 import { useDropdownStore } from "@/lib/store/dropdown";
@@ -196,7 +198,7 @@ import { useRouter } from 'next/navigation'
 
 
 
-const University = () => {
+const UniversityPage = () => {
   const [docs, setDocs] = useState<any[]>([]);
   const [lastDoc, setLastDoc] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -256,7 +258,7 @@ const University = () => {
     },
   ];
   const [phone, setPhone] = React.useState("+1 (408) 996–1010");
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: any) => {
     setPhone(e.target.value);
   };
   const phoneData = getPhoneData(phone);
@@ -498,7 +500,7 @@ const University = () => {
         </Link>
       </div>
       <div className="admin-panel-lists place-content-center">
-        {docs.map((items) => (
+        {docs.map((items: any) => (
           <div key={items.id}>
             <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
               <div className="w-full flex flex-col items-center justify-center relative min-h-auto">
@@ -596,145 +598,72 @@ const University = () => {
                     <DialogTrigger asChild>
                       <Button variant="outline">View</Button>
                     </DialogTrigger>
-                    <DialogContent className="w-[55%] min-w-[300px] max-w-[750px]">
-                      <ScrollArea className="w-full rounded-md border !max-h-[80vh] !p-0">
-                        <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden">
-                          <div className="w-full min-h-max h-auto rounded-md mb-1">
-                            <Card className="hover-glow-border w-full relative hover:bg-primary-foreground h-full flex flex-col">
-                              <div className="w-full flex flex-col items-center justify-center relative min-h-[350px]">
-                                <Carousel
-                                  plugins={[plugin.current]}
-                                  setApi={setApi}
-                                  className="w-full !min-h-min"
-                                  onMouseEnter={plugin.current.stop}
-                                  onMouseLeave={plugin.current.reset}
-                                >
-                                  <CarouselContent>
-
-                                    {items.images && items.images.length > 0 ? items.images.map((index: any) => (
-
-                                      <CarouselItem key={index}>
-                                        <div className="p-1">
-                                          <Card>
-                                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                                              <AspectRatio ratio={16 / 9} className="">
-                                                <Image
-                                                  src={index || "/placeholder.svg"}
-                                                  alt="Images"
-                                                  fill
-                                                  sizes="(min-width: 250px) 300px, 100vw"
-                                                  loading="lazy"
-                                                  className="rounded-md object-cover"
-                                                />
-                                              </AspectRatio>
-                                            </CardContent>
-                                          </Card>
-                                        </div>
-                                      </CarouselItem>
-
-
-
-                                    )) : items.image ? Array.from({ length: 5 }).map((_, index) => (
-                                      <CarouselItem key={index}>
-                                        <div className="p-1">
-                                          <Card>
-                                            <CardContent className="flex items-center justify-center h-full w-full text-center !p-0 ">
-                                              <AspectRatio ratio={16 / 9} className="">
-                                                <Image
-                                                  src={items.image || "/placeholder.svg"}
-                                                  alt="Image"
-                                                  fill
-                                                  sizes="(min-width: 250px) 300px, 100vw"
-                                                  loading="lazy"
-                                                  className="rounded-md object-cover"
-                                                />
-                                              </AspectRatio>
-                                            </CardContent>
-                                          </Card>
-                                        </div>
-                                      </CarouselItem>
-                                    )) : ""}
-                                  </CarouselContent>
-                                </Carousel>
-                              </div>
-                              {items.images && items.images.length > 0 ? "" : items.image ? "" : <div className="center rounded-md border flex-1 h-[350px] absolute top-0 left-0 w-full">No image is provided.</div>}
-                              <div className="absolute bottom-4 left-4">
-                                <Avatar>
-                                  <AvatarImage src={items.logo} alt="@Ustudy" />
-                                  <AvatarFallback>UY</AvatarFallback>
-                                </Avatar>
-                              </div>
-                            </Card>
-                          </div>
-                          <Separator />
+                    <DialogContent className="lg:min-w-[650px]">
+                      <ScrollArea className="w-full rounded-md border !max-h-[70vh] !p-0">
+                        {/* <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm">
                           <div className="flex gap-2">
                             <p>Name: </p>
-                            <span className="font-semibold">{items.universityName || "No Name is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.universityName || "No Name is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Email: </p>
-                            <span className="font-semibold">{items.email || "No Email is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.email || "No Email is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Facebook: </p>
-                            <span className="font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.facebook || "No Facebook Link is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Instagram: </p>
-                            <span className="font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.instragam || "No Instagram Link is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Education Cost: </p>
-                            <span className="font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.educationCost || "No Education Cost is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Website: </p>
-                            <span className="font-semibold">{items.website || "No Website Link is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.website || "No Website Link is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>University Code: </p>
-                            <span className="font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.universityCode || "No University Code is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Phone Number: </p>
-                            <span className="font-semibold">{items.phoneNumbe || "No Phone Number is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.phoneNumber || "No Phone Number is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Logo: </p>
-                            <span className="font-semibold">{items.logo || "No Logo is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.logo || "No Logo is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Address: </p>
-                            <span className="font-semibold">{items.address || "No Address is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.address || "No Address is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Region: </p>
-                            <span className="font-semibold">{items.region || "No Region is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.region || "No Region is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Description: </p>
-                            <span className="font-semibold">{items.universityDescription || "No Description is Provided."}</span>
-                          </div>
-                          <Separator />
-                          <div className="flex gap-2">
-                            <p>Images: </p>
-                            <span className="font-semibold">{JSON.stringify(items.images, null, 2) || "No Images are Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.universityDescription || "No Description is Provided."}</span>
                           </div>
                           <Separator />
                           <div className="flex gap-2">
                             <p>Image: </p>
-                            <span className="font-semibold">{items.image || "No Image is Provided."}</span>
+                            <span className="font-semibold w-auto text-start">{items.image || "No Image is Provided."}</span>
                           </div>
                           <Separator />
 
@@ -763,6 +692,162 @@ const University = () => {
                           </div>
                           <Separator />
                           <div className="flex gap-2">
+                            <p>Status: </p>
+                            <Badge
+                              className={cn(
+                                "w-fit",
+                                items.status ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                              )}
+                            >
+                              {items.status || "No Status Provided."}
+                            </Badge>
+                          </div>
+                        </div> */}
+                        <div className="flex w-full flex-col gap-2 rounded-lg p-3 text-sm">
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <University className="h-5 w-5 !p-0" />
+                            </div>
+                            <p className="flex flex-row text-center">University: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.universityName || "No Name is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Mail className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Email: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.email || "No Email is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Facebook className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Facebook: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.facebook || "No Facebook Link is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Instagram className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Instagram: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.instragam || "No Instagram Link is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <CircleDollarSign className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Education Cost: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.educationCost || "No Education Cost is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Chrome className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Website: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.website || "No Website Link is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Code className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>University Code: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.universityCode || "No University Code is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Code className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>University Image: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.image || "No University Code is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Code className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>University Logo: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.logo || "No University Code is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Phone className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Phone Number: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.phoneNumber || "No Phone Number is Provided."}</span>
+                          </div>
+                          {/* <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                  <University className="h-5 w-5 !p-0" />
+                </div>                <p>Logo: </p>
+                            <span className="w-auto text-start font-semibold select-all">{items.logo || "No Logo is Provided."}</span>
+                          </div> */}
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Earth className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Address: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.address || "No Address is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <MapPinned className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Region: </p>
+                            <span className="w-auto select-all text-start font-semibold">{items.region || "No Region is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2 py-3">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <MessageCircleDashed className="h-5 w-5 !p-0" />
+                            </div>
+                            <span className="max-w-[90%] select-all text-start font-semibold">Description: {items.universityDescription || "No Description is Provided."}</span>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Hotel className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Hostel: </p>
+                            <Badge
+                              className={cn(
+                                "w-fit text-center",
+                                items.hostel ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                              )}
+                            >
+                              {items.hostel || "No Hostel Information Provided."}
+                            </Badge>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <PocketKnife className="h-5 w-5 !p-0" />
+                            </div>
+                            <p>Military: </p>
+                            <Badge
+                              className={cn(
+                                "w-fit",
+                                items.military ? "bg-green-500 text-green-50" : "bg-destructive text-destructive-foreground"
+                              )}
+                            >
+                              {items.military || 'No Military Status Provided.'}
+                            </Badge>
+                          </div>
+                          <Separator />
+                          <div className="flex items-center justify-start gap-2">
+                            <div className="bg-primary-foreground flex h-[45px] w-[45px] items-center justify-center rounded-full p-1 pb-2">
+                              <Flame className="h-5 w-5 !p-0" />
+                            </div>
                             <p>Status: </p>
                             <Badge
                               className={cn(
@@ -823,17 +908,16 @@ const University = () => {
 
 
                                   const updateRef = doc(db, "universities", items.id);
-                                  items.logo ? await updateDoc(updateRef, {
+                                  const Update = await updateDoc(updateRef, {
                                     address: stateValue || items.address,
                                     educationCost: inputedCost || items.educationCost,
                                     email: inputedEmail || items.email,
                                     facebook: inputedFacebook || items.facebook,
                                     hostel: inputedHostel || items.hostel,
                                     image: inputedImage || items.image,
-                                    images: inputedImages || items.images,
                                     instagram: inputedInstragam || items.instagram,
                                     military: inputedMilitary || items.military,
-                                    phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                    phoneNumber: phone || items.phoneNumber,
                                     region: countryValue || items.region,
                                     status: inputedStatus || items.status,
                                     universityCode: inputedCode || items.universityCode,
@@ -841,24 +925,44 @@ const University = () => {
                                     universityName: inputedName || items.universityName,
                                     website: inputedWebsite || items.website,
                                     logo: inputedLogo || items.logo
-                                  }) : await updateDoc(updateRef, {
-                                    address: stateValue || items.address,
-                                    educationCost: inputedCost || items.educationCost,
-                                    email: inputedEmail || items.email,
-                                    facebook: inputedFacebook || items.facebook,
-                                    hostel: inputedHostel || items.hostel,
-                                    image: inputedImage || items.image,
-                                    images: inputedImages || items.images,
-                                    instagram: inputedInstragam || items.instagram,
-                                    military: inputedMilitary || items.military,
-                                    phoneNumber: inputedPhoneNumber || items.phoneNumber,
-                                    region: countryValue || items.region,
-                                    status: inputedStatus || items.status,
-                                    universityCode: inputedCode || items.universityCode,
-                                    universityDescription: inputedDescription || items.universityDescription,
-                                    universityName: inputedName || items.universityName,
-                                    website: inputedWebsite || items.website,
-                                  });
+                                  })
+
+                                  // items.logo ? await updateDoc(updateRef, {
+                                  //   address: stateValue || items.address,
+                                  //   educationCost: inputedCost || items.educationCost,
+                                  //   email: inputedEmail || items.email,
+                                  //   facebook: inputedFacebook || items.facebook,
+                                  //   hostel: inputedHostel || items.hostel,
+                                  //   image: inputedImage || items.image,
+                                  //   images: inputedImages || items.images,
+                                  //   instagram: inputedInstragam || items.instagram,
+                                  //   military: inputedMilitary || items.military,
+                                  //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                  //   region: countryValue || items.region,
+                                  //   status: inputedStatus || items.status,
+                                  //   universityCode: inputedCode || items.universityCode,
+                                  //   universityDescription: inputedDescription || items.universityDescription,
+                                  //   universityName: inputedName || items.universityName,
+                                  //   website: inputedWebsite || items.website,
+                                  //   logo: inputedLogo || items.logo
+                                  // }) : await updateDoc(updateRef, {
+                                  //   address: stateValue || items.address,
+                                  //   educationCost: inputedCost || items.educationCost,
+                                  //   email: inputedEmail || items.email,
+                                  //   facebook: inputedFacebook || items.facebook,
+                                  //   hostel: inputedHostel || items.hostel,
+                                  //   image: inputedImage || items.image,
+                                  //   images: inputedImages || items.images,
+                                  //   instagram: inputedInstragam || items.instagram,
+                                  //   military: inputedMilitary || items.military,
+                                  //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                  //   region: countryValue || items.region,
+                                  //   status: inputedStatus || items.status,
+                                  //   universityCode: inputedCode || items.universityCode,
+                                  //   universityDescription: inputedDescription || items.universityDescription,
+                                  //   universityName: inputedName || items.universityName,
+                                  //   website: inputedWebsite || items.website,
+                                  // });
 
                                   toast({
                                     title: 'University has been Updated Successfully.',
@@ -884,75 +988,75 @@ const University = () => {
                           {inputedValues && <div className="w-full flex flex-col gap-2 rounded-lg p-3 text-sm overflow-hidden border">
                             <div className="flex gap-2">
                               <p>Name: </p>
-                              <span className="font-semibold">{inputedName || "No Name is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedName || "No Name is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Email: </p>
-                              <span className="font-semibold">{inputedEmail || "No Email is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedEmail || "No Email is Provided."}</span>
                             </div>
 
                             <Separator />
                             <div className="flex gap-2">
                               <p>Facebook: </p>
-                              <span className="font-semibold">{inputedFacebook || "No Facebook Link is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedFacebook || "No Facebook Link is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Instagram: </p>
-                              <span className="font-semibold">{inputedInstragam || "No Instagram Link is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedInstragam || "No Instagram Link is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Education Cost: </p>
-                              <span className="font-semibold">{inputedCost || "No Education Cost is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedCost || "No Education Cost is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Website: </p>
-                              <span className="font-semibold">{inputedWebsite || "No Website Link is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedWebsite || "No Website Link is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>University Code: </p>
-                              <span className="font-semibold">{inputedCode || "No University Code is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedCode || "No University Code is Provided."}</span>
                             </div>
                             <Separator />
 
 
                             <div className="flex gap-2">
                               <p>Phone Number: </p>
-                              <span className="font-semibold">{phone || "No Phone Number is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{phone || "No Phone Number is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Logo: </p>
-                              <span className="font-semibold">{inputedLogo || "No Logo is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedLogo || "No Logo is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Address: </p>
-                              <span className="font-semibold">{stateValue || "No Address is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{stateValue || "No Address is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Region: </p>
-                              <span className="font-semibold">{countryValue || "No Region is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{countryValue || "No Region is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Description: </p>
-                              <span className="font-semibold">{inputedDescription || "No Description is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedDescription || "No Description is Provided."}</span>
                             </div>
                             <Separator />
                             {/* <div className="flex gap-2">
                               <p>Images: </p>
-                              <span className="font-semibold">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{JSON.stringify(inputedImages, null, 2) || "No Images are Provided."}</span>
                             </div>
                             <Separator /> */}
                             <div className="flex gap-2">
                               <p>Image: </p>
-                              <span className="font-semibold">{inputedImage || "No Image is Provided."}</span>
+                              <span className="font-semibold w-auto text-start">{inputedImage || "No Image is Provided."}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
@@ -1005,7 +1109,7 @@ const University = () => {
                             </div>
                             <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                               <h1 className="text-4xl font-bold w-full text-left">Email</h1>
-                              <Input onChange={handleEmailChange} type="email" placeholder="Enter University Name" />
+                              <Input onChange={handleEmailChange} type="email" placeholder="Enter University Email" />
                             </div>
                             <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                               <h1 className="text-4xl font-bold w-full text-left">Status</h1>
@@ -1142,43 +1246,43 @@ const University = () => {
                           {phoneNumberDetails && <div className="min-w-[99%] w-max mx-auto flex flex-col gap-2 border rounded-lg p-3 text-sm">
                             <div className="flex gap-2">
                               <p>Phone number: </p>
-                              <span className="font-semibold">{phoneData.phoneNumber || "-"}</span>
+                              <span className="font-semibold w-auto text-start">{phoneData.phoneNumber || "-"}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Country code: </p>
-                              <span className="font-semibold">{phoneData.countryCode || "-"}</span>
+                              <span className="font-semibold w-auto text-start">{phoneData.countryCode || "-"}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>Country calling code: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.countryCallingCode || "-"}
                               </span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>National number: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.nationalNumber || "-"}
                               </span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>International number: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.internationalNumber || "-"}
                               </span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p>URI: </p>
-                              <span className="font-semibold">{phoneData.uri || "-"}</span>
+                              <span className="font-semibold w-auto text-start">{phoneData.uri || "-"}</span>
                             </div>
                             <Separator />
                             <div className="flex gap-2">
                               <p className="flex-shrink-0">Possible countries: </p>
-                              <span className="font-semibold">
+                              <span className="font-semibold w-auto text-start">
                                 {phoneData.possibleCountries || "-"}
                               </span>
                             </div>
@@ -1368,7 +1472,7 @@ const University = () => {
                           </div>
                           <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                             <h1 className="text-4xl font-bold w-full text-left">Image</h1>
-                            <Input onChange={handleImageChange} type="text" placeholder="Enter Images Link" />
+                            <Input onChange={handleImageChange} type="text" placeholder="Enter Image Link" />
                           </div>
 
                           {/* <Collapsible
@@ -1377,7 +1481,7 @@ const University = () => {
                             className="w-full space-y-2"
                           >
                             <div className="flex items-center justify-between space-x-4 px-4">
-                              <h4 className="text-sm font-semibold">
+                              <h4 className="text-sm font-semibold w-auto text-start">
                                 Add Files Link
                               </h4>
                               <CollapsibleTrigger asChild>
@@ -1426,7 +1530,7 @@ const University = () => {
 
                           <div className="action w-full my-3 flex flex-col lg:hidden items-start justify-start space-y-3 lg:space-y-0">
                             <Link href="/universities" className="z-50 w-full">
-                              <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto">
+                              <AnimatedButton variant="expandIcon" Icon={ArrowLeftIcon} iconPlacement="left" className="border border-input bg-secondary hover:bg-accent text-accent-foreground !min-w-full lg:w-auto pr-3 text-start">
                                 Back
                               </AnimatedButton>
                             </Link>
@@ -1458,18 +1562,16 @@ const University = () => {
 
 
                                 const updateRef = doc(db, "universities", items.id);
-
-                                items.logo ? await updateDoc(updateRef, {
+                                const Update = await updateDoc(updateRef, {
                                   address: stateValue || items.address,
                                   educationCost: inputedCost || items.educationCost,
                                   email: inputedEmail || items.email,
                                   facebook: inputedFacebook || items.facebook,
                                   hostel: inputedHostel || items.hostel,
                                   image: inputedImage || items.image,
-                                  images: inputedImages || items.images,
                                   instagram: inputedInstragam || items.instagram,
                                   military: inputedMilitary || items.military,
-                                  phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                  phoneNumber: phone || items.phoneNumber,
                                   region: countryValue || items.region,
                                   status: inputedStatus || items.status,
                                   universityCode: inputedCode || items.universityCode,
@@ -1477,24 +1579,44 @@ const University = () => {
                                   universityName: inputedName || items.universityName,
                                   website: inputedWebsite || items.website,
                                   logo: inputedLogo || items.logo
-                                }) : await updateDoc(updateRef, {
-                                  address: stateValue || items.address,
-                                  educationCost: inputedCost || items.educationCost,
-                                  email: inputedEmail || items.email,
-                                  facebook: inputedFacebook || items.facebook,
-                                  hostel: inputedHostel || items.hostel,
-                                  image: inputedImage || items.image,
-                                  images: inputedImages || items.images,
-                                  instagram: inputedInstragam || items.instagram,
-                                  military: inputedMilitary || items.military,
-                                  phoneNumber: inputedPhoneNumber || items.phoneNumber,
-                                  region: countryValue || items.region,
-                                  status: inputedStatus || items.status,
-                                  universityCode: inputedCode || items.universityCode,
-                                  universityDescription: inputedDescription || items.universityDescription,
-                                  universityName: inputedName || items.universityName,
-                                  website: inputedWebsite || items.website,
-                                });
+                                })
+
+                                // items.logo ? await updateDoc(updateRef, {
+                                //   address: stateValue || items.address,
+                                //   educationCost: inputedCost || items.educationCost,
+                                //   email: inputedEmail || items.email,
+                                //   facebook: inputedFacebook || items.facebook,
+                                //   hostel: inputedHostel || items.hostel,
+                                //   image: inputedImage || items.image,
+                                //   images: inputedImages || items.images,
+                                //   instagram: inputedInstragam || items.instagram,
+                                //   military: inputedMilitary || items.military,
+                                //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                //   region: countryValue || items.region,
+                                //   status: inputedStatus || items.status,
+                                //   universityCode: inputedCode || items.universityCode,
+                                //   universityDescription: inputedDescription || items.universityDescription,
+                                //   universityName: inputedName || items.universityName,
+                                //   website: inputedWebsite || items.website,
+                                //   logo: inputedLogo || items.logo
+                                // }) : await updateDoc(updateRef, {
+                                //   address: stateValue || items.address,
+                                //   educationCost: inputedCost || items.educationCost,
+                                //   email: inputedEmail || items.email,
+                                //   facebook: inputedFacebook || items.facebook,
+                                //   hostel: inputedHostel || items.hostel,
+                                //   image: inputedImage || items.image,
+                                //   images: inputedImages || items.images,
+                                //   instagram: inputedInstragam || items.instagram,
+                                //   military: inputedMilitary || items.military,
+                                //   phoneNumber: inputedPhoneNumber || items.phoneNumber,
+                                //   region: countryValue || items.region,
+                                //   status: inputedStatus || items.status,
+                                //   universityCode: inputedCode || items.universityCode,
+                                //   universityDescription: inputedDescription || items.universityDescription,
+                                //   universityName: inputedName || items.universityName,
+                                //   website: inputedWebsite || items.website,
+                                // });
 
                                 toast({
                                   title: 'University has been Updated Successfully.',
@@ -1545,7 +1667,7 @@ const University = () => {
     </main>
   );
 };
-export default University;
+export default UniversityPage;
 
 
 

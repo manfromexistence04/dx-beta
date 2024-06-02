@@ -205,7 +205,6 @@ export default function CreateUniversity() {
             facebook: inputedFacebook,
             hostel: inputedHostel,
             image: inputedImage,
-            images: inputedImages,
             instagram: inputedInstragam,
             military: inputedMilitary,
             phoneNumber: inputedPhoneNumber,
@@ -910,7 +909,7 @@ export default function CreateUniversity() {
                 </div>
                 <div className="hover-glow-border w-full h-auto border rounded-md flex flex-col space-y-3 items-center justify-center p-10">
                     <h1 className="text-4xl font-bold w-full text-left">Image</h1>
-                    <Input onChange={handleImageChange} type="text" placeholder="Enter Images Link" />
+                    <Input onChange={handleImageChange} type="text" placeholder="Enter Image Link" />
                 </div>
                 {/* 
                 <div className="name-logo-description-university w-full grid gap-3 ">
