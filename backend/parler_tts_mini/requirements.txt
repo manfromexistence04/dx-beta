@@ -1,1 +1,0 @@
-git+https://github.com/ylacombe/parler-tts.git@parler-tts-release

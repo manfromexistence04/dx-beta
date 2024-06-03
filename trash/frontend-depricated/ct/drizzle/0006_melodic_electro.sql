@@ -1,1 +1,0 @@
-ALTER TABLE `link` DROP COLUMN `title`;
